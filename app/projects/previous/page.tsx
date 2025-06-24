@@ -10,77 +10,77 @@ const projects = [
     id: 'timbertech',
     title: "TimberTech",
     description: "A full redesign for TimberTech.com and their existing design system.",
-    imageUrl: "/images/timbertech-card.jpg",
+    imageUrl: "./images/timbertech-card.jpg",
     year: "Web Design"
   },
   {
     id: 'healthcare',
     title: "Healthcare",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/healthcare-card.jpg",
+    description: "A digital platform designed to connect healthcare professionals and patients across developing nations.",
+    imageUrl: "./images/healthcare-card.jpg",
     year: "IA & UI"
   },
   {
     id: 'mcdonalds-kiosk',
     title: "McDonalds Kiosk",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/mcDonalds-card.jpg",
+    imageUrl: "./images/mcDonalds-card.jpg",
     year: "Product Design"
   },
   {
     id: 'intel',
     title: "Intel",
     description: "A sustainability tracking application helping businesses monitor and reduce their environmental impact.",
-    imageUrl: "/images/heroGraphic.jpg",
+    imageUrl: "./images/heroGraphic.jpg",
     year: "Market Research"
   },
   {
     id: 'nodalytics',
     title: "Nodalytics",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/Nodalytics_heroGraphic-3.jpg",
+    imageUrl: "./images/Nodalytics_heroGraphic-3.jpg",
     year: "Product Design"
   },
   {
     id: 'newdea',
     title: "Newdea",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/newdea_hero_containerGraphic-5.jpg",
+    imageUrl: "./images/newdea_hero_containerGraphic-5.jpg",
     year: "Product Design"
   },
   {
     id: 'doublegood',
     title: "DoubleGood",
     description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
-    imageUrl: "/images/doubleGoodImage.webp",
+    imageUrl: "./images/doubleGoodImage.webp",
     year: "Web Design (Mobile)"
   },
   {
     id: 'advisestream',
     title: "AdviseStream",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/Advistestream_mockup-createReport.jpg",
+    imageUrl: "./images/Advistestream_mockup-createReport.jpg",
     year: "Product Design"
   },
   {
     id: 'sphere-software',
     title: "Sphere Software",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/chairliftAllScreens.png",
+    imageUrl: "./images/chairliftAllScreens.png",
     year: "Product & Web Design"
   },
   {
     id: 'havas-agency',
     title: "Havas Agency",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/havas-card.jpg",
+    imageUrl: "./images/havas-card.jpg",
     year: "UX & Web Design"
   },
   {
     id: 'rich-products',
     title: "Rich Products",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/images/websiteCards_template.png",
+    imageUrl: "./images/websiteCards_template.png",
     year: "IA & Web Design"
   }
 ];
