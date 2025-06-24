@@ -86,11 +86,11 @@ export default function PurdueProjectPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black z-10" />
         <div className="absolute inset-0">
           <Image
-            src="/images/PU-Memorial-Mall-DJI.jpg"
-            alt="Purdue University Memorial Mall aerial view"
-            fill
-            className="object-cover"
-            priority
+            src="./images/PU-Memorial-Mall-DJI.jpg"
+            alt="Purdue University Campus"
+            width={800}
+            height={600}
+            className="rounded-lg shadow-lg"
           />
         </div>
         <div className="container mx-auto px-6 relative z-20">
@@ -183,41 +183,38 @@ export default function PurdueProjectPage() {
             <div className="space-y-6">
               <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="/images/sitebulb-screenshot_1.jpg"
-                  alt="Sitebulb audit screenshot showing website analysis"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/sitebulb-screenshot_1.jpg"
+                  alt="Sitebulb Screenshot"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
-              <div className="relative w-full rounded-xl overflow-hidden bg-black/20">
+              <div className="mb-8">
                 <Image
-                  src="/images/Sitebulb-duplicateGraph.jpg"
-                  alt="Sitebulb duplicate content analysis graph showing content overlap"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/Sitebulb-duplicateGraph.jpg"
+                  alt="Sitebulb Duplicate Graph"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
-              <div className="relative w-full rounded-xl overflow-hidden bg-black/20">
+              <div className="mb-8">
                 <Image
-                  src="/images/GA-EventsScreenshot 1.png"
-                  alt="Google Analytics Events dashboard showing user interaction metrics"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/GA-EventsScreenshot 1.png"
+                  alt="Google Analytics Events Screenshot"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
-              <div className="relative w-full rounded-xl overflow-hidden bg-black/20">
+              <div className="mb-8">
                 <Image
-                  src="/images/crawl_force-directed_www_purdue_edu_202506072022.png"
-                  alt="Force-directed graph showing Purdue website crawl structure"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/crawl_force-directed_www_purdue_edu_202506072022.png"
+                  alt="Purdue.edu Crawl Force Directed Graph"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
             </div>
@@ -253,12 +250,11 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/images/Existing-howToApply_Screenshot (2).jpg"
-                  alt="Current Purdue Graduate School navigation"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/Existing-howToApply_Screenshot (2).jpg"
+                  alt="Existing How To Apply Screenshot 2"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Navigation</p>
@@ -268,12 +264,11 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/images/Existing-howToApply_Screenshot (1).jpg"
-                  alt="Current Purdue Graduate School program page"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/Existing-howToApply_Screenshot (1).jpg"
+                  alt="Existing How To Apply Screenshot 1"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Program Page</p>
@@ -283,12 +278,11 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/images/Existing-howToApply_Screenshot.jpg"
-                  alt="Current Purdue Graduate School how to apply page"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/Existing-howToApply_Screenshot.jpg"
+                  alt="Existing How To Apply Screenshot"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">How to Apply</p>
@@ -298,12 +292,11 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/images/Existing-fellowships_Screenshot.jpg"
-                  alt="Current Purdue Graduate School application page"
-                  className="w-full h-auto object-cover"
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="./images/Existing-fellowships_Screenshot.jpg"
+                  alt="Existing Fellowships Screenshot"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Fellowships Landing Page</p>
@@ -383,12 +376,11 @@ export default function PurdueProjectPage() {
           <div className="space-y-4">
             <div className="relative aspect-[16/9] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
-                src="/images/purdueFigma_Screenshot (2).jpg"
-                alt="Purdue Graduate School new design in Figma"
-                className="w-full h-auto object-cover"
-                width={1920}
-                height={1080}
-                sizes="(max-width: 768px) 100vw, 100vw"
+                src="./images/purdueFigma_Screenshot (2).jpg"
+                alt="Purdue Figma Screenshot"
+                width={800}
+                height={600}
+                className="rounded-lg shadow-lg"
               />
             </div>
             <p className="text-sm text-gray-400">Working Figma File</p>
@@ -407,10 +399,11 @@ export default function PurdueProjectPage() {
             <Link href="/projects/ai-sandbox" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/travelApp-card.jpg"
-                  alt="AI Sandbox"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="./images/travelApp-card.jpg"
+                  alt="AI Sandbox Project"
+                  width={400}
+                  height={300}
+                  className="rounded-lg shadow-lg object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -440,10 +433,11 @@ export default function PurdueProjectPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/timbertech-card.jpg"
-                  alt="Previous Projects"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="./images/timbertech-card.jpg"
+                  alt="TimberTech Project"
+                  width={400}
+                  height={300}
+                  className="rounded-lg shadow-lg object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">

@@ -7,7 +7,7 @@ const projects = [
   {
     title: "Purdue University",
     description: "A web redesign project focused on enhancing UX, UI, and streamlining content management.",
-    imageUrl: "/images/PU-Memorial-Mall-DJI.jpg",
+    imageUrl: "./images/PU-Memorial-Mall-DJI.jpg",
     tags: ["Education", "Research", "Engineering", "Technology"],
     link: "/projects/purdue",
     currentProject: true,
@@ -16,14 +16,14 @@ const projects = [
   {
     title: "AI Sandbox",
     description: "Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.",
-    imageUrl: "/images/travelApp-card.jpg",
+    imageUrl: "./images/travelApp-card.jpg",
     tags: ["AI", "Machine Learning", "Education", "Interactive"],
     link: "/projects/ai-sandbox"
   },
   {
     title: "Previous Projects",
     description: "A collection of past projects highlighting expertise in UX, UI, and web design.",
-    imageUrl: "/images/timbertech-card.jpg",
+    imageUrl: "./images/timbertech-card.jpg",
     tags: ["Web Development", "Design", "Software", "Portfolio"],
     link: "/projects/previous"
   }

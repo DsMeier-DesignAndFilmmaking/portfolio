@@ -1474,10 +1474,11 @@ export default function AISandboxPage() {
             <Link href="/projects/purdue" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/PU-Memorial-Mall-DJI.jpg"
-                  alt="Purdue University"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="./images/PU-Memorial-Mall-DJI.jpg"
+                  alt="Purdue University Project"
+                  width={400}
+                  height={300}
+                  className="rounded-lg shadow-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -1494,10 +1495,11 @@ export default function AISandboxPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/timbertech-card.jpg"
-                  alt="Previous Projects"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="./images/timbertech-card.jpg"
+                  alt="TimberTech Project"
+                  width={400}
+                  height={300}
+                  className="rounded-lg shadow-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">

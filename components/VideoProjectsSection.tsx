@@ -85,51 +85,51 @@ export default function VideoProjectsSection() {
                 <div className="relative bg-white/10 overflow-hidden">
                   {index === 1 ? (
                     <Image
-                      src="/images/Istanbul-frames-2.jpg"
-                      alt="Istanbul"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/Istanbul-frames-2.jpg"
+                      alt="Istanbul Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : index === 2 ? (
                     <Image
-                      src="/images/japan-frames.jpg"
-                      alt="Japan"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/japan-frames.jpg"
+                      alt="Japan Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : index === 3 ? (
                     <Image
-                      src="/images/Terratorium-stillFrames.jpg"
-                      alt="Terratorium"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/Terratorium-stillFrames.jpg"
+                      alt="Terratorium Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : index === 4 ? (
                     <Image
-                      src="/images/Teleportal-frames.jpg"
-                      alt="Teleportal"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/Teleportal-frames.jpg"
+                      alt="Teleportal Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : index === 5 ? (
                     <Image
-                      src="/images/Morrocco-frames.jpg"
-                      alt="Morocco"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/Morrocco-frames.jpg"
+                      alt="Morocco Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : index === 6 ? (
                     <Image
-                      src="/images/Indonesia-frames.jpg"
-                      alt="Indonesia"
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto filter brightness-105 contrast-110 saturate-95 sepia-5"
+                      src="./images/Indonesia-frames.jpg"
+                      alt="Indonesia Video Frames"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-white/40">

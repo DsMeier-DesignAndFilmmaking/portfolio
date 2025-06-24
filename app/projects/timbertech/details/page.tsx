@@ -52,20 +52,20 @@ export default function TimberTechDetails() {
             <div className="space-y-8">
               <div className="relative w-full h-[50vh] md:h-[70vh]">
                 <Image
-                  src="/images/TimberTech-Figma_1.jpg"
-                  alt="TimberTech Project Overview"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
+                  src="./images/TimberTech-Figma_1.jpg"
+                  alt="TimberTech Figma Design 1"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
               <div className="relative w-full h-[50vh] md:h-[70vh]">
                 <Image
-                  src="/images/TimberTech-Figma_2.jpg"
-                  alt="TimberTech Figma Design"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
+                  src="./images/TimberTech-Figma_2.jpg"
+                  alt="TimberTech Figma Design 2"
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-lg"
                 />
               </div>
             </div>
