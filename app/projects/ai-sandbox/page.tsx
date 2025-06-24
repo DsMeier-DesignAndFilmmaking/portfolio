@@ -16,6 +16,8 @@ export default function AISandboxPage() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,18 +118,16 @@ export default function AISandboxPage() {
           className="absolute inset-0 w-full h-full"
         >
           <video
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover absolute inset-0 z-0"
+            src="/portfolio/videos/Create_a_cinematic_optimized.mp4"
             autoPlay
-            muted
             loop
+            muted
             playsInline
-            preload="metadata"
-          >
-            <source 
-              src="/videos/Create_a_cinematic_202506221020_76xhy.mp4" 
-              type="video/mp4"
-            />
-          </video>
+            poster="/portfolio/images/ai-travel-hero.svg"
+            onLoadedData={() => setVideoLoaded(true)}
+            onError={() => setVideoError(true)}
+          />
         </motion.div>
         
         {/* Enhanced Gradient Overlay for Accessibility */}
@@ -1267,14 +1267,32 @@ export default function AISandboxPage() {
                     autoPlay
                     muted
                     loop
-                    preload="none"
+                    preload="metadata"
                     poster="/portfolio/images/ai-travel-hero.svg"
                     playsInline
                     controls={false}
+                    onError={(e) => {
+                      console.error('Video failed to load:', e);
+                    }}
+                    onLoadStart={() => {
+                      console.log('Video loading started');
+                    }}
+                    onCanPlay={() => {
+                      console.log('Video can play');
+                    }}
+                    onLoadedData={() => {
+                      console.log('Video data loaded');
+                    }}
                   >
                     <source 
-                      src="/portfolio/videos/Create_a_cinematic_202506221020_76xhy.mp4" 
+                      src="/portfolio/videos/Create_a_cinematic_optimized.mp4" 
                       type="video/mp4"
+                    />
+                    {/* Fallback for browsers that don't support video */}
+                    <img 
+                      src="/portfolio/images/ai-travel-hero.svg" 
+                      alt="AI Travel Hero" 
+                      className="w-full h-full object-cover"
                     />
                   </video>
                   
