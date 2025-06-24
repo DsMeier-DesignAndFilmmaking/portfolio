@@ -6,7 +6,8 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true
-  }
+  },
+  basePath: '/portfolio'
 }
 
 module.exports = nextConfig 

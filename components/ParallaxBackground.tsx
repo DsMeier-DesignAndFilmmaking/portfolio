@@ -73,7 +73,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     particlesRef.current = particles;
 
     // Load 3D model if provided
-    if (modelPath) {
+    if (modelPath && modelPath !== 'torus') {
       const loader = new GLTFLoader();
       loader.load(
         modelPath,
@@ -90,7 +90,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
         }
       );
     } else {
-      // Create default torus knot if no model provided
+      // Create default torus knot if no model provided or if modelPath is 'torus'
       const torusGeometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 32);
       const torusMaterial = new THREE.MeshPhongMaterial({
         color: 0x4a90e2,
