@@ -116,7 +116,7 @@ export default function PreviousProjectsPage() {
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className="h-9 w-auto brightness-0"
+                  className="h-9 w-auto brightness-0 invert"
                 />
               </button>
             </div>
