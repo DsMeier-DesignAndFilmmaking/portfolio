@@ -27,7 +27,7 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  const texture = useTexture('/images/textures/earth-map.jpg', (texture) => {
+  const texture = useTexture('./images/textures/earth-map.jpg', (texture) => {
     texture.minFilter = THREE.LinearFilter;
     texture.magFilter = THREE.LinearFilter;
     texture.generateMipmaps = false;

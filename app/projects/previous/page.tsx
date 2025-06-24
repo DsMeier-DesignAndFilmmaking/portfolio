@@ -112,11 +112,11 @@ export default function PreviousProjectsPage() {
                 aria-label="Return to home page"
               >
                 <Image
-                  src="/images/signature-25.png"
+                  src="./images/signature-25.png"
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className="h-9 w-auto brightness-0 invert"
+                  className="h-9 w-auto brightness-0"
                 />
               </button>
             </div>
