@@ -1,0 +1,2007 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaCode,
+  FaLink,
+  FaLayerGroup,
+  FaChartLine,
+  FaUsers,
+  FaUserFriends,
+  FaSyncAlt,
+  FaChalkboardTeacher,
+  FaClock,
+  FaHospital,
+  FaUserMd,
+  FaClinicMedical,
+  FaHeartbeat,
+  FaNetworkWired,
+  FaCode as FaCodeIcon,
+  FaUserFriends as FaUserFriendsIcon,
+} from 'react-icons/fa';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
+
+const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
+  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+    <div className="pt-0">
+      <Icon className="w-8 h-8 text-white mb-4" />
+      <div className="text-3xl font-bold text-white mb-2">{value}</div>
+      <div className="text-gray-400">{label}</div>
+    </div>
+  </div>
+);
+
+const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: { icon?: React.ElementType; label: string; imageSrc?: string; isLarge?: boolean; align?: 'left' | 'center' }) => (
+  <div className={`bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 ${isLarge ? 'p-12' : 'p-6'} flex flex-col ${align === 'center' ? 'items-center justify-center' : 'items-start justify-start'}`}>
+    <div className={`pt-0 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          alt={label}
+          width={isLarge ? 64 : 32}
+          height={isLarge ? 64 : 32}
+          className={`mb-4 ${align === 'center' ? 'mx-auto' : ''}`}
+        />
+      ) : (
+        Icon && <Icon className={`${isLarge ? 'w-16 h-16' : 'w-8 h-8'} text-white mb-4 ${align === 'center' ? 'mx-auto' : ''}`} />
+      )}
+      <div className="text-gray-400">{label}</div>
+    </div>
+  </div>
+);
+
+// This would typically come from a database or CMS
+const projectData = {
+  'healthcare': {
+    title: "Digital Solutions for Healthcare",
+    description: "Worked with multiple healthcare clients to lead and support website redesigns.",
+    heroImage: "/images/healthcare-card.jpg",
+    year: "IA & UI",
+    stats: {
+      users: "10K+",
+      countries: "50+",
+      impact: "85%",
+      satisfaction: "92%"
+    },
+    overview: "The healthcare website redesign project aimed to create a more intuitive and accessible platform for medical professionals and patients. The project focused on improving navigation, enhancing the user interface, and ensuring compliance with healthcare accessibility standards.",
+    challenges: [
+      "Complex navigation structure needed simplification",
+      "Ensuring HIPAA compliance while maintaining user-friendly design",
+      "Balancing the needs of different user groups (doctors, patients, administrators)",
+      "Integrating multiple third-party healthcare systems"
+    ],
+    solutions: [
+      "Implemented a clear, hierarchical navigation system",
+      "Created role-based user interfaces for different user types",
+      "Developed a responsive design that works across all devices",
+      "Established a comprehensive design system for consistency"
+    ],
+    tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Storybook"],
+    images: [
+      "/images/GamC_HCP_sitemap_v1.jpg",
+      "/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
+      "/images/NovoCare-SLDS-Components.jpg",
+      "/images/SLDS_Mobile_Default-Form.jpg"
+    ]
+  },
+  'mcdonalds-kiosk': {
+    title: "McDonalds Kiosk",
+    description: "Partnered with an agency to enhance McDonald's kiosk experience, leveraging Dynamic Yield's smart customization.",
+    heroImage: "/images/mcDonalds-card.jpg",
+    year: "Product Design",
+    stats: {
+      users: "1M+",
+      countries: "5",
+      impact: "90%",
+      satisfaction: "95%"
+    },
+    overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
+    challenges: [
+      "Creating an intuitive ordering experience",
+      "Optimizing for speed and accuracy",
+      "Ensuring accessibility for all users",
+      "Integrating with existing systems"
+    ],
+    solutions: [
+      "Developed a streamlined ordering interface",
+      "Implemented smart menu recommendations",
+      "Created accessible design patterns",
+      "Built robust backend integration"
+    ],
+    tools: ["Figma", "React", "Node.js", "AWS"],
+    images: [
+      "/images/4.kiosk core build_ attract screen@2x.png",
+      "/images/mcDs_kiosk_screen-1.jpg",
+      "/images/4.kiosk core build_ attract screen@2x.png",
+      "/images/4.kiosk core build_ attract screen@2x.png"
+    ]
+  },
+  'intel': {
+    title: "Intel",
+    description: "I helped design early-stage technology product concepts to support market research.",
+    heroImage: "/images/heroGraphic.jpg",
+    year: "Market Research",
+    stats: {
+      users: "75k+",
+      countries: "8",
+      impact: "88%",
+      satisfaction: "94%"
+    },
+    overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
+    challenges: [
+      "Analyzing complex environmental data",
+      "Identifying market opportunities",
+      "Creating actionable insights",
+      "Presenting findings effectively"
+    ],
+    solutions: [
+      "Developed data analysis frameworks",
+      "Created visualization tools",
+      "Built recommendation systems",
+      "Implemented tracking mechanisms"
+    ],
+    tools: ["Python", "Tableau", "SQL", "Power BI"],
+    images: [
+      "/images/211206_IntelVirtualGatherings-reduced-4.jpg",
+      "/images/synthesisDeck-page-2.jpg",
+      "/images/heroGraphic.jpg"
+    ]
+  },
+  'nodalytics': {
+    title: "Nodalytics",
+    description: "Designed and prototyped a product concept for a blockchain start-up, created specifically to support investment pitches.",
+    heroImage: "/images/Nodalytics_heroGraphic-3.jpg",
+    year: "Product Design",
+    stats: {
+      users: "30k+",
+      countries: "4",
+      impact: "82%",
+      satisfaction: "91%"
+    },
+    overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
+    challenges: [
+      "Creating intuitive data visualizations",
+      "Handling large datasets efficiently",
+      "Ensuring real-time updates",
+      "Maintaining system performance"
+    ],
+    solutions: [
+      "Built scalable data processing pipelines",
+      "Developed interactive dashboards",
+      "Implemented real-time updates",
+      "Created custom reporting tools"
+    ],
+    tools: ["React", "D3.js", "Python", "AWS"],
+    images: [
+      "/images/Noda_cropped-container.jpg",
+      "/images/00-b_Login_SuperAdmin_filledIn.jpg",
+      "/images/Nodalytics_heroGraphic-3.jpg"
+    ]
+  },
+  'newdea': {
+    title: "Newdea",
+    description: "Designed a style guide and an interactive prototype for a blockchain-based digital infrastructure tool that aims support economic development across Africa.",
+    heroImage: "/images/newdea_hero_containerGraphic-5.jpg",
+    year: "Product Design",
+    stats: {
+      users: "45k+",
+      countries: "6",
+      impact: "87%",
+      satisfaction: "93%"
+    },
+    overview: "Led the redesign of Newdea's project management platform, focusing on improving user experience and workflow efficiency.",
+    challenges: [
+      "Simplifying complex workflows",
+      "Improving user onboarding",
+      "Enhancing collaboration features",
+      "Optimizing performance"
+    ],
+    solutions: [
+      "Redesigned user interface",
+      "Created guided onboarding flows",
+      "Enhanced collaboration tools",
+      "Optimized system architecture"
+    ],
+    tools: ["Figma", "React", "Node.js", "MongoDB"],
+    images: [
+      "/images/newdea_hero_containerGraphic-5.jpg",
+      "/images/website_newdea_imageFullWidth-white.jpg",
+      "/images/newdea-card.jpg"
+    ]
+  },
+  'doublegood': {
+    title: "DoubleGood",
+    description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
+    heroImage: "/images/doubleGoodImage.webp",
+    year: "Web Design (Mobile)",
+    stats: {
+      users: "200k+",
+      countries: "2",
+      impact: "92%",
+      satisfaction: "96%"
+    },
+    overview: "Designed and developed a mobile-first web platform for DoubleGood's fundraising platform, focusing on user engagement and conversion optimization.",
+    challenges: [
+      "Optimizing for mobile users",
+      "Improving conversion rates",
+      "Enhancing user engagement",
+      "Streamlining checkout process"
+    ],
+    solutions: [
+      "Created mobile-optimized designs",
+      "Implemented A/B testing",
+      "Enhanced user flows",
+      "Optimized checkout process"
+    ],
+    tools: ["Figma", "React", "Node.js", "Stripe"],
+    images: [
+      "/images/DoubleGood_mobileFlow_1.jpg",
+      "/images/2.8_FiltersApplied_Opt_2.png",
+      "/images/2.5_SweetCategory_page.png",
+      "/images/2.8_FiltersApplied_Opt_2.png"
+    ]
+  },
+  'advisestream': {
+    title: "AdviseStream",
+    description: "Worked with team on implementing responsive UI design updates for a medical school application platform.",
+    heroImage: "/images/advisestream-card.jpg",
+    year: "Product Design",
+    stats: {
+      users: "60k+",
+      countries: "3",
+      impact: "89%",
+      satisfaction: "94%"
+    },
+    overview: "Worked with team on implementing responsive UI design updates for a medical school application platform.",
+    challenges: [
+      "Simplifying complex workflows",
+      "Improving user experience",
+      "Enhancing collaboration features",
+      "Ensuring accessibility"
+    ],
+    solutions: [
+      "Redesigned user interface",
+      "Created intuitive workflows",
+      "Enhanced collaboration tools",
+      "Implemented accessibility features"
+    ],
+    tools: ["Figma", "React", "Node.js", "MongoDB"],
+    images: [
+      "/images/Advistestream_mockup-createReport.jpg",
+      "/images/0_base_opt-2–2.png",
+      "/images/Artboard-4.png"
+    ]
+  },
+  'sphere-software': {
+    title: "Sphere Software",
+    description: "I served as Design Director at a software start-up, leading the design of an HR product while also overseeing the design of client-facing websites.",
+    heroImage: "/images/chairliftAllScreens.png",
+    year: "Product & Web Design",
+    stats: {
+      users: "40k+",
+      countries: "4",
+      impact: "86%",
+      satisfaction: "93%"
+    },
+    overview: "Designed and developed a comprehensive software solution for Sphere, focusing on creating an intuitive and efficient user experience.",
+    challenges: [
+      "Creating intuitive interfaces",
+      "Optimizing performance",
+      "Ensuring scalability",
+      "Maintaining consistency"
+    ],
+    solutions: [
+      "Developed design system",
+      "Optimized architecture",
+      "Implemented best practices",
+      "Created documentation"
+    ],
+    tools: ["Figma", "React", "Node.js", "AWS"],
+    images: [
+      "/images/chairliftAllScreens.png",
+      "/images/CHAIRLIFTdatamap.png",
+      "/images/2_OKR_CheckInUserFlow_03-14-16.png",
+      "/images/1_Directory.png",
+      "/images/MeDashboard-EmployeeView-WithUpdates.png",
+      "/images/IMG_0051 (1).png"
+    ]
+  },
+  'havas-agency': {
+    title: "Havas Agency",
+    description: "As a client-facing UX Architect at an agency, I led the design of a Q3 marketing campaign experience integrated into the client's website.",
+    heroImage: "/images/havas-card.jpg",
+    year: "UX & Web Design",
+    stats: {
+      users: "25k+",
+      countries: "3",
+      impact: "84%",
+      satisfaction: "92%"
+    },
+    overview: "Led the UX and web design for Havas Agency's digital presence, creating an engaging and modern platform that showcases their creative work.",
+    challenges: [
+      "Creating engaging experiences",
+      "Showcasing creative work",
+      "Optimizing for performance",
+      "Maintaining brand consistency"
+    ],
+    solutions: [
+      "Developed interactive features",
+      "Created portfolio showcases",
+      "Optimized performance",
+      "Implemented brand guidelines"
+    ],
+    tools: ["Figma", "React", "Node.js", "AWS"],
+    images: [
+      "/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg",
+      "/images/Q2_ProgramFlowChart_08-20-15.jpg",
+      "/images/Q415_IFP_UXv3.ip 1.png",
+      "/images/IFP_PhotoContestPages_funcSpec-0701158.png"
+    ]
+  },
+  'rich-products': {
+    title: "Rich Products",
+    description: "Partnered with food brands to elevate UI/UX on consumer sites, boosting engagement and user experience.",
+    heroImage: "/images/websiteCards_template.png",
+    year: "IA & Web Design",
+    stats: {
+      users: "35k+",
+      countries: "5",
+      impact: "88%",
+      satisfaction: "95%"
+    },
+    overview: "Designed and developed Rich Products' digital platform, focusing on creating an intuitive information architecture and engaging user experience.",
+    challenges: [
+      "Organizing complex content",
+      "Creating intuitive navigation",
+      "Ensuring accessibility",
+      "Optimizing for performance"
+    ],
+    solutions: [
+      "Developed information architecture",
+      "Created navigation system",
+      "Implemented accessibility features",
+      "Optimized performance"
+    ],
+    tools: ["Figma", "React", "Node.js", "AWS"],
+    images: [
+      "/images/FarmRich_wireSpecs_02-07-2011.png",
+      "/images/Seapak_wireSpecs_RecipeDetails.png",
+      "/images/05_b_WhereToBuy_FromProduct_Mobile.png"
+    ]
+  },
+  'timbertech': {
+    title: "TimberTech",
+    description: "Led the marketing team through a full redesign of TimberTech.com, including an overhaul of their existing design system.",
+    heroImage: "/images/timbertech-card.jpg",
+    year: "Web Design",
+    stats: {
+      users: "300+",
+      countries: "50k+",
+      impact: "44%",
+      satisfaction: "250+"
+    },
+    overview: "I led and implemented a full website redesign project, streamlining and modernizing the existing design system for a cleaner, more cohesive user experience.",
+    challenges: [
+      "Modernizing legacy systems and interfaces",
+      "Creating a cohesive brand experience across platforms",
+      "Improving mobile responsiveness and accessibility",
+      "Streamlining the product catalog navigation"
+    ],
+    solutions: [
+      "Implemented a modern design system with consistent components",
+      "Developed responsive layouts optimized for all devices",
+      "Created an intuitive product navigation system",
+      "Enhanced visual hierarchy and content organization"
+    ],
+    tools: ["Google Analytics", "WordPress", "Adobe XD", "Figma"],
+    images: [
+      "/images/TT_FIGMA_Dsktp.png",
+      "/images/SAMPLES_Dsktp.jpg",
+      "/images/TT_Sustainability-Scroll_Dsktp.png"
+    ]
+  },
+  // Add other projects here...
+};
+
+export default function ProjectDetailPage({ params }: { params: { projectId: string } }) {
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const router = useRouter();
+  const project = projectData[params.projectId as keyof typeof projectData];
+
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsTransitioning(true);
+    setTimeout(() => {
+      router.push('/projects/previous');
+    }, 500);
+  };
+
+  const handleBackHome = () => {
+    router.push('/projects/previous');
+  };
+
+  return (
+    <main className="min-h-screen bg-black text-white">
+      <AnimatePresence>
+        {isTransitioning && <PageTransitionOverlay />}
+      </AnimatePresence>
+
+      {/* Navigation */}
+      <motion.nav 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="absolute top-0 left-0 right-0 z-50 mt-5"
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-start">
+            {/* Back Button */}
+            <div className="py-4">
+              <button
+                onClick={handleBackHome}
+                className="hover:opacity-80 transition-opacity flex items-center gap-2 text-white"
+                aria-label="Back to projects"
+              >
+                <FaArrowLeft className="w-5 h-5" />
+                <span className="text-[12pt]">Back to Projects</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
+        <div className="absolute inset-0">
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            fill
+            className={`object-cover ${params.projectId === 'havas-agency' ? 'blur-sm' : ''}`}
+            priority
+          />
+        </div>
+        <div className="container mx-auto px-6 relative z-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mt-[100px]"
+          >
+            <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
+              <span className="text-gray-400">{project.year}</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <span className="text-white">
+                {project.title}
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-white leading-relaxed">
+              {project.description}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Project Details Subheads for Healthcare */}
+      {params.projectId === 'healthcare' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>UI & IA Consultant</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p>2 years</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Improve accessibility and UX across multiple healthcare platforms</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for McDonald's Kiosk */}
+      {params.projectId === 'mcdonalds-kiosk' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>UX & UI Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">3 Months</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Enhance kiosk UX with upsell and cross-sell opportunities</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for Intel */}
+      {params.projectId === 'intel' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Concept Product Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">1 Month</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Gain actionable insights from market research interviews</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for TimberTech */}
+      {params.projectId === 'timbertech' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Lead Web Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">9 Months (contract)</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Modernized website and streamlined design system</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads */}
+      {params.projectId === 'nodalytics' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Product Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">3 Weeks</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Prototype product vision for investor pitches</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for Newdea */}
+      {params.projectId === 'newdea' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Product Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">3 Weeks</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Communicate product vision to investors</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for DoubleGood */}
+      {params.projectId === 'doublegood' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Product Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">3 Weeks</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Improve mobile product browsing and checkout experience</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for AdviseStream */}
+      {params.projectId === 'advisestream' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Product Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">9 Months (contract)</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Enhance med school application process for students and advisors.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for Sphere Software */}
+      {params.projectId === 'sphere-software' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p>Design Director</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">18 months</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Design and launch HR software and client websites</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for Havas Agency */}
+      {params.projectId === 'havas-agency' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p className="whitespace-nowrap">UX Architect</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">12 Months (Full-Time)</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Design an on-brand campaign UX; prep for a website redesign</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Details Subheads for Rich Products */}
+      {params.projectId === 'rich-products' && (
+        <section className="py-0 pb-10">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Role:</p>
+                <p className="whitespace-nowrap">UI/UX Designer</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Duration:</p>
+                <p className="whitespace-nowrap">2 Weeks</p>
+              </div>
+              <div className="min-h-[60px] flex flex-col justify-start">
+                <p className="text-sm text-gray-400">Project Goal:</p>
+                <p>Elevate UI/UX on consumer sites; build in store locator functionality</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Additional Client Icons */}
+      {params.projectId === 'healthcare' && (
+        <section className="bg-black py-10">
+          <div className="container mx-auto px-6">
+            <p className="text-gray-400 text-sm mb-6">Agencies I partnered with:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ClientIcon imageSrc="/images/closerlook_logo-edited.png" label="CloserLook (acquired by Avalere Health)" isLarge={true} />
+              <ClientIcon imageSrc="/images/scout-logo-edited-2.png" label="Scout (acquired by Concentric Life)" isLarge={true} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Healthcare Clients Section */}
+      {params.projectId === 'healthcare' && (
+        <section className="py-10">
+          <div className="container mx-auto px-6">
+            <p className="text-gray-400 text-sm mb-6">Healthcare Clients</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <ClientIcon label="Novo Nordisk" align="left" />
+              <ClientIcon label="Grifols" align="left" />
+              <ClientIcon label="Xywav" align="left" />
+              <ClientIcon label="Xyrem" align="left" />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Key Metrics or Client Icons */}
+      {params.projectId === 'timbertech' ? (
+        <section className="bg-black py-10">
+          <div className="container mx-auto px-6">
+            <p className="text-gray-400 text-sm mb-6">* per GA data documented prior to web redesign</p>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <StatCard icon={FaLink} value={project.stats.users} label="Updated and relaunched URLs" />
+              <StatCard icon={FaChartLine} value={project.stats.countries} label="Monthly Visitors" />
+              <StatCard icon={FaCheckCircle} value="19%" label="Increase in TCR" />
+              <StatCard icon={FaLayerGroup} value="22%" label="Component Reduction" />
+            </div>
+          </div>
+        </section>
+      ) : params.projectId === 'mcdonalds-kiosk' ? (
+        <section className="bg-black py-10">
+          <div className="container mx-auto px-6">
+            <p className="text-gray-400 text-sm mb-6">* per GA data documented prior to web redesign</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <StatCard icon={FaUsers} value="1.2M" label="Monthly Users" />
+              <StatCard icon={FaLayerGroup} value="7" label="Flows Prototyped" />
+              <StatCard icon={FaUserFriends} value="20" label="User Interviews Conducted" />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Project Images */}
+      <section className={
+        params.projectId === 'nodalytics' ? 'pb-20' : 
+        params.projectId === 'newdea' ? 'pb-20' : 
+        'pb-20'
+      }>
+        <div className="container mx-auto px-6">
+          {params.projectId === 'mcdonalds-kiosk' ? (
+            <>
+              <div className="relative w-full mb-8">
+                <Image
+                  src="/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg"
+                  alt="McDonald's DY Cross-sell Up-sell Flow"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+              <div className="relative w-full mb-8">
+                <Image
+                  src="/images/DynamicYield_ConceptFlows.jpg"
+                  alt="Dynamic Yield Concept Flows"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {project.images.slice(0, 2).map((img, idx) => (
+                  <div key={idx} className="relative w-full">
+                    <Image
+                      src={img}
+                      alt={`Project Image ${idx + 1}`}
+                      width={1200}
+                      height={800}
+                      quality={100}
+                      className={`w-full h-auto object-cover rounded-xl block`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : params.projectId === 'newdea' ? (
+            <>
+              <div className="grid grid-cols-3 gap-8 mb-8">
+                <div className="col-span-2">
+                  <Image
+                    src={project.images[0]}
+                    alt="Project Image 1"
+                    width={1200}
+                    height={800}
+                    quality={100}
+                    className="w-full h-auto object-cover rounded-xl block"
+                  />
+                </div>
+                <div className="col-span-1">
+                  <Image
+                    src={project.images[2]}
+                    alt="Project Image 3"
+                    width={1200}
+                    height={800}
+                    quality={100}
+                    className="w-full h-auto object-cover rounded-xl block"
+                  />
+                </div>
+              </div>
+              <div className="relative w-full">
+                <Image
+                  src={project.images[1]}
+                  alt="Project Image 2"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+            </>
+          ) : params.projectId === 'doublegood' ? (
+            <>
+              <div className="relative w-full mb-8">
+                <Image
+                  src={project.images[0]}
+                  alt="DoubleGood Mobile Flow"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+                <div className="mt-4 text-left">
+                  <a 
+                    href={project.images[0]} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-gray-300 text-sm underline"
+                  >
+                    View full screen
+                  </a>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.images.slice(1).map((img, idx) => (
+                  <div key={idx + 1} className="relative w-full">
+                    <div className="aspect-[9/16] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 2}`}
+                        fill
+                        quality={100}
+                        className={`object-cover block ${idx === 0 ? 'object-top' : ''} ${idx === 1 ? 'object-center' : ''}`}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : params.projectId === 'sphere-software' ? (
+            <>
+              <div className="relative w-full mb-8">
+                <Image
+                  src={project.images[0]}
+                  alt="Sphere Software Main"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+              <div className="relative w-full mb-8">
+                <Image
+                  src={project.images[1]}
+                  alt="Sphere Software Wireframes"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+              <div className="relative w-full mb-8">
+                <Image
+                  src={project.images[2]}
+                  alt="Sphere Software OKR Flow"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover rounded-xl block"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.images.slice(3).map((img, idx) => (
+                  <div key={idx + 3} className="relative w-full">
+                    <div className="aspect-[9/16] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 4}`}
+                        fill
+                        quality={100}
+                        className="object-cover block"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : params.projectId === 'intel' ? (
+            <>
+              {/* Web Page Mockup Placeholders for Intel */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {/* First mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/1-Meme-Drawer.jpg"
+                      alt="Meme Drawer Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Second mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/2-Pulse.jpg"
+                      alt="Pulse Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Third mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/3-VR-Portal.jpg"
+                      alt="VR Portal Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Fourth mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/4-Countdown-Assistant.jpg"
+                      alt="Countdown Assistant Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Fifth mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/5-Launch-Pad.jpg"
+                      alt="Launch Pad Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Sixth mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/6-My-Crew.jpg"
+                      alt="My Crew Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+                
+                {/* Seventh mockup with actual image */}
+                <div className="relative w-full">
+                  <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/7-Smart-Chat.jpg"
+                      alt="Smart Chat Interface"
+                      fill
+                      quality={100}
+                      className="object-cover object-top block"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Original Intel Images */}
+              {project.images.map((img, idx) => (
+                <div key={idx} className="relative w-full mb-8 last:mb-0">
+                  <div className="aspect-[3/2] relative overflow-hidden rounded-xl">
+                    <Image
+                      src={img}
+                      alt={`Project Image ${idx + 1}`}
+                      fill
+                      quality={100}
+                      className="object-contain block"
+                    />
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : params.projectId === 'nodalytics' ? (
+            <>
+              {/* Additional full-width image for Nodalytics */}
+              <div className="relative w-full mb-8">
+                <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                  <Image
+                    src="/images/Nodalytics UI Style Guide.jpg"
+                    alt="Nodalytics UI Style Guide"
+                    fill
+                    quality={100}
+                    className="object-cover object-top block"
+                  />
+                </div>
+                <div className="mt-4 text-left">
+                  <a 
+                    href="/images/Nodalytics UI Style Guide.jpg" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-gray-300 text-base underline pt-2 mt-2"
+                  >
+                    View Style Guide
+                  </a>
+                </div>
+              </div>
+              
+              {/* Original Nodalytics Images */}
+              {project.images.map((img, idx) => (
+                <div key={idx} className="relative w-full mb-8 last:mb-0">
+                  <div className={`relative overflow-hidden rounded-xl ${idx === 0 ? 'h-auto' : 'aspect-[16/10]'}`}>
+                    {idx === 0 ? (
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 1}`}
+                        width={1200}
+                        height={800}
+                        quality={100}
+                        className="object-contain w-full h-auto"
+                      />
+                    ) : (
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 1}`}
+                        fill
+                        quality={100}
+                        className={`object-cover block ${idx === 1 || idx === 2 || idx === 3 ? 'object-top' : ''}`}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            params.projectId === 'healthcare' ? (
+              <>
+                {/* First two images in full width */}
+                {project.images.slice(0, 2).map((img, idx) => (
+                  <div key={idx} className="relative w-full mb-8 last:mb-0">
+                    <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 1}`}
+                        fill
+                        quality={100}
+                        className={`object-cover block ${idx === 1 ? 'object-top' : ''}`}
+                      />
+                    </div>
+                  </div>
+                ))}
+                
+                {/* 3rd and 4th images in one row */}
+                <div className="grid grid-cols-3 gap-8 mb-8">
+                  <div className="col-span-2 relative w-full">
+                    <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={project.images[2]}
+                        alt="Project Image 3"
+                        fill
+                        quality={100}
+                        className="object-cover object-top block"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-span-1 relative w-full">
+                    <div className="h-full relative overflow-hidden rounded-xl">
+                      <Image
+                        src={project.images[3]}
+                        alt="Project Image 4"
+                        fill
+                        quality={100}
+                        className="object-cover object-top block"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              params.projectId === 'rich-products' ? (
+                <>
+                  {/* First image in full width */}
+                  <div className="relative w-full mb-8">
+                    <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={project.images[0]}
+                        alt="Project Image 1"
+                        fill
+                        quality={100}
+                        className="object-cover block"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Second image in full width */}
+                  <div className="relative w-full mb-8">
+                    <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={project.images[1]}
+                        alt="Project Image 2"
+                        fill
+                        quality={100}
+                        className="object-contain block"
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                project.images.map((img, idx) => (
+                  <div key={idx} className="relative w-full mb-8 last:mb-0">
+                    <div className="aspect-[16/10] relative overflow-hidden rounded-xl">
+                      <Image
+                        src={img}
+                        alt={`Project Image ${idx + 1}`}
+                        fill
+                        quality={100}
+                        className={`object-cover block ${idx === 1 || idx === 2 || idx === 3 ? 'object-top' : ''}`}
+                      />
+                    </div>
+                  </div>
+                ))
+              )
+            )
+          )}
+        </div>
+      </section>
+
+      {/* Process Overview Section for TimberTech */}
+      {params.projectId === 'timbertech' && (
+        <section className="pt-20 pb-40 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-12 text-white text-center">Process Overview</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto">
+              <div className="flex flex-col items-center">
+                <div className="p-4 bg-[#474f62] rounded-full mb-4">
+                  <FaSyncAlt className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">2-Week Sprints</h3>
+                <p className="text-gray-400">Led a fast-paced, agile workflow to ensure rapid iteration and delivery.</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="p-4 bg-[#4b5b58] rounded-full mb-4">
+                  <FaUsers className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Executive Collaboration</h3>
+                <p className="text-gray-400">Collaborated daily with the marketing C-suite and in-house UX team.</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="p-4 bg-[#935f25] rounded-full mb-4">
+                  <FaChalkboardTeacher className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Team Mentorship</h3>
+                <p className="text-gray-400">Guided junior designers toward ownership and smarter use of the design system.</p>
+              </div>
+            </div>
+            <div className="text-center mt-12">
+              <a 
+                href="https://www.timbertech.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-transparent hover:bg-white hover:text-black border border-white text-white font-bold py-3 px-8 rounded-lg transition-colors"
+              >
+                View Live Site
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Sample Deliverables Section for All Projects */}
+      {params.projectId !== 'timbertech' && params.projectId !== 'nodalytics' && (
+        <section className="py-20 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
+            <p className="text-gray-300 mb-12 max-w-2xl">
+              Explore more detailed deliverables from this project.
+            </p>
+            <div className="space-y-4 max-w-4xl">
+              {params.projectId === 'mcdonalds-kiosk' ? (
+                <>
+                  <a 
+                    href="/documents/DY Cross-sell Up-sell Wireframes 7.8.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Discovery and Plan Deck</h3>
+                        <p className="text-gray-400 text-sm">Discovery research and strategic planning documentation for kiosk optimization</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/DynamicYield_ConceptFlows.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
+                        <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </>
+              ) : params.projectId === 'rich-products' ? (
+                <>
+                  <a 
+                    href="/documents/FarmRich_GlobalNav_WhereToBuy_wireSpecs.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">FarmRich Wireframe Specifications</h3>
+                        <p className="text-gray-400 text-sm">Wireframe specifications and design guidelines for FarmRich consumer site improvements.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/Seapak_WhereToBuy_wireSpecs_v2.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Seapak Product Details Page</h3>
+                        <p className="text-gray-400 text-sm">Wireframe specifications for Seapak recipe details and user interface components.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </>
+              ) : params.projectId === 'intel' ? (
+                <>
+                  <a 
+                    href="/documents/Intel_LandingPageMockups.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Intel Landing Page Mockups</h3>
+                        <p className="text-gray-400 text-sm">Design mockups and wireframes for Intel's virtual gatherings concepts.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/211206_IntelVirtualGatherings-reduced-4.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Intel Virtual Gatherings Research</h3>
+                        <p className="text-gray-400 text-sm">Market research findings and insights from Intel's sustainability initiatives.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </>
+              ) : params.projectId === 'healthcare' ? (
+                <>
+                  <a 
+                    href="/documents/XYWAV_HCP_ComingSoon_HCP_Specs_v13.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">XYWAV HCP Coming Soon Specs</h3>
+                        <p className="text-gray-400 text-sm">Healthcare provider specifications and design guidelines (mobile).</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/02-15-19_Northera_Dan_SiteMap_FuncSpecs.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Northera Site Map & Functional Specs</h3>
+                        <p className="text-gray-400 text-sm">Information architecture and functional specifications for healthcare platform.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/XYW-12485_VirtualTriviaGame_V03.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Virtual Trivia Game</h3>
+                        <p className="text-gray-400 text-sm">Interactive healthcare engagement platform and game specifications.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </>
+              ) : params.projectId === 'newdea' ? (
+                <>
+                  <a 
+                    href="/documents/Newdea_Brand Guidelines.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Newdea Brand Guidelines</h3>
+                        <p className="text-gray-400 text-sm">Comprehensive brand guidelines and design system for the blockchain platform.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+
+                  <a 
+                    href="/documents/Newdea-AllScreens.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-1">Newdea All Screens</h3>
+                        <p className="text-gray-400 text-sm">Complete screen designs for the blockchain infrastructure platform.</p>
+                      </div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </>
+              ) : (
+                <>
+                  {params.projectId === 'doublegood' ? (
+                    <a 
+                      href="/documents/DoubleGood_ScreenDesigns.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white mb-1">DoubleGood Screen Designs</h3>
+                          <p className="text-gray-400 text-sm">Mobile UI designs and screen layouts for the fundraising platform.</p>
+                        </div>
+                      </div>
+                      <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : params.projectId === 'advisestream' ? (
+                    <>
+                      <a 
+                        href="/documents/UPDATED_10-16-17_UPennCL_Spec (1).pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">UPenn CL Specifications</h3>
+                            <p className="text-gray-400 text-sm">Updated specifications and design guidelines for the AdviseStream platform.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/AdviseStream_mobileDesigns.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">AdviseStream Mobile Designs</h3>
+                            <p className="text-gray-400 text-sm">Mobile UI designs and screen layouts for the AdviseStream platform.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </>
+                  ) : params.projectId === 'sphere-software' ? (
+                    <>
+                      <a 
+                        href="/documents/iOS_v2_10-25-2016.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">iOS Speck Deck</h3>
+                            <p className="text-gray-400 text-sm">Comprehensive specifications and design guidelines for the HR software platform.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/Reports_09-06-16.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">Reports Feature Deck</h3>
+                            <p className="text-gray-400 text-sm">Design mockups and specifications for HR software reporting and analytics features.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/OKR_ListViewAndOtherUpdates_09-28.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">Objective and Key Results Feature Set</h3>
+                            <p className="text-gray-400 text-sm">Design specifications and mockups for OKR list view functionality and system updates.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/SphereWhitepaper-1.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">Sphere Whitepaper</h3>
+                            <p className="text-gray-400 text-sm">Comprehensive whitepaper documenting the Sphere software platform strategy and implementation.</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </>
+                  ) : params.projectId !== 'havas-agency' && params.projectId !== 'rich-products' ? (
+                    <a 
+                      href="/documents/DynamicYield_ConceptFlows.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
+                          <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                        </div>
+                      </div>
+                      <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : null}
+
+                  {params.projectId !== 'doublegood' && params.projectId !== 'advisestream' && params.projectId !== 'sphere-software' && params.projectId !== 'rich-products' && (
+                    <>
+                      <a 
+                        href="/documents/Q415_IFP_UXv3.ip.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">Q4 Campaign UX Design</h3>
+                            <p className="text-gray-400 text-sm">UX design specifications and wireframes for the Q4 marketing campaign</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/Camel_ReDesign_UX_072215.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">Camel Redesign UX</h3>
+                            <p className="text-gray-400 text-sm">UX redesign specifications and wireframes for the Camel project</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+
+                      <a 
+                        href="/documents/IFP_CommonPages_FuncSpec-070115.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1">IFP Common Pages Specs</h3>
+                            <p className="text-gray-400 text-sm">Functional specifications for common pages and user interface components</p>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Research & User Testing Results Section */}
+      {params.projectId === 'mcdonalds-kiosk' && (
+        <section className="py-20 bg-black">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-white">Research & User Testing Results</h2>
+            <p className="text-gray-300 mb-12 max-w-2xl">
+              Key insights from user research and testing sessions.
+            </p>
+            <div className="space-y-6 max-w-4xl">
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-blue-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Pattern Recognition & Efficiency</h3>
+                  <p className="text-gray-300">Even non-Kiosk users were able to progress through the flow easily due to patterns they recognized and understood (e.g., yellow primary CTAs). The Kiosk seemed to be all about efficiency, avoiding a line, and getting food faster.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-green-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Upsell/Cross-sell Tolerance</h3>
+                  <p className="text-gray-300">Most don't mind the up/cross sell, though pop ups are a little more annoying than options that you can ignore.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-purple-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Usability Clarity</h3>
+                  <p className="text-gray-300">From a usability perspective, all of the options for up and cross sell were understood, both from the perspective of not getting items offered and getting items.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-orange-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Selection & Confirmation Preferences</h3>
+                  <p className="text-gray-300">The selection step was clear, and it was preferred to not have to go through a confirmation step (a la preference for the cross/and up sell that you can just ignore, but it was overall fine. Users like updates to the pictures to reflect new options.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-red-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Efficiency Concerns</h3>
+                  <p className="text-gray-300">For a few users, there was a desire to move to a Quick Add PDP or quickly add the item to your bag rather than having to go through more steps. Using the kiosk is all about efficiency and some of the cross and upsells seemed to not be super efficient.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-indigo-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Related Item Preferences</h3>
+                  <p className="text-gray-300">Users wanted the items suggested for U/C Sell to be related items. And if there were no related items to not show anything at all. They preferred the Burger/meal upsell over the coffee one because it was on the page and you didn't have to acknowledge it to move on. Felt less intrusive.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-teal-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Customization & Personalization</h3>
+                  <p className="text-gray-300">Overall preference for customization, though a few didn't want to have to log in to the kiosk and would have preferred to just order on GMA. For a few, suggestions based on weather were not welcome (too invasive, crossing a line), though suggestions based on data/correlations that were more general seemed to be fine. Some people acknowledged that they were kinda weird and always went against the grain, to which customization would benefit them.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-pink-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Standard Experience Expectations</h3>
+                  <p className="text-gray-300">A few said they wouldn't ever utilize the US or CS modules, but their presence wasn't bothersome. Most said that it's kind of standard these days in some sort of checkout or purchase experience, whether digital or physical, so it wasn't out of the ordinary. Most were agreeable.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-yellow-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Beverage Upsell Visibility Issues</h3>
+                  <p className="text-gray-300">Beverage upsell was not understood in the meal loop. Users could barely see the options and most didn't even notice the module at all. The text was too small to read. No feedback about the size. A few users thought its placement was awkward in between the other options and would have preferred it not to interrupt the beverage options. Most overlooked the 'Thirsty for more?' header and barely noticed the grey background. Test effects here possible, because they could not read the tiles.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-cyan-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Meal Upsell Confusion</h3>
+                  <p className="text-gray-300">A few confused the meal upsell to be customizations on that item rather than different products. Though it made sense that they were different products, the feedback was that it should be related items and not things crossing protein categories, for instance. May have been test effects as they could barely read.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-lime-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Coffee Upsell Logic</h3>
+                  <p className="text-gray-300">The coffee upsell didn't always make sense to users - they preferred there to be some sort of logic - like if you were browsing, upsell could be an option, but if adding directly from product tile (on home screen), don't add suggestions.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 bg-amber-600 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Multiple Item Selection</h3>
+                  <p className="text-gray-300">On the cross sell drawer after coffee selection, most felt they should be able to select more than one item. If it didn't, they would know how to go select it on their own, but felt that it should allow them to do so.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Next Project Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
+            More Design Work
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {(() => {
+              // Define the project sequence
+              const projectSequence = [
+                'timbertech',
+                'healthcare', 
+                'mcdonalds-kiosk',
+                'intel',
+                'nodalytics',
+                'newdea',
+                'doublegood',
+                'advisestream',
+                'sphere-software',
+                'havas-agency',
+                'rich-products'
+              ];
+              
+              // Find current project index
+              const currentIndex = projectSequence.indexOf(params.projectId);
+              
+              // Get next 4 projects (excluding current)
+              const nextProjects = [];
+              for (let i = 1; i <= 4; i++) {
+                const nextIndex = (currentIndex + i) % projectSequence.length;
+                nextProjects.push(projectSequence[nextIndex]);
+              }
+              
+              // Project data mapping
+              const projectData = {
+                'timbertech': {
+                  title: "TimberTech",
+                  description: "Led the marketing team through a full redesign of TimberTech.com, including an overhaul of their existing design system.",
+                  imageUrl: "/images/timbertech-card.jpg"
+                },
+                'healthcare': {
+                  title: "Healthcare",
+                  description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+                  imageUrl: "/images/healthcare-card.jpg"
+                },
+                'mcdonalds-kiosk': {
+                  title: "McDonalds Kiosk",
+                  description: "Partnered with an agency to enhance McDonald's kiosk experience, leveraging Dynamic Yield's smart customization.",
+                  imageUrl: "/images/mcDonalds-card.jpg"
+                },
+                'intel': {
+                  title: "Intel",
+                  description: "I helped design early-stage technology product concepts to support market research.",
+                  imageUrl: "/images/heroGraphic.jpg"
+                },
+                'nodalytics': {
+                  title: "Nodalytics",
+                  description: "Designed and prototyped a product concept for a blockchain start-up, created specifically to support investment pitches.",
+                  imageUrl: "/images/Nodalytics_heroGraphic-3.jpg"
+                },
+                'newdea': {
+                  title: "Newdea",
+                  description: "Designed a style guide and an interactive prototype for a blockchain-based digital infrastructure tool that aims support economic development across Africa.",
+                  imageUrl: "/images/newdea_hero_containerGraphic-5.jpg"
+                },
+                'doublegood': {
+                  title: "DoubleGood",
+                  description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
+                  imageUrl: "/images/doubleGoodImage.webp"
+                },
+                'advisestream': {
+                  title: "AdviseStream",
+                  description: "Worked with team on implementing responsive UI design updates for a medical school application platform.",
+                  imageUrl: "/images/advisestream-card.jpg"
+                },
+                'sphere-software': {
+                  title: "Sphere Software",
+                  description: "I served as Design Director at a software start-up, leading the design of an HR product while also overseeing the design of client-facing websites.",
+                  imageUrl: "/images/chairliftAllScreens.png"
+                },
+                'havas-agency': {
+                  title: "Havas Agency",
+                  description: "As a client-facing UX Architect at an agency, I led the design of a Q3 marketing campaign experience integrated into the client's website.",
+                  imageUrl: "/images/havas-card.jpg"
+                },
+                'rich-products': {
+                  title: "Rich Products",
+                  description: "Partnered with food brands to elevate UI/UX on consumer sites, boosting engagement and user experience.",
+                  imageUrl: "/images/websiteCards_template.png"
+                }
+              };
+              
+              return nextProjects.map((projectId, index) => {
+                const project = projectData[projectId];
+                if (!project) return null;
+                
+                return (
+                  <Link key={projectId} href={`/projects/previous/${projectId}`} className="group">
+                    <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-6">
+                        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                        <p className="text-sm text-gray-200 mb-4">{project.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              });
+            })()}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
