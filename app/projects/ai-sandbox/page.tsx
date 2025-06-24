@@ -1273,7 +1273,7 @@ export default function AISandboxPage() {
                     controls={false}
                   >
                     <source 
-                      src="/portfolio/videos/travelApp-sreenRecording.mp4" 
+                      src="/portfolio/videos/Create_a_cinematic_202506221020_76xhy.mp4" 
                       type="video/mp4"
                     />
                   </video>
