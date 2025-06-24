@@ -51,7 +51,7 @@ export default function PurdueProjectPage() {
                 aria-label="Return to home page"
               >
                 <Image
-                  src="./images/signature-25.png"
+                  src="/portfolio/images/signature-25.png"
                   alt="Daniel Meier"
                   width={150}
                   height={37}
@@ -86,7 +86,7 @@ export default function PurdueProjectPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black z-10" />
         <div className="absolute inset-0">
           <Image
-            src="./images/PU-Memorial-Mall-DJI.jpg"
+            src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
             alt="Purdue University Campus"
             width={800}
             height={600}
@@ -183,7 +183,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-6">
               <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="./images/sitebulb-screenshot_1.jpg"
+                  src="/portfolio/images/sitebulb-screenshot_1.jpg"
                   alt="Sitebulb Screenshot"
                   width={800}
                   height={600}
@@ -192,7 +192,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="mb-8">
                 <Image
-                  src="./images/Sitebulb-duplicateGraph.jpg"
+                  src="/portfolio/images/Sitebulb-duplicateGraph.jpg"
                   alt="Sitebulb Duplicate Graph"
                   width={800}
                   height={600}
@@ -201,7 +201,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="mb-8">
                 <Image
-                  src="./images/GA-EventsScreenshot 1.png"
+                  src="/portfolio/images/GA-EventsScreenshot 1.png"
                   alt="Google Analytics Events Screenshot"
                   width={800}
                   height={600}
@@ -210,7 +210,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="mb-8">
                 <Image
-                  src="./images/crawl_force-directed_www_purdue_edu_202506072022.png"
+                  src="/portfolio/images/crawl_force-directed_www_purdue_edu_202506072022.png"
                   alt="Purdue.edu Crawl Force Directed Graph"
                   width={800}
                   height={600}
@@ -250,7 +250,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="./images/Existing-howToApply_Screenshot (2).jpg"
+                  src="/portfolio/images/Existing-howToApply_Screenshot (2).jpg"
                   alt="Existing How To Apply Screenshot 2"
                   width={800}
                   height={600}
@@ -264,7 +264,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="./images/Existing-howToApply_Screenshot (1).jpg"
+                  src="/portfolio/images/Existing-howToApply_Screenshot (1).jpg"
                   alt="Existing How To Apply Screenshot 1"
                   width={800}
                   height={600}
@@ -278,7 +278,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="./images/Existing-howToApply_Screenshot.jpg"
+                  src="/portfolio/images/Existing-howToApply_Screenshot.jpg"
                   alt="Existing How To Apply Screenshot"
                   width={800}
                   height={600}
@@ -292,7 +292,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="./images/Existing-fellowships_Screenshot.jpg"
+                  src="/portfolio/images/Existing-fellowships_Screenshot.jpg"
                   alt="Existing Fellowships Screenshot"
                   width={800}
                   height={600}
@@ -376,7 +376,7 @@ export default function PurdueProjectPage() {
           <div className="space-y-4">
             <div className="relative aspect-[16/9] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
-                src="./images/purdueFigma_Screenshot (2).jpg"
+                src="/portfolio/images/purdueFigma_Screenshot (2).jpg"
                 alt="Purdue Figma Screenshot"
                 width={800}
                 height={600}
@@ -399,7 +399,7 @@ export default function PurdueProjectPage() {
             <Link href="/projects/ai-sandbox" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/travelApp-card.jpg"
+                  src="/portfolio/images/travelApp-card.jpg"
                   alt="AI Sandbox Project"
                   width={400}
                   height={300}
@@ -433,7 +433,7 @@ export default function PurdueProjectPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/timbertech-card.jpg"
+                  src="/portfolio/images/timbertech-card.jpg"
                   alt="TimberTech Project"
                   width={400}
                   height={300}
