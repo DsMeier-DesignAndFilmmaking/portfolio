@@ -83,7 +83,9 @@ export default function AISandboxPage() {
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className="h-9 w-auto brightness-0 invert"
+                  className={`h-9 w-auto transition-all duration-300 ${
+                    isScrolled ? 'brightness-0' : 'brightness-0 invert'
+                  }`}
                 />
               </button>
             </div>
