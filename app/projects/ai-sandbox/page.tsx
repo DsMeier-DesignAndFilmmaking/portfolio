@@ -77,7 +77,7 @@ export default function AISandboxPage() {
                 aria-label="Return to home page"
               >
                 <Image
-                  src="./images/signature-25.png"
+                  src="/portfolio/images/signature-25.png"
                   alt="Daniel Meier"
                   width={150}
                   height={37}
@@ -1268,7 +1268,7 @@ export default function AISandboxPage() {
                     muted
                     loop
                     preload="none"
-                    poster="/images/ai-travel-hero.svg"
+                    poster="/portfolio/images/ai-travel-hero.svg"
                     playsInline
                     controls={false}
                   >
@@ -1474,7 +1474,7 @@ export default function AISandboxPage() {
             <Link href="/projects/purdue" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/PU-Memorial-Mall-DJI.jpg"
+                  src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
                   alt="Purdue University Project"
                   width={400}
                   height={300}
@@ -1495,7 +1495,7 @@ export default function AISandboxPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/timbertech-card.jpg"
+                  src="/portfolio/images/timbertech-card.jpg"
                   alt="TimberTech Project"
                   width={400}
                   height={300}
