@@ -117,17 +117,50 @@ export default function AISandboxPage() {
           transition={{ duration: 1.5, delay: 0.3 }}
           className="absolute inset-0 w-full h-full"
         >
+          {/* Video with enhanced error handling */}
           <video
             className="w-full h-full object-cover absolute inset-0 z-0"
-            src="/portfolio/videos/Create_a_cinematic_optimized.mp4"
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             poster="/portfolio/images/ai-travel-hero.svg"
-            onLoadedData={() => setVideoLoaded(true)}
-            onError={() => setVideoError(true)}
-          />
+            onLoadStart={() => console.log('Video loading started')}
+            onLoadedData={() => {
+              console.log('Video loaded successfully');
+              setVideoLoaded(true);
+            }}
+            onCanPlay={() => console.log('Video can play')}
+            onError={(e) => {
+              console.error('Video error:', e);
+              setVideoError(true);
+            }}
+            onStalled={() => console.log('Video stalled')}
+            onSuspend={() => console.log('Video suspended')}
+          >
+            <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
+            <source src="/portfolio/videos/Create_a_cinematic_optimized.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* Fallback background if video fails */}
+          {videoError && (
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url(/portfolio/images/ai-travel-hero.svg)',
+                backgroundColor: '#000'
+              }}
+            />
+          )}
+          
+          {/* Loading indicator */}
+          {!videoLoaded && !videoError && (
+            <div className="absolute inset-0 bg-black flex items-center justify-center">
+              <div className="text-white text-lg">Loading video...</div>
+            </div>
+          )}
         </motion.div>
         
         {/* Enhanced Gradient Overlay for Accessibility */}
