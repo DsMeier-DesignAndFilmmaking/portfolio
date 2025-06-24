@@ -66,7 +66,9 @@ const project = {
   ],
   tools: ["Figma", "Sketch", "Adobe Creative Suite", "UserTesting"],
   images: [
-    "/portfolio/images/richProducts-card.png"
+    "/portfolio/images/richProducts-card.png",
+    "/portfolio/images/websiteCards_template.png",
+    "/portfolio/images/GA-insights-1.jpg"
   ]
 };
 
@@ -228,6 +230,25 @@ export default function RichProductsProjectPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Images Section */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-6">
+          <h3 className="text-2xl font-bold text-white mb-8">Project Gallery</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {project.images.map((image, index) => (
+              <div key={index} className="relative h-64 rounded-lg overflow-hidden">
+                <Image
+                  src={image}
+                  alt={`${project.title} - Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
