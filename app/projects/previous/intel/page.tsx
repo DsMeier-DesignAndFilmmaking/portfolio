@@ -60,34 +60,34 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 
 // Project data for Intel
 const project = {
-  title: "Intel",
-  description: "I helped design early-stage technology product concepts to support market research.",
-  heroImage: "/images/heroGraphic.jpg",
-  year: "Market Research",
+  title: "Intel Virtual Gatherings",
+  description: "A virtual event platform designed to facilitate remote collaboration and networking for Intel's global teams.",
+  heroImage: "./images/heroGraphic.jpg",
+  year: "Product Design",
   stats: {
     users: "75k+",
-    countries: "8",
-    impact: "88%",
+    events: "2k+",
+    countries: "30+",
     satisfaction: "94%"
   },
-  overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
+  overview: "Designed a virtual event platform to facilitate remote collaboration and networking for Intel's global teams.",
   challenges: [
-    "Analyzing complex environmental data",
-    "Identifying market opportunities",
-    "Creating actionable insights",
-    "Presenting findings effectively"
+    "Global team collaboration needs",
+    "Real-time communication features",
+    "Scalability requirements",
+    "User engagement optimization"
   ],
   solutions: [
-    "Developed data analysis frameworks",
-    "Created visualization tools",
-    "Built recommendation systems",
-    "Implemented tracking mechanisms"
+    "Built global collaboration tools",
+    "Implemented real-time features",
+    "Ensured platform scalability",
+    "Enhanced user engagement"
   ],
-  tools: ["Python", "Tableau", "SQL", "Power BI"],
+  tools: ["Figma", "React", "WebRTC", "AWS"],
   images: [
-    "/images/211206_IntelVirtualGatherings-reduced-4.jpg",
-    "/images/synthesisDeck-page-2.jpg",
-    "/images/heroGraphic.jpg"
+    "./images/211206_IntelVirtualGatherings-reduced-4.jpg",
+    "./images/synthesisDeck-page-2.jpg",
+    "./images/heroGraphic.jpg"
   ]
 };
 
@@ -196,8 +196,8 @@ export default function IntelProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.events} label="Events" />
+            <StatCard icon={FaCheckCircle} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

@@ -61,33 +61,33 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Newdea
 const project = {
   title: "Newdea",
-  description: "Designed a style guide and an interactive prototype for a blockchain-based digital infrastructure tool that aims support economic development across Africa.",
-  heroImage: "/images/newdea_hero_containerGraphic-5.jpg",
+  description: "A comprehensive platform for managing and tracking business opportunities and client relationships.",
+  heroImage: "./images/newdea_hero_containerGraphic-5.jpg",
   year: "Product Design",
   stats: {
-    users: "45k+",
-    countries: "6",
-    impact: "87%",
-    satisfaction: "93%"
+    users: "25k+",
+    opportunities: "500k+",
+    conversion: "65%",
+    satisfaction: "89%"
   },
-  overview: "Led the redesign of Newdea's project management platform, focusing on improving user experience and workflow efficiency.",
+  overview: "Designed a comprehensive platform for managing business opportunities and client relationships with advanced analytics.",
   challenges: [
-    "Complex project management workflows",
-    "Multiple user roles and permissions",
-    "Data visualization requirements",
-    "Mobile responsiveness"
+    "Complex sales pipeline management",
+    "Data integration requirements",
+    "User adoption challenges",
+    "Real-time reporting needs"
   ],
   solutions: [
-    "Streamlined user interface design",
-    "Implemented role-based access control",
-    "Created intuitive data dashboards",
-    "Developed responsive design system"
+    "Streamlined opportunity tracking",
+    "Built comprehensive integrations",
+    "Created intuitive user interface",
+    "Implemented real-time dashboards"
   ],
-  tools: ["Figma", "React", "TypeScript", "Tailwind CSS"],
+  tools: ["Figma", "React", "Node.js", "MongoDB"],
   images: [
-    "/images/newdea_hero_containerGraphic-2.jpg",
-    "/images/newdea_hero_containerGraphic-3.jpg",
-    "/images/newdea_hero_containerGraphic-4.jpg"
+    "./images/newdea_hero_containerGraphic-2.jpg",
+    "./images/newdea_hero_containerGraphic-3.jpg",
+    "./images/newdea_hero_containerGraphic-4.jpg"
   ]
 };
 
@@ -196,8 +196,8 @@ export default function NewdeaProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.opportunities} label="Opportunities" />
+            <StatCard icon={FaCheckCircle} value={project.stats.conversion} label="Conversion" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

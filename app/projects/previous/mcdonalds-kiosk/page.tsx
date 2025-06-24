@@ -60,35 +60,35 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 
 // Project data for McDonald's Kiosk
 const project = {
-  title: "McDonalds Kiosk",
-  description: "Partnered with an agency to enhance McDonald's kiosk experience, leveraging Dynamic Yield's smart customization.",
-  heroImage: "/images/mcDonalds-card.jpg",
-  year: "Product Design",
+  title: "McDonald's Kiosk",
+  description: "A touchscreen kiosk interface designed to streamline the ordering process and improve customer experience.",
+  heroImage: "./images/mcDonalds-card.jpg",
+  year: "UX Design",
   stats: {
     users: "1M+",
-    countries: "5",
-    impact: "90%",
-    satisfaction: "95%"
+    locations: "500+",
+    orders: "5M+",
+    satisfaction: "92%"
   },
-  overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
+  overview: "Designed a touchscreen kiosk interface to streamline the ordering process and improve customer experience at McDonald's locations.",
   challenges: [
-    "Creating an intuitive ordering experience",
-    "Optimizing for speed and accuracy",
-    "Ensuring accessibility for all users",
-    "Integrating with existing systems"
+    "Touchscreen interface design",
+    "Order customization complexity",
+    "Payment integration",
+    "Accessibility requirements"
   ],
   solutions: [
-    "Developed a streamlined ordering interface",
-    "Implemented smart menu recommendations",
-    "Created accessible design patterns",
-    "Built robust backend integration"
+    "Created intuitive touch interface",
+    "Simplified order customization",
+    "Integrated payment systems",
+    "Ensured accessibility compliance"
   ],
-  tools: ["Figma", "React", "Node.js", "AWS"],
+  tools: ["Figma", "Adobe XD", "Prototyping", "User Testing"],
   images: [
-    "/images/4.kiosk core build_ attract screen@2x.png",
-    "/images/mcDs_kiosk_screen-1.jpg",
-    "/images/4.kiosk core build_ attract screen@2x.png",
-    "/images/4.kiosk core build_ attract screen@2x.png"
+    "./images/4.kiosk core build_ attract screen@2x.png",
+    "./images/mcDs_kiosk_screen-1.jpg",
+    "./images/4.kiosk core build_ attract screen@2x.png",
+    "./images/4.kiosk core build_ attract screen@2x.png"
   ]
 };
 
@@ -197,8 +197,8 @@ export default function McDonaldsKioskProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.locations} label="Locations" />
+            <StatCard icon={FaCheckCircle} value={project.stats.orders} label="Orders" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

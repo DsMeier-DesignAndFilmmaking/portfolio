@@ -61,33 +61,33 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for TimberTech
 const project = {
   title: "TimberTech",
-  description: "A full redesign for TimberTech.com and their existing design system.",
-  heroImage: "/images/timbertech-card.jpg",
+  description: "A comprehensive redesign of the TimberTech website focusing on user experience and product showcase.",
+  heroImage: "./images/timbertech-card.jpg",
   year: "Web Design",
   stats: {
-    users: "50K+",
-    countries: "15",
-    impact: "92%",
-    satisfaction: "94%"
+    users: "100k+",
+    products: "50+",
+    conversion: "45%",
+    satisfaction: "91%"
   },
-  overview: "Led the complete redesign of TimberTech's website, focusing on modernizing the user experience and creating a cohesive design system that could scale across their product portfolio.",
+  overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates.",
   challenges: [
-    "Outdated design system needed modernization",
-    "Complex product catalog required better organization",
-    "Mobile experience needed significant improvement",
-    "Brand consistency across multiple product lines"
+    "Complex product catalog navigation",
+    "Mobile responsiveness requirements",
+    "SEO optimization needs",
+    "Performance optimization"
   ],
   solutions: [
-    "Developed a comprehensive design system with reusable components",
-    "Created intuitive product navigation and filtering",
-    "Implemented responsive design principles",
-    "Established brand guidelines for consistency"
+    "Streamlined product navigation",
+    "Implemented responsive design",
+    "Optimized for search engines",
+    "Improved page load speeds"
   ],
-  tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Storybook"],
+  tools: ["Figma", "React", "Next.js", "Tailwind CSS"],
   images: [
-    "/images/TT_FIGMA_Dsktp.png",
-    "/images/SAMPLES_Dsktp.jpg",
-    "/images/TT_Sustainability-Scroll_Dsktp.png"
+    "./images/TT_FIGMA_Dsktp.png",
+    "./images/SAMPLES_Dsktp.jpg",
+    "./images/TT_Sustainability-Scroll_Dsktp.png"
   ]
 };
 
@@ -196,8 +196,8 @@ export default function TimberTechProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.products} label="Products" />
+            <StatCard icon={FaCheckCircle} value={project.stats.conversion} label="Conversion" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

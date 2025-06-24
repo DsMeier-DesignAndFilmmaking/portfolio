@@ -61,33 +61,33 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-  heroImage: "/images/chairliftAllScreens.png",
-  year: "Product & Web Design",
+  description: "A comprehensive service desk platform designed to streamline IT support operations.",
+  heroImage: "./images/chairliftAllScreens.png",
+  year: "Product Design",
   stats: {
-    users: "20k+",
-    countries: "2",
-    impact: "83%",
-    satisfaction: "90%"
+    users: "50k+",
+    tickets: "1M+",
+    efficiency: "85%",
+    satisfaction: "92%"
   },
-  overview: "Designed and developed software solutions for enterprise clients, focusing on user experience and system integration.",
+  overview: "Designed a comprehensive service desk platform to streamline IT support operations and improve user experience.",
   challenges: [
-    "Complex enterprise workflows",
-    "Legacy system integration",
+    "Complex ticket management workflows",
+    "Integration with multiple systems",
     "User training requirements",
-    "Performance optimization"
+    "Performance optimization needs"
   ],
   solutions: [
-    "Streamlined user interface design",
-    "Built robust integration APIs",
-    "Created comprehensive training materials",
-    "Optimized system performance"
+    "Simplified ticket creation process",
+    "Built comprehensive API integrations",
+    "Created intuitive user interface",
+    "Implemented performance monitoring"
   ],
   tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
-    "/images/chairliftAllScreens.png",
-    "/images/CHAIRLIFTdatamap.png",
-    "/images/sphere-card.jpg"
+    "./images/chairliftAllScreens.png",
+    "./images/CHAIRLIFTdatamap.png",
+    "./images/sphere-card.jpg"
   ]
 };
 
@@ -196,8 +196,8 @@ export default function SphereSoftwareProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.tickets} label="Tickets" />
+            <StatCard icon={FaCheckCircle} value={project.stats.efficiency} label="Efficiency" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

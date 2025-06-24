@@ -60,35 +60,35 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 
 // Project data for Healthcare
 const project = {
-  title: "Digital Solutions for Healthcare",
-  description: "Worked with multiple healthcare clients to lead and support website redesigns.",
-  heroImage: "/images/healthcare-card.jpg",
-  year: "IA & UI",
+  title: "Healthcare Platform",
+  description: "A comprehensive healthcare management platform designed to streamline patient care and administrative processes.",
+  heroImage: "./images/healthcare-card.jpg",
+  year: "Product Design",
   stats: {
-    users: "10K+",
-    countries: "50+",
-    impact: "85%",
-    satisfaction: "92%"
+    users: "50k+",
+    patients: "200k+",
+    efficiency: "75%",
+    satisfaction: "89%"
   },
-  overview: "The healthcare website redesign project aimed to create a more intuitive and accessible platform for medical professionals and patients. The project focused on improving navigation, enhancing the user interface, and ensuring compliance with healthcare accessibility standards.",
+  overview: "Designed a comprehensive healthcare management platform to streamline patient care and administrative processes.",
   challenges: [
-    "Complex navigation structure needed simplification",
-    "Ensuring HIPAA compliance while maintaining user-friendly design",
-    "Balancing the needs of different user groups (doctors, patients, administrators)",
-    "Integrating multiple third-party healthcare systems"
+    "Complex healthcare workflows",
+    "HIPAA compliance requirements",
+    "Integration with existing systems",
+    "User training needs"
   ],
   solutions: [
-    "Implemented a clear, hierarchical navigation system",
-    "Created role-based user interfaces for different user types",
-    "Developed a responsive design that works across all devices",
-    "Established a comprehensive design system for consistency"
+    "Streamlined patient workflows",
+    "Ensured HIPAA compliance",
+    "Built system integrations",
+    "Created training materials"
   ],
-  tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Storybook"],
+  tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
-    "/images/GamC_HCP_sitemap_v1.jpg",
-    "/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
-    "/images/NovoCare-SLDS-Components.jpg",
-    "/images/SLDS_Mobile_Default-Form.jpg"
+    "./images/GamC_HCP_sitemap_v1.jpg",
+    "./images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
+    "./images/NovoCare-SLDS-Components.jpg",
+    "./images/SLDS_Mobile_Default-Form.jpg"
   ]
 };
 
@@ -197,8 +197,8 @@ export default function HealthcareProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.patients} label="Patients" />
+            <StatCard icon={FaCheckCircle} value={project.stats.efficiency} label="Efficiency" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

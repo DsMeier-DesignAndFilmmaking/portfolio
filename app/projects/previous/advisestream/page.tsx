@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "AdviseStream",
   description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-  heroImage: "/images/Advistestream_mockup-createReport.jpg",
+  heroImage: "./images/Advistestream_mockup-createReport.jpg",
   year: "Product Design",
   stats: {
     users: "15k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "TypeScript", "PWA"],
   images: [
-    "/images/Advistestream_mockup-createReport.jpg",
-    "/images/advisestream_mobileDesigns-1.png",
-    "/images/AdviseStream_mobileScreens.png"
+    "./images/Advistestream_mockup-createReport.jpg",
+    "./images/advisestream_mobileDesigns-1.png",
+    "./images/AdviseStream_mobileScreens.png"
   ]
 };
 

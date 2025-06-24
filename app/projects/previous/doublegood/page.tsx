@@ -61,32 +61,32 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for DoubleGood
 const project = {
   title: "DoubleGood",
-  description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
-  heroImage: "/images/doubleGoodImage.webp",
-  year: "Web Design (Mobile)",
+  description: "A mobile-first platform for fundraising and community engagement through virtual events.",
+  heroImage: "./images/doubleGoodImage.webp",
+  year: "Mobile Design",
   stats: {
-    users: "25k+",
-    countries: "1",
-    impact: "80%",
-    satisfaction: "89%"
+    users: "200k+",
+    events: "10k+",
+    fundraising: "$50M+",
+    satisfaction: "95%"
   },
-  overview: "Enhanced the user experience for DoubleGood's fundraising platform, focusing on mobile optimization and user engagement.",
+  overview: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions.",
   challenges: [
-    "Mobile-first design requirements",
-    "Fundraising flow optimization",
-    "User engagement improvements",
-    "Payment integration"
+    "Mobile-first user experience design",
+    "Real-time bidding functionality",
+    "Payment processing integration",
+    "Community engagement features"
   ],
   solutions: [
-    "Redesigned mobile interface",
-    "Streamlined donation process",
-    "Enhanced user onboarding",
-    "Improved payment flows"
+    "Created intuitive mobile interface",
+    "Implemented real-time updates",
+    "Integrated secure payment systems",
+    "Built community features"
   ],
-  tools: ["Figma", "React Native", "JavaScript", "CSS"],
+  tools: ["Figma", "React Native", "Node.js", "Stripe"],
   images: [
-    "/images/doubleGoodImage.webp",
-    "/images/DoubleGood_mobileFlow_1.jpg"
+    "./images/doubleGoodImage.webp",
+    "./images/DoubleGood_mobileFlow_1.jpg"
   ]
 };
 
@@ -195,8 +195,8 @@ export default function DoubleGoodProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaChartLine} value={project.stats.events} label="Events" />
+            <StatCard icon={FaCheckCircle} value={project.stats.fundraising} label="Fundraising" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
