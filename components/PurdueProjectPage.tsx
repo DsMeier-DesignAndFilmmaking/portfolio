@@ -88,9 +88,9 @@ export default function PurdueProjectPage() {
           <Image
             src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
             alt="Purdue University Campus"
-            width={800}
-            height={600}
-            className="rounded-lg shadow-lg"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
         <div className="container mx-auto px-6 relative z-20">
@@ -374,13 +374,12 @@ export default function PurdueProjectPage() {
             Along with improving information hierarchy and user experience, the redesign delivers a modern, accessible interface and a modular CMS design system that allows Purdue's teams to manage and scale content with ease.
           </p>
           <div className="space-y-4">
-            <div className="relative aspect-[16/9] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+            <div className="relative w-full h-[600px] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
                 src="/portfolio/images/purdueFigma_Screenshot (2).jpg"
                 alt="Purdue Figma Screenshot"
-                width={800}
-                height={600}
-                className="rounded-lg shadow-lg"
+                fill
+                className="object-cover"
               />
             </div>
             <p className="text-sm text-gray-400">Working Figma File</p>
