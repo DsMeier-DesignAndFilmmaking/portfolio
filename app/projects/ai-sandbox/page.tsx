@@ -179,20 +179,20 @@ export default function AISandboxPage() {
 
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black z-10" />
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white z-10" />
+        <div className="absolute inset-0 w-full">
           <iframe
             src="https://player.vimeo.com/video/1096119218?background=1&autoplay=1&muted=1&loop=1&controls=0"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"
             title="Create_a_cinematic_202506221020_76xhy"
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
+              width: '100vw',
+              height: 'auto',
               pointerEvents: 'none',
             }}
           />
@@ -204,16 +204,15 @@ export default function AISandboxPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl mt-[100px]"
           >
-            <div className="inline-flex items-center gap-2 text-[#e6cfa3] text-sm font-medium mb-6">
-              <div className="w-1 h-4 bg-[#e6cfa3]"></div>
+            <div className="inline-flex items-center gap-2 text-gray-600 text-sm font-medium mb-6">
               <span>Travel & AI</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-[#e6cfa3]">
+              <span className="text-black">
                 AI Sandbox
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed">
+            <p className="text-lg md:text-xl text-black leading-relaxed">
               With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
             </p>
           </motion.div>
