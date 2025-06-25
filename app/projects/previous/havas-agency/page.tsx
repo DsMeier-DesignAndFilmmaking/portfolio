@@ -174,7 +174,7 @@ export default function HavasAgencyProjectPage() {
         <div className="container mx-auto px-6">
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full h-[600px] rounded-lg overflow-hidden">
+              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
                 <Image
                   src={image}
                   alt={`${project.title} - Image ${index + 1}`}
