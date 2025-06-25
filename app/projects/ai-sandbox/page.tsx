@@ -120,7 +120,7 @@ export default function AISandboxPage() {
           {/* Vimeo Video */}
           <div style={{padding:"56.25% 0 0 0",position:"relative"}}>
             <iframe 
-              src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+              src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
               frameBorder="0" 
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
               style={{position:"absolute",top:0,left:0,width:"100%",height:"100%"}} 
