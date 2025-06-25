@@ -207,7 +207,7 @@ export default function AISandboxPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="container mx-auto px-6 relative z-20 flex items-center h-full">
+        <div className="container mx-auto px-6 relative z-20 flex items-start h-full">
           <div className="max-w-2xl mt-[100px]">
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
               <span className="text-gray-200">Travel & AI</span>
