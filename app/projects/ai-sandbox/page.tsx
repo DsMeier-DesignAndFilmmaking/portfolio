@@ -199,7 +199,7 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
         {/* Vimeo Video Background */}
-        <div className="relative w-full h-screen">
+        <div className="absolute inset-0 z-0 w-full h-full">
           <iframe
             title="vimeo-player"
             src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&loop=1&background=1"
