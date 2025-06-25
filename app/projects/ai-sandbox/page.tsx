@@ -178,43 +178,32 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden" aria-label="Project Hero">
+      <section className="relative h-screen flex items-center" aria-label="Project Hero">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.3 }}
           className="absolute inset-0 w-full h-full"
         >
-          {/* Vimeo Video Container */}
-          <div className="absolute inset-0 w-full h-full">
-            <div className="relative w-full h-full">
-              <iframe 
-                src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                className="absolute inset-0 w-full h-full md:w-screen md:h-screen"
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  width: '100vw',
-                  height: '100vh',
-                  transform: 'translate(-50%, -50%)',
-                  objectFit: 'cover'
-                }}
-                title="Create_a_cinematic_202506221020_76xhy"
-              />
-            </div>
+          {/* Vimeo Video */}
+          <div className="absolute inset-0 w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe 
+              src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
+              frameBorder="0" 
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+              style={{position:"absolute",top:0,left:0,width:"100%",height:"100%"}} 
+              title="Create_a_cinematic_202506221020_76xhy"
+            />
           </div>
           <script src="https://player.vimeo.com/api/player.js"></script>
         </motion.div>
         
         {/* Enhanced Gradient Overlay for Accessibility */}
-        <div className="absolute inset-0 w-full h-full z-10">
+        <div className="absolute inset-0">
           {/* Radial gradient for better text contrast */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
           {/* Gradual gradient from black to white */}
-          <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
+          <div className="absolute inset-x-0 bottom-0 h-screen bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
         </div>
         
         <div className="container mx-auto px-6 relative z-20">
