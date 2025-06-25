@@ -82,15 +82,15 @@ export default function HomePage() {
           
           {/* Text Overlay */}
           <div className="absolute inset-x-0 bottom-0 flex items-end pb-12 md:pb-24">
-            <div className="w-full max-w-7xl mx-auto px-6">
+            <div className="w-full md:max-w-7xl md:mx-auto px-6">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="max-w-[70vw] md:max-w-[45vw]"
+                className="w-full md:max-w-[45vw] text-left"
               >
                 <div className="mb-4 md:mb-8">
-                  <h1 className="font-sf-pro-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.4] w-[100%]">
+                  <h1 className="font-sf-pro-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.4] w-full text-left">
                     <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Meets</span>
                     <br />
@@ -98,7 +98,7 @@ export default function HomePage() {
                   </h1>
                 </div>
                 <div>
-                  <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
+                  <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] text-left">
                     Hi, I'm Dan — a designer with over 11 years of crafting human-centered digital experiences, shaped by a lot of passport stamps and a camera that's never too far away. Lately, I've been navigating this wild intersection of AI, design, and whatever sparks authentic creativity.
                   </p>
                 </div>

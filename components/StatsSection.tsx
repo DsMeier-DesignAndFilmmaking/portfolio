@@ -158,7 +158,7 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">  
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 order-2 lg:order-1">  
             {/* Industries Served */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
               <div className="flex items-center justify-between mb-4">
@@ -209,7 +209,7 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
           </div>
 
           {/* Text Block */}
-          <div className="lg:col-span-2 flex flex-col justify-center">
+          <div className="lg:col-span-2 flex flex-col justify-center order-1 lg:order-2">
             <p className="text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider">DESIGN CAREER</p>
             <h2 className="text-4xl font-bold mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">11+ Years</span>
