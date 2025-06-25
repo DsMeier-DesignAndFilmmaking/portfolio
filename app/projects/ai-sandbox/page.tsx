@@ -11,6 +11,7 @@ import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverBlackBg, setIsOverBlackBg] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -22,7 +23,15 @@ export default function AISandboxPage() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight; // 100vh
+      const quoteSectionStart = heroHeight; // Quote section starts after hero
+      const problemSectionStart = heroHeight + 400; // Problem section (bg-gray-50)
+      const audienceSectionStart = heroHeight + 1200; // Audience section (bg-black)
+      
       setIsScrolled(scrollPosition > heroHeight * 0.8); // Change color when 80% past hero
+      
+      // Check if we're over black background sections
+      const isOverBlack = scrollPosition >= audienceSectionStart;
+      setIsOverBlackBg(isOverBlack);
 
       // Close mobile menu on scroll
       if (isMobileMenuOpen) {
@@ -92,12 +101,16 @@ export default function AISandboxPage() {
                   width={150}
                   height={37}
                   className={`h-9 w-auto transition-all duration-300 ${
-                    isScrolled ? 'brightness-0' : 'brightness-0 invert'
+                    isOverBlackBg ? 'brightness-0 invert' : isScrolled ? 'brightness-0' : 'brightness-0 invert'
                   }`}
                 />
               </button>
-              <div className="h-6 w-px bg-white/30"></div>
-              <span className="text-white/70 text-sm font-medium">Design Work</span>
+              <div className={`h-6 w-px transition-colors duration-300 ${
+                isOverBlackBg ? 'bg-white/30' : isScrolled ? 'bg-black/30' : 'bg-white/30'
+              }`}></div>
+              <span className={`text-sm font-medium transition-colors duration-300 ${
+                isOverBlackBg ? 'text-white/70' : isScrolled ? 'text-black/70' : 'text-white/70'
+              }`}>Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
@@ -119,7 +132,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/ai-sandbox" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
                   }`}
                 >
                   AI Sandbox
@@ -127,7 +140,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/purdue" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
                   }`}
                 >
                   Purdue University
@@ -135,7 +148,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/previous" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
                   }`}
                 >
                   Previous Projects
