@@ -263,7 +263,6 @@ export default function SphereSoftwareProjectPage() {
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <h3 className="text-2xl font-bold text-white mb-8">Project Gallery</h3>
           <div className="space-y-8">
             {project.images.map((image, index) => (
               <div key={index} className="relative w-full h-[600px] rounded-lg overflow-hidden">
