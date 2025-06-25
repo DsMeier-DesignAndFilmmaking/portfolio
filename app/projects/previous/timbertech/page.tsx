@@ -181,7 +181,7 @@ export default function TimberTechProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
+            <StatCard icon={FaUsers} value={project.stats.users} label="Avg. Monthly Visitors" />
             <StatCard icon={FaChartLine} value={project.stats.urls} label="Updated URLs" />
             <StatCard icon={FaCheckCircle} value={project.stats.reduction} label="Reduction in Components Library" />
           </div>
