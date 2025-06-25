@@ -93,13 +93,13 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className={`text-[12pt] transition-colors duration-200 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
+                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className={`text-[12pt] transition-colors duration-200 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
+                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Previous Projects
                 </Link>
