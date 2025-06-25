@@ -178,49 +178,37 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center" aria-label="Project Hero">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-          className="absolute inset-0 w-full h-full"
-        >
-          {/* Vimeo Video */}
+      <section className="relative w-screen h-screen overflow-hidden" aria-label="Project Hero">
+        {/* Vimeo Video Background */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
-            <iframe 
-              src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
-              frameBorder="0" 
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+            <iframe
+              src="https://player.vimeo.com/video/1096119218?background=1&autoplay=1&muted=1&loop=1&controls=0"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="Create_a_cinematic_202506221020_76xhy"
+              className="w-full h-full min-w-full min-h-full"
               style={{
                 position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: '100vw',
-                height: '100vh',
-                transform: 'translate(-50%, -50%)',
-                objectFit: 'cover'
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
               }}
-              title="Create_a_cinematic_202506221020_76xhy"
             />
           </div>
-          <script src="https://player.vimeo.com/api/player.js"></script>
-        </motion.div>
-        
-        {/* Enhanced Gradient Overlay for Accessibility */}
-        <div className="absolute inset-0">
-          {/* Radial gradient for better text contrast */}
+        </div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
-          {/* Gradual gradient from black to white */}
           <div className="absolute inset-x-0 bottom-0 h-screen bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
         </div>
-        
-        <div className="container mx-auto px-6 relative z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl mt-[100px]"
-          >
+
+        {/* Hero Content */}
+        <div className="container mx-auto px-6 relative z-20 flex items-center h-full">
+          <div className="max-w-2xl mt-[100px]">
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
               <span className="text-gray-200">Travel & AI</span>
             </div>
@@ -232,7 +220,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
               With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
