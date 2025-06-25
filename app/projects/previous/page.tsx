@@ -5,11 +5,25 @@ import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { allProjects } from '../../../utils/projectUtils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function PreviousProjectsPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Close mobile menu on scroll
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMobileMenuOpen]);
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -30,7 +44,7 @@ export default function PreviousProjectsPage() {
         className="fixed top-0 left-0 right-0 z-50 mt-5"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center">
             {/* Back Home Button */}
             <div className="py-4 flex items-center gap-4">
               <button

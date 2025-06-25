@@ -24,6 +24,11 @@ export default function AISandboxPage() {
       const heroHeight = window.innerHeight; // 100vh
       setIsScrolled(scrollPosition > heroHeight * 0.8); // Change color when 80% past hero
 
+      // Close mobile menu on scroll
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+
       // Handle navbar hide/show on mobile based on scroll direction
       const currentScrollY = window.scrollY;
       
@@ -44,7 +49,7 @@ export default function AISandboxPage() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   const handleBackHome = () => {
     setIsTransitioning(true);
@@ -73,7 +78,7 @@ export default function AISandboxPage() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center">
             {/* Back Home Button */}
             <div className="py-4 flex items-center gap-4">
               <button
