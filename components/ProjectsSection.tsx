@@ -42,7 +42,7 @@ export default function ProjectsSection() {
             Select Design Work
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl font-sans">
-            A selection of my recent work in design and development, showcasing my approach to creating meaningful digital experiences.
+            A selection of my recent work in design and development.
           </p>
         </div>
 
