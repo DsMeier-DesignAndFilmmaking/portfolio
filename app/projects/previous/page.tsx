@@ -212,9 +212,8 @@ export default function PreviousProjectsPage() {
                 <Image
                   src="/portfolio/images/travelApp-card.jpg"
                   alt="AI Sandbox Project"
-                  width={400}
-                  height={300}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -233,9 +232,8 @@ export default function PreviousProjectsPage() {
                 <Image
                   src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
                   alt="Purdue University Project"
-                  width={400}
-                  height={300}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">

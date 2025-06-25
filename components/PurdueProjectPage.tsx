@@ -400,9 +400,8 @@ export default function PurdueProjectPage() {
                 <Image
                   src="/portfolio/images/travelApp-card.jpg"
                   alt="AI Sandbox Project"
-                  width={400}
-                  height={300}
-                  className="rounded-lg shadow-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -434,9 +433,8 @@ export default function PurdueProjectPage() {
                 <Image
                   src="/portfolio/images/timbertech-card.jpg"
                   alt="TimberTech Project"
-                  width={400}
-                  height={300}
-                  className="rounded-lg shadow-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
