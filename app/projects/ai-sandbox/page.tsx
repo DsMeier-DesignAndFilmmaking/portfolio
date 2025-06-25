@@ -186,7 +186,7 @@ export default function AISandboxPage() {
           className="absolute inset-0 w-full h-full"
         >
           {/* Vimeo Video */}
-          <div className="absolute inset-0 w-full" style={{ paddingBottom: '56.25%' }}>
+          <div className="absolute inset-0 w-full md:pb-[56.25%] pb-[75%]">
             <iframe 
               src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
               frameBorder="0" 
@@ -199,7 +199,7 @@ export default function AISandboxPage() {
         </motion.div>
         
         {/* Enhanced Gradient Overlay for Accessibility */}
-        <div className="absolute inset-0 w-full" style={{ paddingBottom: '56.25%' }}>
+        <div className="absolute inset-0 w-full md:pb-[56.25%] pb-[75%]">
           {/* Radial gradient for better text contrast */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
           {/* Gradual gradient from black to white */}
