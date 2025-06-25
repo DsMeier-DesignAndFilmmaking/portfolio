@@ -192,7 +192,7 @@ export default function AISandboxPage() {
                 src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
                 frameBorder="0" 
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full md:w-screen md:h-screen"
                 style={{
                   position: 'absolute',
                   top: '50%',
