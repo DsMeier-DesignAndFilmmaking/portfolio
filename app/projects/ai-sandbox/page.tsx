@@ -118,7 +118,7 @@ export default function AISandboxPage() {
           className="absolute inset-0 w-full h-full"
         >
           {/* Vimeo Video */}
-          <div style={{padding:"56.25% 0 0 0",position:"relative"}}>
+          <div className="absolute inset-0 w-full h-full">
             <iframe 
               src="https://player.vimeo.com/video/1096119218?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" 
               frameBorder="0" 
