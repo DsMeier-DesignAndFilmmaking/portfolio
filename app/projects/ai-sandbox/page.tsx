@@ -178,7 +178,7 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center" aria-label="Project Hero">
+      <section className="relative h-screen md:h-screen flex items-center" aria-label="Project Hero">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -192,6 +192,14 @@ export default function AISandboxPage() {
               frameBorder="0" 
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
               className="w-full h-full"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
               title="Create_a_cinematic_202506221020_76xhy"
             />
           </div>
