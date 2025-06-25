@@ -198,16 +198,15 @@ export default function AISandboxPage() {
 
       {/* Hero Section */}
       <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
-        {/* Vimeo Video Background */}
+        {/* Hero Video Background (local file, full-bleed) */}
         <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <iframe
-            title="vimeo-player"
-            src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&loop=1&background=1"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            frameBorder="0"
-            className="absolute inset-0 w-full h-full min-w-full min-h-full block"
-            style={{ objectFit: 'cover' }}
+          <video
+            src="/portfolio/videos/Create_a_cinematic_web.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
         </div>
 
