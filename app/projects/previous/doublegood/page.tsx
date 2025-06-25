@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "200k+",
     countries: "2",
-    impact: "92%",
-    satisfaction: "96%"
+    impact: "92%"
   },
   overview: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions.",
   images: [
@@ -186,7 +185,6 @@ export default function DoubleGoodProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

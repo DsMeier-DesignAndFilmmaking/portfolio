@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "45k+",
     countries: "6",
-    impact: "87%",
-    satisfaction: "93%"
+    impact: "87%"
   },
   overview: "Led the redesign of Newdea's project management platform, focusing on improving user experience and workflow efficiency.",
   images: [
@@ -185,7 +184,6 @@ export default function NewdeaProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

@@ -72,8 +72,7 @@ const project = {
   stats: {
     users: "500k+",
     countries: "15",
-    impact: "44%",
-    satisfaction: "250+"
+    impact: "44%"
   },
   overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates."
 };
@@ -185,7 +184,6 @@ export default function TimberTechProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

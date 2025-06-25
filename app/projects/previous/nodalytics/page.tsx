@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "30k+",
     countries: "4",
-    impact: "82%",
-    satisfaction: "91%"
+    impact: "82%"
   },
   overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
   images: [
@@ -185,7 +184,6 @@ export default function NodalyticsProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

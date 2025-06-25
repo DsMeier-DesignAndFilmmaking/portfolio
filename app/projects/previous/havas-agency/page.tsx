@@ -48,8 +48,7 @@ const project = {
   stats: {
     users: "25k+",
     countries: "3",
-    impact: "84%",
-    satisfaction: "92%"
+    impact: "84%"
   },
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   images: [
@@ -166,7 +165,6 @@ export default function HavasAgencyProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

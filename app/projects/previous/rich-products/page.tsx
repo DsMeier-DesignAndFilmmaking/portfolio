@@ -48,8 +48,7 @@ const project = {
   stats: {
     users: "35k+",
     countries: "5",
-    impact: "88%",
-    satisfaction: "95%"
+    impact: "88%"
   },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   images: [
@@ -166,7 +165,6 @@ export default function RichProductsProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

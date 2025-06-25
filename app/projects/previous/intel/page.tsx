@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "75k+",
     countries: "8",
-    impact: "88%",
-    satisfaction: "94%"
+    impact: "88%"
   },
   overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
   images: [
@@ -185,7 +184,6 @@ export default function IntelProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

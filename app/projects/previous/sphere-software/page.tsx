@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "20k+",
     countries: "8",
-    impact: "89%",
-    satisfaction: "94%"
+    impact: "89%"
   },
   overview: "Develop enterprise software solutions",
   images: [
@@ -185,7 +184,6 @@ export default function SphereSoftwareProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

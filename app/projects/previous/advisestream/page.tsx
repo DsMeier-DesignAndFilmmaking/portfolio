@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "15k+",
     countries: "12",
-    impact: "78%",
-    satisfaction: "91%"
+    impact: "78%"
   },
   overview: "Created a comprehensive digital platform designed to bridge the gap between healthcare professionals in developing regions and global medical resources.",
   images: [
@@ -185,7 +184,6 @@ export default function AdviseStreamProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

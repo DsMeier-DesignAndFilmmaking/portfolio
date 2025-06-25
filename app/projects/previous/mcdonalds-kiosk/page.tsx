@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "1M+",
     countries: "5",
-    impact: "90%",
-    satisfaction: "95%"
+    impact: "90%"
   },
   overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
   images: [
@@ -186,7 +185,6 @@ export default function McDonaldsKioskProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>

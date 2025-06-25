@@ -67,8 +67,7 @@ const project = {
   stats: {
     users: "10K+",
     countries: "50+",
-    impact: "85%",
-    satisfaction: "92%"
+    impact: "85%"
   },
   overview: "The healthcare website redesign project aimed to create a more intuitive and accessible platform for medical professionals and patients. The project focused on improving navigation, enhancing the user interface, and ensuring compliance with healthcare accessibility standards.",
   images: [
@@ -186,7 +185,6 @@ export default function HealthcareProjectPage() {
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>
