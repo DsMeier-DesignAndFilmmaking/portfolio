@@ -33,7 +33,7 @@ export default function ProjectsSection() {
   return (
     <section id="black-section" className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6">
-        <div id="stats-section" className="mb-24">
+        <div id="stats-section" className="mb-0 md:mb-24">
           <StatsSection />
         </div>
 
