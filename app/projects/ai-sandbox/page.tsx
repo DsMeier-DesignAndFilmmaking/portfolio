@@ -182,12 +182,13 @@ export default function AISandboxPage() {
         {/* Vimeo Video Background */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
-            <iframe
-              src="https://player.vimeo.com/video/1096119218?background=1&autoplay=1&muted=1&loop=1&controls=0"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              title="Create_a_cinematic_202506221020_76xhy"
-              className="w-full h-full min-w-full min-h-full md:w-screen md:h-screen"
+            <video
+              src="/portfolio/videos/Create_a_cinematic_web.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full min-w-full min-h-full md:w-screen md:h-screen object-cover"
               style={{
                 position: 'absolute',
                 top: 0,
