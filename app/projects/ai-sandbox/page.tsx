@@ -203,7 +203,7 @@ export default function AISandboxPage() {
           <div className="relative w-full h-full" style={{ width: '100vw', height: '100vh' }}>
             <iframe
               title="vimeo-player"
-              src="https://player.vimeo.com/video/1096119218?h=92fa54736f"
+              src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&controls=0&background=1"
               frameBorder="0"
               allowFullScreen
               className="absolute inset-0 w-full h-full"
