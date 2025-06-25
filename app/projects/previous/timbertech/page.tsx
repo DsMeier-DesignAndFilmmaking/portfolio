@@ -61,33 +61,21 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for TimberTech
 const project = {
   title: "TimberTech",
-  description: "Led the redesign of TimberTech's website, focusing on improving user experience, product discovery, and conversion rates through modern design principles and responsive development.",
+  year: "2021",
+  description: "A comprehensive website redesign for TimberTech, focusing on improving user experience, product discovery, and conversion rates through modern design and streamlined navigation.",
   heroImage: "/portfolio/images/timbertech-card.jpg",
-  year: "Web Design",
-  stats: {
-    users: "300+",
-    countries: "50k+",
-    impact: "44%",
-    satisfaction: "250+"
-  },
-  overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates.",
-  challenges: [
-    "Complex product catalog navigation",
-    "Mobile responsiveness requirements",
-    "SEO optimization needs",
-    "Performance optimization"
-  ],
-  solutions: [
-    "Streamlined product navigation",
-    "Implemented responsive design",
-    "Optimized for search engines",
-    "Improved page load speeds"
-  ],
   images: [
     "/portfolio/images/TT_FIGMA_Dsktp.png",
     "/portfolio/images/SAMPLES_Dsktp.jpg",
     "/portfolio/images/TT_Sustainability-Scroll_Dsktp.png"
-  ]
+  ],
+  stats: {
+    users: "500k+",
+    countries: "15",
+    impact: "44%",
+    satisfaction: "250+"
+  },
+  overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates."
 };
 
 export default function TimberTechProjectPage() {
@@ -198,36 +186,6 @@ export default function TimberTechProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Challenges</h3>
-              <ul className="space-y-4">
-                {project.challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Solutions</h3>
-              <ul className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{solution}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>
