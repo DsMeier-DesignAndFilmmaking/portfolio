@@ -46,10 +46,10 @@ const project = {
   heroImage: "/portfolio/images/havas-card.jpg",
   year: "UX & Web Design",
   stats: {
-    users: "50k+",
-    projects: "25+",
-    satisfaction: "88%",
-    engagement: "65%"
+    users: "25k+",
+    countries: "3",
+    impact: "84%",
+    satisfaction: "92%"
   },
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   challenges: [
@@ -176,14 +176,14 @@ export default function HavasAgencyProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.projects} label="Projects" />
-            <StatCard icon={FaCheckCircle} value={project.stats.satisfaction} label="Satisfaction" />
-            <StatCard icon={FaUserFriends} value={project.stats.engagement} label="Engagement" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>
 
-      {/* Project Overview */}
+      {/* Challenges & Solutions Section */}
       <section className="py-20 bg-white/5">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

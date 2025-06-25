@@ -46,10 +46,10 @@ const project = {
   heroImage: "/portfolio/images/richProducts-card.png",
   year: "IA & Web Design",
   stats: {
-    users: "75k+",
-    pages: "200+",
-    navigation: "40%",
-    satisfaction: "85%"
+    users: "35k+",
+    countries: "5",
+    impact: "88%",
+    satisfaction: "95%"
   },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   challenges: [
@@ -176,14 +176,14 @@ export default function RichProductsProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.pages} label="Pages" />
-            <StatCard icon={FaCheckCircle} value={project.stats.navigation} label="Navigation" />
-            <StatCard icon={FaUserFriends} value={project.stats.satisfaction} label="Satisfaction" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
       </section>
 
-      {/* Project Overview */}
+      {/* Challenges & Solutions Section */}
       <section className="py-20 bg-white/5">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

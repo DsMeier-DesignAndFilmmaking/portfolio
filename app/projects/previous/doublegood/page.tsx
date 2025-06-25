@@ -66,9 +66,9 @@ const project = {
   year: "Mobile Design",
   stats: {
     users: "200k+",
-    events: "10k+",
-    fundraising: "$50M+",
-    satisfaction: "95%"
+    countries: "2",
+    impact: "92%",
+    satisfaction: "96%"
   },
   overview: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions.",
   challenges: [
@@ -196,21 +196,9 @@ export default function DoubleGoodProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.events} label="Events" />
-            <StatCard icon={FaCheckCircle} value={project.stats.fundraising} label="Fundraising" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Overview Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-white mb-8">Project Overview</h2>
-            <p className="text-lg text-gray-300 leading-relaxed mb-8">
-              {project.overview}
-            </p>
           </div>
         </div>
       </section>

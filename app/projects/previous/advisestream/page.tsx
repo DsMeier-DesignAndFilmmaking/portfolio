@@ -202,18 +202,6 @@ export default function AdviseStreamProjectPage() {
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-white mb-8">Project Overview</h2>
-            <p className="text-lg text-gray-300 leading-relaxed mb-8">
-              {project.overview}
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Challenges & Solutions Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
