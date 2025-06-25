@@ -65,10 +65,10 @@ const project = {
   heroImage: "/portfolio/images/timbertech-card.jpg",
   year: "Web Design",
   stats: {
-    users: "100k+",
-    products: "50+",
-    conversion: "45%",
-    satisfaction: "91%"
+    users: "300+",
+    countries: "50k+",
+    impact: "44%",
+    satisfaction: "250+"
   },
   overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates.",
   challenges: [
@@ -196,8 +196,8 @@ export default function TimberTechProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.products} label="Products" />
-            <StatCard icon={FaCheckCircle} value={project.stats.conversion} label="Conversion" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
