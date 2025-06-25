@@ -68,7 +68,7 @@ export default function AISandboxPage() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-start">
             {/* Back Home Button */}
             <div className="py-4">
               <button
