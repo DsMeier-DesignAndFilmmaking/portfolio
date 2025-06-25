@@ -59,16 +59,15 @@ const project = {
     "Mobile navigation optimization"
   ],
   solutions: [
-    "Restructured information architecture",
-    "Created user-centered navigation",
-    "Improved content categorization",
-    "Enhanced mobile experience"
+    "Developed information architecture",
+    "Created navigation system",
+    "Implemented accessibility features",
+    "Optimized performance"
   ],
-  tools: ["Figma", "Sketch", "Adobe Creative Suite", "UserTesting"],
   images: [
-    "/portfolio/images/richProducts-card.png",
     "/portfolio/images/websiteCards_template.png",
-    "/portfolio/images/GA-insights-1.jpg"
+    "/portfolio/images/websiteCards_template.png",
+    "/portfolio/images/websiteCards_template.png"
   ]
 };
 
@@ -216,18 +215,6 @@ export default function RichProductsProjectPage() {
                     <span className="text-gray-300">{solution}</span>
                   </div>
                 ))}
-              </div>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold text-white mb-4">Tools Used</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {project.tools.map((tool, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span className="text-gray-300">{tool}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

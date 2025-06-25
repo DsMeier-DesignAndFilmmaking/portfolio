@@ -83,7 +83,6 @@ const project = {
     "Developed a responsive design that works across all devices",
     "Established a comprehensive design system for consistency"
   ],
-  tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
     "/portfolio/images/GamC_HCP_sitemap_v1.jpg",
     "/portfolio/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
@@ -242,21 +241,6 @@ export default function HealthcareProjectPage() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <h3 className="text-2xl font-bold text-white mb-8">Tools & Technologies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {project.tools.map((tool, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                <FaCode className="w-8 h-8 text-white mx-auto mb-4" />
-                <div className="text-white">{tool}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

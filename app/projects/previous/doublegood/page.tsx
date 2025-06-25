@@ -78,15 +78,16 @@ const project = {
     "Community engagement features"
   ],
   solutions: [
-    "Created intuitive mobile interface",
-    "Implemented real-time updates",
-    "Integrated secure payment systems",
-    "Built community features"
+    "Created mobile-optimized designs",
+    "Implemented A/B testing",
+    "Enhanced user flows",
+    "Optimized checkout process"
   ],
-  tools: ["Figma", "React Native", "Node.js", "Stripe"],
   images: [
-    "/portfolio/images/doubleGoodImage.webp",
-    "/portfolio/images/DoubleGood_mobileFlow_1.jpg"
+    "/portfolio/images/DoubleGood_mobileFlow_1.jpg",
+    "/portfolio/images/2.8_FiltersApplied_Opt_2.png",
+    "/portfolio/images/2.5_SweetCategory_page.png",
+    "/portfolio/images/2.8_FiltersApplied_Opt_2.png"
   ]
 };
 
@@ -240,21 +241,6 @@ export default function DoubleGoodProjectPage() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <h3 className="text-2xl font-bold text-white mb-8">Tools & Technologies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {project.tools.map((tool, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                <FaCode className="w-8 h-8 text-white mx-auto mb-4" />
-                <div className="text-white">{tool}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

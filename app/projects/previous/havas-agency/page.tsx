@@ -59,16 +59,15 @@ const project = {
     "Brand consistency across platforms"
   ],
   solutions: [
-    "Streamlined design processes",
-    "Implemented agile methodologies",
-    "Enhanced stakeholder communication",
-    "Maintained brand guidelines"
+    "Developed interactive features",
+    "Created portfolio showcases",
+    "Optimized performance",
+    "Implemented brand guidelines"
   ],
-  tools: ["Figma", "Sketch", "Adobe Creative Suite", "InVision"],
   images: [
-    "/portfolio/images/havas-card.jpg",
-    "/portfolio/images/GA-EventsScreenshot 1.png",
-    "/portfolio/images/GA-pageViews.jpg"
+    "/portfolio/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg",
+    "/portfolio/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg",
+    "/portfolio/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg"
   ]
 };
 
@@ -216,18 +215,6 @@ export default function HavasAgencyProjectPage() {
                     <span className="text-gray-300">{solution}</span>
                   </div>
                 ))}
-              </div>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold text-white mb-4">Tools Used</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {project.tools.map((tool, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span className="text-gray-300">{tool}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

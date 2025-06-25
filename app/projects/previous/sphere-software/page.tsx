@@ -78,16 +78,17 @@ const project = {
     "User adoption challenges"
   ],
   solutions: [
-    "Streamlined ticket processing",
-    "Enhanced collaboration tools",
-    "Optimized system performance",
-    "Implemented performance monitoring"
+    "Developed design system",
+    "Optimized architecture",
+    "Implemented best practices",
+    "Created documentation"
   ],
-  tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
     "/portfolio/images/chairliftAllScreens.png",
-    "/portfolio/images/CHAIRLIFTdatamap.png",
-    "/portfolio/images/sphere-card.jpg"
+    "/portfolio/images/OKR_userJourney_wireframes_031016.png",
+    "/portfolio/images/1_Directory.png",
+    "/portfolio/images/chairliftAllScreens.png",
+    "/portfolio/images/IMG_0051 (1).png"
   ]
 };
 
@@ -241,21 +242,6 @@ export default function SphereSoftwareProjectPage() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <h3 className="text-2xl font-bold text-white mb-8">Tools & Technologies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {project.tools.map((tool, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                <FaCode className="w-8 h-8 text-white mx-auto mb-4" />
-                <div className="text-white">{tool}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
