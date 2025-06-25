@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "McDonald's Kiosk",
   description: "A touchscreen kiosk interface designed to streamline the ordering process and improve customer experience.",
-  heroImage: "./images/mcDonalds-card.jpg",
+  heroImage: "/portfolio/images/mcDonalds-card.jpg",
   year: "UX Design",
   stats: {
     users: "1M+",
@@ -85,10 +85,10 @@ const project = {
   ],
   tools: ["Figma", "Adobe XD", "Prototyping", "User Testing"],
   images: [
-    "./images/4.kiosk core build_ attract screen@2x.png",
-    "./images/mcDs_kiosk_screen-1.jpg",
-    "./images/4.kiosk core build_ attract screen@2x.png",
-    "./images/4.kiosk core build_ attract screen@2x.png"
+    "/portfolio/images/4.kiosk core build_ attract screen@2x.png",
+    "/portfolio/images/mcDs_kiosk_screen-1.jpg",
+    "/portfolio/images/4.kiosk core build_ attract screen@2x.png",
+    "/portfolio/images/4.kiosk core build_ attract screen@2x.png"
   ]
 };
 

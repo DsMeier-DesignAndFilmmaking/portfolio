@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Intel Virtual Gatherings",
   description: "A virtual event platform designed to facilitate remote collaboration and networking for Intel's global teams.",
-  heroImage: "./images/heroGraphic.jpg",
+  heroImage: "/portfolio/images/heroGraphic.jpg",
   year: "Product Design",
   stats: {
     users: "75k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "WebRTC", "AWS"],
   images: [
-    "./images/211206_IntelVirtualGatherings-reduced-4.jpg",
-    "./images/synthesisDeck-page-2.jpg",
-    "./images/heroGraphic.jpg"
+    "/portfolio/images/211206_IntelVirtualGatherings-reduced-4.jpg",
+    "/portfolio/images/synthesisDeck-page-2.jpg",
+    "/portfolio/images/heroGraphic.jpg"
   ]
 };
 

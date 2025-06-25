@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Sphere Software",
   description: "A comprehensive service desk platform designed to streamline IT support operations.",
-  heroImage: "./images/chairliftAllScreens.png",
+  heroImage: "/portfolio/images/chairliftAllScreens.png",
   year: "Product Design",
   stats: {
     users: "50k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
-    "./images/chairliftAllScreens.png",
-    "./images/CHAIRLIFTdatamap.png",
-    "./images/sphere-card.jpg"
+    "/portfolio/images/chairliftAllScreens.png",
+    "/portfolio/images/CHAIRLIFTdatamap.png",
+    "/portfolio/images/sphere-card.jpg"
   ]
 };
 

@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Nodalytics",
   description: "A comprehensive analytics platform for tracking and visualizing network data and relationships.",
-  heroImage: "./images/Nodalytics_heroGraphic-3.jpg",
+  heroImage: "/portfolio/images/Nodalytics_heroGraphic-3.jpg",
   year: "Product Design",
   stats: {
     users: "15k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "D3.js", "Python"],
   images: [
-    "./images/Noda_cropped-container.jpg",
-    "./images/00-b_Login_SuperAdmin_filledIn.jpg",
-    "./images/Nodalytics_heroGraphic-3.jpg"
+    "/portfolio/images/Noda_cropped-container.jpg",
+    "/portfolio/images/00-b_Login_SuperAdmin_filledIn.jpg",
+    "/portfolio/images/Nodalytics_heroGraphic-3.jpg"
   ]
 };
 

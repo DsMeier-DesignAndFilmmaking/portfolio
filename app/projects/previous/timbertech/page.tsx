@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "TimberTech",
   description: "A comprehensive redesign of the TimberTech website focusing on user experience and product showcase.",
-  heroImage: "./images/timbertech-card.jpg",
+  heroImage: "/portfolio/images/timbertech-card.jpg",
   year: "Web Design",
   stats: {
     users: "100k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "Next.js", "Tailwind CSS"],
   images: [
-    "./images/TT_FIGMA_Dsktp.png",
-    "./images/SAMPLES_Dsktp.jpg",
-    "./images/TT_Sustainability-Scroll_Dsktp.png"
+    "/portfolio/images/TT_FIGMA_Dsktp.png",
+    "/portfolio/images/SAMPLES_Dsktp.jpg",
+    "/portfolio/images/TT_Sustainability-Scroll_Dsktp.png"
   ]
 };
 

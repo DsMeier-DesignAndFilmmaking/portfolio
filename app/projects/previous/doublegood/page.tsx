@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "DoubleGood",
   description: "A mobile-first platform for fundraising and community engagement through virtual events.",
-  heroImage: "./images/doubleGoodImage.webp",
+  heroImage: "/portfolio/images/doubleGoodImage.webp",
   year: "Mobile Design",
   stats: {
     users: "200k+",
@@ -85,8 +85,8 @@ const project = {
   ],
   tools: ["Figma", "React Native", "Node.js", "Stripe"],
   images: [
-    "./images/doubleGoodImage.webp",
-    "./images/DoubleGood_mobileFlow_1.jpg"
+    "/portfolio/images/doubleGoodImage.webp",
+    "/portfolio/images/DoubleGood_mobileFlow_1.jpg"
   ]
 };
 

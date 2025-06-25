@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Newdea",
   description: "A comprehensive platform for managing and tracking business opportunities and client relationships.",
-  heroImage: "./images/newdea_hero_containerGraphic-5.jpg",
+  heroImage: "/portfolio/images/newdea_hero_containerGraphic-5.jpg",
   year: "Product Design",
   stats: {
     users: "25k+",
@@ -85,9 +85,9 @@ const project = {
   ],
   tools: ["Figma", "React", "Node.js", "MongoDB"],
   images: [
-    "./images/newdea_hero_containerGraphic-2.jpg",
-    "./images/newdea_hero_containerGraphic-3.jpg",
-    "./images/newdea_hero_containerGraphic-4.jpg"
+    "/portfolio/images/newdea_hero_containerGraphic-2.jpg",
+    "/portfolio/images/newdea_hero_containerGraphic-3.jpg",
+    "/portfolio/images/newdea_hero_containerGraphic-4.jpg"
   ]
 };
 

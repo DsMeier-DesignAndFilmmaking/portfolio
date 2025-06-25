@@ -62,7 +62,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Healthcare Platform",
   description: "A comprehensive healthcare management platform designed to streamline patient care and administrative processes.",
-  heroImage: "./images/healthcare-card.jpg",
+  heroImage: "/portfolio/images/healthcare-card.jpg",
   year: "Product Design",
   stats: {
     users: "50k+",
@@ -85,10 +85,10 @@ const project = {
   ],
   tools: ["Figma", "React", "Node.js", "PostgreSQL"],
   images: [
-    "./images/GamC_HCP_sitemap_v1.jpg",
-    "./images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
-    "./images/NovoCare-SLDS-Components.jpg",
-    "./images/SLDS_Mobile_Default-Form.jpg"
+    "/portfolio/images/GamC_HCP_sitemap_v1.jpg",
+    "/portfolio/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
+    "/portfolio/images/NovoCare-SLDS-Components.jpg",
+    "/portfolio/images/SLDS_Mobile_Default-Form.jpg"
   ]
 };
 
