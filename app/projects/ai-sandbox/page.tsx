@@ -118,19 +118,25 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/ai-sandbox" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className={`text-[12pt] transition-colors duration-300 ${
+                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/purdue" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className={`text-[12pt] transition-colors duration-300 ${
+                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className={`text-[12pt] transition-colors duration-300 ${
+                    isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   Previous Projects
                 </Link>
