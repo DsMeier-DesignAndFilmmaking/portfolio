@@ -70,10 +70,9 @@ const project = {
     "/portfolio/images/TT_Sustainability-Scroll_Dsktp.png"
   ],
   stats: {
-    users: "300+",
-    countries: "50k+",
-    impact: "44%",
-    satisfaction: "250+"
+    users: "30k+",
+    urls: "300+",
+    reduction: "19%"
   },
   overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates."
 };
@@ -181,11 +180,10 @@ export default function TimberTechProjectPage() {
       {/* Stats Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-            <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
+            <StatCard icon={FaChartLine} value={project.stats.urls} label="Updated URLs" />
+            <StatCard icon={FaCheckCircle} value={project.stats.reduction} label="Reduction in Components Library" />
           </div>
         </div>
       </section>
