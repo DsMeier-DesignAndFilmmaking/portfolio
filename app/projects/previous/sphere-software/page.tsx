@@ -61,26 +61,26 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "A comprehensive service desk platform designed to streamline IT support operations.",
+  description: "Designed and developed a comprehensive service desk platform to streamline IT support operations, focusing on improving efficiency and user satisfaction through intuitive design.",
   heroImage: "/portfolio/images/chairliftAllScreens.png",
   year: "Product Design",
   stats: {
     users: "50k+",
-    tickets: "1M+",
+    tickets: "500k+",
     efficiency: "85%",
-    satisfaction: "92%"
+    satisfaction: "94%"
   },
-  overview: "Designed a comprehensive service desk platform to streamline IT support operations and improve user experience.",
+  overview: "Created a comprehensive service desk platform designed to streamline IT support operations and improve overall efficiency.",
   challenges: [
     "Complex ticket management workflows",
-    "Integration with multiple systems",
-    "User training requirements",
-    "Performance optimization needs"
+    "Multi-team collaboration needs",
+    "Performance optimization requirements",
+    "User adoption challenges"
   ],
   solutions: [
-    "Simplified ticket creation process",
-    "Built comprehensive API integrations",
-    "Created intuitive user interface",
+    "Streamlined ticket processing",
+    "Enhanced collaboration tools",
+    "Optimized system performance",
     "Implemented performance monitoring"
   ],
   tools: ["Figma", "React", "Node.js", "PostgreSQL"],

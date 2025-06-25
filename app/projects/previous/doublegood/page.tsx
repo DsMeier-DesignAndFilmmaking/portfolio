@@ -61,7 +61,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for DoubleGood
 const project = {
   title: "DoubleGood",
-  description: "A mobile-first platform for fundraising and community engagement through virtual events.",
+  description: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions, focusing on creating an intuitive and engaging user experience.",
   heroImage: "/portfolio/images/doubleGoodImage.webp",
   year: "Mobile Design",
   stats: {

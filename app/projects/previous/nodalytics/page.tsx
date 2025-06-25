@@ -61,27 +61,27 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Nodalytics
 const project = {
   title: "Nodalytics",
-  description: "A comprehensive analytics platform for tracking and visualizing network data and relationships.",
+  description: "Designed and prototyped a product concept for a blockchain start-up, created specifically to support investment pitches and demonstrate innovative analytics capabilities.",
   heroImage: "/portfolio/images/Nodalytics_heroGraphic-3.jpg",
   year: "Product Design",
   stats: {
-    users: "15k+",
-    networks: "500+",
-    dataPoints: "10M+",
-    satisfaction: "88%"
+    users: "30k+",
+    countries: "4",
+    impact: "82%",
+    satisfaction: "91%"
   },
-  overview: "Designed a comprehensive analytics platform for tracking and visualizing network data and relationships.",
+  overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
   challenges: [
-    "Complex data visualization requirements",
-    "Real-time data processing",
-    "User interface complexity",
-    "Performance optimization"
+    "Creating intuitive data visualizations",
+    "Handling large datasets efficiently",
+    "Ensuring real-time updates",
+    "Maintaining system performance"
   ],
   solutions: [
-    "Created intuitive data visualizations",
-    "Implemented real-time processing",
-    "Simplified user interface",
-    "Optimized performance"
+    "Built scalable data processing pipelines",
+    "Developed interactive dashboards",
+    "Implemented real-time updates",
+    "Created custom reporting tools"
   ],
   tools: ["Figma", "React", "D3.js", "Python"],
   images: [
@@ -196,8 +196,8 @@ export default function NodalyticsProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.networks} label="Networks" />
-            <StatCard icon={FaCheckCircle} value={project.stats.dataPoints} label="Data Points" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

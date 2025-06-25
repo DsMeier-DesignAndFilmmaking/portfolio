@@ -61,27 +61,27 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Intel
 const project = {
   title: "Intel Virtual Gatherings",
-  description: "A virtual event platform designed to facilitate remote collaboration and networking for Intel's global teams.",
+  description: "Helped design early-stage technology product concepts to support market research and provide actionable insights for Intel's sustainability initiatives.",
   heroImage: "/portfolio/images/heroGraphic.jpg",
-  year: "Product Design",
+  year: "Market Research",
   stats: {
     users: "75k+",
-    events: "2k+",
-    countries: "30+",
+    countries: "8",
+    impact: "88%",
     satisfaction: "94%"
   },
-  overview: "Designed a virtual event platform to facilitate remote collaboration and networking for Intel's global teams.",
+  overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
   challenges: [
-    "Global team collaboration needs",
-    "Real-time communication features",
-    "Scalability requirements",
-    "User engagement optimization"
+    "Analyzing complex environmental data",
+    "Identifying market opportunities",
+    "Creating actionable insights",
+    "Presenting findings effectively"
   ],
   solutions: [
-    "Built global collaboration tools",
-    "Implemented real-time features",
-    "Ensured platform scalability",
-    "Enhanced user engagement"
+    "Developed data analysis frameworks",
+    "Created visualization tools",
+    "Built recommendation systems",
+    "Implemented tracking mechanisms"
   ],
   tools: ["Figma", "React", "WebRTC", "AWS"],
   images: [
@@ -196,8 +196,8 @@ export default function IntelProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.events} label="Events" />
-            <StatCard icon={FaCheckCircle} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>

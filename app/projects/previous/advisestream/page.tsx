@@ -61,27 +61,27 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for AdviseStream
 const project = {
   title: "AdviseStream",
-  description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+  description: "Designed a digital platform to connect healthcare professionals and resources across developing nations, focusing on improving access to medical expertise and knowledge sharing.",
   heroImage: "/portfolio/images/Advistestream_mockup-createReport.jpg",
   year: "Product Design",
   stats: {
     users: "15k+",
-    countries: "3",
+    countries: "12",
     impact: "78%",
-    satisfaction: "87%"
+    satisfaction: "91%"
   },
-  overview: "Designed a comprehensive platform for healthcare professionals to access resources and connect with peers in developing regions.",
+  overview: "Created a comprehensive digital platform designed to bridge the gap between healthcare professionals in developing regions and global medical resources.",
   challenges: [
     "Limited internet connectivity in target regions",
-    "Complex healthcare workflows",
-    "Multi-language support requirements",
-    "Offline functionality needs"
+    "Language and cultural barriers",
+    "Resource accessibility issues",
+    "User adoption challenges"
   ],
   solutions: [
-    "Implemented offline-first design",
-    "Created simplified user workflows",
-    "Developed multi-language interface",
-    "Built resource caching system"
+    "Built offline-capable platform",
+    "Implemented multi-language support",
+    "Created resource caching system",
+    "Developed community features"
   ],
   tools: ["Figma", "React", "TypeScript", "PWA"],
   images: [

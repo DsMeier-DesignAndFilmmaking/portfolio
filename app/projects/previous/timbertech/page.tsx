@@ -61,7 +61,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for TimberTech
 const project = {
   title: "TimberTech",
-  description: "A comprehensive redesign of the TimberTech website focusing on user experience and product showcase.",
+  description: "Led the redesign of TimberTech's website, focusing on improving user experience, product discovery, and conversion rates through modern design principles and responsive development.",
   heroImage: "/portfolio/images/timbertech-card.jpg",
   year: "Web Design",
   stats: {

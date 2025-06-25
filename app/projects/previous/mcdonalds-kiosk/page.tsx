@@ -61,27 +61,27 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for McDonald's Kiosk
 const project = {
   title: "McDonald's Kiosk",
-  description: "A touchscreen kiosk interface designed to streamline the ordering process and improve customer experience.",
+  description: "Partnered with an agency to enhance McDonald's kiosk experience, focusing on improving upsell and cross-sell opportunities through smarter UX and design.",
   heroImage: "/portfolio/images/mcDonalds-card.jpg",
-  year: "UX Design",
+  year: "Product Design",
   stats: {
     users: "1M+",
-    locations: "500+",
-    orders: "5M+",
-    satisfaction: "92%"
+    countries: "5",
+    impact: "90%",
+    satisfaction: "95%"
   },
-  overview: "Designed a touchscreen kiosk interface to streamline the ordering process and improve customer experience at McDonald's locations.",
+  overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
   challenges: [
-    "Touchscreen interface design",
-    "Order customization complexity",
-    "Payment integration",
-    "Accessibility requirements"
+    "Creating an intuitive ordering experience",
+    "Optimizing for speed and accuracy",
+    "Ensuring accessibility for all users",
+    "Integrating with existing systems"
   ],
   solutions: [
-    "Created intuitive touch interface",
-    "Simplified order customization",
-    "Integrated payment systems",
-    "Ensured accessibility compliance"
+    "Developed a streamlined ordering interface",
+    "Implemented smart menu recommendations",
+    "Created accessible design patterns",
+    "Built robust backend integration"
   ],
   tools: ["Figma", "Adobe XD", "Prototyping", "User Testing"],
   images: [
@@ -197,8 +197,8 @@ export default function McDonaldsKioskProjectPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.locations} label="Locations" />
-            <StatCard icon={FaCheckCircle} value={project.stats.orders} label="Orders" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
           </div>
         </div>
