@@ -266,13 +266,12 @@ export default function NodalyticsProjectPage() {
           <h3 className="text-2xl font-bold text-white mb-8">Project Gallery</h3>
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full rounded-lg overflow-hidden">
+              <div key={index} className="relative w-full h-[600px] rounded-lg overflow-hidden">
                 <Image
                   src={image}
                   alt={`${project.title} - Image ${index + 1}`}
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-cover"
+                  fill
+                  className="object-cover object-top"
                 />
               </div>
             ))}
