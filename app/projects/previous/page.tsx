@@ -210,7 +210,7 @@ export default function PreviousProjectsPage() {
             <Link href="/projects/ai-sandbox" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/travelApp-card.jpg"
+                  src="/portfolio/images/travelApp-card.jpg"
                   alt="AI Sandbox Project"
                   width={400}
                   height={300}
@@ -231,7 +231,7 @@ export default function PreviousProjectsPage() {
             <Link href="/projects/purdue" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="./images/PU-Memorial-Mall-DJI.jpg"
+                  src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
                   alt="Purdue University Project"
                   width={400}
                   height={300}
