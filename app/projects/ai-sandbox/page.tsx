@@ -179,7 +179,7 @@ export default function AISandboxPage() {
 
       {/* Hero Section */}
       <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
-        {/* Vimeo Video Background */}
+        {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <video
@@ -188,13 +188,14 @@ export default function AISandboxPage() {
               muted
               loop
               playsInline
-              className="w-full h-full min-w-full min-h-full md:w-screen md:h-screen object-cover"
+              className="w-full h-full object-cover"
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100vw',
                 height: '100vh',
+                objectFit: 'cover',
                 pointerEvents: 'none',
               }}
             />
