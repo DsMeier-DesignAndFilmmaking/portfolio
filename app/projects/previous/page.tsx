@@ -43,7 +43,7 @@ export default function PreviousProjectsPage() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="block px-6 py-4">
+            <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/ai-sandbox" 

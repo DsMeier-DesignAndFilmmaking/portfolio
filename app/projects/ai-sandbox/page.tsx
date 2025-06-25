@@ -91,17 +91,17 @@ export default function AISandboxPage() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="px-6 py-4">
+            <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className={`text-[0.875rem] md:text-[12pt] transition-colors duration-300 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
+                  className={`text-[12pt] transition-colors duration-200 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className={`text-[0.875rem] md:text-[12pt] transition-colors duration-300 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
+                  className={`text-[12pt] transition-colors duration-200 ${isScrolled ? 'text-black hover:text-blue-400' : 'text-white hover:text-blue-400'}`}
                 >
                   Previous Projects
                 </Link>
