@@ -178,22 +178,24 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
+      <section className="relative w-screen h-screen md:h-auto overflow-hidden" aria-label="Project Hero">
         {/* Vimeo Video Background */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-          <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full md:h-auto z-0 overflow-hidden">
+          <div className="absolute inset-0 w-full h-full md:h-auto">
             <iframe
               src="https://player.vimeo.com/video/1096119218?background=1&autoplay=1&muted=1&loop=1&controls=0"
               frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture"
               title="Create_a_cinematic_202506221020_76xhy"
-              className="w-full h-full min-w-full min-h-full md:w-screen md:h-screen"
+              className="w-full h-full md:w-screen md:h-auto min-w-full min-h-full"
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100vw',
                 height: '100vh',
+                aspectRatio: 'auto',
+                objectFit: 'cover',
                 pointerEvents: 'none',
               }}
             />
