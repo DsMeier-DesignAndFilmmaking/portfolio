@@ -239,15 +239,48 @@ export default function RichProductsProjectPage() {
         <div className="container mx-auto px-6">
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full h-96 rounded-lg overflow-hidden">
+              <div key={index} className="relative w-full h-[600px] rounded-lg overflow-hidden">
                 <Image
                   src={image}
                   alt={`${project.title} - Image ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Deliverables Section */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
+          <p className="text-gray-300 mb-12 max-w-2xl">
+            Explore detailed documentation and deliverables from this project, including wireframes, specifications, and design assets.
+          </p>
+          <div className="space-y-4 max-w-4xl">
+            <a 
+              href="/portfolio/documents/DynamicYield_ConceptFlows.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
+                  <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>

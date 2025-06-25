@@ -277,6 +277,52 @@ export default function TimberTechProjectPage() {
           </div>
         </div>
       </section>
+
+      {/* Process Overview Section for TimberTech */}
+      <section className="pt-20 pb-40 bg-black">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-12 text-white text-center">Process Overview</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto">
+            <div className="flex flex-col items-center">
+              <div className="p-4 bg-[#474f62] rounded-full mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">2-Week Sprints</h3>
+              <p className="text-gray-400">Led a fast-paced, agile workflow to ensure rapid iteration and delivery.</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="p-4 bg-[#4b5b58] rounded-full mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Executive Collaboration</h3>
+              <p className="text-gray-400">Collaborated daily with the marketing C-suite and in-house UX team.</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="p-4 bg-[#935f25] rounded-full mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Team Mentorship</h3>
+              <p className="text-gray-400">Guided junior designers toward ownership and smarter use of the design system.</p>
+            </div>
+          </div>
+          <div className="text-center mt-12">
+            <a 
+              href="https://www.timbertech.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-transparent hover:bg-white hover:text-black border border-white text-white font-bold py-3 px-8 rounded-lg transition-colors"
+            >
+              View Live Site
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 } 
