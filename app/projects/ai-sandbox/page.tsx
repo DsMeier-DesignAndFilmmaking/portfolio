@@ -180,19 +180,19 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white z-10" />
-        <div className="absolute inset-0 w-full">
+        <div className="absolute inset-0 w-full h-full">
           <iframe
             src="https://player.vimeo.com/video/1096119218?background=1&autoplay=1&muted=1&loop=1&controls=0"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"
             title="Create_a_cinematic_202506221020_76xhy"
-            className="w-full h-auto object-cover"
+            className="w-full h-full object-cover"
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
-              width: '100vw',
-              height: 'auto',
+              width: '100%',
+              height: '100%',
               pointerEvents: 'none',
             }}
           />
