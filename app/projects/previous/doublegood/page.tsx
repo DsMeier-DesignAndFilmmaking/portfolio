@@ -71,18 +71,6 @@ const project = {
     satisfaction: "96%"
   },
   overview: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions.",
-  challenges: [
-    "Mobile-first user experience design",
-    "Real-time bidding functionality",
-    "Payment processing integration",
-    "Community engagement features"
-  ],
-  solutions: [
-    "Created mobile-optimized designs",
-    "Implemented A/B testing",
-    "Enhanced user flows",
-    "Optimized checkout process"
-  ],
   images: [
     "/portfolio/images/DoubleGood_mobileFlow_1.jpg",
     "/portfolio/images/2.8_FiltersApplied_Opt_2.png",
@@ -199,36 +187,6 @@ export default function DoubleGoodProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Challenges</h3>
-              <ul className="space-y-4">
-                {project.challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Solutions</h3>
-              <ul className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{solution}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>

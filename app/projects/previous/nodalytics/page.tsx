@@ -71,18 +71,6 @@ const project = {
     satisfaction: "91%"
   },
   overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
-  challenges: [
-    "Creating intuitive data visualizations",
-    "Handling large datasets efficiently",
-    "Ensuring real-time updates",
-    "Maintaining system performance"
-  ],
-  solutions: [
-    "Built scalable data processing pipelines",
-    "Developed interactive dashboards",
-    "Implemented real-time updates",
-    "Created custom reporting tools"
-  ],
   images: [
     "/portfolio/images/Noda_cropped-container.jpg",
     "/portfolio/images/00-b_Login_SuperAdmin_filledIn.jpg",
@@ -198,36 +186,6 @@ export default function NodalyticsProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Challenges</h3>
-              <ul className="space-y-4">
-                {project.challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Solutions</h3>
-              <ul className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{solution}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>

@@ -61,34 +61,20 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "Designed and developed a comprehensive service desk platform to streamline IT support operations, focusing on improving efficiency and user satisfaction through intuitive design.",
-  heroImage: "/portfolio/images/chairliftAllScreens.png",
-  year: "Product Design",
+  description: "Designed and developed enterprise software solutions for Sphere Software, focusing on creating intuitive user interfaces and improving workflow efficiency.",
+  heroImage: "/portfolio/images/sphere-card.jpg",
+  year: "Enterprise Software",
   stats: {
-    users: "50k+",
-    countries: "4",
-    impact: "85%",
+    users: "20k+",
+    countries: "8",
+    impact: "89%",
     satisfaction: "94%"
   },
-  overview: "Created a comprehensive service desk platform designed to streamline IT support operations and improve overall efficiency.",
-  challenges: [
-    "Complex ticket management workflows",
-    "Multi-team collaboration needs",
-    "Performance optimization requirements",
-    "User adoption challenges"
-  ],
-  solutions: [
-    "Developed design system",
-    "Optimized architecture",
-    "Implemented best practices",
-    "Created documentation"
-  ],
+  overview: "Develop enterprise software solutions",
   images: [
-    "/portfolio/images/chairliftAllScreens.png",
-    "/portfolio/images/OKR_userJourney_wireframes_031016.png",
-    "/portfolio/images/1_Directory.png",
-    "/portfolio/images/chairliftAllScreens.png",
-    "/portfolio/images/IMG_0051 (1).png"
+    "/portfolio/images/sphere-home-page-scaled.jpg",
+    "/portfolio/images/sphere-home-page-scaled.jpg",
+    "/portfolio/images/sphere-home-page-scaled.jpg"
   ]
 };
 
@@ -200,36 +186,6 @@ export default function SphereSoftwareProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Challenges</h3>
-              <ul className="space-y-4">
-                {project.challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Solutions</h3>
-              <ul className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{solution}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>

@@ -52,18 +52,6 @@ const project = {
     satisfaction: "92%"
   },
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
-  challenges: [
-    "Complex client requirements",
-    "Tight project timelines",
-    "Multiple stakeholder coordination",
-    "Brand consistency across platforms"
-  ],
-  solutions: [
-    "Developed interactive features",
-    "Created portfolio showcases",
-    "Optimized performance",
-    "Implemented brand guidelines"
-  ],
   images: [
     "/portfolio/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg",
     "/portfolio/images/updated IFP_DailysweepsPages_funcSpec-070115-1.jpg",
@@ -179,44 +167,6 @@ export default function HavasAgencyProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-white/5">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-white">
-                Project Overview
-              </h2>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                {project.overview}
-              </p>
-              
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white mb-4">Challenges</h3>
-                {project.challenges.map((challenge, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <FaArrowRight className="text-blue-400" />
-                    <span className="text-gray-300">{challenge}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-4">Solutions</h3>
-              <div className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400" />
-                    <span className="text-gray-300">{solution}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>

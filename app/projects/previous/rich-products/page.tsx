@@ -52,18 +52,6 @@ const project = {
     satisfaction: "95%"
   },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
-  challenges: [
-    "Complex product catalog structure",
-    "Multiple user personas",
-    "Content organization needs",
-    "Mobile navigation optimization"
-  ],
-  solutions: [
-    "Developed information architecture",
-    "Created navigation system",
-    "Implemented accessibility features",
-    "Optimized performance"
-  ],
   images: [
     "/portfolio/images/websiteCards_template.png",
     "/portfolio/images/websiteCards_template.png",
@@ -179,44 +167,6 @@ export default function RichProductsProjectPage() {
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
             <StatCard icon={FaHeartbeat} value={project.stats.satisfaction} label="Satisfaction" />
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-20 bg-white/5">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-white">
-                Project Overview
-              </h2>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                {project.overview}
-              </p>
-              
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white mb-4">Challenges</h3>
-                {project.challenges.map((challenge, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <FaArrowRight className="text-blue-400" />
-                    <span className="text-gray-300">{challenge}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-4">Solutions</h3>
-              <div className="space-y-4">
-                {project.solutions.map((solution, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400" />
-                    <span className="text-gray-300">{solution}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
