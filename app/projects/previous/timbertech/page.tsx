@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
+import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -251,6 +252,13 @@ export default function TimberTechProjectPage() {
           </div>
         </div>
       </section>
+
+      {/* View More Work Section */}
+      <ViewMoreWorkSection 
+        currentProjectId="timbertech"
+        bgColor="bg-white"
+        textColor="text-gray-400"
+      />
     </main>
   );
 } 
