@@ -19,6 +19,7 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 export default function PurdueProjectPage() {
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -26,6 +27,10 @@ export default function PurdueProjectPage() {
     setTimeout(() => {
       router.push('/');
     }, 500);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -62,6 +67,19 @@ export default function PurdueProjectPage() {
               <span className="text-white/70 text-sm font-medium">Design Work</span>
             </div>
 
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
+              aria-label="Toggle mobile menu"
+            >
+              <div className="w-6 h-5 relative flex flex-col justify-between items-center">
+                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </div>
+            </button>
+
             {/* Desktop Navigation */}
             <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
@@ -87,6 +105,43 @@ export default function PurdueProjectPage() {
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg mx-6"
+            >
+              <nav className="flex flex-col p-4 px-6 space-y-4">
+                <Link 
+                  href="/projects/ai-sandbox" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  AI Sandbox
+                </Link>
+                <Link 
+                  href="/projects/purdue" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Purdue University
+                </Link>
+                <Link 
+                  href="/projects/previous" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Previous Projects
+                </Link>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Hero Section */}
