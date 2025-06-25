@@ -44,7 +44,7 @@ export default function PurdueProjectPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-start">
             {/* Back Home Button */}
-            <div className="py-4">
+            <div className="py-4 flex items-center gap-4">
               <button
                 onClick={handleBackHome}
                 className="hover:opacity-80 transition-opacity flex items-center justify-center"
@@ -58,6 +58,8 @@ export default function PurdueProjectPage() {
                   className="h-9 w-auto brightness-0 invert"
                 />
               </button>
+              <div className="h-6 w-px bg-white/30"></div>
+              <span className="text-white/70 text-sm font-medium">Design Work</span>
             </div>
 
             {/* Desktop Navigation */}
