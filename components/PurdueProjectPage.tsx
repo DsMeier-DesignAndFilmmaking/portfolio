@@ -70,6 +70,12 @@ export default function PurdueProjectPage() {
                   AI Sandbox
                 </Link>
                 <Link 
+                  href="/projects/purdue" 
+                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                >
+                  Purdue University
+                </Link>
+                <Link 
                   href="/projects/previous" 
                   className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >

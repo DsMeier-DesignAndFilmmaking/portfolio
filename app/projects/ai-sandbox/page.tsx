@@ -92,6 +92,12 @@ export default function AISandboxPage() {
             <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
+                  href="/projects/ai-sandbox" 
+                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                >
+                  AI Sandbox
+                </Link>
+                <Link 
                   href="/projects/purdue" 
                   className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
