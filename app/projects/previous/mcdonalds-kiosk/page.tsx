@@ -66,14 +66,14 @@ const project = {
   heroImage: "/portfolio/images/mcDonalds-card.jpg",
   year: "Product Design",
   stats: {
-    users: "1M+",
-    countries: "5",
-    impact: "90%"
+    users: "7",
+    countries: "20",
+    impact: "20"
   },
   overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
   images: [
-    "/portfolio/images/4.kiosk core build_ attract screen@2x.png",
-    "/portfolio/images/mcDs_kiosk_screen-1.jpg",
+    "/portfolio/images/DynamicYield_ConceptFlows_2.jpg",
+    "/portfolio/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg",
     "/portfolio/images/4.kiosk core build_ attract screen@2x.png",
     "/portfolio/images/4.kiosk core build_ attract screen@2x.png"
   ]
@@ -183,9 +183,9 @@ export default function McDonaldsKioskProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+            <StatCard icon={FaUsers} value={project.stats.users} label="Prototypes Created" />
+            <StatCard icon={FaChartLine} value={project.stats.countries} label="User Research Participants" />
+            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Design System Component Enhancements" />
           </div>
         </div>
       </section>
@@ -194,7 +194,8 @@ export default function McDonaldsKioskProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
-            {project.images.map((image, index) => (
+            {/* First two images - full width */}
+            {project.images.slice(0, 2).map((image, index) => (
               <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
                 <Image
                   src={image}
@@ -204,17 +205,31 @@ export default function McDonaldsKioskProjectPage() {
                 />
               </div>
             ))}
+            
+            {/* Last two images - 50/50 width with natural aspect ratio */}
+            <div className="flex gap-6">
+              <div className="relative w-1/2 rounded-lg overflow-hidden">
+                <Image
+                  src={project.images[2]}
+                  alt={`${project.title} - Image 3`}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover object-top"
+                />
+              </div>
+              <div className="relative w-1/2 rounded-lg overflow-hidden">
+                <Image
+                  src={project.images[3]}
+                  alt={`${project.title} - Image 4`}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover object-top"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Next Project Section */}
-      <ViewMoreWorkSection 
-        currentProjectId="mcdonalds-kiosk"
-        title="More Design Work"
-        bgColor="bg-white"
-        textColor="text-gray-400"
-      />
 
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
@@ -377,6 +392,14 @@ export default function McDonaldsKioskProjectPage() {
           </div>
         </div>
       </section>
+
+      {/* Next Project Section */}
+      <ViewMoreWorkSection 
+        currentProjectId="mcdonalds-kiosk"
+        title="More Design Work"
+        bgColor="bg-white"
+        textColor="text-gray-400"
+      />
     </main>
   );
 } 
