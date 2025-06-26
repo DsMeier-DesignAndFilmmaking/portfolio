@@ -65,7 +65,7 @@ export default function AISandboxPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoLoaded(true);
-    }, 500); // Small delay to ensure iframe starts loading
+    }, 1500); // Increased delay to ensure iframe starts loading
 
     return () => clearTimeout(timer);
   }, []);
@@ -214,16 +214,22 @@ export default function AISandboxPage() {
             className="absolute inset-0 w-full h-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: isVideoLoaded ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
+            style={{ 
+              opacity: isVideoLoaded ? 1 : 0,
+              transition: 'opacity 2.5s ease-out'
+            }}
           >
-            <iframe
-              title="vimeo-player"
-              src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-              frameBorder="0"
-            />
+            {isVideoLoaded && (
+              <iframe
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+              />
+            )}
           </motion.div>
           {/* Gradient Overlay - single div, overlays exactly over the iframe */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
@@ -235,7 +241,12 @@ export default function AISandboxPage() {
         {/* Hero Content */}
         <div className="absolute inset-0 z-20 flex items-center">
           <div className="container mx-auto px-6">
-            <div className="max-w-2xl mt-[100px]">
+            <motion.div 
+              className="max-w-2xl mt-[100px]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
                 <span className="text-gray-200">Travel & AI</span>
               </div>
@@ -247,7 +258,7 @@ export default function AISandboxPage() {
               <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                 With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
