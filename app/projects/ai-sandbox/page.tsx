@@ -16,6 +16,7 @@ export default function AISandboxPage() {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
@@ -59,6 +60,15 @@ export default function AISandboxPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [lastScrollY, isMobileMenuOpen]);
+
+  // Handle video loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVideoLoaded(true);
+    }, 500); // Small delay to ensure iframe starts loading
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleBackHome = () => {
     setIsTransitioning(true);
@@ -199,27 +209,28 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (Vimeo iframe) */}
-        <motion.div 
-          className="relative w-full" 
-          style={{ aspectRatio: '16/9' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        >
-          <iframe
-            title="vimeo-player"
-            src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
-            allow="autoplay; fullscreen"
-            allowFullScreen
+        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+          <motion.div
             className="absolute inset-0 w-full h-full"
-            frameBorder="0"
-          />
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isVideoLoaded ? 1 : 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <iframe
+              title="vimeo-player"
+              src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+              frameBorder="0"
+            />
+          </motion.div>
           {/* Gradient Overlay - single div, overlays exactly over the iframe */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
           </div>
-        </motion.div>
+        </div>
 
         {/* Hero Content */}
         <div className="absolute inset-0 z-20 flex items-center">
