@@ -43,7 +43,7 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 const project = {
   title: "Rich Products",
   description: "Information architecture and web design work for Rich Products, focusing on improving user navigation and content organization.",
-  heroImage: "/portfolio/images/richProducts-card.png",
+  heroImage: "/portfolio/images/richProducts-card.jpg",
   year: "IA & Web Design",
   stats: {
     users: "35k+",
@@ -52,9 +52,8 @@ const project = {
   },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   images: [
-    "/portfolio/images/websiteCards_template.png",
-    "/portfolio/images/websiteCards_template.png",
-    "/portfolio/images/websiteCards_template.png"
+    "/portfolio/images/FarmRich_wireSpecs_02-07-2011.png",
+    "/portfolio/images/FarmRich_GlobalNav_WhereToBuy_wireSpecs-2.png"
   ]
 };
 
@@ -196,7 +195,7 @@ export default function RichProductsProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/DynamicYield_ConceptFlows.pdf" 
+              href="/portfolio/documents/FarmRich_wireSpecs_02-07-20 11.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -208,8 +207,52 @@ export default function RichProductsProjectPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
-                  <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                  <h3 className="text-lg font-semibold text-white mb-1">FarmRich Wire Specs</h3>
+                  <p className="text-gray-400 text-sm">Detailed wireframe specifications for FarmRich website improvements.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+
+            <a 
+              href="/portfolio/documents/FarmRich_wireSpecs_02-07-20 24.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">FarmRich Wire Specs - Additional Pages</h3>
+                  <p className="text-gray-400 text-sm">Extended wireframe specifications covering additional website pages and functionality.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+
+            <a 
+              href="/portfolio/documents/FarmRich_GlobalNav_WhereToBuy_wireSpecs.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Global Navigation & Where to Buy</h3>
+                  <p className="text-gray-400 text-sm">Wireframe specifications for global navigation improvements and "Where to Buy" functionality.</p>
                 </div>
               </div>
               <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
