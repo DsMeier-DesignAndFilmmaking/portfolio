@@ -199,16 +199,22 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (local file, full-bleed) */}
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <video
-            src="/portfolio/videos/Create_a_cinematic_web.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          />
-        </div>
+        // Create a responsive wrapper component for a Vimeo iframe
+// TailwindCSS and React (Next.js compatible)
+// Video should fill full height of viewport (100vh), maintain aspect ratio, and autoplay with no controls or borders
+
+<div className="relative w-full h-screen overflow-hidden">
+  <iframe
+    title="vimeo-player"
+    src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&controls=0&background=1"
+    className="absolute top-0 left-0 w-full h-full"
+    frameBorder="0"
+    allow="autoplay; fullscreen"
+    allowFullScreen
+  ></iframe>
+  <div className="absolute inset-0 bg-black/30 z-10"></div> {/* Optional overlay */}
+</div>
+
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 z-10">
