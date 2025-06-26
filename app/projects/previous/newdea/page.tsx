@@ -192,16 +192,35 @@ export default function NewdeaProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
-            {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+            {/* First two images in a row on desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
                 <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
+                  src={project.images[0]}
+                  alt={`${project.title} - Image 1`}
                   fill
                   className="object-cover object-top"
                 />
               </div>
-            ))}
+              <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+                <Image
+                  src={project.images[1]}
+                  alt={`${project.title} - Image 2`}
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+            </div>
+            
+            {/* Third image full width */}
+            <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+              <Image
+                src={project.images[2]}
+                alt={`${project.title} - Image 3`}
+                fill
+                className="object-cover object-top"
+              />
+            </div>
           </div>
         </div>
       </section>
