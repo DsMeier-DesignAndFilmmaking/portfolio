@@ -27,28 +27,22 @@ const Footer = () => {
                   Home
                 </Link>
               </li>
+              <li>
+                <Link href="/projects/purdue" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Purdue University
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects/ai-sandbox" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  AI Sandbox (Travel App)
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects/previous" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Previous Projects
+                </Link>
+              </li>
             </ul>
-            
-            <div className="space-y-2">
-              <h4 className="text-lg font-semibold text-gray-700">Work</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/projects/purdue" className="text-gray-600 hover:text-gray-900 transition-colors">
-                    Purdue University
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projects/ai-sandbox" className="text-gray-600 hover:text-gray-900 transition-colors">
-                    AI Sandbox (Travel App)
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projects/previous" className="text-gray-600 hover:text-gray-900 transition-colors">
-                    Previous Projects
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </div>
 
           {/* Social Links */}
@@ -78,6 +72,8 @@ const Footer = () => {
               <li>
                 <a 
                   href="mailto:danmeier@dsmeier.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Email

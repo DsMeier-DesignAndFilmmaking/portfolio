@@ -74,7 +74,7 @@ const project = {
   images: [
     "/portfolio/images/DynamicYield_ConceptFlows_2.jpg",
     "/portfolio/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg",
-    "/portfolio/images/mcDonalds-card.jpg",
+    "/portfolio/images/Homepage - RememberMe - Default Mode - Authenticated_screen2.jpg",
     "/portfolio/images/mcDs_kiosk_screen-1.jpg"
   ]
 };
@@ -135,6 +135,8 @@ export default function McDonaldsKioskProjectPage() {
             fill
             className="object-cover"
             priority
+            quality={85}
+            sizes="100vw"
           />
         </div>
         <div className="container mx-auto px-6 relative z-20">
@@ -202,6 +204,9 @@ export default function McDonaldsKioskProjectPage() {
                   alt={`${project.title} - Image ${index + 1}`}
                   fill
                   className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  priority={index === 0}
+                  quality={85}
                 />
               </div>
             ))}
@@ -212,18 +217,22 @@ export default function McDonaldsKioskProjectPage() {
                 <Image
                   src={project.images[2]}
                   alt={`${project.title} - Image 3`}
-                  width={800}
-                  height={600}
+                  width={600}
+                  height={450}
                   className="w-full h-auto object-cover object-top"
+                  sizes="(max-width: 768px) 50vw, 600px"
+                  quality={85}
                 />
               </div>
               <div className="relative w-1/2 rounded-lg overflow-hidden">
                 <Image
                   src={project.images[3]}
                   alt={`${project.title} - Image 4`}
-                  width={800}
-                  height={600}
+                  width={600}
+                  height={450}
                   className="w-full h-auto object-cover object-top"
+                  sizes="(max-width: 768px) 50vw, 600px"
+                  quality={85}
                 />
               </div>
             </div>
