@@ -72,7 +72,6 @@ const project = {
   overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
   images: [
     "/portfolio/images/Noda_cropped-container.jpg",
-    "/portfolio/images/00-b_Login_SuperAdmin_filledIn.jpg",
     "/portfolio/images/Nodalytics_heroGraphic-3.jpg"
   ]
 };
