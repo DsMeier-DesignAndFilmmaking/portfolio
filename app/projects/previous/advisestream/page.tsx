@@ -65,15 +65,15 @@ const project = {
   heroImage: "/portfolio/images/Advistestream_mockup-createReport.jpg",
   year: "Product Design",
   stats: {
-    users: "15k+",
-    countries: "12",
-    impact: "78%"
+    users: "25% Reduction in User Drop-Off",
+    countries: "22% increase in TCR",
+    impact: "6.5k+ applications submitted"
   },
   overview: "Created a comprehensive digital platform designed to bridge the gap between healthcare professionals in developing regions and global medical resources.",
   images: [
-    "/portfolio/images/AdviseStream_mobileScreens.png",
-    "/portfolio/images/advisestream_mobileDesigns-1.png",
-    "/portfolio/images/Advistestream_mockup-createReport.jpg"
+    "/portfolio/images/Advistestream_mockup-createReport.jpg",
+    "/portfolio/images/AdviseStream_mobileScreens-optimized.jpg",
+    "/portfolio/images/advisestream_mobileDesigns-1-optimized.jpg"
   ]
 };
 
@@ -151,7 +151,7 @@ export default function AdviseStreamProjectPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-              {project.description}
+              Led responsive design enhancements for a Medical School Application platform.
             </p>
           </motion.div>
         </div>
@@ -167,11 +167,11 @@ export default function AdviseStreamProjectPage() {
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Duration:</p>
-              <p className="whitespace-nowrap">6 Months</p>
+              <p className="whitespace-nowrap">6 Months (contract)</p>
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
-              <p>Connect healthcare professionals in developing regions</p>
+              <p>Design and ship UX and UI enhancements that increase TCR's</p>
             </div>
           </div>
         </div>
