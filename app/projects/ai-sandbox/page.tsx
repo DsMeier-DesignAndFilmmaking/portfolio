@@ -17,6 +17,7 @@ export default function AISandboxPage() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
@@ -69,6 +70,17 @@ export default function AISandboxPage() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle video ready state for smooth transition
+  useEffect(() => {
+    if (isVideoLoaded) {
+      const timer = setTimeout(() => {
+        setIsVideoReady(true);
+      }, 500); // Additional delay for smooth transition
+
+      return () => clearTimeout(timer);
+    }
+  }, [isVideoLoaded]);
 
   const handleBackHome = () => {
     setIsTransitioning(true);
@@ -210,15 +222,34 @@ export default function AISandboxPage() {
       <section className="relative w-full overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (Vimeo iframe) */}
         <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+          {/* Loading Overlay */}
+          <AnimatePresence>
+            {!isVideoReady && (
+              <motion.div
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="absolute inset-0 bg-black z-20 flex items-center justify-center"
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-center"
+                >
+                  <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4 mx-auto"></div>
+                  <p className="text-white/70 text-sm">Loading video...</p>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Video Container */}
           <motion.div
             className="absolute inset-0 w-full h-full"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isVideoLoaded ? 1 : 0 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
-            style={{ 
-              opacity: isVideoLoaded ? 1 : 0,
-              transition: 'opacity 2.5s ease-out'
-            }}
+            animate={{ opacity: isVideoReady ? 1 : 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
           >
             {isVideoLoaded && (
               <iframe
@@ -231,6 +262,7 @@ export default function AISandboxPage() {
               />
             )}
           </motion.div>
+          
           {/* Gradient Overlay - single div, overlays exactly over the iframe */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
@@ -245,7 +277,7 @@ export default function AISandboxPage() {
               className="max-w-2xl mt-[100px]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: isVideoReady ? 0.3 : 0.8 }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
                 <span className="text-gray-200">Travel & AI</span>
