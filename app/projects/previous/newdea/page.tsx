@@ -71,9 +71,9 @@ const project = {
   },
   overview: "Led the redesign of Newdea's project management platform, focusing on improving user experience and workflow efficiency.",
   images: [
-    "/portfolio/images/newdea_hero_containerGraphic-2.jpg",
+    "/portfolio/images/newdea_hero_containerGraphic-whitebackground-2.jpg",
     "/portfolio/images/newdea_hero_containerGraphic-3.jpg",
-    "/portfolio/images/newdea_hero_containerGraphic-4.jpg"
+    "/portfolio/images/website_newdea_imageFullWidth-stretch.jpg"
   ]
 };
 
