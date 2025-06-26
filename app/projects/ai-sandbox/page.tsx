@@ -199,7 +199,13 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (Vimeo iframe) */}
-        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+        <motion.div 
+          className="relative w-full" 
+          style={{ aspectRatio: '16/9' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
           <iframe
             title="vimeo-player"
             src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
@@ -213,7 +219,7 @@ export default function AISandboxPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Hero Content */}
         <div className="absolute inset-0 z-20 flex items-center">
