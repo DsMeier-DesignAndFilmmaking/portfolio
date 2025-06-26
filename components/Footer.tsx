@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gray-900">Dan Meier</h3>
             <p className="text-gray-600 max-w-xs">
-              Creating thoughtful digital experiences at the intersection of design, technology, and human connection.
+              Where design meets code, travel sparks ideas, and stories come to life on screen.
             </p>
           </div>
 
@@ -27,17 +27,28 @@ const Footer = () => {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link href="/projects" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  About
-                </Link>
-              </li>
             </ul>
+            
+            <div className="space-y-2">
+              <h4 className="text-sm font-medium text-gray-700">Work</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/projects/purdue" className="text-gray-600 hover:text-gray-900 transition-colors">
+                    Purdue University
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/projects/ai-sandbox" className="text-gray-600 hover:text-gray-900 transition-colors">
+                    AI Sandbox (Travel App)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/projects/previous" className="text-gray-600 hover:text-gray-900 transition-colors">
+                    Previous Projects
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Social Links */}
@@ -46,7 +57,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="https://linkedin.com/in/your-profile" 
+                  href="https://www.linkedin.com/in/dan-meier-16185352/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -56,7 +67,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://github.com/your-username" 
+                  href="https://github.com/DsMeier-DesignAndFilmmaking" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -66,7 +77,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="mailto:your.email@example.com"
+                  href="mailto:danmeier@dsmeier.com"
                   className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Email
