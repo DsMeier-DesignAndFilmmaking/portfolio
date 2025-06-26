@@ -98,16 +98,16 @@ export default function PurdueProjectPage() {
             <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
-                  href="/projects/ai-sandbox" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  AI Sandbox
-                </Link>
-                <Link 
                   href="/projects/purdue" 
                   className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Purdue University
+                </Link>
+                <Link 
+                  href="/projects/ai-sandbox" 
+                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                >
+                  AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
@@ -132,18 +132,18 @@ export default function PurdueProjectPage() {
             >
               <nav className="flex flex-col p-4 px-6 space-y-4">
                 <Link 
-                  href="/projects/ai-sandbox" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  AI Sandbox
-                </Link>
-                <Link 
                   href="/projects/purdue" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Purdue University
+                </Link>
+                <Link 
+                  href="/projects/ai-sandbox" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
