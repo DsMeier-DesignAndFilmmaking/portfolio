@@ -1337,39 +1337,16 @@ export default function AISandboxPage() {
               
               <div className="relative max-w-4xl mx-auto">
                 <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    preload="metadata"
-                    poster="/portfolio/images/ai-travel-hero.svg"
-                    playsInline
-                    controls={false}
-                    onError={(e) => {
-                      console.error('Video failed to load:', e);
-                    }}
-                    onLoadStart={() => {
-                      console.log('Video loading started');
-                    }}
-                    onCanPlay={() => {
-                      console.log('Video can play');
-                    }}
-                    onLoadedData={() => {
-                      console.log('Video data loaded');
-                    }}
-                  >
-                    <source 
-                      src="/portfolio/videos/Create_a_cinematic_optimized.mp4" 
-                      type="video/mp4"
-                    />
-                    {/* Fallback for browsers that don't support video */}
-                    <img 
-                      src="/portfolio/images/ai-travel-hero.svg" 
-                      alt="AI Travel Hero" 
-                      className="w-full h-full object-cover"
-                    />
-                  </video>
+                  <iframe
+                    title="vimeo-player"
+                    src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
                   
                   {/* Video overlay for better UX */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
