@@ -63,7 +63,7 @@ const project = {
   title: "Sphere Software",
   description: "Designed and developed enterprise software solutions for Sphere Software, focusing on creating intuitive user interfaces and improving workflow efficiency.",
   heroImage: "/portfolio/images/sphere-card.jpg",
-  year: "Enterprise Software",
+  year: "Software Startup",
   stats: {
     users: "20k+",
     countries: "8",
@@ -72,7 +72,7 @@ const project = {
   overview: "Develop enterprise software solutions",
   images: [
     "/portfolio/images/sphere-home-page-scaled.jpg",
-    "/portfolio/images/sphere-home-page-scaled.jpg",
+    "/portfolio/images/timbertech-figma-components.jpg",
     "/portfolio/images/sphere-home-page-scaled.jpg"
   ]
 };
@@ -163,15 +163,15 @@ export default function SphereSoftwareProjectPage() {
           <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Role:</p>
-              <p>Product & Web Designer</p>
+              <p>Design Director</p>
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Duration:</p>
-              <p className="whitespace-nowrap">8 Months</p>
+              <p className="whitespace-nowrap">18 Months (full-time)</p>
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
-              <p>Develop enterprise software solutions</p>
+              <p>Design and ship software to market, and iterate and deploy on bi-weekly sprints</p>
             </div>
           </div>
         </div>
