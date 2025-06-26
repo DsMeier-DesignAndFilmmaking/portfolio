@@ -30,7 +30,7 @@ const Footer = () => {
             </ul>
             
             <div className="space-y-2">
-              <h4 className="text-sm font-medium text-gray-700">Work</h4>
+              <h4 className="text-lg font-semibold text-gray-700">Work</h4>
               <ul className="space-y-2">
                 <li>
                   <Link href="/projects/purdue" className="text-gray-600 hover:text-gray-900 transition-colors">
