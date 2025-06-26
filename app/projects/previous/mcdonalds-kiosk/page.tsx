@@ -74,8 +74,8 @@ const project = {
   images: [
     "/portfolio/images/DynamicYield_ConceptFlows_2.jpg",
     "/portfolio/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg",
-    "/portfolio/images/4.kiosk core build_ attract screen@2x.png",
-    "/portfolio/images/4.kiosk core build_ attract screen@2x.png"
+    "/portfolio/images/mcDonalds-card.jpg",
+    "/portfolio/images/mcDs_kiosk_screen-1.jpg"
   ]
 };
 
