@@ -72,7 +72,7 @@ export default function AISandboxPage() {
   };
 
   return (
-    <main className="h-screen bg-white text-black overflow-hidden">
+    <main className="bg-white text-black overflow-hidden">
       <AnimatePresence>
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
@@ -197,9 +197,9 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative w-full h-full overflow-hidden" aria-label="Project Hero">
+      <section className="relative w-full overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (Vimeo iframe) */}
-        <div className="absolute inset-0 z-0 w-full h-full">
+        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
           <iframe
             title="vimeo-player"
             src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
@@ -217,19 +217,21 @@ export default function AISandboxPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="container mx-auto px-6 relative z-20 flex items-center h-full">
-          <div className="max-w-2xl mt-[100px]">
-            <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-              <span className="text-gray-200">Travel & AI</span>
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="max-w-2xl mt-[100px]">
+              <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
+                <span className="text-gray-200">Travel & AI</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                  AI Sandbox
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
+              </p>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                AI Sandbox
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-              With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
-            </p>
           </div>
         </div>
       </section>
