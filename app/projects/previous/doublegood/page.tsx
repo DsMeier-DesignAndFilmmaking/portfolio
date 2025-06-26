@@ -193,16 +193,28 @@ export default function DoubleGoodProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
-            {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover object-top"
-                />
-              </div>
-            ))}
+            {/* First image - full width */}
+            <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} - Image 1`}
+                fill
+                className="object-cover object-top"
+              />
+            </div>
+            {/* Next three images in a row, mobile aspect ratio */}
+            <div className="flex flex-row gap-6">
+              {project.images.slice(1, 4).map((image, idx) => (
+                <div key={idx} className="relative flex-1 aspect-[9/19.5] rounded-lg overflow-hidden">
+                  <Image
+                    src={image}
+                    alt={`${project.title} - Image ${idx + 2}`}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
