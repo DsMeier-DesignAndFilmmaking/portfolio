@@ -152,7 +152,7 @@ export default function DoubleGoodProjectPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-              {project.overview}
+              Enhanced the mobile UX and UI for a Chicago-based inner-city fundraising platform.
             </p>
           </motion.div>
         </div>
@@ -168,7 +168,7 @@ export default function DoubleGoodProjectPage() {
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Duration:</p>
-              <p className="whitespace-nowrap">4 Months</p>
+              <p className="whitespace-nowrap">2 weeks</p>
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
@@ -191,6 +191,22 @@ export default function DoubleGoodProjectPage() {
                 className="object-cover object-top"
               />
             </div>
+            
+            {/* Link to open first image in new window */}
+            <div className="text-center">
+              <a 
+                href="/portfolio/images/DoubleGood_mobileFlow_1.jpg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+                Click to view full size image
+              </a>
+            </div>
+
             {/* Next three images in a row, mobile aspect ratio */}
             <div className="flex flex-row gap-6">
               {project.images.slice(1, 4).map((image, idx) => (
@@ -217,7 +233,7 @@ export default function DoubleGoodProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/DynamicYield_ConceptFlows.pdf" 
+              href="/portfolio/documents/DoubleGood_ScreenDesigns.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -229,8 +245,8 @@ export default function DoubleGoodProjectPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
-                  <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                  <h3 className="text-lg font-semibold text-white mb-1">DoubleGood Screen Designs</h3>
+                  <p className="text-gray-400 text-sm">Complete mobile screen designs and UI specifications for the fundraising platform.</p>
                 </div>
               </div>
               <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
