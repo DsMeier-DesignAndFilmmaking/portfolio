@@ -159,7 +159,7 @@ export default function NodalyticsProjectPage() {
       {/* Project Details Subheads for Nodalytics */}
       <section className="py-0 pb-10">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-[70%]">
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Role:</p>
               <p>Product Designer</p>

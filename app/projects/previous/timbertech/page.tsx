@@ -161,7 +161,7 @@ export default function TimberTechProjectPage() {
       {/* Project Details Subheads for TimberTech */}
       <section className="py-0 pb-10">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row w-full md:w-[70%] justify-between gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-[70%]">
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Role:</p>
               <p>Lead Web Designer</p>
@@ -181,7 +181,7 @@ export default function TimberTechProjectPage() {
       {/* Stats Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-[70%]">
             <StatCard icon={FaUsers} value={project.stats.users} label="Avg. Monthly Visitors" />
             <StatCard icon={FaChartLine} value={project.stats.urls} label="Updated URLs" />
             <StatCard icon={FaCheckCircle} value={project.stats.reduction} label="Reduction in Components Library" />
