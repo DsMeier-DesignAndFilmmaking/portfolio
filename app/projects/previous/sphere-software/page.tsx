@@ -211,11 +211,11 @@ export default function SphereSoftwareProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including wireframes, specifications, and design assets.
+            Explore detailed documentation and deliverables from this project, including white papers and service desk documentation.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/DynamicYield_ConceptFlows.pdf" 
+              href="/portfolio/documents/Sphere Software - Service Desk White Paper.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -227,8 +227,29 @@ export default function SphereSoftwareProjectPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Dynamic Yield UX</h3>
-                  <p className="text-gray-400 text-sm">Kiosk upsell and cross-sell UI enhancements and flows.</p>
+                  <h3 className="text-lg font-semibold text-white mb-1">Service Desk White Paper</h3>
+                  <p className="text-gray-400 text-sm">Comprehensive documentation for Sphere Software's service desk solution.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a 
+              href="/portfolio/documents/SphereWhitepaper-1.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Sphere Software Whitepaper</h3>
+                  <p className="text-gray-400 text-sm">Technical whitepaper outlining Sphere Software's architecture and solutions.</p>
                 </div>
               </div>
               <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
