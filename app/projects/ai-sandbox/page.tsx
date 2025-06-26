@@ -72,7 +72,7 @@ export default function AISandboxPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="h-screen bg-white text-black overflow-hidden">
       <AnimatePresence>
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
@@ -197,16 +197,16 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative w-screen h-screen md:h-screen overflow-hidden" aria-label="Project Hero">
-        {/* Hero Video Background (local file, full-bleed) */}
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <video
-            src="/portfolio/videos/Create_a_cinematic_web.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      <section className="relative w-full h-full overflow-hidden" aria-label="Project Hero">
+        {/* Hero Video Background (Vimeo iframe) */}
+        <div className="absolute inset-0 z-0 w-full h-full">
+          <iframe
+            title="vimeo-player"
+            src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+            frameBorder="0"
           />
         </div>
 
