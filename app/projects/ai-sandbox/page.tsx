@@ -198,8 +198,8 @@ export default function AISandboxPage() {
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden" aria-label="Project Hero">
-        {/* Full Viewport Gradient Overlay - Fixed to viewport */}
-        <div className="fixed top-0 left-0 right-0 bottom-0 z-10">
+        {/* Full Viewport Gradient Overlay - Scrolls with hero section */}
+        <div className="absolute top-0 left-0 right-0 bottom-0 z-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
           <div className="absolute inset-x-0 bottom-0 h-screen bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
         </div>
