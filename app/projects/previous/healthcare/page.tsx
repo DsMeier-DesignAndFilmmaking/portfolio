@@ -194,7 +194,8 @@ export default function HealthcareProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
-            {project.images.map((image, index) => (
+            {/* First two images - full width */}
+            {project.images.slice(0, 2).map((image, index) => (
               <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
                 <Image
                   src={image}
@@ -204,6 +205,26 @@ export default function HealthcareProjectPage() {
                 />
               </div>
             ))}
+            
+            {/* Last two images - 2/3 and 1/3 width in same row */}
+            <div className="flex gap-6">
+              <div className="relative w-2/3 aspect-[16/10] rounded-lg overflow-hidden">
+                <Image
+                  src={project.images[2]}
+                  alt={`${project.title} - Image 3`}
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="relative w-1/3 aspect-[16/10] rounded-lg overflow-hidden">
+                <Image
+                  src={project.images[3]}
+                  alt={`${project.title} - Image 4`}
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
