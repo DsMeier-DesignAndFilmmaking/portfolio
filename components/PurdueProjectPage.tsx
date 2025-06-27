@@ -175,7 +175,7 @@ export default function PurdueProjectPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mt-[100px]"
+            className="max-w-2xl mt-[120px] md:mt-[100px]"
           >
             <div className="inline-flex items-center gap-2 text-[#e6cfa3] text-sm font-medium mb-6">
               <div className="w-1 h-4 bg-[#e6cfa3]"></div>
