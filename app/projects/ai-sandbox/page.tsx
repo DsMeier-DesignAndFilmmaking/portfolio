@@ -18,6 +18,8 @@ export default function AISandboxPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
@@ -81,6 +83,29 @@ export default function AISandboxPage() {
       return () => clearTimeout(timer);
     }
   }, [isVideoLoaded]);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle mobile video loading
+  useEffect(() => {
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setIsMobileVideoLoaded(true);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
 
   const handleBackHome = () => {
     setIsTransitioning(true);
@@ -219,12 +244,12 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden" aria-label="Project Hero">
-        {/* Hero Video Background (Vimeo iframe) */}
-        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+      <section className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
+        {/* Hero Video Background */}
+        <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Loading Overlay */}
           <AnimatePresence>
-            {!isVideoReady && (
+            {(!isVideoReady && !isMobile) || (!isMobileVideoLoaded && isMobile) ? (
               <motion.div
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -241,29 +266,54 @@ export default function AISandboxPage() {
                   <p className="text-white/70 text-sm">Loading video...</p>
                 </motion.div>
               </motion.div>
-            )}
+            ) : null}
           </AnimatePresence>
 
-          {/* Video Container */}
-          <motion.div
-            className="absolute inset-0 w-full h-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isVideoReady ? 1 : 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-          >
-            {isVideoLoaded && (
-              <iframe
-                title="vimeo-player"
-                src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-                frameBorder="0"
-              />
-            )}
-          </motion.div>
+          {/* Desktop Video Container (Vimeo iframe) */}
+          {!isMobile && (
+            <motion.div
+              className="absolute inset-0 w-full h-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVideoReady ? 1 : 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+            >
+              {isVideoLoaded && (
+                <iframe
+                  title="vimeo-player"
+                  src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder="0"
+                />
+              )}
+            </motion.div>
+          )}
+
+          {/* Mobile Video Container (Local video) */}
+          {isMobile && (
+            <motion.div
+              className="absolute inset-0 w-full h-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isMobileVideoLoaded ? 1 : 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+            >
+              {isMobileVideoLoaded && (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+            </motion.div>
+          )}
           
-          {/* Gradient Overlay - single div, overlays exactly over the iframe */}
+          {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
@@ -271,13 +321,13 @@ export default function AISandboxPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="absolute inset-0 z-20 flex items-center">
+        <div className={`absolute inset-0 z-20 flex items-center ${isMobile ? 'justify-center' : ''}`}>
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-2xl mt-[100px]"
+              className={`max-w-2xl ${isMobile ? 'text-center' : 'mt-[100px]'}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: isVideoReady ? 0.3 : 0.8 }}
+              transition={{ duration: 0.8, delay: (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
                 <span className="text-gray-200">Travel & AI</span>
