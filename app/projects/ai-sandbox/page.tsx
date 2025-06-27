@@ -219,9 +219,9 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative w-full h-screen overflow-hidden" aria-label="Project Hero">
+      <section className="relative w-full overflow-hidden" aria-label="Project Hero">
         {/* Hero Video Background (Vimeo iframe) */}
-        <div className="relative w-full h-full">
+        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
           {/* Loading Overlay */}
           <AnimatePresence>
             {!isVideoReady && (
@@ -271,10 +271,10 @@ export default function AISandboxPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 flex items-center">
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-2xl text-center"
+              className="max-w-2xl mt-[100px]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: isVideoReady ? 0.3 : 0.8 }}
