@@ -22,6 +22,7 @@ export default function AISandboxPage() {
   const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
+  const [atTop, setAtTop] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +43,11 @@ export default function AISandboxPage() {
         setIsMobileMenuOpen(false);
       }
 
+      // Track if at top
+      setAtTop(scrollPosition === 0);
+
       // Handle navbar hide/show on mobile based on scroll direction
       const currentScrollY = window.scrollY;
-      
       if (currentScrollY > lastScrollY) {
         // Scrolling down
         setScrollDirection('down');
@@ -54,7 +57,6 @@ export default function AISandboxPage() {
         setScrollDirection('up');
         setIsScrolling(false);
       }
-      
       setLastScrollY(currentScrollY);
     };
 
@@ -130,7 +132,7 @@ export default function AISandboxPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
         className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 ${
-          scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
