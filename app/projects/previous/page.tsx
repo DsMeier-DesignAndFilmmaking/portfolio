@@ -10,6 +10,9 @@ import { useState, useEffect } from 'react';
 export default function PreviousProjectsPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [atTop, setAtTop] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,13 +20,20 @@ export default function PreviousProjectsPage() {
       if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
+      // Track if at top
+      setAtTop(window.scrollY === 0);
+      // Handle navbar hide/show on mobile based on scroll direction
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection('up');
+      }
+      setLastScrollY(currentScrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isMobileMenuOpen]);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,7 +51,9 @@ export default function PreviousProjectsPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="fixed top-0 left-0 right-0 z-50 mt-5"
+        className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 ${
+          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center">
