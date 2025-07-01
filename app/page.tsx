@@ -61,7 +61,7 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1 }}
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
-              backgroundImage: 'url(/portfolio/images/meChair_1.1.1.jpg)',
+              backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.jpg)',
               backgroundPosition: 'center',
               backgroundSize: 'cover'
             }}
