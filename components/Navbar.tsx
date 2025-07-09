@@ -13,7 +13,6 @@ const Navbar = () => {
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
-    let anchorScrollTimeout: NodeJS.Timeout;
 
     const handleScroll = () => {
       setIsScrolling(true);
@@ -53,32 +52,13 @@ const Navbar = () => {
       }
     };
 
-    const handleAnchorClick = () => {
-      setIsScrollingToAnchor(true);
-      clearTimeout(anchorScrollTimeout);
-      anchorScrollTimeout = setTimeout(() => {
-        setIsScrollingToAnchor(false);
-      }, 1000);
-      setIsMobileMenuOpen(false); // Close mobile menu when clicking a link
-    };
-
-    // Add click event listeners to all anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-      link.addEventListener('click', handleAnchorClick);
-    });
-
     window.addEventListener('scroll', handleScroll);
     // Set initial color to white
     setTextColor('white');
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      anchorLinks.forEach(link => {
-        link.removeEventListener('click', handleAnchorClick);
-      });
       clearTimeout(scrollTimeout);
-      clearTimeout(anchorScrollTimeout);
     };
   }, []);
 
@@ -87,6 +67,34 @@ const Navbar = () => {
       top: 0,
       behavior: 'smooth'
     });
+  };
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    console.log(`Attempting to scroll to: ${targetId}`);
+    setIsScrollingToAnchor(true);
+    setIsMobileMenuOpen(false);
+    
+    const targetElement = document.getElementById(targetId);
+    console.log(`Target element found:`, targetElement);
+    
+    if (targetElement) {
+      const navbarHeight = 80; // Approximate navbar height
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      console.log(`Scrolling to position: ${targetPosition}`);
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`Target element with id '${targetId}' not found`);
+    }
+    
+    // Reset the scrolling state after animation completes
+    setTimeout(() => {
+      setIsScrollingToAnchor(false);
+    }, 1000);
   };
 
   const toggleMobileMenu = () => {
@@ -146,36 +154,39 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block rounded-lg px-6 py-4">
             <nav className="flex items-center space-x-8">
-              <Link 
+              <a 
                 href="#black-section" 
-                className={`text-[12pt] transition-colors duration-200 ${
+                onClick={(e) => handleAnchorClick(e, 'black-section')}
+                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
                   textColor === 'white' 
                     ? 'text-white hover:text-blue-400' 
                     : 'text-gray-900 hover:text-blue-600'
                 }`}
               >
                 Digital Design
-              </Link>
-              <Link 
+              </a>
+              <a 
                 href="#video-projects" 
-                className={`text-[12pt] transition-colors duration-200 ${
+                onClick={(e) => handleAnchorClick(e, 'video-projects')}
+                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
                   textColor === 'white' 
                     ? 'text-white hover:text-blue-400' 
                     : 'text-gray-900 hover:text-blue-600'
                 }`}
               >
                 Video
-              </Link>
-              <Link 
+              </a>
+              <a 
                 href="#photography" 
-                className={`hidden text-[12pt] transition-colors duration-200 ${
+                onClick={(e) => handleAnchorClick(e, 'photography')}
+                className={`hidden text-[12pt] transition-colors duration-200 cursor-pointer ${
                   textColor === 'white' 
                     ? 'text-white hover:text-blue-400' 
                     : 'text-gray-900 hover:text-blue-600'
                 }`}
               >
                 Wayfinder Diaries
-              </Link>
+              </a>
             </nav>
           </div>
         </div>
@@ -192,27 +203,27 @@ const Navbar = () => {
             className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 rounded-lg shadow-lg"
           >
             <nav className="flex flex-col p-4 px-6 space-y-4">
-              <Link 
+              <a 
                 href="#black-section" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={(e) => handleAnchorClick(e, 'black-section')}
+                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Digital Design
-              </Link>
-              <Link 
+              </a>
+              <a 
                 href="#video-projects" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={(e) => handleAnchorClick(e, 'video-projects')}
+                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Video
-              </Link>
-              <Link 
+              </a>
+              <a 
                 href="#photography" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="hidden text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={(e) => handleAnchorClick(e, 'photography')}
+                className="hidden text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Wayfinder Diaries
-              </Link>
+              </a>
             </nav>
           </motion.div>
         )}

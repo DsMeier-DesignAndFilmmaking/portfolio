@@ -1376,9 +1376,9 @@ export default function AISandboxPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
               <div className="space-y-6">
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
                   <h3 className="text-xl font-semibold mb-4 text-white">Wireframes & Flows</h3>
-                  <p className="text-gray-300 mb-4">
+                  <p className="text-gray-300 mb-4 flex-grow">
                     Starting with user journey mapping and low-fidelity wireframes to validate core user flows and information architecture.
                   </p>
                   <div className="bg-gradient-to-r from-amber-500/20 to-cyan-500/20 p-4 rounded-lg">
@@ -1388,18 +1388,18 @@ export default function AISandboxPage() {
                   </div>
                 </div>
                 
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
                   <h3 className="text-xl font-semibold mb-4 text-white">UX Decisions</h3>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 flex-grow">
                     Prioritizing offline functionality and cultural sensitivity in the design. Implementing progressive disclosure to reduce cognitive load while traveling.
                   </p>
                 </div>
               </div>
               
               <div className="space-y-6">
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
                   <h3 className="text-xl font-semibold mb-4 text-white">UI Design System</h3>
-                  <p className="text-gray-300 mb-4">
+                  <p className="text-gray-300 mb-4 flex-grow">
                     Creating a comprehensive design system with dark mode optimization for travel scenarios and accessibility considerations.
                   </p>
                   <div className="grid grid-cols-2 gap-3">
@@ -1418,9 +1418,9 @@ export default function AISandboxPage() {
                   </div>
                 </div>
                 
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
                   <h3 className="text-xl font-semibold mb-4 text-white">Tools Used</h3>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 flex-grow">
                     <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Figma</span>
                     <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">MCP server</span>
                     <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Tokens Studio</span>

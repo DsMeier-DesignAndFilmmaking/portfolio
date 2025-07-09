@@ -61,7 +61,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Intel
 const project = {
   title: "Intel Virtual Gatherings",
-  description: "Helped design early-stage technology product concepts to support market research and provide actionable insights for Intel's sustainability initiatives.",
+  description: "Designed 7 early-stage tech concepts to support market research and inform Intel's product roadmaps.",
   heroImage: "/portfolio/images/heroGraphic.jpg",
   year: "Market Research",
   stats: {

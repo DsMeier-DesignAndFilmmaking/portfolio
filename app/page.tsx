@@ -146,7 +146,7 @@ export default function HomePage() {
         {/* Cursor AI Tag */}
         <div className="fixed bottom-4 right-4 z-50">
           <div className="bg-black/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-            <span className="text-white/70 text-xs font-mono">Built with Cursor AI</span>
+            <span className="text-white/70 text-xs font-mono">Built with Cursor</span>
           </div>
         </div>
 
