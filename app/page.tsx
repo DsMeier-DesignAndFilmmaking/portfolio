@@ -151,15 +151,15 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h2 className="text-4xl font-bold mb-6 text-amber-800 tracking-wide">
+              <h2 className="text-4xl font-bold mb-6 text-black tracking-wide">
                 Nomadic World Travel Diaries
               </h2>
-              <p className="text-amber-700 text-lg max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
-                Capturing the raw beauty of untamed landscapes and the authentic moments that define the nomadic spirit.
+              <p className="text-black text-lg max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+                I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
               
               {/* Coming Soon Placeholder */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-16 border-2 border-amber-200 shadow-lg">
+              <div className="bg-black rounded-2xl p-16 border-2 border-gray-800 shadow-lg">
                 <div className="flex flex-col items-center justify-center space-y-8">
                   <div className="w-20 h-20 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full flex items-center justify-center shadow-xl">
                     <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,10 +168,10 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-amber-800 mb-3 tracking-wide">
+                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">
                       Adventure Photo Journal
                     </h3>
-                    <p className="text-amber-600 text-base font-medium">
+                    <p className="text-gray-300 text-base font-medium">
                       Coming Soon!
                     </p>
                     <div className="mt-4 w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"></div>
@@ -181,7 +181,7 @@ export default function HomePage() {
               
               {/* Tech Stack Note */}
               <div className="mt-8 text-center">
-                <p className="text-amber-600/70 text-sm font-medium">
+                <p className="text-black text-sm font-medium">
                   Building with Sanity CMS + Next.js
                 </p>
               </div>
