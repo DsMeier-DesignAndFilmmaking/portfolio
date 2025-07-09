@@ -1370,11 +1370,11 @@ export default function AISandboxPage() {
                 Design Process
               </h2>
               <p className="text-gray-300 text-lg">
-                As I iterate on designs, I'm always focusing on what helps people stay spontaneous while still providing actionable, targeted and valuable UX—focusing less on planning and more on just going.
+                I design to support spontaneity—prioritizing action over planning, with UX that's targeted, valuable, and ready to go.
               </p>
             </div>
             
-            {/* N8N Travel Agent Image */}
+            {/* Figma Travel App Screenshot */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1384,10 +1384,13 @@ export default function AISandboxPage() {
               <div className="relative max-w-4xl mx-auto">
                 <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/portfolio/images/n8n_travelAgent-1.png"
-                    alt="N8N Travel Agent Workflow"
+                    src="/portfolio/images/figmatravelAppScreenshot.png"
+                    alt="Figma Travel App Design Screenshot"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                    quality={85}
                   />
                   
                   {/* Image overlay for better UX */}
@@ -1511,6 +1514,28 @@ export default function AISandboxPage() {
                 </div>
               </div>
             </div>
+            
+            {/* N8N Travel Agent Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mt-16"
+            >
+              <div className="relative max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/portfolio/images/n8n_travelAgent-1.png"
+                    alt="N8N Travel Agent Workflow"
+                    fill
+                    className="object-cover"
+                  />
+                  
+                  {/* Image overlay for better UX */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
