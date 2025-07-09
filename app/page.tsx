@@ -141,6 +141,46 @@ export default function HomePage() {
 
         {/* Video Projects Section */}
         <VideoProjectsSection />
+        
+        {/* Travel Photography and Stills Section */}
+        <section className="py-20 bg-black">
+          <div className="max-w-7xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <h2 className="text-3xl font-bold mb-6 text-white">
+                Travel Photography & Stills
+              </h2>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-12">
+                A visual journey through the lens of a designer who sees the world differently.
+              </p>
+              
+              {/* Coming Soon Placeholder */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-12 border border-white/10">
+                <div className="flex flex-col items-center justify-center space-y-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-amber-500/20 to-cyan-500/20 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      Travel Photo Journal
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                      Coming Soon!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+        
         <PhotographyGridSection />
 
         {/* Cursor AI Tag */}
