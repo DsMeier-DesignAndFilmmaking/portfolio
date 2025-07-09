@@ -1374,62 +1374,27 @@ export default function AISandboxPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-              <div className="space-y-6">
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
-                  <h3 className="text-xl font-semibold mb-4 text-white">Wireframes & Flows</h3>
-                  <p className="text-gray-300 mb-4 flex-grow">
-                    Starting with user journey mapping and low-fidelity wireframes to validate core user flows and information architecture.
-                  </p>
-                  <div className="bg-gradient-to-r from-amber-500/20 to-cyan-500/20 p-4 rounded-lg">
-                    <p className="text-sm text-gray-300">
-                      Key flows: Onboarding → Discovery → Planning → Navigation → Sharing
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
-                  <h3 className="text-xl font-semibold mb-4 text-white">UX Decisions</h3>
-                  <p className="text-gray-300 flex-grow">
-                    Prioritizing offline functionality and cultural sensitivity in the design. Implementing progressive disclosure to reduce cognitive load while traveling.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
-                  <h3 className="text-xl font-semibold mb-4 text-white">UI Design System</h3>
-                  <p className="text-gray-300 mb-4 flex-grow">
-                    Creating a comprehensive design system with dark mode optimization for travel scenarios and accessibility considerations.
-                  </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-amber-500/20 p-3 rounded text-center">
-                      <span className="text-amber-400 text-sm font-medium">Color Palette</span>
-                    </div>
-                    <div className="bg-cyan-500/20 p-3 rounded text-center">
-                      <span className="text-cyan-400 text-sm font-medium">Typography</span>
-                    </div>
-                    <div className="bg-emerald-500/20 p-3 rounded text-center">
-                      <span className="text-emerald-400 text-sm font-medium">Components</span>
-                    </div>
-                    <div className="bg-orange-500/20 p-3 rounded text-center">
-                      <span className="text-orange-400 text-sm font-medium">Icons</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm h-full flex flex-col">
-                  <h3 className="text-xl font-semibold mb-4 text-white">Tools Used</h3>
-                  <div className="flex flex-wrap gap-3 flex-grow">
-                    <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Figma</span>
-                    <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">MCP server</span>
-                    <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Tokens Studio</span>
-                    <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Cursor</span>
-                    <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Github</span>
-                  </div>
+            {/* N8N Travel Agent Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-16"
+            >
+              <div className="relative max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/portfolio/images/n8n_travelAgent-1.png"
+                    alt="N8N Travel Agent Workflow"
+                    fill
+                    className="object-cover"
+                  />
+                  
+                  {/* Image overlay for better UX */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
-            </div>
+            </motion.div>
             
             {/* Interactive Prototype Demo */}
             <motion.div
