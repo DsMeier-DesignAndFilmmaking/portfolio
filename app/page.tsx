@@ -90,11 +90,11 @@ export default function HomePage() {
                 className="w-full md:max-w-[45vw] text-left"
               >
                 <div className="mb-4 md:mb-8">
-                  <h1 className="font-sf-pro-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.4] w-full text-left">
+                  <h1 className="font-sf-pro-display text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-bold leading-[1.1] tracking-tight w-full text-left">
                     <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">AI-Driven Experience Design</span>
+                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">AI-Driven Experience Design</span>
                   </h1>
                 </div>
                 <div>
