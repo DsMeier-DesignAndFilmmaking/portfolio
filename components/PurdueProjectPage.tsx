@@ -235,15 +235,15 @@ export default function PurdueProjectPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
-                  <span>User research and persona development</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FaArrowRight className="text-[#cfb991]" />
                   <span>Information architecture restructuring</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
                   <span>UI/UX design and prototyping</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaArrowRight className="text-[#cfb991]" />
+                  <span>Full website UI and content overhaul</span>
                 </div>
               </div>
 
