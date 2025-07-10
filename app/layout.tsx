@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   title: 'Daniel Meier - Digital Designer & Developer',
   description: 'Portfolio showcasing digital design, development, and creative work.',
   icons: {
-    icon: '/favicon-4.png',
-    shortcut: '/favicon-4.png',
-    apple: '/favicon-4.png',
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 };
 
