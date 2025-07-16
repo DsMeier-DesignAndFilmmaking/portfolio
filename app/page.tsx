@@ -146,10 +146,10 @@ export default function HomePage() {
         <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, margin: "-100px" }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+              viewport={{ once: true, amount: 0.3 }}
               className="text-center mb-16"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
@@ -166,10 +166,10 @@ export default function HomePage() {
             
             {/* Modern Coming Soon Card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.98, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-              viewport={{ once: true, margin: "-50px" }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
               className="relative"
             >
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
@@ -238,10 +238,10 @@ export default function HomePage() {
             
             {/* Tech Stack */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-              viewport={{ once: true, margin: "-50px" }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.4 }}
+              viewport={{ once: true, amount: 0.3 }}
               className="mt-12 text-center"
             >
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
