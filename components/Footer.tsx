@@ -85,18 +85,10 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex justify-center">
             <p className="text-gray-600 text-sm">
               © {currentYear} Dan Meier. All rights reserved.
             </p>
-            <div className="flex space-x-6">
-              <Link href="/privacy" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">
-                Terms of Service
-              </Link>
-            </div>
           </div>
         </div>
       </div>
