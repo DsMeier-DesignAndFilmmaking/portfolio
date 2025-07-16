@@ -99,7 +99,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] text-left">
-                    Hi, I'm Dan — a systems-minded designer with over 11 years of experience crafting human-centered digital experiences. My work and interests come with a well-stamped passport and a camera that's usually riding shotgun. Lately, I've been diving into the evolving intersection of AI, design, and anything that sparks real, unfiltered creativity.
+                    Hi, I'm Dan — a systems-minded designer who has spent over 11 years crafting human-centered digital experiences. My work and interests come with a well-stamped passport and a camera that's usually riding shotgun. Lately, I've been diving into the evolving intersection of AI, design, and anything that sparks real, unfiltered creativity.
                   </p>
                 </div>
               </motion.div>
@@ -156,7 +156,7 @@ export default function HomePage() {
                 In Development
               </div>
               <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">
-                Nomadic World Travel Diaries
+                World Travel Diaries
               </h2>
               <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed">
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
@@ -188,9 +188,9 @@ export default function HomePage() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                            Adventure Photo Journal
-                          </h3>
+                                                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                             Travel Photo Journal
+                           </h3>
                           <p className="text-blue-600 font-semibold">Interactive Travel Stories</p>
                         </div>
                       </div>
@@ -226,8 +226,7 @@ export default function HomePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
-                        <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
-                        <p className="text-blue-100 text-sm">Q1 2024</p>
+                                                 <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
                       </div>
                     </div>
                   </div>
