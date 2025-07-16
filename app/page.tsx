@@ -99,7 +99,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] text-left">
-                    Hi, I'm Dan — a systematic thinker and designer with over 11 years of shaping human-centered digital experiences. My work is deeply influenced by a passport-stamped mindset and a camera that's never far from reach. Lately, I've been exploring the dynamic intersection of AI, design, and whatever fuels authentic creativity.
+                    Hi, I'm Dan — a systems-minded designer with over 11 years of experience crafting human-centered digital experiences. My work and interests are accompanied by a well-stamped passport and a camera that's usually riding shotgun. Lately, I've been diving into the evolving intersection of AI, design, and whatever sparks real, unfiltered creativity.
                   </p>
                 </div>
               </motion.div>
