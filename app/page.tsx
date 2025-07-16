@@ -143,47 +143,112 @@ export default function HomePage() {
         <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
-        <section className="py-20 bg-white">
+        <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold mb-6 text-black tracking-wide">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                In Development
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">
                 Nomadic World Travel Diaries
               </h2>
-              <p className="text-black text-lg max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+              <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed">
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
-              
-              {/* Coming Soon Placeholder */}
-              <div className="bg-black rounded-2xl p-16 border-2 border-gray-800 shadow-lg">
-                <div className="flex flex-col items-center justify-center space-y-8">
-                  <div className="w-20 h-20 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full flex items-center justify-center shadow-xl">
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">
-                      Adventure Photo Journal
-                    </h3>
-                    <p className="text-gray-300 text-base font-medium">
-                      Coming Soon!
-                    </p>
-                    <div className="mt-4 w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"></div>
+            </motion.div>
+            
+            {/* Modern Coming Soon Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    {/* Left Content */}
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                            Adventure Photo Journal
+                          </h3>
+                          <p className="text-blue-600 font-semibold">Interactive Travel Stories</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 mb-6">
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          A curated collection of visual narratives from 41 countries, blending photography, storytelling, and interactive experiences.
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Photography</span>
+                          <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Travel Stories</span>
+                          <span className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Interactive</span>
+                        </div>
+                      </div>
+                      
+                      {/* Progress Bar */}
+                      <div className="mb-6">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-gray-600">Development Progress</span>
+                          <span className="text-sm font-bold text-blue-600">65%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[65%] transition-all duration-1000 ease-out"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Right Content */}
+                    <div className="flex-shrink-0">
+                      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-center text-white shadow-xl">
+                        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
+                        <p className="text-blue-100 text-sm">Q1 2024</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Tech Stack Note */}
-              <div className="mt-8 text-center">
-                <p className="text-black text-sm font-medium">
-                  Building with Sanity CMS + Next.js
-                </p>
+            </motion.div>
+            
+            {/* Tech Stack */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-12 text-center"
+            >
+              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
+                <span className="text-gray-600 text-sm font-medium">Building with</span>
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
+                  <span className="text-gray-400">+</span>
+                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
+                </div>
               </div>
             </motion.div>
           </div>
