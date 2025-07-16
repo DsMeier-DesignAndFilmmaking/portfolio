@@ -145,15 +145,9 @@ export default function HomePage() {
         {/* Travel Photography and Stills Section */}
         <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development
               </div>
               <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">
@@ -162,16 +156,10 @@ export default function HomePage() {
               <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed">
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
-            </motion.div>
+            </div>
             
             {/* Modern Coming Soon Card */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="relative"
-            >
+            <div className="relative">
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
@@ -215,7 +203,7 @@ export default function HomePage() {
                           <span className="text-sm font-bold text-blue-600">65%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[65%] transition-all duration-1000 ease-out"></div>
+                          <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[65%]"></div>
                         </div>
                       </div>
                     </div>
@@ -234,16 +222,10 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
             
             {/* Tech Stack */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, ease: "easeInOut", delay: 0.4 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="mt-12 text-center"
-            >
+            <div className="mt-12 text-center">
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
                 <span className="text-gray-600 text-sm font-medium">Building with</span>
                 <div className="flex items-center gap-2">
@@ -252,7 +234,7 @@ export default function HomePage() {
                   <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
         
