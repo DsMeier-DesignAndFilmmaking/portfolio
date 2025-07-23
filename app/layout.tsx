@@ -10,14 +10,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Daniel Meier - Digital Designer & Developer',
   description: 'Portfolio showcasing digital design, development, and creative work.',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.png',
-  },
 };
 
 function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -40,8 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#000000" />
       </head>
       <ClientLayout>{children}</ClientLayout>
     </html>
