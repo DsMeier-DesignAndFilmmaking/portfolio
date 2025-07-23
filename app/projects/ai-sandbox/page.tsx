@@ -1461,19 +1461,19 @@ export default function AISandboxPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-300">Frontend</span>
-                    <span className="text-amber-400">React Native</span>
+                    <span className="text-amber-400">Xcode SwiftUI</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Backend</span>
-                    <span className="text-emerald-400">Node.js + Express</span>
+                    <span className="text-emerald-400">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Database</span>
-                    <span className="text-emerald-400">PostgreSQL</span>
+                    <span className="text-emerald-400">Firestore, Realm, PostgreSQL</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">AI/ML</span>
-                    <span className="text-orange-400">TensorFlow + OpenAI</span>
+                    <span className="text-orange-400">OpenAI / LangChain</span>
                   </div>
                 </div>
               </div>
