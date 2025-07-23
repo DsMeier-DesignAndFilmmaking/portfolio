@@ -196,16 +196,7 @@ export default function HomePage() {
                         </div>
                       </div>
                       
-                      {/* Progress Bar */}
-                      <div className="mb-6">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-gray-600">Development Progress</span>
-                          <span className="text-sm font-bold text-blue-600">65%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[65%]"></div>
-                        </div>
-                      </div>
+
                     </div>
                     
                     {/* Right Content */}
