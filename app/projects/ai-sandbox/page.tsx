@@ -1515,6 +1515,30 @@ export default function AISandboxPage() {
               </div>
             </div>
             
+            {/* Xcode Screenshot Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mt-16"
+            >
+              <div className="relative max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/xcode-screenshot.jpg"
+                    alt="Xcode Development Screenshot"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                  />
+                  
+                  {/* Image overlay for better UX */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
+            
             {/* N8N Travel Agent Image */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
