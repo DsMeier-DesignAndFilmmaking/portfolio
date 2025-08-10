@@ -1525,7 +1525,7 @@ export default function AISandboxPage() {
               <div className="relative max-w-4xl mx-auto">
                 <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/xcode-screenshot.jpg"
+                    src="/portfolio/images/xcode-screenshot.jpg"
                     alt="Xcode Development Screenshot"
                     fill
                     className="object-cover"
