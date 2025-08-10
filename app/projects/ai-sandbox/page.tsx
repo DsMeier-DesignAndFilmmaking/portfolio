@@ -1459,21 +1459,21 @@ export default function AISandboxPage() {
               <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
                 <h3 className="text-xl font-semibold mb-4 text-white">Tech Stack</h3>
                 <div className="space-y-3">
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-start">
                     <span className="text-gray-300">Frontend</span>
-                    <span className="text-amber-400">Xcode SwiftUI</span>
+                    <span className="text-amber-400 text-right">Xcode SwiftUI</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-start">
                     <span className="text-gray-300">Backend</span>
-                    <span className="text-emerald-400">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
+                    <span className="text-emerald-400 text-right max-w-[60%]">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-start">
                     <span className="text-gray-300">Database</span>
-                    <span className="text-emerald-400">Firestore, Realm, PostgreSQL</span>
+                    <span className="text-emerald-400 text-right">Firestore, Realm, PostgreSQL</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-start">
                     <span className="text-gray-300">AI/ML</span>
-                    <span className="text-orange-400">OpenAI / LangChain</span>
+                    <span className="text-orange-400 text-right">OpenAI / LangChain</span>
                   </div>
                 </div>
               </div>
