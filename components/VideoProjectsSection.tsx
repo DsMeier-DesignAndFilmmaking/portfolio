@@ -1,16 +1,62 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
+
+// Custom hook for mobile video autoplay handling
+const useMobileVideoAutoplay = () => {
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile device
+    const mobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    setIsMobile(mobileCheck);
+    console.log('Mobile device detected:', mobileCheck);
+
+    const handleUserInteraction = () => {
+      console.log('User interaction detected on mobile device');
+      setHasUserInteracted(true);
+      // Remove event listeners after first interaction
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    if (mobileCheck) {
+      // Add event listeners for mobile interaction
+      document.addEventListener('touchstart', handleUserInteraction);
+      document.addEventListener('click', handleUserInteraction);
+    }
+
+    return () => {
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
+
+  const triggerVideoAutoplay = useCallback((iframe: HTMLIFrameElement) => {
+    if (isMobile && hasUserInteracted && iframe.src.includes('vimeo.com')) {
+      console.log('Triggering mobile video autoplay for:', iframe.src);
+      const currentSrc = iframe.src;
+      iframe.src = '';
+      setTimeout(() => {
+        iframe.src = currentSrc;
+      }, 100);
+    }
+  }, [isMobile, hasUserInteracted]);
+
+  return { isMobile, hasUserInteracted, triggerVideoAutoplay };
+};
 
 const videoProjects = [
   {
-    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=1&autopause=0&loop=1&quality=1080p&autoplay=1&muted=1"
+    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=1&autopause=0&loop=1&quality=1080p&autoplay=1&muted=1&playsinline=1"
   }
 ];
 
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
+  const { isMobile, hasUserInteracted, triggerVideoAutoplay } = useMobileVideoAutoplay();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,6 +64,11 @@ export default function VideoProjectsSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
             entry.target.style.opacity = '1';
+            
+            // Trigger mobile autoplay if conditions are met
+            if (entry.target instanceof HTMLIFrameElement) {
+              triggerVideoAutoplay(entry.target);
+            }
           } else if (entry.target instanceof HTMLIFrameElement) {
             entry.target.style.opacity = '0';
           }
@@ -41,7 +92,7 @@ export default function VideoProjectsSection() {
         }
       });
     };
-  }, []);
+  }, [triggerVideoAutoplay]);
 
   return (
     <section id="video-projects" className="py-24 bg-black">
@@ -61,7 +112,15 @@ export default function VideoProjectsSection() {
         <div className="grid grid-cols-1 gap-16">
           {videoProjects.map((project, index) => (
             <div key={index} className="group">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div 
+                className="relative w-full" 
+                style={{ paddingBottom: '56.25%' }}
+                onClick={() => {
+                  if (isMobile && videoRefs.current[index]) {
+                    triggerVideoAutoplay(videoRefs.current[index]!);
+                  }
+                }}
+              >
                 <iframe
                   ref={(el) => {
                     videoRefs.current[index] = el;
@@ -72,6 +131,14 @@ export default function VideoProjectsSection() {
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
                 />
+                {/* Mobile play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="bg-black/20 rounded-full p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto">
+                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
