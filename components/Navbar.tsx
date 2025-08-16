@@ -13,52 +13,84 @@ const Navbar = () => {
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
+    let rafId: number;
+    let lastScrollY = 0;
 
     const handleScroll = () => {
-      setIsScrolling(true);
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-      }, 100);
+      // Use requestAnimationFrame for better performance
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      
+      rafId = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        
+        // Only update if scroll position changed significantly
+        if (Math.abs(currentScrollY - lastScrollY) > 5) {
+          setIsScrolling(true);
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            setIsScrolling(false);
+          }, 100);
+          
+          lastScrollY = currentScrollY;
+        }
+      });
+    };
 
-      // Get the sections
-      const blackSection = document.getElementById('black-section');
-      const videoSection = document.getElementById('video-projects');
+    // Throttled scroll handler for color changes
+    let colorUpdateTimeout: NodeJS.Timeout;
+    let lastColorUpdate = 0;
+    const handleColorUpdate = () => {
+      const now = Date.now();
+      if (now - lastColorUpdate < 100) return; // Throttle to 10fps
+      
+      if (colorUpdateTimeout) {
+        clearTimeout(colorUpdateTimeout);
+      }
+      
+      colorUpdateTimeout = setTimeout(() => {
+        // Cache DOM queries
+        const blackSection = document.getElementById('black-section');
+        const videoSection = document.getElementById('video-projects');
+        const navElement = document.querySelector('nav');
 
-      if (blackSection && videoSection) {
-        const navRect = document.querySelector('nav')?.getBoundingClientRect();
-        if (navRect) {
-          const navBottom = navRect.bottom;
+        if (blackSection && videoSection && navElement) {
+          const navRect = navElement.getBoundingClientRect();
           const blackSectionTop = blackSection.getBoundingClientRect().top;
           const videoSectionTop = videoSection.getBoundingClientRect().top;
 
           // Only change color if we've scrolled past the hero section
           if (window.scrollY > 100) {
-            if (navBottom > videoSectionTop) {
-              // Over the video section (black background)
+            if (navRect.bottom > videoSectionTop) {
               setTextColor('white');
-            } else if (navBottom > blackSectionTop) {
-              // Over the black section (black background)
+            } else if (navRect.bottom > blackSectionTop) {
               setTextColor('white');
             } else {
-              // Over the hero section (light background)
               setTextColor('white');
             }
           } else {
-            // At the top, over the hero section
             setTextColor('white');
           }
         }
-      }
+        lastColorUpdate = Date.now();
+      }, 16); // ~60fps
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleColorUpdate, { passive: true });
+    
     // Set initial color to white
     setTextColor('white');
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleColorUpdate);
       clearTimeout(scrollTimeout);
+      clearTimeout(colorUpdateTimeout);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 
@@ -106,7 +138,7 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 scroll-optimized ${
         isScrolling ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}
     >

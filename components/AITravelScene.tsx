@@ -301,9 +301,12 @@ export default function AITravelScene() {
           antialias: false,
           powerPreference: 'high-performance',
           alpha: true,
-          clearColor: [0.898, 0.827, 0.702, 0]
+          clearColor: [0.898, 0.827, 0.702, 0],
+          stencil: false,
+          depth: true
         }}
         style={{ background: 'transparent' }}
+        frameloop="demand"
       >
         <Scene />
       </Canvas>

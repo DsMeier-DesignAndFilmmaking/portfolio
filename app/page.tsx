@@ -50,7 +50,7 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-white">
-      <div className="relative w-full text-[#2F2A3B] overflow-x-hidden">
+      <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center" aria-label="Hero">
