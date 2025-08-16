@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .preview { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .instructions { background: #f0f0f0; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Favicon Generator</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Right-click on each canvas below</li>
+            <li>Select "Save image as..."</li>
+            <li>Save with the exact filename shown</li>
+            <li>Replace the files in your public folder</li>
+        </ol>
+    </div>
+
+    <div class="preview">
+        <h3>16x16 PNG:</h3>
+        <canvas id="canvas16" width="16" height="16"></canvas>
+        <p>Save as: <strong>favicon-16x16.png</strong></p>
+    </div>
+
+    <div class="preview">
+        <h3>32x32 PNG:</h3>
+        <canvas id="canvas32" width="32" height="32"></canvas>
+        <p>Save as: <strong>favicon-32x32.png</strong></p>
+    </div>
+
+    <div class="preview">
+        <h3>180x180 PNG (Apple):</h3>
+        <canvas id="canvas180" width="180" height="180"></canvas>
+        <p>Save as: <strong>apple-touch-icon.png</strong></p>
+    </div>
+
+    <script>
+        function drawFavicon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#3B82F6');
+            gradient.addColorStop(1, '#8B5CF6');
+            
+            // Draw rounded rectangle
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            const radius = size * 0.1875;
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Draw "D" text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.5625}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('D', size / 2, size / 2 + size * 0.0625);
+        }
+        
+        // Polyfill for roundRect
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+        
+        // Generate favicons
+        drawFavicon('canvas16', 16);
+        drawFavicon('canvas32', 32);
+        drawFavicon('canvas180', 180);
+    </script>
+</body>
+</html>
