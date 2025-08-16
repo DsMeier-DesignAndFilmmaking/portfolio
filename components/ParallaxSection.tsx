@@ -29,12 +29,8 @@ export default function ParallaxSection({
   });
 
   // Optimize transforms with better performance settings
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'], {
-    ease: "linear"
-  });
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0], {
-    ease: "linear"
-  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <div ref={ref} className={`relative h-screen ${className}`}>
