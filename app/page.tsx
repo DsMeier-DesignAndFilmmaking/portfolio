@@ -120,7 +120,7 @@ export default function HomePage() {
                     <span className="text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_3px_8px_rgba(0,0,0,0.9)]">AI Experience Design</span>
+                    <span className="bg-gradient-to-r from-cyan-300 via-blue-400 via-indigo-400 via-purple-400 to-emerald-300 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">AI Experience Design</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
