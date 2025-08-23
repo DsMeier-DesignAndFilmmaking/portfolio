@@ -257,7 +257,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                 {/* Background Pattern */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-3xl"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full translate-y-12 -translate-x-12"></div>
                 
