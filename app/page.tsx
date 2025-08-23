@@ -138,8 +138,9 @@ export default function HomePage() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              viewport={{ once: false, amount: 0.3, margin: "-100px 0px -100px 0px" }}
               className="prose prose-lg max-w-none"
             >
               <div className="space-y-8 text-gray-700 leading-relaxed">
