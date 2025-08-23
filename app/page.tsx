@@ -102,7 +102,7 @@ export default function HomePage() {
             {/* Stronger radial gradient for better text contrast */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/85" />
             {/* Enhanced bottom gradient for better text readability */}
-            <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-white via-white/95 via-white/60 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 via-white/20 to-transparent" />
           </motion.div>
           
           {/* Text Overlay */}
@@ -133,7 +133,7 @@ export default function HomePage() {
         </section>
 
         {/* Journey Section */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-gradient-to-b from-white via-gray-50/30 to-white">
           <div className="max-w-4xl mx-auto px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
