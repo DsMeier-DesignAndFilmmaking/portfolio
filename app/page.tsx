@@ -120,7 +120,7 @@ export default function HomePage() {
                     <span className="text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Meets</span>
                     <br />
-                    <span className="text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">AI Experience Design</span>
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_3px_8px_rgba(0,0,0,0.9)]">AI Experience Design</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
@@ -132,7 +132,7 @@ export default function HomePage() {
                   </h1>
                 </div>
                 <div>
-                  <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
+                  <p className="font-sf-pro-text text-base sm:text-lg md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
                   <strong>Hi - I'm Dan</strong>, a systems-thinking Designer & Creative Technologist with a global perspective shaped by experiences in 41 countries. I’m currently exploring how AI can enhance design and digital experiences.
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              viewport={{ once: false, amount: 0.3, margin: "-100px 0px -100px 0px" }}
+              viewport={{ once: false, amount: 0.1, margin: "-50px 0px -50px 0px" }}
               className="prose prose-lg max-w-none"
             >
               <div className="space-y-8 text-gray-700 leading-relaxed">
@@ -182,13 +182,6 @@ export default function HomePage() {
                 <p className="text-xl md:text-2xl leading-relaxed">
                   Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                 </p>
-                
-                {/* Technology Innovation Marker */}
-                <div className="flex items-center justify-end gap-3 mt-6 opacity-60">
-                  <div className="text-sm font-medium tracking-wider text-purple-600 uppercase">Digital Innovation</div>
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                  <div className="w-8 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400"></div>
-                </div>
               </div>
             </motion.div>
           </div>
