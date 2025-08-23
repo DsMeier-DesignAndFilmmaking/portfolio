@@ -54,7 +54,7 @@ export default function HomePage() {
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center" aria-label="Hero">
-          {/* Background Image */}
+          {/* Background Image with Enhanced Contrast */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -63,19 +63,32 @@ export default function HomePage() {
             style={{ 
               backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.jpg)',
               backgroundPosition: 'center',
-              backgroundSize: 'cover'
+              backgroundSize: 'cover',
+              filter: 'contrast(1.15) saturate(0.2)'
             }}
           />
           
-          {/* Desaturation Filter Overlay - 20% saturation */}
+          {/* Professional Portrait Spotlight Effect */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse 800px 600px at 60% 45%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.03) 60%, transparent 80%)',
+              mixBlendMode: 'soft-light'
+            }}
+          />
+          
+          {/* Additional Contrast Enhancement */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             className="absolute inset-0"
             style={{
-              backdropFilter: 'saturate(0.2)',
-              WebkitBackdropFilter: 'saturate(0.2)'
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%)',
+              mixBlendMode: 'multiply'
             }}
           />
           
