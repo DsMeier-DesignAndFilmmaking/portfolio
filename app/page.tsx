@@ -115,11 +115,20 @@ export default function HomePage() {
                 className="w-full md:max-w-[45vw] text-left"
               >
                 <div className="mb-4 md:mb-8">
-                  <h1 className="font-sf-pro-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] md:leading-[1.1] tracking-tight w-full text-left">
+                  {/* Mobile Version - Simplified */}
+                  <h1 className="md:hidden font-sf-pro-display text-3xl sm:text-4xl font-bold leading-[1.05] tracking-tight w-full text-left">
+                    <span className="text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Global Perspective</span>
+                    <span className="mx-2 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Meets</span>
+                    <br />
+                    <span className="text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">AI Experience Design</span>
+                  </h1>
+                  
+                  {/* Desktop Version - Original */}
+                  <h1 className="hidden md:block font-sf-pro-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight w-full text-left">
                     <span className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] md:drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">AI-Driven Experience Design</span>
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">AI-Driven Experience Design</span>
                   </h1>
                 </div>
                 <div>
