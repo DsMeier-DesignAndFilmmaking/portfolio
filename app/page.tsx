@@ -111,7 +111,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] text-left">
-                  I'm a systems-thinking Designer & Creative Technologist with a global perspective shaped by 41 countries of travel.
+                  <strong>Hi - I'm Dan</strong>, a systems-thinking Designer & Creative Technologist with a global perspective from traveling to 41 countries.
                   </p>
                 </div>
               </motion.div>
