@@ -117,10 +117,10 @@ export default function HomePage() {
                 <div className="mb-4 md:mb-8">
                   {/* Mobile Version - Simplified */}
                   <h1 className="md:hidden font-sf-pro-display text-3xl sm:text-4xl font-bold leading-[1.05] tracking-tight w-full text-left">
-                    <span className="text-white">Global Perspective</span>
-                    <span className="mx-2 text-white">Meets</span>
+                    <span className="text-gray-900">Global Perspective</span>
+                    <span className="mx-2 text-gray-900">Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-cyan-300 via-blue-400 via-indigo-400 via-purple-400 to-emerald-300 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI Experience Design</span>
+                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI Experience Design</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
