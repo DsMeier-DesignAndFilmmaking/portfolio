@@ -124,11 +124,34 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
-                  <strong>Hi - I'm Dan</strong>, a systems-thinking Designer & Creative Technologist with a global perspective from traveling to 41 countries.
+                  <strong>Hi - I'm Dan</strong>, a systems-thinking Designer & Creative Technologist with a global perspective shaped by experiences across 41 countries.
                   </p>
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Journey Section */}
+        <section className="py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="prose prose-lg max-w-none"
+            >
+              <div className="space-y-8 text-gray-700 leading-relaxed">
+                <p className="text-xl md:text-2xl leading-relaxed">
+                  My path into design began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.
+                </p>
+                
+                <p className="text-xl md:text-2xl leading-relaxed">
+                  Everything shifted when I had the chance to study abroad. Experiencing new cultures and environments first-hand opened my eyes to the value of travel, connection, and perspective. I've now visited over 40 countries, and those experiences have shaped how I think about people and design. My work today centers on building purposeful websites and digital experiences that provide real value, informed by both a systems-thinking mindset and a global outlook.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </section>
 
