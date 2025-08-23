@@ -19,7 +19,7 @@ const config: Config = {
         }
       },
       animation: {
-        'gradient-shift': 'gradient-shift 3s ease infinite',
+        'gradient-shift': 'gradient-shift 4s ease-in-out infinite',
       },
     },
   },

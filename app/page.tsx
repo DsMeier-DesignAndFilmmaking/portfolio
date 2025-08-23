@@ -106,12 +106,12 @@ export default function HomePage() {
                     <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Global Perspective</span>
                     <span className="mx-2 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">AI-Driven Experience Design</span>
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">AI-Driven Experience Design</span>
                   </h1>
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-sm sm:text-base md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] text-left">
-                  I'm a systems-thinking UX/UI Designer & Creative Technologist with a global perspective shaped by 41 countries of travel.
+                  I'm a systems-thinking Designer & Creative Technologist with a global perspective shaped by 41 countries of travel.
                   </p>
                 </div>
               </motion.div>
