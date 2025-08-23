@@ -10,26 +10,18 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Daniel Meier - Digital Designer & Developer',
   description: 'Portfolio showcasing digital design, development, and creative work.',
+  viewport: 'width=device-width, initial-scale=1',
+  themeColor: '#3B82F6',
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.png', type: 'image/png' },
+      { url: '/portfolio/favicon.ico' },
+      { url: '/portfolio/favicon.svg', type: 'image/svg+xml' },
+      { url: '/portfolio/favicon.png', type: 'image/png' },
     ],
   },
 };
 
-function ClientLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <body className={inter.className}>
-      <NavigationWrapper />
-      <PageTransition>
-        <main>{children}</main>
-      </PageTransition>
-      <Footer />
-    </body>
-  );
-}
+
 
 export default function RootLayout({
   children,
@@ -38,16 +30,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* Favicon configuration with available formats */}
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="msapplication-TileColor" content="#3B82F6" />
-        <meta name="theme-color" content="#3B82F6" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <ClientLayout>{children}</ClientLayout>
+      <body className={inter.className}>
+        <NavigationWrapper />
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+        <Footer />
+      </body>
     </html>
   );
 }
