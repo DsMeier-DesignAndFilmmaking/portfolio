@@ -14,9 +14,13 @@ export const metadata: Metadata = {
   themeColor: '#3B82F6',
   icons: {
     icon: [
-      { url: '/portfolio/favicon.ico' },
-      { url: '/portfolio/favicon.svg', type: 'image/svg+xml' },
-      { url: '/portfolio/favicon.png', type: 'image/png' },
+      { url: '/favicon.ico' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
 };

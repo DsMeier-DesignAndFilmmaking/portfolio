@@ -1,15 +1,13 @@
 const fs = require('fs');
+const path = require('path');
+const sharp = require('sharp');
 
-// Create a simple base64-encoded PNG for testing
-function createSimplePNG(size) {
-  // This is a minimal 1x1 blue PNG in base64
-  const base64PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
-  return Buffer.from(base64PNG, 'base64');
-}
+// Read the travel-themed SVG content
+const svgContent = fs.readFileSync(path.join(__dirname, '../public/favicon.svg'), 'utf8');
 
-// Create a simple ICO file
-function createSimpleICO() {
-  // Minimal ICO file structure
+// Create a simple ICO file with the travel theme colors
+function createTravelICO() {
+  // This creates a basic ICO with the travel theme blue color
   const icoData = Buffer.alloc(150);
   
   // ICO header
@@ -27,40 +25,52 @@ function createSimpleICO() {
   icoData.writeUInt32LE(128, 14); // Size
   icoData.writeUInt32LE(22, 18);  // Offset
   
-  // Add some basic pixel data
+  // Add travel theme blue color (#3B82F6)
   for (let i = 22; i < 150; i++) {
-    icoData[i] = 0x3B; // Blue color
+    icoData[i] = 0x3B; // Blue color from travel theme
   }
   
   return icoData;
 }
 
-console.log('Generating favicon files...');
+console.log('🌍 Generating travel-themed favicon files...');
 
-try {
-  // Create favicon.ico
-  const icoData = createSimpleICO();
-  fs.writeFileSync('public/favicon.ico', icoData);
-  console.log('✅ Created favicon.ico');
-  
-  // Create 16x16 PNG
-  const png16 = createSimplePNG(16);
-  fs.writeFileSync('public/favicon-16x16.png', png16);
-  console.log('✅ Created favicon-16x16.png');
-  
-  // Create 32x32 PNG
-  const png32 = createSimplePNG(32);
-  fs.writeFileSync('public/favicon-32x32.png', png32);
-  console.log('✅ Created favicon-32x32.png');
-  
-  // Create 180x180 PNG
-  const png180 = createSimplePNG(180);
-  fs.writeFileSync('public/apple-touch-icon.png', png180);
-  console.log('✅ Created apple-touch-icon.png');
-  
-  console.log('🎉 All favicon files generated successfully!');
-  console.log('💡 Now clear your browser cache and refresh the page.');
-  
-} catch (error) {
-  console.error('❌ Error generating favicon files:', error.message);
+async function generateFavicons() {
+  try {
+    // Convert SVG to different PNG sizes using Sharp
+    const sizes = [
+      { size: 16, filename: 'favicon-16x16.png' },
+      { size: 32, filename: 'favicon-32x32.png' },
+      { size: 180, filename: 'apple-touch-icon.png' }
+    ];
+    
+    for (const { size, filename } of sizes) {
+      await sharp(Buffer.from(svgContent))
+        .resize(size, size)
+        .png()
+        .toFile(path.join(__dirname, '../public', filename));
+      
+      console.log(`✅ Created ${filename} (${size}x${size})`);
+    }
+    
+    // Create travel-themed ICO
+    const icoData = createTravelICO();
+    fs.writeFileSync('public/favicon.ico', icoData);
+    console.log('✅ Created travel-themed favicon.ico');
+    
+    console.log('🎉 All travel-themed favicon files generated successfully!');
+    console.log('');
+    console.log('🌍 Your favicon now features:');
+    console.log('   - Globe/compass design for global travel');
+    console.log('   - Design tools (pencil) for UX/UI work');
+    console.log('   - Travel element (plane) for nomadic lifestyle');
+    console.log('   - Blue color scheme matching your site theme');
+    console.log('');
+    console.log('💡 Clear your browser cache and refresh the page to see the new favicon!');
+    
+  } catch (error) {
+    console.error('❌ Error generating favicon files:', error.message);
+  }
 }
+
+generateFavicons();
