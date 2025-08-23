@@ -223,17 +223,32 @@ export default function HomePage() {
         <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
-        <section className="py-24" style={{ backgroundColor: '#1d1f26' }}>
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+          {/* World Map Background */}
+          <div className="absolute inset-0 opacity-10">
+            <img 
+              src="/portfolio/images/earth-map.jpg" 
+              alt="World Map Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: '"Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
+                fontFamily: '"Playfair Display", serif',
+                color: '#FFD700'
+              }}>
                 World Travel Diaries
               </h2>
-              <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ fontFamily: '"Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+              <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
+                fontFamily: '"Montserrat", sans-serif',
+                color: '#9899ab'
+              }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
             </div>
