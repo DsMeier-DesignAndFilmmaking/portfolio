@@ -67,6 +67,18 @@ export default function HomePage() {
             }}
           />
           
+          {/* Desaturation Filter Overlay - 20% saturation */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="absolute inset-0"
+            style={{
+              backdropFilter: 'saturate(0.2)',
+              WebkitBackdropFilter: 'saturate(0.2)'
+            }}
+          />
+          
           {/* Enhanced Gradient Overlay for Accessibility */}
           <motion.div 
             initial={{ opacity: 0 }}
