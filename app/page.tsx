@@ -230,10 +230,10 @@ export default function HomePage() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: '"Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
                 World Travel Diaries
               </h2>
-              <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed">
+              <p className="text-gray-600 text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ fontFamily: '"Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
             </div>
