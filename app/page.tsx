@@ -153,13 +153,42 @@ export default function HomePage() {
               className="prose prose-lg max-w-none"
             >
               <div className="space-y-8 text-gray-700 leading-relaxed">
-                <p className="text-xl md:text-2xl leading-relaxed">
-                  My path into design began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.
-                </p>
+                {/* Design Journey Path Marker */}
+                <div className="flex items-center gap-3 mb-6 opacity-60">
+                  <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
+                </div>
                 
                 <p className="text-xl md:text-2xl leading-relaxed">
-                  Everything shifted when I had the chance to study abroad. Experiencing new cultures and environments first-hand opened my eyes to the value of travel, connection, and perspective. I've now visited over 40 countries, and those experiences have shaped how I think about people and design. My work today centers on building purposeful websites and digital experiences that provide real value, informed by both a systems-thinking mindset and a global outlook.
+                  My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
                 </p>
+                
+                {/* Travel Discovery Divider */}
+                <div className="flex items-center justify-center py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                    <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                    <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                  </div>
+                </div>
+                
+                <p className="text-xl md:text-2xl leading-relaxed">
+                  Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
+                </p>
+                
+                {/* Technology Innovation Marker */}
+                <div className="flex items-center justify-end gap-3 mt-6 opacity-60">
+                  <div className="text-sm font-medium tracking-wider text-purple-600 uppercase">Digital Innovation</div>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <div className="w-8 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400"></div>
+                </div>
               </div>
             </motion.div>
           </div>
