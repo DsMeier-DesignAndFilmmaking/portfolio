@@ -223,7 +223,7 @@ export default function HomePage() {
         <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
-        <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <section className="py-24" style={{ backgroundColor: '#1d1f26' }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
