@@ -4,8 +4,9 @@ import ProjectsSection from '@/components/ProjectsSection';
 import VideoProjectsSection from '@/components/VideoProjectsSection';
 import PhotographyGridSection from '@/components/PhotographyGridSection';
 import ParallaxSection from '@/components/ParallaxSection';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import dynamic from 'next/dynamic';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -49,8 +50,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen relative overflow-hidden bg-white">
-      <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
+    <ErrorBoundary>
+      <main className="min-h-screen relative overflow-hidden bg-white">
+        <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center" aria-label="Hero">
@@ -58,10 +60,10 @@ export default function HomePage() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
-              backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.jpg)',
+              backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.webp)',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
               filter: 'contrast(1.15) saturate(0.2)'
@@ -72,7 +74,7 @@ export default function HomePage() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
             className="absolute inset-0"
             style={{
               background: 'radial-gradient(ellipse 800px 600px at 60% 45%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.03) 60%, transparent 80%)',
@@ -84,7 +86,7 @@ export default function HomePage() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className="absolute inset-0"
             style={{
               background: 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%)',
@@ -96,7 +98,7 @@ export default function HomePage() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className="absolute inset-0"
           >
             {/* Stronger radial gradient for better text contrast */}
@@ -260,7 +262,7 @@ export default function HomePage() {
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
                   style={{
-                    backgroundImage: 'url(/images/Morocco_girlsBike_Natgeo.jpg)'
+                    backgroundImage: 'url(/portfolio/images/Morocco_girlsBike_Natgeo.webp)'
                   }}
                 ></div>
                 {/* Dark overlay for better text readability */}
@@ -329,7 +331,16 @@ export default function HomePage() {
           </div>
         </section>
         
-        <PhotographyGridSection />
+        <Suspense fallback={
+          <div className="py-24 bg-gray-50">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+              <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading photography...</p>
+            </div>
+          </div>
+        }>
+          <PhotographyGridSection />
+        </Suspense>
 
         {/* Cursor AI Tag */}
         <div className="fixed bottom-4 right-4 z-50">
@@ -361,7 +372,8 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </div>
-    </main>
+              </div>
+      </main>
+    </ErrorBoundary>
   );
 }
