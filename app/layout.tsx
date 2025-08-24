@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   themeColor: '#3B82F6',
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/portfolio/favicon.ico' },
+      { url: '/portfolio/favicon.svg', type: 'image/svg+xml' },
+      { url: '/portfolio/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/portfolio/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/portfolio/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
 };
@@ -34,6 +34,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/portfolio/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png" />
+      </head>
       <body className={inter.className}>
         <NavigationWrapper />
         <PageTransition>
