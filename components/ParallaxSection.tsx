@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import ParallaxBackground from './ParallaxBackground';
 import DesignBuildScene from './DesignBuildScene';
 import CinematographyScene from './CinematographyScene';
@@ -22,6 +22,12 @@ export default function ParallaxSection({
   modelPath,
 }: ParallaxSectionProps) {
   const ref = useRef(null);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -31,6 +37,28 @@ export default function ParallaxSection({
   // Optimize transforms with better performance settings
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  if (!isClient) {
+    return (
+      <div ref={ref} className={`relative h-screen ${className}`}>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+          </div>
+        </div>
+        <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
+          <div className="text-center max-w-4xl mx-auto px-6 bg-transparent">
+            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black">
+              {title}
+            </h2>
+            {description && (
+              <p className="text-lg md:text-xl text-black">{description}</p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} className={`relative h-screen ${className}`}>

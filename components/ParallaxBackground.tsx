@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import anime from 'animejs';
@@ -17,9 +17,14 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const particlesRef = useRef<THREE.Points | null>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current || typeof window === 'undefined') return;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -164,6 +169,16 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       scene.clear();
     };
   }, [modelPath]);
+
+  if (!isClient) {
+    return (
+      <div className={`absolute inset-0 ${className} bg-gradient-to-br from-gray-100 to-gray-200`}>
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
