@@ -14,7 +14,10 @@ const AITravelScene = dynamic(() => import('@/components/AITravelScene'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-8 h-8 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+      <div className="text-center">
+        <div className="text-4xl mb-4">🌍</div>
+        <p className="text-gray-600">Loading 3D scene...</p>
+      </div>
     </div>
   ),
 });

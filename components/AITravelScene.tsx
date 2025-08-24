@@ -6,6 +6,7 @@ import { OrbitControls, useGLTF, Environment, Float, useTexture, Points, PointMa
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 
+
 // Extend JSX.IntrinsicElements for Three.js elements
 declare global {
   namespace JSX {
@@ -28,20 +29,13 @@ function Globe() {
   const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
-    // Timeout to prevent infinite loading
+    // Simple timeout to show the globe
     const timeout = setTimeout(() => {
       setIsLoaded(true);
-    }, 5000);
+    }, 1000);
     
     return () => clearTimeout(timeout);
   }, []);
-  
-  const texture = useTexture('/portfolio/images/textures/earth-map.webp', (texture) => {
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.generateMipmaps = false;
-    setIsLoaded(true);
-  });
 
   useFrame((state) => {
     if (globeRef.current && isLoaded) {
@@ -57,7 +51,7 @@ function Globe() {
     <mesh ref={globeRef}>
       <sphereGeometry args={[0.405, 24, 24]} />
       <meshStandardMaterial
-        map={texture}
+        color="#4a9eff"
         metalness={0.8}
         roughness={0.2}
         emissive="#4a9eff"
