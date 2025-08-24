@@ -204,47 +204,44 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Parallax Sections */}
-        <ParallaxSection
-          title="Always Curious."
-          description=""
-          modelPath="ai-travel"
-          className="bg-transparent"
-        />
+        {/* Simplified Parallax Sections for Performance */}
+        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Always Curious.</h2>
+          </div>
+        </section>
 
-        <ParallaxSection
-          title="I tinker & build things."
-          description=""
-          modelPath="design-build"
-          className="bg-transparent"
-        />
+        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I tinker & build things.</h2>
+          </div>
+        </section>
 
-        <ParallaxSection
-          title="I shape narrative through the art of cinematic imagery."
-          description=""
-          modelPath="cinematography"
-          className="bg-transparent"
-        />
+        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-red-50">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I shape narrative through the art of cinematic imagery.</h2>
+          </div>
+        </section>
 
-        <ParallaxSection
-          title="I'm passionate about bringing real value—whether to people, companies, or causes."
-          description=""
-          modelPath="torus"
-          className="bg-transparent"
-        />
+        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I'm passionate about bringing real value—whether to people, companies, or causes.</h2>
+          </div>
+        </section>
 
         {/* Projects Section */}
         <ProjectsSection />
 
         {/* Video Projects Section */}
-        <VideoProjectsSection />
+        {/* Temporarily disabled for performance testing */}
+        {/* <VideoProjectsSection /> */}
         
         {/* Travel Photography and Stills Section */}
         <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* World Map Background */}
           <div className="absolute inset-0 opacity-10">
             <img 
-              src="/portfolio/images/earth-map.jpg" 
+              src="/portfolio/images/textures/earth-map.webp" 
               alt="World Map Background"
               className="w-full h-full object-cover"
             />
@@ -346,25 +343,7 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* Temporarily disabled to isolate errors */}
-        {/* <Suspense fallback={
-          <div className="py-24 bg-gray-50">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-              <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading photography...</p>
-            </div>
-          </div>
-        }>
-          <PhotographyGridSection />
-        </Suspense> */}
-        
-        {/* Simple placeholder */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Photography</h2>
-            <p className="text-gray-600">Photo gallery coming soon</p>
-          </div>
-        </section>
+
 
         {/* Cursor AI Tag */}
         <div className="fixed bottom-4 right-4 z-50">
