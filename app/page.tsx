@@ -254,6 +254,7 @@ export default function HomePage() {
             </div>
             
             {/* Modern Coming Soon Card */}
+<<<<<<< Updated upstream
 <div className="relative">
   <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
     
@@ -278,6 +279,67 @@ export default function HomePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
+=======
+            <div className="relative">
+              <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
+                  style={{
+                    backgroundImage: 'url(/images/Morocco_girlsBike_Natgeo.jpg)'
+                  }}
+                ></div>
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    {/* Left Content */}
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white">
+                             Travel Photo Journal
+                           </h3>
+                          <p className="text-gray-200 font-semibold">Interactive Travel Stories</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 mb-6">
+                        <p className="text-gray-200 text-lg leading-relaxed">
+                          A curated collection of visual narratives from 41 countries, blending photography, storytelling, and interactive experiences.
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Photography</span>
+                          <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Travel Stories</span>
+                          <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Interactive</span>
+                        </div>
+                      </div>
+                      
+
+                    </div>
+                    
+                    {/* Right Content */}
+                    <div className="flex-shrink-0">
+                      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-center text-white shadow-xl">
+                        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                          <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+>>>>>>> Stashed changes
             </div>
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
