@@ -10,17 +10,16 @@ import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-const AITravelScene = dynamic(() => import('@/components/AITravelScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-gray-600 text-sm">Loading 3D scene...</p>
-      </div>
+// Temporarily disable AITravelScene to fix error
+const AITravelScene = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="text-center">
+      <div className="text-6xl mb-4">🌍</div>
+      <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
+      <p className="text-gray-600">3D visualization coming soon</p>
     </div>
-  ),
-});
+  </div>
+);
 
 export default function HomePage() {
   const videoRef = useRef<HTMLIFrameElement>(null);
