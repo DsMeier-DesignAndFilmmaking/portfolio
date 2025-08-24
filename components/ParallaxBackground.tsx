@@ -36,20 +36,20 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     camera.position.z = 5;
     cameraRef.current = camera;
 
-    // Renderer setup
+    // Renderer setup (optimized for performance)
     const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+      antialias: false, // Disabled for better performance
       alpha: true 
     });
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Reduced for better performance
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Create particles
+    // Create particles (optimized for performance)
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 3000;
+    const particlesCount = 800; // Reduced from 3000 for better performance
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {
@@ -62,10 +62,10 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     );
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.03,
+      size: 0.02, // Slightly smaller for better performance
       color: 0xffffff,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.5, // Slightly reduced opacity
     });
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -91,7 +91,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       );
     } else {
       // Create default torus knot if no model provided or if modelPath is 'torus'
-      const torusGeometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 32);
+      const torusGeometry = new THREE.TorusKnotGeometry(1, 0.3, 64, 16); // Reduced complexity for better performance
       const torusMaterial = new THREE.MeshPhongMaterial({
         color: 0x4a90e2,
         wireframe: true,
@@ -111,18 +111,19 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
-    // Animation
+    // Animation (optimized for performance)
+    let animationId: number;
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
 
       if (particlesRef.current) {
-        particlesRef.current.rotation.y += 0.0003;
-        particlesRef.current.rotation.x += 0.0001;
+        particlesRef.current.rotation.y += 0.0002; // Slightly slower for better performance
+        particlesRef.current.rotation.x += 0.00005;
       }
 
       if (modelRef.current) {
-        modelRef.current.rotation.y += 0.003;
-        modelRef.current.rotation.x += 0.002;
+        modelRef.current.rotation.y += 0.002; // Slightly slower for better performance
+        modelRef.current.rotation.x += 0.001;
       }
 
       renderer.render(scene, camera);
@@ -154,6 +155,9 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }

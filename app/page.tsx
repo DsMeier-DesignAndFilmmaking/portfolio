@@ -10,29 +10,17 @@ import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-// Temporarily disabled to isolate errors
-// const AITravelScene = dynamic(() => import('@/components/AITravelScene'), {
-//   ssr: false,
-//   loading: () => (
-//     <div className="w-full h-full flex items-center justify-center">
-//       <div className="text-center">
-//         <div className="text-4xl mb-4">🌍</div>
-//         <p className="text-gray-600">Loading 3D scene...</p>
-//       </div>
-//     </div>
-//   ),
-// });
-
-// Simple placeholder component
-const AITravelScene = () => (
-  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-    <div className="text-center">
-      <div className="text-6xl mb-4">🌍</div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
-      <p className="text-gray-600">3D visualization coming soon</p>
+const AITravelScene = dynamic(() => import('@/components/AITravelScene'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600 text-sm">Loading 3D scene...</p>
+      </div>
     </div>
-  </div>
-);
+  ),
+});
 
 export default function HomePage() {
   const videoRef = useRef<HTMLIFrameElement>(null);
@@ -204,30 +192,34 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Simplified Parallax Sections for Performance */}
-        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Always Curious.</h2>
-          </div>
-        </section>
+        {/* Optimized Parallax Sections */}
+        <ParallaxSection
+          title="Always Curious."
+          description=""
+          modelPath="ai-travel"
+          className="bg-transparent"
+        />
 
-        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I tinker & build things.</h2>
-          </div>
-        </section>
+        <ParallaxSection
+          title="I tinker & build things."
+          description=""
+          modelPath="design-build"
+          className="bg-transparent"
+        />
 
-        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-red-50">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I shape narrative through the art of cinematic imagery.</h2>
-          </div>
-        </section>
+        <ParallaxSection
+          title="I shape narrative through the art of cinematic imagery."
+          description=""
+          modelPath="cinematography"
+          className="bg-transparent"
+        />
 
-        <section className="h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">I'm passionate about bringing real value—whether to people, companies, or causes.</h2>
-          </div>
-        </section>
+        <ParallaxSection
+          title="I'm passionate about bringing real value—whether to people, companies, or causes."
+          description=""
+          modelPath="torus"
+          className="bg-transparent"
+        />
 
         {/* Projects Section */}
         <ProjectsSection />
