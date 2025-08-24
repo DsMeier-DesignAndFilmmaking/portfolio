@@ -6,7 +6,7 @@ import ParallaxBackground from './ParallaxBackground';
 import DesignBuildScene from './DesignBuildScene';
 import CinematographyScene from './CinematographyScene';
 import SpecklesScene from './SpecklesScene';
-import AITravelScene from './AITravelScene';
+// import AITravelScene from './AITravelScene';
 
 interface ParallaxSectionProps {
   title: string;
@@ -45,7 +45,12 @@ export default function ParallaxSection({
         ) : modelPath === 'speckles' ? (
           <SpecklesScene />
         ) : modelPath === 'ai-travel' ? (
-          <AITravelScene />
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🌍</div>
+              <h3 className="text-xl font-bold text-gray-800">AI Travel Scene</h3>
+            </div>
+          </div>
         ) : (
           <ParallaxBackground modelPath={modelPath} />
         )}
