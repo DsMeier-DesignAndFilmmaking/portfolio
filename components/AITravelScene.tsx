@@ -27,7 +27,16 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  const texture = useTexture('./images/textures/earth-map.jpg', (texture) => {
+  useEffect(() => {
+    // Timeout to prevent infinite loading
+    const timeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 5000);
+    
+    return () => clearTimeout(timeout);
+  }, []);
+  
+  const texture = useTexture('/portfolio/images/textures/earth-map.webp', (texture) => {
     texture.minFilter = THREE.LinearFilter;
     texture.magFilter = THREE.LinearFilter;
     texture.generateMipmaps = false;
@@ -257,7 +266,14 @@ function OrbitalAI() {
 }
 
 function LoadingFallback() {
-  return null;
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600 text-sm">Loading 3D scene...</p>
+      </div>
+    </div>
+  );
 }
 
 function Scene() {
@@ -295,7 +311,7 @@ export default function AITravelScene() {
     >
       <Canvas 
         camera={{ position: [0, 0, 3], fov: 45 }}
-        dpr={[1, 1.2]}
+        dpr={[1, 1]}
         performance={{ min: 0.5 }}
         gl={{ 
           antialias: false,
@@ -307,6 +323,9 @@ export default function AITravelScene() {
         }}
         style={{ background: 'transparent' }}
         frameloop="demand"
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0);
+        }}
       >
         <Scene />
       </Canvas>

@@ -50,7 +50,7 @@ const useMobileVideoAutoplay = () => {
 
 const videoProjects = [
   {
-    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=1&autopause=0&loop=1&quality=1080p&autoplay=1&muted=1&playsinline=1"
+    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=1&autopause=0&loop=1&quality=720p&muted=1&playsinline=1"
   }
 ];
 
@@ -64,6 +64,12 @@ export default function VideoProjectsSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
             entry.target.style.opacity = '1';
+            
+            // Add autoplay parameter when video comes into view
+            const currentSrc = entry.target.src;
+            if (!currentSrc.includes('autoplay=1')) {
+              entry.target.src = currentSrc + '&autoplay=1';
+            }
             
             // Trigger mobile autoplay if conditions are met
             if (entry.target instanceof HTMLIFrameElement) {

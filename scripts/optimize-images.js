@@ -44,6 +44,13 @@ async function main() {
     path.join(imagesDir, 'me_heroImage-1_1.1.1-mobile.webp'),
     { width: 768, quality: 80 }
   );
+  
+  // Optimize earth-map texture (critical for 3D globe)
+  await optimizeImage(
+    path.join(imagesDir, 'textures/earth-map.jpg'),
+    path.join(imagesDir, 'textures/earth-map.webp'),
+    { width: 2048, quality: 85 }
+  );
 }
 
 main().catch(console.error);
