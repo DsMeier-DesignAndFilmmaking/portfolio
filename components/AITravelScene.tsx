@@ -67,42 +67,7 @@ function Globe() {
   );
 }
 
-// Fallback globe component for when texture loading fails
-function FallbackGlobe() {
-  const globeRef = useRef<THREE.Mesh>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoaded(true);
-    }, 500);
-    
-    return () => clearTimeout(timeout);
-  }, []);
 
-  useFrame((state) => {
-    if (globeRef.current && isLoaded) {
-      globeRef.current.rotation.y += 0.001;
-    }
-  });
-
-  if (!isLoaded) {
-    return null;
-  }
-
-  return (
-    <mesh ref={globeRef}>
-      <sphereGeometry args={[0.405, 64, 64]} />
-      <meshStandardMaterial
-        color="#4a9eff"
-        metalness={0.8}
-        roughness={0.2}
-        emissive="#4a9eff"
-        emissiveIntensity={0.2}
-      />
-    </mesh>
-  );
-}
 
 function AIParticles() {
   const pointsRef = useRef<THREE.Points>(null);
@@ -319,9 +284,7 @@ function Scene() {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-        <ErrorBoundary fallback={<FallbackGlobe />}>
-          <Globe />
-        </ErrorBoundary>
+        <Globe />
       </Float>
       <AIParticles />
       <OrbitalAI />
