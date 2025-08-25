@@ -30,14 +30,19 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
+  // Load the optimized Earth texture with error handling
+  const earthTexture = useTexture('/images/textures/earth-map.webp');
+  
   useEffect(() => {
-    // Simple timeout to show the globe
-    const timeout = setTimeout(() => {
-      setIsLoaded(true);
-    }, 1000);
-    
-    return () => clearTimeout(timeout);
-  }, []);
+    // Wait for texture to load
+    if (earthTexture) {
+      const timeout = setTimeout(() => {
+        setIsLoaded(true);
+      }, 500);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [earthTexture]);
 
   useFrame((state) => {
     if (globeRef.current && isLoaded) {
@@ -45,19 +50,19 @@ function Globe() {
     }
   });
 
-  if (!isLoaded) {
+  if (!isLoaded || !earthTexture) {
     return null;
   }
 
   return (
     <mesh ref={globeRef}>
-      <sphereGeometry args={[0.405, 24, 24]} />
+      <sphereGeometry args={[0.405, 64, 64]} />
       <meshStandardMaterial
-        color="#4a9eff"
-        metalness={0.8}
-        roughness={0.2}
-        emissive="#4a9eff"
-        emissiveIntensity={0.2}
+        map={earthTexture}
+        metalness={0.1}
+        roughness={0.8}
+        emissive="#1a3a5f"
+        emissiveIntensity={0.1}
       />
     </mesh>
   );
