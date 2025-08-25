@@ -158,17 +158,21 @@ export default function VideoProjectsSection() {
                   }
                 }}
               >
-                <iframe
-                  ref={(el) => {
-                    videoRefs.current[index] = el;
-                  }}
-                  title={`vimeo-player-${index}`}
-                  src={isVisible ? project.videoUrl : ''}
-                  frameBorder="0"
-                  allowFullScreen
-                  loading="lazy"
-                  className="absolute top-0 left-0 w-full h-full rounded-lg"
-                />
+               <iframe
+  ref={(el) => {
+    videoRefs.current[index] = el;
+  }}
+  title={`vimeo-player-${index}`}
+  src={isVisible ? project.videoUrl : ''}
+  frameBorder="0"
+  allowFullScreen
+  loading="lazy"
+  className="absolute top-0 left-0 w-full h-full rounded-lg opacity-0 transition-opacity duration-700 ease-in-out"
+  onLoad={(e) => {
+    (e.currentTarget as HTMLIFrameElement).style.opacity = '1';
+  }}
+/>
+
               </div>
             </div>
           ))}
