@@ -14,10 +14,12 @@ declare global {
       mesh: any;
       group: any;
       points: any;
+      line: any;
       sphereGeometry: any;
       bufferGeometry: any;
       meshStandardMaterial: any;
       meshBasicMaterial: any;
+      lineBasicMaterial: any;
       pointsMaterial: any;
       bufferAttribute: any;
     }
@@ -261,12 +263,10 @@ function OrbitalAI() {
 
 function LoadingFallback() {
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-gray-600 text-sm">Loading 3D scene...</p>
-      </div>
-    </div>
+    <mesh>
+      <sphereGeometry args={[0.1, 16, 16]} />
+      <meshBasicMaterial color="#4a9eff" transparent opacity={0.6} />
+    </mesh>
   );
 }
 
