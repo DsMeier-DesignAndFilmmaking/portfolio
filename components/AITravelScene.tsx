@@ -30,19 +30,24 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Load the optimized Earth texture with error handling
-  const earthTexture = useTexture('/images/textures/earth-map.webp');
+  // Try to load the Earth texture, but don't fail if it doesn't load
+  let earthTexture;
+  try {
+    // Use JPG for better compatibility
+    earthTexture = useTexture('/images/textures/earth-map.jpg');
+  } catch (error) {
+    console.warn('Failed to load Earth texture, using fallback:', error);
+    earthTexture = null;
+  }
   
   useEffect(() => {
-    // Wait for texture to load
-    if (earthTexture) {
-      const timeout = setTimeout(() => {
-        setIsLoaded(true);
-      }, 500);
-      
-      return () => clearTimeout(timeout);
-    }
-  }, [earthTexture]);
+    // Wait for component to mount
+    const timeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+    
+    return () => clearTimeout(timeout);
+  }, []);
 
   useFrame((state) => {
     if (globeRef.current && isLoaded) {
@@ -50,7 +55,7 @@ function Globe() {
     }
   });
 
-  if (!isLoaded || !earthTexture) {
+  if (!isLoaded) {
     return null;
   }
 
@@ -59,10 +64,11 @@ function Globe() {
       <sphereGeometry args={[0.405, 64, 64]} />
       <meshStandardMaterial
         map={earthTexture}
-        metalness={0.1}
-        roughness={0.8}
-        emissive="#1a3a5f"
-        emissiveIntensity={0.1}
+        color={earthTexture ? "#ffffff" : "#4a9eff"}
+        metalness={earthTexture ? 0.1 : 0.8}
+        roughness={earthTexture ? 0.8 : 0.2}
+        emissive={earthTexture ? "#1a3a5f" : "#4a9eff"}
+        emissiveIntensity={earthTexture ? 0.1 : 0.2}
       />
     </mesh>
   );
