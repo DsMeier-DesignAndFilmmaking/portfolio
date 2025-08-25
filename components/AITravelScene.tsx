@@ -30,15 +30,8 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Try to load the Earth texture, but don't fail if it doesn't load
-  let earthTexture;
-  try {
-    // Use JPG for better compatibility
-    earthTexture = useTexture('/images/textures/earth-map.jpg');
-  } catch (error) {
-    console.warn('Failed to load Earth texture, using fallback:', error);
-    earthTexture = null;
-  }
+  // Use the smaller WebP version for better performance
+  const earthTexture = useTexture('/images/textures/earth-map.webp');
   
   useEffect(() => {
     // Wait for component to mount
@@ -64,11 +57,48 @@ function Globe() {
       <sphereGeometry args={[0.405, 64, 64]} />
       <meshStandardMaterial
         map={earthTexture}
-        color={earthTexture ? "#ffffff" : "#4a9eff"}
-        metalness={earthTexture ? 0.1 : 0.8}
-        roughness={earthTexture ? 0.8 : 0.2}
-        emissive={earthTexture ? "#1a3a5f" : "#4a9eff"}
-        emissiveIntensity={earthTexture ? 0.1 : 0.2}
+        color="#ffffff"
+        metalness={0.1}
+        roughness={0.8}
+        emissive="#1a3a5f"
+        emissiveIntensity={0.1}
+      />
+    </mesh>
+  );
+}
+
+// Fallback globe component for when texture loading fails
+function FallbackGlobe() {
+  const globeRef = useRef<THREE.Mesh>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+    
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useFrame((state) => {
+    if (globeRef.current && isLoaded) {
+      globeRef.current.rotation.y += 0.001;
+    }
+  });
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  return (
+    <mesh ref={globeRef}>
+      <sphereGeometry args={[0.405, 64, 64]} />
+      <meshStandardMaterial
+        color="#4a9eff"
+        metalness={0.8}
+        roughness={0.2}
+        emissive="#4a9eff"
+        emissiveIntensity={0.2}
       />
     </mesh>
   );
@@ -289,7 +319,9 @@ function Scene() {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-        <Globe />
+        <ErrorBoundary fallback={<FallbackGlobe />}>
+          <Globe />
+        </ErrorBoundary>
       </Float>
       <AIParticles />
       <OrbitalAI />
