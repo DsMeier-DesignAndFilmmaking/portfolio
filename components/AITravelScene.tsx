@@ -29,15 +29,36 @@ declare global {
 function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [textureLoaded, setTextureLoaded] = useState(false);
+  
+  // Try to load the optimized WebP texture with proper path
+  const earthTexture = useTexture('/portfolio/images/textures/earth-map.webp');
   
   useEffect(() => {
+    // Check if texture loaded successfully
+    if (earthTexture) {
+      // Add event listener for texture load
+      const handleTextureLoad = () => {
+        setTextureLoaded(true);
+      };
+      
+      // If texture is already loaded
+      if (earthTexture.image && earthTexture.image.complete) {
+        setTextureLoaded(true);
+      } else {
+        // Listen for load event
+        earthTexture.addEventListener('load', handleTextureLoad);
+        return () => earthTexture.removeEventListener('load', handleTextureLoad);
+      }
+    }
+    
     // Wait for component to mount
     const timeout = setTimeout(() => {
       setIsLoaded(true);
     }, 500);
     
     return () => clearTimeout(timeout);
-  }, []);
+  }, [earthTexture]);
 
   useFrame((state) => {
     if (globeRef.current && isLoaded) {
@@ -53,11 +74,12 @@ function Globe() {
     <mesh ref={globeRef}>
       <sphereGeometry args={[0.405, 64, 64]} />
       <meshStandardMaterial
-        color="#4a9eff"
-        metalness={0.8}
-        roughness={0.2}
-        emissive="#4a9eff"
-        emissiveIntensity={0.2}
+        map={textureLoaded ? earthTexture : null}
+        color={textureLoaded ? "#ffffff" : "#4a9eff"}
+        metalness={textureLoaded ? 0.1 : 0.8}
+        roughness={textureLoaded ? 0.8 : 0.2}
+        emissive={textureLoaded ? "#1a3a5f" : "#4a9eff"}
+        emissiveIntensity={textureLoaded ? 0.1 : 0.2}
       />
     </mesh>
   );
