@@ -224,8 +224,7 @@ export default function HomePage() {
         <ProjectsSection />
 
         {/* Video Projects Section */}
-        {/* Temporarily disabled for performance testing */}
-        {/* <VideoProjectsSection /> */}
+        <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
         <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>

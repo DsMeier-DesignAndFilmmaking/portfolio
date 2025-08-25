@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 // Custom hook for mobile video autoplay handling
 const useMobileVideoAutoplay = () => {
@@ -57,9 +58,24 @@ const videoProjects = [
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
   const { isMobile, hasUserInteracted, triggerVideoAutoplay } = useMobileVideoAutoplay();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Intersection observer for the entire section
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Intersection observer for individual videos
+    const videoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
@@ -83,25 +99,40 @@ export default function VideoProjectsSection() {
       { threshold: 0.5 }
     );
 
+    // Observe the section container
+    const sectionElement = document.getElementById('video-projects');
+    if (sectionElement) {
+      sectionObserver.observe(sectionElement);
+    }
+
     videoRefs.current.forEach((ref) => {
       if (ref) {
         ref.style.opacity = '0';
         ref.style.transition = 'opacity 0.3s ease-in-out';
-        observer.observe(ref);
+        videoObserver.observe(ref);
       }
     });
 
     return () => {
+      if (sectionElement) {
+        sectionObserver.unobserve(sectionElement);
+      }
       videoRefs.current.forEach((ref) => {
         if (ref) {
-          observer.unobserve(ref);
+          videoObserver.unobserve(ref);
         }
       });
     };
   }, [triggerVideoAutoplay]);
 
   return (
-    <section id="video-projects" className="py-24 bg-black">
+    <motion.section 
+      id="video-projects" 
+      className="py-24 bg-black"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="pt-20">
           <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
@@ -132,9 +163,10 @@ export default function VideoProjectsSection() {
                     videoRefs.current[index] = el;
                   }}
                   title={`vimeo-player-${index}`}
-                  src={project.videoUrl}
+                  src={isVisible ? project.videoUrl : ''}
                   frameBorder="0"
                   allowFullScreen
+                  loading="lazy"
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
                 />
               </div>
@@ -155,6 +187,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -165,6 +199,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -175,6 +211,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -185,6 +223,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -195,6 +235,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -205,6 +247,8 @@ export default function VideoProjectsSection() {
                       width={0}
                       height={0}
                       sizes="100vw"
+                      priority={index <= 2}
+                      loading={index <= 2 ? "eager" : "lazy"}
                       style={{ width: '100%', height: 'auto' }}
                       className="rounded-lg shadow-lg"
                     />
@@ -225,23 +269,25 @@ export default function VideoProjectsSection() {
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/2OGGUn3Fimo?si=-eOy1xz3u-jDkx5-"
+              src={isVisible ? "https://www.youtube.com/embed/2OGGUn3Fimo?si=-eOy1xz3u-jDkx5-" : ""}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
+              loading="lazy"
               className="absolute inset-0 w-full h-full rounded-lg"
             />
           </div>
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src="https://player.vimeo.com/video/903464774?h=0c041a1340&controls=1"
+              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=1" : ""}
               width="640"
               height="360"
               frameBorder="0"
               allowFullScreen
+              loading="lazy"
               className="absolute inset-0 w-full h-full rounded-lg"
             />
           </div>
@@ -249,23 +295,25 @@ export default function VideoProjectsSection() {
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/YUuAKf3wMow?si=bg3Imnwd_IGo1gn6"
+              src={isVisible ? "https://www.youtube.com/embed/YUuAKf3wMow?si=bg3Imnwd_IGo1gn6" : ""}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
+              loading="lazy"
               className="absolute inset-0 w-full h-full rounded-lg"
             />
           </div>
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src="https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=1"
+              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=1" : ""}
               width="640"
               height="360"
               frameBorder="0"
               allowFullScreen
+              loading="lazy"
               className="absolute inset-0 w-full h-full rounded-lg"
             />
           </div>
@@ -297,6 +345,6 @@ export default function VideoProjectsSection() {
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 } 
