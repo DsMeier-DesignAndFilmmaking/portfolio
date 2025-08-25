@@ -30,9 +30,6 @@ function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Use the smaller WebP version for better performance
-  const earthTexture = useTexture('/images/textures/earth-map.webp');
-  
   useEffect(() => {
     // Wait for component to mount
     const timeout = setTimeout(() => {
@@ -56,12 +53,11 @@ function Globe() {
     <mesh ref={globeRef}>
       <sphereGeometry args={[0.405, 64, 64]} />
       <meshStandardMaterial
-        map={earthTexture}
-        color="#ffffff"
-        metalness={0.1}
-        roughness={0.8}
-        emissive="#1a3a5f"
-        emissiveIntensity={0.1}
+        color="#4a9eff"
+        metalness={0.8}
+        roughness={0.2}
+        emissive="#4a9eff"
+        emissiveIntensity={0.2}
       />
     </mesh>
   );
