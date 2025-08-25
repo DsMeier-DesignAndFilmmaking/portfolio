@@ -71,7 +71,8 @@ function Globe() {
 function AIParticles() {
   const pointsRef = useRef<THREE.Points>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const count = 500;
+  // Reduced particle count for better performance
+  const count = 200;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
 
@@ -85,17 +86,18 @@ function AIParticles() {
       positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i * 3 + 2] = radius * Math.cos(phi);
 
-      colors[i * 3] = Math.random() * 0.3 + 0.5;
-      colors[i * 3 + 1] = Math.random() * 0.3 + 0.6;
-      colors[i * 3 + 2] = Math.random() * 0.3 + 0.7;
+      // Optimized color generation for better visual appeal
+      colors[i * 3] = Math.random() * 0.4 + 0.4;     // R: 0.4-0.8
+      colors[i * 3 + 1] = Math.random() * 0.4 + 0.5; // G: 0.5-0.9
+      colors[i * 3 + 2] = Math.random() * 0.4 + 0.6; // B: 0.6-1.0
     }
     setIsLoaded(true);
   }, []);
 
   useFrame((state) => {
     if (pointsRef.current && isLoaded) {
-      pointsRef.current.rotation.y += 0.0003;
-      pointsRef.current.rotation.x += 0.0001;
+      pointsRef.current.rotation.y += 0.0002; // Slightly slower rotation
+      pointsRef.current.rotation.x += 0.00005; // Slightly slower rotation
     }
   });
 
@@ -120,10 +122,10 @@ function AIParticles() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
+        size={0.025}
         vertexColors
         transparent
-        opacity={0.6}
+        opacity={0.7}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
       />
@@ -283,6 +285,7 @@ function Scene() {
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
         <Globe />
       </Float>
+      <AIParticles />
       <OrbitalAI />
       <OrbitControls
         enableZoom={false}
@@ -311,14 +314,15 @@ export default function AITravelScene() {
       <Canvas 
         camera={{ position: [0, 0, 3], fov: 45 }}
         dpr={[1, 1]}
-        performance={{ min: 0.5 }}
+        performance={{ min: 0.3, max: 0.8 }}
         gl={{ 
           antialias: false,
           powerPreference: 'high-performance',
           alpha: true,
           clearColor: [0.898, 0.827, 0.702, 0],
           stencil: false,
-          depth: true
+          depth: true,
+          logarithmicDepthBuffer: false
         }}
         style={{ background: 'transparent' }}
         frameloop="demand"
