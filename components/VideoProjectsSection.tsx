@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const videoProjects = [
   {
-    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=1&background=0&autopause=0&loop=1&quality=720p&muted=0&playsinline=1",
+    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=0&playsinline=1",
     title: "Featured Video Project"
   }
 ];
@@ -13,6 +13,7 @@ const videoProjects = [
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [playingVideos, setPlayingVideos] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     // Simple intersection observer for the section
@@ -40,6 +41,18 @@ export default function VideoProjectsSection() {
       }
     };
   }, []);
+
+  const handlePlayVideo = (index: number) => {
+    const iframe = videoRefs.current[index];
+    if (iframe) {
+      // Add autoplay parameter to start the video
+      const currentSrc = iframe.src;
+      if (!currentSrc.includes('autoplay=1')) {
+        iframe.src = currentSrc + '&autoplay=1';
+      }
+      setPlayingVideos(prev => new Set(prev).add(index));
+    }
+  };
 
   return (
     <section 
@@ -77,6 +90,24 @@ export default function VideoProjectsSection() {
                   loading="lazy"
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
                 />
+                
+                {/* Custom Play Button Overlay */}
+                {!playingVideos.has(index) && (
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg cursor-pointer hover:bg-black/30 transition-colors duration-300"
+                    onClick={() => handlePlayVideo(index)}
+                  >
+                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300">
+                      <svg 
+                        className="w-8 h-8 text-black ml-1" 
+                        fill="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -190,7 +221,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=1" : ""}
+              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=0" : ""}
               width="640"
               height="360"
               frameBorder="0"
@@ -216,7 +247,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=1" : ""}
+              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=0" : ""}
               width="640"
               height="360"
               frameBorder="0"
