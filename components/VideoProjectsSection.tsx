@@ -194,7 +194,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=0" : "about:blank"}
+              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=1" : "about:blank"}
               width="640"
               height="360"
               frameBorder="0"
@@ -220,7 +220,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=0" : "about:blank"}
+              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=1" : "about:blank"}
               width="640"
               height="360"
               frameBorder="0"
