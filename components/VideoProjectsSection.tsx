@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const videoProjects = [
   {
-    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=0&playsinline=1",
+    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1",
     title: "Featured Video Project"
   }
 ];
@@ -13,10 +13,10 @@ const videoProjects = [
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [playingVideos, setPlayingVideos] = useState<Set<number>>(new Set());
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    // Simple intersection observer for the section
+    // Intersection observer for the section with higher threshold for better performance
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,7 +26,27 @@ export default function VideoProjectsSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.3, // Higher threshold for better performance
+        rootMargin: '50px' // Start loading slightly before the section comes into view
+      }
+    );
+
+    // Intersection observer for individual video optimization
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
+            // Mark video as loaded when it comes into view
+            setVideoLoaded(true);
+            videoObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { 
+        threshold: 0.5,
+        rootMargin: '100px' // Start loading video before it's fully visible
+      }
     );
 
     // Observe the section container
@@ -35,24 +55,24 @@ export default function VideoProjectsSection() {
       sectionObserver.observe(sectionElement);
     }
 
+    // Observe individual videos for optimization
+    videoRefs.current.forEach((ref) => {
+      if (ref) {
+        videoObserver.observe(ref);
+      }
+    });
+
     return () => {
       if (sectionElement) {
         sectionObserver.unobserve(sectionElement);
       }
+      videoRefs.current.forEach((ref) => {
+        if (ref) {
+          videoObserver.unobserve(ref);
+        }
+      });
     };
   }, []);
-
-  const handlePlayVideo = (index: number) => {
-    const iframe = videoRefs.current[index];
-    if (iframe) {
-      // Add autoplay parameter to start the video
-      const currentSrc = iframe.src;
-      if (!currentSrc.includes('autoplay=1')) {
-        iframe.src = currentSrc + '&autoplay=1';
-      }
-      setPlayingVideos(prev => new Set(prev).add(index));
-    }
-  };
 
   return (
     <section 
@@ -84,30 +104,13 @@ export default function VideoProjectsSection() {
                     videoRefs.current[index] = el;
                   }}
                   title={`vimeo-player-${index}`}
-                  src={project.videoUrl}
+                  src={isVisible ? project.videoUrl : ''}
                   frameBorder="0"
                   allowFullScreen
                   loading="lazy"
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  allow="autoplay; fullscreen; picture-in-picture"
                 />
-                
-                {/* Custom Play Button Overlay */}
-                {!playingVideos.has(index) && (
-                  <div 
-                    className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg cursor-pointer hover:bg-black/30 transition-colors duration-300"
-                    onClick={() => handlePlayVideo(index)}
-                  >
-                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300">
-                      <svg 
-                        className="w-8 h-8 text-black ml-1" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           ))}
