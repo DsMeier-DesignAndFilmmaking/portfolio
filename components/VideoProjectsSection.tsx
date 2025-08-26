@@ -13,10 +13,9 @@ const videoProjects = [
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    // Intersection observer for the section with higher threshold for better performance
+    // Intersection observer for the section
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,25 +26,8 @@ export default function VideoProjectsSection() {
         });
       },
       { 
-        threshold: 0.3, // Higher threshold for better performance
+        threshold: 0.1, // Lower threshold to trigger earlier
         rootMargin: '50px' // Start loading slightly before the section comes into view
-      }
-    );
-
-    // Intersection observer for individual video optimization
-    const videoObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
-            // Mark video as loaded when it comes into view
-            setVideoLoaded(true);
-            videoObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { 
-        threshold: 0.5,
-        rootMargin: '100px' // Start loading video before it's fully visible
       }
     );
 
@@ -55,22 +37,10 @@ export default function VideoProjectsSection() {
       sectionObserver.observe(sectionElement);
     }
 
-    // Observe individual videos for optimization
-    videoRefs.current.forEach((ref) => {
-      if (ref) {
-        videoObserver.observe(ref);
-      }
-    });
-
     return () => {
       if (sectionElement) {
         sectionObserver.unobserve(sectionElement);
       }
-      videoRefs.current.forEach((ref) => {
-        if (ref) {
-          videoObserver.unobserve(ref);
-        }
-      });
     };
   }, []);
 
@@ -104,7 +74,7 @@ export default function VideoProjectsSection() {
                     videoRefs.current[index] = el;
                   }}
                   title={`vimeo-player-${index}`}
-                  src={isVisible ? project.videoUrl : ''}
+                  src={isVisible ? project.videoUrl : "about:blank"}
                   frameBorder="0"
                   allowFullScreen
                   loading="lazy"
@@ -211,7 +181,7 @@ export default function VideoProjectsSection() {
             <iframe
               width="560"
               height="315"
-              src={isVisible ? "https://www.youtube.com/embed/2OGGUn3Fimo?si=-eOy1xz3u-jDkx5-" : ""}
+              src={isVisible ? "https://www.youtube.com/embed/2OGGUn3Fimo?si=-eOy1xz3u-jDkx5-" : "about:blank"}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -224,7 +194,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=0" : ""}
+              src={isVisible ? "https://player.vimeo.com/video/903464774?h=0c041a1340&controls=0" : "about:blank"}
               width="640"
               height="360"
               frameBorder="0"
@@ -237,7 +207,7 @@ export default function VideoProjectsSection() {
             <iframe
               width="560"
               height="315"
-              src={isVisible ? "https://www.youtube.com/embed/YUuAKf3wMow?si=bg3Imnwd_IGo1gn6" : ""}
+              src={isVisible ? "https://www.youtube.com/embed/YUuAKf3wMow?si=bg3Imnwd_IGo1gn6" : "about:blank"}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -250,7 +220,7 @@ export default function VideoProjectsSection() {
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               title="vimeo-player"
-              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=0" : ""}
+              src={isVisible ? "https://player.vimeo.com/video/884512779?h=98ee643b4f&controls=0" : "about:blank"}
               width="640"
               height="360"
               frameBorder="0"
