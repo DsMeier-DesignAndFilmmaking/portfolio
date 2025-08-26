@@ -1,67 +1,21 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-
-// Custom hook for mobile video autoplay handling
-const useMobileVideoAutoplay = () => {
-  const [hasUserInteracted, setHasUserInteracted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Detect mobile device
-    const mobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    setIsMobile(mobileCheck);
-    console.log('Mobile device detected:', mobileCheck);
-
-    const handleUserInteraction = () => {
-      console.log('User interaction detected on mobile device');
-      setHasUserInteracted(true);
-      // Remove event listeners after first interaction
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-    };
-
-    if (mobileCheck) {
-      // Add event listeners for mobile interaction
-      document.addEventListener('touchstart', handleUserInteraction);
-      document.addEventListener('click', handleUserInteraction);
-    }
-
-    return () => {
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-    };
-  }, []);
-
-  const triggerVideoAutoplay = useCallback((iframe: HTMLIFrameElement) => {
-    if (isMobile && hasUserInteracted && iframe.src.includes('vimeo.com')) {
-      console.log('Triggering mobile video autoplay for:', iframe.src);
-      const currentSrc = iframe.src;
-      iframe.src = '';
-      setTimeout(() => {
-        iframe.src = currentSrc;
-      }, 100);
-    }
-  }, [isMobile, hasUserInteracted]);
-
-  return { isMobile, hasUserInteracted, triggerVideoAutoplay };
-};
 
 const videoProjects = [
   {
-    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=1&autopause=0&loop=1&quality=720p&muted=1&playsinline=1"
+    videoUrl: "https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=1&background=0&autopause=0&loop=1&quality=720p&muted=0&playsinline=1",
+    title: "Featured Video Project"
   }
 ];
 
 export default function VideoProjectsSection() {
   const videoRefs = useRef<(HTMLIFrameElement | null)[]>([]);
-  const { isMobile, hasUserInteracted, triggerVideoAutoplay } = useMobileVideoAutoplay();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Intersection observer for the entire section
+    // Simple intersection observer for the section
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -74,64 +28,23 @@ export default function VideoProjectsSection() {
       { threshold: 0.1 }
     );
 
-    // Intersection observer for individual videos
-    const videoObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target instanceof HTMLIFrameElement) {
-            entry.target.style.opacity = '1';
-            
-            // Add autoplay parameter when video comes into view
-            const currentSrc = entry.target.src;
-            if (!currentSrc.includes('autoplay=1')) {
-              entry.target.src = currentSrc + '&autoplay=1';
-            }
-            
-            // Trigger mobile autoplay if conditions are met
-            if (entry.target instanceof HTMLIFrameElement) {
-              triggerVideoAutoplay(entry.target);
-            }
-          } else if (entry.target instanceof HTMLIFrameElement) {
-            entry.target.style.opacity = '0';
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
     // Observe the section container
     const sectionElement = document.getElementById('video-projects');
     if (sectionElement) {
       sectionObserver.observe(sectionElement);
     }
 
-    videoRefs.current.forEach((ref) => {
-      if (ref) {
-        ref.style.opacity = '0';
-        ref.style.transition = 'opacity 0.3s ease-in-out';
-        videoObserver.observe(ref);
-      }
-    });
-
     return () => {
       if (sectionElement) {
         sectionObserver.unobserve(sectionElement);
       }
-      videoRefs.current.forEach((ref) => {
-        if (ref) {
-          videoObserver.unobserve(ref);
-        }
-      });
     };
-  }, [triggerVideoAutoplay]);
+  }, []);
 
   return (
-    <motion.section 
+    <section 
       id="video-projects" 
       className="py-24 bg-black"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="pt-20">
@@ -152,18 +65,13 @@ export default function VideoProjectsSection() {
               <div 
                 className="relative w-full" 
                 style={{ paddingBottom: '56.25%' }}
-                onClick={() => {
-                  if (isMobile && videoRefs.current[index]) {
-                    triggerVideoAutoplay(videoRefs.current[index]!);
-                  }
-                }}
               >
                 <iframe
                   ref={(el) => {
                     videoRefs.current[index] = el;
                   }}
                   title={`vimeo-player-${index}`}
-                  src={isVisible ? project.videoUrl : ''}
+                  src={project.videoUrl}
                   frameBorder="0"
                   allowFullScreen
                   loading="lazy"
@@ -345,6 +253,6 @@ export default function VideoProjectsSection() {
           </a>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 } 
