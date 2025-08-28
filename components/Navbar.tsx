@@ -113,7 +113,7 @@ const Navbar = () => {
     if (targetElement) {
       const navElement = document.getElementById('site-navbar') as HTMLElement | null;
       const navRect = navElement ? navElement.getBoundingClientRect() : null;
-      const headerOffset = navRect ? navRect.bottom : 0;
+      const headerOffset = navRect ? (navRect.top + navRect.height) : 0;
       const targetRect = targetElement.getBoundingClientRect();
       const absoluteTargetTop = targetRect.top + window.pageYOffset;
       const targetPosition = Math.max(absoluteTargetTop - headerOffset, 0);
@@ -144,7 +144,7 @@ const Navbar = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
       className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 scroll-optimized ${
-        isScrolling ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+        isScrolling && !isScrollingToAnchor ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-6">
