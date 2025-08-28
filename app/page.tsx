@@ -229,7 +229,7 @@ export default function HomePage() {
         {/* Travel Photography and Stills Section */}
         <section id="world-travel-diaries" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* World Map Background */}
-          <div className="absolute inset-0 opacity-10">
+          <div id="world-travel-diaries-anchor" className="absolute inset-0 opacity-10">
             <img 
               src="/portfolio/images/textures/earth-map.webp" 
               alt="World Map Background"
