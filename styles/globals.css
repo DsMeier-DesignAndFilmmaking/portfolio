@@ -14,9 +14,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling and anchor positioning */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Global anchor offset for fixed navbar */
 }
 
 /* Anchor offset for Travelogue section to account for fixed navbar */
@@ -25,6 +26,8 @@ html {
   /* Ensure stable positioning */
   position: relative;
   min-height: 100vh; /* Ensure minimum height to prevent layout shifts */
+  /* Optimize for immediate scroll positioning */
+  scroll-behavior: smooth;
 }
 
 /* Keep the badge scroll margin for any direct links to it */
