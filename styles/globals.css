@@ -20,9 +20,16 @@ html {
 }
 
 /* Anchor offset for Travelogue section to account for fixed navbar */
-#world-travel-diaries,
+#world-travel-diaries {
+  scroll-margin-top: 120px; /* adjust if navbar height changes */
+  /* Ensure stable positioning */
+  position: relative;
+  min-height: 100vh; /* Ensure minimum height to prevent layout shifts */
+}
+
+/* Keep the badge scroll margin for any direct links to it */
 #world-travel-diaries-badge {
-  scroll-margin-top: 100px; /* adjust if navbar height changes */
+  scroll-margin-top: 100px;
 }
 
 /* Custom scrollbar */

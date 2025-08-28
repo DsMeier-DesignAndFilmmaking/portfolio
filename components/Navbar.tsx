@@ -111,7 +111,10 @@ const Navbar = () => {
     console.log(`Target element found:`, targetElement);
     
     if (targetElement) {
+      // Force a reflow to ensure accurate measurements
+      targetElement.offsetHeight;
       const navElement = document.getElementById('site-navbar') as HTMLElement | null;
+      
       const measureHeaderOffset = () => {
         if (!navElement) return 0;
         const navRect = navElement.getBoundingClientRect();
@@ -127,18 +130,135 @@ const Navbar = () => {
         return Math.max(absoluteTop - offset, 0);
       };
 
-      // Wait one frame to ensure any nav transitions/layout settle, then use scrollIntoView
-      requestAnimationFrame(() => {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Safety correction after a short delay in case of late layout shifts
+      // Wait for any pending layout operations to complete
+      const performScroll = () => {
+        console.log('Performing scroll to target element');
+        const initialScroll = window.pageYOffset;
+        const targetTop = computeTargetTop();
+        console.log(`Initial scroll position: ${initialScroll}, Target position: ${targetTop}`);
+        
+        // Try direct scroll first for more reliable positioning
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+        
+        // Double-check position after scroll animation and correct if needed
         setTimeout(() => {
           const corrected = computeTargetTop();
-          const delta = Math.abs(window.pageYOffset - corrected);
-          if (delta > 2) {
-            window.scrollTo({ top: corrected, behavior: 'auto' });
+          const currentScroll = window.pageYOffset;
+          const delta = Math.abs(currentScroll - corrected);
+          
+          console.log(`After scroll - Current: ${currentScroll}, Target: ${corrected}, Delta: ${delta}`);
+          
+          // If we're more than 5px off, correct the position
+          if (delta > 5) {
+            console.log(`Correcting scroll position: current=${currentScroll}, target=${corrected}, delta=${delta}`);
+            window.scrollTo({ 
+              top: corrected, 
+              behavior: 'auto' 
+            });
+            
+            // Final check after correction
+            setTimeout(() => {
+              const finalScroll = window.pageYOffset;
+              const finalDelta = Math.abs(finalScroll - corrected);
+              console.log(`Final position check: ${finalScroll}, delta: ${finalDelta}`);
+              
+              // If still off, try one more time with a different approach
+              if (finalDelta > 10) {
+                console.log('Using fallback scroll method');
+                const rect = targetElement.getBoundingClientRect();
+                const absoluteTop = rect.top + window.pageYOffset;
+                const navHeight = navElement ? navElement.offsetHeight : 0;
+                window.scrollTo({
+                  top: absoluteTop - navHeight - 20, // Extra 20px buffer
+                  behavior: 'auto'
+                });
+              }
+            }, 50);
           }
-        }, 80);
-      });
+        }, 150); // Increased delay to account for smooth scroll animation
+      };
+
+      // Ensure DOM is ready and images are loaded before scrolling
+      const waitForImages = () => {
+        const images = document.querySelectorAll('img');
+        const promises = Array.from(images).map(img => {
+          if (img.complete) {
+            return Promise.resolve();
+          } else {
+            return new Promise(resolve => {
+              img.onload = resolve;
+              img.onerror = resolve; // Don't wait for failed images
+            });
+          }
+        });
+        
+        return Promise.all(promises);
+      };
+
+      const performScrollWithImageCheck = async () => {
+        try {
+          // Wait for images to load (with a timeout)
+          await Promise.race([
+            waitForImages(),
+            new Promise(resolve => setTimeout(resolve, 1000)) // 1 second timeout
+          ]);
+          
+          // Wait for layout to stabilize using ResizeObserver
+          const waitForLayoutStable = () => {
+            return new Promise<void>((resolve) => {
+              let resizeTimeout: NodeJS.Timeout;
+              let lastHeight = document.body.scrollHeight;
+              let stableCount = 0;
+              
+              const observer = new ResizeObserver(() => {
+                clearTimeout(resizeTimeout);
+                const currentHeight = document.body.scrollHeight;
+                
+                if (Math.abs(currentHeight - lastHeight) < 5) {
+                  stableCount++;
+                  if (stableCount >= 2) {
+                    observer.disconnect();
+                    resolve();
+                    return;
+                  }
+                } else {
+                  stableCount = 0;
+                }
+                
+                lastHeight = currentHeight;
+                resizeTimeout = setTimeout(() => {
+                  observer.disconnect();
+                  resolve();
+                }, 200);
+              });
+              
+              observer.observe(document.body);
+              
+              // Fallback timeout
+              setTimeout(() => {
+                observer.disconnect();
+                resolve();
+              }, 500);
+            });
+          };
+          
+          await waitForLayoutStable();
+          performScroll();
+        } catch (error) {
+          console.warn('Error waiting for images:', error);
+          performScroll();
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        performScrollWithImageCheck();
+      } else {
+        // Wait for page to be fully loaded
+        window.addEventListener('load', performScrollWithImageCheck, { once: true });
+      }
     } else {
       console.warn(`Target element with id '${targetId}' not found`);
     }
@@ -230,8 +350,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#world-travel-diaries-badge" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries-badge')}
+                href="#world-travel-diaries" 
+                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
                 className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
                   textColor === 'white' 
                     ? 'text-white hover:text-blue-400' 
@@ -282,8 +402,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#world-travel-diaries-badge" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries-badge')}
+                href="#world-travel-diaries" 
+                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
                 className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Travelogue
