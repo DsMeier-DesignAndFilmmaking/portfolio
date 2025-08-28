@@ -127,18 +127,14 @@ const Navbar = () => {
         return Math.max(absoluteTop - offset, 0);
       };
 
-      // Wait one frame to ensure any nav transitions/layout settle
+      // Wait one frame to ensure any nav transitions/layout settle, then use scrollIntoView
       requestAnimationFrame(() => {
-        const targetPosition = computeTargetTop();
-        console.log('Initial targetPosition:', targetPosition);
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-
-        // Corrective adjustment after short delay to account for late layout shifts (fonts/images)
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Safety correction after a short delay in case of late layout shifts
         setTimeout(() => {
           const corrected = computeTargetTop();
           const delta = Math.abs(window.pageYOffset - corrected);
           if (delta > 2) {
-            console.log('Applying corrective scroll. delta=', delta, 'corrected=', corrected);
             window.scrollTo({ top: corrected, behavior: 'auto' });
           }
         }, 80);

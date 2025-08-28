@@ -19,6 +19,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor offset for Travelogue section to account for fixed navbar */
+#world-travel-diaries,
+#world-travel-diaries-badge {
+  scroll-margin-top: 100px; /* adjust if navbar height changes */
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
