@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { scrollToElement } from '@/utils/scrollUtils';
+import { scrollToAnchor } from '@/utils/scrollUtils';
 
 const Navbar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -107,21 +107,16 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    const targetElement = document.getElementById(targetId);
     const navElement = document.getElementById('site-navbar') as HTMLElement | null;
     
-    if (targetElement) {
-      // Use the utility function for robust anchor scrolling
-      scrollToElement(targetElement, navElement, {
-        behavior: 'smooth',
-        correctionDelay: 300,
-        correctionThreshold: 5
-      }).catch((error) => {
-        console.warn('Error during anchor scroll:', error);
-      });
-    } else {
-      console.warn(`Target element with id '${targetId}' not found`);
-    }
+    // Use the enhanced anchor scroll function
+    scrollToAnchor(targetId, navElement, {
+      behavior: 'smooth',
+      waitForLazyContent: true,
+      maxWaitTime: 3000
+    }).catch((error) => {
+      console.warn('Error during anchor scroll:', error);
+    });
     
     // Reset the scrolling state after animation completes
     setTimeout(() => {
