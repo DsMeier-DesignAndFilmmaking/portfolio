@@ -112,16 +112,36 @@ const Navbar = () => {
     
     if (targetElement) {
       const navElement = document.getElementById('site-navbar') as HTMLElement | null;
-      const navRect = navElement ? navElement.getBoundingClientRect() : null;
-      const headerOffset = navRect ? navRect.height : 0;
-      const targetRect = targetElement.getBoundingClientRect();
-      const absoluteTargetTop = targetRect.top + window.pageYOffset;
-      const targetPosition = Math.max(absoluteTargetTop - headerOffset, 0);
-      console.log(`Navbar bottom offset: ${headerOffset}, absoluteTop: ${absoluteTargetTop}, scrolling to: ${targetPosition}`);
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
+      const measureHeaderOffset = () => {
+        if (!navElement) return 0;
+        const navRect = navElement.getBoundingClientRect();
+        const computed = window.getComputedStyle(navElement);
+        const marginTop = parseFloat(computed.marginTop || '0');
+        return navRect.height + marginTop;
+      };
+
+      const computeTargetTop = () => {
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = rect.top + window.pageYOffset;
+        const offset = measureHeaderOffset();
+        return Math.max(absoluteTop - offset, 0);
+      };
+
+      // Wait one frame to ensure any nav transitions/layout settle
+      requestAnimationFrame(() => {
+        const targetPosition = computeTargetTop();
+        console.log('Initial targetPosition:', targetPosition);
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+        // Corrective adjustment after short delay to account for late layout shifts (fonts/images)
+        setTimeout(() => {
+          const corrected = computeTargetTop();
+          const delta = Math.abs(window.pageYOffset - corrected);
+          if (delta > 2) {
+            console.log('Applying corrective scroll. delta=', delta, 'corrected=', corrected);
+            window.scrollTo({ top: corrected, behavior: 'auto' });
+          }
+        }, 80);
       });
     } else {
       console.warn(`Target element with id '${targetId}' not found`);
