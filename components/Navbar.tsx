@@ -209,6 +209,17 @@ const Navbar = () => {
                 Video
               </a>
               <a 
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
+                  textColor === 'white' 
+                    ? 'text-white hover:text-blue-400' 
+                    : 'text-gray-900 hover:text-blue-600'
+                }`}
+              >
+                Travelogue
+              </a>
+              <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
                 className={`hidden text-[12pt] transition-colors duration-200 cursor-pointer ${
@@ -248,6 +259,13 @@ const Navbar = () => {
                 className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Video
+              </a>
+              <a 
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+              >
+                Travelogue
               </a>
               <a 
                 href="#photography" 

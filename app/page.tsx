@@ -227,7 +227,7 @@ export default function HomePage() {
         <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
-        <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+        <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* World Map Background */}
           <div className="absolute inset-0 opacity-10">
             <img 
