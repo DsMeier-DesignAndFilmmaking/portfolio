@@ -111,7 +111,7 @@ const Navbar = () => {
     console.log(`Target element found:`, targetElement);
     
     if (targetElement) {
-      const navElement = document.querySelector('nav') as HTMLElement | null;
+      const navElement = document.getElementById('site-navbar') as HTMLElement | null;
       const navRect = navElement ? navElement.getBoundingClientRect() : null;
       const headerOffset = navRect ? navRect.bottom : 0;
       const targetRect = targetElement.getBoundingClientRect();
@@ -139,6 +139,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
+      id="site-navbar"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
@@ -213,8 +214,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#travelogue" 
-                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                href="#world-travel-diaries" 
+                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
                 className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
                   textColor === 'white' 
                     ? 'text-white hover:text-blue-400' 
@@ -265,8 +266,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#travelogue" 
-                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                href="#world-travel-diaries" 
+                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
                 className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 Travelogue
