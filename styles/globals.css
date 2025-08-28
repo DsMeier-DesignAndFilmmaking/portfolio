@@ -20,12 +20,14 @@ html {
   scroll-padding-top: 120px; /* Global anchor offset for fixed navbar */
 }
 
-/* Anchor offset for Travelogue section to account for fixed navbar */
-#world-travel-diaries {
+/* Anchor offset for all main sections to account for fixed navbar */
+#black-section,
+#video-projects,
+#world-travel-diaries,
+#photography {
   scroll-margin-top: 120px; /* adjust if navbar height changes */
   /* Ensure stable positioning */
   position: relative;
-  min-height: 100vh; /* Ensure minimum height to prevent layout shifts */
   /* Optimize for immediate scroll positioning */
   scroll-behavior: smooth;
 }

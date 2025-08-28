@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { scrollToElement } from '@/utils/scrollUtils';
 
 const Navbar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -107,57 +108,17 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
     
     const targetElement = document.getElementById(targetId);
+    const navElement = document.getElementById('site-navbar') as HTMLElement | null;
     
     if (targetElement) {
-      const navElement = document.getElementById('site-navbar') as HTMLElement | null;
-      
-      const measureHeaderOffset = () => {
-        if (!navElement) return 0;
-        const navRect = navElement.getBoundingClientRect();
-        const computed = window.getComputedStyle(navElement);
-        const marginTop = parseFloat(computed.marginTop || '0');
-        return navRect.height + marginTop;
-      };
-
-      const computeTargetTop = () => {
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = rect.top + window.pageYOffset;
-        const offset = measureHeaderOffset();
-        return Math.max(absoluteTop - offset, 0);
-      };
-
-      // Immediate scroll for responsiveness
-      const performImmediateScroll = () => {
-        const targetTop = computeTargetTop();
-        window.scrollTo({
-          top: targetTop,
-          behavior: 'smooth'
-        });
-      };
-
-      // Lightweight correction after scroll completes
-      const performCorrection = () => {
-        setTimeout(() => {
-          const corrected = computeTargetTop();
-          const currentScroll = window.pageYOffset;
-          const delta = Math.abs(currentScroll - corrected);
-          
-          // Only correct if significantly off
-          if (delta > 10) {
-            window.scrollTo({ 
-              top: corrected, 
-              behavior: 'auto' 
-            });
-          }
-        }, 200);
-      };
-
-      // Start with immediate scroll for responsiveness
-      performImmediateScroll();
-      
-      // Add lightweight correction
-      performCorrection();
-      
+      // Use the utility function for robust anchor scrolling
+      scrollToElement(targetElement, navElement, {
+        behavior: 'smooth',
+        correctionDelay: 300,
+        correctionThreshold: 5
+      }).catch((error) => {
+        console.warn('Error during anchor scroll:', error);
+      });
     } else {
       console.warn(`Target element with id '${targetId}' not found`);
     }
@@ -165,7 +126,7 @@ const Navbar = () => {
     // Reset the scrolling state after animation completes
     setTimeout(() => {
       setIsScrollingToAnchor(false);
-    }, 800);
+    }, 1000);
   };
 
   const toggleMobileMenu = () => {
