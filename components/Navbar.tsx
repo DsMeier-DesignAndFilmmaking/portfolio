@@ -112,11 +112,12 @@ const Navbar = () => {
     
     if (targetElement) {
       const navElement = document.querySelector('nav') as HTMLElement | null;
-      const navbarHeight = navElement ? navElement.getBoundingClientRect().height : 0;
+      const navRect = navElement ? navElement.getBoundingClientRect() : null;
+      const headerOffset = navRect ? navRect.bottom : 0;
       const targetRect = targetElement.getBoundingClientRect();
       const absoluteTargetTop = targetRect.top + window.pageYOffset;
-      const targetPosition = Math.max(absoluteTargetTop - navbarHeight, 0);
-      console.log(`Navbar height: ${navbarHeight}, absoluteTop: ${absoluteTargetTop}, scrolling to: ${targetPosition}`);
+      const targetPosition = Math.max(absoluteTargetTop - headerOffset, 0);
+      console.log(`Navbar bottom offset: ${headerOffset}, absoluteTop: ${absoluteTargetTop}, scrolling to: ${targetPosition}`);
       
       window.scrollTo({
         top: targetPosition,
