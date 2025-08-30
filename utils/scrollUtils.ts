@@ -230,7 +230,7 @@ export const scrollToElement = async (
       behavior
     });
     
-    // Verify and correct position after scroll animation
+    // Verify and correct position after scroll animation with smoother correction
     setTimeout(() => {
       const currentPosition = window.pageYOffset;
       const expectedPosition = calculateTargetPosition(targetElement, navbarElement);
@@ -238,12 +238,12 @@ export const scrollToElement = async (
       
       console.log('Position check - Current:', currentPosition, 'Expected:', expectedPosition, 'Delta:', delta);
       
-      // If position is significantly off, correct it
+      // If position is significantly off, correct it smoothly
       if (delta > correctionThreshold) {
-        console.log('Correcting scroll position');
+        console.log('Correcting scroll position smoothly');
         window.scrollTo({
           top: expectedPosition,
-          behavior: 'auto'
+          behavior: 'smooth'
         });
       }
     }, correctionDelay);

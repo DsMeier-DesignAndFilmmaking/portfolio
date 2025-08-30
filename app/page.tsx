@@ -68,7 +68,7 @@ export default function HomePage() {
               backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.webp)',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
-              filter: 'contrast(1.15) saturate(0.2)'
+              filter: 'contrast(1.15) saturate(0.3)'
             }}
           />
           

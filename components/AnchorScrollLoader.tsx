@@ -72,12 +72,13 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
           {/* Single Progress Ring Spinner */}
           <div className="relative flex flex-col items-center">
             {/* Progress Ring with Animation */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-16 h-16 relative"
-            >
-              <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+            <div className="w-16 h-16 relative">
+              <motion.svg 
+                className="w-16 h-16 transform -rotate-90" 
+                viewBox="0 0 64 64"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              >
                 <circle
                   cx="32"
                   cy="32"
@@ -92,15 +93,15 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
                     transition: 'stroke-dashoffset 0.1s ease-out'
                   }}
                 />
-              </svg>
+              </motion.svg>
               
-              {/* Center Text */}
+              {/* Center Text - Fixed Position */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {Math.round(displayProgress)}%
                 </span>
               </div>
-            </motion.div>
+            </div>
             
             {/* Loading Text */}
             <div className="mt-8 text-center">
