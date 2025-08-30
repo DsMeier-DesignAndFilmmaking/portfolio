@@ -16,7 +16,8 @@ body {
 
 /* Smooth scrolling and anchor positioning */
 html {
-  scroll-behavior: smooth;
+  /* Disabled CSS scroll-behavior to use custom JS implementation */
+  /* scroll-behavior: smooth; */
   scroll-padding-top: 120px; /* Global anchor offset for fixed navbar */
 }
 

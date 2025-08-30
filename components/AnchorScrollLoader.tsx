@@ -11,11 +11,13 @@ interface AnchorScrollLoaderProps {
 
 export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete }: AnchorScrollLoaderProps) {
   const [internalProgress, setInternalProgress] = useState(0);
+  const [showStabilizationOverlay, setShowStabilizationOverlay] = useState(false);
 
   useEffect(() => {
     if (isVisible) {
       // Reset progress when loader becomes visible
       setInternalProgress(0);
+      setShowStabilizationOverlay(false);
       
       // If no external progress provided, simulate progress animation
       if (progress === 0) {
@@ -33,11 +35,19 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
       }
     } else {
       setInternalProgress(0);
+      setShowStabilizationOverlay(false);
     }
   }, [isVisible, progress]);
 
   // Use external progress if provided, otherwise use internal
   const displayProgress = progress > 0 ? progress : internalProgress;
+
+  useEffect(() => {
+    if (displayProgress >= 90) {
+      // Show stabilization overlay near the end to prevent layout shifts
+      setShowStabilizationOverlay(true);
+    }
+  }, [displayProgress]);
 
   useEffect(() => {
     if (displayProgress >= 100 && onComplete) {
@@ -106,12 +116,37 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             {/* Loading Text */}
             <div className="mt-8 text-center">
               <span className="text-white/80 text-sm font-medium">
-                Loading Page Elements...
+                {displayProgress >= 90 ? 'Stabilizing Layout...' : 'Loading Page Elements...'}
               </span>
             </div>
           </div>
         </motion.div>
       )}
+      
+      {/* Stabilization Overlay - prevents layout shifts during final scroll */}
+      <AnimatePresence>
+        {showStabilizationOverlay && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-0 left-0 w-screen h-screen z-[99998] bg-black/20 backdrop-blur-[1px]"
+            style={{ 
+              pointerEvents: 'none',
+              width: '100vw',
+              height: '100vh',
+              position: 'fixed',
+              margin: 0,
+              padding: 0,
+              top: '-20px',
+              left: 0,
+              right: 0,
+              bottom: 0
+            }}
+          />
+        )}
+      </AnimatePresence>
     </AnimatePresence>
   );
 }

@@ -15,6 +15,47 @@
 let isContentFullyLoaded = false;
 let contentLoadPromise: Promise<void> | null = null;
 
+// Track active scroll animations to prevent conflicts
+let activeScrollAnimation: number | null = null;
+
+/**
+ * Custom smooth scroll function with easing
+ */
+export const smoothScrollTo = (targetY: number, duration: number = 600): Promise<void> => {
+  return new Promise((resolve) => {
+    // Cancel any existing scroll animation
+    if (activeScrollAnimation) {
+      cancelAnimationFrame(activeScrollAnimation);
+    }
+
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let start: number | null = null;
+
+    function step(timestamp: number) {
+      if (!start) start = timestamp;
+      const time = timestamp - start;
+      const percent = Math.min(time / duration, 1);
+
+      // easeInOutCubic for smooth animation
+      const easing = percent < 0.5
+        ? 4 * percent * percent * percent
+        : 1 - Math.pow(-2 * percent + 2, 3) / 2;
+
+      window.scrollTo(0, startY + diff * easing);
+
+      if (time < duration) {
+        activeScrollAnimation = requestAnimationFrame(step);
+      } else {
+        activeScrollAnimation = null;
+        resolve();
+      }
+    }
+
+    activeScrollAnimation = requestAnimationFrame(step);
+  });
+};
+
 /**
  * Wait for all content to be fully loaded (images, fonts, DOM, lazy content)
  * This ensures accurate scroll positioning on first click
@@ -190,16 +231,12 @@ export const scrollToElement = async (
   targetElement: HTMLElement, 
   navbarElement?: HTMLElement | null,
   options: { 
-    behavior?: ScrollBehavior; 
-    correctionDelay?: number;
-    correctionThreshold?: number;
+    duration?: number;
     waitForLazyContent?: boolean;
   } = {}
 ): Promise<void> => {
   const {
-    behavior = 'smooth',
-    correctionDelay = 500, // Increased delay for smoother correction
-    correctionThreshold = 10, // Increased threshold to reduce unnecessary corrections
+    duration = 700,
     waitForLazyContent = true
   } = options;
 
@@ -224,61 +261,8 @@ export const scrollToElement = async (
     const targetPosition = calculateTargetPosition(targetElement, navbarElement);
     console.log('Calculated target position:', targetPosition);
     
-    // Perform smooth scroll to target
-    window.scrollTo({
-      top: targetPosition,
-      behavior
-    });
-    
-    // Wait for scroll animation to complete before checking position
-    if (behavior === 'smooth') {
-      await new Promise(resolve => {
-        let lastScrollY = window.pageYOffset;
-        let stableCount = 0;
-        const maxStableCount = 10; // Wait for 10 consecutive stable readings
-        
-        const checkScrollComplete = () => {
-          const currentScrollY = window.pageYOffset;
-          
-          // Check if scroll position is stable (within 2px)
-          if (Math.abs(currentScrollY - lastScrollY) < 2) {
-            stableCount++;
-            if (stableCount >= maxStableCount) {
-              resolve(true);
-              return;
-            }
-          } else {
-            stableCount = 0;
-            lastScrollY = currentScrollY;
-          }
-          
-          // Continue checking
-          requestAnimationFrame(checkScrollComplete);
-        };
-        
-        // Start checking after a short delay
-        setTimeout(checkScrollComplete, 100);
-      });
-    }
-    
-    // Verify and correct position after scroll animation with smoother correction
-    setTimeout(() => {
-      const currentPosition = window.pageYOffset;
-      const expectedPosition = calculateTargetPosition(targetElement, navbarElement);
-      const delta = Math.abs(currentPosition - expectedPosition);
-      
-      console.log('Position check - Current:', currentPosition, 'Expected:', expectedPosition, 'Delta:', delta);
-      
-      // If position is significantly off, correct it smoothly
-      if (delta > correctionThreshold) {
-        console.log('Correcting scroll position smoothly');
-        // Use a single smooth correction to prevent multiple adjustments
-        window.scrollTo({
-          top: expectedPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, correctionDelay);
+    // Perform smooth scroll to target using custom function
+    await smoothScrollTo(targetPosition, duration);
     
   } catch (error) {
     console.warn('Error during anchor scroll:', error);
@@ -286,7 +270,7 @@ export const scrollToElement = async (
     const targetPosition = calculateTargetPosition(targetElement, navbarElement);
     window.scrollTo({
       top: targetPosition,
-      behavior: 'smooth'
+      behavior: 'auto'
     });
   }
 };
@@ -346,14 +330,14 @@ export const scrollToAnchor = async (
   anchorId: string,
   navbarElement?: HTMLElement | null,
   options: {
-    behavior?: ScrollBehavior;
+    duration?: number;
     waitForLazyContent?: boolean;
     maxWaitTime?: number;
     onProgress?: (progress: number) => void;
   } = {}
 ): Promise<void> => {
   const {
-    behavior = 'smooth',
+    duration = 700,
     waitForLazyContent = true,
     maxWaitTime = 3000,
     onProgress
@@ -395,7 +379,7 @@ export const scrollToAnchor = async (
     
     // Perform the actual scroll
     await scrollToElement(targetElement, navbarElement, {
-      behavior,
+      duration,
       waitForLazyContent: false // Already handled above
     });
     
@@ -403,12 +387,12 @@ export const scrollToAnchor = async (
     
     // Wait for scroll animation to be completely stable
     await new Promise(resolve => {
-      let lastScrollY = window.pageYOffset;
+      let lastScrollY = window.scrollY;
       let stableCount = 0;
       const maxStableCount = 15; // Wait for 15 consecutive stable readings
       
       const checkStable = () => {
-        const currentScrollY = window.pageYOffset;
+        const currentScrollY = window.scrollY;
         
         // Check if scroll position is stable (within 1px)
         if (Math.abs(currentScrollY - lastScrollY) < 1) {

@@ -118,7 +118,7 @@ const Navbar = () => {
     
     // Use the enhanced anchor scroll function with progress tracking
     scrollToAnchor(targetId, navElement, {
-      behavior: 'smooth',
+      duration: 700,
       waitForLazyContent: true,
       maxWaitTime: 3000,
       onProgress: (progress) => {
