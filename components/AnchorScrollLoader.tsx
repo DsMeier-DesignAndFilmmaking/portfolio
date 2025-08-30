@@ -55,7 +55,7 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="fixed top-0 left-0 w-screen h-screen z-[99999] bg-black/80 backdrop-blur-sm flex items-center justify-center"
+          className="fixed top-0 left-0 w-screen h-screen z-[99999] bg-black flex items-center justify-center"
           style={{ 
             pointerEvents: 'none',
             width: '100vw',
@@ -63,13 +63,13 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             position: 'fixed',
             margin: 0,
             padding: 0,
-            top: 0,
+            top: '-20px', // Account for navbar mt-5 (20px)
             left: 0,
             right: 0,
             bottom: 0
           }}
         >
-          {/* Animated Spinner */}
+          {/* Single Animated Spinner */}
           <div className="relative flex flex-col items-center">
             <motion.div
               animate={{ rotate: 360 }}
@@ -109,15 +109,6 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
               </span>
             </div>
           </div>
-          
-          {/* Subtle Pulse Effect */}
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <div className="w-24 h-24 border border-white/10 rounded-full" />
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
