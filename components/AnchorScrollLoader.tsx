@@ -60,11 +60,17 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             pointerEvents: 'none',
             width: '100vw',
             height: '100vh',
-            position: 'fixed'
+            position: 'fixed',
+            margin: 0,
+            padding: 0,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
           }}
         >
           {/* Animated Spinner */}
-          <div className="relative">
+          <div className="relative flex flex-col items-center">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
@@ -93,6 +99,13 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white text-sm font-medium">
                 {Math.round(displayProgress)}%
+              </span>
+            </div>
+            
+            {/* Loading Text */}
+            <div className="mt-8 text-center">
+              <span className="text-white/80 text-sm font-medium">
+                Loading Page Elements...
               </span>
             </div>
           </div>
