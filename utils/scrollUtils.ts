@@ -345,27 +345,32 @@ export const scrollToAnchor = async (
 
   // Use Promise.race to implement timeout
   const scrollPromise = (async () => {
-    updateProgress(20);
+    updateProgress(10);
     
     // Wait for content to be fully loaded
     await waitForContentLoad();
-    updateProgress(40);
+    updateProgress(30);
     
     // Wait for layout to stabilize
     await waitForLayoutStable();
-    updateProgress(60);
+    updateProgress(50);
     
     // If waiting for lazy content, check for IntersectionObserver-triggered content
     if (waitForLazyContent) {
       await waitForLazyContentInSection(targetElement);
     }
-    updateProgress(80);
+    updateProgress(70);
     
     // Perform the actual scroll
     await scrollToElement(targetElement, navbarElement, {
       behavior,
       waitForLazyContent: false // Already handled above
     });
+    
+    updateProgress(90);
+    
+    // Small delay to ensure scroll animation completes
+    await new Promise(resolve => setTimeout(resolve, 200));
     
     updateProgress(100);
   })();

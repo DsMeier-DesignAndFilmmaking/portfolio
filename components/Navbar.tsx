@@ -124,16 +124,20 @@ const Navbar = () => {
       onProgress: (progress) => {
         setScrollProgress(progress);
       }
+    }).then(() => {
+      // Hide loader after scroll completes successfully
+      setTimeout(() => {
+        setShowLoader(false);
+        setIsScrollingToAnchor(false);
+        setScrollProgress(0);
+      }, 300); // Small delay to ensure smooth transition
     }).catch((error) => {
       console.warn('Error during anchor scroll:', error);
-    });
-    
-    // Hide loader after scroll and layout stabilization
-    setTimeout(() => {
+      // Hide loader even if there's an error
       setShowLoader(false);
       setIsScrollingToAnchor(false);
       setScrollProgress(0);
-    }, 800); // Increased timeout to account for loader animation
+    });
   };
 
   const toggleMobileMenu = () => {
@@ -292,7 +296,10 @@ const Navbar = () => {
         isVisible={showLoader}
         progress={scrollProgress}
         onComplete={() => {
-          // Optional: Add any completion logic here
+          // Hide loader when progress reaches 100%
+          setShowLoader(false);
+          setIsScrollingToAnchor(false);
+          setScrollProgress(0);
         }}
       />
     </motion.nav>

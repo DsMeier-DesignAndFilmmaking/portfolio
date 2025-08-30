@@ -55,8 +55,13 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center"
-          style={{ pointerEvents: 'none' }}
+          className="fixed top-0 left-0 w-screen h-screen z-[99999] bg-black/80 backdrop-blur-sm flex items-center justify-center"
+          style={{ 
+            pointerEvents: 'none',
+            width: '100vw',
+            height: '100vh',
+            position: 'fixed'
+          }}
         >
           {/* Animated Spinner */}
           <div className="relative">
@@ -85,11 +90,11 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             </svg>
             
             {/* Center Text */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-sm font-medium">
-                  {Math.round(displayProgress)}%
-                </span>
-              </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white text-sm font-medium">
+                {Math.round(displayProgress)}%
+              </span>
+            </div>
           </div>
           
           {/* Subtle Pulse Effect */}
