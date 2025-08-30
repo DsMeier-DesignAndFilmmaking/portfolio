@@ -41,8 +41,8 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
 
   useEffect(() => {
     if (displayProgress >= 100 && onComplete) {
-      // Small delay to ensure smooth transition
-      const timer = setTimeout(onComplete, 200);
+      // Wait a bit longer to ensure scroll animation is completely finished
+      const timer = setTimeout(onComplete, 500);
       return () => clearTimeout(timer);
     }
   }, [displayProgress, onComplete]);

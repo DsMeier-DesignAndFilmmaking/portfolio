@@ -126,11 +126,9 @@ const Navbar = () => {
       }
     }).then(() => {
       // Hide loader after scroll completes successfully
-      setTimeout(() => {
-        setShowLoader(false);
-        setIsScrollingToAnchor(false);
-        setScrollProgress(0);
-      }, 300); // Small delay to ensure smooth transition
+      setShowLoader(false);
+      setIsScrollingToAnchor(false);
+      setScrollProgress(0);
     }).catch((error) => {
       console.warn('Error during anchor scroll:', error);
       // Hide loader even if there's an error

@@ -233,14 +233,30 @@ export const scrollToElement = async (
     // Wait for scroll animation to complete before checking position
     if (behavior === 'smooth') {
       await new Promise(resolve => {
+        let lastScrollY = window.pageYOffset;
+        let stableCount = 0;
+        const maxStableCount = 10; // Wait for 10 consecutive stable readings
+        
         const checkScrollComplete = () => {
-          if (window.pageYOffset === targetPosition || 
-              Math.abs(window.pageYOffset - targetPosition) < 5) {
-            resolve(true);
+          const currentScrollY = window.pageYOffset;
+          
+          // Check if scroll position is stable (within 2px)
+          if (Math.abs(currentScrollY - lastScrollY) < 2) {
+            stableCount++;
+            if (stableCount >= maxStableCount) {
+              resolve(true);
+              return;
+            }
           } else {
-            requestAnimationFrame(checkScrollComplete);
+            stableCount = 0;
+            lastScrollY = currentScrollY;
           }
+          
+          // Continue checking
+          requestAnimationFrame(checkScrollComplete);
         };
+        
+        // Start checking after a short delay
         setTimeout(checkScrollComplete, 100);
       });
     }
@@ -385,8 +401,34 @@ export const scrollToAnchor = async (
     
     updateProgress(90);
     
-    // Small delay to ensure scroll animation completes
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Wait for scroll animation to be completely stable
+    await new Promise(resolve => {
+      let lastScrollY = window.pageYOffset;
+      let stableCount = 0;
+      const maxStableCount = 15; // Wait for 15 consecutive stable readings
+      
+      const checkStable = () => {
+        const currentScrollY = window.pageYOffset;
+        
+        // Check if scroll position is stable (within 1px)
+        if (Math.abs(currentScrollY - lastScrollY) < 1) {
+          stableCount++;
+          if (stableCount >= maxStableCount) {
+            resolve(true);
+            return;
+          }
+        } else {
+          stableCount = 0;
+          lastScrollY = currentScrollY;
+        }
+        
+        // Continue checking
+        requestAnimationFrame(checkStable);
+      };
+      
+      // Start checking after a short delay
+      setTimeout(checkStable, 50);
+    });
     
     updateProgress(100);
   })();
