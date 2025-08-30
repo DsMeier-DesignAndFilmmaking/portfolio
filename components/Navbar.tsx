@@ -5,12 +5,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollToAnchor } from '@/utils/scrollUtils';
+import AnchorScrollLoader from './AnchorScrollLoader';
 
 const Navbar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
   const [textColor, setTextColor] = useState('white');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
@@ -107,21 +110,30 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
+    // Show loader immediately and reset progress
+    setShowLoader(true);
+    setScrollProgress(0);
+    
     const navElement = document.getElementById('site-navbar') as HTMLElement | null;
     
-    // Use the enhanced anchor scroll function
+    // Use the enhanced anchor scroll function with progress tracking
     scrollToAnchor(targetId, navElement, {
       behavior: 'smooth',
       waitForLazyContent: true,
-      maxWaitTime: 3000
+      maxWaitTime: 3000,
+      onProgress: (progress) => {
+        setScrollProgress(progress);
+      }
     }).catch((error) => {
       console.warn('Error during anchor scroll:', error);
     });
     
-    // Reset the scrolling state after animation completes
+    // Hide loader after scroll and layout stabilization
     setTimeout(() => {
+      setShowLoader(false);
       setIsScrollingToAnchor(false);
-    }, 1000);
+      setScrollProgress(0);
+    }, 800); // Increased timeout to account for loader animation
   };
 
   const toggleMobileMenu = () => {
@@ -274,6 +286,15 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Anchor Scroll Loader */}
+      <AnchorScrollLoader 
+        isVisible={showLoader}
+        progress={scrollProgress}
+        onComplete={() => {
+          // Optional: Add any completion logic here
+        }}
+      />
     </motion.nav>
   );
 };

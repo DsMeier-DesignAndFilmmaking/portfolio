@@ -317,12 +317,14 @@ export const scrollToAnchor = async (
     behavior?: ScrollBehavior;
     waitForLazyContent?: boolean;
     maxWaitTime?: number;
+    onProgress?: (progress: number) => void;
   } = {}
 ): Promise<void> => {
   const {
     behavior = 'smooth',
     waitForLazyContent = true,
-    maxWaitTime = 3000
+    maxWaitTime = 3000,
+    onProgress
   } = options;
 
   console.log('Scroll to anchor called:', anchorId);
@@ -334,11 +336,39 @@ export const scrollToAnchor = async (
     return;
   }
 
+  // Progress tracking for loader
+  let progress = 0;
+  const updateProgress = (newProgress: number) => {
+    progress = newProgress;
+    onProgress?.(progress);
+  };
+
   // Use Promise.race to implement timeout
-  const scrollPromise = scrollToElement(targetElement, navbarElement, {
-    behavior,
-    waitForLazyContent
-  });
+  const scrollPromise = (async () => {
+    updateProgress(20);
+    
+    // Wait for content to be fully loaded
+    await waitForContentLoad();
+    updateProgress(40);
+    
+    // Wait for layout to stabilize
+    await waitForLayoutStable();
+    updateProgress(60);
+    
+    // If waiting for lazy content, check for IntersectionObserver-triggered content
+    if (waitForLazyContent) {
+      await waitForLazyContentInSection(targetElement);
+    }
+    updateProgress(80);
+    
+    // Perform the actual scroll
+    await scrollToElement(targetElement, navbarElement, {
+      behavior,
+      waitForLazyContent: false // Already handled above
+    });
+    
+    updateProgress(100);
+  })();
 
   const timeoutPromise = new Promise<void>((_, reject) => {
     setTimeout(() => reject(new Error('Scroll timeout')), maxWaitTime);
@@ -354,6 +384,7 @@ export const scrollToAnchor = async (
       top: targetPosition,
       behavior: 'auto'
     });
+    updateProgress(100);
   }
 };
 
