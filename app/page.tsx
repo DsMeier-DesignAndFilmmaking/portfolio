@@ -234,6 +234,13 @@ export default function HomePage() {
               src="/portfolio/images/textures/earth-map.webp" 
               alt="World Map Background"
               className="w-full h-full object-cover"
+              loading="eager"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
             />
           </div>
           

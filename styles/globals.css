@@ -30,8 +30,7 @@ html {
   position: relative;
   /* Prevent layout shifts during scroll */
   min-height: 100vh;
-  /* Optimize for immediate scroll positioning */
-  scroll-behavior: smooth;
+  /* Remove conflicting scroll behavior */
 }
 
 /* Keep the badge scroll margin for any direct links to it */

@@ -198,8 +198,8 @@ export const scrollToElement = async (
 ): Promise<void> => {
   const {
     behavior = 'smooth',
-    correctionDelay = 300,
-    correctionThreshold = 5,
+    correctionDelay = 500, // Increased delay for smoother correction
+    correctionThreshold = 10, // Increased threshold to reduce unnecessary corrections
     waitForLazyContent = true
   } = options;
 
@@ -230,6 +230,21 @@ export const scrollToElement = async (
       behavior
     });
     
+    // Wait for scroll animation to complete before checking position
+    if (behavior === 'smooth') {
+      await new Promise(resolve => {
+        const checkScrollComplete = () => {
+          if (window.pageYOffset === targetPosition || 
+              Math.abs(window.pageYOffset - targetPosition) < 5) {
+            resolve(true);
+          } else {
+            requestAnimationFrame(checkScrollComplete);
+          }
+        };
+        setTimeout(checkScrollComplete, 100);
+      });
+    }
+    
     // Verify and correct position after scroll animation with smoother correction
     setTimeout(() => {
       const currentPosition = window.pageYOffset;
@@ -241,6 +256,7 @@ export const scrollToElement = async (
       // If position is significantly off, correct it smoothly
       if (delta > correctionThreshold) {
         console.log('Correcting scroll position smoothly');
+        // Use a single smooth correction to prevent multiple adjustments
         window.scrollTo({
           top: expectedPosition,
           behavior: 'smooth'
