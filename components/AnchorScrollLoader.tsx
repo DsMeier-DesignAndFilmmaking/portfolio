@@ -69,38 +69,38 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             bottom: 0
           }}
         >
-          {/* Single Animated Spinner */}
+          {/* Single Progress Ring Spinner */}
           <div className="relative flex flex-col items-center">
+            {/* Progress Ring with Animation */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full"
-            />
-            
-            {/* Progress Ring */}
-            <svg className="absolute inset-0 w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
-              <circle
-                cx="32"
-                cy="32"
-                r="28"
-                stroke="currentColor"
-                strokeWidth="4"
-                fill="none"
-                className="text-white/40"
-                strokeDasharray={`${2 * Math.PI * 28}`}
-                strokeDashoffset={`${2 * Math.PI * 28 * (1 - displayProgress / 100)}`}
-                style={{
-                  transition: 'stroke-dashoffset 0.1s ease-out'
-                }}
-              />
-            </svg>
-            
-            {/* Center Text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-sm font-medium">
-                {Math.round(displayProgress)}%
-              </span>
-            </div>
+              className="w-16 h-16 relative"
+            >
+              <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+                <circle
+                  cx="32"
+                  cy="32"
+                  r="28"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                  className="text-white/40"
+                  strokeDasharray={`${2 * Math.PI * 28}`}
+                  strokeDashoffset={`${2 * Math.PI * 28 * (1 - displayProgress / 100)}`}
+                  style={{
+                    transition: 'stroke-dashoffset 0.1s ease-out'
+                  }}
+                />
+              </svg>
+              
+              {/* Center Text */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white text-sm font-medium">
+                  {Math.round(displayProgress)}%
+                </span>
+              </div>
+            </motion.div>
             
             {/* Loading Text */}
             <div className="mt-8 text-center">
