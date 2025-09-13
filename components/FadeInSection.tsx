@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState, useRef } from 'react';
 
 interface FadeInSectionProps {
   children: ReactNode;
@@ -28,6 +28,7 @@ export default function FadeInSection({
 }: FadeInSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,15 +50,53 @@ export default function FadeInSection({
       }
     );
 
-    const element = document.getElementById(`fade-in-section-${Math.random().toString(36).substr(2, 9)}`);
+    const element = elementRef.current;
     if (element) {
+      // Check if element is already in viewport on mount (for anchor navigation)
+      const checkViewport = () => {
+        const rect = element.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+          setIsVisible(true);
+          if (triggerOnce) {
+            setHasAnimated(true);
+          }
+        }
+      };
+      
+      // Check immediately and after delays to catch anchor navigation
+      checkViewport();
+      setTimeout(checkViewport, 100);
+      setTimeout(checkViewport, 500);
+      setTimeout(checkViewport, 1000);
+      
       observer.observe(element);
     }
+
+    // Listen for scroll completion events
+    const handleScrollComplete = () => {
+      if (elementRef.current) {
+        const rect = elementRef.current.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+          setIsVisible(true);
+          if (triggerOnce) {
+            setHasAnimated(true);
+          }
+        }
+      }
+    };
+
+    // Listen for custom scroll completion event
+    window.addEventListener('scrollComplete', handleScrollComplete);
 
     return () => {
       if (element) {
         observer.unobserve(element);
       }
+      window.removeEventListener('scrollComplete', handleScrollComplete);
     };
   }, [threshold, rootMargin, triggerOnce]);
 
@@ -141,7 +180,7 @@ export default function FadeInSection({
 
   return (
     <motion.div
-      id={`fade-in-section-${Math.random().toString(36).substr(2, 9)}`}
+      ref={elementRef}
       className={className}
       initial="hidden"
       animate={shouldAnimate ? "visible" : "hidden"}

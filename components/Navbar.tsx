@@ -129,12 +129,22 @@ const Navbar = () => {
       setShowLoader(false);
       setIsScrollingToAnchor(false);
       setScrollProgress(0);
+      
+      // Dispatch scroll completion event to trigger fade-in animations
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('scrollComplete'));
+      }, 100);
     }).catch((error) => {
       console.warn('Error during anchor scroll:', error);
       // Hide loader even if there's an error
       setShowLoader(false);
       setIsScrollingToAnchor(false);
       setScrollProgress(0);
+      
+      // Still dispatch scroll completion event even on error
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('scrollComplete'));
+      }, 100);
     });
   };
 
