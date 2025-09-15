@@ -19,6 +19,8 @@ const Navbar = () => {
     let scrollTimeout: NodeJS.Timeout;
     let rafId: number;
     let lastScrollY = 0;
+    let scrollDirection: 'up' | 'down' = 'down';
+    let isScrollingDown = false;
 
     const handleScroll = () => {
       // Use requestAnimationFrame for better performance
@@ -28,16 +30,39 @@ const Navbar = () => {
       
       rafId = requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
         
-        // Only update if scroll position changed significantly
-        if (Math.abs(currentScrollY - lastScrollY) > 5) {
-          setIsScrolling(true);
+        // Determine scroll direction
+        if (scrollDelta > 0) {
+          scrollDirection = 'down';
+        } else if (scrollDelta < 0) {
+          scrollDirection = 'up';
+        }
+        
+        // Only update if scroll position changed significantly and we're not at the top
+        if (Math.abs(scrollDelta) > 10 && currentScrollY > 100) {
+          // On mobile, only hide navbar when scrolling down, show when scrolling up
+          if (window.innerWidth < 768) {
+            if (scrollDirection === 'down' && currentScrollY > lastScrollY) {
+              isScrollingDown = true;
+            } else if (scrollDirection === 'up') {
+              isScrollingDown = false;
+            }
+          } else {
+            // Desktop behavior - hide on any scroll
+            isScrollingDown = true;
+          }
+          
+          setIsScrolling(isScrollingDown);
           clearTimeout(scrollTimeout);
           scrollTimeout = setTimeout(() => {
             setIsScrolling(false);
-          }, 100);
+          }, 150); // Increased timeout for smoother behavior
           
           lastScrollY = currentScrollY;
+        } else if (currentScrollY <= 100) {
+          // Always show navbar when near the top
+          setIsScrolling(false);
         }
       });
     };
@@ -158,7 +183,7 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 scroll-optimized ${
+      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-500 ease-in-out scroll-optimized ${
         isScrolling && !isScrollingToAnchor ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}
     >

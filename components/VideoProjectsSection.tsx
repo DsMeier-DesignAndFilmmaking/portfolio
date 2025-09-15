@@ -115,7 +115,7 @@ export default function VideoProjectsSection() {
             <div className="grid grid-cols-1 gap-8">
               {[1, 2, 3, 4, 5, 6].map((index) => (
                 <div key={index} className="relative">
-                  <div className="relative bg-white/10 overflow-hidden rounded-lg">
+                  <div className="relative bg-white/10 overflow-hidden">
                     {index === 1 ? (
                       <Image
                         src="/portfolio/images/Istanbul-frames-2.jpg"
@@ -126,7 +126,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : index === 2 ? (
                       <Image
@@ -138,7 +138,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : index === 3 ? (
                       <Image
@@ -150,7 +150,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : index === 4 ? (
                       <Image
@@ -162,7 +162,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : index === 5 ? (
                       <Image
@@ -174,7 +174,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : index === 6 ? (
                       <Image
@@ -186,7 +186,7 @@ export default function VideoProjectsSection() {
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
                         style={{ width: '100%', height: 'auto' }}
-                        className="rounded-lg shadow-lg"
+                        className="shadow-lg"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-white/40">

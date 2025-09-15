@@ -125,7 +125,7 @@ export default function AISandboxPage() {
   const sections = [
     { id: 'intro', label: 'Intro' },
     { id: 'research', label: 'Research' },
-    { id: 'designs', label: 'Designs' },
+    { id: 'designs', label: 'Design + Dev' },
     { id: 'outcomes', label: 'Outcomes' }
   ];
 
