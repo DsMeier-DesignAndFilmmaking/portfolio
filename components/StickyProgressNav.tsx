@@ -13,6 +13,7 @@ interface StickyProgressNavProps {
 const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const [isVisible, setIsVisible] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   // Throttled scroll handler for better performance
   const handleScroll = useCallback(() => {
@@ -78,16 +79,63 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
   }, [handleScroll]);
 
   const scrollToSection = (sectionId: string) => {
+    // Prevent multiple scroll animations
+    if (isScrolling) return;
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      const navHeight = 80; // Account for navbar height
+      setIsScrolling(true);
+      
+      // Calculate proper offset based on screen size
+      const isMobile = window.innerWidth < 768;
+      const mainNavHeight = 80; // Main navbar height
+      const stickyNavHeight = isMobile ? 60 : 0; // Sticky progress nav height on mobile
+      const totalOffset = mainNavHeight + stickyNavHeight + 20; // Extra 20px for breathing room
+      
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navHeight;
+      const offsetPosition = elementPosition - totalOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      // Use a more reliable smooth scroll for mobile
+      if (isMobile) {
+        // For mobile, use a custom smooth scroll with better performance
+        const startPosition = window.scrollY;
+        const distance = offsetPosition - startPosition;
+        const duration = Math.min(Math.abs(distance) / 2, 800); // Max 800ms
+        let startTime: number | null = null;
+
+        const easeInOutCubic = (t: number): number => {
+          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        };
+
+        const animateScroll = (currentTime: number) => {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+          const easedProgress = easeInOutCubic(progress);
+          
+          window.scrollTo(0, startPosition + distance * easedProgress);
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          } else {
+            // Animation complete
+            setIsScrolling(false);
+          }
+        };
+
+        requestAnimationFrame(animateScroll);
+      } else {
+        // Desktop uses native smooth scroll
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Reset scrolling state after a delay for desktop
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 500);
+      }
     }
   };
 

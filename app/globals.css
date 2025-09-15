@@ -38,4 +38,18 @@ body {
     transform: translate3d(0, 0, 0);
     will-change: scroll-position;
   }
+  
+  /* Mobile scroll optimizations */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: auto; /* Disable native smooth scroll on mobile for better control */
+    }
+    
+    body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: none;
+      /* Improve touch scrolling performance */
+      touch-action: pan-y;
+    }
+  }
 } 
