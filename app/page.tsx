@@ -314,7 +314,7 @@ export default function HomePage() {
                         
                         <div className="space-y-4 mb-6">
                           <p className="text-gray-200 text-lg leading-relaxed">
-                            A curated collection of visual narratives from 41 countries, blending photography, storytelling, and interactive experiences.
+                            A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
                           </p>
                           <div className="flex flex-wrap gap-2">
                             <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Photography</span>
