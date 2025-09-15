@@ -7,6 +7,7 @@ import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
+import StickyProgressNav from '../../../components/StickyProgressNav';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -119,6 +120,14 @@ export default function AISandboxPage() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Define sections for the sticky progress nav
+  const sections = [
+    { id: 'intro', label: 'Intro' },
+    { id: 'research', label: 'Research' },
+    { id: 'designs', label: 'Designs' },
+    { id: 'outcomes', label: 'Outcomes' }
+  ];
 
   return (
     <main className="bg-white text-black overflow-hidden">
@@ -245,8 +254,11 @@ export default function AISandboxPage() {
         </AnimatePresence>
       </motion.nav>
 
+      {/* Sticky Progress Navigation */}
+      <StickyProgressNav sections={sections} />
+
       {/* Hero Section */}
-      <section className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
+      <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
         {/* Hero Video Background */}
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Loading Overlay */}
@@ -399,7 +411,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Problem & Opportunity Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="research" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -496,7 +508,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Audience & Research Section */}
-      <section className="py-20 bg-black">
+      <section id="research-audience" className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -632,7 +644,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Concept & Strategy Section */}
-      <section className="py-20 bg-white">
+      <section id="designs-strategy" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1357,7 +1369,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Design Process Section */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section id="designs" className="py-20 bg-[#0a0a0a]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1438,7 +1450,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Development & Build Section */}
-      <section className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+      <section id="designs-development" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1565,7 +1577,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Launch & Testing Section */}
-      <section className="py-20 bg-black">
+      <section id="outcomes-launch" className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1609,7 +1621,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Outcome & Learnings Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
+      <section id="outcomes" className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
