@@ -19,8 +19,11 @@ export default function AISandboxPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isVideoError, setIsVideoError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
+  const [isMobileVideoError, setIsMobileVideoError] = useState(false);
+  const [showFallbackImage, setShowFallbackImage] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [atTop, setAtTop] = useState(true);
@@ -67,7 +70,7 @@ export default function AISandboxPage() {
     };
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Handle video loading
+  // Handle video loading with error detection
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoLoaded(true);
@@ -86,6 +89,31 @@ export default function AISandboxPage() {
       return () => clearTimeout(timer);
     }
   }, [isVideoLoaded]);
+
+  // Handle video error detection and fallback
+  useEffect(() => {
+    if (isVideoLoaded && !isVideoReady) {
+      const errorTimer = setTimeout(() => {
+        // If video hasn't loaded after 4 seconds, assume it failed
+        setIsVideoError(true);
+        setShowFallbackImage(true);
+      }, 4000);
+
+      return () => clearTimeout(errorTimer);
+    }
+  }, [isVideoLoaded, isVideoReady]);
+
+  // Handle mobile video error detection
+  useEffect(() => {
+    if (isMobile && !isMobileVideoLoaded) {
+      const errorTimer = setTimeout(() => {
+        setIsMobileVideoError(true);
+        setShowFallbackImage(true);
+      }, 3000);
+
+      return () => clearTimeout(errorTimer);
+    }
+  }, [isMobile, isMobileVideoLoaded]);
 
   // Mobile detection
   useEffect(() => {
@@ -262,9 +290,26 @@ export default function AISandboxPage() {
       <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
         {/* Hero Video Background */}
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
+          {/* Fallback Image - Always loaded first for instant display */}
+          <motion.div
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: showFallbackImage || (isVideoError || isMobileVideoError) ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <Image
+              src="/portfolio/images/ai-travel-hero.svg"
+              alt="AI Sandbox - Creative technology playground with abstract digital elements and neural network patterns representing AI innovation and travel technology"
+              fill
+              className="object-cover"
+              priority
+              quality={90}
+            />
+          </motion.div>
+
           {/* Loading Overlay */}
           <AnimatePresence>
-            {(!isVideoReady && !isMobile) || (!isMobileVideoLoaded && isMobile) ? (
+            {(!isVideoReady && !isMobile && !isVideoError) || (!isMobileVideoLoaded && isMobile && !isMobileVideoError) ? (
               <motion.div
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -285,7 +330,7 @@ export default function AISandboxPage() {
           </AnimatePresence>
 
           {/* Desktop Video Container (Vimeo iframe) */}
-          {!isMobile && (
+          {!isMobile && !isVideoError && (
             <motion.div
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
@@ -300,13 +345,17 @@ export default function AISandboxPage() {
                   allowFullScreen
                   className="absolute inset-0 w-full h-full"
                   frameBorder="0"
+                  onError={() => {
+                    setIsVideoError(true);
+                    setShowFallbackImage(true);
+                  }}
                 />
               )}
             </motion.div>
           )}
 
           {/* Mobile Video Container (Local video) */}
-          {isMobile && (
+          {isMobile && !isMobileVideoError && (
             <motion.div
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
@@ -320,6 +369,14 @@ export default function AISandboxPage() {
                   loop
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover"
+                  onError={() => {
+                    setIsMobileVideoError(true);
+                    setShowFallbackImage(true);
+                  }}
+                  onLoadStart={() => {
+                    // Reset error state when video starts loading
+                    setIsMobileVideoError(false);
+                  }}
                 >
                   <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
@@ -342,7 +399,11 @@ export default function AISandboxPage() {
               className={`max-w-2xl ${isMobile ? 'text-center' : 'mt-[100px]'}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: (isVideoError || isMobileVideoError || showFallbackImage) ? 0.3 : 
+                       (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 
+              }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
                 <span className="text-gray-200">Travel & AI</span>
