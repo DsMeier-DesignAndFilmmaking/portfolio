@@ -47,9 +47,8 @@ const project = {
   year: "UX & Web Design",
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   images: [
-    "/portfolio/images/havas-card.jpg",
-    "/portfolio/documents/Q2_ProgramFlowChart_08-20-15.pdf",
-    "/portfolio/documents/IFP_PhotoContestPages_funcSpec-070115 8.pdf"
+    "/portfolio/images/Q2_ProgramFlowChart_08-20-15.jpg",
+    "/portfolio/images/optimized/IFP_PhotoContestPages_funcSpec-0701158.jpg"
   ]
 };
 
