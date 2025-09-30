@@ -179,7 +179,7 @@ export default function IntelProjectPage() {
       {/* Stats Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-2xl">
             <StatCard icon={FaUsers} value={project.stats.concepts} label="Product Design Concepts" />
             <StatCard icon={FaChartLine} value={project.stats.participants} label="Research Participants" />
           </div>
