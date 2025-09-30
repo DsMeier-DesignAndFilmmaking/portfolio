@@ -11,8 +11,10 @@
 }
 
 html {
-  /* Removed smooth scroll behavior for better performance */
-  /* scroll-behavior: smooth; */
+  /* Enable smooth scrolling for better UX with navigation */
+  scroll-behavior: smooth;
+  /* Optimize scroll performance */
+  scroll-padding-top: 100px; /* Account for fixed navigation */
 }
 
 body {
@@ -39,10 +41,22 @@ body {
     will-change: scroll-position;
   }
   
+  /* Navigation scroll optimizations */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus styles for accessibility */
+  .nav-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
   /* Mobile scroll optimizations */
   @media (max-width: 768px) {
     html {
-      scroll-behavior: auto; /* Disable native smooth scroll on mobile for better control */
+      scroll-behavior: smooth; /* Keep smooth scroll on mobile for navigation */
+      scroll-padding-top: 80px; /* Account for mobile navigation */
     }
     
     body {

@@ -95,47 +95,38 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - totalOffset;
 
-      // Use a more reliable smooth scroll for mobile
-      if (isMobile) {
-        // For mobile, use a custom smooth scroll with better performance
-        const startPosition = window.scrollY;
-        const distance = offsetPosition - startPosition;
-        const duration = Math.min(Math.abs(distance) / 2, 800); // Max 800ms
-        let startTime: number | null = null;
+      // Enhanced smooth scroll with better performance and accessibility
+      const startPosition = window.scrollY;
+      const distance = offsetPosition - startPosition;
+      const duration = Math.min(Math.abs(distance) / 1.5, 1000); // Max 1000ms, faster scroll
+      let startTime: number | null = null;
 
-        const easeInOutCubic = (t: number): number => {
-          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-        };
+      // Improved easing function for smoother animation
+      const easeInOutCubic = (t: number): number => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
 
-        const animateScroll = (currentTime: number) => {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const progress = Math.min(timeElapsed / duration, 1);
-          const easedProgress = easeInOutCubic(progress);
-          
-          window.scrollTo(0, startPosition + distance * easedProgress);
-          
-          if (progress < 1) {
-            requestAnimationFrame(animateScroll);
-          } else {
-            // Animation complete
-            setIsScrolling(false);
-          }
-        };
-
-        requestAnimationFrame(animateScroll);
-      } else {
-        // Desktop uses native smooth scroll
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+      const animateScroll = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
         
-        // Reset scrolling state after a delay for desktop
-        setTimeout(() => {
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          // Animation complete
           setIsScrolling(false);
-        }, 500);
-      }
+          
+          // Focus the target element for accessibility
+          element.focus({ preventScroll: true });
+        }
+      };
+
+      // Use requestAnimationFrame for consistent performance
+      requestAnimationFrame(animateScroll);
     }
   };
 
@@ -150,22 +141,26 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="hidden md:block fixed right-6 top-1/2 -translate-y-1/2 z-40"
+        role="navigation"
+        aria-label="Page sections navigation"
       >
         <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 shadow-lg border border-gray-200/50">
-          <ul className="flex flex-col space-y-3">
+          <ul className="flex flex-col space-y-3" role="list">
             {sections.map((section, index) => (
-              <li key={section.id}>
+              <li key={section.id} role="listitem">
                 <button
                   onClick={() => scrollToSection(section.id)}
-                  className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${
+                  className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                     activeSection === section.id
                       ? 'bg-black text-white'
                       : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                   aria-label={`Go to ${section.label} section`}
+                  aria-current={activeSection === section.id ? 'true' : 'false'}
+                  tabIndex={0}
                 >
                   {/* Progress indicator */}
-                  <div className="absolute -left-8 w-6 h-px bg-gray-200">
+                  <div className="absolute -left-8 w-6 h-px bg-gray-200" aria-hidden="true">
                     <motion.div
                       className="h-full bg-black"
                       initial={{ width: 0 }}
@@ -177,12 +172,12 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
                   </div>
                   
                   {/* Section number */}
-                  <span className="text-xs font-medium">
+                  <span className="text-xs font-medium" aria-hidden="true">
                     {index + 1}
                   </span>
                   
                   {/* Tooltip */}
-                  <div className="absolute right-full mr-3 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+                  <div className="absolute right-full mr-3 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none" aria-hidden="true">
                     {section.label}
                   </div>
                 </button>
@@ -201,21 +196,25 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="md:hidden fixed top-20 left-0 right-0 z-40 px-6"
+        role="navigation"
+        aria-label="Page sections navigation"
       >
         <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50">
-          <ul className="flex justify-center space-x-2">
+          <ul className="flex justify-center space-x-2" role="list">
             {sections.map((section, index) => (
-              <li key={section.id}>
+              <li key={section.id} role="listitem">
                 <button
                   onClick={() => scrollToSection(section.id)}
-                  className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 ${
+                  className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                     activeSection === section.id
                       ? 'bg-black text-white'
                       : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                   aria-label={`Go to ${section.label} section`}
+                  aria-current={activeSection === section.id ? 'true' : 'false'}
+                  tabIndex={0}
                 >
-                  <span className="text-xs font-medium">
+                  <span className="text-xs font-medium" aria-hidden="true">
                     {index + 1}
                   </span>
                 </button>

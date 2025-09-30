@@ -123,10 +123,11 @@ export default function AISandboxPage() {
 
   // Define sections for the sticky progress nav
   const sections = [
-    { id: 'intro', label: 'Intro' },
-    { id: 'research', label: 'Research' },
-    { id: 'designs', label: 'Design + Dev' },
-    { id: 'outcomes', label: 'Outcomes' }
+    { id: 'problem-research', label: 'Problem / Research' },
+    { id: 'design-exploration', label: 'Design Exploration' },
+    { id: 'wireframes-ui', label: 'Wireframes & UI System' },
+    { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
+    { id: 'learnings-next', label: 'Learnings & Next Steps' }
   ];
 
   return (
@@ -258,7 +259,7 @@ export default function AISandboxPage() {
       <StickyProgressNav sections={sections} />
 
       {/* Hero Section */}
-      <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
+      <section id="problem-research" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
         {/* Hero Video Background */}
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Loading Overlay */}
@@ -411,7 +412,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Problem & Opportunity Section */}
-      <section id="research" className="py-20 bg-gray-50">
+      <section id="design-exploration" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1369,7 +1370,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Design Process Section */}
-      <section id="designs" className="py-20 bg-[#0a0a0a]">
+      <section id="wireframes-ui" className="py-20 bg-[#0a0a0a]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1450,7 +1451,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Development & Build Section */}
-      <section id="designs-development" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+      <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1621,7 +1622,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Outcome & Learnings Section */}
-      <section id="outcomes" className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
+      <section id="learnings-next" className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
