@@ -67,8 +67,9 @@ const project = {
   overview: "Develop enterprise software solutions",
   images: [
     "/portfolio/images/chairliftAllScreens.png",
-    "/portfolio/images/CHAIRLIFTdatamap.jpg",
-    "/portfolio/images/2_OKR_CheckInUserFlow_03-14-16.jpg"
+    "/portfolio/images/optimized/CHAIRLIFTdatamap.jpg",
+    "/portfolio/images/optimized/2_OKR_CheckInUserFlow_03-14-16.jpg",
+    "/portfolio/images/optimized/MeDashboard-EmployeeView-WithUpdates.jpg"
   ]
 };
 
@@ -178,12 +179,12 @@ export default function SphereSoftwareProjectPage() {
         <div className="container mx-auto px-6">
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+              <div key={index} className={`relative ${index === 3 ? 'w-full max-w-sm mx-auto' : 'w-full'} ${index === 3 ? 'aspect-[9/19.5]' : 'aspect-[16/10]'} rounded-lg overflow-hidden`}>
                 <Image
                   src={image}
                   alt={`${project.title} - Image ${index + 1}`}
                   fill
-                  className="object-cover object-top"
+                  className={`${index === 3 ? 'object-cover object-center' : 'object-cover object-top'}`}
                 />
               </div>
             ))}
