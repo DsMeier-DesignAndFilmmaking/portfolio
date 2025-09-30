@@ -1517,10 +1517,10 @@ export default function AISandboxPage() {
             >
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold mb-4 text-white">
-                  Travel App UX Pilot
+                  Iterating with AI
                 </h3>
                 <p className="text-gray-300 max-w-2xl mx-auto">
-                  Figma design exploration and user experience prototyping
+                  Design exploration and wireframing in Figma & UX Pilot
                 </p>
               </div>
               
