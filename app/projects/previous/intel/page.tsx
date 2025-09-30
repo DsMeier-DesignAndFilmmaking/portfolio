@@ -65,9 +65,8 @@ const project = {
   heroImage: "/portfolio/images/heroGraphic.jpg",
   year: "Market Research",
   stats: {
-    users: "75k+",
-    countries: "8",
-    impact: "88%"
+    concepts: "7",
+    participants: "10"
   },
   overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
   images: [
@@ -180,10 +179,9 @@ export default function IntelProjectPage() {
       {/* Stats Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <StatCard icon={FaUsers} value={project.stats.concepts} label="Product Design Concepts" />
+            <StatCard icon={FaChartLine} value={project.stats.participants} label="Research Participants" />
           </div>
         </div>
       </section>

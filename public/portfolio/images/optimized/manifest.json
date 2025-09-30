@@ -1,0 +1,21 @@
+{
+  "generated": "2025-09-30T18:25:58.478Z",
+  "totalImages": 0,
+  "formats": [
+    "jpg",
+    "webp",
+    "avif"
+  ],
+  "breakpoints": [
+    640,
+    768,
+    1024,
+    1280,
+    1920
+  ],
+  "quality": {
+    "jpeg": 85,
+    "webp": 80,
+    "avif": 75
+  }
+}

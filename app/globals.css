@@ -52,6 +52,32 @@ body {
     outline-offset: 2px;
   }
   
+  /* Image loading animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Image optimization utilities */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-fade-in {
+    transition: opacity 0.4s ease-out;
+  }
+
+  .image-loading {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
   /* Mobile scroll optimizations */
   @media (max-width: 768px) {
     html {

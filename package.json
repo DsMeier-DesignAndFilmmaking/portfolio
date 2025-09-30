@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "optimize-images": "node scripts/optimize-images.js",
+    "optimize-mcdonalds": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.97.0",
