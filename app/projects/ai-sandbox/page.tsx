@@ -1730,7 +1730,7 @@ export default function AISandboxPage() {
                 Outcome & Learnings
               </h2>
               <p className="text-gray-300 text-lg">
-                Honest reflection on achievements and growth opportunities
+                Coming Soon
               </p>
             </div>
             
@@ -1747,7 +1747,7 @@ export default function AISandboxPage() {
             </div>
             
             <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-              <h3 className="text-xl font-semibold mb-4 text-white">Next Steps</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Road Map and Next Steps</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <h4 className="text-lg font-medium text-amber-400 mb-2">Phase 2</h4>
