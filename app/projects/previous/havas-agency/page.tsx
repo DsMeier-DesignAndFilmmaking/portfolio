@@ -45,16 +45,11 @@ const project = {
   description: "UX and web design work for Havas Agency, focusing on creating engaging digital experiences.",
   heroImage: "/portfolio/images/havas-card.jpg",
   year: "UX & Web Design",
-  stats: {
-    users: "25k+",
-    countries: "3",
-    impact: "84%"
-  },
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   images: [
     "/portfolio/images/havas-card.jpg",
-    "/portfolio/images/havas-card.jpg",
-    "/portfolio/images/havas-card.jpg"
+    "/portfolio/documents/Q2_ProgramFlowChart_08-20-15.pdf",
+    "/portfolio/documents/IFP_PhotoContestPages_funcSpec-070115 8.pdf"
   ]
 };
 
@@ -158,29 +153,52 @@ export default function HavasAgencyProjectPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-          </div>
-        </div>
-      </section>
 
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover object-top"
-                />
+              <div key={index}>
+                {image.endsWith('.pdf') ? (
+                  // PDF Document Link
+                  <a 
+                    href={image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-8 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className="w-16 h-16 bg-red-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-2">
+                          {index === 1 ? "Q2 Program Flow Chart" : "IFP Photo Contest Functional Spec"}
+                        </h3>
+                        <p className="text-gray-400">
+                          {index === 1 ? "Program flow documentation and process charts from August 2015" : "Photo contest functional specifications and requirements documentation"}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-1">PDF Document</p>
+                      </div>
+                    </div>
+                    <svg className="w-6 h-6 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                ) : (
+                  // Image Display
+                  <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={`${project.title} - Image ${index + 1}`}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
