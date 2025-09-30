@@ -183,7 +183,7 @@ export default function HealthcareProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Client Facing Projects" />
+            <StatCard icon={FaUsers} value={project.stats.users} label="Patient and Client Facing Projects" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Avg. Increase in Patient Engagement" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Design Components Updated or Created" />
           </div>
