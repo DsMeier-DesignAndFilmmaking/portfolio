@@ -1507,6 +1507,40 @@ export default function AISandboxPage() {
                 </div>
               </div>
             </motion.div>
+            
+            {/* Travel App Figma UX Pilot */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-16"
+            >
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-semibold mb-4 text-white">
+                  Travel App UX Pilot
+                </h3>
+                <p className="text-gray-300 max-w-2xl mx-auto">
+                  Figma design exploration and user experience prototyping
+                </p>
+              </div>
+              
+              <div className="relative max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/portfolio/images/optimized/TravelApp_FIgma-UXPilot_1.webp"
+                    alt="Travel App Figma UX Pilot - Design exploration and user experience prototyping interface"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                    quality={85}
+                  />
+                  
+                  {/* Image overlay for better UX */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

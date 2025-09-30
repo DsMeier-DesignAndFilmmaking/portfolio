@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "optimize-images": "node scripts/optimize-images.js",
-    "optimize-mcdonalds": "node scripts/optimize-images.js"
+    "optimize-mcdonalds": "node scripts/optimize-images.js",
+    "optimize-single": "node scripts/optimize-single-image.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.97.0",
