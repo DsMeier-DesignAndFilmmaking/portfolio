@@ -176,8 +176,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
             onError={handleError}
             // Next.js 13+ optimization props
             unoptimized={false}
-            // Enable WebP/AVIF formats
-            format="webp"
           />
         </motion.div>
       )}
