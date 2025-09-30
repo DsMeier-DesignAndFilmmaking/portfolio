@@ -123,8 +123,8 @@ export default function AISandboxPage() {
 
   // Define sections for the sticky progress nav
   const sections = [
-    { id: 'problem-research', label: 'Problem / Research' },
-    { id: 'design-exploration', label: 'Design Exploration' },
+    { id: 'design-exploration', label: 'Problem / Research' },
+    { id: 'designs-strategy', label: 'Concept & Strategy' },
     { id: 'wireframes-ui', label: 'Wireframes & UI System' },
     { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
     { id: 'learnings-next', label: 'Learnings & Next Steps' }
@@ -259,7 +259,7 @@ export default function AISandboxPage() {
       <StickyProgressNav sections={sections} />
 
       {/* Hero Section */}
-      <section id="problem-research" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
+      <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
         {/* Hero Video Background */}
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Loading Overlay */}
