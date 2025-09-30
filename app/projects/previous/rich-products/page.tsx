@@ -45,11 +45,6 @@ const project = {
   description: "Information architecture and web design work for Rich Products, focusing on improving user navigation and content organization.",
   heroImage: "/portfolio/images/richProducts-card.jpg",
   year: "IA & Web Design",
-  stats: {
-    users: "35k+",
-    countries: "5",
-    impact: "88%"
-  },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   images: [
     "/portfolio/images/FarmRich_wireSpecs_02-07-2011.png",
@@ -157,16 +152,6 @@ export default function RichProductsProjectPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-          </div>
-        </div>
-      </section>
 
       {/* Project Images Section */}
       <section className="py-20 bg-black">
