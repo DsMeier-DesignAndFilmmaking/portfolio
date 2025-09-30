@@ -66,9 +66,9 @@ const project = {
   year: "Software Startup",
   overview: "Develop enterprise software solutions",
   images: [
-    "/portfolio/images/sphere-home-page-scaled.jpg",
-    "/portfolio/images/timbertech-figma-components.jpg",
-    "/portfolio/images/sphere-home-page-scaled.jpg"
+    "/portfolio/images/chairliftAllScreens.png",
+    "/portfolio/images/CHAIRLIFTdatamap.jpg",
+    "/portfolio/images/2_OKR_CheckInUserFlow_03-14-16.jpg"
   ]
 };
 
