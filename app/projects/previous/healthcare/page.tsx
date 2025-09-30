@@ -173,7 +173,7 @@ export default function HealthcareProjectPage() {
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
-              <p>Improve accessibility and UX across multiple healthcare platforms</p>
+              <p>Improve accessibility and UX across multiple healthcare websites and platforms</p>
             </div>
           </div>
         </div>
