@@ -406,7 +406,7 @@ export default function AISandboxPage() {
               }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-                <span className="text-gray-200">Travel & AI</span>
+                <span className="text-gray-200">Travel App & AI Case Study</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
@@ -1538,6 +1538,128 @@ export default function AISandboxPage() {
                   
                   {/* Image overlay for better UX */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Mobile Design Mockups */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-16"
+            >
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-semibold mb-4 text-white">
+                  Mobile Design Exploration
+                </h3>
+                <p className="text-gray-300 max-w-2xl mx-auto">
+                  Wireframes and high-fidelity mockups for mobile experience
+                </p>
+              </div>
+              
+              {/* Wireframes Row */}
+              <div className="mb-12">
+                <h4 className="text-lg font-medium text-gray-300 mb-6 text-center">Wireframes</h4>
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png"
+                        alt="Travel App wireframe - homescreen design exploration"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png"
+                        alt="Travel App wireframe - homescreen layout iteration"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png"
+                        alt="Travel App wireframe - homescreen user flow"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png"
+                        alt="Travel App wireframe - homescreen interaction design"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png"
+                        alt="Travel App wireframe - homescreen final concept"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* High-Fidelity Mockups Row */}
+              <div>
+                <h4 className="text-lg font-medium text-gray-300 mb-6 text-center">High-Fidelity Mockups</h4>
+                <div className="flex justify-center gap-8 flex-wrap">
+                  <div className="w-64 md:w-72">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
+                      <Image
+                        src="/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png"
+                        alt="Travel App high-fidelity mockup - recommendation screen design"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 256px, 288px"
+                        priority={false}
+                        quality={90}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-64 md:w-72">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
+                      <Image
+                        src="/portfolio/images/HomeScreen-UX-Pilot-Recco.png"
+                        alt="Travel App high-fidelity mockup - homescreen recommendation interface"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 256px, 288px"
+                        priority={false}
+                        quality={90}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
