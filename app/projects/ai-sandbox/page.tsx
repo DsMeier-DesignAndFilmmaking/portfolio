@@ -151,7 +151,7 @@ export default function AISandboxPage() {
 
   // Define sections for the sticky progress nav
   const sections = [
-    { id: 'design-exploration', label: 'Problem / Research' },
+    { id: 'design-exploration', label: 'Problems / Opportunities / Research' },
     { id: 'designs-strategy', label: 'Concept & Strategy' },
     { id: 'wireframes-ui', label: 'Designing + Building with AI' },
     { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
