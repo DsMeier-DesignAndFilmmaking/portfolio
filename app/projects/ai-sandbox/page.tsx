@@ -153,7 +153,7 @@ export default function AISandboxPage() {
   const sections = [
     { id: 'design-exploration', label: 'Problem / Research' },
     { id: 'designs-strategy', label: 'Concept & Strategy' },
-    { id: 'wireframes-ui', label: 'Wireframes & UI System' },
+    { id: 'wireframes-ui', label: 'Designing + Building with AI' },
     { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
     { id: 'learnings-next', label: 'Learnings & Next Steps' }
   ];
