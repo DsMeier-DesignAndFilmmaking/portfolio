@@ -1674,6 +1674,93 @@ export default function AISandboxPage() {
               </p>
             </div>
             
+            {/* AI Workflow Process Diagram */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-16"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                  {/* ChatGPT Step */}
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white group-hover:text-green-300 transition-colors">ChatGPT</h3>
+                          <p className="text-sm text-gray-300">Writing Prompts</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <div className="hidden md:flex items-center justify-center">
+                      <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Cursor Step */}
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">Cursor</h3>
+                          <p className="text-sm text-gray-300">AI-assisted Code</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <div className="hidden md:flex items-center justify-center">
+                      <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Xcode Step */}
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">Xcode</h3>
+                          <p className="text-sm text-gray-300">Real iOS Build</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Mobile Arrows */}
+                <div className="flex md:hidden items-center justify-center gap-4 mt-4">
+                  <svg className="w-5 h-5 text-gray-400 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  <svg className="w-5 h-5 text-gray-400 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
               <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
                 <h3 className="text-xl font-semibold mb-4 text-white">Tech Stack</h3>
