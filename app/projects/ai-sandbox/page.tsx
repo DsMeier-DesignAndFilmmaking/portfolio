@@ -1441,7 +1441,7 @@ export default function AISandboxPage() {
           >
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-6 text-white">
-                Design Process
+                Design Evolution
               </h2>
               <p className="text-gray-300 text-lg">
                 I design to support spontaneity—prioritizing action over planning, with UX that's targeted, valuable, and ready to go.
