@@ -1549,18 +1549,8 @@ export default function AISandboxPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-16"
             >
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold mb-4 text-white">
-                  Mobile Design Exploration
-                </h3>
-                <p className="text-gray-300 max-w-2xl mx-auto">
-                  Wireframes and high-fidelity mockups for mobile experience
-                </p>
-              </div>
-              
               {/* Wireframes Row */}
               <div className="mb-12">
-                <h4 className="text-lg font-medium text-gray-300 mb-6 text-center">Wireframes</h4>
                 <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
                   <div className="flex-shrink-0 w-48">
                     <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
@@ -1632,7 +1622,6 @@ export default function AISandboxPage() {
               
               {/* High-Fidelity Mockups Row */}
               <div>
-                <h4 className="text-lg font-medium text-gray-300 mb-6 text-center">High-Fidelity Mockups</h4>
                 <div className="flex justify-center gap-8 flex-wrap">
                   <div className="w-64 md:w-72">
                     <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
@@ -1839,7 +1828,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Outcome & Learnings Section */}
-      <section id="learnings-next" className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
+      <section id="learnings-next" className="py-20 bg-gray-100">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1848,40 +1837,40 @@ export default function AISandboxPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6 text-white">
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">
                 Outcome & Learnings
               </h2>
-              <p className="text-gray-300 text-lg">
+              <p className="text-gray-600 text-lg">
                 Coming Soon
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4 text-white">Metrics & Impact</h3>
-                <p className="text-gray-300">TBD</p>
+              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Metrics & Impact</h3>
+                <p className="text-gray-600">TBD</p>
               </div>
               
-              <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4 text-white">Key Learnings</h3>
-                <p className="text-gray-300">TBD</p>
+              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                <p className="text-gray-600">TBD</p>
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-              <h3 className="text-xl font-semibold mb-4 text-white">Road Map and Next Steps</h3>
+            <div className="bg-white/90 p-8 rounded-xl shadow-lg border border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Road Map and Next Steps</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="text-lg font-medium text-amber-400 mb-2">Phase 2</h4>
-                  <p className="text-gray-300">Advanced AI features and machine learning optimization</p>
+                  <h4 className="text-lg font-medium text-amber-600 mb-2">Phase 2</h4>
+                  <p className="text-gray-600">Advanced AI features and machine learning optimization</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-emerald-400 mb-2">Phase 3</h4>
-                  <p className="text-gray-300">Social platform expansion and community features</p>
+                  <h4 className="text-lg font-medium text-emerald-600 mb-2">Phase 3</h4>
+                  <p className="text-gray-600">Social platform expansion and community features</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-cyan-400 mb-2">Phase 4</h4>
-                  <p className="text-gray-300">Enterprise partnerships and B2B solutions</p>
+                  <h4 className="text-lg font-medium text-cyan-600 mb-2">Phase 4</h4>
+                  <p className="text-gray-600">Enterprise partnerships and B2B solutions</p>
                 </div>
               </div>
             </div>
