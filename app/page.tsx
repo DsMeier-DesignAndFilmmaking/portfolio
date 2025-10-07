@@ -91,7 +91,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="absolute inset-0 bg-cover bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-no-repeat hidden"
             style={{ 
               backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.webp)',
               backgroundPosition: 'center',
@@ -153,9 +153,7 @@ export default function HomePage() {
                     className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
                     style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal' }}
                   >
-                    <span className="text-gray-900">Global Perspective Meets</span>
-                    
-                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI-Driven Experience Design</span>
+                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
@@ -167,9 +165,7 @@ export default function HomePage() {
                       maxWidth: 'var(--mobile-hero-width, 100%)' 
                     }}
                   >
-                    <span className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Global Perspective Meets</span>
-                    <br />
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">AI-Driven Experience Design</span>
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Welcome</span>
                   </h1>
                 </div>
                 <div>
