@@ -135,8 +135,8 @@ export default function HomePage() {
                   </h1>
                 </div>
                 <div>
-                  <p className="font-sf-pro-text text-base sm:text-lg md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
-                  I'm Dan Meier, Designer & Creative Technologist. I split my time between leading digital projects at Purdue University and designing AI-driven concepts that bring spontaneity and authenticity back to travel experiences.
+                  <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
+                  I'm Dan Meier, Designer & Creative Technologist. Currently I split my time between leading digital projects at Purdue University and developing AI-driven concepts that bring spontaneity and authenticity back to travel experiences.
                   </p>
                 </div>
               </motion.div>
