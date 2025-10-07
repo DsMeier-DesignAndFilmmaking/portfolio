@@ -24,6 +24,7 @@ const AITravelScene = () => (
 
 export default function HomePage() {
   const videoRef = useRef<HTMLIFrameElement>(null);
+  const mobileHeroRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,6 +50,32 @@ export default function HomePage() {
       if (videoRef.current) {
         observer.unobserve(videoRef.current);
       }
+    };
+  }, []);
+
+  // Auto-measure mobile hero line break and apply to desktop
+  useEffect(() => {
+    const measureHeroWidth = () => {
+      if (!mobileHeroRef.current) return;
+      
+      const hero = mobileHeroRef.current;
+      const computedStyle = window.getComputedStyle(hero);
+      const lineHeight = parseFloat(computedStyle.lineHeight);
+      const height = hero.offsetHeight;
+      const lines = Math.round(height / lineHeight);
+      
+      if (lines > 1) {
+        const mobileWidth = hero.offsetWidth + 'px';
+        document.documentElement.style.setProperty('--mobile-hero-width', mobileWidth);
+      }
+    };
+
+    // Measure on mount and window resize
+    measureHeroWidth();
+    window.addEventListener('resize', measureHeroWidth);
+    
+    return () => {
+      window.removeEventListener('resize', measureHeroWidth);
     };
   }, []);
 
@@ -121,14 +148,25 @@ export default function HomePage() {
               >
                 <div className="mb-4 md:mb-8">
                   {/* Mobile Version - Simplified */}
-                  <h1 className="md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)' }}>
+                  <h1 
+                    ref={mobileHeroRef}
+                    className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
+                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal' }}
+                  >
                     <span className="text-gray-900">Global Perspective Meets</span>
                     <br />
                     <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI-Driven Experience Design</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
-                  <h1 className="hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight w-full text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)' }}>
+                  <h1 
+                    className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
+                    style={{ 
+                      fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
+                      whiteSpace: 'normal',
+                      maxWidth: 'var(--mobile-hero-width, 100%)' 
+                    }}
+                  >
                     <span className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Global Perspective Meets</span>
                     <br />
                     <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">AI-Driven Experience Design</span>
