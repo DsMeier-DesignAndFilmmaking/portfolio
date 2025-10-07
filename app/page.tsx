@@ -154,7 +154,7 @@ export default function HomePage() {
                     style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal' }}
                   >
                     <span className="text-gray-900">Global Perspective Meets</span>
-                    <br />
+                    
                     <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI-Driven Experience Design</span>
                   </h1>
                   
