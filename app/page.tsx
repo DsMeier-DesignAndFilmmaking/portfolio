@@ -121,24 +121,22 @@ export default function HomePage() {
               >
                 <div className="mb-4 md:mb-8">
                   {/* Mobile Version - Simplified */}
-                  <h1 className="md:hidden font-sf-pro-display text-3xl sm:text-4xl font-bold leading-[1.05] tracking-tight w-full text-left">
-                    <span className="text-gray-900">Global Perspective</span>
-                    <span className="mx-2 text-gray-900">Meets</span>
+                  <h1 className="md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)' }}>
+                    <span className="text-gray-900">Global Perspective Meets</span>
                     <br />
-                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI Experience Design</span>
+                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">AI-Driven Experience Design</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
-                  <h1 className="hidden md:block font-sf-pro-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight w-full text-left">
-                    <span className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Global Perspective</span>
-                    <span className="mx-2 text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Meets</span>
+                  <h1 className="hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight w-full text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)' }}>
+                    <span className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Global Perspective Meets</span>
                     <br />
                     <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">AI-Driven Experience Design</span>
                   </h1>
                 </div>
                 <div>
                   <p className="font-sf-pro-text text-base sm:text-lg md:text-lg text-gray-900 leading-6 md:leading-7 space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
-                  <strong>Hi - I'm Dan</strong>, a systems-thinking Designer & Creative Technologist with 11+ years of experience and a global perspective shaped by experiences in 41 countries. I’m currently exploring how AI can enhance design and digital experiences.
+                  I'm Dan Meier, Designer & Creative Technologist. I split my time between leading digital projects at Purdue University and designing AI-driven concepts that bring spontaneity and authenticity back to travel experiences.
                   </p>
                 </div>
               </motion.div>
