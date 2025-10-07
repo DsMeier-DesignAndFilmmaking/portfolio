@@ -139,12 +139,12 @@ export default function HomePage() {
           
           {/* Text Overlay */}
           <div className="absolute inset-x-0 bottom-0 flex items-end pb-12 md:pb-24">
-            <div className="w-full md:max-w-7xl md:mx-auto px-6">
+            <div className="max-w-4xl mx-auto px-6 w-full">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="w-full md:max-w-[45vw] text-left"
+                className="w-full text-left"
               >
                 <div className="mb-4 md:mb-8">
                   {/* Mobile Version - Simplified */}
