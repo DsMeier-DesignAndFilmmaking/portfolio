@@ -213,7 +213,7 @@ export default function HomePage() {
         />
 
         <ParallaxSection
-          title="I'm passionate about bringing real value—whether to people, companies, or causes."
+          title="I care about designing things that make a real difference for people, organizations, and the world around us."
           description=""
           modelPath="torus"
           className="bg-transparent"
