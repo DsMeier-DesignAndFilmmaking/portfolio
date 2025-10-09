@@ -17,7 +17,7 @@ const AITravelScene = () => (
     <div className="text-center">
       <div className="text-6xl mb-4">🌍</div>
       <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
-      <p className="text-gray-600">3D visualization coming soon</p>
+      <p className="text-gray-600" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>3D visualization coming soon</p>
     </div>
   </div>
 );
@@ -85,58 +85,7 @@ export default function HomePage() {
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center" aria-label="Hero">
-          {/* Background Image with Enhanced Contrast */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="absolute inset-0 bg-cover bg-no-repeat hidden"
-            style={{ 
-              backgroundImage: 'url(/portfolio/images/me_heroImage-1_1.1.1.webp)',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              filter: 'contrast(1.15) saturate(0.3)'
-            }}
-          />
-          
-          {/* Professional Portrait Spotlight Effect */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(ellipse 800px 600px at 60% 45%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.03) 60%, transparent 80%)',
-              mixBlendMode: 'soft-light'
-            }}
-          />
-          
-          {/* Additional Contrast Enhancement */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%)',
-              mixBlendMode: 'multiply'
-            }}
-          />
-          
-          {/* Enhanced Gradient Overlay for Accessibility */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute inset-0"
-          >
-            {/* Stronger radial gradient for better text contrast */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/85" />
-            {/* Enhanced bottom gradient for better text readability */}
-            <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 via-white/20 to-transparent" />
-          </motion.div>
-          
+        <section className="relative h-screen flex items-center bg-white" aria-label="Hero">
           {/* Text Overlay */}
           <div className="absolute inset-x-0 bottom-0 flex items-end pb-12 md:pb-24">
             <div className="max-w-4xl mx-auto px-6 w-full">
@@ -151,7 +100,7 @@ export default function HomePage() {
                   <h1 
                     ref={mobileHeroRef}
                     className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal' }}
+                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif" }}
                   >
                     <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
                   </h1>
@@ -162,14 +111,15 @@ export default function HomePage() {
                     style={{ 
                       fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
                       whiteSpace: 'normal',
-                      maxWidth: 'var(--mobile-hero-width, 100%)' 
+                      maxWidth: 'var(--mobile-hero-width, 100%)',
+                      fontFamily: "'tiempos-headline-regular', serif"
                     }}
                   >
                     <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Welcome</span>
                   </h1>
                 </div>
                 <div>
-                  <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left">
+                  <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   I'm Dan Meier, Designer & Creative Technologist. Currently I split my time between leading digital projects at Purdue University and developing AI-driven concepts that bring spontaneity and authenticity back to travel experiences.
                   </p>
                 </div>
@@ -197,7 +147,7 @@ export default function HomePage() {
                   <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
                 </div>
                 
-                <p className="text-xl md:text-2xl leading-relaxed">
+                <p className="text-xl md:text-2xl leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
                 </p>
                 
@@ -216,7 +166,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 
-                <p className="text-xl md:text-2xl leading-relaxed">
+                <p className="text-xl md:text-2xl leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                 </p>
               </div>
@@ -291,13 +241,14 @@ export default function HomePage() {
                   In Development
                 </div>
                 <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
-                  fontFamily: '"Playfair Display", serif',
+                  fontFamily: "'tiempos-headline-regular', serif",
                   color: '#FFD700'
                 }}>
                   World Travel Diaries
                 </h2>
                 <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
-                  fontFamily: '"Montserrat", sans-serif',
+                  fontFamily: "'Roboto', Helvetica, sans-serif",
+                  fontSize: '1.1rem',
                   color: '#9899ab'
                 }}>
                   I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
@@ -340,12 +291,12 @@ export default function HomePage() {
                               <h3 className="text-2xl md:text-3xl font-bold text-white">
                                Travel Photo Journal
                              </h3>
-                            <p className="text-gray-200 font-semibold">Interactive Travel Stories</p>
+                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>Interactive Travel Stories</p>
                           </div>
                         </div>
                         
                         <div className="space-y-4 mb-6">
-                          <p className="text-gray-200 text-lg leading-relaxed">
+                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                             A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
                           </p>
                           <div className="flex flex-wrap gap-2">
