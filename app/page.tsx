@@ -14,7 +14,7 @@ import Link from 'next/link';
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-    <div className="text-center" style={{ maxWidth: '576px' }}>
+    <div className="text-center" style={{ maxWidth: '576px', margin: '0 auto' }}>
       <div className="text-6xl mb-4">🌍</div>
       <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
       <p className="text-gray-600" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>3D visualization coming soon</p>
@@ -118,7 +118,7 @@ export default function HomePage() {
                     <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Welcome</span>
                   </h1>
                 </div>
-                <div style={{ maxWidth: '576px' }}>
+                <div style={{ maxWidth: '576px', margin: '0 auto' }}>
                   <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   I'm Dan Meier, Designer & Creative Technologist. Currently I split my time between leading digital projects at Purdue University and developing AI-driven concepts that bring spontaneity and authenticity back to travel experiences.
                   </p>
@@ -139,7 +139,7 @@ export default function HomePage() {
               viewport={{ once: false, amount: 0.1, margin: "-50px 0px -50px 0px" }}
               className="prose prose-lg max-w-none"
             >
-              <div className="space-y-8 text-gray-700 leading-relaxed" style={{ maxWidth: '576px' }}>
+              <div className="space-y-8 text-gray-700 leading-relaxed" style={{ maxWidth: '576px', margin: '0 auto' }}>
                 {/* Design Journey Path Marker */}
                 <div className="flex items-center gap-3 mb-6 opacity-60">
                   <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
@@ -287,7 +287,7 @@ export default function HomePage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                           </div>
-                          <div style={{ maxWidth: '576px' }}>
+                          <div style={{ maxWidth: '576px', margin: '0 auto' }}>
                               <h3 className="text-2xl md:text-3xl font-bold text-white">
                                Travel Photo Journal
                              </h3>
@@ -295,7 +295,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         
-                        <div className="space-y-4 mb-6" style={{ maxWidth: '576px' }}>
+                        <div className="space-y-4 mb-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
                           <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                             A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
                           </p>

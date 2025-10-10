@@ -187,7 +187,7 @@ const Navbar = () => {
         isScrolling && !isScrollingToAnchor ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
       }`}
     >
-      <div className="max-w-4xl mx-auto px-6 bg-black text-white rounded-xl">
+      <div className="max-w-4xl mx-auto px-6 bg-white text-black rounded-xl">
         <div className="flex justify-between items-center">
           {/* Left side navigation */}
           <div className="py-4">
@@ -204,7 +204,7 @@ const Navbar = () => {
                 alt="Daniel Meier"
                 width={150}
                 height={37}
-                className="h-9 w-auto transition-all duration-200 brightness-0 invert"
+                className="h-9 w-auto transition-all duration-200"
               />
             </button>
           </div>
@@ -212,7 +212,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
+            className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-black"
             aria-label="Toggle mobile menu"
           >
             <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -228,28 +228,28 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
               >
                 Digital Design
               </a>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
               >
                 Video
               </a>
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
               >
                 Travelogue
               </a>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className="hidden text-[12pt] text-white hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                className="hidden text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
               >
                 Wayfinder Diaries
               </a>
