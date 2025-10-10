@@ -95,7 +95,7 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="w-full text-left"
               >
-                <div className="mb-4 md:mb-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
                   {/* Mobile Version - Simplified */}
                   <h1 
                     ref={mobileHeroRef}
