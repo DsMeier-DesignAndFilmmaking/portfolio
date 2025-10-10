@@ -87,15 +87,14 @@ export default function HomePage() {
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
-          <div className="relative h-screen flex items-center">
-            <div className="absolute inset-x-0 bottom-0 flex items-end pb-18 md:pb-22">
-              <div className="max-w-4xl mx-auto px-6 w-full">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="w-full text-left"
-                >
+          <div className="relative h-screen flex items-center justify-center">
+            <div className="max-w-4xl mx-auto px-6 w-full">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="w-full text-left"
+              >
                   <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     {/* Mobile Version - Simplified */}
                     <h1 
@@ -126,7 +125,6 @@ export default function HomePage() {
                     </p>
                   </div>
                 </motion.div>
-              </div>
             </div>
           </div>
 
