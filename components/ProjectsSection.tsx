@@ -55,10 +55,10 @@ export default function ProjectsSection() {
         >
           <div className="mb-16">
             <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
-              Select Design Work
+              Select Work and Projects
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
-              A selection of my recent work in design and development.
+              A collection of selected projects across design and development.
             </p>
           </div>
         </FadeInSection>
