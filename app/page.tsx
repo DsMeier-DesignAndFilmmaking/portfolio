@@ -88,7 +88,7 @@ export default function HomePage() {
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
           <div className="relative h-screen flex items-center">
-            <div className="absolute inset-x-0 bottom-0 flex items-end pb-8 md:pb-12">
+            <div className="absolute inset-x-0 bottom-0 flex items-end pb-18 md:pb-22">
               <div className="max-w-4xl mx-auto px-6 w-full">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
