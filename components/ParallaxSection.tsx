@@ -47,8 +47,8 @@ export default function ParallaxSection({
           </div>
         </div>
         <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
-          <div className="text-center max-w-4xl mx-auto px-6 bg-transparent">
-            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black">
+          <div className="text-center max-w-4xl mx-auto px-6 bg-transparent" style={{ maxWidth: '576px' }}>
+            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               {title}
             </h2>
             {description && (
@@ -87,8 +87,9 @@ export default function ParallaxSection({
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto px-6 bg-transparent"
+          style={{ maxWidth: '576px' }}
         >
-          <h2 className={`mb-4 text-4xl font-bold md:text-6xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`}>
+          <h2 className={`mb-4 text-4xl font-bold md:text-6xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`} style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
             {title}
           </h2>
           {description && (
