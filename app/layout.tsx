@@ -35,9 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/x-icon" href="/portfolio/favicon.ico" />
-        <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png" />
+        <link rel="icon" type="image/x-icon" href="/portfolio/favicon.ico?v=2" />
+        <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png?v=2" />
       </head>
       <body className={inter.className}>
         <NavigationWrapper />
