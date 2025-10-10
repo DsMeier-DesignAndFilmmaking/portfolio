@@ -100,7 +100,7 @@ export default function HomePage() {
                   <h1 
                     ref={mobileHeroRef}
                     className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif" }}
+                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.1 * 1.5rem)' }}
                   >
                     <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
                   </h1>
@@ -112,7 +112,8 @@ export default function HomePage() {
                       fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
                       whiteSpace: 'normal',
                       maxWidth: 'var(--mobile-hero-width, 100%)',
-                      fontFamily: "'tiempos-headline-regular', serif"
+                      fontFamily: "'tiempos-headline-regular', serif",
+                      marginBottom: 'calc(1.1 * 1.5rem)'
                     }}
                   >
                     <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Welcome</span>
