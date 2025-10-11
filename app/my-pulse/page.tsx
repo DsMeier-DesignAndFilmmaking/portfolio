@@ -69,16 +69,9 @@ export default function MyPulsePage() {
   const [notionData, setNotionData] = useState<any>(null);
   const [currentFocus, setCurrentFocus] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [atTop, setAtTop] = useState(true);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
 
   const handleBackHome = () => {
     router.push('/');
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
@@ -105,57 +98,31 @@ export default function MyPulsePage() {
     loadData();
   }, []);
 
-  // Scroll tracking
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setAtTop(currentScrollY === 0);
-      
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection('down');
-      } else {
-        setScrollDirection('up');
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   if (loading) {
     return (
       <div className="min-h-screen bg-black text-white">
         {/* Show navbar immediately even during loading */}
-        <motion.nav 
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          className="fixed top-0 left-0 right-0 z-50 bg-black"
-        >
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="flex justify-between items-center">
-              <div className="py-4 flex items-center gap-4">
-                <button
-                  onClick={handleBackHome}
-                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                  aria-label="Return to home page"
-                >
-                  <Image
-                    src="/portfolio/images/signature-25.png"
-                    alt="Daniel Meier"
-                    width={150}
-                    height={37}
-                    className="h-9 w-auto brightness-0 invert"
-                  />
-                </button>
-                <div className="h-6 w-px bg-white/30"></div>
-                <span className="text-white/70 text-sm font-medium">My Pulse</span>
-              </div>
+            <div className="py-4 flex items-center gap-4">
+              <button
+                onClick={handleBackHome}
+                className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                aria-label="Return to home page"
+              >
+                <Image
+                  src="/portfolio/images/signature-25.png"
+                  alt="Daniel Meier"
+                  width={150}
+                  height={37}
+                  className="h-9 w-auto brightness-0 invert"
+                />
+              </button>
+              <div className="h-6 w-px bg-white/30"></div>
+              <span className="text-white/70 text-sm font-medium">My Pulse</span>
             </div>
           </div>
-        </motion.nav>
+        </nav>
         
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-white text-lg">Loading pulse data...</div>
@@ -166,14 +133,8 @@ export default function MyPulsePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top Navigation - Matching Purdue Style */}
-      <motion.nav 
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
-        className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
-          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
-        }`}
-      >
+      {/* Top Navigation - Simplified (Logo + Label Only) */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center">
             {/* Back Home Button */}
@@ -194,83 +155,9 @@ export default function MyPulsePage() {
               <div className="h-6 w-px bg-white/30"></div>
               <span className="text-white/70 text-sm font-medium">My Pulse</span>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:block rounded-lg px-6 py-4">
-              <nav className="flex items-center space-x-8">
-                <Link 
-                  href="/"
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  Home
-                </Link>
-                <Link 
-                  href="/my-pulse" 
-                  className="text-[11pt] text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  My Pulse
-                </Link>
-                <Link 
-                  href="/projects/purdue" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  Projects
-                </Link>
-              </nav>
-            </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
-            >
-              <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                >
-                  Home
-                </Link>
-                <Link 
-                  href="/my-pulse" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  My Pulse
-                </Link>
-                <Link 
-                  href="/projects/purdue" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                >
-                  Projects
-                </Link>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section with Animated Pulse */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">

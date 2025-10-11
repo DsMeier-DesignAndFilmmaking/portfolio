@@ -49,7 +49,7 @@ export default function ParallaxSection({
         <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
           <div className="text-center max-w-4xl mx-auto px-6 bg-transparent" style={{ maxWidth: '576px', margin: '0 auto' }}>
             {modelPath === 'torus' ? (
-              <p className="text-xl md:text-2xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+              <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
                 {title}
               </p>
             ) : (
@@ -101,7 +101,7 @@ export default function ParallaxSection({
           style={{ maxWidth: '576px', margin: '0 auto' }}
         >
           {modelPath === 'torus' ? (
-            <p className="text-xl md:text-2xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
               {title}
             </p>
           ) : (
