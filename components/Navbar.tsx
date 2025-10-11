@@ -12,81 +12,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [navStyles, setNavStyles] = useState({
-    top: 32,
-    opacity: 0.7,
-    blur: 8
-  });
-
-  useEffect(() => {
-    let rafId: number;
-    let ticking = false;
-    let currentStyles = {
-      top: 32,
-      opacity: 0.7,
-      blur: 8
-    };
-
-    const updateNavbar = () => {
-      const isDesktop = window.innerWidth >= 768;
-      const scrollY = window.scrollY;
-
-      if (!isDesktop) {
-        // Mobile: pinned flush-top with fixed styles
-        currentStyles = {
-          top: 0,
-          opacity: 0.9,
-          blur: 8
-        };
-        setNavStyles(currentStyles);
-        ticking = false;
-        return;
-      }
-
-      // Desktop: fluid interpolation based on scroll
-      const maxOffset = 50; // max scroll distance for full effect
-      const progress = Math.min(scrollY / maxOffset, 1);
-
-      // Damping factor for smooth momentum
-      const damping = 0.15;
-
-      // Interpolate top position (32px to 0px)
-      const targetTop = 32 - (32 * progress);
-      currentStyles.top += (targetTop - currentStyles.top) * damping;
-
-      // Interpolate opacity (0.7 to 0.95)
-      const targetOpacity = 0.7 + (0.25 * progress);
-      currentStyles.opacity += (targetOpacity - currentStyles.opacity) * damping;
-
-      // Interpolate blur (8px to 12px)
-      const targetBlur = 8 + (4 * progress);
-      currentStyles.blur += (targetBlur - currentStyles.blur) * damping;
-
-      setNavStyles({ ...currentStyles });
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        rafId = requestAnimationFrame(updateNavbar);
-        ticking = true;
-      }
-    };
-
-    // Initial update
-    updateNavbar();
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', updateNavbar, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateNavbar);
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-    };
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -143,25 +68,13 @@ const Navbar = () => {
   };
 
   return (
-    <div 
-      className="navbar-wrapper fixed left-0 right-0 z-50 pointer-events-none scroll-optimized"
-      style={{
-        top: `${navStyles.top}px`,
-        transition: 'none'
-      }}
-    >
+    <div className="navbar-wrapper fixed top-0 left-0 right-0 z-50 pointer-events-none">
       <motion.nav 
         id="site-navbar"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="max-w-4xl mx-auto w-full md:w-[95%] rounded-none md:rounded-2xl border-0 md:border md:border-white/20 pointer-events-auto"
-        style={{
-          backgroundColor: `rgba(255, 255, 255, ${navStyles.opacity})`,
-          backdropFilter: `blur(${navStyles.blur}px)`,
-          WebkitBackdropFilter: `blur(${navStyles.blur}px)`,
-          boxShadow: 'none'
-        }}
+        className="w-full bg-white/90 backdrop-blur-md border-0 pointer-events-auto"
       >
         <div className="px-6">
           <div className="flex justify-between items-center">
@@ -243,7 +156,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-0 md:mx-auto md:w-[95%] md:max-w-4xl bg-white/95 backdrop-blur-md rounded-lg pointer-events-auto"
+            className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md pointer-events-auto"
           >
             <nav className="flex flex-col p-4 px-6 space-y-4">
               <a 

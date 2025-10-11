@@ -47,26 +47,6 @@ body {
   padding: 0;
 }
 
-/* Navbar background seal - prevents content bleed behind navbar on desktop */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 7rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 40;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  body::before {
-    height: 0;
-  }
-}
 
 @layer utilities {
   .text-balance {
@@ -79,7 +59,7 @@ body::before {
     will-change: scroll-position;
   }
   
-  /* Apple-style navbar wrapper */
+  /* Navbar wrapper - always at top */
   .navbar-wrapper {
     background: transparent;
   }
@@ -88,13 +68,6 @@ body::before {
   .backdrop-blur-md {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-  }
-  
-  /* Mobile navbar: always pinned at top */
-  @media (max-width: 767px) {
-    .navbar-wrapper {
-      top: 0 !important;
-    }
   }
   
   /* Navigation scroll optimizations */
