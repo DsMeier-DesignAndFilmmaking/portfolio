@@ -68,7 +68,7 @@ export default function PurdueProjectPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 mt-5 bg-black transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
