@@ -1867,7 +1867,7 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp"
                         alt="iPhone Simulator - October 1, 2025"
                         fill
                         className="object-cover"
@@ -1887,7 +1887,7 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp"
                         alt="iPhone Simulator - October 3, 2025"
                         fill
                         className="object-cover"
@@ -1907,7 +1907,7 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp"
                         alt="iPhone Simulator - October 4, 2025"
                         fill
                         className="object-cover"
@@ -1927,7 +1927,7 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp"
                         alt="iPhone Simulator - October 5, 2025"
                         fill
                         className="object-cover"
@@ -1947,7 +1947,7 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp"
                         alt="iPhone Simulator - October 7, 2025"
                         fill
                         className="object-cover"
