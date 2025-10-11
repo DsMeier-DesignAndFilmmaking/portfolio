@@ -8,111 +8,87 @@ import { scrollToAnchor } from '@/utils/scrollUtils';
 import AnchorScrollLoader from './AnchorScrollLoader';
 
 const Navbar = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
-  const [textColor, setTextColor] = useState('white');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [navStyles, setNavStyles] = useState({
+    top: 16,
+    opacity: 0.7,
+    blur: 8,
+    shadow: 0
+  });
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
     let rafId: number;
-    let lastScrollY = 0;
-    let scrollDirection: 'up' | 'down' = 'down';
-    let isScrollingDown = false;
+    let ticking = false;
+    let currentStyles = {
+      top: 16,
+      opacity: 0.7,
+      blur: 8,
+      shadow: 0
+    };
+
+    const updateNavbar = () => {
+      const isDesktop = window.innerWidth >= 768;
+      const scrollY = window.scrollY;
+
+      if (!isDesktop) {
+        // Mobile: pinned flush-top with fixed styles
+        currentStyles = {
+          top: 0,
+          opacity: 0.9,
+          blur: 8,
+          shadow: 0
+        };
+        setNavStyles(currentStyles);
+        ticking = false;
+        return;
+      }
+
+      // Desktop: fluid interpolation based on scroll
+      const maxOffset = 50; // max scroll distance for full effect
+      const progress = Math.min(scrollY / maxOffset, 1);
+
+      // Damping factor for smooth momentum
+      const damping = 0.15;
+
+      // Interpolate top position (16px to 0px)
+      const targetTop = 16 - (16 * progress);
+      currentStyles.top += (targetTop - currentStyles.top) * damping;
+
+      // Interpolate opacity (0.7 to 0.95)
+      const targetOpacity = 0.7 + (0.25 * progress);
+      currentStyles.opacity += (targetOpacity - currentStyles.opacity) * damping;
+
+      // Interpolate blur (8px to 12px)
+      const targetBlur = 8 + (4 * progress);
+      currentStyles.blur += (targetBlur - currentStyles.blur) * damping;
+
+      // Interpolate shadow (0 to 0.08)
+      const targetShadow = 0.08 * progress;
+      currentStyles.shadow += (targetShadow - currentStyles.shadow) * damping;
+
+      setNavStyles({ ...currentStyles });
+      ticking = false;
+    };
 
     const handleScroll = () => {
-      // Use requestAnimationFrame for better performance
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+      if (!ticking) {
+        rafId = requestAnimationFrame(updateNavbar);
+        ticking = true;
       }
-      
-      rafId = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const scrollDelta = currentScrollY - lastScrollY;
-        
-        // Determine scroll direction
-        if (scrollDelta > 0) {
-          scrollDirection = 'down';
-        } else if (scrollDelta < 0) {
-          scrollDirection = 'up';
-        }
-        
-        // Only update if scroll position changed significantly and we're not at the top
-        if (Math.abs(scrollDelta) > 10 && currentScrollY > 100) {
-          // On mobile, navbar is always visible (no hide behavior)
-          if (window.innerWidth < 768) {
-            isScrollingDown = false; // Keep navbar visible on mobile
-          } else {
-            // Desktop behavior - hide on any scroll
-            isScrollingDown = true;
-          }
-          
-          setIsScrolling(isScrollingDown);
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(() => {
-            setIsScrolling(false);
-          }, 150); // Increased timeout for smoother behavior
-          
-          lastScrollY = currentScrollY;
-        } else if (currentScrollY <= 100) {
-          // Always show navbar when near the top
-          setIsScrolling(false);
-        }
-      });
     };
 
-    // Throttled scroll handler for color changes
-    let colorUpdateTimeout: NodeJS.Timeout;
-    let lastColorUpdate = 0;
-    const handleColorUpdate = () => {
-      const now = Date.now();
-      if (now - lastColorUpdate < 100) return; // Throttle to 10fps
-      
-      if (colorUpdateTimeout) {
-        clearTimeout(colorUpdateTimeout);
-      }
-      
-      colorUpdateTimeout = setTimeout(() => {
-        // Cache DOM queries
-        const blackSection = document.getElementById('black-section');
-        const videoSection = document.getElementById('video-projects');
-        const navElement = document.querySelector('nav');
-
-        if (blackSection && videoSection && navElement) {
-          const navRect = navElement.getBoundingClientRect();
-          const blackSectionTop = blackSection.getBoundingClientRect().top;
-          const videoSectionTop = videoSection.getBoundingClientRect().top;
-
-          // Only change color if we've scrolled past the hero section
-          if (window.scrollY > 100) {
-            if (navRect.bottom > videoSectionTop) {
-              setTextColor('white');
-            } else if (navRect.bottom > blackSectionTop) {
-              setTextColor('white');
-            } else {
-              setTextColor('white');
-            }
-          } else {
-            setTextColor('white');
-          }
-        }
-        lastColorUpdate = Date.now();
-      }, 16); // ~60fps
-    };
+    // Initial update
+    updateNavbar();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('scroll', handleColorUpdate, { passive: true });
-    
-    // Set initial color to white
-    setTextColor('white');
+    window.addEventListener('resize', updateNavbar, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleColorUpdate);
-      clearTimeout(scrollTimeout);
-      clearTimeout(colorUpdateTimeout);
+      window.removeEventListener('resize', updateNavbar);
       if (rafId) {
         cancelAnimationFrame(rafId);
       }
@@ -174,15 +150,25 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`navbar-wrapper fixed top-0 left-0 right-0 z-50 pointer-events-none transition-transform duration-500 ease-in-out scroll-optimized ${
-      isScrolling && !isScrollingToAnchor ? 'md:-translate-y-full' : 'translate-y-0'
-    }`}>
+    <div 
+      className="navbar-wrapper fixed left-0 right-0 z-50 pointer-events-none scroll-optimized"
+      style={{
+        top: `${navStyles.top}px`,
+        transition: 'none'
+      }}
+    >
       <motion.nav 
         id="site-navbar"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="max-w-4xl mx-auto mt-0 md:mt-4 w-full md:w-[95%] rounded-none md:rounded-2xl backdrop-blur-md bg-white/70 border-0 md:border md:border-white/20 pointer-events-auto"
+        className="max-w-4xl mx-auto w-full md:w-[95%] rounded-none md:rounded-2xl border-0 md:border md:border-white/20 pointer-events-auto"
+        style={{
+          backgroundColor: `rgba(255, 255, 255, ${navStyles.opacity})`,
+          backdropFilter: `blur(${navStyles.blur}px)`,
+          WebkitBackdropFilter: `blur(${navStyles.blur}px)`,
+          boxShadow: `0 4px 20px rgba(0, 0, 0, ${navStyles.shadow})`
+        }}
       >
         <div className="px-6">
           <div className="flex justify-between items-center">

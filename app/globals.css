@@ -70,6 +70,13 @@ body::before {
     -webkit-backdrop-filter: blur(12px);
   }
   
+  /* Mobile navbar: always pinned at top */
+  @media (max-width: 767px) {
+    .navbar-wrapper {
+      top: 0 !important;
+    }
+  }
+  
   /* Navigation scroll optimizations */
   .smooth-scroll {
     scroll-behavior: smooth;
