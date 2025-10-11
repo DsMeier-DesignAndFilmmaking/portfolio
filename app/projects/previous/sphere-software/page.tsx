@@ -357,18 +357,18 @@ export default function SphereSoftwareProjectPage() {
             </Link>
 
             {/* Project Card 2 */}
-            <Link href="/projects/previous/sphere-software" className="group">
+            <Link href="/projects/previous/nodalytics" className="group">
               <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/sphere-card.jpg"
-                  alt="Sphere Software"
+                  src="/portfolio/images/nodalytics-card.jpg"
+                  alt="Nodalytics"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Sphere Software</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative software solutions for modern businesses</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Nodalytics</h3>
+                  <p className="text-sm text-gray-200 mb-4">Data visualization and analytics platform</p>
                   <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
                     View Project
                   </div>
