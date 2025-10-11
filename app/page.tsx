@@ -241,10 +241,9 @@ export default function HomePage() {
                   In Development
                 </div>
                 <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
-                  fontFamily: "'tiempos-headline-regular', serif",
-                  color: '#FFD700'
+                  fontFamily: "'tiempos-headline-regular', serif"
                 }}>
-                  World Travel Diaries
+                  <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">World Travel Diaries</span>
                 </h2>
                 <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
                   fontFamily: "'Roboto', Helvetica, sans-serif",
