@@ -50,7 +50,7 @@ export default function VideoProjectsSection() {
       id="video-projects" 
       className="py-24 bg-black"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6">
         <FadeInSection 
           delay={0.1}
           duration={0.8}

@@ -227,7 +227,7 @@ export default function HomePage() {
             />
           </div>
           
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto px-6 relative z-10">
             <FadeInSection 
               delay={0.1}
               duration={0.8}
