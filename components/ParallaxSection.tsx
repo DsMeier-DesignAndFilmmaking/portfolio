@@ -48,9 +48,15 @@ export default function ParallaxSection({
         </div>
         <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
           <div className="text-center max-w-4xl mx-auto px-6 bg-transparent" style={{ maxWidth: '576px', margin: '0 auto' }}>
-            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: modelPath === 'torus' ? "'Roboto', Helvetica" : "'tiempos-headline-regular', serif" }}>
-              {title}
-            </h2>
+            {modelPath === 'torus' ? (
+              <p className="text-xl md:text-2xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                {title}
+              </p>
+            ) : (
+              <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                {title}
+              </h2>
+            )}
             {description && (
               <p className="text-lg md:text-xl text-black">{description}</p>
             )}
@@ -94,9 +100,15 @@ export default function ParallaxSection({
           className="text-center max-w-4xl mx-auto px-6 bg-transparent"
           style={{ maxWidth: '576px', margin: '0 auto' }}
         >
-          <h2 className={`mb-4 text-4xl font-bold md:text-6xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`} style={{ fontFamily: modelPath === 'torus' ? "'Roboto', Helvetica" : "'tiempos-headline-regular', serif" }}>
-            {title}
-          </h2>
+          {modelPath === 'torus' ? (
+            <p className="text-xl md:text-2xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+              {title}
+            </p>
+          ) : (
+            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              {title}
+            </h2>
+          )}
           {description && (
             <p className={`text-lg md:text-xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`}>{description}</p>
           )}
