@@ -169,7 +169,7 @@ export default function AISandboxPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-transform duration-300 ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
@@ -188,22 +188,24 @@ export default function AISandboxPage() {
                   width={150}
                   height={37}
                   className={`h-9 w-auto transition-all duration-300 ${
-                    isOverBlackBg ? 'brightness-0 invert' : isScrolled ? 'brightness-0' : 'brightness-0 invert'
+                    isOverBlackBg ? 'brightness-0 invert' : 'brightness-0'
                   }`}
                 />
               </button>
               <div className={`h-6 w-px transition-colors duration-300 ${
-                isOverBlackBg ? 'bg-white/30' : isScrolled ? 'bg-black/30' : 'bg-white/30'
+                isOverBlackBg ? 'bg-white/30' : 'bg-black/30'
               }`}></div>
               <span className={`text-sm font-medium transition-colors duration-300 ${
-                isOverBlackBg ? 'text-white/70' : isScrolled ? 'text-black/70' : 'text-white/70'
+                isOverBlackBg ? 'text-white/70' : 'text-black/70'
               }`}>Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
+              className={`md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end ${
+                isOverBlackBg ? 'text-white' : 'text-black'
+              }`}
               aria-label="Toggle mobile menu"
             >
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -219,7 +221,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/purdue" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
                   }`}
                 >
                   Purdue University
@@ -227,7 +229,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/ai-sandbox" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
                   }`}
                 >
                   AI Sandbox
@@ -235,7 +237,7 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/previous" 
                   className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
+                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
                   }`}
                 >
                   Previous Projects
