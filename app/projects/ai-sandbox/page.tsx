@@ -1958,7 +1958,7 @@ export default function AISandboxPage() {
                     </div>
                   </motion.div>
 
-                  {/* Screenshot 6 - October 1 Evening */}
+                  {/* Screenshot 6 - September 29 */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -1967,8 +1967,8 @@ export default function AISandboxPage() {
                   >
                     <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                       <Image
-                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-01-20-50-32.webp"
-                        alt="iPhone Simulator - October 1, 2025 Evening"
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp"
+                        alt="iPhone Simulator - September 29, 2025"
                         fill
                         className="object-cover"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
