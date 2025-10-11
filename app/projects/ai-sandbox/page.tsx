@@ -1780,7 +1780,6 @@ export default function AISandboxPage() {
             </div>
             
             <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-              <h3 className="text-xl font-semibold mb-4 text-gray-200">Challenges & Solutions</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-medium text-gray-200 mb-2">Challenge</h4>
