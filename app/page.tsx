@@ -88,7 +88,7 @@ export default function HomePage() {
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
           <div className="relative min-h-screen flex items-start justify-center">
-            <div className="max-w-4xl mx-auto px-6 w-full" style={{ paddingTop: '40vh' }}>
+            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh]">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
