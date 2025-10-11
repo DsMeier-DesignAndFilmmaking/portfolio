@@ -181,6 +181,20 @@ export default function HomePage() {
           className="bg-transparent"
         />
 
+        {/* Hero Image Section */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-6">
+            <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+              <img 
+                src="/images/me_heroImage-1_1.1.1.jpg" 
+                alt="Dan Meier"
+                className="w-full h-auto rounded-lg shadow-lg"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
         <ParallaxSection
           title="I care about designing products and experiences that bring real value for people, organizations, and the world around us."
           description=""
