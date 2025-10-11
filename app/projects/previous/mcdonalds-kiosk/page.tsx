@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import OptimizedImage from '../../../../components/OptimizedImage';
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -130,7 +129,7 @@ export default function McDonaldsKioskProjectPage() {
       <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
         <div className="absolute inset-0">
-          <OptimizedImage
+          <Image
             src={project.heroImage}
             alt={`${project.title} - McDonald's Kiosk Interface Design`}
             fill
@@ -138,10 +137,7 @@ export default function McDonaldsKioskProjectPage() {
             priority
             quality={90}
             sizes="100vw"
-            placeholder="blur"
-            loading="eager"
-            objectFit="cover"
-            objectPosition="center"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
         </div>
         <div className="container mx-auto px-6 relative z-20">
@@ -204,7 +200,7 @@ export default function McDonaldsKioskProjectPage() {
             {/* First two images - full width */}
             {project.images.slice(0, 2).map((image, index) => (
               <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <OptimizedImage
+                <Image
                   src={image}
                   alt={`${project.title} - ${index === 0 ? 'Dynamic Yield Concept Flows' : 'Cross-sell Up-sell Flow Design'} - McDonald's Kiosk Interface`}
                   fill
@@ -212,44 +208,33 @@ export default function McDonaldsKioskProjectPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   priority={index === 0}
                   quality={85}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  placeholder="blur"
-                  objectFit="cover"
-                  objectPosition="top"
+                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
                 />
               </div>
             ))}
             
             {/* Last two images - 50/50 width with natural aspect ratio */}
             <div className="flex gap-6">
-              <div className="relative w-1/2 rounded-lg overflow-hidden">
-                <OptimizedImage
+              <div className="relative w-1/2 rounded-lg overflow-hidden aspect-[4/3]">
+                <Image
                   src={project.images[2]}
                   alt={`${project.title} - Homepage Remember Me Default Mode Authenticated Screen - McDonald's Kiosk Interface`}
-                  width={600}
-                  height={450}
-                  className="w-full h-auto object-cover object-top"
+                  fill
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 50vw, 600px"
                   quality={85}
-                  loading="lazy"
-                  placeholder="blur"
-                  objectFit="cover"
-                  objectPosition="top"
+                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
                 />
               </div>
-              <div className="relative w-1/2 rounded-lg overflow-hidden">
-                <OptimizedImage
+              <div className="relative w-1/2 rounded-lg overflow-hidden aspect-[4/3]">
+                <Image
                   src={project.images[3]}
                   alt={`${project.title} - McDonald's Kiosk Screen Interface Design - User Experience`}
-                  width={600}
-                  height={450}
-                  className="w-full h-auto object-cover object-top"
+                  fill
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 50vw, 600px"
                   quality={85}
-                  loading="lazy"
-                  placeholder="blur"
-                  objectFit="cover"
-                  objectPosition="top"
+                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
                 />
               </div>
             </div>
