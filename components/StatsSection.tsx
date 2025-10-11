@@ -158,50 +158,29 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 order-2 lg:order-1">  
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 order-2 lg:order-1">  
             {/* Industries Served */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">Industries Served</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">8</div>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Industries Served</h3>
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">8</div>
               <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
                 <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
 
             {/* Projects Completed */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">Projects Completed</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">50+</div>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Projects Completed</h3>
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">50+</div>
               <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
                 <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
 
             {/* URLs Impacted */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">URLs Impacted</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">10,000+</div>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">URLs Impacted</h3>
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">10,000+</div>
               <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
                 <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
