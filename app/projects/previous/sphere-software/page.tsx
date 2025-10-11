@@ -177,17 +177,58 @@ export default function SphereSoftwareProjectPage() {
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="space-y-8">
-            {project.images.map((image, index) => (
-              <div key={index} className={`relative ${index === 3 ? 'w-full max-w-sm mx-auto' : 'w-full'} ${index === 3 ? 'aspect-[9/19.5]' : 'aspect-[16/10]'} rounded-lg overflow-hidden`}>
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className={`${index === 3 ? 'object-cover object-center' : 'object-cover object-top'}`}
-                />
-              </div>
-            ))}
+          <div className="space-y-6">
+            {/* First image - chairlift screens (7:4 ratio) */}
+            <div className="relative w-full aspect-[7/4] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} - Chairlift Application Screens`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Second image - data map (square, 1.02:1 ratio) */}
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[1]}
+                alt={`${project.title} - Chairlift Data Map`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Third image - OKR flow (2:1 ratio) */}
+            <div className="relative w-full aspect-[2/1] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[2]}
+                alt={`${project.title} - OKR Check-In User Flow`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Fourth image - vertical dashboard (very tall) */}
+            <div className="relative w-full max-w-md mx-auto aspect-[750/3712] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[3]}
+                alt={`${project.title} - Employee Dashboard View`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 500px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
           </div>
         </div>
       </section>
