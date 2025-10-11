@@ -38,23 +38,32 @@ export default function RootLayout({ children }) {
 
 ### 2. **NavigationWrapper** (`components/NavigationWrapper.tsx`)
 
-A client component that renders the Navbar globally:
+A client component that conditionally renders the Navbar:
 
 ```tsx
 'use client';
 
+import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 
 export default function NavigationWrapper() {
+  const pathname = usePathname();
+  const isProjectPage = pathname?.startsWith('/projects/');
+  
+  // Don't render global navbar on project pages (they have their own)
+  if (isProjectPage) {
+    return null;
+  }
+  
   return <Navbar />;
 }
 ```
 
-**Why a Wrapper?**
-- Separates client-side logic from server-side layout
-- Enables use of React hooks in Navbar
-- Maintains Next.js App Router best practices
-- Allows future context providers if needed
+**Why Conditional Rendering?**
+- Project pages have custom navigation built-in
+- Prevents double navbar flash on project pages
+- Maintains performance by avoiding duplicate renders
+- Shows global navbar on homepage and My Pulse page
 
 ---
 
@@ -80,16 +89,19 @@ const isOnProjectPage = pathname?.includes('/projects/') || pathname === '/my-pu
 
 ### Automatic Navbar Rendering
 
-**Every page automatically includes the Navbar:**
+**Most pages automatically include the Navbar:**
 
-1. User navigates to any route (e.g., `/`, `/projects/purdue`, `/my-pulse`)
+1. User navigates to a route (e.g., `/`, `/my-pulse`)
 2. Next.js renders the root layout
-3. `NavigationWrapper` renders the `Navbar` component
-4. Navbar detects current route via `usePathname()`
-5. Navbar applies appropriate styling based on route
-6. Page content renders below
+3. `NavigationWrapper` checks the current route
+4. **If not a project page:** Renders the `Navbar` component
+5. **If a project page:** Returns null (project has its own navbar)
+6. Navbar applies appropriate styling based on route
+7. Page content renders below
 
-**No manual imports needed in page files!**
+**No manual imports needed for non-project pages!**
+
+**Note:** Project pages (`/projects/*`) have custom navigation bars built directly into their components and are excluded from the global navbar system to prevent double navbar flashing.
 
 ---
 
@@ -102,10 +114,10 @@ const isOnProjectPage = pathname?.includes('/projects/') || pathname === '/my-pu
 - Smooth transitions between states
 
 ### Project Pages (`/projects/*`)
-- Navbar starts white/transparent
-- Turns black after scrolling 100px down
-- Maintains black state while scrolled
-- Returns to white at top of page
+- **Use custom navigation bars** built into each page component
+- Global navbar is hidden on these pages to prevent double navbar flash
+- Each project has its own "Back" button and navigation style
+- Varies by project (some use white, some use dark backgrounds)
 
 ### My Pulse (`/my-pulse`)
 - Same behavior as project pages
