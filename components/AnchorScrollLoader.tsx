@@ -73,7 +73,7 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
             position: 'fixed',
             margin: 0,
             padding: 0,
-            top: '-20px', // Account for navbar mt-5 (20px)
+            top: 0,
             left: 0,
             right: 0,
             bottom: 0
@@ -139,7 +139,7 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
               position: 'fixed',
               margin: 0,
               padding: 0,
-              top: '-20px',
+              top: 0,
               left: 0,
               right: 0,
               bottom: 0
