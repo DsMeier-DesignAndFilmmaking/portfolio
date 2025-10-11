@@ -79,7 +79,12 @@ export default function ParallaxSection({
         )}
       </motion.div>
       {modelPath === 'torus' && (
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 via-black/40 via-black/60 to-black z-10" />
+        <div 
+          className="absolute inset-0 z-10" 
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.2), rgba(0,0,0,0.4), rgba(0,0,0,0.6), #1A1A1A)'
+          }}
+        />
       )}
       <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
         <motion.div
