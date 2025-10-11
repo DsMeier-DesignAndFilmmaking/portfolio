@@ -76,7 +76,7 @@ const Navbar = () => {
         transition={{ duration: 0.4 }}
         className="w-full bg-white/90 backdrop-blur-md border-0 pointer-events-auto"
       >
-        <div className="px-6">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="flex justify-between items-center">
           {/* Left side navigation */}
           <div className="py-4">
@@ -158,7 +158,8 @@ const Navbar = () => {
             transition={{ duration: 0.2 }}
             className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md pointer-events-auto"
           >
-            <nav className="flex flex-col p-4 px-6 space-y-4">
+            <div className="max-w-4xl mx-auto px-6">
+              <nav className="flex flex-col py-4 space-y-4">
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
@@ -187,7 +188,8 @@ const Navbar = () => {
               >
                 Wayfinder Diaries
               </a>
-            </nav>
+              </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
