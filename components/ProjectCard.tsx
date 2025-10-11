@@ -49,7 +49,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
       </AnimatePresence>
 
       <div className="relative h-[480px] w-full overflow-hidden">
-        <div className="relative w-3/5 h-full">
+        <div className="relative w-[70%] h-full">
           <Image
             src={imageUrl}
             alt={title}
