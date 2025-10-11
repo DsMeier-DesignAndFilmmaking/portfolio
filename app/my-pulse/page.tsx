@@ -127,8 +127,39 @@ export default function MyPulsePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-lg">Loading pulse data...</div>
+      <div className="min-h-screen bg-black text-white">
+        {/* Show navbar immediately even during loading */}
+        <motion.nav 
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          className="fixed top-0 left-0 right-0 z-50 bg-black"
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex justify-between items-center">
+              <div className="py-4 flex items-center gap-4">
+                <button
+                  onClick={handleBackHome}
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                  aria-label="Return to home page"
+                >
+                  <Image
+                    src="/portfolio/images/signature-25.png"
+                    alt="Daniel Meier"
+                    width={150}
+                    height={37}
+                    className="h-9 w-auto brightness-0 invert"
+                  />
+                </button>
+                <div className="h-6 w-px bg-white/30"></div>
+                <span className="text-white/70 text-sm font-medium">My Pulse</span>
+              </div>
+            </div>
+          </div>
+        </motion.nav>
+        
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-white text-lg">Loading pulse data...</div>
+        </div>
       </div>
     );
   }
@@ -137,9 +168,8 @@ export default function MyPulsePage() {
     <div className="min-h-screen bg-black text-white">
       {/* Top Navigation - Matching Purdue Style */}
       <motion.nav 
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
         className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
