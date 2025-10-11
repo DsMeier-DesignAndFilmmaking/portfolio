@@ -61,7 +61,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "Design Director for enterprise software suite for the HR Industry. Led design on client facing web projects.",
+  description: "Design Director for an enterprise HR software suite. Led design on client-facing web projects.",
   heroImage: "/portfolio/images/sphere-card.jpg",
   year: "Internal Startup & Client Consulting",
   overview: "Develop enterprise software solutions",
@@ -238,7 +238,7 @@ export default function SphereSoftwareProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including white papers and service desk documentation.
+            Explore detailed documentation and deliverables from this project.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
