@@ -15,8 +15,7 @@ const Navbar = () => {
   const [navStyles, setNavStyles] = useState({
     top: 16,
     opacity: 0.7,
-    blur: 8,
-    shadow: 0
+    blur: 8
   });
 
   useEffect(() => {
@@ -25,8 +24,7 @@ const Navbar = () => {
     let currentStyles = {
       top: 16,
       opacity: 0.7,
-      blur: 8,
-      shadow: 0
+      blur: 8
     };
 
     const updateNavbar = () => {
@@ -38,8 +36,7 @@ const Navbar = () => {
         currentStyles = {
           top: 0,
           opacity: 0.9,
-          blur: 8,
-          shadow: 0
+          blur: 8
         };
         setNavStyles(currentStyles);
         ticking = false;
@@ -64,10 +61,6 @@ const Navbar = () => {
       // Interpolate blur (8px to 12px)
       const targetBlur = 8 + (4 * progress);
       currentStyles.blur += (targetBlur - currentStyles.blur) * damping;
-
-      // Interpolate shadow (0 to 0.08)
-      const targetShadow = 0.08 * progress;
-      currentStyles.shadow += (targetShadow - currentStyles.shadow) * damping;
 
       setNavStyles({ ...currentStyles });
       ticking = false;
@@ -167,7 +160,7 @@ const Navbar = () => {
           backgroundColor: `rgba(255, 255, 255, ${navStyles.opacity})`,
           backdropFilter: `blur(${navStyles.blur}px)`,
           WebkitBackdropFilter: `blur(${navStyles.blur}px)`,
-          boxShadow: `0 4px 20px rgba(0, 0, 0, ${navStyles.shadow})`
+          boxShadow: 'none'
         }}
       >
         <div className="px-6">
