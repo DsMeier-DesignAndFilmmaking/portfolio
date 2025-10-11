@@ -1838,6 +1838,128 @@ export default function AISandboxPage() {
                 </div>
               </div>
             </motion.div>
+
+            {/* Mobile Design & Iterations Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-20"
+            >
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-3 text-white">
+                    Mobile Design & Iterations
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    Recent mobile prototypes and iterations
+                  </p>
+                </div>
+                
+                {/* Mobile Screenshots Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Screenshot 1 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/images/mobile-screenshots/simulator-2025-10-05-09-44-52.webp"
+                        alt="iPhone Simulator - October 5, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 2 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/images/mobile-screenshots/simulator-2025-09-28-17-08-56.webp"
+                        alt="iPhone Simulator - September 28, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 3 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/images/mobile-screenshots/simulator-2025-09-29-16-53-12.webp"
+                        alt="iPhone Simulator - September 29, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 4 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp"
+                        alt="iPhone Simulator - October 4, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 5 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp"
+                        alt="iPhone Simulator - October 7, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
