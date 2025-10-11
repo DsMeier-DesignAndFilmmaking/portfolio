@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,13 +9,29 @@ import { scrollToAnchor } from '@/utils/scrollUtils';
 import AnchorScrollLoader from './AnchorScrollLoader';
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
 
+  // Determine if we're on a project page with fixed navbar color
+  const isOnPurduePage = pathname === '/projects/purdue';
+  const isOnAISandboxPage = pathname === '/projects/ai-sandbox';
+  const isOnPreviousPage = pathname === '/projects/previous';
+  const isOnProjectPageWithFixedColor = isOnPurduePage || isOnAISandboxPage || isOnPreviousPage;
+  
+  // For project pages: purdue and previous = black, ai-sandbox = white
+  const projectPageHasBlackNav = isOnPurduePage || isOnPreviousPage;
+
   useEffect(() => {
+    // If on a project page with fixed color, set it immediately and skip scroll detection
+    if (isOnProjectPageWithFixedColor) {
+      setIsOverBlackSection(projectPageHasBlackNav);
+      return;
+    }
+
     let rafId: number;
     let ticking = false;
 
@@ -74,7 +91,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, []);
+  }, [isOnProjectPageWithFixedColor, projectPageHasBlackNav]);
 
   const scrollToTop = () => {
     window.scrollTo({
