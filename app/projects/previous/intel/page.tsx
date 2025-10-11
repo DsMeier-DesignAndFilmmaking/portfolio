@@ -189,14 +189,17 @@ export default function IntelProjectPage() {
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="space-y-8">
+          <div className="space-y-6">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+              <div key={index} className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gray-900">
                 <Image
                   src={image}
                   alt={`${project.title} - Image ${index + 1}`}
                   fill
-                  className="object-cover object-top"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  quality={85}
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
                 />
               </div>
             ))}
