@@ -174,17 +174,18 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav 
-      id="site-navbar"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 mt-0 md:mt-5 transition-transform duration-500 ease-in-out scroll-optimized ${
-        isScrolling && !isScrollingToAnchor ? 'md:-translate-y-full' : 'translate-y-0'
-      }`}
-    >
-      <div className="max-w-4xl mx-auto px-6 bg-white text-black rounded-xl">
-        <div className="flex justify-between items-center">
+    <div className={`navbar-wrapper fixed top-0 left-0 right-0 z-50 pointer-events-none transition-transform duration-500 ease-in-out scroll-optimized ${
+      isScrolling && !isScrollingToAnchor ? 'md:-translate-y-full' : 'translate-y-0'
+    }`}>
+      <motion.nav 
+        id="site-navbar"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="max-w-4xl mx-auto mt-0 md:mt-4 w-full md:w-[95%] rounded-none md:rounded-2xl backdrop-blur-md bg-white/70 shadow-lg border-0 md:border md:border-white/20 pointer-events-auto"
+      >
+        <div className="px-6">
+          <div className="flex justify-between items-center">
           {/* Left side navigation */}
           <div className="py-4">
             <button
@@ -219,7 +220,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block rounded-lg px-6 py-4">
+          <div className="hidden md:block py-4">
             <nav className="flex items-center space-x-8">
               <a 
                 href="#black-section" 
@@ -252,7 +253,8 @@ const Navbar = () => {
             </nav>
           </div>
         </div>
-      </div>
+        </div>
+      </motion.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -262,7 +264,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 rounded-lg shadow-lg"
+            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-0 md:mx-auto md:w-[95%] md:max-w-4xl bg-white/95 backdrop-blur-md rounded-lg shadow-lg pointer-events-auto"
           >
             <nav className="flex flex-col p-4 px-6 space-y-4">
               <a 
@@ -309,7 +311,7 @@ const Navbar = () => {
           setScrollProgress(0);
         }}
       />
-    </motion.nav>
+    </div>
   );
 };
 
