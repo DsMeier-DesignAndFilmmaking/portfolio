@@ -74,7 +74,7 @@ const project = {
   images: [
     "/portfolio/images/optimized/Advistestream_mockup-createReport.webp",
     "/portfolio/images/optimized/AdviseStream_mobileScreens.webp",
-    "/portfolio/images/optimized/advisestream_mobileDesigns-1.webp"
+    "/portfolio/images/optimized/advisestream_mobileDesigns-1-fast.webp"
   ]
 };
 
