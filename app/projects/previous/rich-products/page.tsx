@@ -316,18 +316,18 @@ export default function RichProductsProjectPage() {
             </Link>
 
             {/* Project Card 4 */}
-            <Link href="/projects/previous/rich-products" className="group">
+            <Link href="/projects/previous/intel" className="group">
               <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/richProducts-card.jpg"
-                  alt="Rich Products"
+                  src="/portfolio/images/intel-card.jpg"
+                  alt="Intel"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Rich Products</h3>
-                  <p className="text-sm text-gray-200 mb-4">Digital transformation for food industry leader</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Intel</h3>
+                  <p className="text-sm text-gray-200 mb-4">Market research and concept design for virtual gatherings</p>
                   <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
                     View Project
                   </div>
