@@ -182,7 +182,7 @@ const Navbar = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="max-w-4xl mx-auto mt-0 md:mt-4 w-full md:w-[95%] rounded-none md:rounded-2xl backdrop-blur-md bg-white/70 shadow-lg border-0 md:border md:border-white/20 pointer-events-auto"
+        className="max-w-4xl mx-auto mt-0 md:mt-4 w-full md:w-[95%] rounded-none md:rounded-2xl backdrop-blur-md bg-white/70 border-0 md:border md:border-white/20 pointer-events-auto"
       >
         <div className="px-6">
           <div className="flex justify-between items-center">
@@ -264,7 +264,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-0 md:mx-auto md:w-[95%] md:max-w-4xl bg-white/95 backdrop-blur-md rounded-lg shadow-lg pointer-events-auto"
+            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-0 md:mx-auto md:w-[95%] md:max-w-4xl bg-white/95 backdrop-blur-md rounded-lg pointer-events-auto"
           >
             <nav className="flex flex-col p-4 px-6 space-y-4">
               <a 
