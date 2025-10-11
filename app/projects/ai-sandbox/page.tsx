@@ -1839,7 +1839,7 @@ export default function AISandboxPage() {
               </div>
             </motion.div>
 
-            {/* Mobile Design & Iterations Section */}
+            {/* Mobile Build Iterations Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1849,7 +1849,7 @@ export default function AISandboxPage() {
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold mb-3 text-white">
-                    Mobile Design & Iterations
+                    Mobile Build Iterations
                   </h3>
                   <p className="text-gray-400 text-sm">
                     Recent mobile prototypes and iterations
