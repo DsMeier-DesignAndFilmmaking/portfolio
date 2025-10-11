@@ -186,7 +186,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <img 
-                src="/images/me_heroImage-1_1.1.1.jpg" 
+                src="/portfolio/images/me_heroImage-1_1.1.1.jpg" 
                 alt="Dan Meier"
                 className="w-full h-auto rounded-lg shadow-lg"
                 loading="lazy"

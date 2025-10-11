@@ -41,13 +41,9 @@ const Navbar = () => {
         
         // Only update if scroll position changed significantly and we're not at the top
         if (Math.abs(scrollDelta) > 10 && currentScrollY > 100) {
-          // On mobile, only hide navbar when scrolling down, show when scrolling up
+          // On mobile, navbar is always visible (no hide behavior)
           if (window.innerWidth < 768) {
-            if (scrollDirection === 'down' && currentScrollY > lastScrollY) {
-              isScrollingDown = true;
-            } else if (scrollDirection === 'up') {
-              isScrollingDown = false;
-            }
+            isScrollingDown = false; // Keep navbar visible on mobile
           } else {
             // Desktop behavior - hide on any scroll
             isScrollingDown = true;
@@ -183,8 +179,8 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-500 ease-in-out scroll-optimized ${
-        isScrolling && !isScrollingToAnchor ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+      className={`fixed top-0 left-0 right-0 z-50 mt-0 md:mt-5 transition-transform duration-500 ease-in-out scroll-optimized ${
+        isScrolling && !isScrollingToAnchor ? 'md:-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="max-w-4xl mx-auto px-6 bg-white text-black rounded-xl">
