@@ -18,7 +18,7 @@ export default function DesignSection({ className = '' }: DesignSectionProps) {
   const y = useTransform(scrollYProgress, [0, 1], ['20%', '-20%']);
 
   return (
-    <div ref={containerRef} className={`relative bg-black overflow-hidden ${className}`}>
+    <div ref={containerRef} className={`relative overflow-hidden ${className}`} style={{ backgroundColor: '#1A1A1A' }}>
       {/* Top Gradient Overlay */}
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-black/95 to-black z-10 backdrop-blur-sm/70" />
       
