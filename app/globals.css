@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-white;
+  }
+  body {
+    @apply bg-white text-[#2F2A3B];
+  }
+}
+
 :root {
   --foreground-rgb: 47, 42, 59;
   --background-start-rgb: 255, 255, 255;
@@ -15,16 +27,24 @@ html {
   scroll-behavior: smooth;
   /* Optimize scroll performance */
   scroll-padding-top: 100px; /* Account for fixed navigation */
+  background-color: white;
   background: white;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
+  background-color: white;
   background: white;
   font-family: 'SF Pro Text', system-ui, -apple-system, sans-serif;
   /* Optimize for better scroll performance */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Navbar background seal - prevents content bleed behind navbar on desktop */
