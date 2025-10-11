@@ -48,8 +48,7 @@ export default function VideoProjectsSection() {
   return (
     <section 
       id="video-projects" 
-      className="py-24"
-      style={{ backgroundColor: '#1A1A1A' }}
+      className="py-24 bg-black"
     >
       <div className="max-w-4xl mx-auto px-6">
         <FadeInSection 
