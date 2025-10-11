@@ -12,6 +12,69 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isOverBlackSection, setIsOverBlackSection] = useState(false);
+
+  useEffect(() => {
+    let rafId: number;
+    let ticking = false;
+
+    const updateNavbarColor = () => {
+      const navbar = document.getElementById('site-navbar');
+      const blackSection = document.getElementById('black-section');
+      const videoSection = document.getElementById('video-projects');
+
+      if (!navbar) {
+        ticking = false;
+        return;
+      }
+
+      const navRect = navbar.getBoundingClientRect();
+      const navBottom = navRect.bottom;
+      const navTop = navRect.top;
+
+      let isOverBlack = false;
+
+      // Check if navbar overlaps with black section
+      if (blackSection) {
+        const blackRect = blackSection.getBoundingClientRect();
+        if (navTop < blackRect.bottom && navBottom > blackRect.top) {
+          isOverBlack = true;
+        }
+      }
+
+      // Check if navbar overlaps with video section
+      if (videoSection && !isOverBlack) {
+        const videoRect = videoSection.getBoundingClientRect();
+        if (navTop < videoRect.bottom && navBottom > videoRect.top) {
+          isOverBlack = true;
+        }
+      }
+
+      setIsOverBlackSection(isOverBlack);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafId = requestAnimationFrame(updateNavbarColor);
+        ticking = true;
+      }
+    };
+
+    // Initial check
+    updateNavbarColor();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateNavbarColor, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateNavbarColor);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -74,7 +137,9 @@ const Navbar = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="w-full bg-white/90 backdrop-blur-md border-0 pointer-events-auto"
+        className={`w-full backdrop-blur-md border-0 pointer-events-auto transition-colors duration-500 ${
+          isOverBlackSection ? 'bg-black/90' : 'bg-white/90'
+        }`}
       >
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex justify-between items-center">
@@ -93,7 +158,9 @@ const Navbar = () => {
                 alt="Daniel Meier"
                 width={150}
                 height={37}
-                className="h-9 w-auto transition-all duration-200"
+                className={`h-9 w-auto transition-all duration-500 ${
+                  isOverBlackSection ? 'invert' : ''
+                }`}
               />
             </button>
           </div>
@@ -101,7 +168,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-black"
+            className={`md:hidden pl-4 py-2 rounded-lg transition-colors duration-500 flex items-center justify-end ${
+              isOverBlackSection ? 'text-white' : 'text-black'
+            }`}
             aria-label="Toggle mobile menu"
           >
             <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -117,28 +186,36 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
               >
                 Digital Design
               </a>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
               >
                 Video
               </a>
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className="text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
               >
                 Travelogue
               </a>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className="hidden text-[12pt] text-black hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                className={`hidden text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
               >
                 Wayfinder Diaries
               </a>
@@ -156,35 +233,45 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md pointer-events-auto"
+            className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md pointer-events-auto transition-colors duration-500 ${
+              isOverBlackSection ? 'bg-black/95' : 'bg-white/95'
+            }`}
           >
             <div className="max-w-4xl mx-auto px-6">
               <nav className="flex flex-col py-4 space-y-4">
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Digital Design
               </a>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Video
               </a>
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Travelogue
               </a>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className="hidden text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`hidden text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Wayfinder Diaries
               </a>
