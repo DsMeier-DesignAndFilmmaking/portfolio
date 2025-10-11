@@ -16,55 +16,51 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
 
-  // Determine if we're on a project page with fixed navbar color
-  // Check both with and without basePath since Next.js might return either
+  // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
-  const isOnAISandboxPage = pathname?.includes('/projects/ai-sandbox');
-  const isOnPreviousPage = pathname?.includes('/projects/previous');
-  const isOnProjectPageWithFixedColor = isOnPurduePage || isOnAISandboxPage || isOnPreviousPage;
-  
-  // For project pages: purdue and previous = black, ai-sandbox = white
-  const projectPageHasBlackNav = isOnPurduePage || isOnPreviousPage;
 
   useEffect(() => {
-    // If on a project page with fixed color, set it immediately and skip scroll detection
-    if (isOnProjectPageWithFixedColor) {
-      setIsOverBlackSection(projectPageHasBlackNav);
-      return;
-    }
-
     let rafId: number;
     let ticking = false;
 
     const updateNavbarColor = () => {
       const navbar = document.getElementById('site-navbar');
-      const blackSection = document.getElementById('black-section');
-      const videoSection = document.getElementById('video-projects');
+      const scrollY = window.scrollY;
 
       if (!navbar) {
         ticking = false;
         return;
       }
 
-      const navRect = navbar.getBoundingClientRect();
-      const navBottom = navRect.bottom;
-      const navTop = navRect.top;
-
       let isOverBlack = false;
 
-      // Check if navbar overlaps with black section
-      if (blackSection) {
-        const blackRect = blackSection.getBoundingClientRect();
-        if (navTop < blackRect.bottom && navBottom > blackRect.top) {
-          isOverBlack = true;
-        }
-      }
+      // Special handling for Purdue page - turn black on scroll
+      if (isOnPurduePage) {
+        // Turn black after scrolling down 100px
+        isOverBlack = scrollY > 100;
+      } else {
+        // Homepage behavior - check section overlap
+        const blackSection = document.getElementById('black-section');
+        const videoSection = document.getElementById('video-projects');
 
-      // Check if navbar overlaps with video section
-      if (videoSection && !isOverBlack) {
-        const videoRect = videoSection.getBoundingClientRect();
-        if (navTop < videoRect.bottom && navBottom > videoRect.top) {
-          isOverBlack = true;
+        const navRect = navbar.getBoundingClientRect();
+        const navBottom = navRect.bottom;
+        const navTop = navRect.top;
+
+        // Check if navbar overlaps with black section
+        if (blackSection) {
+          const blackRect = blackSection.getBoundingClientRect();
+          if (navTop < blackRect.bottom && navBottom > blackRect.top) {
+            isOverBlack = true;
+          }
+        }
+
+        // Check if navbar overlaps with video section
+        if (videoSection && !isOverBlack) {
+          const videoRect = videoSection.getBoundingClientRect();
+          if (navTop < videoRect.bottom && navBottom > videoRect.top) {
+            isOverBlack = true;
+          }
         }
       }
 
@@ -92,7 +88,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, [isOnProjectPageWithFixedColor, projectPageHasBlackNav]);
+  }, [isOnPurduePage]);
 
   const scrollToTop = () => {
     window.scrollTo({
