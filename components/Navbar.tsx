@@ -13,7 +13,7 @@ const Navbar = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [navStyles, setNavStyles] = useState({
-    top: 16,
+    top: 32,
     opacity: 0.7,
     blur: 8
   });
@@ -22,7 +22,7 @@ const Navbar = () => {
     let rafId: number;
     let ticking = false;
     let currentStyles = {
-      top: 16,
+      top: 32,
       opacity: 0.7,
       blur: 8
     };
@@ -50,8 +50,8 @@ const Navbar = () => {
       // Damping factor for smooth momentum
       const damping = 0.15;
 
-      // Interpolate top position (16px to 0px)
-      const targetTop = 16 - (16 * progress);
+      // Interpolate top position (32px to 0px)
+      const targetTop = 32 - (32 * progress);
       currentStyles.top += (targetTop - currentStyles.top) * damping;
 
       // Interpolate opacity (0.7 to 0.95)
