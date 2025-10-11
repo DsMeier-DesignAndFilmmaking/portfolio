@@ -187,25 +187,17 @@ export default function AISandboxPage() {
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className={`h-9 w-auto transition-all duration-300 ${
-                    isOverBlackBg ? 'brightness-0 invert' : 'brightness-0'
-                  }`}
+                  className="h-9 w-auto brightness-0"
                 />
               </button>
-              <div className={`h-6 w-px transition-colors duration-300 ${
-                isOverBlackBg ? 'bg-white/30' : 'bg-black/30'
-              }`}></div>
-              <span className={`text-sm font-medium transition-colors duration-300 ${
-                isOverBlackBg ? 'text-white/70' : 'text-black/70'
-              }`}>Design Work</span>
+              <div className="h-6 w-px bg-black/30"></div>
+              <span className="text-sm font-medium text-black/70">Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className={`md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end ${
-                isOverBlackBg ? 'text-white' : 'text-black'
-              }`}
+              className="md:hidden pl-4 py-2 rounded-lg flex items-center justify-end text-black"
               aria-label="Toggle mobile menu"
             >
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -220,25 +212,19 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
-                  }`}
+                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
-                  }`}
+                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : 'text-black hover:text-blue-400'
-                  }`}
+                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Previous Projects
                 </Link>
