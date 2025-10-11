@@ -197,44 +197,55 @@ export default function McDonaldsKioskProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
-            {/* First two images - full width */}
-            {project.images.slice(0, 2).map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - ${index === 0 ? 'Dynamic Yield Concept Flows' : 'Cross-sell Up-sell Flow Design'} - McDonald's Kiosk Interface`}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  priority={index === 0}
-                  quality={85}
-                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
-                />
-              </div>
-            ))}
+            {/* First image - very wide flow diagram */}
+            <div className="relative w-full aspect-[268/100] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} - Dynamic Yield Concept Flows - McDonald's Kiosk Interface`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                priority
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Second image - wide flow diagram */}
+            <div className="relative w-full aspect-[311/100] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[1]}
+                alt={`${project.title} - Cross-sell Up-sell Flow Design - McDonald's Kiosk Interface`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
             
-            {/* Last two images - 50/50 width with natural aspect ratio */}
-            <div className="flex gap-6">
-              <div className="relative w-1/2 rounded-lg overflow-hidden aspect-[4/3]">
+            {/* Last two images - vertical screenshots side by side */}
+            <div className="flex gap-6 flex-col md:flex-row">
+              <div className="relative w-full md:w-1/2 aspect-[9/16] rounded-lg overflow-hidden bg-gray-900">
                 <Image
                   src={project.images[2]}
                   alt={`${project.title} - Homepage Remember Me Default Mode Authenticated Screen - McDonald's Kiosk Interface`}
                   fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 50vw, 600px"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   quality={85}
-                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
                 />
               </div>
-              <div className="relative w-1/2 rounded-lg overflow-hidden aspect-[4/3]">
+              <div className="relative w-full md:w-1/2 aspect-[9/16] rounded-lg overflow-hidden bg-gray-900">
                 <Image
                   src={project.images[3]}
                   alt={`${project.title} - McDonald's Kiosk Screen Interface Design - User Experience`}
                   fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 50vw, 600px"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   quality={85}
-                  style={{ objectFit: 'cover', objectPosition: 'top', maxWidth: '100%', height: 'auto' }}
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
                 />
               </div>
             </div>
