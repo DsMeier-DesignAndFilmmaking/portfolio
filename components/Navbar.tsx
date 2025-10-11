@@ -16,9 +16,8 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
 
-  // Determine if we're on a project page or My Pulse page
+  // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
-  const isOnProjectPage = pathname?.includes('/projects/') || pathname === '/my-pulse';
 
   useEffect(() => {
     let rafId: number;
@@ -35,8 +34,8 @@ const Navbar = () => {
 
       let isOverBlack = false;
 
-      // Special handling for project pages and My Pulse - turn black on scroll
-      if (isOnProjectPage) {
+      // Special handling for Purdue page - turn black on scroll
+      if (isOnPurduePage) {
         // Turn black after scrolling down 100px
         isOverBlack = scrollY > 100;
       } else {
@@ -89,7 +88,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, [isOnProjectPage]);
+  }, [isOnPurduePage]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -225,14 +224,6 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
-                href="/my-pulse"
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 ${
-                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
-                }`}
-              >
-                My Pulse
-              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
@@ -289,15 +280,6 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
-                href="/my-pulse"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 ${
-                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
-                }`}
-              >
-                My Pulse
-              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}

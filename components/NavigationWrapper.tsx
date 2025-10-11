@@ -12,12 +12,12 @@ import Navbar from './Navbar';
 export default function NavigationWrapper() {
   const pathname = usePathname();
   
-  // Hide global navbar on project pages (they have their own custom navbars)
-  // Show it everywhere else including homepage and My Pulse
-  const isProjectPage = pathname?.startsWith('/projects/');
+  // Hide global navbar on project pages and My Pulse (they have their own custom navbars)
+  // Show it only on homepage and other general pages
+  const hasCustomNavbar = pathname?.startsWith('/projects/') || pathname === '/my-pulse';
   
-  // Don't render global navbar on project pages to prevent flash
-  if (isProjectPage) {
+  // Don't render global navbar on pages with custom navigation to prevent flash
+  if (hasCustomNavbar) {
     return null;
   }
   
