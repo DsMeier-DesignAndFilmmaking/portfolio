@@ -182,13 +182,14 @@ export default function HomePage() {
         />
 
         {/* Hero Image Section */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <img 
+                id="me_heroImage-1_1.1.1"
                 src="/portfolio/images/me_heroImage-1_1.1.1.jpg" 
                 alt="Dan Meier"
-                className="w-full h-auto rounded-lg shadow-lg"
+                className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                 loading="lazy"
               />
             </div>
