@@ -212,19 +212,19 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
-                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className="text-[12pt] text-black hover:text-blue-400 transition-colors"
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Previous Projects
                 </Link>
@@ -247,21 +247,21 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/purdue" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Previous Projects
                 </Link>

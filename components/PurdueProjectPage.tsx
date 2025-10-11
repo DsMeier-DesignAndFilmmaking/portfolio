@@ -111,19 +111,19 @@ export default function PurdueProjectPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className="text-[12pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Previous Projects
                 </Link>
@@ -146,21 +146,21 @@ export default function PurdueProjectPage() {
                 <Link 
                   href="/projects/purdue" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-300 hover:text-white transition-colors"
+                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-300 hover:text-white transition-colors"
+                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-300 hover:text-white transition-colors"
+                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
                   Previous Projects
                 </Link>
