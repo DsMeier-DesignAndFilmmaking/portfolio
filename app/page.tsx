@@ -187,7 +187,7 @@ export default function HomePage() {
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <img 
                 id="me_heroImage-1_1.1.1"
-                src="/images/me_heroImage-1_1.1.1.webp" 
+                src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
                 alt="Dan Meier"
                 className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                 loading="eager"
