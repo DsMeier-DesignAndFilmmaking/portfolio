@@ -17,9 +17,10 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
 
   // Determine if we're on a project page with fixed navbar color
-  const isOnPurduePage = pathname === '/projects/purdue';
-  const isOnAISandboxPage = pathname === '/projects/ai-sandbox';
-  const isOnPreviousPage = pathname === '/projects/previous';
+  // Check both with and without basePath since Next.js might return either
+  const isOnPurduePage = pathname?.includes('/projects/purdue');
+  const isOnAISandboxPage = pathname?.includes('/projects/ai-sandbox');
+  const isOnPreviousPage = pathname?.includes('/projects/previous');
   const isOnProjectPageWithFixedColor = isOnPurduePage || isOnAISandboxPage || isOnPreviousPage;
   
   // For project pages: purdue and previous = black, ai-sandbox = white
