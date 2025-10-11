@@ -61,9 +61,9 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "Designed and developed enterprise software solutions for Sphere Software, focusing on creating intuitive user interfaces and improving workflow efficiency.",
+  description: "Design Director for enterprise software suite for the HR Industry. Led design on client facing web projects.",
   heroImage: "/portfolio/images/sphere-card.jpg",
-  year: "Internal Startup & Client Consulting.",
+  year: "Internal Startup & Client Consulting",
   overview: "Develop enterprise software solutions",
   images: [
     "/portfolio/images/chairliftAllScreens.png",
