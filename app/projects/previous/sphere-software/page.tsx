@@ -63,7 +63,7 @@ const project = {
   title: "Sphere Software",
   description: "Designed and developed enterprise software solutions for Sphere Software, focusing on creating intuitive user interfaces and improving workflow efficiency.",
   heroImage: "/portfolio/images/sphere-card.jpg",
-  year: "Software Startup",
+  year: "Internal Startup & Client Consulting.",
   overview: "Develop enterprise software solutions",
   images: [
     "/portfolio/images/chairliftAllScreens.png",
