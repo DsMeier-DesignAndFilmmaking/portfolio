@@ -116,7 +116,7 @@ export default function HomePage() {
                         marginBottom: 'calc(1.32 * 1.5rem)'
                       }}
                     >
-                      <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">Welcome</span>
+                      <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
                     </h1>
                   </div>
                   <div className="space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
