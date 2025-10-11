@@ -185,41 +185,13 @@ export default function HomePage() {
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <picture>
-                {/* AVIF format - smallest file size, best compression */}
-                <source
-                  type="image/avif"
-                  srcSet="/images/optimized/me_heroImage-1_1.1.1-md.avif 768w,
-                          /images/optimized/me_heroImage-1_1.1.1-lg.avif 1024w,
-                          /images/optimized/me_heroImage-1_1.1.1-2xl.avif 1536w"
-                  sizes="(max-width: 768px) 100vw, 576px"
-                />
-                {/* WebP format - good compression, wider support */}
-                <source
-                  type="image/webp"
-                  srcSet="/images/optimized/me_heroImage-1_1.1.1-md.webp 768w,
-                          /images/optimized/me_heroImage-1_1.1.1-lg.webp 1024w,
-                          /images/optimized/me_heroImage-1_1.1.1-2xl.webp 1536w"
-                  sizes="(max-width: 768px) 100vw, 576px"
-                />
-                {/* Fallback JPG - optimized versions */}
-                <source
-                  type="image/jpeg"
-                  srcSet="/images/optimized/me_heroImage-1_1.1.1-md.jpg 768w,
-                          /images/optimized/me_heroImage-1_1.1.1-lg.jpg 1024w,
-                          /images/optimized/me_heroImage-1_1.1.1-2xl.jpg 1536w"
-                  sizes="(max-width: 768px) 100vw, 576px"
-                />
-                {/* Final fallback */}
-                <img
-                  id="me_heroImage-1_1.1.1"
-                  src="/images/optimized/me_heroImage-1_1.1.1-lg.jpg"
-                  alt="Dan Meier"
-                  className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                  loading="eager"
-                  decoding="async"
-                />
-              </picture>
+              <img 
+                id="me_heroImage-1_1.1.1"
+                src="/portfolio/images/me_heroImage-1_1.1.1.jpg" 
+                alt="Dan Meier"
+                className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
+                loading="eager"
+              />
             </div>
           </div>
         </section>
