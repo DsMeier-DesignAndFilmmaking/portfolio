@@ -16,8 +16,9 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
 
-  // Determine if we're on a project page
+  // Determine if we're on a project page or My Pulse page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
+  const isOnProjectPage = pathname?.includes('/projects/') || pathname === '/my-pulse';
 
   useEffect(() => {
     let rafId: number;
@@ -34,8 +35,8 @@ const Navbar = () => {
 
       let isOverBlack = false;
 
-      // Special handling for Purdue page - turn black on scroll
-      if (isOnPurduePage) {
+      // Special handling for project pages and My Pulse - turn black on scroll
+      if (isOnProjectPage) {
         // Turn black after scrolling down 100px
         isOverBlack = scrollY > 100;
       } else {
@@ -88,7 +89,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, [isOnPurduePage]);
+  }, [isOnProjectPage]);
 
   const scrollToTop = () => {
     window.scrollTo({

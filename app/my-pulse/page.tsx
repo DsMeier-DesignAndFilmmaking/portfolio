@@ -99,7 +99,7 @@ export default function MyPulsePage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white pt-16">
       {/* Hero Section with Animated Pulse */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Animated Pulse Background */}
