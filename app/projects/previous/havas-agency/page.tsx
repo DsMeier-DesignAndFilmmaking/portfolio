@@ -42,7 +42,7 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 // Project data for Havas Agency
 const project = {
   title: "Havas Agency",
-  description: "UX and web design work for Havas Agency, focusing on creating engaging digital experiences.",
+  description: "UX and web design at Havas Agency, creating engaging, on-brand digital experiences.",
   heroImage: "/portfolio/images/havas-card.jpg",
   year: "UX & Web Design",
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
@@ -213,7 +213,7 @@ export default function HavasAgencyProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/havas-website-redesign-specs.pdf" 
+              href="/portfolio/documents/Camel_ReDesign_UX_072215.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -226,7 +226,7 @@ export default function HavasAgencyProjectPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">Website Redesign Specs</h3>
-                  <p className="text-gray-400 text-sm">Comprehensive specifications for the Q1 website redesign</p>
+                  <p className="text-gray-400 text-sm">Comprehensive specifications for the Camel website redesign</p>
                 </div>
               </div>
               <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
