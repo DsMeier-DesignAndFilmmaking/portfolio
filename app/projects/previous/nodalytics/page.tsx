@@ -180,17 +180,32 @@ export default function NodalyticsProjectPage() {
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="space-y-8">
-            {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover object-top"
-                />
-              </div>
-            ))}
+          <div className="space-y-6">
+            {/* First image - Noda cropped container (1.91:1 ratio) */}
+            <div className="relative w-full aspect-[191/100] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} - Analytics Dashboard`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Second image - Hero graphic (16:9 ratio) */}
+            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[1]}
+                alt={`${project.title} - Platform Overview`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
           </div>
         </div>
       </section>
