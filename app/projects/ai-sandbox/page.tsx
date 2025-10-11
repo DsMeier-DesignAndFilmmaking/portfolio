@@ -1852,7 +1852,7 @@ export default function AISandboxPage() {
                     Mobile Build Iterations
                   </h3>
                   <p className="text-gray-400 text-sm">
-                    Recent mobile prototypes and iterations
+                    Rapid prototyping using ChatGPT, Cursor and Xcode
                   </p>
                 </div>
                 
