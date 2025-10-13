@@ -10,7 +10,7 @@ import Navbar from './Navbar';
  * This component ensures the Navbar appears consistently across appropriate pages.
  * Project pages and My Pulse have their own custom navigation and are excluded to prevent double navbar flash.
  * 
- * Note: My Pulse uses a dedicated layout.tsx file so this won't even be called for that route.
+ * Excluded routes: /projects/* and /my-pulse
  */
 export default function NavigationWrapper() {
   const pathname = usePathname();
@@ -28,12 +28,13 @@ export default function NavigationWrapper() {
     return null;
   }
   
-  // Hide global navbar on project pages (they have their own custom navbars)
+  // Hide global navbar on project pages and My Pulse (they have their own custom navbars)
   // Show it on homepage and other general pages
   const isProjectPage = pathname.startsWith('/projects/');
+  const isMyPulsePage = pathname.startsWith('/my-pulse');
   
-  // Don't render global navbar on project pages
-  if (isProjectPage) {
+  // Don't render global navbar on project pages or My Pulse
+  if (isProjectPage || isMyPulsePage) {
     return null;
   }
   
