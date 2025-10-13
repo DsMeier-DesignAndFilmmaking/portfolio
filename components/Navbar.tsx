@@ -145,14 +145,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar-wrapper fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <div className="navbar-wrapper">
       <motion.nav 
         id="site-navbar"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`w-full backdrop-blur-md border-0 pointer-events-auto transition-colors duration-500 ${
-          isOverBlackSection ? 'bg-black/90' : 'bg-white/90'
+        className={`navbar-container ${
+          isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
         }`}
       >
         <div className="max-w-4xl mx-auto px-6">
@@ -187,10 +187,10 @@ const Navbar = () => {
             }`}
             aria-label="Toggle mobile menu"
           >
-            <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <div className="hamburger-container">
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-1 open' : 'hamburger-line-1'}`} />
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-2 open' : 'hamburger-line-2'}`} />
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-3 open' : 'hamburger-line-3'}`} />
             </div>
           </button>
 
@@ -200,42 +200,46 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Digital Design
               </a>
+              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Video
               </a>
+              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Travelogue
               </a>
+              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <Link 
                 href="/my-pulse"
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
                   pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 My Pulse
               </Link>
+              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'} hidden`}></div>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`hidden text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
@@ -255,8 +259,8 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md pointer-events-auto transition-colors duration-500 ${
-              isOverBlackSection ? 'bg-black/95' : 'bg-white/95'
+            className={`mobile-menu md:hidden ${
+              isOverBlackSection ? 'bg-black-95' : 'bg-white-95'
             }`}
           >
             <div className="max-w-4xl mx-auto px-6">
@@ -264,7 +268,7 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -273,7 +277,7 @@ const Navbar = () => {
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -282,7 +286,7 @@ const Navbar = () => {
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -291,7 +295,7 @@ const Navbar = () => {
               <Link 
                 href="/my-pulse"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-[12pt] hover:text-blue-400 transition-colors duration-500 ${
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
                   pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -300,7 +304,7 @@ const Navbar = () => {
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-[12pt] hover:text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`hidden text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
