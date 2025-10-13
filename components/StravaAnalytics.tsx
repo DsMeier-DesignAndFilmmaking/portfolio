@@ -313,10 +313,6 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
               <p className="text-orange-100 text-sm">
                 {athlete.city}, {athlete.state}
               </p>
-              <div className="flex gap-4 text-xs text-orange-200">
-                <span>{athlete.follower_count} followers</span>
-                <span>{athlete.friend_count} following</span>
-              </div>
             </div>
           </div>
         </motion.div>
