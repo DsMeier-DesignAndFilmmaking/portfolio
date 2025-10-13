@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import AISummaryCard from '../../components/AISummaryCard';
 import { fetchGitHubActivity } from '@/lib/api/github';
 import { fetchFigmaActivity } from '@/lib/api/figma';
 import { fetchNotionProjects, fetchCurrentFocus } from '@/lib/api/notion';
@@ -1264,6 +1265,11 @@ export default function MyPulsePage() {
                 </div>
                 <span className="text-sm text-blue-400 font-medium">Cursor AI</span>
               </div>
+            </div>
+
+            {/* AI Summary Card */}
+            <div className="mb-6">
+              <AISummaryCard cursorData={cursorRealData} />
             </div>
 
             {/* Analytics Cards */}
