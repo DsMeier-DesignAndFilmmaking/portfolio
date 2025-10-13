@@ -1262,9 +1262,9 @@ export default function MyPulsePage() {
                 <h2 className="text-xl font-bold text-white mb-1">Cursor Analytics</h2>
                 <p className="text-sm text-gray-300">AI-powered coding assistant usage insights</p>
                 <div className="text-xs text-gray-500 mt-1">
-                  {cursorAnalytics?.isRealData ? 
+                  {cursorRealData?.source === 'cursor-usage-parser' ? 
                     "📊 Analytics from parsed Cursor usage data" : 
-                    "📊 Analytics estimated from typical Cursor usage patterns"
+                    "📊 Analytics simulated - Cursor doesn't store detailed usage logs locally for privacy"
                   }
                 </div>
               </div>

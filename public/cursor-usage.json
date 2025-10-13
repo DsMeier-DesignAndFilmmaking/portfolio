@@ -1,71 +1,121 @@
 {
-  "totalPrompts": 150,
+  "totalPrompts": 382,
   "promptsByDay": {
-    "2025-01-13": 5,
-    "2025-01-12": 4,
-    "2025-01-11": 3,
-    "2025-01-10": 5,
-    "2025-01-09": 4,
-    "2025-01-08": 3,
-    "2025-01-07": 2,
-    "2025-01-06": 4,
-    "2025-01-05": 5,
-    "2025-01-04": 3
+    "2025-10-13": 5,
+    "2025-10-12": 2,
+    "2025-10-11": 1,
+    "2025-10-10": 9,
+    "2025-10-09": 4,
+    "2025-10-08": 8,
+    "2025-10-07": 4,
+    "2025-10-06": 4,
+    "2025-10-05": 4,
+    "2025-10-04": 3,
+    "2025-10-03": 9,
+    "2025-10-02": 3,
+    "2025-10-01": 5,
+    "2025-09-30": 9,
+    "2025-09-29": 7,
+    "2025-09-28": 4,
+    "2025-09-27": 4,
+    "2025-09-26": 4,
+    "2025-09-25": 6,
+    "2025-09-24": 8,
+    "2025-09-23": 8,
+    "2025-09-22": 6,
+    "2025-09-21": 3,
+    "2025-09-20": 1,
+    "2025-09-19": 8,
+    "2025-09-18": 7,
+    "2025-09-17": 6,
+    "2025-09-16": 7,
+    "2025-09-15": 10,
+    "2025-09-14": 1
   },
   "topPrompts": [
     {
       "prompt": "Add input validation to this form",
-      "count": 16
-    },
-    {
-      "prompt": "Generate documentation for this module",
       "count": 13
     },
     {
       "prompt": "Add error handling to this async function",
-      "count": 13
-    },
-    {
-      "prompt": "Optimize this database query for better performance",
-      "count": 13
+      "count": 12
     },
     {
       "prompt": "Create unit tests for this API endpoint",
-      "count": 12
+      "count": 11
+    },
+    {
+      "prompt": "Optimize this database query for better performance",
+      "count": 10
+    },
+    {
+      "prompt": "Generate documentation for this module",
+      "count": 9
     }
   ],
   "recentPrompts": [
     {
-      "timestamp": "2025-01-13T10:00:00.000Z",
+      "timestamp": "2025-10-13T22:03:07.581Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T20:03:07.581Z",
+      "prompt": "Create unit tests for this API endpoint",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T18:03:07.581Z",
+      "prompt": "Create unit tests for this API endpoint",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T16:03:07.581Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:03:07.581Z",
+      "prompt": "Generate a React component for user authentication",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T12:03:07.581Z",
+      "prompt": "Generate documentation for this module",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T10:03:07.581Z",
+      "prompt": "Review this code for security vulnerabilities",
+      "model": "unknown",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T08:03:07.581Z",
       "prompt": "Add input validation to this form",
       "model": "unknown",
       "success": true
     },
     {
-      "timestamp": "2025-01-13T08:00:00.000Z",
-      "prompt": "Generate documentation for this module",
+      "timestamp": "2025-10-13T06:03:07.581Z",
+      "prompt": "Add input validation to this form",
       "model": "unknown",
       "success": true
     },
     {
-      "timestamp": "2025-01-13T06:00:00.000Z",
+      "timestamp": "2025-10-13T04:03:07.581Z",
       "prompt": "Add error handling to this async function",
-      "model": "unknown",
-      "success": true
-    },
-    {
-      "timestamp": "2025-01-13T04:00:00.000Z",
-      "prompt": "Optimize this database query for better performance",
-      "model": "unknown",
-      "success": true
-    },
-    {
-      "timestamp": "2025-01-13T02:00:00.000Z",
-      "prompt": "Create unit tests for this API endpoint",
       "model": "unknown",
       "success": true
     }
   ],
-  "generatedAt": "2025-10-13T21:54:18.676Z",
-  "source": "sample-data"
+  "generatedAt": "2025-10-13T22:03:07.581Z",
+  "source": "usage-simulation"
 }
