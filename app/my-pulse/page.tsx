@@ -9,6 +9,96 @@ import { fetchGitHubActivity } from '@/lib/api/github';
 import { fetchFigmaActivity } from '@/lib/api/figma';
 import { fetchNotionProjects, fetchCurrentFocus } from '@/lib/api/notion';
 
+// Process GitHub API data on the client side
+function processGitHubData(events: any[]) {
+  const now = new Date();
+  const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  
+  // Group commits by date
+  const commitsByDate: any = {};
+  let totalCommits = 0;
+  let streak = 0;
+  let lastCommit = null;
+  
+  // Calculate streak (consecutive days with commits)
+  const datesWithCommits = new Set();
+  
+  events.forEach(event => {
+    if (event.type === 'PushEvent' && event.created_at) {
+      const eventDate = new Date(event.created_at);
+      
+      // Only count events from the last week
+      if (eventDate >= oneWeekAgo) {
+        const dateKey = eventDate.toISOString().split('T')[0];
+        
+        if (!commitsByDate[dateKey]) {
+          commitsByDate[dateKey] = {
+            date: dateKey,
+            count: 0,
+            repos: new Set()
+          };
+        }
+        
+        // Count commits in this push
+        const commitCount = event.payload.commits?.length || 1;
+        commitsByDate[dateKey].count += commitCount;
+        commitsByDate[dateKey].repos.add(event.repo.name);
+        totalCommits += commitCount;
+        datesWithCommits.add(dateKey);
+        
+        // Track most recent commit
+        if (!lastCommit || new Date(event.created_at) > new Date(lastCommit.timestamp)) {
+          lastCommit = {
+            message: event.payload.commits?.[0]?.message || 'Push to repository',
+            timestamp: event.created_at,
+            repo: event.repo.name
+          };
+        }
+      }
+    }
+  });
+  
+  // Calculate streak (consecutive days with commits, starting from today)
+  for (let i = 0; i < 365; i++) {
+    const checkDate = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+    const dateKey = checkDate.toISOString().split('T')[0];
+    
+    if (datesWithCommits.has(dateKey)) {
+      streak++;
+    } else if (i === 0) {
+      // If today has no commits, streak is 0
+      break;
+    } else {
+      // Found a day with no commits, stop counting
+      break;
+    }
+  }
+  
+  // Generate array for last 7 days
+  const commits = [];
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+    const dateKey = date.toISOString().split('T')[0];
+    
+    commits.push({
+      date: dateKey,
+      count: commitsByDate[dateKey]?.count || 0,
+      repo: commitsByDate[dateKey]?.repos?.values()?.next()?.value || 'portfolio'
+    });
+  }
+  
+  return {
+    commits,
+    weeklyTotal: totalCommits,
+    streak,
+    lastCommit: lastCommit || {
+      message: 'No recent commits',
+      timestamp: new Date().toISOString(),
+      repo: 'portfolio'
+    }
+  };
+}
+
 // Platform Icons Component
 const PlatformIcon = ({ platform }: { platform: string }) => {
   const icons = {
@@ -142,19 +232,50 @@ export default function MyPulsePage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [github, figma, notion, focus] = await Promise.all([
-          fetchGitHubActivity(),
+        // Fetch GitHub data directly from the API on the client side
+        const githubResponse = await fetch('https://api.github.com/users/DsMeier-DesignAndFilmmaking/events/public', {
+          headers: {
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'My-Portfolio-Dashboard'
+          }
+        });
+        
+        if (githubResponse.ok) {
+          const events = await githubResponse.json();
+          const processedGithubData = processGitHubData(events);
+          setGithubData(processedGithubData);
+        } else {
+          // Fallback to build-time data if API fails
+          const [github] = await Promise.all([fetchGitHubActivity()]);
+          setGithubData(github);
+        }
+        
+        const [figma, notion, focus] = await Promise.all([
           fetchFigmaActivity(),
           fetchNotionProjects(),
           fetchCurrentFocus(),
         ]);
 
-        setGithubData(github);
         setFigmaData(figma);
         setNotionData(notion);
         setCurrentFocus(focus);
       } catch (error) {
         console.error('Error loading pulse data:', error);
+        // Fallback to build-time data
+        try {
+          const [github, figma, notion, focus] = await Promise.all([
+            fetchGitHubActivity(),
+            fetchFigmaActivity(),
+            fetchNotionProjects(),
+            fetchCurrentFocus(),
+          ]);
+          setGithubData(github);
+          setFigmaData(figma);
+          setNotionData(notion);
+          setCurrentFocus(focus);
+        } catch (fallbackError) {
+          console.error('Fallback data loading failed:', fallbackError);
+        }
       } finally {
         setLoading(false);
       }
