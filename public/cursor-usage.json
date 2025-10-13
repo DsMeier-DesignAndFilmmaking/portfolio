@@ -1,0 +1,201 @@
+{
+  "totalPrompts": 150,
+  "promptsByDay": {
+    "2025-09-25": 5,
+    "2025-09-20": 4,
+    "2025-09-19": 3,
+    "2025-10-02": 5,
+    "2025-10-08": 3,
+    "2025-09-24": 4,
+    "2025-09-16": 3,
+    "2025-09-22": 8,
+    "2025-10-05": 4,
+    "2025-10-04": 4,
+    "2025-09-29": 2,
+    "2025-09-17": 12,
+    "2025-09-14": 5,
+    "2025-10-13": 5,
+    "2025-10-01": 5,
+    "2025-09-21": 10,
+    "2025-09-28": 7,
+    "2025-10-09": 6,
+    "2025-09-26": 7,
+    "2025-10-03": 8,
+    "2025-10-06": 6,
+    "2025-10-10": 4,
+    "2025-10-07": 7,
+    "2025-09-30": 5,
+    "2025-09-15": 3,
+    "2025-10-11": 1,
+    "2025-09-18": 5,
+    "2025-09-23": 2,
+    "2025-10-12": 2,
+    "2025-09-27": 5
+  },
+  "topPrompts": [
+    {
+      "prompt": "Add input validation to this form",
+      "count": 16
+    },
+    {
+      "prompt": "Generate documentation for this module",
+      "count": 13
+    },
+    {
+      "prompt": "Add error handling to this async function",
+      "count": 13
+    },
+    {
+      "prompt": "Optimize this database query for better performance",
+      "count": 13
+    },
+    {
+      "prompt": "Optimize bundle size and performance",
+      "count": 12
+    },
+    {
+      "prompt": "Review this code for security vulnerabilities",
+      "count": 11
+    },
+    {
+      "prompt": "Fix the TypeScript error in this function",
+      "count": 10
+    },
+    {
+      "prompt": "Refactor this component to use hooks",
+      "count": 10
+    },
+    {
+      "prompt": "Create unit tests for this API endpoint",
+      "count": 10
+    },
+    {
+      "prompt": "Fix memory leak in this component",
+      "count": 9
+    }
+  ],
+  "recentPrompts": [
+    {
+      "timestamp": "2025-10-13T21:18:19.780Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T21:18:19.780Z",
+      "prompt": "Review this code for security vulnerabilities",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T21:18:19.780Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T21:18:19.780Z",
+      "prompt": "Generate a React component for user authentication",
+      "model": "gpt-4",
+      "success": false
+    },
+    {
+      "timestamp": "2025-10-13T21:18:19.780Z",
+      "prompt": "Convert this class component to functional component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T21:18:19.780Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T21:18:19.780Z",
+      "prompt": "Generate documentation for this module",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T21:18:19.780Z",
+      "prompt": "Generate documentation for this module",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T21:18:19.780Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T21:18:19.780Z",
+      "prompt": "Create unit tests for this API endpoint",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T21:18:19.780Z",
+      "prompt": "Optimize bundle size and performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T21:18:19.780Z",
+      "prompt": "Generate documentation for this module",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T21:18:19.780Z",
+      "prompt": "Convert this class component to functional component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-08T21:18:19.780Z",
+      "prompt": "Fix memory leak in this component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-08T21:18:19.780Z",
+      "prompt": "Optimize bundle size and performance",
+      "model": "gpt-4",
+      "success": true
+    }
+  ],
+  "generatedAt": "2025-10-13T21:18:19.782Z",
+  "source": "cursor-usage-parser"
+}

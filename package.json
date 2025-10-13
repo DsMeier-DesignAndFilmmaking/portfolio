@@ -10,7 +10,8 @@
     "optimize-single": "node scripts/optimize-single-image.js",
     "optimize-mobile-screenshots": "node scripts/optimize-mobile-screenshots.js",
     "optimize-all-mobile-screenshots": "node scripts/optimize-all-mobile-screenshots.js",
-    "create-placeholder-screenshots": "node scripts/create-placeholder-screenshots.js"
+    "create-placeholder-screenshots": "node scripts/create-placeholder-screenshots.js",
+    "parse-cursor-usage": "node scripts/parse-cursor-usage.cjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.97.0",
