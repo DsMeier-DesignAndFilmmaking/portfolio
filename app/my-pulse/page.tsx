@@ -215,6 +215,13 @@ const DashboardHeader = ({ githubData, lastUpdated }: { githubData: any; lastUpd
               <span className="text-sm font-medium text-green-700">{githubData.streak} day streak</span>
             </div>
           )}
+          <button
+            onClick={() => window.location.reload()}
+            className="px-3 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            title="Refresh data"
+          >
+            🔄 Refresh
+          </button>
         </div>
       </div>
     </div>
@@ -232,50 +239,42 @@ export default function MyPulsePage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Fetch GitHub data directly from the API on the client side
-        const githubResponse = await fetch('https://api.github.com/users/DsMeier-DesignAndFilmmaking/events/public', {
-          headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'My-Portfolio-Dashboard'
-          }
-        });
-        
-        if (githubResponse.ok) {
-          const events = await githubResponse.json();
-          const processedGithubData = processGitHubData(events);
-          setGithubData(processedGithubData);
-        } else {
-          // Fallback to build-time data if API fails
-          const [github] = await Promise.all([fetchGitHubActivity()]);
-          setGithubData(github);
-        }
-        
-        const [figma, notion, focus] = await Promise.all([
+        // Load build-time data first for immediate display
+        const [github, figma, notion, focus] = await Promise.all([
+          fetchGitHubActivity(),
           fetchFigmaActivity(),
           fetchNotionProjects(),
           fetchCurrentFocus(),
         ]);
 
+        setGithubData(github);
         setFigmaData(figma);
         setNotionData(notion);
         setCurrentFocus(focus);
+        
+        // Then try to fetch fresh GitHub data in the background
+        try {
+          const githubResponse = await fetch('https://api.github.com/users/DsMeier-DesignAndFilmmaking/events/public', {
+            headers: {
+              'Accept': 'application/vnd.github.v3+json',
+              'User-Agent': 'My-Portfolio-Dashboard'
+            }
+          });
+          
+          if (githubResponse.ok) {
+            const events = await githubResponse.json();
+            const processedGithubData = processGitHubData(events);
+            setGithubData(processedGithubData);
+            console.log('✅ Fresh GitHub data loaded successfully');
+          } else {
+            console.log('⚠️ GitHub API returned:', githubResponse.status, githubResponse.statusText);
+          }
+        } catch (apiError) {
+          console.log('⚠️ GitHub API call failed (this is normal due to CORS):', apiError.message);
+          console.log('ℹ️ Using build-time data instead');
+        }
       } catch (error) {
         console.error('Error loading pulse data:', error);
-        // Fallback to build-time data
-        try {
-          const [github, figma, notion, focus] = await Promise.all([
-            fetchGitHubActivity(),
-            fetchFigmaActivity(),
-            fetchNotionProjects(),
-            fetchCurrentFocus(),
-          ]);
-          setGithubData(github);
-          setFigmaData(figma);
-          setNotionData(notion);
-          setCurrentFocus(focus);
-        } catch (fallbackError) {
-          console.error('Fallback data loading failed:', fallbackError);
-        }
       } finally {
         setLoading(false);
       }
@@ -297,14 +296,12 @@ export default function MyPulsePage() {
     );
   }
 
-  const lastUpdated = githubData 
-    ? new Date(githubData.lastCommit.timestamp).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    : 'Just now';
+  const lastUpdated = new Date().toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
