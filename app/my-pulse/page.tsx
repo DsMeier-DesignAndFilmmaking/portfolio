@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { fetchGitHubActivity } from '@/lib/api/github';
 import { fetchFigmaActivity } from '@/lib/api/figma';
 import { fetchNotionProjects, fetchCurrentFocus } from '@/lib/api/notion';
@@ -294,7 +295,11 @@ export default function MyPulsePage() {
         totalPrompts: 0,
         averageResponseLength: 0,
         totalWords: 0,
-        topTopics: []
+        topTopics: [],
+        allTopics: [],
+        topicDistribution: [],
+        responseLengths: [],
+        dailyActivity: []
       };
     }
     
@@ -304,25 +309,38 @@ export default function MyPulsePage() {
     );
     const totalWords = openaiPrompts.reduce((sum, p) => sum + p.analytics.wordCount, 0);
     
-    // Simple topic extraction based on common keywords
+    // Enhanced topic extraction with more categories
     const topicKeywords = {
-      'Code': ['code', 'programming', 'function', 'variable', 'algorithm', 'bug', 'debug'],
-      'Design': ['design', 'ui', 'ux', 'interface', 'layout', 'visual', 'color', 'typography'],
-      'Analysis': ['analyze', 'analysis', 'data', 'metrics', 'performance', 'optimization'],
-      'Creative': ['creative', 'ideas', 'brainstorm', 'concept', 'inspiration', 'artistic'],
-      'Technical': ['technical', 'implementation', 'architecture', 'system', 'database', 'api']
+      'Code': ['code', 'programming', 'function', 'variable', 'algorithm', 'bug', 'debug', 'javascript', 'python', 'react', 'api'],
+      'Design': ['design', 'ui', 'ux', 'interface', 'layout', 'visual', 'color', 'typography', 'css', 'styling', 'aesthetics'],
+      'Analysis': ['analyze', 'analysis', 'data', 'metrics', 'performance', 'optimization', 'insights', 'statistics', 'trends'],
+      'Creative': ['creative', 'ideas', 'brainstorm', 'concept', 'inspiration', 'artistic', 'innovation', 'imagination', 'art'],
+      'Technical': ['technical', 'implementation', 'architecture', 'system', 'database', 'server', 'infrastructure', 'deployment'],
+      'Business': ['business', 'strategy', 'marketing', 'sales', 'growth', 'revenue', 'profit', 'customer', 'market'],
+      'Learning': ['learn', 'education', 'tutorial', 'guide', 'explain', 'teach', 'study', 'knowledge', 'skill'],
+      'Problem Solving': ['problem', 'solution', 'fix', 'troubleshoot', 'resolve', 'issue', 'challenge', 'help', 'support']
     };
     
     const topicCounts: { [key: string]: number } = {};
+    const responseLengths = openaiPrompts.map(p => p.analytics.responseLength);
+    
+    // Group by date for daily activity
+    const dailyActivityMap: { [key: string]: number } = {};
     
     openaiPrompts.forEach(prompt => {
       const text = (prompt.prompt + ' ' + prompt.response).toLowerCase();
+      
+      // Topic analysis
       Object.entries(topicKeywords).forEach(([topic, keywords]) => {
         const count = keywords.filter(keyword => text.includes(keyword)).length;
         if (count > 0) {
           topicCounts[topic] = (topicCounts[topic] || 0) + count;
         }
       });
+      
+      // Daily activity
+      const date = new Date(prompt.timestamp).toLocaleDateString();
+      dailyActivityMap[date] = (dailyActivityMap[date] || 0) + 1;
     });
     
     const topTopics = Object.entries(topicCounts)
@@ -330,12 +348,51 @@ export default function MyPulsePage() {
       .slice(0, 3)
       .map(([topic, count]) => ({ topic, count }));
     
+    // All topics for charts
+    const allTopics = Object.entries(topicCounts)
+      .sort(([,a], [,b]) => b - a)
+      .map(([topic, count]) => ({ topic, count }));
+    
+    // Topic distribution for pie chart
+    const topicDistribution = Object.entries(topicCounts)
+      .map(([topic, count]) => ({ 
+        name: topic, 
+        value: count,
+        color: getTopicColor(topic)
+      }))
+      .sort((a, b) => b.value - a.value);
+    
+    // Daily activity for bar chart
+    const dailyActivity = Object.entries(dailyActivityMap)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .slice(-7); // Last 7 days
+    
     return {
       totalPrompts,
       averageResponseLength,
       totalWords,
-      topTopics
+      topTopics,
+      allTopics,
+      topicDistribution,
+      responseLengths,
+      dailyActivity
     };
+  };
+
+  // Color mapping for topics
+  const getTopicColor = (topic: string) => {
+    const colors = {
+      'Code': '#3b82f6',
+      'Design': '#8b5cf6',
+      'Analysis': '#10b981',
+      'Creative': '#f59e0b',
+      'Technical': '#ef4444',
+      'Business': '#06b6d4',
+      'Learning': '#84cc16',
+      'Problem Solving': '#f97316'
+    };
+    return colors[topic as keyof typeof colors] || '#6b7280';
   };
 
   const openaiAnalytics = calculateOpenAIAnalytics();
@@ -757,37 +814,168 @@ export default function MyPulsePage() {
           </div>
 
           {/* Analytics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.totalPrompts}</div>
-              <div className="text-sm text-gray-500">Total Prompts</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-2xl font-bold text-blue-900">{openaiAnalytics.totalPrompts}</div>
+                <div className="text-blue-600">💬</div>
+              </div>
+              <div className="text-sm text-blue-700">Total Prompts</div>
               {openaiPrompts.length === 0 && (
                 <div className="text-xs text-blue-600 mt-1">💡 Send a prompt to see analytics!</div>
               )}
             </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.averageResponseLength}</div>
-              <div className="text-sm text-gray-500">Avg Response Length</div>
+            
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-2xl font-bold text-green-900">{openaiAnalytics.averageResponseLength}</div>
+                <div className="text-green-600">📏</div>
+              </div>
+              <div className="text-sm text-green-700">Avg Response Length</div>
             </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.totalWords.toLocaleString()}</div>
-              <div className="text-sm text-gray-500">Total Words</div>
+            
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-2xl font-bold text-purple-900">{openaiAnalytics.totalWords.toLocaleString()}</div>
+                <div className="text-purple-600">📝</div>
+              </div>
+              <div className="text-sm text-purple-700">Total Words</div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-2xl font-bold text-orange-900">{openaiAnalytics.allTopics.length}</div>
+                <div className="text-orange-600">🏷️</div>
+              </div>
+              <div className="text-sm text-orange-700">Topics Discussed</div>
             </div>
           </div>
 
-          {/* Top Topics */}
-          {openaiAnalytics.topTopics.length > 0 && (
+          {/* Charts and Visualizations */}
+          {openaiAnalytics.topicDistribution.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Top Topics</h3>
-              <div className="flex flex-wrap gap-2">
-                {openaiAnalytics.topTopics.map((topic, index) => (
-                  <span
-                    key={topic.topic}
-                    className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
-                  >
-                    {topic.topic} ({topic.count})
-                  </span>
-                ))}
+              <h3 className="text-sm font-medium text-gray-900 mb-4">Topic Distribution & Activity</h3>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Topic Distribution Pie Chart */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">Topic Distribution</h4>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={openaiAnalytics.topicDistribution}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={40}
+                          outerRadius={80}
+                          paddingAngle={2}
+                          dataKey="value"
+                        >
+                          {openaiAnalytics.topicDistribution.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip 
+                          formatter={(value, name, props) => [
+                            `${value} mentions`, 
+                            props.payload.name
+                          ]}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mt-3">
+                    {openaiAnalytics.topicDistribution.slice(0, 4).map((topic) => (
+                      <div key={topic.name} className="flex items-center gap-2 text-xs">
+                        <div 
+                          className="w-3 h-3 rounded-full" 
+                          style={{ backgroundColor: topic.color }}
+                        ></div>
+                        <span className="text-gray-600">{topic.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Daily Activity Bar Chart */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">Daily Activity (Last 7 Days)</h4>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={openaiAnalytics.dailyActivity}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short' })}
+                        />
+                        <YAxis tick={{ fontSize: 12 }} />
+                        <Tooltip 
+                          labelFormatter={(date) => new Date(date).toLocaleDateString()}
+                          formatter={(value) => [`${value} prompts`, 'Count']}
+                        />
+                        <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                {/* Response Length Distribution */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">Response Length Distribution</h4>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={(() => {
+                        const ranges = [
+                          { range: '0-100', min: 0, max: 100, count: 0 },
+                          { range: '101-200', min: 101, max: 200, count: 0 },
+                          { range: '201-300', min: 201, max: 300, count: 0 },
+                          { range: '301-500', min: 301, max: 500, count: 0 },
+                          { range: '500+', min: 501, max: Infinity, count: 0 }
+                        ];
+                        
+                        openaiAnalytics.responseLengths.forEach(length => {
+                          ranges.forEach(range => {
+                            if (length >= range.min && length <= range.max) {
+                              range.count++;
+                            }
+                          });
+                        });
+                        
+                        return ranges;
+                      })()}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                        <XAxis dataKey="range" tick={{ fontSize: 12 }} />
+                        <YAxis tick={{ fontSize: 12 }} />
+                        <Tooltip formatter={(value) => [`${value} responses`, 'Count']} />
+                        <Bar dataKey="count" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2 text-center">
+                    Character count ranges
+                  </div>
+                </div>
+              </div>
+
+              {/* Top Topics */}
+              <div className="mt-6">
+                <h4 className="text-sm font-medium text-gray-700 mb-3">Top Topics</h4>
+                <div className="flex flex-wrap gap-2">
+                  {openaiAnalytics.topTopics.map((topic) => (
+                    <span
+                      key={topic.topic}
+                      className="px-3 py-1 rounded-full text-xs font-medium"
+                      style={{ 
+                        backgroundColor: `${getTopicColor(topic.topic)}20`,
+                        color: getTopicColor(topic.topic)
+                      }}
+                    >
+                      {topic.topic} ({topic.count})
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -868,30 +1056,32 @@ export default function MyPulsePage() {
                       </button>
                     </div>
                     
-                    <div className="mb-3">
-                      <div className="text-xs font-medium text-gray-600 mb-1">Prompt:</div>
-                      <div className="text-sm text-gray-800 bg-gray-50 rounded p-2">
-                        {conversation.prompt}
+                      <div className="mb-3">
+                        <div className="text-xs font-medium text-gray-600 mb-1">Prompt:</div>
+                        <div className="text-sm text-gray-800 bg-gray-50 rounded-lg p-3 border border-gray-200">
+                          {conversation.prompt}
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div>
-                      <div className="text-xs font-medium text-gray-600 mb-1">Response:</div>
-                      <div className={`text-sm rounded p-2 ${
-                        conversation.analytics.responseLength > 500 
-                          ? 'bg-green-50 text-green-800' 
-                          : conversation.analytics.responseLength > 200 
-                            ? 'bg-blue-50 text-blue-800' 
-                            : 'bg-gray-50 text-gray-800'
-                      }`}>
-                        {conversation.response}
+                      
+                      <div>
+                        <div className="text-xs font-medium text-gray-600 mb-1">Response:</div>
+                        <div className={`text-sm rounded-lg p-3 border ${
+                          conversation.analytics.responseLength > 500 
+                            ? 'bg-green-50 text-green-800 border-green-200' 
+                            : conversation.analytics.responseLength > 200 
+                              ? 'bg-blue-50 text-blue-800 border-blue-200' 
+                              : 'bg-gray-50 text-gray-800 border-gray-200'
+                        }`}>
+                          <div className="whitespace-pre-wrap">{conversation.response}</div>
+                          <div className="mt-2 pt-2 border-t border-current border-opacity-20">
+                            <div className="flex items-center justify-between text-xs">
+                              <span>📏 {conversation.analytics.responseLength} chars</span>
+                              <span>📝 {conversation.analytics.wordCount} words</span>
+                              <span>🤖 {conversation.analytics.model}</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
-                      <span>{conversation.analytics.responseLength} chars, {conversation.analytics.wordCount} words</span>
-                      <span>Model: {conversation.analytics.model}</span>
-                    </div>
                   </div>
                 ))}
               </div>
