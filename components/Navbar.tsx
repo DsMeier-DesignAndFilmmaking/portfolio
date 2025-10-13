@@ -158,7 +158,7 @@ const Navbar = () => {
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex justify-between items-center">
           {/* Left side navigation */}
-          <div className="py-4">
+          <div className="py-4 flex items-center">
             <button
               onClick={() => {
                 scrollToTop();
@@ -177,6 +177,7 @@ const Navbar = () => {
                 }`}
               />
             </button>
+            <div className={`w-px h-4 ml-8 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -206,7 +207,6 @@ const Navbar = () => {
               >
                 Digital Design
               </a>
-              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
@@ -216,7 +216,6 @@ const Navbar = () => {
               >
                 Video
               </a>
-              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
@@ -226,7 +225,6 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
               <Link 
                 href="/my-pulse"
                 className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
@@ -235,7 +233,6 @@ const Navbar = () => {
               >
                 My Pulse
               </Link>
-              <div className={`w-px h-4 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'} hidden`}></div>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
