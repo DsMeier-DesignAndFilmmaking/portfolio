@@ -73,9 +73,8 @@ const MetricCard = ({ title, value, subtitle, icon, trend }: {
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    whileHover={{ scale: 1.02, y: -2 }}
     transition={{ duration: 0.2 }}
-    className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
+    className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
   >
     <div className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-2 text-gray-600">
@@ -255,7 +254,6 @@ export default function MyPulsePage() {
                       initial={{ height: 0 }}
                       animate={{ height: `${Math.max((day.count / 15) * 100, 8)}%` }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.05 }}
                     >
                       <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                         {day.count} commits
@@ -379,8 +377,7 @@ export default function MyPulsePage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all duration-200 cursor-pointer group"
+                  className="p-4 border border-gray-200 rounded-lg cursor-pointer group"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 text-gray-500">
