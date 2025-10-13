@@ -235,6 +235,105 @@ export default function MyPulsePage() {
   const [notionData, setNotionData] = useState<any>(null);
   const [currentFocus, setCurrentFocus] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  
+  // OpenAI Insights state
+  const [openaiPrompts, setOpenaiPrompts] = useState<any[]>([]);
+  const [openaiLoading, setOpenaiLoading] = useState(false);
+  const [newPrompt, setNewPrompt] = useState('');
+
+  // OpenAI API integration
+  const sendPromptToOpenAI = async (prompt: string) => {
+    try {
+      setOpenaiLoading(true);
+      
+      const response = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to get response from OpenAI');
+      }
+      
+      // Add to prompts list
+      const newPromptData = {
+        id: Date.now(),
+        prompt,
+        response: data.response,
+        timestamp: new Date().toISOString(),
+        analytics: data.analytics,
+        usage: data.usage
+      };
+      
+      setOpenaiPrompts(prev => [newPromptData, ...prev]);
+      setNewPrompt('');
+      
+      return data;
+    } catch (error) {
+      console.error('OpenAI API error:', error);
+      throw error;
+    } finally {
+      setOpenaiLoading(false);
+    }
+  };
+
+  // Analytics calculations
+  const calculateOpenAIAnalytics = () => {
+    if (openaiPrompts.length === 0) {
+      return {
+        totalPrompts: 0,
+        averageResponseLength: 0,
+        totalWords: 0,
+        topTopics: []
+      };
+    }
+    
+    const totalPrompts = openaiPrompts.length;
+    const averageResponseLength = Math.round(
+      openaiPrompts.reduce((sum, p) => sum + p.analytics.responseLength, 0) / totalPrompts
+    );
+    const totalWords = openaiPrompts.reduce((sum, p) => sum + p.analytics.wordCount, 0);
+    
+    // Simple topic extraction based on common keywords
+    const topicKeywords = {
+      'Code': ['code', 'programming', 'function', 'variable', 'algorithm', 'bug', 'debug'],
+      'Design': ['design', 'ui', 'ux', 'interface', 'layout', 'visual', 'color', 'typography'],
+      'Analysis': ['analyze', 'analysis', 'data', 'metrics', 'performance', 'optimization'],
+      'Creative': ['creative', 'ideas', 'brainstorm', 'concept', 'inspiration', 'artistic'],
+      'Technical': ['technical', 'implementation', 'architecture', 'system', 'database', 'api']
+    };
+    
+    const topicCounts: { [key: string]: number } = {};
+    
+    openaiPrompts.forEach(prompt => {
+      const text = (prompt.prompt + ' ' + prompt.response).toLowerCase();
+      Object.entries(topicKeywords).forEach(([topic, keywords]) => {
+        const count = keywords.filter(keyword => text.includes(keyword)).length;
+        if (count > 0) {
+          topicCounts[topic] = (topicCounts[topic] || 0) + count;
+        }
+      });
+    });
+    
+    const topTopics = Object.entries(topicCounts)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 3)
+      .map(([topic, count]) => ({ topic, count }));
+    
+    return {
+      totalPrompts,
+      averageResponseLength,
+      totalWords,
+      topTopics
+    };
+  };
+
+  const openaiAnalytics = calculateOpenAIAnalytics();
 
   useEffect(() => {
     const loadData = async () => {
@@ -631,6 +730,166 @@ export default function MyPulsePage() {
             </div>
           </motion.div>
         </section>
+        
+        {/* OpenAI Insights Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mt-6"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 mb-1">OpenAI Insights</h2>
+              <p className="text-sm text-gray-500">AI-powered analysis and creative assistance</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <span className="text-sm text-gray-600">GPT-4o Mini</span>
+            </div>
+          </div>
+
+          {/* Analytics Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.totalPrompts}</div>
+              <div className="text-sm text-gray-500">Total Prompts</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.averageResponseLength}</div>
+              <div className="text-sm text-gray-500">Avg Response Length</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.totalWords.toLocaleString()}</div>
+              <div className="text-sm text-gray-500">Total Words</div>
+            </div>
+          </div>
+
+          {/* Top Topics */}
+          {openaiAnalytics.topTopics.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-sm font-medium text-gray-900 mb-3">Top Topics</h3>
+              <div className="flex flex-wrap gap-2">
+                {openaiAnalytics.topTopics.map((topic, index) => (
+                  <span
+                    key={topic.topic}
+                    className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+                  >
+                    {topic.topic} ({topic.count})
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Prompt Input */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Send a prompt to OpenAI
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={newPrompt}
+                onChange={(e) => setNewPrompt(e.target.value)}
+                placeholder="Ask anything... (e.g., 'Analyze my portfolio trends')"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={openaiLoading}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && !openaiLoading && newPrompt.trim()) {
+                    sendPromptToOpenAI(newPrompt.trim());
+                  }
+                }}
+              />
+              <button
+                onClick={() => newPrompt.trim() && sendPromptToOpenAI(newPrompt.trim())}
+                disabled={openaiLoading || !newPrompt.trim()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {openaiLoading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                    Send
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Prompt Log */}
+          <div>
+            <h3 className="text-sm font-medium text-gray-900 mb-3">Recent Conversations</h3>
+            {openaiPrompts.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                <div className="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <p className="text-sm">No conversations yet. Send your first prompt above!</p>
+              </div>
+            ) : (
+              <div className="space-y-4 max-h-96 overflow-y-auto">
+                {openaiPrompts.map((conversation) => (
+                  <div key={conversation.id} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-xs text-gray-500">
+                          {new Date(conversation.timestamp).toLocaleString()}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => navigator.clipboard.writeText(conversation.response)}
+                        className="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1"
+                        title="Copy response"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    
+                    <div className="mb-3">
+                      <div className="text-xs font-medium text-gray-600 mb-1">Prompt:</div>
+                      <div className="text-sm text-gray-800 bg-gray-50 rounded p-2">
+                        {conversation.prompt}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <div className="text-xs font-medium text-gray-600 mb-1">Response:</div>
+                      <div className={`text-sm rounded p-2 ${
+                        conversation.analytics.responseLength > 500 
+                          ? 'bg-green-50 text-green-800' 
+                          : conversation.analytics.responseLength > 200 
+                            ? 'bg-blue-50 text-blue-800' 
+                            : 'bg-gray-50 text-gray-800'
+                      }`}>
+                        {conversation.response}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
+                      <span>{conversation.analytics.responseLength} chars, {conversation.analytics.wordCount} words</span>
+                      <span>Model: {conversation.analytics.model}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </motion.section>
       </main>
     </div>
   );
