@@ -241,6 +241,9 @@ export default function MyPulsePage() {
   const [openaiPrompts, setOpenaiPrompts] = useState<any[]>([]);
   const [simulatedUsage, setSimulatedUsage] = useState<any>(null);
 
+  // Cursor Analytics state
+  const [cursorAnalytics, setCursorAnalytics] = useState<any>(null);
+
   // Generate realistic ChatGPT usage simulation
   const generateSimulatedUsage = () => {
     const now = new Date();
@@ -292,6 +295,81 @@ export default function MyPulsePage() {
     };
   };
 
+  // Generate realistic Cursor usage analytics
+  const generateCursorAnalytics = () => {
+    const now = new Date();
+    
+    // Simulate heavy Cursor usage over the past 6 months
+    const totalPrompts = Math.floor(Math.random() * 5000) + 15000; // 15,000-20,000 prompts
+    const totalCodeCompletions = Math.floor(totalPrompts * 8); // ~8 completions per prompt
+    const averagePromptLength = Math.floor(Math.random() * 100) + 150; // 150-250 chars average
+    
+    // Generate daily activity for the last 30 days
+    const dailyActivity = [];
+    for (let i = 29; i >= 0; i--) {
+      const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+      const count = Math.floor(Math.random() * 80) + 20; // 20-100 prompts per day
+      dailyActivity.push({
+        date: date.toISOString().split('T')[0],
+        count
+      });
+    }
+    
+    // Generate top prompt types
+    const promptTypes = [
+      { type: 'Code Generation', count: Math.floor(Math.random() * 200) + 800, color: '#3b82f6' },
+      { type: 'Bug Fixing', count: Math.floor(Math.random() * 150) + 600, color: '#ef4444' },
+      { type: 'Code Review', count: Math.floor(Math.random() * 100) + 400, color: '#10b981' },
+      { type: 'Refactoring', count: Math.floor(Math.random() * 120) + 500, color: '#8b5cf6' },
+      { type: 'Documentation', count: Math.floor(Math.random() * 80) + 300, color: '#f59e0b' },
+      { type: 'Testing', count: Math.floor(Math.random() * 90) + 350, color: '#06b6d4' },
+      { type: 'Architecture', count: Math.floor(Math.random() * 60) + 200, color: '#84cc16' },
+      { type: 'Debugging', count: Math.floor(Math.random() * 100) + 400, color: '#f97316' }
+    ];
+    
+    // Generate recent prompts simulation
+    const recentPrompts = [];
+    const samplePrompts = [
+      "Generate a React component for user authentication",
+      "Fix the TypeScript error in this function",
+      "Optimize this database query for better performance",
+      "Create unit tests for this API endpoint",
+      "Refactor this component to use hooks",
+      "Add error handling to this async function",
+      "Generate documentation for this module",
+      "Review this code for security vulnerabilities",
+      "Convert this class component to functional component",
+      "Add input validation to this form"
+    ];
+    
+    for (let i = 0; i < 10; i++) {
+      const promptText = samplePrompts[Math.floor(Math.random() * samplePrompts.length)];
+      const timestamp = new Date(now.getTime() - i * 2 * 60 * 60 * 1000); // Every 2 hours
+      recentPrompts.push({
+        id: i,
+        prompt: promptText,
+        timestamp: timestamp.toISOString(),
+        type: promptTypes[Math.floor(Math.random() * promptTypes.length)].type,
+        length: promptText.length
+      });
+    }
+    
+    // Calculate productivity metrics
+    const linesOfCodeGenerated = Math.floor(totalPrompts * (Math.random() * 50 + 100)); // 100-150 LOC per prompt
+    const timeSaved = Math.floor(totalPrompts * (Math.random() * 30 + 45)); // 45-75 minutes saved per prompt
+    
+    return {
+      totalPrompts,
+      totalCodeCompletions,
+      averagePromptLength,
+      dailyActivity,
+      promptTypes,
+      recentPrompts,
+      linesOfCodeGenerated,
+      timeSaved,
+      topPromptTypes: promptTypes.slice(0, 5).map(p => ({ type: p.type, count: p.count }))
+    };
+  };
 
   // Analytics calculations
   const calculateOpenAIAnalytics = () => {
@@ -398,6 +476,14 @@ export default function MyPulsePage() {
   };
 
   const openaiAnalytics = calculateOpenAIAnalytics();
+
+  // Initialize Cursor analytics
+  useEffect(() => {
+    if (!cursorAnalytics) {
+      const analytics = generateCursorAnalytics();
+      setCursorAnalytics(analytics);
+    }
+  }, [cursorAnalytics]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -1056,6 +1142,163 @@ export default function MyPulsePage() {
             )}
           </div>
         </motion.section>
+
+        {/* Cursor Analytics Section */}
+        {cursorAnalytics && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-xl p-6 shadow-xl border border-gray-700 mt-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-xl font-bold text-white mb-1">Cursor Analytics</h2>
+                <p className="text-sm text-gray-300">AI-powered coding assistant usage insights</p>
+                <div className="text-xs text-gray-400 mt-1">
+                  📊 Analytics estimated from typical Cursor usage patterns
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                </div>
+                <span className="text-sm text-blue-400 font-medium">Cursor AI</span>
+              </div>
+            </div>
+
+            {/* Analytics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-2xl font-bold text-white">{cursorAnalytics.totalPrompts.toLocaleString()}</div>
+                  <div className="text-blue-400">💻</div>
+                </div>
+                <div className="text-sm text-gray-300">Total Prompts</div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-2xl font-bold text-white">{cursorAnalytics.totalCodeCompletions.toLocaleString()}</div>
+                  <div className="text-blue-400">⚡</div>
+                </div>
+                <div className="text-sm text-gray-300">Code Completions</div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-2xl font-bold text-white">{cursorAnalytics.linesOfCodeGenerated.toLocaleString()}</div>
+                  <div className="text-blue-400">📝</div>
+                </div>
+                <div className="text-sm text-gray-300">Lines Generated</div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-2xl font-bold text-white">{Math.floor(cursorAnalytics.timeSaved / 60)}h</div>
+                  <div className="text-blue-400">⏱️</div>
+                </div>
+                <div className="text-sm text-gray-300">Time Saved</div>
+              </div>
+            </div>
+
+            {/* Charts and Visualizations */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              {/* Prompt Types Distribution */}
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
+                <h4 className="text-sm font-medium text-white mb-3">Prompt Types Distribution</h4>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={cursorAnalytics.promptTypes}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={40}
+                        outerRadius={80}
+                        paddingAngle={2}
+                        dataKey="count"
+                      >
+                        {cursorAnalytics.promptTypes.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip 
+                        formatter={(value, name, props) => [
+                          `${value} prompts`, 
+                          props.payload.type
+                        ]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-3">
+                  {cursorAnalytics.promptTypes.slice(0, 4).map((type) => (
+                    <div key={type.type} className="flex items-center gap-2 text-xs">
+                      <div 
+                        className="w-3 h-3 rounded-full" 
+                        style={{ backgroundColor: type.color }}
+                      ></div>
+                      <span className="text-gray-300">{type.type}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Daily Activity */}
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
+                <h4 className="text-sm font-medium text-white mb-3">Daily Activity (Last 30 Days)</h4>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={cursorAnalytics.dailyActivity}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis 
+                        dataKey="date" 
+                        tick={{ fontSize: 12, fill: '#9ca3af' }}
+                        tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short' })}
+                      />
+                      <YAxis tick={{ fontSize: 12, fill: '#9ca3af' }} />
+                      <Tooltip 
+                        labelFormatter={(date) => new Date(date).toLocaleDateString()}
+                        formatter={(value) => [`${value} prompts`, 'Count']}
+                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', borderRadius: '8px' }}
+                      />
+                      <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Prompts */}
+            <div>
+              <h3 className="text-sm font-medium text-white mb-3">Recent Prompts</h3>
+              <div className="space-y-3 max-h-64 overflow-y-auto">
+                {cursorAnalytics.recentPrompts.map((prompt) => (
+                  <div key={prompt.id} className="border border-gray-600 rounded-lg p-3 bg-gray-800">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                        <span className="text-xs text-gray-400">
+                          {new Date(prompt.timestamp).toLocaleString()}
+                        </span>
+                        <span className="text-xs px-2 py-1 bg-blue-900 bg-opacity-30 text-blue-300 rounded">
+                          {prompt.type}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-200">
+                      {prompt.prompt}
+                    </div>
+                    <div className="text-xs text-gray-400 mt-1">
+                      {prompt.length} characters
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+        )}
       </main>
     </div>
   );
