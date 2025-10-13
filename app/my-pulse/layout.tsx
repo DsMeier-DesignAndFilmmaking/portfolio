@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
@@ -15,6 +14,7 @@ export const metadata: Metadata = {
  * This layout overrides the root layout for /my-pulse route.
  * It excludes the global NavigationWrapper to prevent navbar flash.
  * The My Pulse page has its own custom navbar built-in.
+ * Footer is rendered by root layout to avoid duplication.
  */
 export default function MyPulseLayout({
   children,
@@ -27,7 +27,7 @@ export default function MyPulseLayout({
       <PageTransition>
         <main>{children}</main>
       </PageTransition>
-      <Footer />
+      {/* Footer is rendered by root layout, no need to duplicate here */}
     </div>
   );
 }
