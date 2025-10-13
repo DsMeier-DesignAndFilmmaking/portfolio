@@ -239,8 +239,6 @@ export default function MyPulsePage() {
 
   // OpenAI Insights state
   const [openaiPrompts, setOpenaiPrompts] = useState<any[]>([]);
-  const [openaiLoading, setOpenaiLoading] = useState(false);
-  const [newPrompt, setNewPrompt] = useState('');
   const [simulatedUsage, setSimulatedUsage] = useState<any>(null);
 
   // Generate realistic ChatGPT usage simulation
@@ -294,51 +292,6 @@ export default function MyPulsePage() {
     };
   };
 
-  // OpenAI API integration
-  const sendPromptToOpenAI = async (prompt: string) => {
-    try {
-      setOpenaiLoading(true);
-      console.log('🚀 Sending prompt to OpenAI:', prompt);
-      
-      const response = await fetch('/api/openai', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
-      });
-      
-      console.log('📡 API Response status:', response.status);
-      const data = await response.json();
-      console.log('📊 API Response data:', data);
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to get response from OpenAI');
-      }
-      
-      // Add to prompts list
-      const newPromptData = {
-        id: Date.now(),
-        prompt,
-        response: data.response,
-        timestamp: new Date().toISOString(),
-        analytics: data.analytics,
-        usage: data.usage
-      };
-      
-      console.log('💾 Adding new prompt data:', newPromptData);
-      setOpenaiPrompts(prev => [newPromptData, ...prev]);
-      setNewPrompt('');
-      
-      return data;
-    } catch (error) {
-      console.error('❌ OpenAI API error:', error);
-      alert(`Error: ${error.message}`);
-      throw error;
-    } finally {
-      setOpenaiLoading(false);
-    }
-  };
 
   // Analytics calculations
   const calculateOpenAIAnalytics = () => {
@@ -1034,50 +987,10 @@ export default function MyPulsePage() {
             </div>
           )}
 
-          {/* Prompt Input */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-white mb-2">
-              Send a prompt to OpenAI
-            </label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={newPrompt}
-                onChange={(e) => setNewPrompt(e.target.value)}
-                placeholder="Ask anything... (e.g., 'Analyze my portfolio trends')"
-                className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent placeholder-gray-400"
-                disabled={openaiLoading}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter' && !openaiLoading && newPrompt.trim()) {
-                    sendPromptToOpenAI(newPrompt.trim());
-                  }
-                }}
-              />
-              <button
-                onClick={() => newPrompt.trim() && sendPromptToOpenAI(newPrompt.trim())}
-                disabled={openaiLoading || !newPrompt.trim()}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              >
-                {openaiLoading ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                    Send
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
 
-          {/* Prompt Log */}
+          {/* Conversation History */}
           <div>
-            <h3 className="text-sm font-medium text-white mb-3">Recent Conversations</h3>
+            <h3 className="text-sm font-medium text-white mb-3">ChatGPT Usage Overview</h3>
             {openaiPrompts.length === 0 ? (
               <div className="text-center py-8 text-gray-400">
                 <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-lg flex items-center justify-center">
@@ -1085,7 +998,8 @@ export default function MyPulsePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <p className="text-sm">No conversations yet. Send your first prompt above!</p>
+                <p className="text-sm">Analytics based on typical ChatGPT usage patterns</p>
+                <p className="text-xs text-gray-500 mt-1">Historical conversation data not available via API</p>
               </div>
             ) : (
               <div className="space-y-4 max-h-96 overflow-y-auto">
