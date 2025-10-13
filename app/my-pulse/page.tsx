@@ -245,6 +245,7 @@ export default function MyPulsePage() {
   const sendPromptToOpenAI = async (prompt: string) => {
     try {
       setOpenaiLoading(true);
+      console.log('🚀 Sending prompt to OpenAI:', prompt);
       
       const response = await fetch('/api/openai', {
         method: 'POST',
@@ -254,7 +255,9 @@ export default function MyPulsePage() {
         body: JSON.stringify({ prompt }),
       });
       
+      console.log('📡 API Response status:', response.status);
       const data = await response.json();
+      console.log('📊 API Response data:', data);
       
       if (!response.ok) {
         throw new Error(data.error || 'Failed to get response from OpenAI');
@@ -270,12 +273,14 @@ export default function MyPulsePage() {
         usage: data.usage
       };
       
+      console.log('💾 Adding new prompt data:', newPromptData);
       setOpenaiPrompts(prev => [newPromptData, ...prev]);
       setNewPrompt('');
       
       return data;
     } catch (error) {
-      console.error('OpenAI API error:', error);
+      console.error('❌ OpenAI API error:', error);
+      alert(`Error: ${error.message}`);
       throw error;
     } finally {
       setOpenaiLoading(false);
@@ -756,6 +761,9 @@ export default function MyPulsePage() {
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.totalPrompts}</div>
               <div className="text-sm text-gray-500">Total Prompts</div>
+              {openaiPrompts.length === 0 && (
+                <div className="text-xs text-blue-600 mt-1">💡 Send a prompt to see analytics!</div>
+              )}
             </div>
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="text-2xl font-bold text-gray-900">{openaiAnalytics.averageResponseLength}</div>
