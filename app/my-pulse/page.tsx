@@ -580,6 +580,15 @@ export default function MyPulsePage() {
   // Initialize Cursor analytics
   useEffect(() => {
     fetchRealCursorData();
+    
+    // Fallback: ensure analytics are always initialized
+    setTimeout(() => {
+      if (!cursorAnalytics) {
+        console.log('🔄 Initializing fallback Cursor analytics...');
+        const analytics = generateCursorAnalytics();
+        setCursorAnalytics(analytics);
+      }
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -1241,7 +1250,7 @@ export default function MyPulsePage() {
         </motion.section>
 
         {/* Cursor Analytics Section */}
-        {cursorAnalytics && (
+        {(cursorAnalytics || cursorRealData) && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1276,7 +1285,9 @@ export default function MyPulsePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-2xl font-bold text-white">{cursorAnalytics.totalPrompts.toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-white">
+                    {cursorAnalytics ? cursorAnalytics.totalPrompts.toLocaleString() : '...'}
+                  </div>
                   <div className="text-blue-400">💻</div>
                 </div>
                 <div className="text-sm text-gray-300">Total Prompts</div>
@@ -1284,7 +1295,9 @@ export default function MyPulsePage() {
               
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-2xl font-bold text-white">{cursorAnalytics.totalCodeCompletions.toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-white">
+                    {cursorAnalytics ? cursorAnalytics.totalCodeCompletions.toLocaleString() : '...'}
+                  </div>
                   <div className="text-blue-400">⚡</div>
                 </div>
                 <div className="text-sm text-gray-300">Code Completions</div>
@@ -1292,7 +1305,9 @@ export default function MyPulsePage() {
               
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-2xl font-bold text-white">{cursorAnalytics.linesOfCodeGenerated.toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-white">
+                    {cursorAnalytics ? cursorAnalytics.linesOfCodeGenerated.toLocaleString() : '...'}
+                  </div>
                   <div className="text-blue-400">📝</div>
                 </div>
                 <div className="text-sm text-gray-300">Lines Generated</div>
@@ -1300,7 +1315,9 @@ export default function MyPulsePage() {
               
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-2xl font-bold text-white">{Math.floor(cursorAnalytics.timeSaved / 60)}h</div>
+                  <div className="text-2xl font-bold text-white">
+                    {cursorAnalytics ? Math.floor(cursorAnalytics.timeSaved / 60) + 'h' : '...'}
+                  </div>
                   <div className="text-blue-400">⏱️</div>
                 </div>
                 <div className="text-sm text-gray-300">Time Saved</div>
@@ -1313,64 +1330,78 @@ export default function MyPulsePage() {
               <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
                 <h4 className="text-sm font-medium text-white mb-3">Prompt Types Distribution</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={cursorAnalytics.promptTypes}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={40}
-                        outerRadius={80}
-                        paddingAngle={2}
-                        dataKey="count"
-                      >
-                        {cursorAnalytics.promptTypes.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip 
-                        formatter={(value, name, props) => [
-                          `${value} prompts`, 
-                          props.payload.type
-                        ]}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className="grid grid-cols-2 gap-2 mt-3">
-                  {cursorAnalytics.promptTypes.slice(0, 4).map((type) => (
-                    <div key={type.type} className="flex items-center gap-2 text-xs">
-                      <div 
-                        className="w-3 h-3 rounded-full" 
-                        style={{ backgroundColor: type.color }}
-                      ></div>
-                      <span className="text-gray-300">{type.type}</span>
+                  {cursorAnalytics && cursorAnalytics.promptTypes ? (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={cursorAnalytics.promptTypes}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={40}
+                          outerRadius={80}
+                          paddingAngle={2}
+                          dataKey="count"
+                        >
+                          {cursorAnalytics.promptTypes.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip 
+                          formatter={(value, name, props) => [
+                            `${value} prompts`, 
+                            props.payload.type
+                          ]}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-gray-400">
+                      Loading chart data...
                     </div>
-                  ))}
+                  )}
                 </div>
+                {cursorAnalytics && cursorAnalytics.promptTypes && (
+                  <div className="grid grid-cols-2 gap-2 mt-3">
+                    {cursorAnalytics.promptTypes.slice(0, 4).map((type) => (
+                      <div key={type.type} className="flex items-center gap-2 text-xs">
+                        <div 
+                          className="w-3 h-3 rounded-full" 
+                          style={{ backgroundColor: type.color }}
+                        ></div>
+                        <span className="text-gray-300">{type.type}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Daily Activity */}
               <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
                 <h4 className="text-sm font-medium text-white mb-3">Daily Activity (Last 30 Days)</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={cursorAnalytics.dailyActivity}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis 
-                        dataKey="date" 
-                        tick={{ fontSize: 12, fill: '#9ca3af' }}
-                        tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short' })}
-                      />
-                      <YAxis tick={{ fontSize: 12, fill: '#9ca3af' }} />
-                      <Tooltip 
-                        labelFormatter={(date) => new Date(date).toLocaleDateString()}
-                        formatter={(value) => [`${value} prompts`, 'Count']}
-                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', borderRadius: '8px' }}
-                      />
-                      <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                  {cursorAnalytics && cursorAnalytics.dailyActivity ? (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={cursorAnalytics.dailyActivity}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12, fill: '#9ca3af' }}
+                          tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short' })}
+                        />
+                        <YAxis tick={{ fontSize: 12, fill: '#9ca3af' }} />
+                        <Tooltip 
+                          labelFormatter={(date) => new Date(date).toLocaleDateString()}
+                          formatter={(value) => [`${value} prompts`, 'Count']}
+                          contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', borderRadius: '8px' }}
+                        />
+                        <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-gray-400">
+                      Loading chart data...
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -1379,27 +1410,33 @@ export default function MyPulsePage() {
             <div>
               <h3 className="text-sm font-medium text-white mb-3">Recent Prompts</h3>
               <div className="space-y-3 max-h-64 overflow-y-auto">
-                {cursorAnalytics.recentPrompts.map((prompt) => (
-                  <div key={prompt.id} className="border border-gray-600 rounded-lg p-3 bg-gray-800">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                        <span className="text-xs text-gray-400">
-                          {new Date(prompt.timestamp).toLocaleString()}
-                        </span>
-                        <span className="text-xs px-2 py-1 bg-blue-900 bg-opacity-30 text-blue-300 rounded">
-                          {prompt.type}
-                        </span>
+                {cursorAnalytics && cursorAnalytics.recentPrompts ? (
+                  cursorAnalytics.recentPrompts.map((prompt) => (
+                    <div key={prompt.id} className="border border-gray-600 rounded-lg p-3 bg-gray-800">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                          <span className="text-xs text-gray-400">
+                            {new Date(prompt.timestamp).toLocaleString()}
+                          </span>
+                          <span className="text-xs px-2 py-1 bg-blue-900 bg-opacity-30 text-blue-300 rounded">
+                            {prompt.type}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-200">
+                        {prompt.prompt}
+                      </div>
+                      <div className="text-xs text-gray-400 mt-1">
+                        {prompt.length} characters
                       </div>
                     </div>
-                    <div className="text-sm text-gray-200">
-                      {prompt.prompt}
-                    </div>
-                    <div className="text-xs text-gray-400 mt-1">
-                      {prompt.length} characters
-                    </div>
+                  ))
+                ) : (
+                  <div className="text-center text-gray-400 py-8">
+                    Loading recent prompts...
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </motion.section>
