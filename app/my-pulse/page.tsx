@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import AISummaryCard from '../../components/AISummaryCard';
+import StravaAnalytics from '../../components/StravaAnalytics';
 import { fetchGitHubActivity } from '@/lib/api/github';
 import { fetchFigmaActivity } from '@/lib/api/figma';
 import { fetchNotionProjects, fetchCurrentFocus } from '@/lib/api/notion';
@@ -1441,6 +1442,33 @@ export default function MyPulsePage() {
             </div>
           </motion.section>
         )}
+
+        {/* Strava Analytics Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-gradient-to-br from-orange-600 via-red-500 to-orange-700 rounded-xl p-6 shadow-xl border border-orange-400 mt-6"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-white mb-1">Strava Analytics</h2>
+              <p className="text-sm text-orange-100">Fitness and activity tracking insights</p>
+              <div className="text-xs text-orange-200 mt-1">
+                📊 Real-time activity data from your Strava account
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-orange-300 rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <span className="text-sm text-orange-200 font-medium">Strava</span>
+            </div>
+          </div>
+
+          {/* Strava Analytics Component */}
+          <StravaAnalytics />
+        </motion.section>
       </main>
     </div>
   );
