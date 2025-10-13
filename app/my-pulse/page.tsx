@@ -1255,13 +1255,13 @@ export default function MyPulsePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-xl p-6 shadow-xl border border-gray-700 mt-6"
+            className="bg-gradient-to-br from-black via-gray-900 to-gray-800 rounded-xl p-6 shadow-xl border border-gray-800 mt-6"
           >
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-xl font-bold text-white mb-1">Cursor Analytics</h2>
                 <p className="text-sm text-gray-300">AI-powered coding assistant usage insights</p>
-                <div className="text-xs text-gray-400 mt-1">
+                <div className="text-xs text-gray-500 mt-1">
                   {cursorAnalytics?.isRealData ? 
                     "📊 Analytics from parsed Cursor usage data" : 
                     "📊 Analytics estimated from typical Cursor usage patterns"
@@ -1269,10 +1269,10 @@ export default function MyPulsePage() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-700 rounded-full flex items-center justify-center border border-gray-600">
+                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
                 </div>
-                <span className="text-sm text-blue-400 font-medium">Cursor AI</span>
+                <span className="text-sm text-gray-300 font-medium">Cursor AI</span>
               </div>
             </div>
 
@@ -1283,51 +1283,51 @@ export default function MyPulsePage() {
 
             {/* Analytics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-2xl font-bold text-white">
                     {cursorAnalytics ? cursorAnalytics.totalPrompts.toLocaleString() : '...'}
                   </div>
-                  <div className="text-blue-400">💻</div>
+                  <div className="text-gray-400">💻</div>
                 </div>
-                <div className="text-sm text-gray-300">Total Prompts</div>
+                <div className="text-sm text-gray-400">Total Prompts</div>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-2xl font-bold text-white">
                     {cursorAnalytics ? cursorAnalytics.totalCodeCompletions.toLocaleString() : '...'}
                   </div>
-                  <div className="text-blue-400">⚡</div>
+                  <div className="text-gray-400">⚡</div>
                 </div>
-                <div className="text-sm text-gray-300">Code Completions</div>
+                <div className="text-sm text-gray-400">Code Completions</div>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-2xl font-bold text-white">
                     {cursorAnalytics ? cursorAnalytics.linesOfCodeGenerated.toLocaleString() : '...'}
                   </div>
-                  <div className="text-blue-400">📝</div>
+                  <div className="text-gray-400">📝</div>
                 </div>
-                <div className="text-sm text-gray-300">Lines Generated</div>
+                <div className="text-sm text-gray-400">Lines Generated</div>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-2xl font-bold text-white">
                     {cursorAnalytics ? Math.floor(cursorAnalytics.timeSaved / 60) + 'h' : '...'}
                   </div>
-                  <div className="text-blue-400">⏱️</div>
+                  <div className="text-gray-400">⏱️</div>
                 </div>
-                <div className="text-sm text-gray-300">Time Saved</div>
+                <div className="text-sm text-gray-400">Time Saved</div>
               </div>
             </div>
 
             {/* Charts and Visualizations */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               {/* Prompt Types Distribution */}
-              <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <h4 className="text-sm font-medium text-white mb-3">Prompt Types Distribution</h4>
                 <div className="h-64">
                   {cursorAnalytics && cursorAnalytics.promptTypes ? (
@@ -1368,7 +1368,7 @@ export default function MyPulsePage() {
                           className="w-3 h-3 rounded-full" 
                           style={{ backgroundColor: type.color }}
                         ></div>
-                        <span className="text-gray-300">{type.type}</span>
+                        <span className="text-gray-400">{type.type}</span>
                       </div>
                     ))}
                   </div>
@@ -1376,7 +1376,7 @@ export default function MyPulsePage() {
               </div>
 
               {/* Daily Activity */}
-              <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-lg p-4 border border-gray-800">
                 <h4 className="text-sm font-medium text-white mb-3">Daily Activity (Last 30 Days)</h4>
                 <div className="h-64">
                   {cursorAnalytics && cursorAnalytics.dailyActivity ? (
@@ -1412,28 +1412,28 @@ export default function MyPulsePage() {
               <div className="space-y-3 max-h-64 overflow-y-auto">
                 {cursorAnalytics && cursorAnalytics.recentPrompts ? (
                   cursorAnalytics.recentPrompts.map((prompt) => (
-                    <div key={prompt.id} className="border border-gray-600 rounded-lg p-3 bg-gray-800">
+                    <div key={prompt.id} className="border border-gray-800 rounded-lg p-3 bg-gradient-to-br from-gray-900 to-black">
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                          <span className="text-xs text-gray-400">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                          <span className="text-xs text-gray-500">
                             {new Date(prompt.timestamp).toLocaleString()}
                           </span>
-                          <span className="text-xs px-2 py-1 bg-blue-900 bg-opacity-30 text-blue-300 rounded">
+                          <span className="text-xs px-2 py-1 bg-gray-800 text-gray-300 rounded border border-gray-700">
                             {prompt.type}
                           </span>
                         </div>
                       </div>
-                      <div className="text-sm text-gray-200">
+                      <div className="text-sm text-gray-300">
                         {prompt.prompt}
                       </div>
-                      <div className="text-xs text-gray-400 mt-1">
+                      <div className="text-xs text-gray-500 mt-1">
                         {prompt.length} characters
                       </div>
                     </div>
                   ))
                 ) : (
-                  <div className="text-center text-gray-400 py-8">
+                  <div className="text-center text-gray-500 py-8">
                     Loading recent prompts...
                   </div>
                 )}

@@ -107,13 +107,13 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className={`bg-gradient-to-br from-gray-800 to-gray-700 border border-gray-600 rounded-2xl p-6 shadow-md backdrop-blur-sm ${className}`}
+        className={`bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-2xl p-6 shadow-md backdrop-blur-sm ${className}`}
       >
         <div className="flex items-center gap-3 mb-3">
           <div className="text-2xl">📊</div>
           <h3 className="text-lg font-semibold text-white">AI Summary</h3>
         </div>
-        <p className="text-gray-300">
+        <p className="text-gray-400">
           Loading Cursor usage data to generate personalized insights...
         </p>
       </motion.div>
@@ -125,7 +125,7 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className={`bg-gradient-to-br from-gray-800 to-gray-700 border border-gray-600 rounded-2xl p-6 shadow-md backdrop-blur-sm ${className}`}
+        className={`bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-2xl p-6 shadow-md backdrop-blur-sm ${className}`}
     >
       <div className="flex items-center gap-3 mb-3">
         <div className="text-2xl animate-pulse">{getSummaryIcon()}</div>
@@ -133,16 +133,16 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
           AI Summary
         </h3>
         <div className="ml-auto">
-          <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-blue-400 animate-pulse' : 'bg-green-400'}`}></div>
+          <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-gray-400 animate-pulse' : 'bg-gray-300'}`}></div>
         </div>
       </div>
       
       <div className="space-y-2">
         {isLoading ? (
           <div className="space-y-2">
-            <div className="h-4 bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-4 bg-gray-700 rounded animate-pulse w-3/4"></div>
-            <div className="h-4 bg-gray-700 rounded animate-pulse w-1/2"></div>
+            <div className="h-4 bg-gray-800 rounded animate-pulse"></div>
+            <div className="h-4 bg-gray-800 rounded animate-pulse w-3/4"></div>
+            <div className="h-4 bg-gray-800 rounded animate-pulse w-1/2"></div>
           </div>
         ) : (
           <p className="text-gray-200 leading-relaxed">
@@ -152,8 +152,8 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
       </div>
 
       {/* Data source indicator */}
-      <div className="mt-4 pt-3 border-t border-gray-600">
-        <div className="flex items-center justify-between text-xs text-gray-400">
+      <div className="mt-4 pt-3 border-t border-gray-800">
+        <div className="flex items-center justify-between text-xs text-gray-500">
           <span>
             {cursorData.source === 'cursor-usage-parser' 
               ? "📊 Based on real Cursor usage data" 
