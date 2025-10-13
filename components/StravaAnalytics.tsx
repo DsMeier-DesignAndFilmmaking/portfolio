@@ -24,6 +24,7 @@ interface StravaData {
   activityTypes: Record<string, number>;
   weeklyPattern: Record<string, number>;
   generatedAt: string;
+  dataSource?: string;
   error?: string;
 }
 
@@ -42,18 +43,97 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         setIsLoading(true);
         setError(null);
         
-        console.log('🔄 Fetching Strava data from API...');
+        console.log('🔄 Fetching Strava data directly...');
         
-        // Fetch real data from API
-        const response = await fetch('/api/strava');
-        const result = await response.json();
+        // Fetch data directly from Strava API (since Next.js API route isn't working)
+        const STRAVA_ACCESS_TOKEN = '5a363fc9c07ff66ac3cbb23ca3333ce4dc93f1e7';
         
-        if (!result.success) {
-          throw new Error(result.error || 'Failed to fetch Strava data');
+        // Fetch athlete profile
+        const athleteResponse = await fetch('https://www.strava.com/api/v3/athlete', {
+          headers: {
+            'Authorization': `Bearer ${STRAVA_ACCESS_TOKEN}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!athleteResponse.ok) {
+          throw new Error(`Athlete API error: ${athleteResponse.status}`);
         }
         
-        setStravaData(result.data);
-        console.log('✅ Strava data fetched successfully');
+        const athlete = await athleteResponse.json();
+        console.log('✅ Athlete data fetched:', athlete.firstname, athlete.lastname);
+        
+        // Fetch athlete stats
+        const statsResponse = await fetch(`https://www.strava.com/api/v3/athletes/${athlete.id}/stats`, {
+          headers: {
+            'Authorization': `Bearer ${STRAVA_ACCESS_TOKEN}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        let stats = null;
+        if (statsResponse.ok) {
+          stats = await statsResponse.json();
+          console.log('✅ Stats data fetched');
+        } else {
+          console.warn('⚠️ Stats API error:', statsResponse.status);
+        }
+        
+        // Create dashboard data
+        const realData: StravaData = {
+          athlete: {
+            id: athlete.id,
+            username: athlete.username,
+            firstname: athlete.firstname,
+            lastname: athlete.lastname,
+            city: athlete.city,
+            state: athlete.state,
+            country: athlete.country,
+            profile: athlete.profile,
+            follower_count: athlete.follower_count,
+            friend_count: athlete.friend_count
+          },
+          recentActivities: [], // No activities due to permission limitations
+          stats,
+          summary: {
+            totalActivities: 0,
+            totalDistance: 0,
+            totalTime: 0,
+            totalElevation: 0,
+            totalCalories: 0,
+            averageDistance: 0,
+            averageTime: 0,
+            averageElevation: 0
+          },
+          activityTypes: {},
+          weeklyPattern: {},
+          generatedAt: new Date().toISOString(),
+          dataSource: 'direct-api'
+        };
+        
+        // Extract data from stats if available
+        if (stats) {
+          const recentRideTotals = stats.recent_ride_totals || {};
+          const recentRunTotals = stats.recent_run_totals || {};
+          
+          realData.summary = {
+            totalActivities: (recentRideTotals.count || 0) + (recentRunTotals.count || 0),
+            totalDistance: (recentRideTotals.distance || 0) + (recentRunTotals.distance || 0),
+            totalTime: (recentRideTotals.moving_time || 0) + (recentRunTotals.moving_time || 0),
+            totalElevation: (recentRideTotals.elevation_gain || 0) + (recentRunTotals.elevation_gain || 0),
+            totalCalories: (recentRideTotals.calories || 0) + (recentRunTotals.calories || 0),
+            averageDistance: 0,
+            averageTime: 0,
+            averageElevation: 0
+          };
+          
+          // Create activity types from stats
+          if (recentRideTotals.count > 0) realData.activityTypes['Ride'] = recentRideTotals.count;
+          if (recentRunTotals.count > 0) realData.activityTypes['Run'] = recentRunTotals.count;
+        }
+        
+        setStravaData(realData);
+        console.log('✅ Real Strava data fetched successfully');
         return;
         
       } catch (apiError) {
@@ -329,6 +409,16 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
       {/* Data Source */}
       <div className="text-center text-xs text-orange-200">
         📊 Strava data fetched at {new Date(stravaData.generatedAt).toLocaleString()}
+        {stravaData.dataSource === 'stats' && (
+          <div className="mt-1 text-orange-300">
+            ℹ️ Showing stats data (activity details require additional permissions)
+          </div>
+        )}
+        {stravaData.dataSource === 'direct-api' && (
+          <div className="mt-1 text-orange-300">
+            ✅ Real data from your Strava account (activities require activity:read_all scope)
+          </div>
+        )}
       </div>
     </div>
   );
