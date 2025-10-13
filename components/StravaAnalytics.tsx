@@ -62,6 +62,7 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         
         const athlete = await athleteResponse.json();
         console.log('✅ Athlete data fetched:', athlete.firstname, athlete.lastname);
+        console.log('📸 Profile image URL:', athlete.profile);
         
         // Fetch athlete stats
         const statsResponse = await fetch(`https://www.strava.com/api/v3/athletes/${athlete.id}/stats`, {
@@ -89,7 +90,8 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
             city: athlete.city,
             state: athlete.state,
             country: athlete.country,
-            profile: athlete.profile,
+            profile: athlete.profile, // Full size profile image URL
+            profile_medium: athlete.profile_medium, // Medium size profile image URL
             follower_count: athlete.follower_count,
             friend_count: athlete.friend_count
           },
@@ -274,11 +276,36 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
           className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">
-                {athlete.firstname?.[0]}{athlete.lastname?.[0]}
-              </span>
-            </div>
+            {athlete.profile ? (
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-300">
+                <img 
+                  src={athlete.profile} 
+                  alt={`${athlete.firstname} ${athlete.lastname}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to initials if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `
+                        <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
+                          <span class="text-white font-bold text-lg">
+                            ${athlete.firstname?.[0] || ''}${athlete.lastname?.[0] || ''}
+                          </span>
+                        </div>
+                      `;
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg">
+                  {athlete.firstname?.[0]}{athlete.lastname?.[0]}
+                </span>
+              </div>
+            )}
             <div>
               <h3 className="text-white font-semibold">
                 {athlete.firstname} {athlete.lastname}
