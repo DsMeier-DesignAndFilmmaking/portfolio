@@ -4,9 +4,9 @@ import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
   title: 'My Pulse - Daniel Meier',
-  description: 'A live snapshot of my creative and digital rhythms.',
+  description: 'Personal dashboard & creative insights - A live snapshot of my creative and digital rhythms.',
   viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#000000',
+  themeColor: '#ffffff',
 };
 
 /**
@@ -22,7 +22,7 @@ export default function MyPulseLayout({
   children: React.ReactNode
 }) {
   return (
-    <div style={{ backgroundColor: '#000000', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       {/* No NavigationWrapper here - My Pulse page has custom navbar */}
       <PageTransition>
         <main>{children}</main>
