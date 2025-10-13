@@ -158,7 +158,7 @@ const Navbar = () => {
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex justify-between items-center">
           {/* Left side navigation */}
-          <div className="py-4 flex items-center">
+          <div className="py-4">
             <button
               onClick={() => {
                 scrollToTop();
@@ -177,7 +177,6 @@ const Navbar = () => {
                 }`}
               />
             </button>
-            <div className={`w-px h-4 ml-8 ${isOverBlackSection ? 'bg-white/30' : 'bg-black/30'}`}></div>
           </div>
 
           {/* Mobile Menu Button */}
