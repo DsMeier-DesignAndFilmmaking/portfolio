@@ -362,22 +362,106 @@ export default function MyPulsePage() {
                 </div>
               </div>
 
-              {/* Chart Container */}
+              {/* Line Chart Container */}
               <div className="space-y-4">
-                <div className="flex items-end justify-between gap-2 h-32">
-                  {githubData?.commits.map((day: any, index: number) => (
-                    <motion.div
-                      key={day.date}
-                      className="flex-1 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg relative group cursor-pointer"
-                      initial={{ height: 0 }}
-                      animate={{ height: `${Math.max((day.count / 15) * 100, 8)}%` }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-                        {day.count} commits
-                      </div>
-                    </motion.div>
-                  ))}
+                <div className="relative h-32 bg-gray-50 rounded-lg p-4">
+                  {/* Grid Lines */}
+                  <div className="absolute inset-4 flex flex-col justify-between">
+                    {[0, 1, 2, 3, 4].map((line) => (
+                      <div key={line} className="h-px bg-gray-200"></div>
+                    ))}
+                  </div>
+                  
+                  {/* Line Chart */}
+                  <svg className="absolute inset-4 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    {githubData?.commits && (
+                      <>
+                        {/* Area fill */}
+                        <defs>
+                          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3"/>
+                            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05"/>
+                          </linearGradient>
+                        </defs>
+                        
+                        {/* Area path */}
+                        <motion.path
+                          d={(() => {
+                            const points = githubData.commits.map((day: any, index: number) => {
+                              const x = (index / (githubData.commits.length - 1)) * 100;
+                              const maxCommits = Math.max(...githubData.commits.map((d: any) => d.count), 1);
+                              const y = 100 - ((day.count / maxCommits) * 80) - 10;
+                              return `${x},${y}`;
+                            }).join(' ');
+                            
+                            const firstPoint = points.split(' ')[0];
+                            const lastPoint = points.split(' ')[points.split(' ').length - 1];
+                            
+                            return `M ${firstPoint} L ${points} L ${lastPoint.split(',')[0]},100 L 0,100 Z`;
+                          })()}
+                          fill="url(#gradient)"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 1, ease: "easeInOut" }}
+                        />
+                        
+                        {/* Line path */}
+                        <motion.path
+                          d={(() => {
+                            const points = githubData.commits.map((day: any, index: number) => {
+                              const x = (index / (githubData.commits.length - 1)) * 100;
+                              const maxCommits = Math.max(...githubData.commits.map((d: any) => d.count), 1);
+                              const y = 100 - ((day.count / maxCommits) * 80) - 10;
+                              return `${x},${y}`;
+                            }).join(' ');
+                            
+                            return `M ${points}`;
+                          })()}
+                          stroke="#3b82f6"
+                          strokeWidth="2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+                        />
+                        
+                        {/* Data points */}
+                        {githubData.commits.map((day: any, index: number) => {
+                          const x = (index / (githubData.commits.length - 1)) * 100;
+                          const maxCommits = Math.max(...githubData.commits.map((d: any) => d.count), 1);
+                          const y = 100 - ((day.count / maxCommits) * 80) - 10;
+                          
+                          return (
+                            <motion.circle
+                              key={day.date}
+                              cx={x}
+                              cy={y}
+                              r="3"
+                              fill="#3b82f6"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
+                              className="cursor-pointer hover:r-4 transition-all"
+                            >
+                              <title>{day.count} commits on {new Date(day.date).toLocaleDateString()}</title>
+                            </motion.circle>
+                          );
+                        })}
+                      </>
+                    )}
+                  </svg>
+                  
+                  {/* Y-axis labels */}
+                  <div className="absolute left-0 top-4 bottom-4 flex flex-col justify-between text-xs text-gray-500">
+                    {(() => {
+                      const maxCommits = Math.max(...(githubData?.commits?.map((d: any) => d.count) || [1]));
+                      return [maxCommits, Math.round(maxCommits * 0.75), Math.round(maxCommits * 0.5), Math.round(maxCommits * 0.25), 0].map((value, index) => (
+                        <div key={index} className="text-right pr-2">{value}</div>
+                      ));
+                    })()}
+                  </div>
                 </div>
 
                 {/* Day Labels */}
