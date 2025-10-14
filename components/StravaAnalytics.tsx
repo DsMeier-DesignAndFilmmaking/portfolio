@@ -188,7 +188,7 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         console.log('🔄 Fetching Strava data directly...');
         
         // Fetch data directly from Strava API (since Next.js API route isn't working)
-        const STRAVA_ACCESS_TOKEN = '5a363fc9c07ff66ac3cbb23ca3333ce4dc93f1e7';
+        const STRAVA_ACCESS_TOKEN = '8f7673c4f3d8a8f7dd863843bccf541b00fd7fc3';
         
         // Fetch athlete profile
         const athleteResponse = await fetch('https://www.strava.com/api/v3/athlete', {
