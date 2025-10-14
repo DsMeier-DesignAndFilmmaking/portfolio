@@ -29,24 +29,13 @@ import { useDashboardSync } from '@/hooks/useDashboardSync';
 // Existing components (will be refactored)
 import AISummaryCard from '@/components/AISummaryCard';
 import StravaAnalytics from '@/components/StravaAnalytics';
-import ModernStravaAnalytics from '@/components/ModernStravaAnalytics';
 import RealCursorAnalytics from '@/components/RealCursorAnalytics';
 
 // Types
 import { DashboardMetric, ServiceStatus } from '@/types/dashboard';
 
-// Error handling components
-import ErrorBoundary, { DashboardErrorBoundary, ChartErrorBoundary } from '@/components/ErrorBoundary';
-import NetworkErrorHandler from '@/components/NetworkErrorHandler';
-import { DataLoadErrorMessage } from '@/components/FriendlyErrorMessage';
-import { LazyLoader } from '@/components/LazyLoader';
-import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor';
-
 export default function MyPulsePage() {
   const router = useRouter();
-  
-  // Performance monitoring
-  const { metrics, getOptimizationSuggestions } = usePerformanceMonitor();
   
   // Custom hooks for data fetching
   const githubData = useGitHubActivity();
@@ -204,126 +193,83 @@ export default function MyPulsePage() {
   }, [githubData.refetch, openaiData.refetch, cursorData.refetch, stravaData.refetch]);
 
   return (
-    <NetworkErrorHandler
-      onRetry={handleRefresh}
-      showOfflineMessage={true}
-    >
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        {/* Skip Navigation Link */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          Skip to main content
-        </a>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Modern Header */}
+      <ModernHeader
+        githubStreak={githubData.data?.streak}
+        services={services}
+        lastUpdated={lastRefresh}
+        onRefresh={handleRefresh}
+        onSyncAll={handleSyncAll}
+        isSyncing={isRefreshing}
+      />
 
-        {/* Modern Header */}
-        <ErrorBoundary>
-          <ModernHeader
-            githubStreak={githubData.data?.streak}
-            services={services}
-            lastUpdated={lastRefresh}
-            onRefresh={handleRefresh}
-            onSyncAll={handleSyncAll}
-            isSyncing={isRefreshing}
-          />
-        </ErrorBoundary>
-
-        {/* Main Content */}
-        <main 
-          id="main-content"
-          className="pt-20 pb-12"
-          role="main"
-          aria-label="Dashboard main content"
-        >
+      {/* Main Content */}
+      <main className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Quick Metrics Overview */}
-          <DashboardErrorBoundary sectionName="Overview">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="overview-section"
-              aria-describedby="overview-description"
-            >
-              <SectionHeader
-                title="Overview"
-                subtitle="Key metrics at a glance"
-                icon="📊"
-              />
-              <QuickMetrics metrics={quickMetrics} loading={isRefreshing} />
-            </section>
-          </DashboardErrorBoundary>
+          <section className="mb-8">
+            <SectionHeader
+              title="Overview"
+              subtitle="Key metrics at a glance"
+              icon="📊"
+            />
+            <QuickMetrics metrics={quickMetrics} loading={isRefreshing} />
+          </section>
 
           {/* GitHub Activity Section */}
-          <DashboardErrorBoundary sectionName="GitHub Activity">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="github-section"
-              aria-describedby="github-description"
-            >
-              <SectionHeader
-                title="GitHub Activity"
-                subtitle="Code commits and repository activity"
-                icon="🐙"
-              />
+          <section className="mb-8">
+            <SectionHeader
+              title="GitHub Activity"
+              subtitle="Code commits and repository activity"
+              icon="🐙"
+            />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Commit Timeline */}
-              <ChartErrorBoundary chartName="Commit Timeline" onRetry={githubData.refetch}>
-                <ChartContainer
-                  title="Commit Timeline"
-                  subtitle="Daily commits over the last week"
-                  data={githubData.data?.commits}
-                  loading={githubData.loading}
-                  error={githubData.error}
-                  onRetry={githubData.refetch}
-                >
-                  <LineChart
-                    data={githubData.data?.commits || []}
-                    color="#10b981"
-                    height={200}
-                  />
-                </ChartContainer>
-              </ChartErrorBoundary>
+              <ChartContainer
+                title="Commit Timeline"
+                subtitle="Daily commits over the last week"
+                data={githubData.data?.commits}
+                loading={githubData.loading}
+                error={githubData.error}
+                onRetry={githubData.refetch}
+              >
+                <LineChart
+                  data={githubData.data?.commits || []}
+                  color="#10b981"
+                  height={200}
+                />
+              </ChartContainer>
 
               {/* Recent Repositories */}
-              <ChartErrorBoundary chartName="Top Repositories" onRetry={githubData.refetch}>
-                <ChartContainer
-                  title="Top Repositories"
-                  subtitle="Most active repositories this week"
-                  data={githubData.data?.repositories}
-                  loading={githubData.loading}
-                  error={githubData.error}
-                  onRetry={githubData.refetch}
-                >
-                  <BarChart
-                    data={githubData.data?.repositories?.map(repo => ({
-                      name: repo.name,
-                      commits: repo.commits,
-                    })) || []}
-                    dataKey="commits"
-                    color="#3b82f6"
-                    height={200}
-                  />
-                </ChartContainer>
-              </ChartErrorBoundary>
+              <ChartContainer
+                title="Top Repositories"
+                subtitle="Most active repositories this week"
+                data={githubData.data?.repositories}
+                loading={githubData.loading}
+                error={githubData.error}
+                onRetry={githubData.refetch}
+              >
+                <BarChart
+                  data={githubData.data?.repositories?.map(repo => ({
+                    name: repo.name,
+                    commits: repo.commits,
+                  })) || []}
+                  dataKey="commits"
+                  color="#3b82f6"
+                  height={200}
+                />
+              </ChartContainer>
             </div>
-            </section>
-          </DashboardErrorBoundary>
+          </section>
 
           {/* AI Insights Section */}
-          <DashboardErrorBoundary sectionName="AI Insights">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="ai-insights-section"
-              aria-describedby="ai-insights-description"
-            >
-              <SectionHeader
-                title="AI Insights"
-                subtitle="OpenAI and Cursor usage analytics"
-                icon="🤖"
-              />
+          <section className="mb-8">
+            <SectionHeader
+              title="AI Insights"
+              subtitle="OpenAI and Cursor usage analytics"
+              icon="🤖"
+            />
             
             {/* AI Summary Card */}
             <div className="mb-6">
@@ -441,62 +387,37 @@ export default function MyPulsePage() {
                 </div>
               </DashboardCard>
             </div>
-            </section>
-          </DashboardErrorBoundary>
+          </section>
 
           {/* Fitness & Health Section */}
-          <LazyLoader delay={300} threshold={0.2}>
-            <DashboardErrorBoundary sectionName="Fitness & Health">
-              <section 
-                className="mb-8"
-                role="region"
-                aria-labelledby="fitness-section"
-                aria-describedby="fitness-description"
-              >
-                <SectionHeader
-                  title="Fitness & Health"
-                  subtitle="Strava activity and performance data"
-                  icon="🏃‍♂️"
-                />
-                <ModernStravaAnalytics />
-              </section>
-            </DashboardErrorBoundary>
-          </LazyLoader>
+          <section className="mb-8">
+            <SectionHeader
+              title="Fitness & Health"
+              subtitle="Strava activity and performance data"
+              icon="🏃‍♂️"
+            />
+            <StravaAnalytics />
+          </section>
 
           {/* Real Cursor Analytics (if available) */}
           {cursorData.isRealData && (
-            <LazyLoader delay={400} threshold={0.2}>
-              <DashboardErrorBoundary sectionName="Advanced Cursor Analytics">
-                <section 
-                  className="mb-8"
-                  role="region"
-                  aria-labelledby="advanced-cursor-section"
-                  aria-describedby="advanced-cursor-description"
-                >
-                  <SectionHeader
-                    title="Advanced Cursor Analytics"
-                    subtitle="Detailed usage insights from CursorLens"
-                    icon="📈"
-                  />
-                  <RealCursorAnalytics />
-                </section>
-              </DashboardErrorBoundary>
-            </LazyLoader>
+            <section className="mb-8">
+              <SectionHeader
+                title="Advanced Cursor Analytics"
+                subtitle="Detailed usage insights from CursorLens"
+                icon="📈"
+              />
+              <RealCursorAnalytics />
+            </section>
           )}
 
           {/* Projects in Motion */}
-          <DashboardErrorBoundary sectionName="Projects in Motion">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="projects-section"
-              aria-describedby="projects-description"
-            >
-              <SectionHeader
-                title="Projects in Motion"
-                subtitle="Active development and creative work"
-                icon="🚀"
-              />
+          <section className="mb-8">
+            <SectionHeader
+              title="Projects in Motion"
+              subtitle="Active development and creative work"
+              icon="🚀"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <DashboardCard
                 title="Portfolio Website"
@@ -570,22 +491,9 @@ export default function MyPulsePage() {
                 </div>
               </DashboardCard>
             </div>
-            </section>
-          </DashboardErrorBoundary>
+          </section>
         </div>
       </main>
-
-      {/* Performance Monitor (Development Only) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed bottom-4 left-4 z-30 bg-black/80 text-white text-xs p-2 rounded font-mono">
-          <div>Load: {metrics.loadTime.toFixed(0)}ms</div>
-          <div>Render: {metrics.renderTime.toFixed(1)}ms</div>
-          <div>FPS: {metrics.fps}</div>
-          <div>Memory: {metrics.memoryUsage.toFixed(1)}MB</div>
-          {metrics.isSlowConnection && <div className="text-yellow-400">Slow</div>}
-        </div>
-      )}
-      </div>
-    </NetworkErrorHandler>
+    </div>
   );
 }
