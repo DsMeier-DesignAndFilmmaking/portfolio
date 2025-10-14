@@ -109,7 +109,10 @@ export default function MyPulsePage() {
         direction: 'up',
       },
       sparkline: {
-        data: githubData.data?.commits || [],
+        data: (githubData.data?.commits || []).map(commit => ({
+          date: commit.date,
+          value: commit.count
+        })),
         color: '#10b981',
       },
     },
@@ -149,7 +152,10 @@ export default function MyPulsePage() {
         direction: 'neutral',
       },
       sparkline: {
-        data: openaiData.data?.dailyActivity || [],
+        data: (openaiData.data?.dailyActivity || []).map(activity => ({
+          date: activity.date,
+          value: activity.count
+        })),
         color: '#06b6d4',
       },
     },
@@ -165,7 +171,10 @@ export default function MyPulsePage() {
         direction: 'up',
       },
       sparkline: {
-        data: cursorData.data?.dailyActivity || [],
+        data: (cursorData.data?.dailyActivity || []).map(activity => ({
+          date: activity.date,
+          value: activity.count
+        })),
         color: '#8b5cf6',
       },
     },
@@ -411,7 +420,11 @@ export default function MyPulsePage() {
                       data={cursorData.data.promptTypes}
                     >
                       <DonutChart
-                        data={cursorData.data.promptTypes}
+                        data={cursorData.data.promptTypes.map(type => ({
+                          name: type.type,
+                          value: type.count,
+                          color: type.color
+                        }))}
                         height={150}
                         innerRadius={40}
                         outerRadius={70}

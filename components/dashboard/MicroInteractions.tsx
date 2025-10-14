@@ -24,7 +24,7 @@ export default function MicroInteraction({
   triggerOnce = true,
 }: MicroInteractionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold, once: triggerOnce });
+  const isInView = useInView(ref, { once: triggerOnce });
   const controls = useAnimation();
   const shouldAnimate = !prefersReducedMotion();
 

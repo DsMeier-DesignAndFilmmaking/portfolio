@@ -1,18 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-
-interface CursorData {
-  totalPrompts: number;
-  promptsByDay: Record<string, number>;
-  topPrompts: Array<{ prompt: string; count: number }>;
-  recentPrompts: Array<{ prompt: string; timestamp: string }>;
-  generatedAt?: string;
-  source?: string;
-}
+import { CursorAnalytics } from "@/types/dashboard";
 
 interface AISummaryCardProps {
-  cursorData?: CursorData | null;
+  cursorData?: CursorAnalytics | null;
   className?: string;
 }
 
@@ -26,7 +18,7 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
     }
   }, [cursorData]);
 
-  const generateSummary = (data: CursorData) => {
+  const generateSummary = (data: CursorAnalytics) => {
     setIsLoading(true);
     
     // Simulate AI processing time
@@ -37,26 +29,25 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
     }, 800);
   };
 
-  const analyzeCursorUsage = (data: CursorData): string => {
-    const { totalPrompts, promptsByDay, topPrompts, recentPrompts } = data;
+  const analyzeCursorUsage = (data: CursorAnalytics): string => {
+    const { totalPrompts, dailyActivity, promptTypes, recentPrompts, totalCodeCompletions, averagePromptLength } = data;
 
-    // Ensure promptsByDay is defined and is an object
-    const safePromptsByDay = promptsByDay || {};
+    // Find busiest day from daily activity
+    const busiestDay = dailyActivity?.reduce((max, current) => 
+      current.count > max.count ? current : max, 
+      { date: '', count: 0 }
+    );
 
-    // Find busiest day
-    const [busiestDate, busiestCount] = Object.entries(safePromptsByDay)
-      .sort((a, b) => b[1] - a[1])[0] || ["", 0];
-
-    const weekday = busiestDate 
-      ? new Date(busiestDate).toLocaleDateString("en-US", { weekday: "long" })
+    const weekday = busiestDay?.date 
+      ? new Date(busiestDay.date).toLocaleDateString("en-US", { weekday: "long" })
       : null;
 
     // Analyze patterns
-    const dayCount = Object.keys(safePromptsByDay).length || 1;
+    const dayCount = dailyActivity?.length || 1;
     const avgDailyPrompts = totalPrompts / dayCount;
-    const safeTopPrompts = topPrompts || [];
-    const topPrompt = safeTopPrompts[0]?.prompt || "various coding tasks";
-    const topPromptCount = safeTopPrompts[0]?.count || 0;
+    const safePromptTypes = promptTypes || [];
+    const topPromptType = safePromptTypes[0]?.type || "Code Generation";
+    const topPromptCount = safePromptTypes[0]?.count || 0;
 
     // Generate contextual insights
     let insights = "";
@@ -69,14 +60,14 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
       insights += `You have ${totalPrompts} prompts tracked. `;
     }
 
-    if (busiestDate && busiestCount > avgDailyPrompts * 1.5) {
-      insights += `Your most productive day was ${weekday} (${busiestDate}) with ${busiestCount} prompts. `;
+    if (busiestDay?.date && busiestDay.count > avgDailyPrompts * 1.5) {
+      insights += `Your most productive day was ${weekday} (${busiestDay.date}) with ${busiestDay.count} prompts. `;
     }
 
     if (topPromptCount > 5) {
-      const shortPrompt = topPrompt.length > 50 
-        ? topPrompt.substring(0, 50) + "..." 
-        : topPrompt;
+      const shortPrompt = topPromptType.length > 50 
+        ? topPromptType.substring(0, 50) + "..." 
+        : topPromptType;
       insights += `Your most common request is "${shortPrompt}" (${topPromptCount} times). `;
     }
 
@@ -162,11 +153,9 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
           <span>
             🤖 Based on simulated usage patterns (Cursor doesn't store detailed logs for privacy)
           </span>
-          {cursorData.generatedAt && (
-            <span>
-              {new Date(cursorData.generatedAt).toLocaleDateString()}
-            </span>
-          )}
+          <span>
+            {cursorData.isRealData ? 'Real data' : 'Simulated data'}
+          </span>
         </div>
       </div>
     </motion.div>

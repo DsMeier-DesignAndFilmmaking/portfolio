@@ -2,6 +2,8 @@
  * Dark mode utilities and theme management
  */
 
+import React from 'react';
+
 export type Theme = 'light' | 'dark' | 'system';
 
 export interface ThemeConfig {
@@ -97,12 +99,6 @@ class ThemeManager {
     this.updateMetaThemeColor(effectiveTheme);
   }
 
-  private getEffectiveTheme(): Theme {
-    if (this.currentTheme === 'system') {
-      return this.systemTheme;
-    }
-    return this.currentTheme;
-  }
 
   private updateMetaThemeColor(theme: Theme): void {
     if (typeof window === 'undefined') return;
@@ -146,7 +142,10 @@ class ThemeManager {
   }
 
   public getEffectiveTheme(): Theme {
-    return this.getEffectiveTheme();
+    if (this.currentTheme === 'system') {
+      return this.systemTheme;
+    }
+    return this.currentTheme;
   }
 
   public toggleTheme(): void {

@@ -92,7 +92,7 @@ export default function LoadingSkeleton({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
         className={variantConfig.className}
-        style={variantConfig.style}
+        {...('style' in variantConfig && { style: variantConfig.style })}
       >
         {variantConfig.children}
       </motion.div>
@@ -102,7 +102,7 @@ export default function LoadingSkeleton({
   return (
     <div
       className={variantConfig.className}
-      style={variantConfig.style}
+      {...('style' in variantConfig && { style: variantConfig.style })}
     >
       {variantConfig.children}
     </div>

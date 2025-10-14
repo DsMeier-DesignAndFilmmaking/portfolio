@@ -198,7 +198,15 @@ export function useStravaData(): UseStravaDataReturn {
         athlete,
         stats,
         last4Weeks,
-        bestEfforts,
+        bestEfforts: bestEfforts as {
+          '400m': BestEffort | null;
+          '1/2 mile': BestEffort | null;
+          '1K': BestEffort | null;
+          '1 mile': BestEffort | null;
+          '2 mile': BestEffort | null;
+          '5K': BestEffort | null;
+          '10K': BestEffort | null;
+        },
         generatedAt: new Date().toISOString(),
         dataSource: 'api'
       };

@@ -83,7 +83,11 @@ export default function RealCursorAnalytics() {
             data={data.promptTypes}
           >
             <DonutChart
-              data={data.promptTypes}
+              data={data.promptTypes.map(type => ({
+                name: type.type,
+                value: type.count,
+                color: type.color
+              }))}
               height={200}
               innerRadius={60}
               outerRadius={100}

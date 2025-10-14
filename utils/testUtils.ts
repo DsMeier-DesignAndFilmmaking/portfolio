@@ -2,9 +2,24 @@
  * Testing utilities for dashboard components
  */
 
-import { render, RenderOptions } from '@testing-library/react';
-import { ReactElement } from 'react';
-import { ThemeProvider } from '../components/ThemeProvider';
+import React from 'react';
+
+// Conditional imports for testing utilities
+let render: any, RenderOptions: any;
+let ReactElement: any;
+let ThemeProvider: any;
+
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
+  try {
+    const testingLibrary = require('@testing-library/react');
+    render = testingLibrary.render;
+    RenderOptions = testingLibrary.RenderOptions;
+    ReactElement = require('react').ReactElement;
+    ThemeProvider = require('../components/ThemeProvider').ThemeProvider;
+  } catch (e) {
+    // Testing library not available
+  }
+}
 
 // Mock data for testing
 export const mockGitHubData = {
@@ -127,17 +142,21 @@ export const mockStravaData = {
 
 // Custom render function with theme provider
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
-  );
+  if (!ThemeProvider) {
+    return React.createElement(React.Fragment, null, children);
+  }
+  return React.createElement(ThemeProvider, null, children);
 };
 
 const customRender = (
-  ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>
-) => render(ui, { wrapper: AllTheProviders, ...options });
+  ui: any,
+  options?: any
+) => {
+  if (!render || !ThemeProvider) {
+    throw new Error('Testing utilities not available');
+  }
+  return render(ui, { wrapper: AllTheProviders, ...options });
+};
 
 // Test utilities for interactions
 export const testInteractions = {
@@ -149,7 +168,7 @@ export const testInteractions = {
     
     for (let i = 0; i < focusableElements.length; i++) {
       const element = focusableElements[i] as HTMLElement;
-      element.focus();
+      (element as HTMLElement).focus();
       
       // Test Enter key
       element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
@@ -330,7 +349,7 @@ export const accessibilityTests = {
     );
     
     focusableElements.forEach(element => {
-      element.focus();
+      (element as HTMLElement).focus();
       
       if (document.activeElement !== element) {
         results.push('Focus not properly managed');
@@ -341,6 +360,5 @@ export const accessibilityTests = {
   },
 };
 
-// Export everything
-export * from '@testing-library/react';
+// Export custom render function
 export { customRender as render };

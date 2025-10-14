@@ -92,10 +92,6 @@ export default function DashboardCard({
     return (
       <CardSkeleton 
         className={`${className}`}
-        role="region"
-        aria-labelledby={titleId}
-        aria-describedby={subtitle ? `${titleId}-subtitle` : undefined}
-        aria-busy="true"
       />
     );
   }

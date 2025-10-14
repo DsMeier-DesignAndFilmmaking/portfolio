@@ -16,7 +16,7 @@ interface LazyLoaderProps {
   placeholder?: ReactNode;
 }
 
-export default function LazyLoader({
+export function LazyLoader({
   children,
   fallback,
   threshold = 0.1,
@@ -32,8 +32,6 @@ export default function LazyLoader({
   const timeoutRef = useRef<number | null>(null);
 
   const inView = useInView(ref, {
-    threshold,
-    rootMargin,
     once: true,
   });
 
