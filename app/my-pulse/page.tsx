@@ -1248,7 +1248,7 @@ export default function MyPulsePage() {
 
             {/* AI Summary Card */}
             <div className="mb-6">
-              <AISummaryCard cursorData={cursorRealData} />
+              <AISummaryCard cursorData={cursorRealData || cursorAnalytics} />
             </div>
 
             {/* Analytics Cards */}

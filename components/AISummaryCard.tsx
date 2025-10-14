@@ -101,7 +101,7 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
     return "text-indigo-400";
   };
 
-  if (!cursorData) {
+  if (!cursorData || !cursorData.totalPrompts) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
