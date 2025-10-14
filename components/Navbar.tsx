@@ -224,14 +224,15 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
+              {/* Temporarily hidden - My Pulse navbar item */}
+              {/* <Link 
                 href="/my-pulse"
                 className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
                   pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 My Pulse
-              </Link>
+              </Link> */}
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
@@ -288,7 +289,8 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
+              {/* Temporarily hidden - My Pulse navbar item */}
+              {/* <Link 
                 href="/my-pulse"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
@@ -296,7 +298,7 @@ const Navbar = () => {
                 }`}
               >
                 My Pulse
-              </Link>
+              </Link> */}
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
