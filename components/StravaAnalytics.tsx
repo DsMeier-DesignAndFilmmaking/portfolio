@@ -162,7 +162,9 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         });
         
         if (!athleteResponse.ok) {
-          throw new Error(`Athlete API failed: ${athleteResponse.status}`);
+          const errorText = await athleteResponse.text();
+          console.error('❌ Strava API Error:', errorText);
+          throw new Error(`Athlete API failed: ${athleteResponse.status} - ${errorText}`);
         }
         
         const athlete = await athleteResponse.json();
@@ -231,7 +233,8 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         return;
         
       } catch (apiError) {
-        console.warn('⚠️ API fetch failed, using mock data:', apiError);
+        console.warn('⚠️ Strava API fetch failed, using mock data:', apiError);
+        console.log('💡 This might be due to an expired access token. Check your Strava API credentials.');
         
         // Fallback to mock data if API fails
         try {
@@ -241,14 +244,14 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
           // Mock data for demonstration
           const mockData: StravaData = {
             athlete: {
-              id: 123456,
+              id: 56851419,
               username: "danielmeier",
               firstname: "Daniel",
               lastname: "Meier",
               city: "San Francisco",
               state: "CA",
               country: "United States",
-              profile: "https://via.placeholder.com/200x200"
+              profile: "https://dgalywyr863hv.cloudfront.net/pictures/athletes/56851419/1/large.jpg"
             },
             stats: null,
             last4Weeks: {
@@ -305,132 +308,131 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
 
   return (
     <div className={`${className}`}>
-      {/* Athlete Profile */}
+      {/* Compact Header with Profile and Summary Stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="flex items-center gap-4 mb-6"
+        className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4 mb-4"
       >
-        {athlete.profile ? (
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-300">
-            <img 
-              src={athlete.profile} 
-              alt={`${athlete.firstname} ${athlete.lastname}`}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                // Fallback to initials if image fails to load
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const parent = target.parentElement;
-                if (parent) {
-                  parent.innerHTML = `
-                    <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
-                      <span class="text-white font-bold text-lg">
-                        ${athlete.firstname?.[0] || ''}${athlete.lastname?.[0] || ''}
-                      </span>
-                    </div>
-                  `;
-                }
-              }}
-            />
+        {/* Profile Row */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            {athlete.profile ? (
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-300">
+                <img 
+                  src={athlete.profile} 
+                  alt={`${athlete.firstname} ${athlete.lastname}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `
+                        <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
+                          <span class="text-white font-bold text-sm">
+                            ${athlete.firstname?.[0] || ''}${athlete.lastname?.[0] || ''}
+                          </span>
+                        </div>
+                      `;
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">
+                  {athlete.firstname?.[0]}{athlete.lastname?.[0]}
+                </span>
+              </div>
+            )}
+            <div>
+              <h3 className="text-white font-bold text-base">
+                {athlete.firstname} {athlete.lastname}
+              </h3>
+              <div className="text-orange-200 text-xs">
+                {athlete.city && `${athlete.city}, `}{athlete.state}
+              </div>
+            </div>
           </div>
-        ) : (
-          <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-lg">
-              {athlete.firstname?.[0]}{athlete.lastname?.[0]}
-            </span>
-          </div>
-        )}
-        
-        <div>
-          <h3 className="text-white font-bold text-lg">
-            {athlete.firstname} {athlete.lastname}
-          </h3>
-          <div className="text-orange-200 text-sm">
-            {athlete.city && `${athlete.city}, `}{athlete.state}
+          
+          {/* Quick Stats Summary */}
+          <div className="flex items-center gap-4 text-right">
+            <div>
+              <div className="text-lg font-bold text-white">{last4Weeks.activitiesPerWeek}</div>
+              <div className="text-xs text-orange-200">Activities/Week</div>
+            </div>
+            <div>
+              <div className="text-lg font-bold text-white">{formatDistance(last4Weeks.avgDistancePerWeek).formatted}</div>
+              <div className="text-xs text-orange-200">Avg Distance</div>
+            </div>
           </div>
         </div>
-      </motion.div>
 
-      {/* Last 4 Weeks Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4 mb-6"
-      >
-        <h4 className="text-white font-semibold mb-4">📊 My Stats - Last 4 Weeks</h4>
-        <div className="grid grid-cols-2 gap-4">
+        {/* Compact 4-Week Stats Grid */}
+        <div className="grid grid-cols-4 gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-orange-500/10 rounded-lg p-2 text-center"
+          >
+            <div className="text-lg font-bold text-white">{last4Weeks.activitiesPerWeek}</div>
+            <div className="text-xs text-orange-100">Activities</div>
+          </motion.div>
+          
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-orange-500/10 rounded-lg p-3"
+            className="bg-orange-500/10 rounded-lg p-2 text-center"
           >
-            <div className="text-2xl font-bold text-white">
-              {last4Weeks.activitiesPerWeek}
-            </div>
-            <div className="text-orange-100 text-sm">Activities / Week</div>
+            <div className="text-lg font-bold text-white">{formatDistance(last4Weeks.avgDistancePerWeek).formatted}</div>
+            <div className="text-xs text-orange-100">Distance</div>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-orange-500/10 rounded-lg p-3"
+            className="bg-orange-500/10 rounded-lg p-2 text-center"
           >
-            <div className="text-2xl font-bold text-white">
-              {formatDistance(last4Weeks.avgDistancePerWeek).formatted}
-            </div>
-            <div className="text-orange-100 text-sm">Avg Distance / Week</div>
+            <div className="text-lg font-bold text-white">{formatDuration(last4Weeks.avgTimePerWeek)}</div>
+            <div className="text-xs text-orange-100">Time</div>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="bg-orange-500/10 rounded-lg p-3"
+            className="bg-orange-500/10 rounded-lg p-2 text-center"
           >
-            <div className="text-2xl font-bold text-white">
-              {formatDuration(last4Weeks.avgTimePerWeek)}
-            </div>
-            <div className="text-orange-100 text-sm">Avg Time / Week</div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-orange-500/10 rounded-lg p-3"
-          >
-            <div className="text-2xl font-bold text-white">
-              {formatElevation(last4Weeks.elevationGainPerWeek).formatted}
-            </div>
-            <div className="text-orange-100 text-sm">Elev Gain / Week</div>
+            <div className="text-lg font-bold text-white">{formatElevation(last4Weeks.elevationGainPerWeek).formatted}</div>
+            <div className="text-xs text-orange-100">Elevation</div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Best Efforts */}
+      {/* Compact Best Efforts Grid */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
         className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
       >
-        <h4 className="text-white font-semibold mb-4">🏆 All-Time PRs - Best Efforts</h4>
-        <div className="space-y-3">
+        <h4 className="text-white font-semibold mb-3 text-sm">🏆 All-Time PRs</h4>
+        <div className="grid grid-cols-2 gap-2">
           {Object.entries(bestEfforts).map(([distance, effort], index) => (
             <motion.div
               key={distance}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 + index * 0.1 }}
-              className="flex items-center justify-between bg-orange-500/10 rounded-lg p-3"
+              transition={{ delay: 0.4 + index * 0.05 }}
+              className="flex items-center justify-between bg-orange-500/10 rounded-lg p-2 hover:bg-orange-500/20 transition-colors"
             >
-              <div className="text-white font-medium">{distance}</div>
-              <div className="text-orange-200 font-bold text-lg">
+              <div className="text-white font-medium text-sm">{distance}</div>
+              <div className="text-orange-200 font-bold text-sm">
                 {effort ? formatTime(effort.time) : '--:--'}
               </div>
             </motion.div>
@@ -438,19 +440,18 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         </div>
       </motion.div>
 
-      {/* Data Source */}
-      <div className="text-center text-xs text-orange-200 mt-4">
-        📊 Strava data fetched at {new Date(stravaData.generatedAt).toLocaleString()}
-        {stravaData.dataSource === 'direct-api' && (
-          <div className="mt-1 text-orange-300">
-            ✅ Real data from your Strava account
-          </div>
-        )}
-        {stravaData.dataSource === 'mock' && (
-          <div className="mt-1 text-orange-300">
-            📋 Using sample data for demonstration
-          </div>
-        )}
+      {/* Compact Data Source Footer */}
+      <div className="text-center text-xs text-orange-200 mt-3">
+        <div className="flex items-center justify-center gap-2">
+          <span>📊</span>
+          <span>Updated {new Date(stravaData.generatedAt).toLocaleString()}</span>
+          {stravaData.dataSource === 'direct-api' && (
+            <span className="text-orange-300">• ✅ Live data</span>
+          )}
+          {stravaData.dataSource === 'mock' && (
+            <span className="text-orange-300">• 📋 Demo data</span>
+          )}
+        </div>
       </div>
     </div>
   );

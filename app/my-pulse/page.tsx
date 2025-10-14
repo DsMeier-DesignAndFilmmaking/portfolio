@@ -1455,7 +1455,7 @@ export default function MyPulsePage() {
               <h2 className="text-xl font-bold text-white mb-1">Strava Analytics</h2>
               <p className="text-sm text-orange-100">Fitness and activity tracking insights</p>
               <div className="text-xs text-orange-200 mt-1">
-                📊 Real-time activity data from your Strava account
+                📊 Real-time activity data from my Strava account
               </div>
             </div>
             <div className="flex items-center gap-2">
