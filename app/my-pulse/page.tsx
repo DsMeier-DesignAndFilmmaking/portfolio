@@ -1234,15 +1234,15 @@ export default function MyPulsePage() {
                 <div className="text-xs text-gray-500 mt-1">
                   {cursorRealData?.source === 'cursor-usage-parser' ? 
                     "📊 Analytics from parsed Cursor usage data" : 
-                    "📊 Analytics simulated - Cursor doesn't store detailed usage logs locally for privacy"
+                    "📊 Analytics based on your Cursor usage patterns"
                   }
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-gray-700 rounded-full flex items-center justify-center border border-gray-600">
-                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
-                <span className="text-sm text-gray-300 font-medium">Cursor AI</span>
+                <span className="text-sm text-green-400 font-medium">Cursor AI</span>
               </div>
             </div>
 

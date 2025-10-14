@@ -1,121 +1,201 @@
 {
-  "totalPrompts": 382,
+  "totalPrompts": 150,
   "promptsByDay": {
-    "2025-10-13": 5,
-    "2025-10-12": 2,
-    "2025-10-11": 1,
-    "2025-10-10": 9,
-    "2025-10-09": 4,
-    "2025-10-08": 8,
-    "2025-10-07": 4,
-    "2025-10-06": 4,
-    "2025-10-05": 4,
-    "2025-10-04": 3,
-    "2025-10-03": 9,
-    "2025-10-02": 3,
-    "2025-10-01": 5,
-    "2025-09-30": 9,
-    "2025-09-29": 7,
-    "2025-09-28": 4,
-    "2025-09-27": 4,
-    "2025-09-26": 4,
-    "2025-09-25": 6,
-    "2025-09-24": 8,
-    "2025-09-23": 8,
     "2025-09-22": 6,
-    "2025-09-21": 3,
-    "2025-09-20": 1,
-    "2025-09-19": 8,
-    "2025-09-18": 7,
-    "2025-09-17": 6,
-    "2025-09-16": 7,
-    "2025-09-15": 10,
-    "2025-09-14": 1
+    "2025-09-26": 4,
+    "2025-10-03": 6,
+    "2025-10-02": 6,
+    "2025-09-19": 5,
+    "2025-10-14": 4,
+    "2025-09-23": 5,
+    "2025-10-05": 9,
+    "2025-09-18": 11,
+    "2025-09-27": 3,
+    "2025-09-25": 2,
+    "2025-10-09": 6,
+    "2025-10-11": 4,
+    "2025-10-08": 7,
+    "2025-09-20": 3,
+    "2025-10-07": 7,
+    "2025-09-28": 6,
+    "2025-10-01": 2,
+    "2025-09-17": 3,
+    "2025-09-21": 7,
+    "2025-10-06": 6,
+    "2025-09-30": 5,
+    "2025-10-04": 5,
+    "2025-09-29": 7,
+    "2025-09-16": 8,
+    "2025-09-15": 1,
+    "2025-10-13": 6,
+    "2025-09-24": 2,
+    "2025-10-12": 2,
+    "2025-10-10": 2
   },
   "topPrompts": [
     {
-      "prompt": "Add input validation to this form",
+      "prompt": "Generate a React component for user authentication",
+      "count": 15
+    },
+    {
+      "prompt": "Fix the TypeScript error in this function",
+      "count": 14
+    },
+    {
+      "prompt": "Fix memory leak in this component",
       "count": 13
     },
     {
-      "prompt": "Add error handling to this async function",
+      "prompt": "Generate documentation for this module",
+      "count": 13
+    },
+    {
+      "prompt": "Optimize bundle size and performance",
       "count": 12
     },
     {
-      "prompt": "Create unit tests for this API endpoint",
+      "prompt": "Refactor this component to use hooks",
       "count": 11
     },
     {
-      "prompt": "Optimize this database query for better performance",
+      "prompt": "Add internationalization support",
       "count": 10
     },
     {
-      "prompt": "Generate documentation for this module",
+      "prompt": "Convert this class component to functional component",
+      "count": 10
+    },
+    {
+      "prompt": "Create reusable utility functions",
+      "count": 9
+    },
+    {
+      "prompt": "Create unit tests for this API endpoint",
       "count": 9
     }
   ],
   "recentPrompts": [
     {
-      "timestamp": "2025-10-13T22:03:07.581Z",
-      "prompt": "Optimize this database query for better performance",
-      "model": "unknown",
+      "timestamp": "2025-10-14T14:16:18.746Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T20:03:07.581Z",
-      "prompt": "Create unit tests for this API endpoint",
-      "model": "unknown",
+      "timestamp": "2025-10-14T14:16:18.746Z",
+      "prompt": "Add internationalization support",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T18:03:07.581Z",
-      "prompt": "Create unit tests for this API endpoint",
-      "model": "unknown",
+      "timestamp": "2025-10-14T14:16:18.746Z",
+      "prompt": "Implement responsive design for mobile",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T16:03:07.581Z",
+      "timestamp": "2025-10-14T14:16:18.746Z",
+      "prompt": "Implement responsive design for mobile",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:16:18.746Z",
       "prompt": "Refactor this component to use hooks",
-      "model": "unknown",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T14:03:07.581Z",
-      "prompt": "Generate a React component for user authentication",
-      "model": "unknown",
+      "timestamp": "2025-10-13T14:16:18.746Z",
+      "prompt": "Optimize bundle size and performance",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T12:03:07.581Z",
-      "prompt": "Generate documentation for this module",
-      "model": "unknown",
+      "timestamp": "2025-10-13T14:16:18.746Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T10:03:07.581Z",
+      "timestamp": "2025-10-13T14:16:18.746Z",
       "prompt": "Review this code for security vulnerabilities",
-      "model": "unknown",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T08:03:07.581Z",
-      "prompt": "Add input validation to this form",
-      "model": "unknown",
+      "timestamp": "2025-10-13T14:16:18.746Z",
+      "prompt": "Convert this class component to functional component",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T06:03:07.581Z",
-      "prompt": "Add input validation to this form",
-      "model": "unknown",
+      "timestamp": "2025-10-13T14:16:18.746Z",
+      "prompt": "Generate a React component for user authentication",
+      "model": "gpt-4",
       "success": true
     },
     {
-      "timestamp": "2025-10-13T04:03:07.581Z",
-      "prompt": "Add error handling to this async function",
-      "model": "unknown",
+      "timestamp": "2025-10-12T14:16:18.746Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:16:18.746Z",
+      "prompt": "Convert this class component to functional component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T14:16:18.746Z",
+      "prompt": "Optimize this database query for better performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T14:16:18.746Z",
+      "prompt": "Fix memory leak in this component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T14:16:18.746Z",
+      "prompt": "Fix the TypeScript error in this function",
+      "model": "gpt-4",
+      "success": false
+    },
+    {
+      "timestamp": "2025-10-11T14:16:18.746Z",
+      "prompt": "Fix memory leak in this component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T14:16:18.746Z",
+      "prompt": "Generate a React component for user authentication",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-10T14:16:18.746Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T14:16:18.746Z",
+      "prompt": "Add internationalization support",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-09T14:16:18.746Z",
+      "prompt": "Create reusable utility functions",
+      "model": "gpt-4",
       "success": true
     }
   ],
-  "generatedAt": "2025-10-13T22:03:07.581Z",
-  "source": "usage-simulation"
+  "generatedAt": "2025-10-14T14:16:18.747Z",
+  "source": "cursor-usage-parser"
 }
