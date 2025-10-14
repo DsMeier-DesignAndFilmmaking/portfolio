@@ -249,9 +249,10 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
               firstname: "Daniel",
               lastname: "Meier",
               city: "San Francisco",
-              state: "CA",
+              state: "California",
               country: "United States",
-              profile: "https://dgalywyr863hv.cloudfront.net/pictures/athletes/56851419/1/large.jpg"
+              profile: "https://dgalywyr863hv.cloudfront.net/pictures/athletes/56851419/1/large.jpg",
+              profile_medium: "https://dgalywyr863hv.cloudfront.net/pictures/athletes/56851419/1/medium.jpg"
             },
             stats: null,
             last4Weeks: {
@@ -318,17 +319,23 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         {/* Profile Row */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            {athlete.profile ? (
+            {(athlete.profile || athlete.profile_medium) ? (
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-300">
                 <img 
-                  src={athlete.profile} 
+                  src={athlete.profile || athlete.profile_medium} 
                   alt={`${athlete.firstname} ${athlete.lastname}`}
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent) {
+                      // Try medium version if large fails
+                      if (athlete.profile_medium && target.src === athlete.profile) {
+                        target.src = athlete.profile_medium;
+                        return;
+                      }
+                      // Fallback to initials
+                      target.style.display = 'none';
                       parent.innerHTML = `
                         <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
                           <span class="text-white font-bold text-sm">
@@ -352,7 +359,10 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
                 {athlete.firstname} {athlete.lastname}
               </h3>
               <div className="text-orange-200 text-xs">
-                {athlete.city && `${athlete.city}, `}{athlete.state}
+                {athlete.city && athlete.state ? `${athlete.city}, ${athlete.state}` : 
+                 athlete.city ? athlete.city : 
+                 athlete.state ? athlete.state : 
+                 athlete.country || 'Location not set'}
               </div>
             </div>
           </div>
