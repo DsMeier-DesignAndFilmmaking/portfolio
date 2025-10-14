@@ -114,7 +114,7 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
           <h3 className="text-lg font-semibold text-white">AI Summary</h3>
         </div>
         <p className="text-gray-400">
-          Loading Cursor usage data to generate personalized insights...
+          Cursor doesn't store detailed usage logs locally for privacy. Showing simulated analytics for demonstration purposes.
         </p>
       </motion.div>
     );
@@ -155,10 +155,7 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
       <div className="mt-4 pt-3 border-t border-gray-800">
         <div className="flex items-center justify-between text-xs text-gray-500">
           <span>
-            {cursorData.source === 'cursor-usage-parser' 
-              ? "📊 Based on real Cursor usage data" 
-              : "🤖 Based on simulated usage patterns"
-            }
+            🤖 Based on simulated usage patterns (Cursor doesn't store detailed logs for privacy)
           </span>
           {cursorData.generatedAt && (
             <span>
