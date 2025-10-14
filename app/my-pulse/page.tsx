@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import AISummaryCard from '../../components/AISummaryCard';
 import StravaAnalytics from '../../components/StravaAnalytics';
+import RealCursorAnalytics from '../../components/RealCursorAnalytics';
 import { fetchGitHubActivity } from '@/lib/api/github';
 import { fetchFigmaActivity } from '@/lib/api/figma';
 import { fetchNotionProjects, fetchCurrentFocus } from '@/lib/api/notion';
@@ -1219,12 +1220,22 @@ export default function MyPulsePage() {
 
         </motion.section>
 
-        {/* Cursor Analytics Section */}
+        {/* Real Cursor Analytics Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6"
+        >
+          <RealCursorAnalytics />
+        </motion.section>
+
+        {/* Legacy Cursor Analytics Section (Fallback) */}
         {(cursorAnalytics || cursorRealData) && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="bg-gradient-to-br from-black via-gray-900 to-gray-800 rounded-xl p-6 shadow-xl border border-gray-800 mt-6"
           >
             <div className="flex items-center justify-between mb-6">
