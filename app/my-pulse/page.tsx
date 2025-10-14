@@ -554,6 +554,42 @@ export default function MyPulsePage() {
     return colors[topic as keyof typeof colors] || '#6b7280';
   };
 
+  // ---- OpenAI Insights: load and persist real prompt logs ----
+  useEffect(() => {
+    try {
+      const raw = typeof window !== 'undefined' ? localStorage.getItem('openai_prompts') : null;
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          setOpenaiPrompts(parsed);
+        }
+      }
+    } catch {}
+  }, []);
+
+  function recordOpenAIPrompt(entry: { id?: string; prompt: string; response: string; analytics: any; timestamp?: string }) {
+    const newEntry = {
+      id: entry.id || `${Date.now()}`,
+      prompt: entry.prompt,
+      response: entry.response,
+      analytics: entry.analytics,
+      timestamp: entry.timestamp || new Date().toISOString(),
+    };
+    setOpenaiPrompts(prev => {
+      const updated = [newEntry, ...prev].slice(0, 500); // cap
+      try { if (typeof window !== 'undefined') localStorage.setItem('openai_prompts', JSON.stringify(updated)); } catch {}
+      return updated;
+    });
+  }
+
+  // Expose a lightweight helper for manual recording if needed
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // @ts-ignore
+      window.recordOpenAI = recordOpenAIPrompt;
+    }
+  }, []);
+
   const openaiAnalytics = calculateOpenAIAnalytics();
 
   // Fetch real Cursor usage data
@@ -711,12 +747,12 @@ export default function MyPulsePage() {
               <div>
                   <h2 className="text-xl font-bold text-gray-900 mb-1">Activity Overview</h2>
                   <p className="text-sm text-gray-500">Weekly commit activity across projects</p>
-                </div>
+              </div>
                 <div className="flex items-center gap-2">
                   <PlatformIcon platform="GitHub" />
                   <span className="text-sm text-gray-600">GitHub</span>
               </div>
-              </div>
+            </div>
 
               {/* Line Chart Container */}
               <div className="space-y-4">
@@ -878,9 +914,9 @@ export default function MyPulsePage() {
 
             {/* Activity Status */}
           <motion.section
-              initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
             >
               <h2 className="text-xl font-bold text-gray-900 mb-4">Activity Status</h2>
@@ -1002,13 +1038,13 @@ export default function MyPulsePage() {
               {openaiPrompts.length === 0 && (
                 <div className="text-xs text-gray-400 mt-1">
                   📊 Analytics estimated from typical ChatGPT usage patterns
-                </div>
+        </div>
               )}
-            </div>
+      </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
+    </div>
               <span className="text-sm text-green-400 font-medium">GPT-4o Mini</span>
             </div>
           </div>
