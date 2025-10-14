@@ -28,10 +28,10 @@ export default function RealCursorAnalytics() {
       
       // Try CursorLens API first
       try {
-        const cursorLensResponse = await fetch('http://localhost:3000/api/stats?timeFilter=all');
+        const cursorLensResponse = await fetch('http://localhost:3001/api/stats?timeFilter=all');
         if (cursorLensResponse.ok) {
           const cursorLensData = await cursorLensResponse.json();
-          const logsResponse = await fetch('http://localhost:3000/api/logs');
+          const logsResponse = await fetch('http://localhost:3001/api/logs');
           const logs = logsResponse.ok ? await logsResponse.json() : [];
           
           const formattedData: RealCursorData = {

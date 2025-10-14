@@ -40,8 +40,11 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
   const analyzeCursorUsage = (data: CursorData): string => {
     const { totalPrompts, promptsByDay, topPrompts, recentPrompts } = data;
 
+    // Ensure promptsByDay is defined and is an object
+    const safePromptsByDay = promptsByDay || {};
+
     // Find busiest day
-    const [busiestDate, busiestCount] = Object.entries(promptsByDay)
+    const [busiestDate, busiestCount] = Object.entries(safePromptsByDay)
       .sort((a, b) => b[1] - a[1])[0] || ["", 0];
 
     const weekday = busiestDate 
@@ -49,9 +52,11 @@ export default function AISummaryCard({ cursorData, className = "" }: AISummaryC
       : null;
 
     // Analyze patterns
-    const avgDailyPrompts = totalPrompts / Object.keys(promptsByDay).length;
-    const topPrompt = topPrompts?.[0]?.prompt || "various coding tasks";
-    const topPromptCount = topPrompts?.[0]?.count || 0;
+    const dayCount = Object.keys(safePromptsByDay).length || 1;
+    const avgDailyPrompts = totalPrompts / dayCount;
+    const safeTopPrompts = topPrompts || [];
+    const topPrompt = safeTopPrompts[0]?.prompt || "various coding tasks";
+    const topPromptCount = safeTopPrompts[0]?.count || 0;
 
     // Generate contextual insights
     let insights = "";
