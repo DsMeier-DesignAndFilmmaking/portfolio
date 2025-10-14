@@ -37,11 +37,11 @@ export default function RealCursorAnalytics() {
           const formattedData: RealCursorData = {
             totalPrompts: cursorLensData.totalLogs,
             totalTokens: cursorLensData.totalTokens,
-            totalCost: Object.values(cursorLensData.perModelProviderStats || {}).reduce((sum: number, model: any) => sum + (model.cost || 0), 0),
+            totalCost: Object.values(cursorLensData.perModelProviderStats || {}).reduce((sum: number, model: any) => sum + (model.cost || 0), 0) as number,
             promptsByDay: cursorLensData.tokenUsageOverTime?.reduce((acc: any, day: any) => {
               acc[day.date] = (acc[day.date] || 0) + 1;
               return acc;
-            }, {}) || {},
+            }, {} as Record<string, number>) || {},
             topPrompts: [],
             recentPrompts: logs.slice(0, 10).map((log: any) => ({
               prompt: log.prompt?.substring(0, 100) + '...' || 'AI Request',
