@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
@@ -7,31 +8,31 @@ import {
   formatElevation 
 } from "../lib/api/strava";
 
-interface Achievement {
-  title: string;
-  description: string;
-  date: string;
-  type: 'personal_record' | 'milestone' | 'achievement';
-  icon: string;
+interface BestEffort {
+  distance: number;
+  time: number;
+  pr_rank: number;
+  achievements: any[];
 }
 
 interface StravaData {
   athlete: any;
-  recentActivities: any[];
   stats: any;
-  summary: {
-    totalActivities: number;
-    totalDistance: number;
-    totalTime: number;
-    totalElevation: number;
-    totalCalories: number;
-    averageDistance: number;
-    averageTime: number;
-    averageElevation: number;
+  last4Weeks: {
+    activitiesPerWeek: number;
+    avgDistancePerWeek: number;
+    avgTimePerWeek: number;
+    elevationGainPerWeek: number;
   };
-  activityTypes: Record<string, number>;
-  weeklyPattern: Record<string, number>;
-  achievements: Achievement[];
+  bestEfforts: {
+    '400m': BestEffort | null;
+    '1/2 mile': BestEffort | null;
+    '1K': BestEffort | null;
+    '1 mile': BestEffort | null;
+    '2 mile': BestEffort | null;
+    '5K': BestEffort | null;
+    '10K': BestEffort | null;
+  };
   generatedAt: string;
   dataSource?: string;
   error?: string;
@@ -41,137 +42,99 @@ interface StravaAnalyticsProps {
   className?: string;
 }
 
-// Function to generate achievements from available stats data
-function generateAchievementsFromStats(stats: any, athlete: any): Achievement[] {
-  const achievements: Achievement[] = [];
+// Function to calculate last 4 weeks stats from activities
+function calculateLast4WeeksStats(activities: any[]) {
   const now = new Date();
+  const fourWeeksAgo = new Date(now.getTime() - (4 * 7 * 24 * 60 * 60 * 1000));
   
-  // Helper function to calculate time ago
-  const getTimeAgo = (days: number) => {
-    if (days === 0) return 'today';
-    if (days === 1) return '1 day ago';
-    if (days < 7) return `${days} days ago`;
-    if (days < 14) return '1 week ago';
-    if (days < 28) return '2 weeks ago';
-    if (days < 56) return '4 weeks ago';
-    return `${Math.floor(days / 7)} weeks ago`;
+  // Filter activities from last 4 weeks
+  const recentActivities = activities.filter(activity => 
+    new Date(activity.start_date) >= fourWeeksAgo
+  );
+  
+  // Calculate totals
+  const totalActivities = recentActivities.length;
+  const totalDistance = recentActivities.reduce((sum, activity) => sum + (activity.distance || 0), 0);
+  const totalTime = recentActivities.reduce((sum, activity) => sum + (activity.moving_time || 0), 0);
+  const totalElevation = recentActivities.reduce((sum, activity) => sum + (activity.total_elevation_gain || 0), 0);
+  
+  // Calculate weekly averages
+  const activitiesPerWeek = Math.round((totalActivities / 4) * 10) / 10; // Round to 1 decimal
+  const avgDistancePerWeek = totalDistance / 4;
+  const avgTimePerWeek = totalTime / 4;
+  const elevationGainPerWeek = totalElevation / 4;
+  
+  return {
+    activitiesPerWeek,
+    avgDistancePerWeek,
+    avgTimePerWeek,
+    elevationGainPerWeek
+  };
+}
+
+// Function to extract best efforts from activities
+function extractBestEfforts(activities: any[]) {
+  const bestEfforts: any = {
+    '400m': null,
+    '1/2 mile': null,
+    '1K': null,
+    '1 mile': null,
+    '2 mile': null,
+    '5K': null,
+    '10K': null
   };
   
-  // Generate achievements based on available stats
-  if (stats.biggest_ride_distance > 0) {
-    achievements.push({
-      title: 'Longest Ride',
-      description: `${formatDistance(stats.biggest_ride_distance).formatted} longest ride`,
-      date: getTimeAgo(Math.floor(Math.random() * 30)),
-      type: 'personal_record',
-      icon: '🚴‍♂️'
+  // Target distances in meters
+  const targetDistances = {
+    '400m': 400,
+    '1/2 mile': 804.67, // 0.5 miles in meters
+    '1K': 1000,
+    '1 mile': 1609.34, // 1 mile in meters
+    '2 mile': 3218.69, // 2 miles in meters
+    '5K': 5000,
+    '10K': 10000
+  };
+  
+  // Process each activity
+  activities.forEach(activity => {
+    if (!activity.best_efforts || activity.type !== 'Run') return;
+    
+    activity.best_efforts.forEach((effort: any) => {
+      const distance = effort.distance;
+      const time = effort.elapsed_time;
+      
+      // Find matching target distance (within 5% tolerance)
+      Object.entries(targetDistances).forEach(([key, targetDist]) => {
+        const tolerance = targetDist * 0.05; // 5% tolerance
+        if (Math.abs(distance - targetDist) <= tolerance) {
+          // If no existing best effort or this is better (faster time)
+          if (!bestEfforts[key] || time < bestEfforts[key].time) {
+            bestEfforts[key] = {
+              distance,
+              time,
+              pr_rank: effort.pr_rank,
+              achievements: effort.achievements || []
+            };
+          }
+        }
+      });
     });
+  });
+  
+  return bestEfforts;
+}
+
+// Function to format time as MM:SS or HH:MM:SS
+function formatTime(seconds: number): string {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+  
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  } else {
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   }
-  
-  if (stats.biggest_climb_elevation_gain > 0) {
-    achievements.push({
-      title: 'Biggest Climb',
-      description: `${formatElevation(stats.biggest_climb_elevation_gain).formatted} elevation gain`,
-      date: getTimeAgo(Math.floor(Math.random() * 30)),
-      type: 'personal_record',
-      icon: '⛰️'
-    });
-  }
-  
-  // Generate running achievements based on stats
-  const recentRunTotals = stats.recent_run_totals || {};
-  const ytdRunTotals = stats.ytd_run_totals || {};
-  
-  if (recentRunTotals.count > 0) {
-    // Calculate average pace for recent runs
-    const avgPace = recentRunTotals.moving_time && recentRunTotals.distance 
-      ? (recentRunTotals.moving_time / recentRunTotals.distance) * 1000 // seconds per km
-      : null;
-    
-    if (avgPace && avgPace < 300) { // Under 5 minutes per km
-      achievements.push({
-        title: 'Fast Pace',
-        description: `Average pace under ${Math.floor(avgPace / 60)}:${(avgPace % 60).toFixed(0).padStart(2, '0')}/km`,
-        date: getTimeAgo(Math.floor(Math.random() * 14)),
-        type: 'personal_record',
-        icon: '🏃‍♂️'
-      });
-    }
-    
-    // Check for weekly running streak
-    if (recentRunTotals.count >= 3) {
-      achievements.push({
-        title: 'Active Week',
-        description: `${recentRunTotals.count} runs this week`,
-        date: getTimeAgo(Math.floor(Math.random() * 7)),
-        type: 'milestone',
-        icon: '🔥'
-      });
-    }
-  }
-  
-  // Year-to-date achievements
-  if (ytdRunTotals.count > 0) {
-    if (ytdRunTotals.count >= 100) {
-      achievements.push({
-        title: 'Century Club',
-        description: `${ytdRunTotals.count} runs this year`,
-        date: getTimeAgo(Math.floor(Math.random() * 30)),
-        type: 'milestone',
-        icon: '💯'
-      });
-    }
-    
-    if (ytdRunTotals.distance > 500000) { // 500km
-      achievements.push({
-        title: 'Distance Master',
-        description: `${formatDistance(ytdRunTotals.distance).formatted} total distance`,
-        date: getTimeAgo(Math.floor(Math.random() * 30)),
-        type: 'milestone',
-        icon: '🎯'
-      });
-    }
-  }
-  
-  // Add some sample achievements based on typical running times
-  // These would normally come from actual activity data
-  const sampleAchievements = [
-    {
-      title: 'Sprint Champion',
-      description: '47s sprint from university',
-      date: getTimeAgo(14),
-      type: 'personal_record' as const,
-      icon: '⚡'
-    },
-    {
-      title: '1K Time Trial',
-      description: '3:59 personal best',
-      date: getTimeAgo(28),
-      type: 'personal_record' as const,
-      icon: '🏃‍♂️'
-    },
-    {
-      title: 'Half Mile PR',
-      description: '3:06 personal record',
-      date: getTimeAgo(28),
-      type: 'personal_record' as const,
-      icon: '🥇'
-    },
-    {
-      title: '400m Speed',
-      description: '1:26 best time',
-      date: getTimeAgo(28),
-      type: 'personal_record' as const,
-      icon: '💨'
-    }
-  ];
-  
-  // Add sample achievements if we have limited real data
-  if (achievements.length < 4) {
-    achievements.push(...sampleAchievements.slice(0, 4 - achievements.length));
-  }
-  
-  return achievements.slice(0, 6); // Return max 6 achievements
 }
 
 export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps) {
@@ -187,7 +150,7 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         
         console.log('🔄 Fetching Strava data directly...');
         
-        // Fetch data directly from Strava API (since Next.js API route isn't working)
+        // Fetch data directly from Strava API
         const STRAVA_ACCESS_TOKEN = '8f7673c4f3d8a8f7dd863843bccf541b00fd7fc3';
         
         // Fetch athlete profile
@@ -199,12 +162,11 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
         });
         
         if (!athleteResponse.ok) {
-          throw new Error(`Athlete API error: ${athleteResponse.status}`);
+          throw new Error(`Athlete API failed: ${athleteResponse.status}`);
         }
         
         const athlete = await athleteResponse.json();
         console.log('✅ Athlete data fetched:', athlete.firstname, athlete.lastname);
-        console.log('📸 Profile image URL:', athlete.profile);
         
         // Fetch athlete stats
         const statsResponse = await fetch(`https://www.strava.com/api/v3/athletes/${athlete.id}/stats`, {
@@ -222,7 +184,29 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
           console.warn('⚠️ Stats API error:', statsResponse.status);
         }
         
-        // Create dashboard data
+        // Fetch recent activities (up to 200 to get good data for calculations)
+        const activitiesResponse = await fetch(`https://www.strava.com/api/v3/athlete/activities?per_page=200`, {
+          headers: {
+            'Authorization': `Bearer ${STRAVA_ACCESS_TOKEN}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        let activities: any[] = [];
+        if (activitiesResponse.ok) {
+          activities = await activitiesResponse.json();
+          console.log(`✅ Fetched ${activities.length} activities`);
+        } else {
+          console.warn('⚠️ Activities API failed:', activitiesResponse.status);
+        }
+        
+        // Calculate last 4 weeks stats
+        const last4Weeks = calculateLast4WeeksStats(activities);
+        
+        // Extract best efforts
+        const bestEfforts = extractBestEfforts(activities);
+        
+        // Create real data structure
         const realData: StravaData = {
           athlete: {
             id: athlete.id,
@@ -232,53 +216,15 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
             city: athlete.city,
             state: athlete.state,
             country: athlete.country,
-            profile: athlete.profile, // Full size profile image URL
-            profile_medium: athlete.profile_medium, // Medium size profile image URL
-            follower_count: athlete.follower_count,
-            friend_count: athlete.friend_count
+            profile: athlete.profile,
+            profile_medium: athlete.profile_medium
           },
-          recentActivities: [], // No activities due to permission limitations
           stats,
-          summary: {
-            totalActivities: 0,
-            totalDistance: 0,
-            totalTime: 0,
-            totalElevation: 0,
-            totalCalories: 0,
-            averageDistance: 0,
-            averageTime: 0,
-            averageElevation: 0
-          },
-          activityTypes: {},
-          weeklyPattern: {},
-          achievements: [],
+          last4Weeks,
+          bestEfforts,
           generatedAt: new Date().toISOString(),
           dataSource: 'direct-api'
         };
-        
-        // Extract data from stats if available
-        if (stats) {
-          const recentRideTotals = stats.recent_ride_totals || {};
-          const recentRunTotals = stats.recent_run_totals || {};
-          
-          realData.summary = {
-            totalActivities: (recentRideTotals.count || 0) + (recentRunTotals.count || 0),
-            totalDistance: (recentRideTotals.distance || 0) + (recentRunTotals.distance || 0),
-            totalTime: (recentRideTotals.moving_time || 0) + (recentRunTotals.moving_time || 0),
-            totalElevation: (recentRideTotals.elevation_gain || 0) + (recentRunTotals.elevation_gain || 0),
-            totalCalories: (recentRideTotals.calories || 0) + (recentRunTotals.calories || 0),
-            averageDistance: 0,
-            averageTime: 0,
-            averageElevation: 0
-          };
-          
-          // Create activity types from stats
-          if (recentRideTotals.count > 0) realData.activityTypes['Ride'] = recentRideTotals.count;
-          if (recentRunTotals.count > 0) realData.activityTypes['Run'] = recentRunTotals.count;
-          
-          // Generate achievements from available stats data
-          realData.achievements = generateAchievementsFromStats(stats, athlete);
-        }
         
         setStravaData(realData);
         console.log('✅ Real Strava data fetched successfully');
@@ -293,112 +239,37 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
           await new Promise(resolve => setTimeout(resolve, 500));
           
           // Mock data for demonstration
-        const mockData: StravaData = {
-          athlete: {
-            id: 123456,
-            username: "danielmeier",
-            firstname: "Daniel",
-            lastname: "Meier",
-            city: "San Francisco",
-            state: "CA",
-            country: "United States",
-            profile: "https://via.placeholder.com/200x200",
-            follower_count: 45,
-            friend_count: 128
-          },
-          recentActivities: [
-            {
-              id: 1,
-              name: "Morning Run",
-              distance: 5000,
-              moving_time: 1800,
-              type: "Run",
-              start_date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-              average_speed: 2.8,
-              calories: 350,
-              total_elevation_gain: 50
+          const mockData: StravaData = {
+            athlete: {
+              id: 123456,
+              username: "danielmeier",
+              firstname: "Daniel",
+              lastname: "Meier",
+              city: "San Francisco",
+              state: "CA",
+              country: "United States",
+              profile: "https://via.placeholder.com/200x200"
             },
-            {
-              id: 2,
-              name: "Weekend Bike Ride",
-              distance: 25000,
-              moving_time: 3600,
-              type: "Ride",
-              start_date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-              average_speed: 7.0,
-              calories: 800,
-              total_elevation_gain: 200
+            stats: null,
+            last4Weeks: {
+              activitiesPerWeek: 1.0,
+              avgDistancePerWeek: 3218.69, // ~2 miles in meters
+              avgTimePerWeek: 853, // ~14 minutes in seconds
+              elevationGainPerWeek: 5.79 // ~19 feet in meters
             },
-            {
-              id: 3,
-              name: "Evening Walk",
-              distance: 3000,
-              moving_time: 2400,
-              type: "Walk",
-              start_date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-              average_speed: 1.25,
-              calories: 150,
-              total_elevation_gain: 20
-            }
-          ],
-          stats: null,
-          summary: {
-            totalActivities: 15,
-            totalDistance: 45000,
-            totalTime: 10800,
-            totalElevation: 500,
-            totalCalories: 2500,
-            averageDistance: 3000,
-            averageTime: 720,
-            averageElevation: 33
-          },
-          activityTypes: {
-            "Run": 8,
-            "Ride": 4,
-            "Walk": 3
-          },
-          weeklyPattern: {
-            "Monday": 3,
-            "Tuesday": 2,
-            "Wednesday": 4,
-            "Thursday": 2,
-            "Friday": 1,
-            "Saturday": 2,
-            "Sunday": 1
-          },
-          achievements: [
-            {
-              title: 'Sprint Champion',
-              description: '47s sprint from university',
-              date: '2 weeks ago',
-              type: 'personal_record',
-              icon: '⚡'
+            bestEfforts: {
+              '400m': { distance: 400, time: 84, pr_rank: 1, achievements: [] }, // 1:24
+              '1/2 mile': { distance: 804.67, time: 185, pr_rank: 1, achievements: [] }, // 3:05
+              '1K': { distance: 1000, time: 235, pr_rank: 1, achievements: [] }, // 3:55
+              '1 mile': { distance: 1609.34, time: 390, pr_rank: 1, achievements: [] }, // 6:30
+              '2 mile': { distance: 3218.69, time: 802, pr_rank: 1, achievements: [] }, // 13:22
+              '5K': { distance: 5000, time: 1276, pr_rank: 1, achievements: [] }, // 21:16
+              '10K': { distance: 10000, time: 2977, pr_rank: 1, achievements: [] }, // 49:37
             },
-            {
-              title: '1K Time Trial',
-              description: '3:59 personal best',
-              date: '4 weeks ago',
-              type: 'personal_record',
-              icon: '🏃‍♂️'
-            },
-            {
-              title: 'Half Mile PR',
-              description: '3:06 personal record',
-              date: '4 weeks ago',
-              type: 'personal_record',
-              icon: '🥇'
-            },
-            {
-              title: '400m Speed',
-              description: '1:26 best time',
-              date: '4 weeks ago',
-              type: 'personal_record',
-              icon: '💨'
-            }
-          ],
-          generatedAt: new Date().toISOString()
-        };
-        
+            generatedAt: new Date().toISOString(),
+            dataSource: 'mock'
+          };
+          
           setStravaData(mockData);
           console.log('✅ Using mock Strava data');
         } catch (mockError) {
@@ -414,237 +285,170 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
 
   if (isLoading) {
     return (
-      <div className={`bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-6 ${className}`}>
-        <div className="text-center">
-          <div className="text-orange-200 text-lg mb-2">🔄 Loading Strava Data...</div>
-          <div className="space-y-2">
-            <div className="h-4 bg-orange-500/30 rounded animate-pulse"></div>
-            <div className="h-4 bg-orange-500/30 rounded animate-pulse w-3/4 mx-auto"></div>
-            <div className="h-4 bg-orange-500/30 rounded animate-pulse w-1/2 mx-auto"></div>
-          </div>
-        </div>
+      <div className={`${className}`}>
+        <div className="text-orange-200 text-lg mb-2">🔄 Loading Strava Data...</div>
+        <div className="text-orange-300 text-sm">Fetching your stats and PRs...</div>
       </div>
     );
   }
 
   if (error || !stravaData) {
     return (
-      <div className={`bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-6 ${className}`}>
-        <div className="text-center">
-          <div className="text-orange-200 text-lg mb-2">⚠️ Strava Data Unavailable</div>
-          <p className="text-orange-100 text-sm">
-            {error || "Unable to fetch Strava data. Please check your API credentials."}
-          </p>
-        </div>
+      <div className={`${className}`}>
+        <div className="text-red-300 text-lg mb-2">❌ Error Loading Strava Data</div>
+        <div className="text-red-200 text-sm">{error || 'Failed to fetch data'}</div>
       </div>
     );
   }
 
-  const { athlete, recentActivities, summary, activityTypes, weeklyPattern } = stravaData;
+  const { athlete, last4Weeks, bestEfforts } = stravaData;
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`${className}`}>
       {/* Athlete Profile */}
-      {athlete && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
-        >
-          <div className="flex items-center gap-4">
-            {athlete.profile ? (
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-300">
-                <img 
-                  src={athlete.profile} 
-                  alt={`${athlete.firstname} ${athlete.lastname}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to initials if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `
-                        <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
-                          <span class="text-white font-bold text-lg">
-                            ${athlete.firstname?.[0] || ''}${athlete.lastname?.[0] || ''}
-                          </span>
-                        </div>
-                      `;
-                    }
-                  }}
-                />
-              </div>
-            ) : (
-              <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">
-                  {athlete.firstname?.[0]}{athlete.lastname?.[0]}
-                </span>
-              </div>
-            )}
-            <div>
-              <h3 className="text-white font-semibold">
-                {athlete.firstname} {athlete.lastname}
-              </h3>
-              <p className="text-orange-100 text-sm">
-                {athlete.city}, {athlete.state}
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Summary Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
-        >
-          <div className="text-orange-200 text-2xl font-bold">
-            {summary.totalActivities}
-          </div>
-          <div className="text-orange-100 text-sm">Activities</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
-        >
-          <div className="text-orange-200 text-2xl font-bold">
-            {formatDistance(summary.totalDistance).formatted}
-          </div>
-          <div className="text-orange-100 text-sm">Total Distance</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
-        >
-          <div className="text-orange-200 text-2xl font-bold">
-            {formatDuration(summary.totalTime)}
-          </div>
-          <div className="text-orange-100 text-sm">Total Time</div>
-        </motion.div>
-
-      </div>
-
-      {/* Activity Types */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
+        transition={{ delay: 0.1 }}
+        className="flex items-center gap-4 mb-6"
       >
-        <h4 className="text-white font-semibold mb-3">Activity Types</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {Object.entries(activityTypes).map(([type, count]) => (
-            <div key={type} className="text-center">
-              <div className="text-orange-200 text-xl font-bold">{count}</div>
-              <div className="text-orange-100 text-sm">{type}</div>
-            </div>
-          ))}
+        {athlete.profile ? (
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-300">
+            <img 
+              src={athlete.profile} 
+              alt={`${athlete.firstname} ${athlete.lastname}`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to initials if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.innerHTML = `
+                    <div class="w-full h-full bg-orange-400 rounded-full flex items-center justify-center">
+                      <span class="text-white font-bold text-lg">
+                        ${athlete.firstname?.[0] || ''}${athlete.lastname?.[0] || ''}
+                      </span>
+                    </div>
+                  `;
+                }
+              }}
+            />
+          </div>
+        ) : (
+          <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
+            <span className="text-white font-bold text-lg">
+              {athlete.firstname?.[0]}{athlete.lastname?.[0]}
+            </span>
+          </div>
+        )}
+        
+        <div>
+          <h3 className="text-white font-bold text-lg">
+            {athlete.firstname} {athlete.lastname}
+          </h3>
+          <div className="text-orange-200 text-sm">
+            {athlete.city && `${athlete.city}, `}{athlete.state}
+          </div>
         </div>
       </motion.div>
 
-      {/* Recent Activities */}
+      {/* Last 4 Weeks Stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.2 }}
+        className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4 mb-6"
+      >
+        <h4 className="text-white font-semibold mb-4">📊 My Stats - Last 4 Weeks</h4>
+        <div className="grid grid-cols-2 gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="bg-orange-500/10 rounded-lg p-3"
+          >
+            <div className="text-2xl font-bold text-white">
+              {last4Weeks.activitiesPerWeek}
+            </div>
+            <div className="text-orange-100 text-sm">Activities / Week</div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="bg-orange-500/10 rounded-lg p-3"
+          >
+            <div className="text-2xl font-bold text-white">
+              {formatDistance(last4Weeks.avgDistancePerWeek).formatted}
+            </div>
+            <div className="text-orange-100 text-sm">Avg Distance / Week</div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="bg-orange-500/10 rounded-lg p-3"
+          >
+            <div className="text-2xl font-bold text-white">
+              {formatDuration(last4Weeks.avgTimePerWeek)}
+            </div>
+            <div className="text-orange-100 text-sm">Avg Time / Week</div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="bg-orange-500/10 rounded-lg p-3"
+          >
+            <div className="text-2xl font-bold text-white">
+              {formatElevation(last4Weeks.elevationGainPerWeek).formatted}
+            </div>
+            <div className="text-orange-100 text-sm">Elev Gain / Week</div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Best Efforts */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
         className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
       >
-        <h4 className="text-white font-semibold mb-3">Recent Activities</h4>
+        <h4 className="text-white font-semibold mb-4">🏆 All-Time PRs - Best Efforts</h4>
         <div className="space-y-3">
-          {recentActivities.slice(0, 5).map((activity, index) => (
+          {Object.entries(bestEfforts).map(([distance, effort], index) => (
             <motion.div
-              key={activity.id}
+              key={distance}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7 + index * 0.1 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
               className="flex items-center justify-between bg-orange-500/10 rounded-lg p-3"
             >
-              <div>
-                <div className="text-white font-medium">{activity.name}</div>
-                <div className="text-orange-100 text-sm">{activity.type}</div>
-                <div className="text-orange-200 text-xs">
-                  {new Date(activity.start_date).toLocaleDateString()}
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-orange-200 font-semibold">
-                  {formatDistance(activity.distance).formatted}
-                </div>
-                <div className="text-orange-100 text-sm">
-                  {formatDuration(activity.moving_time)}
-                </div>
-                {activity.calories && (
-                  <div className="text-orange-200 text-xs">
-                    {activity.calories} cal
-                  </div>
-                )}
+              <div className="text-white font-medium">{distance}</div>
+              <div className="text-orange-200 font-bold text-lg">
+                {effort ? formatTime(effort.time) : '--:--'}
               </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
-      {/* Achievements */}
-      {stravaData.achievements && stravaData.achievements.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-300/30 rounded-lg p-4"
-        >
-          <h4 className="text-white font-semibold mb-3">🏆 Achievements</h4>
-          <div className="space-y-3">
-            {stravaData.achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-                className="flex items-center gap-3 bg-orange-500/10 rounded-lg p-3"
-              >
-                <div className="text-2xl">{achievement.icon}</div>
-                <div className="flex-1">
-                  <div className="text-white font-medium">{achievement.title}</div>
-                  <div className="text-orange-100 text-sm">{achievement.description}</div>
-                  <div className="text-orange-200 text-xs">{achievement.date}</div>
-                </div>
-                <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  achievement.type === 'personal_record' 
-                    ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30'
-                    : achievement.type === 'milestone'
-                    ? 'bg-green-500/20 text-green-300 border border-green-400/30'
-                    : 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
-                }`}>
-                  {achievement.type === 'personal_record' ? 'PR' : 
-                   achievement.type === 'milestone' ? 'Milestone' : 'Achievement'}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-
       {/* Data Source */}
-      <div className="text-center text-xs text-orange-200">
+      <div className="text-center text-xs text-orange-200 mt-4">
         📊 Strava data fetched at {new Date(stravaData.generatedAt).toLocaleString()}
-        {stravaData.dataSource === 'stats' && (
-          <div className="mt-1 text-orange-300">
-            ℹ️ Showing stats data (activity details require additional permissions)
-          </div>
-        )}
         {stravaData.dataSource === 'direct-api' && (
           <div className="mt-1 text-orange-300">
-            ✅ Real data from your Strava account (activities require activity:read_all scope)
+            ✅ Real data from your Strava account
+          </div>
+        )}
+        {stravaData.dataSource === 'mock' && (
+          <div className="mt-1 text-orange-300">
+            📋 Using sample data for demonstration
           </div>
         )}
       </div>
