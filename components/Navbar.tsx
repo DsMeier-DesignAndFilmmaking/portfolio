@@ -17,10 +17,6 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
 
-  // Debug: Log when isInDesignSection changes
-  useEffect(() => {
-    console.log('isInDesignSection state changed:', isInDesignSection);
-  }, [isInDesignSection]);
 
   // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
@@ -73,17 +69,8 @@ const Navbar = () => {
         const designSection = document.getElementById('design');
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
-          const isInDesign = designRect.top <= 100; // Increased threshold for better detection
-          console.log('Design section scroll detection:', {
-            designSectionFound: !!designSection,
-            top: designRect.top,
-            isInDesign,
-            currentState: isInDesignSection,
-            willTransition: isInDesign !== isInDesignSection
-          });
+          const isInDesign = designRect.top <= 50;
           setIsInDesignSection(isInDesign);
-        } else {
-          console.log('Design section not found!');
         }
       }
 
@@ -178,16 +165,9 @@ const Navbar = () => {
           isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
         }`}
       >
-        <div className="w-full px-6">
+        <div className="navbar-inner">
           <div 
-            className="flex justify-between items-center"
-            style={{
-              maxWidth: isInDesignSection ? '1280px' : '576px',
-              transition: 'max-width 0.6s ease',
-              margin: '0 auto'
-            }}
-            data-debug-width={isInDesignSection ? 'design' : 'hero'}
-            data-debug-max-width={isInDesignSection ? '1280px' : '576px'}
+            className={`navbar-content ${isInDesignSection ? 'shrink' : ''}`}
           >
           {/* Left side navigation */}
           <div className="py-4">
