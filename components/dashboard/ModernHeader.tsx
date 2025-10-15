@@ -59,8 +59,8 @@ export default function ModernHeader({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
             isScrolled 
-              ? 'backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50' 
-              : 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700'
+              ? 'backdrop-blur-md bg-[#1A1A1A]/90 border-b border-gray-700/50' 
+              : 'bg-[#1A1A1A] border-b border-gray-700'
           }`}
           role="banner"
           aria-label="Dashboard header"
@@ -81,39 +81,56 @@ export default function ModernHeader({
                     alt="Daniel Meier signature logo"
                     width={120}
                     height={30}
-                    className="h-8 w-auto opacity-100"
+                    className="h-8 w-auto brightness-0 invert"
                     priority
+                    onError={(e) => {
+                      console.log('Logo failed to load, using fallback');
+                      // Fallback to a simple text logo if image fails
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.nextElementSibling?.classList.remove('hidden');
+                    }}
                   />
+                  <div className="hidden text-white font-bold text-lg">
+                    DM
+                  </div>
                 </Link>
-                <div className="h-6 w-px bg-gray-300 dark:bg-gray-600" aria-hidden="true"></div>
+                <div className="h-6 w-px bg-gray-600" aria-hidden="true"></div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h1 className="text-xl font-bold text-white">
                     My Pulse
                   </h1>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-300">
                     Personal dashboard & insights
                   </p>
                 </div>
               </div>
 
-              {/* Center - Service status indicators */}
-              <div 
-                className="hidden md:flex items-center gap-4"
-                role="region"
-                aria-label="Service status indicators"
-              >
-                {services.map((service) => (
-                  <StatusIndicator
-                    key={service.service}
-                    status={service}
-                    size="sm"
-                    showLabel={false}
-                  />
-                ))}
-              </div>
 
               {/* Right side - Actions and info */}
               <div className="flex items-center gap-4">
+                {/* Dark mode toggle */}
+                <button
+                  className="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+                  aria-label="Toggle dark mode"
+                  title="Toggle dark mode"
+                >
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                </button>
+
                 {/* Last updated */}
                 <div className="hidden sm:block text-right" role="region" aria-label="Last updated information">
                   <div className="text-xs text-gray-500 dark:text-gray-400">

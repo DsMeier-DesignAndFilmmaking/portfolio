@@ -182,7 +182,7 @@ export default function MyPulseClient() {
       onRetry={handleRefresh}
       showOfflineMessage={true}
     >
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen" style={{ backgroundColor: '#1A1A1A' }}>
         {/* Skip Navigation Link */}
         <a
           href="#main-content"
@@ -348,29 +348,6 @@ export default function MyPulseClient() {
                   visualization="none"
                 />
                 
-                <ProgressCard
-                  title="iOS Projects"
-                  description="App development progress"
-                  icon="📱"
-                  progress={70}
-                  metrics={{
-                    builds: 12,
-                    features_completed: 14
-                  }}
-                  visualization="progress_ring"
-                />
-                
-                <MetricsCard
-                  title="Freelance / Client Work"
-                  description="Overview of freelance projects"
-                  icon="🤝"
-                  metrics={{
-                    active_projects: 3,
-                    completed_projects: 7,
-                    hours_logged: 120
-                  }}
-                  visualization="none"
-                />
               </div>
             </section>
           </DashboardErrorBoundary>
