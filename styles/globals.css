@@ -5,7 +5,7 @@
 /* CSS Variables for navbar width transitions */
 :root {
   --hero-max-width: 576px;
-  --design-max-width: 900px;
+  --design-max-width: 1280px; /* max-w-7xl = 80rem = 1280px */
 }
 
 /* ===== NAVBAR COMPLETE STYLES ===== */

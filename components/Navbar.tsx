@@ -69,6 +69,11 @@ const Navbar = () => {
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
           const isInDesign = designRect.top <= 50;
+          console.log('Design section detection:', { 
+            top: designRect.top, 
+            isInDesign, 
+            currentState: isInDesignSection 
+          });
           setIsInDesignSection(isInDesign);
         }
       }
@@ -172,6 +177,7 @@ const Navbar = () => {
               transition: 'max-width 0.6s ease',
               margin: '0 auto'
             }}
+            data-debug={isInDesignSection ? 'design' : 'hero'}
           >
           {/* Left side navigation */}
           <div className="py-4">
