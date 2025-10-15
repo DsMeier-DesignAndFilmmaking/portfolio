@@ -69,12 +69,16 @@ const Navbar = () => {
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
           const isInDesign = designRect.top <= 50;
-          console.log('Design section detection:', { 
-            top: designRect.top, 
-            isInDesign, 
-            currentState: isInDesignSection 
+          console.log('Design section scroll detection:', {
+            designSectionFound: !!designSection,
+            top: designRect.top,
+            isInDesign,
+            currentState: isInDesignSection,
+            willTransition: isInDesign !== isInDesignSection
           });
           setIsInDesignSection(isInDesign);
+        } else {
+          console.log('Design section not found!');
         }
       }
 
@@ -173,11 +177,12 @@ const Navbar = () => {
           <div 
             className="flex justify-between items-center"
             style={{
-              maxWidth: isInDesignSection ? 'var(--design-max-width)' : 'var(--hero-max-width)',
+              maxWidth: isInDesignSection ? '1280px' : '576px',
               transition: 'max-width 0.6s ease',
               margin: '0 auto'
             }}
-            data-debug={isInDesignSection ? 'design' : 'hero'}
+            data-debug-width={isInDesignSection ? 'design' : 'hero'}
+            data-debug-max-width={isInDesignSection ? '1280px' : '576px'}
           >
           {/* Left side navigation */}
           <div className="py-4">
