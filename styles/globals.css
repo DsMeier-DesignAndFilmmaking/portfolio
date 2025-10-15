@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for navbar width transitions */
+:root {
+  --hero-max-width: 1100px;
+  --design-max-width: 900px;
+}
+
 /* ===== NAVBAR COMPLETE STYLES ===== */
 
 /* Core Navbar Wrapper */
@@ -86,7 +92,25 @@
   width: 100%;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease, max-width 0.6s ease;
+  max-width: var(--hero-max-width);
+  margin: 0 auto;
+}
+
+/* Navbar inner container for width transitions */
+.navbar-inner {
+  max-width: var(--hero-max-width);
+  margin: 0 auto;
+  transition: max-width 0.6s ease;
+}
+
+/* Mobile responsive - disable width animation on mobile */
+@media (max-width: 768px) {
+  .navbar-container,
+  .navbar-inner {
+    max-width: 100% !important;
+    transition: background-color 0.5s ease;
+  }
 }
 
 /* Background States */

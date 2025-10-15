@@ -15,6 +15,7 @@ const Navbar = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
+  const [isInDesignSection, setIsInDesignSection] = useState(false);
 
   // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
@@ -61,6 +62,14 @@ const Navbar = () => {
           if (navTop < videoRect.bottom && navBottom > videoRect.top) {
             isOverBlack = true;
           }
+        }
+
+        // Check if we're in the design section for width transition
+        const designSection = document.getElementById('design');
+        if (designSection) {
+          const designRect = designSection.getBoundingClientRect();
+          const isInDesign = designRect.top <= 50;
+          setIsInDesignSection(isInDesign);
         }
       }
 
@@ -155,7 +164,13 @@ const Navbar = () => {
           isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
         }`}
       >
-        <div className="max-w-4xl mx-auto px-6">
+        <div 
+          className="navbar-inner px-6"
+          style={{
+            maxWidth: isInDesignSection ? 'var(--design-max-width)' : 'var(--hero-max-width)',
+            transition: 'max-width 0.6s ease'
+          }}
+        >
           <div className="flex justify-between items-center">
           {/* Left side navigation */}
           <div className="py-4">
@@ -200,7 +215,7 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
@@ -209,7 +224,7 @@ const Navbar = () => {
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
@@ -218,7 +233,7 @@ const Navbar = () => {
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
@@ -236,7 +251,7 @@ const Navbar = () => {
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
@@ -265,7 +280,7 @@ const Navbar = () => {
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -274,7 +289,7 @@ const Navbar = () => {
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -283,7 +298,7 @@ const Navbar = () => {
               <a 
                 href="#world-travel-diaries" 
                 onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
@@ -302,7 +317,7 @@ const Navbar = () => {
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-12pt hover-text-blue-400 transition-colors duration-500 cursor-pointer ${
+                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
