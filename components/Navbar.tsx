@@ -17,10 +17,6 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
 
-  // Debug: Log when isInDesignSection changes
-  useEffect(() => {
-    console.log('isInDesignSection state changed:', isInDesignSection);
-  }, [isInDesignSection]);
 
 
   // Determine if we're on a project page
@@ -39,7 +35,6 @@ const Navbar = () => {
         return;
       }
 
-      console.log('Scroll detection running, scrollY:', scrollY);
 
       let isOverBlack = false;
 
@@ -72,31 +67,9 @@ const Navbar = () => {
           }
         }
 
-        // Check if we're in the design section for width transition
-        // Use the same logic as color transition for perfect synchronization
-        const designSection = document.getElementById('design');
-        if (designSection) {
-          const designRect = designSection.getBoundingClientRect();
-          const navRect = navbar.getBoundingClientRect();
-          const navBottom = navRect.bottom;
-          const navTop = navRect.top;
-          
-          // Use same overlap logic as color transition
-          const isInDesign = navTop < designRect.bottom && navBottom > designRect.top;
-          console.log('Design section detection:', {
-            designSectionFound: !!designSection,
-            navTop,
-            navBottom,
-            designTop: designRect.top,
-            designBottom: designRect.bottom,
-            isInDesign,
-            currentState: isInDesignSection,
-            willTransition: isInDesign !== isInDesignSection
-          });
-          setIsInDesignSection(isInDesign);
-        } else {
-          console.log('Design section not found!');
-        }
+        // Width transition should trigger at the same time as color transition
+        // Use the same isOverBlack logic for perfect synchronization
+        setIsInDesignSection(isOverBlack);
       }
 
       setIsOverBlackSection(isOverBlack);
@@ -193,8 +166,6 @@ const Navbar = () => {
         <div className="navbar-inner">
           <div 
             className={`navbar-content ${isInDesignSection ? 'shrink' : ''}`}
-            data-debug-state={isInDesignSection ? 'design' : 'hero'}
-            data-debug-width={isInDesignSection ? '56rem' : '576px'}
           >
           {/* Left side navigation */}
           <div className="py-4">
