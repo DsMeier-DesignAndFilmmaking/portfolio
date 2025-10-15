@@ -75,7 +75,7 @@ export default function ModernHeader({
                   aria-label="Go to homepage"
                 >
                   <Image
-                    src="/images/signature-25.png"
+                    src="https://dsmeier-designandfilmmaking.github.io/portfolio/images/signature-25.png"
                     alt="Daniel Meier signature logo"
                     width={120}
                     height={30}
