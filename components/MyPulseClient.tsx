@@ -130,25 +130,6 @@ export default function MyPulseClient() {
         color: '#3b82f6',
       },
     },
-    {
-      id: 'cursor-usage',
-      title: 'Cursor Usage',
-      value: cursorData.data?.totalPrompts || 0,
-      subtitle: 'Code completions',
-      icon: '⚡',
-      trend: {
-        value: cursorData.data?.totalCodeCompletions || 0,
-        label: `${cursorData.data?.totalCodeCompletions || 0} completions`,
-        direction: 'up',
-      },
-      sparkline: {
-        data: (cursorData.data?.dailyActivity || []).map(activity => ({
-          date: activity.date,
-          value: activity.count
-        })),
-        color: '#8b5cf6',
-      },
-    },
   ];
 
   // Handle refresh
@@ -258,73 +239,6 @@ export default function MyPulseClient() {
             </LazyLoader>
           )}
 
-          {/* Projects in Motion */}
-          <DashboardErrorBoundary sectionName="Projects in Motion">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="projects-section"
-              aria-describedby="projects-description"
-            >
-              <SectionHeader
-                title="Projects in Motion"
-                subtitle="Active development and creative work"
-                icon="🚀"
-              />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <DashboardCard
-                title="Portfolio Website"
-                subtitle="Next.js • TypeScript • Tailwind"
-                icon="🌐"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 text-xs rounded-full">
-                      In Progress
-                    </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      Updated 2 hours ago
-                    </span>
-                  </div>
-                </div>
-              </DashboardCard>
-
-              <DashboardCard
-                title="AI Dashboard"
-                subtitle="React • Recharts • Framer Motion"
-                icon="📊"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full">
-                      Review
-                    </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      Updated 1 day ago
-                    </span>
-                  </div>
-                </div>
-              </DashboardCard>
-
-              <DashboardCard
-                title="Mobile App"
-                subtitle="React Native • TypeScript"
-                icon="📱"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 text-xs rounded-full">
-                      Planning
-                    </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      Updated 3 days ago
-                    </span>
-                  </div>
-                </div>
-              </DashboardCard>
-            </div>
-            </section>
-          </DashboardErrorBoundary>
 
           {/* Professional / Work Section */}
           <DashboardErrorBoundary sectionName="Professional / Work">
@@ -339,21 +253,92 @@ export default function MyPulseClient() {
                 subtitle="Development projects and client work"
                 icon="💼"
               />
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <MetricsCard
-                  title="Web Projects"
-                  description="GitHub/GitLab stats"
-                  icon="🌐"
-                  metrics={{
-                    commits: 120,
-                    PRs: 15,
-                    contributions: 45,
-                    active_repos: 8,
-                    languages: ["JavaScript", "Swift", "Python"]
-                  }}
-                  visualization="none"
-                />
-                
+              
+              {/* Projects in Motion Sub-section */}
+              <div className="mb-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <h3 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                    Projects in Motion
+                  </h3>
+                  <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <DashboardCard
+                    title="Portfolio Website"
+                    subtitle="Next.js • TypeScript • Tailwind"
+                    icon="🌐"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 text-xs rounded-full">
+                          In Progress
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          Updated 2 hours ago
+                        </span>
+                      </div>
+                    </div>
+                  </DashboardCard>
+
+                  <DashboardCard
+                    title="AI Dashboard"
+                    subtitle="React • Recharts • Framer Motion"
+                    icon="📊"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full">
+                          Review
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          Updated 1 day ago
+                        </span>
+                      </div>
+                    </div>
+                  </DashboardCard>
+
+                  <DashboardCard
+                    title="Mobile App"
+                    subtitle="React Native • TypeScript"
+                    icon="📱"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 text-xs rounded-full">
+                          Planning
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          Updated 3 days ago
+                        </span>
+                      </div>
+                    </div>
+                  </DashboardCard>
+                </div>
+              </div>
+
+              {/* Web Development Metrics Sub-section */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <h3 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                    Development Metrics
+                  </h3>
+                  <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <MetricsCard
+                    title="Web Projects"
+                    description="GitHub/GitLab stats"
+                    icon="🌐"
+                    metrics={{
+                      commits: 120,
+                      PRs: 15,
+                      contributions: 45,
+                      active_repos: 8,
+                      languages: ["JavaScript", "Swift", "Python"]
+                    }}
+                    visualization="none"
+                  />
+                </div>
               </div>
             </section>
           </DashboardErrorBoundary>
