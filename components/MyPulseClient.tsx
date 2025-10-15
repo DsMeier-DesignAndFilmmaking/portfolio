@@ -45,8 +45,14 @@ import { DataLoadErrorMessage } from '@/components/FriendlyErrorMessage';
 import { LazyLoader } from '@/components/LazyLoader';
 import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor';
 
+// Theme context
+import { useTheme } from '@/contexts/ThemeContext';
+
 export default function MyPulseClient() {
   const router = useRouter();
+  
+  // Theme context
+  const { isDarkMode } = useTheme();
   
   // Performance monitoring
   const { metrics, getOptimizationSuggestions } = usePerformanceMonitor();
@@ -182,7 +188,7 @@ export default function MyPulseClient() {
       onRetry={handleRefresh}
       showOfflineMessage={true}
     >
-      <div className="min-h-screen" style={{ backgroundColor: '#1A1A1A' }}>
+      <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#1A1A1A' : '#FFFFFF' }}>
         {/* Skip Navigation Link */}
         <a
           href="#main-content"
