@@ -34,15 +34,15 @@ export default function CalendarCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6"
+      className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-50'} rounded-lg">
-          <span className="${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'} text-lg">{icon}</span>
+        <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-50'} rounded-lg`}>
+          <span className={`${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'} text-lg`}>{icon}</span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{title}</h3>
-          <p className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">{description}</p>
+          <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
+          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>{description}</p>
         </div>
       </div>
 
@@ -56,21 +56,21 @@ export default function CalendarCard({
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="flex items-center gap-4 p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors"
+              className={`flex items-center gap-4 p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors`}
             >
-              <div className="flex flex-col items-center justify-center w-12 h-12 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-100'} rounded-lg">
-                <span className="text-sm font-bold ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}">
+              <div className={`flex flex-col items-center justify-center w-12 h-12 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-100'} rounded-lg`}>
+                <span className={`text-sm font-bold ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
                   {dateInfo.day}
                 </span>
-                <span className="text-xs ${isDarkMode ? 'text-indigo-400' : 'text-indigo-500'}">
+                <span className={`text-xs ${isDarkMode ? 'text-indigo-400' : 'text-indigo-500'}`}>
                   {dateInfo.month}
                 </span>
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}">
+                <div className={`text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   {event.event}
                 </div>
-                <div className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
+                <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   {dateInfo.weekday}
                 </div>
               </div>

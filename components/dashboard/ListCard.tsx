@@ -42,15 +42,15 @@ export default function ListCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6"
+      className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-orange-900/20' : 'bg-orange-50'} rounded-lg">
-          <span className="${isDarkMode ? 'text-orange-400' : 'text-orange-600'} text-lg">{icon}</span>
+        <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-orange-900/20' : 'bg-orange-50'} rounded-lg`}>
+          <span className={`${isDarkMode ? 'text-orange-400' : 'text-orange-600'} text-lg`}>{icon}</span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{title}</h3>
-          <p className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">{description}</p>
+          <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
+          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>{description}</p>
         </div>
       </div>
 
@@ -62,17 +62,17 @@ export default function ListCard({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="flex items-center justify-between p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors"
+            className={`flex items-center justify-between p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors`}
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <span className="text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}">
+              <span className={`text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 {item.title}
               </span>
             </div>
             <div className="flex items-center gap-2">
               {item.due && (
-                <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
+                <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   {formatDate(item.due)}
                 </span>
               )}

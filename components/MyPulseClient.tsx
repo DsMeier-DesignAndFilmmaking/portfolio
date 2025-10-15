@@ -273,7 +273,7 @@ export default function MyPulseClient() {
                         <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-green-900/20 text-green-400' : 'bg-green-100 text-green-800'}`}>
                           In Progress
                         </span>
-                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
+                        <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           Updated 2 hours ago
                         </span>
                       </div>
@@ -290,7 +290,7 @@ export default function MyPulseClient() {
                         <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-blue-900/20 text-blue-400' : 'bg-blue-100 text-blue-800'}`}>
                           Review
                         </span>
-                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
+                        <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           Updated 1 day ago
                         </span>
                       </div>
@@ -307,7 +307,7 @@ export default function MyPulseClient() {
                         <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-yellow-900/20 text-yellow-400' : 'bg-yellow-100 text-yellow-800'}`}>
                           Planning
                         </span>
-                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
+                        <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           Updated 3 days ago
                         </span>
                       </div>

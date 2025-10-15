@@ -40,7 +40,7 @@ export default function DashboardCard({
             <div className="flex items-center gap-3">
               {icon && (
                 <div 
-                  className="${isDarkMode ? 'text-gray-400' : 'text-gray-500'}" 
+                  className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} 
                   role="img" 
                   aria-label={`${title} icon`}
                 >
@@ -50,14 +50,14 @@ export default function DashboardCard({
               <div>
                 <h3 
                   id={titleId}
-                  className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}"
+                  className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
                 >
                   {title}
                 </h3>
                 {subtitle && (
                   <p 
                     id={`${titleId}-subtitle`}
-                    className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}"
+                    className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
                   >
                     {subtitle}
                   </p>
@@ -115,7 +115,7 @@ export default function DashboardCard({
           <div className="flex items-center gap-3">
             {icon && (
               <div 
-                className="${isDarkMode ? 'text-gray-400' : 'text-gray-500'}" 
+                className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} 
                 role="img" 
                 aria-label={`${title} icon`}
               >
@@ -125,14 +125,14 @@ export default function DashboardCard({
             <div>
               <h3 
                 id={titleId}
-                className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}"
+                className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
               >
                 {title}
               </h3>
               {subtitle && (
                 <p 
                   id={`${titleId}-subtitle`}
-                  className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}"
+                  className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
                 >
                   {subtitle}
                 </p>
