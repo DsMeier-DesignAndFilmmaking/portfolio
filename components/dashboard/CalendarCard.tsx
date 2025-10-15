@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface CalendarCardProps {
   title: string;
@@ -17,6 +18,8 @@ export default function CalendarCard({
   events,
   visualization = "calendar"
 }: CalendarCardProps) {
+  const { isDarkMode } = useTheme();
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return {
@@ -31,15 +34,15 @@ export default function CalendarCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
+      className="${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-10 h-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
-          <span className="text-indigo-600 dark:text-indigo-400 text-lg">{icon}</span>
+        <div className="flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-50'} rounded-lg">
+          <span className="${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'} text-lg">{icon}</span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>
+          <h3 className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{title}</h3>
+          <p className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">{description}</p>
         </div>
       </div>
 
@@ -53,21 +56,21 @@ export default function CalendarCard({
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="flex items-center gap-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+              className="flex items-center gap-4 p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors"
             >
-              <div className="flex flex-col items-center justify-center w-12 h-12 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg">
-                <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
+              <div className="flex flex-col items-center justify-center w-12 h-12 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-100'} rounded-lg">
+                <span className="text-sm font-bold ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}">
                   {dateInfo.day}
                 </span>
-                <span className="text-xs text-indigo-500 dark:text-indigo-400">
+                <span className="text-xs ${isDarkMode ? 'text-indigo-400' : 'text-indigo-500'}">
                   {dateInfo.month}
                 </span>
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}">
                   {event.event}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
                   {dateInfo.weekday}
                 </div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface MapCardProps {
   title: string;
@@ -17,6 +18,8 @@ export default function MapCard({
   metrics,
   visualization = "world_map"
 }: MapCardProps) {
+  const { isDarkMode } = useTheme();
+  
   // Simple world map SVG representation
   const WorldMapSVG = () => (
     <svg viewBox="0 0 800 400" className="w-full h-32 opacity-20">
@@ -35,15 +38,15 @@ export default function MapCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
+      className="${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-10 h-10 bg-green-50 dark:bg-green-900/20 rounded-lg">
-          <span className="text-green-600 dark:text-green-400 text-lg">{icon}</span>
+        <div className="flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-green-900/20' : 'bg-green-50'} rounded-lg">
+          <span className="${isDarkMode ? 'text-green-400' : 'text-green-600'} text-lg">{icon}</span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>
+          <h3 className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{title}</h3>
+          <p className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">{description}</p>
         </div>
       </div>
 
@@ -52,10 +55,10 @@ export default function MapCard({
         <WorldMapSVG />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}">
               {metrics.countries_visited}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Countries Visited</div>
+            <div className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">Countries Visited</div>
           </div>
         </div>
       </div>
@@ -63,11 +66,11 @@ export default function MapCard({
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 gap-3">
         {Object.entries(metrics).map(([key, value], index) => (
-          <div key={key} className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div key={key} className="text-center p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg">
+            <div className="text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}">
               {value}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+            <div className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} capitalize">
               {key.replace(/_/g, ' ')}
             </div>
           </div>

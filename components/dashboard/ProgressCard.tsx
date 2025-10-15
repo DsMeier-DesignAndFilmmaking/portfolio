@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface ProgressCardProps {
   title: string;
@@ -19,6 +20,7 @@ export default function ProgressCard({
   metrics,
   visualization = "progress_bar"
 }: ProgressCardProps) {
+  const { isDarkMode } = useTheme();
   const ProgressRing = ({ progress, size = 80 }: { progress: number; size?: number }) => {
     const radius = (size - 8) / 2;
     const circumference = radius * 2 * Math.PI;
@@ -49,7 +51,7 @@ export default function ProgressCard({
             className="text-blue-600 dark:text-blue-400 transition-all duration-500 ease-in-out"
           />
         </svg>
-        <span className="absolute text-sm font-semibold text-gray-900 dark:text-white">
+        <span className="absolute text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">
           {progress}%
         </span>
       </div>
@@ -61,15 +63,15 @@ export default function ProgressCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
+      className="${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-10 h-10 bg-green-50 dark:bg-green-900/20 rounded-lg">
-          <span className="text-green-600 dark:text-green-400 text-lg">{icon}</span>
+        <div className="flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-green-900/20' : 'bg-green-50'} rounded-lg">
+          <span className="${isDarkMode ? 'text-green-400' : 'text-green-600'} text-lg">{icon}</span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>
+          <h3 className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{title}</h3>
+          <p className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">{description}</p>
         </div>
       </div>
 
@@ -81,10 +83,10 @@ export default function ProgressCard({
       ) : (
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Progress</span>
-            <span className="text-sm font-semibold text-gray-900 dark:text-white">{progress}%</span>
+            <span className="text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}">Progress</span>
+            <span className="text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}">{progress}%</span>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+          <div className="w-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-3">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
@@ -98,11 +100,11 @@ export default function ProgressCard({
       {/* Metrics */}
       <div className="grid grid-cols-2 gap-3">
         {Object.entries(metrics).map(([key, value], index) => (
-          <div key={key} className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div key={key} className="text-center p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg">
+            <div className="text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}">
               {value}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+            <div className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} capitalize">
               {key.replace(/_/g, ' ')}
             </div>
           </div>

@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { DashboardCardProps } from "@/types/dashboard";
 import { CardSkeleton } from "./LoadingSkeleton";
 import { HoverInteraction } from "./MicroInteractions";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function DashboardCard({
   title,
@@ -17,6 +18,7 @@ export default function DashboardCard({
   error,
   onRetry,
 }: DashboardCardProps) {
+  const { isDarkMode } = useTheme();
   // Generate unique IDs for accessibility
   const cardId = `dashboard-card-${title?.toLowerCase().replace(/\s+/g, '-') || 'unknown'}`;
   const titleId = `${cardId}-title`;
@@ -27,7 +29,7 @@ export default function DashboardCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className={`bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
         role="region"
         aria-labelledby={titleId}
         aria-describedby={subtitle ? `${titleId}-subtitle` : undefined}
@@ -38,7 +40,7 @@ export default function DashboardCard({
             <div className="flex items-center gap-3">
               {icon && (
                 <div 
-                  className="text-gray-500 dark:text-gray-400" 
+                  className="${isDarkMode ? 'text-gray-400' : 'text-gray-500'}" 
                   role="img" 
                   aria-label={`${title} icon`}
                 >
@@ -48,14 +50,14 @@ export default function DashboardCard({
               <div>
                 <h3 
                   id={titleId}
-                  className="text-lg font-semibold text-gray-900 dark:text-white"
+                  className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}"
                 >
                   {title}
                 </h3>
                 {subtitle && (
                   <p 
                     id={`${titleId}-subtitle`}
-                    className="text-sm text-gray-500 dark:text-gray-400"
+                    className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}"
                   >
                     {subtitle}
                   </p>
@@ -102,7 +104,7 @@ export default function DashboardCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className={`bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
         role="region"
         aria-labelledby={titleId}
         aria-describedby={subtitle ? `${titleId}-subtitle` : undefined}
@@ -113,7 +115,7 @@ export default function DashboardCard({
           <div className="flex items-center gap-3">
             {icon && (
               <div 
-                className="text-gray-500 dark:text-gray-400" 
+                className="${isDarkMode ? 'text-gray-400' : 'text-gray-500'}" 
                 role="img" 
                 aria-label={`${title} icon`}
               >
@@ -123,14 +125,14 @@ export default function DashboardCard({
             <div>
               <h3 
                 id={titleId}
-                className="text-lg font-semibold text-gray-900 dark:text-white"
+                className="text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}"
               >
                 {title}
               </h3>
               {subtitle && (
                 <p 
                   id={`${titleId}-subtitle`}
-                  className="text-sm text-gray-500 dark:text-gray-400"
+                  className="text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}"
                 >
                   {subtitle}
                 </p>

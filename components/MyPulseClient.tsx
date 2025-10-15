@@ -201,7 +201,7 @@ export default function MyPulseClient() {
           {/* Quick Metrics Overview */}
           <DashboardErrorBoundary sectionName="Overview">
             <section 
-              className="mb-8 mt-10"
+              className="mb-12 mt-10"
               role="region"
               aria-labelledby="overview-section"
               aria-describedby="overview-description"
@@ -223,7 +223,7 @@ export default function MyPulseClient() {
             <LazyLoader delay={400} threshold={0.2}>
               <DashboardErrorBoundary sectionName="Advanced Cursor Analytics">
                 <section 
-                  className="mb-8"
+                  className="mb-12"
                   role="region"
                   aria-labelledby="advanced-cursor-section"
                   aria-describedby="advanced-cursor-description"
@@ -243,7 +243,7 @@ export default function MyPulseClient() {
           {/* Professional / Work Section */}
           <DashboardErrorBoundary sectionName="Professional / Work">
             <section 
-              className="mb-8"
+              className="mb-12"
               role="region"
               aria-labelledby="professional-section"
               aria-describedby="professional-description"
@@ -270,10 +270,10 @@ export default function MyPulseClient() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 text-xs rounded-full">
+                        <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-green-900/20 text-green-400' : 'bg-green-100 text-green-800'}`}>
                           In Progress
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
                           Updated 2 hours ago
                         </span>
                       </div>
@@ -287,10 +287,10 @@ export default function MyPulseClient() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full">
+                        <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-blue-900/20 text-blue-400' : 'bg-blue-100 text-blue-800'}`}>
                           Review
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
                           Updated 1 day ago
                         </span>
                       </div>
@@ -304,10 +304,10 @@ export default function MyPulseClient() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 text-xs rounded-full">
+                        <span className={`px-2 py-1 text-xs rounded-full ${isDarkMode ? 'bg-yellow-900/20 text-yellow-400' : 'bg-yellow-100 text-yellow-800'}`}>
                           Planning
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                        <span className="text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}">
                           Updated 3 days ago
                         </span>
                       </div>
@@ -346,7 +346,7 @@ export default function MyPulseClient() {
           {/* Personal Life Section */}
           <DashboardErrorBoundary sectionName="Personal Life">
             <section 
-              className="mb-8"
+              className="mb-12"
               role="region"
               aria-labelledby="personal-section"
               aria-describedby="personal-description"
@@ -425,7 +425,7 @@ export default function MyPulseClient() {
           {/* Planning & Productivity Section */}
           <DashboardErrorBoundary sectionName="Planning & Productivity">
             <section 
-              className="mb-8"
+              className="mb-12"
               role="region"
               aria-labelledby="planning-section"
               aria-describedby="planning-description"
