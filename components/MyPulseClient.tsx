@@ -14,10 +14,7 @@ import QuickMetrics from '@/components/dashboard/QuickMetrics';
 import ChartContainer from '@/components/dashboard/ChartContainer';
 import StatusIndicator from '@/components/dashboard/StatusIndicator';
 
-// Chart components
-import LineChart from '@/components/charts/LineChart';
-import BarChart from '@/components/charts/BarChart';
-import DonutChart from '@/components/charts/DonutChart';
+// Chart components (keeping for potential future use)
 
 // Custom hooks
 import { useGitHubActivity } from '@/hooks/useGitHubActivity';
@@ -27,9 +24,6 @@ import { useStravaData } from '@/hooks/useStravaData';
 import { useDashboardSync } from '@/hooks/useDashboardSync';
 
 // Existing components (will be refactored)
-import AISummaryCard from '@/components/AISummaryCard';
-import StravaAnalytics from '@/components/StravaAnalytics';
-import ModernStravaAnalytics from '@/components/ModernStravaAnalytics';
 import RealCursorAnalytics from '@/components/RealCursorAnalytics';
 
 // Types
@@ -98,25 +92,6 @@ export default function MyPulseClient() {
   // Quick metrics data
   const quickMetrics: DashboardMetric[] = [
     {
-      id: 'weekly-commits',
-      title: 'Weekly Commits',
-      value: githubData.data?.weeklyTotal || 0,
-      subtitle: 'GitHub activity',
-      icon: '📊',
-      trend: {
-        value: githubData.data?.streak || 0,
-        label: `${githubData.data?.streak || 0} day streak`,
-        direction: 'up',
-      },
-      sparkline: {
-        data: (githubData.data?.commits || []).map(commit => ({
-          date: commit.date,
-          value: commit.count
-        })),
-        color: '#10b981',
-      },
-    },
-    {
       id: 'active-projects',
       title: 'Active Projects',
       value: 3,
@@ -138,25 +113,6 @@ export default function MyPulseClient() {
           { date: '2024-01-07', value: 3 },
         ],
         color: '#3b82f6',
-      },
-    },
-    {
-      id: 'ai-prompts',
-      title: 'AI Prompts',
-      value: openaiData.data?.totalPrompts || 0,
-      subtitle: 'OpenAI usage',
-      icon: '🤖',
-      trend: {
-        value: 0,
-        label: 'This week',
-        direction: 'neutral',
-      },
-      sparkline: {
-        data: (openaiData.data?.dailyActivity || []).map(activity => ({
-          date: activity.date,
-          value: activity.count
-        })),
-        color: '#06b6d4',
       },
     },
     {
@@ -263,218 +219,8 @@ export default function MyPulseClient() {
             </section>
           </DashboardErrorBoundary>
 
-          {/* GitHub Activity Section */}
-          <DashboardErrorBoundary sectionName="GitHub Activity">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="github-section"
-              aria-describedby="github-description"
-            >
-              <SectionHeader
-                title="GitHub Activity"
-                subtitle="Code commits and repository activity"
-                icon="🐙"
-              />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Commit Timeline */}
-              <ChartErrorBoundary chartName="Commit Timeline" onRetry={githubData.refetch}>
-                <ChartContainer
-                  title="Commit Timeline"
-                  subtitle="Daily commits over the last week"
-                  data={githubData.data?.commits}
-                  loading={githubData.loading}
-                  error={githubData.error}
-                  onRetry={githubData.refetch}
-                >
-                  <LineChart
-                    data={githubData.data?.commits || []}
-                    color="#10b981"
-                    height={200}
-                  />
-                </ChartContainer>
-              </ChartErrorBoundary>
 
-              {/* Recent Repositories */}
-              <ChartErrorBoundary chartName="Top Repositories" onRetry={githubData.refetch}>
-                <ChartContainer
-                  title="Top Repositories"
-                  subtitle="Most active repositories this week"
-                  data={githubData.data?.repositories}
-                  loading={githubData.loading}
-                  error={githubData.error}
-                  onRetry={githubData.refetch}
-                >
-                  <BarChart
-                    data={githubData.data?.repositories?.map(repo => ({
-                      name: repo.name,
-                      commits: repo.commits,
-                    })) || []}
-                    dataKey="commits"
-                    color="#3b82f6"
-                    height={200}
-                  />
-                </ChartContainer>
-              </ChartErrorBoundary>
-            </div>
-            </section>
-          </DashboardErrorBoundary>
 
-          {/* AI Insights Section */}
-          <DashboardErrorBoundary sectionName="AI Insights">
-            <section 
-              className="mb-8"
-              role="region"
-              aria-labelledby="ai-insights-section"
-              aria-describedby="ai-insights-description"
-            >
-              <SectionHeader
-                title="AI Insights"
-                subtitle="OpenAI and Cursor usage analytics"
-                icon="🤖"
-              />
-            
-            {/* AI Summary Card */}
-            <div className="mb-6">
-              <AISummaryCard cursorData={cursorData.data} />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* OpenAI Usage Summary */}
-              <DashboardCard
-                title="OpenAI Usage"
-                subtitle="ChatGPT interactions and insights"
-                icon="🧠"
-                loading={openaiData.loading}
-                error={openaiData.error}
-                onRetry={openaiData.refetch}
-              >
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                        {openaiData.data?.totalPrompts || 0}
-                      </div>
-                      <div className="text-sm text-blue-600 dark:text-blue-400">
-                        Total Prompts
-                      </div>
-                    </div>
-                    <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                        {openaiData.data?.averageResponseLength || 0}
-                      </div>
-                      <div className="text-sm text-green-600 dark:text-green-400">
-                        Avg Response
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {openaiData.data?.topicDistribution && (
-                    <ChartContainer
-                      title="Topic Distribution"
-                      data={openaiData.data.topicDistribution}
-                    >
-                      <DonutChart
-                        data={openaiData.data.topicDistribution}
-                        height={150}
-                        innerRadius={40}
-                        outerRadius={70}
-                      />
-                    </ChartContainer>
-                  )}
-                </div>
-              </DashboardCard>
-
-              {/* Cursor Analytics */}
-              <DashboardCard
-                title="Cursor Analytics"
-                subtitle="AI-powered coding assistant usage"
-                icon="⚡"
-                loading={cursorData.loading}
-                error={cursorData.error}
-                onRetry={cursorData.refetch}
-              >
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        {cursorData.data?.totalPrompts || 0}
-                      </div>
-                      <div className="text-sm text-purple-600 dark:text-purple-400">
-                        Total Prompts
-                      </div>
-                    </div>
-                    <div className="text-center p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
-                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                        {cursorData.data?.totalCodeCompletions || 0}
-                      </div>
-                      <div className="text-sm text-indigo-600 dark:text-indigo-400">
-                        Completions
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {cursorData.data?.promptTypes && (
-                    <ChartContainer
-                      title="Prompt Types"
-                      data={cursorData.data.promptTypes}
-                    >
-                      <DonutChart
-                        data={cursorData.data.promptTypes.map(type => ({
-                          name: type.type,
-                          value: type.count,
-                          color: type.color
-                        }))}
-                        height={150}
-                        innerRadius={40}
-                        outerRadius={70}
-                      />
-                    </ChartContainer>
-                  )}
-                </div>
-              </DashboardCard>
-
-              {/* Recent Activity */}
-              <DashboardCard
-                title="Recent Activity"
-                subtitle="Latest AI interactions"
-                icon="🕒"
-              >
-                <div className="space-y-3 max-h-64 overflow-y-auto">
-                  {cursorData.data?.recentPrompts?.slice(0, 5).map((prompt, index) => (
-                    <div key={index} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                      <p className="text-sm text-gray-900 dark:text-white truncate">
-                        {prompt.prompt}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        {new Date(prompt.timestamp).toLocaleDateString()} • {prompt.model}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </DashboardCard>
-            </div>
-            </section>
-          </DashboardErrorBoundary>
-
-          {/* Fitness & Health Section */}
-          <LazyLoader delay={300} threshold={0.2}>
-            <DashboardErrorBoundary sectionName="Fitness & Health">
-              <section 
-                className="mb-8"
-                role="region"
-                aria-labelledby="fitness-section"
-                aria-describedby="fitness-description"
-              >
-                <SectionHeader
-                  title="Fitness & Health"
-                  subtitle="Strava activity and performance data"
-                  icon="🏃‍♂️"
-                />
-                <ModernStravaAnalytics />
-              </section>
-            </DashboardErrorBoundary>
-          </LazyLoader>
 
           {/* Real Cursor Analytics (if available) */}
           {cursorData.isRealData && (

@@ -75,11 +75,11 @@ export default function ModernHeader({
                   aria-label="Go to homepage"
                 >
                   <Image
-                    src="/portfolio/images/signature-25.png"
+                    src="/images/signature-25.png"
                     alt="Daniel Meier signature logo"
                     width={120}
                     height={30}
-                    className="h-8 w-auto"
+                    className="h-8 w-auto brightness-0 dark:brightness-100 dark:invert"
                   />
                 </Link>
                 <div className="h-6 w-px bg-gray-300 dark:bg-gray-600" aria-hidden="true"></div>
