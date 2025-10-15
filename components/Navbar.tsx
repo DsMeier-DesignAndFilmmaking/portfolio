@@ -73,13 +73,22 @@ const Navbar = () => {
         }
 
         // Check if we're in the design section for width transition
+        // Use the same logic as color transition for perfect synchronization
         const designSection = document.getElementById('design');
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
-          const isInDesign = designRect.top <= 50;
+          const navRect = navbar.getBoundingClientRect();
+          const navBottom = navRect.bottom;
+          const navTop = navRect.top;
+          
+          // Use same overlap logic as color transition
+          const isInDesign = navTop < designRect.bottom && navBottom > designRect.top;
           console.log('Design section detection:', {
             designSectionFound: !!designSection,
-            top: designRect.top,
+            navTop,
+            navBottom,
+            designTop: designRect.top,
+            designBottom: designRect.bottom,
             isInDesign,
             currentState: isInDesignSection,
             willTransition: isInDesign !== isInDesignSection
