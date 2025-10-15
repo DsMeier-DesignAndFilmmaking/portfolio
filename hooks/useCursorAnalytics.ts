@@ -229,7 +229,7 @@ export function useCursorAnalytics(): UseCursorAnalyticsReturn {
           }
         }
       } catch (cursorLensError) {
-        console.log('CursorLens API not available:', cursorLensError);
+        console.log('CursorLens API not available, trying local data:', cursorLensError instanceof Error ? cursorLensError.message : 'Connection refused');
       }
 
       // Try local cursor-usage.json file
@@ -245,7 +245,7 @@ export function useCursorAnalytics(): UseCursorAnalyticsReturn {
           return;
         }
       } catch (localError) {
-        console.log('Local cursor data not available:', localError);
+        console.log('Local cursor data not available, using simulated data:', localError);
       }
 
       // Fallback to simulated data
@@ -256,8 +256,8 @@ export function useCursorAnalytics(): UseCursorAnalyticsReturn {
       setLastUpdated('Simulated');
       
     } catch (err) {
-      console.error('Error loading Cursor analytics:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load Cursor analytics');
+      console.log('Error loading Cursor analytics, using simulated data:', err instanceof Error ? err.message : 'Unknown error');
+      setError(null); // Don't set error state, just use simulated data
       
       // Ultimate fallback
       const simulatedData = generateSimulatedUsage();

@@ -146,7 +146,14 @@ export function useStravaData(): UseStravaDataReturn {
       const STRAVA_ACCESS_TOKEN = process.env.NEXT_PUBLIC_STRAVA_ACCESS_TOKEN;
       
       if (!STRAVA_ACCESS_TOKEN) {
-        throw new Error('Strava access token not configured');
+        console.log('Strava access token not configured, using mock data');
+        // Use mock data instead of throwing error
+        const mockData = generateMockStravaData();
+        setData(mockData);
+        setIsRealData(false);
+        setLastUpdated('Mock data');
+        setLoading(false);
+        return;
       }
 
       // Fetch athlete profile
@@ -217,8 +224,8 @@ export function useStravaData(): UseStravaDataReturn {
       console.log('✅ Loaded real Strava data');
 
     } catch (err) {
-      console.error('Error fetching Strava data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch Strava data');
+      console.log('Error fetching Strava data, using mock data:', err instanceof Error ? err.message : 'Unknown error');
+      setError(null); // Don't set error state, just use mock data
       
       // Fallback to mock data
       const mockData = generateMockStravaData();

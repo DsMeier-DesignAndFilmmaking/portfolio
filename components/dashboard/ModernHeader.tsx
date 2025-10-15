@@ -73,6 +73,8 @@ export default function ModernHeader({
                   href="https://dsmeier-designandfilmmaking.github.io/portfolio/"
                   className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
                   aria-label="Go to homepage"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Image
                     src="https://dsmeier-designandfilmmaking.github.io/portfolio/images/signature-25.png"

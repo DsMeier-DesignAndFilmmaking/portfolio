@@ -26,6 +26,15 @@ import { useDashboardSync } from '@/hooks/useDashboardSync';
 // Existing components (will be refactored)
 import RealCursorAnalytics from '@/components/RealCursorAnalytics';
 
+// New dashboard components
+import MetricsCard from '@/components/dashboard/MetricsCard';
+import ProgressCard from '@/components/dashboard/ProgressCard';
+import ActivityCard from '@/components/dashboard/ActivityCard';
+import ListCard from '@/components/dashboard/ListCard';
+import MapCard from '@/components/dashboard/MapCard';
+import CalendarCard from '@/components/dashboard/CalendarCard';
+import NotesCard from '@/components/dashboard/NotesCard';
+
 // Types
 import { DashboardMetric, ServiceStatus } from '@/types/dashboard';
 
@@ -308,6 +317,227 @@ export default function MyPulseClient() {
                 </div>
               </DashboardCard>
             </div>
+            </section>
+          </DashboardErrorBoundary>
+
+          {/* Professional / Work Section */}
+          <DashboardErrorBoundary sectionName="Professional / Work">
+            <section 
+              className="mb-8"
+              role="region"
+              aria-labelledby="professional-section"
+              aria-describedby="professional-description"
+            >
+              <SectionHeader
+                title="Professional / Work"
+                subtitle="Development projects and client work"
+                icon="💼"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <MetricsCard
+                  title="Web Projects"
+                  description="GitHub/GitLab stats"
+                  icon="🌐"
+                  metrics={{
+                    commits: 120,
+                    PRs: 15,
+                    contributions: 45,
+                    active_repos: 8,
+                    languages: ["JavaScript", "Swift", "Python"]
+                  }}
+                  visualization="bar_chart"
+                  data={[
+                    { name: "Commits", value: 120 },
+                    { name: "PRs", value: 15 },
+                    { name: "Contributions", value: 45 },
+                    { name: "Repos", value: 8 }
+                  ]}
+                />
+                
+                <ProgressCard
+                  title="iOS Projects"
+                  description="App development progress"
+                  icon="📱"
+                  progress={70}
+                  metrics={{
+                    builds: 12,
+                    features_completed: 14
+                  }}
+                  visualization="progress_ring"
+                />
+                
+                <MetricsCard
+                  title="Freelance / Client Work"
+                  description="Overview of freelance projects"
+                  icon="🤝"
+                  metrics={{
+                    active_projects: 3,
+                    completed_projects: 7,
+                    hours_logged: 120
+                  }}
+                  visualization="bar_chart"
+                  data={[
+                    { name: "Active", value: 3 },
+                    { name: "Completed", value: 7 },
+                    { name: "Hours", value: 120 }
+                  ]}
+                />
+              </div>
+            </section>
+          </DashboardErrorBoundary>
+
+          {/* Personal Life Section */}
+          <DashboardErrorBoundary sectionName="Personal Life">
+            <section 
+              className="mb-8"
+              role="region"
+              aria-labelledby="personal-section"
+              aria-describedby="personal-description"
+            >
+              <SectionHeader
+                title="Personal Life"
+                subtitle="Travel, health, hobbies, and personal growth"
+                icon="🌟"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <MapCard
+                  title="Travel"
+                  description="Track countries visited and trips planned"
+                  icon="✈️"
+                  metrics={{
+                    countries_visited: 40,
+                    trips_planned: 2,
+                    countries_remaining: 20
+                  }}
+                />
+                
+                <MetricsCard
+                  title="Health & Fitness"
+                  description="Steps, workouts, sleep"
+                  icon="🏃‍♂️"
+                  metrics={{
+                    steps_today: 8200,
+                    workouts_this_week: 4,
+                    sleep_average: "7h 15m",
+                    streak: 12
+                  }}
+                  visualization="line_chart"
+                  data={[
+                    { name: "Mon", value: 7500 },
+                    { name: "Tue", value: 8200 },
+                    { name: "Wed", value: 9100 },
+                    { name: "Thu", value: 7800 },
+                    { name: "Fri", value: 8500 },
+                    { name: "Sat", value: 6800 },
+                    { name: "Sun", value: 7200 }
+                  ]}
+                />
+                
+                <ActivityCard
+                  title="Hobbies / Creativity"
+                  description="Track creative projects"
+                  icon="🎨"
+                  metrics={{
+                    videos_created: 5,
+                    photos_taken: 120,
+                    blog_posts: 3,
+                    journal_entries: 8
+                  }}
+                  visualization="timeline"
+                />
+                
+                <ProgressCard
+                  title="Reading / Knowledge"
+                  description="Books, articles, podcasts"
+                  icon="📚"
+                  progress={60}
+                  metrics={{
+                    books_read: 8,
+                    articles_saved: 22,
+                    podcasts_completed: 5
+                  }}
+                  visualization="progress_bar"
+                />
+                
+                <MetricsCard
+                  title="Learning / Skill Growth"
+                  description="Courses and tutorials completed"
+                  icon="🎓"
+                  metrics={{
+                    courses_finished: 3,
+                    tutorials_watched: 15,
+                    technologies_learned: ["React", "SwiftUI", "D3.js"]
+                  }}
+                  visualization="bar_chart"
+                  data={[
+                    { name: "Courses", value: 3 },
+                    { name: "Tutorials", value: 15 },
+                    { name: "Technologies", value: 3 }
+                  ]}
+                />
+              </div>
+            </section>
+          </DashboardErrorBoundary>
+
+          {/* Planning & Productivity Section */}
+          <DashboardErrorBoundary sectionName="Planning & Productivity">
+            <section 
+              className="mb-8"
+              role="region"
+              aria-labelledby="planning-section"
+              aria-describedby="planning-description"
+            >
+              <SectionHeader
+                title="Planning & Productivity"
+                subtitle="Tasks, goals, calendar, and notes"
+                icon="📋"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <ListCard
+                  title="Upcoming Tasks / Events"
+                  description="Shows tasks and events planned for the week"
+                  icon="📝"
+                  items={[
+                    { title: "Finish UI mockups", due: "2025-10-18" },
+                    { title: "Flight to Berlin", due: "2025-10-20" },
+                    { title: "Client meeting", due: "2025-10-22" }
+                  ]}
+                />
+                
+                <ProgressCard
+                  title="Weekly Goals vs Completed"
+                  description="Compare planned goals vs completed"
+                  icon="🎯"
+                  progress={70}
+                  metrics={{
+                    goals_planned: 10,
+                    goals_completed: 7
+                  }}
+                  visualization="progress_bar"
+                />
+                
+                <CalendarCard
+                  title="Calendar Highlights"
+                  description="Highlight key dates and events"
+                  icon="📅"
+                  events={[
+                    { date: "2025-10-18", event: "UI Review" },
+                    { date: "2025-10-20", event: "Flight to Berlin" },
+                    { date: "2025-10-23", event: "Workshop" }
+                  ]}
+                />
+                
+                <NotesCard
+                  title="Notes & Inspiration Snippets"
+                  description="Store short notes, quotes, or ideas"
+                  icon="💡"
+                  notes={[
+                    "Explore generative AI in travel apps",
+                    "Sketch dashboard UI for weekend hackathon",
+                    "Idea: spontaneous meetups for travelers"
+                  ]}
+                />
+              </div>
             </section>
           </DashboardErrorBoundary>
         </div>
