@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: true,
+  output: 'export',
   images: {
     unoptimized: true, // Keep unoptimized images; safe for both static and server
     formats: ['image/webp', 'image/avif'],
