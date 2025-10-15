@@ -17,6 +17,11 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
 
+  // Debug: Log when isInDesignSection changes
+  useEffect(() => {
+    console.log('isInDesignSection state changed:', isInDesignSection);
+  }, [isInDesignSection]);
+
   // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
 
@@ -68,7 +73,7 @@ const Navbar = () => {
         const designSection = document.getElementById('design');
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
-          const isInDesign = designRect.top <= 50;
+          const isInDesign = designRect.top <= 100; // Increased threshold for better detection
           console.log('Design section scroll detection:', {
             designSectionFound: !!designSection,
             top: designRect.top,
