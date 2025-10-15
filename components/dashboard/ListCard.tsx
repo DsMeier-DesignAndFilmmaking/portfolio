@@ -42,7 +42,7 @@ export default function ListCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+      className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-orange-900/20' : 'bg-orange-50'} rounded-lg`}>
@@ -62,7 +62,7 @@ export default function ListCard({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`flex items-center justify-between p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-100'} transition-colors`}
+            className={`flex items-center justify-between p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'} transition-colors`}
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>

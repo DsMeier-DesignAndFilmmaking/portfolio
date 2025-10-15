@@ -25,7 +25,7 @@ export default function NotesCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+      className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-yellow-900/20' : 'bg-yellow-50'} rounded-lg`}>
@@ -45,7 +45,7 @@ export default function NotesCard({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`flex items-start gap-3 p-3 ${isDarkMode ? 'bg-yellow-900/10' : 'bg-yellow-50'} rounded-lg border-l-4 border-yellow-400`}
+            className={`flex items-start gap-3 p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-yellow-50'} rounded-lg border-l-4 border-yellow-400`}
           >
             <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
             <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>

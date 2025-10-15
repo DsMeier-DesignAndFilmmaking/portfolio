@@ -63,7 +63,7 @@ export default function ProgressCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+      className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-green-900/20' : 'bg-green-50'} rounded-lg`}>
@@ -100,7 +100,7 @@ export default function ProgressCard({
       {/* Metrics */}
       <div className="grid grid-cols-2 gap-3">
         {Object.entries(metrics).map(([key, value], index) => (
-          <div key={key} className={`text-center p-3 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg`}>
+          <div key={key} className={`text-center p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'} rounded-lg`}>
             <div className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {value}
             </div>
