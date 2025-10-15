@@ -12,36 +12,40 @@ interface UseCursorAnalyticsReturn {
   isRealData: boolean;
 }
 
-// Generate realistic Cursor usage analytics
+// Generate realistic Cursor usage analytics (stable values)
 function generateSimulatedUsage(): CursorAnalytics {
   const now = new Date();
   
-  // Simulate heavy Cursor usage over the past 6 months
-  const totalPrompts = Math.floor(Math.random() * 5000) + 15000; // 15,000-20,000 prompts
+  // Simulate heavy Cursor usage over the past 6 months (stable values)
+  const totalPrompts = 17500; // Fixed value to prevent pulsing
   const totalCodeCompletions = Math.floor(totalPrompts * 8); // ~8 completions per prompt
-  const averagePromptLength = Math.floor(Math.random() * 100) + 150; // 150-250 chars average
+  const averagePromptLength = 200; // Fixed average prompt length
   
-  // Generate daily activity for the last 30 days
+  // Generate daily activity for the last 30 days (stable pattern)
   const dailyActivity = [];
   for (let i = 29; i >= 0; i--) {
     const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-    const count = Math.floor(Math.random() * 80) + 20; // 20-100 prompts per day
+    // Use a consistent pattern based on day of week to avoid random changes
+    const dayOfWeek = date.getDay();
+    const baseCount = dayOfWeek === 0 || dayOfWeek === 6 ? 30 : 60; // Lower on weekends
+    const variation = (i % 7) * 5; // Small variation based on position
+    const count = baseCount + variation;
     dailyActivity.push({
       date: date.toISOString().split('T')[0],
       count
     });
   }
   
-  // Generate top prompt types
+  // Generate top prompt types (stable values)
   const promptTypes = [
-    { type: 'Code Generation', count: Math.floor(Math.random() * 200) + 800, color: '#3b82f6' },
-    { type: 'Bug Fixing', count: Math.floor(Math.random() * 150) + 600, color: '#ef4444' },
-    { type: 'Code Review', count: Math.floor(Math.random() * 100) + 400, color: '#10b981' },
-    { type: 'Refactoring', count: Math.floor(Math.random() * 120) + 500, color: '#8b5cf6' },
-    { type: 'Documentation', count: Math.floor(Math.random() * 80) + 300, color: '#f59e0b' },
-    { type: 'Testing', count: Math.floor(Math.random() * 90) + 350, color: '#06b6d4' },
-    { type: 'Architecture', count: Math.floor(Math.random() * 60) + 200, color: '#84cc16' },
-    { type: 'Debugging', count: Math.floor(Math.random() * 100) + 400, color: '#f97316' }
+    { type: 'Code Generation', count: 900, color: '#3b82f6' },
+    { type: 'Bug Fixing', count: 675, color: '#ef4444' },
+    { type: 'Code Review', count: 450, color: '#10b981' },
+    { type: 'Refactoring', count: 560, color: '#8b5cf6' },
+    { type: 'Documentation', count: 340, color: '#f59e0b' },
+    { type: 'Testing', count: 395, color: '#06b6d4' },
+    { type: 'Architecture', count: 230, color: '#84cc16' },
+    { type: 'Debugging', count: 450, color: '#f97316' }
   ];
   
   // Generate recent prompts simulation
@@ -60,28 +64,28 @@ function generateSimulatedUsage(): CursorAnalytics {
   ];
   
   for (let i = 0; i < 10; i++) {
-    const promptText = samplePrompts[Math.floor(Math.random() * samplePrompts.length)];
+    const promptText = samplePrompts[i % samplePrompts.length]; // Use consistent order
     const timestamp = new Date(now.getTime() - i * 2 * 60 * 60 * 1000); // Every 2 hours
     recentPrompts.push({
       id: `${i}`,
       prompt: promptText,
       timestamp: timestamp.toISOString(),
       model: 'gpt-4',
-      tokens: Math.floor(Math.random() * 1000) + 100,
-      cost: Math.random() * 0.05
+      tokens: 500 + (i * 50), // Fixed pattern
+      cost: 0.02 + (i * 0.003) // Fixed pattern
     });
   }
   
-  // Calculate productivity metrics
-  const linesOfCodeGenerated = Math.floor(totalPrompts * (Math.random() * 50 + 100)); // 100-150 LOC per prompt
-  const timeSaved = Math.floor(totalPrompts * (Math.random() * 30 + 45)); // 45-75 minutes saved per prompt
+  // Calculate productivity metrics (stable values)
+  const linesOfCodeGenerated = Math.floor(totalPrompts * 125); // 125 LOC per prompt average
+  const timeSaved = Math.floor(totalPrompts * 60); // 60 minutes saved per prompt average
   
   return {
     totalPrompts,
     totalCodeCompletions,
     averagePromptLength,
-    totalTokens: Math.floor(totalPrompts * (Math.random() * 500 + 1000)),
-    totalCost: Math.floor(totalPrompts * Math.random() * 0.1),
+    totalTokens: Math.floor(totalPrompts * 750), // Fixed calculation
+    totalCost: Math.floor(totalPrompts * 0.05), // Fixed calculation
     dailyActivity,
     promptTypes,
     recentPrompts,
@@ -279,7 +283,7 @@ export function useCursorAnalytics(): UseCursorAnalyticsReturn {
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [fetchRealCursorData, data]);
+  }, [fetchRealCursorData]); // Removed 'data' dependency to prevent re-fetching
 
   return {
     data,

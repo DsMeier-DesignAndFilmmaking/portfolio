@@ -263,13 +263,6 @@ export default function MyPulseClient() {
                 icon="🌐"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Progress</span>
-                    <span className="text-sm font-medium">85%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '85%' }}></div>
-                  </div>
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 text-xs rounded-full">
                       In Progress
@@ -287,13 +280,6 @@ export default function MyPulseClient() {
                 icon="📊"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Progress</span>
-                    <span className="text-sm font-medium">60%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div className="bg-purple-600 h-2 rounded-full" style={{ width: '60%' }}></div>
-                  </div>
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 text-xs rounded-full">
                       Review
@@ -311,13 +297,6 @@ export default function MyPulseClient() {
                 icon="📱"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Progress</span>
-                    <span className="text-sm font-medium">30%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div className="bg-green-600 h-2 rounded-full" style={{ width: '30%' }}></div>
-                  </div>
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 text-xs rounded-full">
                       Planning
