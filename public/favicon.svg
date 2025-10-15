@@ -1,7 +1,19 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle with travel-inspired ocean blue -->
-  <circle cx="16" cy="16" r="15" fill="#1E5A74" stroke="#C77B30" stroke-width="2"/>
+  <!-- Background circle with teal gradient -->
+  <defs>
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E5A74;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16495E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="terracottaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C77B30;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B86B27;stop-opacity:1" />
+    </linearGradient>
+  </defs>
   
-  <!-- DM Monogram in sand beige -->
-  <text x="16" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#EBD6B6">DM</text>
+  <!-- Background circle with teal gradient -->
+  <circle cx="16" cy="16" r="15" fill="url(#tealGradient)" stroke="url(#terracottaGradient)" stroke-width="2"/>
+  
+  <!-- DM Monogram in clean, modern style -->
+  <text x="16" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">DM</text>
 </svg>

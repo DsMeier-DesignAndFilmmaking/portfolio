@@ -67,14 +67,14 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
         </div>
         
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[90%] p-6 text-gray-900 bg-white relative">
-            {ongoingClient && (
-              <div className="absolute top-4 right-4 z-10">
-                <span className="inline-block bg-black text-[#cfb991] text-xs font-medium px-2 py-1 rounded border border-white">
-                  Ongoing Client
-                </span>
-              </div>
-            )}
+          {ongoingClient && (
+            <div className="absolute top-4 right-[5%] z-10">
+              <span className="inline-block bg-black text-[#cfb991] text-xs font-medium px-2 py-1 rounded border border-white">
+                Ongoing Client
+              </span>
+            </div>
+          )}
+          <div className="w-[90%] p-6 text-gray-900 bg-white">
             <h3 className="text-xl font-bold mb-2">{title}</h3>
             <p className="mb-4 text-gray-600">{description}</p>
             
