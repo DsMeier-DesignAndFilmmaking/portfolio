@@ -34,7 +34,8 @@ export default function CalendarCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+      className={`${isDarkMode ? '' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-50'} rounded-lg`}>
@@ -56,7 +57,8 @@ export default function CalendarCard({
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className={`flex items-center gap-4 p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'} rounded-lg ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'} transition-colors`}
+              className={`flex items-center gap-4 p-3 ${isDarkMode ? '' : 'bg-gray-50'} rounded-lg ${isDarkMode ? '' : 'hover:bg-gray-100'} transition-colors`}
+style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}
             >
               <div className={`flex flex-col items-center justify-center w-12 h-12 ${isDarkMode ? 'bg-indigo-900/20' : 'bg-indigo-100'} rounded-lg`}>
                 <span className={`text-sm font-bold ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>

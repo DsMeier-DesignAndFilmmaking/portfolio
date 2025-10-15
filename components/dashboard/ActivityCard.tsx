@@ -37,7 +37,8 @@ export default function ActivityCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+      className={`${isDarkMode ? '' : 'bg-white'} rounded-lg shadow-sm border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} p-6`}
+style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className={`flex items-center justify-center w-10 h-10 ${isDarkMode ? 'bg-purple-900/20' : 'bg-purple-50'} rounded-lg`}>
@@ -52,7 +53,8 @@ export default function ActivityCard({
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 gap-3 mb-4">
         {Object.entries(metrics).map(([key, value], index) => (
-          <div key={key} className={`text-center p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'} rounded-lg`}>
+          <div key={key} className={`text-center p-3 ${isDarkMode ? '' : 'bg-gray-50'} rounded-lg`}
+style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
             <div className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {value}
             </div>

@@ -29,7 +29,8 @@ export default function DashboardCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        className={`${isDarkMode ? '' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
         role="region"
         aria-labelledby={titleId}
         aria-describedby={subtitle ? `${titleId}-subtitle` : undefined}
@@ -104,7 +105,8 @@ export default function DashboardCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className={`${isDarkMode ? 'bg-gray-900' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        className={`${isDarkMode ? '' : 'bg-white'} rounded-xl border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} shadow-sm hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 ${className}`}
+        style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
         role="region"
         aria-labelledby={titleId}
         aria-describedby={subtitle ? `${titleId}-subtitle` : undefined}
