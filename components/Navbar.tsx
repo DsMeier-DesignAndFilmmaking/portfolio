@@ -39,6 +39,8 @@ const Navbar = () => {
         return;
       }
 
+      console.log('Scroll detection running, scrollY:', scrollY);
+
       let isOverBlack = false;
 
       // Special handling for Purdue page - turn black on scroll
