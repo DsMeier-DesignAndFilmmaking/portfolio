@@ -220,7 +220,7 @@ export default function MyPulseClient() {
           {/* Quick Metrics Overview */}
           <DashboardErrorBoundary sectionName="Overview">
             <section 
-              className="mb-8"
+              className="mb-8 mt-10"
               role="region"
               aria-labelledby="overview-section"
               aria-describedby="overview-description"
