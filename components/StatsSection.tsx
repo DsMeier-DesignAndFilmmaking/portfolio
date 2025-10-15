@@ -162,27 +162,27 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
             {/* Industries Served */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Industries Served</h3>
-              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">8</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r mb-3" style={{ background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }}>8</div>
+              <div className="h-1 rounded-full overflow-hidden" style={{ background: 'linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(59, 130, 246, 0.2))' }}>
+                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }} />
               </div>
             </div>
 
             {/* Projects Completed */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">Projects Completed</h3>
-              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">50+</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r mb-3" style={{ background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }}>50+</div>
+              <div className="h-1 rounded-full overflow-hidden" style={{ background: 'linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(59, 130, 246, 0.2))' }}>
+                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }} />
               </div>
             </div>
 
             {/* URLs Impacted */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">URLs Impacted</h3>
-              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-3">10,000+</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r mb-3" style={{ background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }}>10,000+</div>
+              <div className="h-1 rounded-full overflow-hidden" style={{ background: 'linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(59, 130, 246, 0.2))' }}>
+                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }} />
               </div>
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
           <div className="lg:col-span-2 flex flex-col justify-center order-1 lg:order-2">
             <p className="text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider">DESIGN CAREER</p>
             <h2 className="text-4xl font-bold mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">11+ Years</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r" style={{ background: 'linear-gradient(to right, rgb(37 99 235), rgb(59 130 246))' }}>11+ Years</span>
               <span className="text-white"> Turning Pixels into Impact</span>
             </h2>
           </div>

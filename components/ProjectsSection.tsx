@@ -7,7 +7,7 @@ import Image from 'next/image';
 const projects = [
   {
     title: "Purdue University",
-    description: "A web redesign project focused on enhancing UX, UI, and streamlining content management.",
+    description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
     imageUrl: "./images/PU-Memorial-Mall-DJI.jpg",
     tags: ["Education", "Research", "Engineering", "Technology"],
     link: "/projects/purdue",
@@ -55,7 +55,7 @@ export default function ProjectsSection() {
         >
           <div className="mb-16">
             <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
-              Select Work and Projects
+              Work and Projects
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
               A collection of selected projects across design and development.

@@ -36,7 +36,7 @@ export default function DesignSection({ className = '' }: DesignSectionProps) {
             through thoughtful design and strategic thinking.
           </p>
           <div className="text-center mt-8">
-            <div className="text-4xl font-bold text-purple-400 mb-2">11+</div>
+            <div className="text-4xl font-bold mb-2" style={{ color: 'rgb(37 99 235)' }}>11+</div>
             <div className="text-sm text-gray-400">Years of Experience</div>
           </div>
         </div>
