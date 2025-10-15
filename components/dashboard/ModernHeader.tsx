@@ -81,7 +81,8 @@ export default function ModernHeader({
                     alt="Daniel Meier signature logo"
                     width={120}
                     height={30}
-                    className="h-8 w-auto dark:invert"
+                    className="h-8 w-auto opacity-100"
+                    priority
                   />
                 </Link>
                 <div className="h-6 w-px bg-gray-300 dark:bg-gray-600" aria-hidden="true"></div>

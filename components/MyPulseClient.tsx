@@ -345,13 +345,7 @@ export default function MyPulseClient() {
                     active_repos: 8,
                     languages: ["JavaScript", "Swift", "Python"]
                   }}
-                  visualization="bar_chart"
-                  data={[
-                    { name: "Commits", value: 120 },
-                    { name: "PRs", value: 15 },
-                    { name: "Contributions", value: 45 },
-                    { name: "Repos", value: 8 }
-                  ]}
+                  visualization="none"
                 />
                 
                 <ProgressCard
@@ -375,12 +369,7 @@ export default function MyPulseClient() {
                     completed_projects: 7,
                     hours_logged: 120
                   }}
-                  visualization="bar_chart"
-                  data={[
-                    { name: "Active", value: 3 },
-                    { name: "Completed", value: 7 },
-                    { name: "Hours", value: 120 }
-                  ]}
+                  visualization="none"
                 />
               </div>
             </section>
@@ -421,16 +410,7 @@ export default function MyPulseClient() {
                     sleep_average: "7h 15m",
                     streak: 12
                   }}
-                  visualization="line_chart"
-                  data={[
-                    { name: "Mon", value: 7500 },
-                    { name: "Tue", value: 8200 },
-                    { name: "Wed", value: 9100 },
-                    { name: "Thu", value: 7800 },
-                    { name: "Fri", value: 8500 },
-                    { name: "Sat", value: 6800 },
-                    { name: "Sun", value: 7200 }
-                  ]}
+                  visualization="none"
                 />
                 
                 <ActivityCard
@@ -468,12 +448,7 @@ export default function MyPulseClient() {
                     tutorials_watched: 15,
                     technologies_learned: ["React", "SwiftUI", "D3.js"]
                   }}
-                  visualization="bar_chart"
-                  data={[
-                    { name: "Courses", value: 3 },
-                    { name: "Tutorials", value: 15 },
-                    { name: "Technologies", value: 3 }
-                  ]}
+                  visualization="none"
                 />
               </div>
             </section>
