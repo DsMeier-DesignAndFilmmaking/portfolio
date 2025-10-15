@@ -160,29 +160,35 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
           {/* Stats Cards */}
           <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 order-2 lg:order-1">  
             {/* Industries Served */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5">
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
               <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Industries Served</h3>
-              <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>8</div>
-              <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>8</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+                </div>
               </div>
             </div>
 
             {/* Projects Completed */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5">
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
               <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Projects Completed</h3>
-              <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>50+</div>
-              <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>50+</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+                </div>
               </div>
             </div>
 
             {/* URLs Impacted */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5">
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
               <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">URLs Impacted</h3>
-              <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>10,000+</div>
-              <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>10,000+</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
+                </div>
               </div>
             </div>
           </div>
