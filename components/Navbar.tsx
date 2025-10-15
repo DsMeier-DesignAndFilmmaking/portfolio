@@ -17,6 +17,11 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
 
+  // Debug: Log when isInDesignSection changes
+  useEffect(() => {
+    console.log('isInDesignSection state changed:', isInDesignSection);
+  }, [isInDesignSection]);
+
 
   // Determine if we're on a project page
   const isOnPurduePage = pathname?.includes('/projects/purdue');
@@ -70,7 +75,16 @@ const Navbar = () => {
         if (designSection) {
           const designRect = designSection.getBoundingClientRect();
           const isInDesign = designRect.top <= 50;
+          console.log('Design section detection:', {
+            designSectionFound: !!designSection,
+            top: designRect.top,
+            isInDesign,
+            currentState: isInDesignSection,
+            willTransition: isInDesign !== isInDesignSection
+          });
           setIsInDesignSection(isInDesign);
+        } else {
+          console.log('Design section not found!');
         }
       }
 
@@ -168,6 +182,8 @@ const Navbar = () => {
         <div className="navbar-inner">
           <div 
             className={`navbar-content ${isInDesignSection ? 'shrink' : ''}`}
+            data-debug-state={isInDesignSection ? 'design' : 'hero'}
+            data-debug-width={isInDesignSection ? '56rem' : '576px'}
           >
           {/* Left side navigation */}
           <div className="py-4">
