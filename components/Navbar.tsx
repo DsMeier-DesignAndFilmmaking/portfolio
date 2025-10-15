@@ -164,14 +164,15 @@ const Navbar = () => {
           isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
         }`}
       >
-        <div 
-          className="navbar-inner px-6"
-          style={{
-            maxWidth: isInDesignSection ? 'var(--design-max-width)' : 'var(--hero-max-width)',
-            transition: 'max-width 0.6s ease'
-          }}
-        >
-          <div className="flex justify-between items-center">
+        <div className="w-full px-6">
+          <div 
+            className="flex justify-between items-center"
+            style={{
+              maxWidth: isInDesignSection ? 'var(--design-max-width)' : 'var(--hero-max-width)',
+              transition: 'max-width 0.6s ease',
+              margin: '0 auto'
+            }}
+          >
           {/* Left side navigation */}
           <div className="py-4">
             <button
