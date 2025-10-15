@@ -101,7 +101,6 @@
   margin: 0 auto;
   width: 100%;
   max-width: 576px; /* current default width at page load */
-  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,7 +109,6 @@
 .navbar-content.shrink {
   max-width: 56rem; /* matches Tailwind max-w-4xl */
   margin: 0 auto;
-  padding: 0 1.5rem; /* matches px-6 */
 }
 
 /* Mobile responsive - disable width animation on mobile */

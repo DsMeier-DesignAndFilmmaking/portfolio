@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator - DM Travel Aesthetic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .favicon-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .favicon-preview {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .favicon-32 {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+        }
+        .favicon-512 {
+            width: 128px;
+            height: 128px;
+            border: 1px solid #ddd;
+        }
+        canvas {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>DM Travel Aesthetic Favicon Generator</h1>
+    <p>Three design concepts for modern, travel-oriented favicon using initials "DM"</p>
+    
+    <div class="favicon-container">
+        <!-- Concept 1: Minimal Monogram -->
+        <div class="favicon-preview">
+            <h3>Concept 1: Minimal Monogram</h3>
+            <canvas id="concept1-32" width="32" height="32"></canvas>
+            <canvas id="concept1-512" width="512" height="512"></canvas>
+            <p>Clean "DM" on ocean blue background</p>
+        </div>
+
+        <!-- Concept 2: Travel Accent -->
+        <div class="favicon-preview">
+            <h3>Concept 2: Travel Accent</h3>
+            <canvas id="concept2-32" width="32" height="32"></canvas>
+            <canvas id="concept2-512" width="512" height="512"></canvas>
+            <p>"DM" with compass-inspired circular frame</p>
+        </div>
+
+        <!-- Concept 3: Organic Variant -->
+        <div class="favicon-preview">
+            <h3>Concept 3: Organic Variant</h3>
+            <canvas id="concept3-32" width="32" height="32"></canvas>
+            <canvas id="concept3-512" width="512" height="512"></canvas>
+            <p>Hand-drawn style with natural textures</p>
+        </div>
+    </div>
+
+    <script>
+        // Color palette
+        const colors = {
+            oceanBlue: '#1E5A74',
+            sandBeige: '#EBD6B6',
+            terracotta: '#C77B30',
+            offWhite: '#F8F6F0',
+            deepNavy: '#0A1A2E'
+        };
+
+        // Concept 1: Minimal Monogram
+        function drawConcept1(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 32;
+            
+            // Background circle
+            ctx.fillStyle = colors.oceanBlue;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // DM text
+            ctx.fillStyle = colors.sandBeige;
+            ctx.font = `bold ${12 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('DM', size/2, size/2);
+        }
+
+        // Concept 2: Travel Accent with Compass Frame
+        function drawConcept2(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 32;
+            
+            // Background circle
+            ctx.fillStyle = colors.deepNavy;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Compass frame
+            ctx.strokeStyle = colors.terracotta;
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 4, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Compass points
+            const centerX = size/2;
+            const centerY = size/2;
+            const radius = (size/2 - 6) * scale;
+            
+            ctx.strokeStyle = colors.terracotta;
+            ctx.lineWidth = 1 * scale;
+            
+            // North, South, East, West points
+            const points = [
+                {x: centerX, y: centerY - radius},
+                {x: centerX + radius, y: centerY},
+                {x: centerX, y: centerY + radius},
+                {x: centerX - radius, y: centerY}
+            ];
+            
+            points.forEach(point => {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(point.x, point.y);
+                ctx.stroke();
+            });
+            
+            // DM text
+            ctx.fillStyle = colors.sandBeige;
+            ctx.font = `bold ${10 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('DM', size/2, size/2);
+        }
+
+        // Concept 3: Organic Variant
+        function drawConcept3(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 32;
+            
+            // Organic background with texture
+            ctx.fillStyle = colors.sandBeige;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Add subtle texture
+            ctx.fillStyle = colors.terracotta;
+            for(let i = 0; i < 20; i++) {
+                const x = Math.random() * size;
+                const y = Math.random() * size;
+                const distance = Math.sqrt((x - size/2)**2 + (y - size/2)**2);
+                if(distance < size/2 - 4) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, 0.5 * scale, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            }
+            
+            // Hand-drawn style DM
+            ctx.strokeStyle = colors.oceanBlue;
+            ctx.fillStyle = colors.oceanBlue;
+            ctx.lineWidth = 2 * scale;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // D letter
+            ctx.beginPath();
+            ctx.moveTo(8 * scale, 8 * scale);
+            ctx.lineTo(8 * scale, 24 * scale);
+            ctx.quadraticCurveTo(12 * scale, 24 * scale, 12 * scale, 16 * scale);
+            ctx.quadraticCurveTo(12 * scale, 8 * scale, 8 * scale, 8 * scale);
+            ctx.stroke();
+            
+            // M letter
+            ctx.beginPath();
+            ctx.moveTo(16 * scale, 24 * scale);
+            ctx.lineTo(16 * scale, 8 * scale);
+            ctx.lineTo(20 * scale, 16 * scale);
+            ctx.lineTo(24 * scale, 8 * scale);
+            ctx.lineTo(24 * scale, 24 * scale);
+            ctx.stroke();
+        }
+
+        // Generate all favicons
+        function generateFavicons() {
+            // Concept 1
+            drawConcept1(document.getElementById('concept1-32'), 32);
+            drawConcept1(document.getElementById('concept1-512'), 512);
+            
+            // Concept 2
+            drawConcept2(document.getElementById('concept2-32'), 32);
+            drawConcept2(document.getElementById('concept2-512'), 512);
+            
+            // Concept 3
+            drawConcept3(document.getElementById('concept3-32'), 32);
+            drawConcept3(document.getElementById('concept3-512'), 512);
+        }
+
+        // Generate on load
+        window.onload = generateFavicons;
+    </script>
+</body>
+</html>
