@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 
 interface HashNavigationHandlerProps {
   /** Delay before attempting to scroll to hash */
@@ -17,7 +16,6 @@ export default function HashNavigationHandler({
   smooth = true,
   offset = 120
 }: HashNavigationHandlerProps) {
-  const router = useRouter();
   const hasHandledHashRef = useRef(false);
 
   useEffect(() => {
@@ -83,18 +81,13 @@ export default function HashNavigationHandler({
 
     window.addEventListener('hashchange', handleHashChange);
 
-    // Reset flag when route changes
-    const handleRouteChange = () => {
-      hasHandledHashRef.current = false;
-    };
-
-    router.events?.on?.('routeChangeComplete', handleRouteChange);
-
+    // Reset flag when route changes (for App Router, we'll use a different approach)
+    // Note: App Router doesn't have events like Pages Router
+    
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
-      router.events?.off?.('routeChangeComplete', handleRouteChange);
     };
-  }, [delay, smooth, offset, router]);
+  }, [delay, smooth, offset]);
 
   // This component doesn't render anything
   return null;
