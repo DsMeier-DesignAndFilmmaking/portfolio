@@ -67,7 +67,7 @@ export default function ParallaxSection({
   }
 
   return (
-    <div ref={ref} className={`relative ${className}`} style={{ height: '50vh' }}>
+    <div ref={ref} className={`relative ${className}`} style={{ height: '100vh' }}>
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0"
