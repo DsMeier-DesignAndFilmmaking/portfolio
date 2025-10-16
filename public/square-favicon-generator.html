@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DM Favicon Generator - Square Design with Teal & Terracotta</title>
+    <title>DM Square Favicon Generator - Teal & Terracotta</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,11 +47,25 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        .design-info {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #1E5A74;
+        }
     </style>
 </head>
 <body>
-    <h1>DM Favicon Generator - Square Design with Teal & Terracotta</h1>
-    <p>Clean, modern square favicon with your initials using professional color gradients - optimized for maximum space utilization.</p>
+    <h1>DM Square Favicon Generator - Teal & Terracotta</h1>
+    <p>Clean, modern <strong>square</strong> favicon with your initials using professional color gradients - optimized for maximum space utilization.</p>
+    
+    <div class="design-info">
+        <h3>🎯 Design Improvements:</h3>
+        <p><strong>Square Shape:</strong> Maximizes space for "DM" initials compared to circular design</p>
+        <p><strong>Larger Text:</strong> Increased font size from 12px to 14px scale for better readability</p>
+        <p><strong>Full Coverage:</strong> Uses entire square area efficiently</p>
+    </div>
     
     <div class="color-info">
         <h3>Color Palette:</h3>
@@ -81,6 +95,13 @@
             <br>
             <button class="download-btn" onclick="downloadCanvas('canvas512', 'favicon-512x512.png')">Download 512x512</button>
         </div>
+        
+        <div class="favicon-preview">
+            <h3>Apple Touch Icon</h3>
+            <canvas id="canvas180" width="180" height="180"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadCanvas('canvas180', 'apple-touch-icon.png')">Download 180x180</button>
+        </div>
     </div>
 
     <script>
@@ -93,8 +114,8 @@
             white: '#FFFFFF'
         };
 
-        // Draw favicon at different sizes
-        function drawFavicon(canvas, size) {
+        // Draw square favicon at different sizes
+        function drawSquareFavicon(canvas, size) {
             const ctx = canvas.getContext('2d');
             const scale = size / 32;
             
@@ -135,14 +156,15 @@
         }
 
         // Generate all favicons
-        function generateFavicons() {
-            drawFavicon(document.getElementById('canvas16'), 16);
-            drawFavicon(document.getElementById('canvas32'), 32);
-            drawFavicon(document.getElementById('canvas512'), 512);
+        function generateSquareFavicons() {
+            drawSquareFavicon(document.getElementById('canvas16'), 16);
+            drawSquareFavicon(document.getElementById('canvas32'), 32);
+            drawSquareFavicon(document.getElementById('canvas512'), 512);
+            drawSquareFavicon(document.getElementById('canvas180'), 180);
         }
 
         // Generate on load
-        window.onload = generateFavicons;
+        window.onload = generateSquareFavicons;
     </script>
 </body>
 </html>

@@ -18,6 +18,9 @@ let contentLoadPromise: Promise<void> | null = null;
 // Track active scroll animations to prevent conflicts
 let activeScrollAnimation: number | null = null;
 
+// Track if we're currently performing an anchor scroll to prevent IntersectionObserver interference
+let isAnchorScrolling = false;
+
 /**
  * Custom smooth scroll function with easing
  */
@@ -225,10 +228,16 @@ export const calculateTargetPosition = (targetElement: HTMLElement, navbarElemen
     navbarOffset = navRect.height + marginTop;
   }
   
-  // Add extra offset to ensure we don't get stuck in other sections
-  const finalPosition = Math.max(absoluteTop - navbarOffset - 20, 0);
+  // Use CSS scroll-margin-top if available, otherwise use calculated offset
+  const computedStyle = window.getComputedStyle(targetElement);
+  const scrollMarginTop = parseFloat(computedStyle.scrollMarginTop || '0');
   
-  console.log('Target element:', targetElement.id, 'Absolute top:', absoluteTop, 'Final position:', finalPosition);
+  // Use CSS scroll-margin-top if it's set, otherwise use calculated navbar offset
+  const finalPosition = scrollMarginTop > 0 
+    ? Math.max(absoluteTop - scrollMarginTop, 0)
+    : Math.max(absoluteTop - navbarOffset, 0);
+  
+  console.log('Target element:', targetElement.id, 'Absolute top:', absoluteTop, 'CSS scroll-margin-top:', scrollMarginTop, 'Final position:', finalPosition);
   
   return finalPosition;
 };
@@ -358,12 +367,20 @@ export const scrollToAnchor = async (
     onProgress
   } = options;
 
+  // Prevent multiple anchor scrolls from running simultaneously
+  if (isAnchorScrolling) {
+    console.log('Anchor scroll already in progress, ignoring request for:', anchorId);
+    return;
+  }
+
+  isAnchorScrolling = true;
   console.log('Scroll to anchor called:', anchorId);
 
   // Wait for target element to exist
   let targetElement = document.getElementById(anchorId);
   if (!targetElement) {
     console.warn('Target element not found:', anchorId);
+    isAnchorScrolling = false;
     return;
   }
 
@@ -392,23 +409,16 @@ export const scrollToAnchor = async (
     }
     updateProgress(70);
     
-    // For world-travel-diaries, use a more direct scroll approach with extended loader
-    if (anchorId === 'world-travel-diaries') {
-      // Force immediate scroll without additional waiting
-      const targetPosition = calculateTargetPosition(targetElement, navbarElement);
-      console.log('Direct scroll to world-travel-diaries at position:', targetPosition);
-      await smoothScrollTo(targetPosition, duration);
-      
-      // Add extra delay to ensure scroll is completely finished before hiding loader
-      await new Promise(resolve => setTimeout(resolve, 300));
-      console.log('Travelogue scroll completed with extra delay');
-    } else {
-      // Perform the actual scroll with full logic for other sections
-      await scrollToElement(targetElement, navbarElement, {
-        duration,
-        waitForLazyContent: false // Already handled above
-      });
-    }
+    // Calculate target position and perform direct scroll
+    const targetPosition = calculateTargetPosition(targetElement, navbarElement);
+    console.log('Direct scroll to', anchorId, 'at position:', targetPosition);
+    
+    // Perform smooth scroll to target
+    await smoothScrollTo(targetPosition, duration);
+    
+    // Add a small delay to ensure scroll is completely finished
+    await new Promise(resolve => setTimeout(resolve, 100));
+    console.log('Scroll to', anchorId, 'completed');
     
     updateProgress(90);
     
@@ -416,8 +426,7 @@ export const scrollToAnchor = async (
     await new Promise(resolve => {
       let lastScrollY = window.scrollY;
       let stableCount = 0;
-      // Use more stable readings for travelogue section
-      const maxStableCount = anchorId === 'world-travel-diaries' ? 25 : 15;
+      const maxStableCount = 10; // Reduced for faster completion
       
       const checkStable = () => {
         const currentScrollY = window.scrollY;
@@ -439,9 +448,8 @@ export const scrollToAnchor = async (
         requestAnimationFrame(checkStable);
       };
       
-      // Start checking after a short delay (longer for travelogue)
-      const initialDelay = anchorId === 'world-travel-diaries' ? 100 : 50;
-      setTimeout(checkStable, initialDelay);
+      // Start checking after a short delay
+      setTimeout(checkStable, 50);
     });
     
     updateProgress(100);
@@ -462,7 +470,17 @@ export const scrollToAnchor = async (
       behavior: 'auto'
     });
     updateProgress(100);
+  } finally {
+    // Always reset the anchor scrolling flag
+    isAnchorScrolling = false;
   }
+};
+
+/**
+ * Check if we're currently performing an anchor scroll
+ */
+export const isCurrentlyAnchorScrolling = (): boolean => {
+  return isAnchorScrolling;
 };
 
 /**
@@ -471,4 +489,5 @@ export const scrollToAnchor = async (
 export const resetContentLoadState = (): void => {
   isContentFullyLoaded = false;
   contentLoadPromise = null;
+  isAnchorScrolling = false;
 };

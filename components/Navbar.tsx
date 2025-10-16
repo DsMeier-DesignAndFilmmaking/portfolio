@@ -239,6 +239,8 @@ const Navbar = () => {
                 className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
                   pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
+                target="_self"
+                rel=""
               >
                 My Pulse
               </Link>
@@ -304,6 +306,8 @@ const Navbar = () => {
                 className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
                   pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
+                target="_self"
+                rel=""
               >
                 My Pulse
               </Link>

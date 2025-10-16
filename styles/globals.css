@@ -297,8 +297,8 @@ body {
 /* Smooth scrolling and anchor positioning */
 html {
   /* Disabled CSS scroll-behavior to use custom JS implementation */
-  /* scroll-behavior: smooth; */
-  scroll-padding-top: 120px; /* Global anchor offset for fixed navbar */
+  /* scroll-behavior: smooth; - Disabled to prevent conflicts with custom JavaScript scrolling */
+  /* scroll-padding-top: 120px; - Removed to let custom scroll calculations handle positioning */
 }
 
 /* Anchor offset for all main sections to account for fixed navbar */

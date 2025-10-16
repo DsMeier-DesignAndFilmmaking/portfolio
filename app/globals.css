@@ -23,10 +23,9 @@
 }
 
 html {
-  /* Enable smooth scrolling for better UX with navigation */
-  scroll-behavior: smooth;
-  /* Optimize scroll performance */
-  scroll-padding-top: 100px; /* Account for fixed navigation */
+  /* Disable native smooth scrolling to prevent conflicts with custom JavaScript scrolling */
+  scroll-behavior: auto;
+  /* Remove scroll-padding-top to let custom scroll calculations handle positioning */
   background-color: white;
   background: white;
   min-height: 100vh;
