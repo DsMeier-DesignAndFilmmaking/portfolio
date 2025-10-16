@@ -116,10 +116,16 @@ const Navbar = () => {
       console.log('Target element found:', targetElement);
       const rect = targetElement.getBoundingClientRect();
       const absoluteTop = rect.top + window.pageYOffset;
-      const navbarHeight = 80; // Approximate navbar height
+      
+      // Special handling for travelogue section to show earth-map background better
+      let navbarHeight = 80; // Default navbar height
+      if (targetId === 'travelogue') {
+        navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
+      }
+      
       const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
       
-      console.log('Scrolling to position:', finalPosition);
+      console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
       
       // Smooth scroll to target
       window.scrollTo({
@@ -141,10 +147,16 @@ const Navbar = () => {
           console.log('Retry: Target element found:', retryElement);
           const rect = retryElement.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
-          const navbarHeight = 80;
+          
+          // Special handling for travelogue section to show earth-map background better
+          let navbarHeight = 80; // Default navbar height
+          if (targetId === 'travelogue') {
+            navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
+          }
+          
           const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
           
-          console.log('Retry: Scrolling to position:', finalPosition);
+          console.log('Retry: Scrolling to position:', finalPosition, 'for target:', targetId);
           
           window.scrollTo({
             top: finalPosition,
