@@ -89,9 +89,12 @@ export default function VideoProjectsSection() {
               <div key={index} className="group">
                 <div 
                   className="relative w-full bg-black rounded-lg" 
-                  style={{ paddingBottom: '56.25%' }}
+                  style={{ 
+                    paddingBottom: '56.25%',
+                    minHeight: '400px' // Ensure minimum height for stable layout
+                  }}
                 >
-                  {/* Placeholder to maintain aspect ratio */}
+                  {/* Placeholder to maintain aspect ratio and stable height */}
                   <div className="absolute top-0 left-0 w-full h-full bg-black rounded-lg flex items-center justify-center">
                     <div className="text-gray-400 text-sm">Loading video...</div>
                   </div>
@@ -106,6 +109,9 @@ export default function VideoProjectsSection() {
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full rounded-lg"
                     allow="autoplay; fullscreen; picture-in-picture"
+                    style={{
+                      minHeight: '400px' // Ensure iframe has minimum height
+                    }}
                     onLoad={(e) => {
                       // Hide placeholder when iframe loads
                       const target = e.target as HTMLIFrameElement;

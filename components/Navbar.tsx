@@ -110,32 +110,37 @@ const Navbar = () => {
     const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
     console.log('Scrolling to:', selector);
     
-    // For travelogue section, ensure video section is loaded first to prevent layout shifts
+    // For travelogue section, use a more robust approach to ensure stable scroll
     const scrollToTarget = async () => {
       if (targetId === 'travelogue') {
-        console.log('Pre-loading video section for stable travelogue scroll...');
+        console.log('Ensuring stable layout for travelogue scroll...');
         
-        // Trigger video section loading by scrolling slightly to make it visible
+        // Wait for DOM to be fully stable and all elements to have their final dimensions
+        await new Promise(resolve => {
+          // Wait for any pending layout calculations
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              // Additional wait for any lazy-loaded content to settle
+              setTimeout(resolve, 100);
+            });
+          });
+        });
+        
+        // Force a reflow to ensure all measurements are accurate
         const videoSection = document.getElementById('video-projects');
         if (videoSection) {
-          const videoRect = videoSection.getBoundingClientRect();
-          const videoTop = videoRect.top + window.pageYOffset;
-          
-          // Scroll to make video section visible (this triggers iframe loading)
-          window.scrollTo({
-            top: Math.max(videoTop - 200, 0), // 200px before video section
-            behavior: 'auto'
-          });
-          
-          // Wait for video section to stabilize
-          await new Promise(resolve => setTimeout(resolve, 500));
+          videoSection.offsetHeight; // Force reflow
         }
       }
       
-      // Now scroll to the actual target
+      // Now scroll to the actual target with accurate measurements
       const targetElement = document.querySelector(selector);
       if (targetElement) {
         console.log('Target element found:', targetElement);
+        
+        // Force a reflow to ensure accurate measurements
+        (targetElement as HTMLElement).offsetHeight;
+        
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = rect.top + window.pageYOffset;
         
