@@ -109,6 +109,8 @@
 .navbar-content.shrink {
   max-width: 56rem; /* matches Tailwind max-w-4xl */
   margin: 0 auto;
+  padding-left: 1.5rem; /* matches px-6 (24px) */
+  padding-right: 1.5rem; /* matches px-6 (24px) */
 }
 
 /* Mobile responsive - disable width animation on mobile */
