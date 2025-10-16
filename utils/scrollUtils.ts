@@ -386,17 +386,25 @@ export const scrollToAnchor = async (
     await waitForLayoutStable();
     updateProgress(50);
     
-    // If waiting for lazy content, check for IntersectionObserver-triggered content
-    if (waitForLazyContent) {
+    // Skip lazy content waiting for world-travel-diaries to avoid video section interference
+    if (waitForLazyContent && anchorId !== 'world-travel-diaries') {
       await waitForLazyContentInSection(targetElement);
     }
     updateProgress(70);
     
-    // Perform the actual scroll
-    await scrollToElement(targetElement, navbarElement, {
-      duration,
-      waitForLazyContent: false // Already handled above
-    });
+    // For world-travel-diaries, use a more direct scroll approach
+    if (anchorId === 'world-travel-diaries') {
+      // Force immediate scroll without additional waiting
+      const targetPosition = calculateTargetPosition(targetElement, navbarElement);
+      console.log('Direct scroll to world-travel-diaries at position:', targetPosition);
+      await smoothScrollTo(targetPosition, duration);
+    } else {
+      // Perform the actual scroll with full logic for other sections
+      await scrollToElement(targetElement, navbarElement, {
+        duration,
+        waitForLazyContent: false // Already handled above
+      });
+    }
     
     updateProgress(90);
     
