@@ -30,16 +30,25 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
       }
 
       // Wait for components to mount and animations to stabilize
-      const scrollToTarget = () => {
+      const scrollToTarget = async () => {
         const target = document.querySelector(hash);
         
         if (target) {
           console.log('Scrolling to hash target:', hash);
           
+          // If scrolling to travelogue section, wait for video layout to stabilize
+          if (hash === '#travelogue' || hash === '#world-travel-diaries') {
+            console.log('useScrollToHash: Waiting for video layout to stabilize...');
+            const { waitForVideoLayoutStable } = await import('../utils/videoLayoutUtils');
+            await waitForVideoLayoutStable();
+          }
+          
           // Calculate position with offset
           const rect = target.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
           const finalPosition = Math.max(absoluteTop - offset, 0);
+          
+          console.log('useScrollToHash: Final scroll position:', finalPosition);
           
           // Scroll to target
           if (smooth) {

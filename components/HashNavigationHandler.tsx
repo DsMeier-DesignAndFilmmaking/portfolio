@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { waitForVideoLayoutStable } from '@/utils/videoLayoutUtils';
 
 interface HashNavigationHandlerProps {
   /** Delay before attempting to scroll to hash */
@@ -29,16 +30,24 @@ export default function HashNavigationHandler({
       // Mark as handled to prevent multiple attempts
       hasHandledHashRef.current = true;
 
-      const scrollToTarget = () => {
+      const scrollToTarget = async () => {
         const target = document.querySelector(hash);
         
         if (target) {
           console.log('HashNavigationHandler: Scrolling to', hash);
           
+          // If scrolling to travelogue section, wait for video layout to stabilize
+          if (hash === '#travelogue' || hash === '#world-travel-diaries') {
+            console.log('HashNavigationHandler: Waiting for video layout to stabilize...');
+            await waitForVideoLayoutStable();
+          }
+          
           // Calculate position with offset
           const rect = target.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
           const finalPosition = Math.max(absoluteTop - offset, 0);
+          
+          console.log('HashNavigationHandler: Final scroll position:', finalPosition);
           
           // Scroll to target
           if (smooth) {

@@ -7,6 +7,7 @@
  * 3. Dynamic content (React components) may still be settling
  * 4. CSS animations/transitions may not have completed
  * 5. Lazy-loaded content (IntersectionObserver) may not be ready
+ * 6. Video iframes loading asynchronously, causing layout shifts
  * 
  * This utility ensures all content is fully loaded before performing anchor scrolls.
  */
@@ -403,8 +404,13 @@ export const scrollToAnchor = async (
     await waitForLayoutStable();
     updateProgress(50);
     
-    // Skip lazy content waiting for travelogue sections to avoid video section interference
-    if (waitForLazyContent && anchorId !== 'world-travel-diaries' && anchorId !== 'travelogue') {
+    // For travelogue sections, wait for video layout to stabilize instead of lazy content
+    if (anchorId === 'travelogue' || anchorId === 'world-travel-diaries') {
+      console.log('Waiting for video layout stabilization for travelogue section');
+      const { waitForVideoLayoutStable } = await import('./videoLayoutUtils');
+      await waitForVideoLayoutStable();
+    } else if (waitForLazyContent) {
+      // For other sections, use normal lazy content waiting
       await waitForLazyContentInSection(targetElement);
     }
     updateProgress(70);
