@@ -6,14 +6,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollToAnchor } from '@/utils/scrollUtils';
-import AnchorScrollLoader from './AnchorScrollLoader';
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
 
@@ -110,25 +107,15 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    // Show loader immediately and reset progress
-    setShowLoader(true);
-    setScrollProgress(0);
-    
     const navElement = document.getElementById('site-navbar') as HTMLElement | null;
     
-    // Use the enhanced anchor scroll function with progress tracking
+    // Use the enhanced anchor scroll function without progress tracking
     scrollToAnchor(targetId, navElement, {
       duration: 700,
       waitForLazyContent: true,
-      maxWaitTime: 3000,
-      onProgress: (progress) => {
-        setScrollProgress(progress);
-      }
+      maxWaitTime: 3000
     }).then(() => {
-      // Hide loader after scroll completes successfully
-      setShowLoader(false);
       setIsScrollingToAnchor(false);
-      setScrollProgress(0);
       
       // Dispatch scroll completion event to trigger fade-in animations
       setTimeout(() => {
@@ -136,10 +123,7 @@ const Navbar = () => {
       }, 100);
     }).catch((error) => {
       console.warn('Error during anchor scroll:', error);
-      // Hide loader even if there's an error
-      setShowLoader(false);
       setIsScrollingToAnchor(false);
-      setScrollProgress(0);
       
       // Still dispatch scroll completion event even on error
       setTimeout(() => {
@@ -325,18 +309,6 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Anchor Scroll Loader */}
-      <AnchorScrollLoader 
-        isVisible={showLoader}
-        progress={scrollProgress}
-        onComplete={() => {
-          // Hide loader when progress reaches 100%
-          setShowLoader(false);
-          setIsScrollingToAnchor(false);
-          setScrollProgress(0);
-        }}
-      />
     </div>
   );
 };
