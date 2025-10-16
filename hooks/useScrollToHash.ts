@@ -36,19 +36,38 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
         if (target) {
           console.log('Scrolling to hash target:', hash);
           
-          // If scrolling to travelogue section, wait for video layout to stabilize
+          // Special handling for travelogue section
           if (hash === '#travelogue' || hash === '#world-travel-diaries') {
-            console.log('useScrollToHash: Waiting for video layout to stabilize...');
-            const { waitForVideoLayoutStable } = await import('../utils/videoLayoutUtils');
-            await waitForVideoLayoutStable();
+            console.log('useScrollToHash: Ensuring stable layout for travelogue...');
+            
+            // Wait for DOM to be fully stable
+            await new Promise(resolve => {
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  setTimeout(resolve, 200); // Wait for any lazy content
+                });
+              });
+            });
+            
+            // Force reflow on video section to ensure stable measurements
+            const videoSection = document.getElementById('video-projects');
+            if (videoSection) {
+              videoSection.offsetHeight; // Force reflow
+            }
           }
+          
+          // Force reflow on target element for accurate measurements
+          (target as HTMLElement).offsetHeight;
           
           // Calculate position with offset
           const rect = target.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
-          const finalPosition = Math.max(absoluteTop - offset, 0);
           
-          console.log('useScrollToHash: Final scroll position:', finalPosition);
+          // Special offset for travelogue to show earth-map background better
+          const finalOffset = hash === '#travelogue' ? 40 : offset;
+          const finalPosition = Math.max(absoluteTop - finalOffset, 0);
+          
+          console.log('useScrollToHash: Final scroll position:', finalPosition, 'for hash:', hash);
           
           // Scroll to target
           if (smooth) {
@@ -63,23 +82,30 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
             });
           }
           
-          hasScrolledRef.current = true;
-          
-          // Reset flag after a delay to allow for subsequent navigation
+          // Dispatch scroll completion event
           setTimeout(() => {
-            hasScrolledRef.current = false;
-          }, 1000);
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+          }, 100);
         } else {
           console.log('Hash target not found, retrying:', hash);
-          // Retry after a short delay if element not found
+          // Reset flag and retry
+          hasScrolledRef.current = false;
           setTimeout(scrollToTarget, 200);
         }
       };
 
-      // Use requestAnimationFrame to ensure DOM is ready
-      requestAnimationFrame(() => {
-        setTimeout(scrollToTarget, delay);
-      });
+      // Wait for page to be fully loaded and stable
+      if (document.readyState === 'complete') {
+        requestAnimationFrame(() => {
+          setTimeout(scrollToTarget, delay);
+        });
+      } else {
+        window.addEventListener('load', () => {
+          requestAnimationFrame(() => {
+            setTimeout(scrollToTarget, delay);
+          });
+        });
+      }
     };
 
     // Handle initial hash on mount

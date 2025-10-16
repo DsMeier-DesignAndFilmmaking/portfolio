@@ -90,8 +90,8 @@ export default function VideoProjectsSection() {
                 <div 
                   className="relative w-full bg-black rounded-lg" 
                   style={{ 
-                    paddingBottom: '56.25%',
-                    minHeight: '400px' // Ensure minimum height for stable layout
+                    aspectRatio: '16 / 9', // Fixed aspect ratio prevents layout shifts
+                    minHeight: '400px' // Fallback minimum height
                   }}
                 >
                   {/* Placeholder to maintain aspect ratio and stable height */}
@@ -109,9 +109,6 @@ export default function VideoProjectsSection() {
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full rounded-lg"
                     allow="autoplay; fullscreen; picture-in-picture"
-                    style={{
-                      minHeight: '400px' // Ensure iframe has minimum height
-                    }}
                     onLoad={(e) => {
                       // Hide placeholder when iframe loads
                       const target = e.target as HTMLIFrameElement;
