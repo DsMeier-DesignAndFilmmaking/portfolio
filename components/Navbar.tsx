@@ -134,7 +134,17 @@ const Navbar = () => {
       }
       
       // Now scroll to the actual target with accurate measurements
-      const targetElement = document.querySelector(selector);
+      let targetElement = document.querySelector(selector);
+      
+      // For travelogue, target the background element specifically
+      if (targetId === 'travelogue') {
+        const backgroundElement = document.getElementById('world-travel-diaries-background');
+        if (backgroundElement) {
+          targetElement = backgroundElement;
+          console.log('Using background element for travelogue scroll');
+        }
+      }
+      
       if (targetElement) {
         console.log('Target element found:', targetElement);
         

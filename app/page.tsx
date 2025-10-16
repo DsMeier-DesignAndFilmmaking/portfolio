@@ -223,8 +223,8 @@ export default function HomePage() {
         <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
-          {/* World Map Background */}
-          <div className="absolute inset-0 opacity-10">
+          {/* World Map Background - This is the main target for scrolling */}
+          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
             <img 
               src="/portfolio/images/textures/earth-map.webp" 
               alt="World Map Background"

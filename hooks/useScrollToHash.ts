@@ -31,7 +31,16 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
 
       // Wait for components to mount and animations to stabilize
       const scrollToTarget = async () => {
-        const target = document.querySelector(hash);
+        let target = document.querySelector(hash);
+        
+        // For travelogue, target the background element specifically
+        if (hash === '#travelogue') {
+          const backgroundElement = document.getElementById('world-travel-diaries-background');
+          if (backgroundElement) {
+            target = backgroundElement;
+            console.log('useScrollToHash: Using background element for travelogue scroll');
+          }
+        }
         
         if (target) {
           console.log('Scrolling to hash target:', hash);

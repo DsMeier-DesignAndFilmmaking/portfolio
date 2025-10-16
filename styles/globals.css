@@ -317,6 +317,11 @@ html {
   /* Remove conflicting scroll behavior */
 }
 
+/* Special scroll margin for travelogue background element */
+#world-travel-diaries-background {
+  scroll-margin-top: 40px; /* Reduced offset for optimal earth-map visibility */
+}
+
 /* Keep the badge scroll margin for any direct links to it */
 #world-travel-diaries-badge {
   scroll-margin-top: 100px;
