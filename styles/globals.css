@@ -120,16 +120,16 @@
   .navbar-content {
     max-width: 576px !important; /* matches hero content width */
     margin: 0 auto !important;
-    padding-left: 1.5rem !important; /* matches px-6 */
-    padding-right: 1.5rem !important; /* matches px-6 */
+    padding-left: 0 !important; /* align with hero text content */
+    padding-right: 0 !important; /* align with hero text content */
     transition: none;
   }
   
   .navbar-content.shrink {
     max-width: 576px !important; /* matches hero content width */
     margin: 0 auto !important;
-    padding-left: 1.5rem !important; /* matches px-6 */
-    padding-right: 1.5rem !important; /* matches px-6 */
+    padding-left: 0 !important; /* align with hero text content */
+    padding-right: 0 !important; /* align with hero text content */
   }
 }
 
