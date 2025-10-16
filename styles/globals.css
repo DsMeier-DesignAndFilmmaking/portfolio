@@ -120,16 +120,16 @@
   .navbar-content {
     max-width: 576px !important; /* matches hero content width */
     margin: 0 auto !important;
-    padding-left: 0 !important; /* align with hero text content */
-    padding-right: 0 !important; /* align with hero text content */
+    padding-left: 1.5rem !important; /* add padding for logo and menu button */
+    padding-right: 1.5rem !important; /* add padding for logo and menu button */
     transition: none;
   }
   
   .navbar-content.shrink {
     max-width: 576px !important; /* matches hero content width */
     margin: 0 auto !important;
-    padding-left: 0 !important; /* align with hero text content */
-    padding-right: 0 !important; /* align with hero text content */
+    padding-left: 1.5rem !important; /* add padding for logo and menu button */
+    padding-right: 1.5rem !important; /* add padding for logo and menu button */
   }
 }
 
