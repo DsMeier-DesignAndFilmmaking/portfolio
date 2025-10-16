@@ -319,7 +319,7 @@ html {
 
 /* Special scroll margin for travelogue background element */
 #world-travel-diaries-background {
-  scroll-margin-top: 40px; /* Reduced offset for optimal earth-map visibility */
+  scroll-margin-top: -426px; /* Negative offset to scroll to desired position (8988.609375) */
 }
 
 /* Video container styles for stable layout */

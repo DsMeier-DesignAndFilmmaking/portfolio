@@ -157,7 +157,9 @@ const Navbar = () => {
         // Special handling for travelogue section to show earth-map background better
         let navbarHeight = 80; // Default navbar height
         if (targetId === 'travelogue') {
-          navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
+          // Adjust offset to scroll to the desired position (8988.609375)
+          // This positions the earth-map background optimally in the viewport
+          navbarHeight = -426; // Negative offset to scroll further down to desired position
         }
         
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
