@@ -305,6 +305,7 @@ html {
 #black-section,
 #video-projects,
 #world-travel-diaries,
+#travelogue,
 #photography {
   scroll-margin-top: 120px; /* adjust if navbar height changes */
   /* Ensure stable positioning */

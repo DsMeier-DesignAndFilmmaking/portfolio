@@ -403,8 +403,8 @@ export const scrollToAnchor = async (
     await waitForLayoutStable();
     updateProgress(50);
     
-    // Skip lazy content waiting for world-travel-diaries to avoid video section interference
-    if (waitForLazyContent && anchorId !== 'world-travel-diaries') {
+    // Skip lazy content waiting for travelogue sections to avoid video section interference
+    if (waitForLazyContent && anchorId !== 'world-travel-diaries' && anchorId !== 'travelogue') {
       await waitForLazyContentInSection(targetElement);
     }
     updateProgress(70);

@@ -226,8 +226,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#world-travel-diaries" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
@@ -292,8 +292,8 @@ const Navbar = () => {
                 Video
               </a>
               <a 
-                href="#world-travel-diaries" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}

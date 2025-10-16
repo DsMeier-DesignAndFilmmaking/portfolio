@@ -65,13 +65,23 @@ export default function FadeInSection({
         }
       };
       
-      // Check immediately and after delays to catch anchor navigation
+      // Check immediately for anchor navigation
       checkViewport();
-      setTimeout(checkViewport, 100);
-      setTimeout(checkViewport, 500);
-      setTimeout(checkViewport, 1000);
+      
+      // Check after delays to catch delayed anchor navigation
+      const timeouts = [
+        setTimeout(checkViewport, 100),
+        setTimeout(checkViewport, 300),
+        setTimeout(checkViewport, 600),
+        setTimeout(checkViewport, 1000)
+      ];
       
       observer.observe(element);
+      
+      // Cleanup timeouts
+      return () => {
+        timeouts.forEach(clearTimeout);
+      };
     }
 
     // Listen for scroll completion events
