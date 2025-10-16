@@ -106,9 +106,10 @@ export default function VideoProjectsSection() {
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full rounded-lg"
                     allow="autoplay; fullscreen; picture-in-picture"
-                    onLoad={() => {
+                    onLoad={(e) => {
                       // Hide placeholder when iframe loads
-                      const placeholder = el?.parentElement?.querySelector('.absolute.bg-gray-900');
+                      const target = e.target as HTMLIFrameElement;
+                      const placeholder = target.parentElement?.querySelector('.absolute.bg-gray-900');
                       if (placeholder) {
                         placeholder.style.display = 'none';
                       }
