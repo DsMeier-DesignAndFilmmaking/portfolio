@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { scrollToAnchor } from '@/utils/scrollUtils';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -107,29 +106,49 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    const navElement = document.getElementById('site-navbar') as HTMLElement | null;
-    
-    // Use the enhanced anchor scroll function without progress tracking
-    scrollToAnchor(targetId, navElement, {
-      duration: 700,
-      waitForLazyContent: true,
-      maxWaitTime: 3000
-    }).then(() => {
-      setIsScrollingToAnchor(false);
+    // Fast, direct scroll without extensive waiting
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const rect = targetElement.getBoundingClientRect();
+      const absoluteTop = rect.top + window.pageYOffset;
+      const navbarHeight = 80; // Approximate navbar height
+      const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
       
-      // Dispatch scroll completion event to trigger fade-in animations
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent('scrollComplete'));
-      }, 100);
-    }).catch((error) => {
-      console.warn('Error during anchor scroll:', error);
-      setIsScrollingToAnchor(false);
+      // Smooth scroll to target
+      window.scrollTo({
+        top: finalPosition,
+        behavior: 'smooth'
+      });
       
-      // Still dispatch scroll completion event even on error
+      // Mark scrolling as complete after animation
       setTimeout(() => {
+        setIsScrollingToAnchor(false);
         window.dispatchEvent(new CustomEvent('scrollComplete'));
+      }, 800); // Slightly longer than scroll duration
+    } else {
+      // Fallback: try again after a short delay
+      setTimeout(() => {
+        const retryElement = document.querySelector(targetId);
+        if (retryElement) {
+          const rect = retryElement.getBoundingClientRect();
+          const absoluteTop = rect.top + window.pageYOffset;
+          const navbarHeight = 80;
+          const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+          
+          window.scrollTo({
+            top: finalPosition,
+            behavior: 'smooth'
+          });
+          
+          setTimeout(() => {
+            setIsScrollingToAnchor(false);
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+          }, 800);
+        } else {
+          setIsScrollingToAnchor(false);
+        }
       }, 100);
-    });
+    }
   };
 
   const toggleMobileMenu = () => {
