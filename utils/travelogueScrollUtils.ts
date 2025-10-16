@@ -9,7 +9,10 @@ export function calculateTravelogueScrollOffset(): number {
   const videoSection = document.getElementById('video-projects');
   const videoIframes = videoSection?.querySelectorAll('iframe[src*="vimeo.com"]');
   const hasLoadedVideos = videoIframes && videoIframes.length > 0 && 
-    Array.from(videoIframes).some(iframe => iframe.src && iframe.src !== 'about:blank');
+    Array.from(videoIframes).some(iframe => {
+      const iframeElement = iframe as HTMLIFrameElement;
+      return iframeElement.src && iframeElement.src !== 'about:blank';
+    });
   
   if (hasLoadedVideos) {
     // Video section is loaded - use normal offset (video section height is already accounted for)
@@ -30,5 +33,8 @@ export function hasLoadedVideoIframes(): boolean {
   const videoSection = document.getElementById('video-projects');
   const videoIframes = videoSection?.querySelectorAll('iframe[src*="vimeo.com"]');
   return videoIframes && videoIframes.length > 0 && 
-    Array.from(videoIframes).some(iframe => iframe.src && iframe.src !== 'about:blank');
+    Array.from(videoIframes).some(iframe => {
+      const iframeElement = iframe as HTMLIFrameElement;
+      return iframeElement.src && iframeElement.src !== 'about:blank';
+    });
 }
