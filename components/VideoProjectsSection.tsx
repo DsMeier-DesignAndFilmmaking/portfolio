@@ -109,7 +109,7 @@ export default function VideoProjectsSection() {
                     onLoad={(e) => {
                       // Hide placeholder when iframe loads
                       const target = e.target as HTMLIFrameElement;
-                      const placeholder = target.parentElement?.querySelector('.absolute.bg-gray-900');
+                      const placeholder = target.parentElement?.querySelector('.absolute.bg-gray-900') as HTMLElement;
                       if (placeholder) {
                         placeholder.style.display = 'none';
                       }
