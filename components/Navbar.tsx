@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { calculateTravelogueScrollOffset } from '@/utils/travelogueScrollUtils';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -157,9 +158,8 @@ const Navbar = () => {
         // Special handling for travelogue section to show earth-map background better
         let navbarHeight = 80; // Default navbar height
         if (targetId === 'travelogue') {
-          // Adjust offset to scroll to the desired position (8988.609375)
-          // This positions the earth-map background optimally in the viewport
-          navbarHeight = -426; // Negative offset to scroll further down to desired position
+          // Calculate dynamic offset based on video section loading state
+          navbarHeight = calculateTravelogueScrollOffset();
         }
         
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { calculateTravelogueScrollOffset } from '@/utils/travelogueScrollUtils';
 
 interface UseScrollToHashOptions {
   /** Delay before scrolling to allow components to mount */
@@ -73,7 +74,11 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
           const absoluteTop = rect.top + window.pageYOffset;
           
           // Special offset for travelogue to show earth-map background better
-          const finalOffset = hash === '#travelogue' ? -426 : offset; // Negative offset to scroll to desired position
+          let finalOffset = offset;
+          if (hash === '#travelogue') {
+            // Calculate dynamic offset based on video section loading state
+            finalOffset = calculateTravelogueScrollOffset();
+          }
           const finalPosition = Math.max(absoluteTop - finalOffset, 0);
           
           console.log('useScrollToHash: Final scroll position:', finalPosition, 'for hash:', hash);
