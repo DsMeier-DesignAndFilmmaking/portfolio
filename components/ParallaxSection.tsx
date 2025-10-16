@@ -40,7 +40,7 @@ export default function ParallaxSection({
 
   if (!isClient) {
     return (
-      <div ref={ref} className={`relative ${className}`} style={{ height: '50vh' }}>
+      <div ref={ref} className={`relative ${className}`} style={{ height: '100vh' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">
           <div className="w-full h-full flex items-center justify-center">
             <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
