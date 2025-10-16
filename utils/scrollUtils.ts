@@ -207,8 +207,12 @@ const waitForLayoutStable = (timeout = 500): Promise<void> => {
 
 /**
  * Calculate the target scroll position accounting for fixed navbar
+ * Enhanced to be more stable and less affected by other sections
  */
 export const calculateTargetPosition = (targetElement: HTMLElement, navbarElement?: HTMLElement | null): number => {
+  // Force a reflow to ensure accurate measurements
+  targetElement.offsetHeight;
+  
   const rect = targetElement.getBoundingClientRect();
   const absoluteTop = rect.top + window.pageYOffset;
   
@@ -221,7 +225,12 @@ export const calculateTargetPosition = (targetElement: HTMLElement, navbarElemen
     navbarOffset = navRect.height + marginTop;
   }
   
-  return Math.max(absoluteTop - navbarOffset, 0);
+  // Add extra offset to ensure we don't get stuck in other sections
+  const finalPosition = Math.max(absoluteTop - navbarOffset - 20, 0);
+  
+  console.log('Target element:', targetElement.id, 'Absolute top:', absoluteTop, 'Final position:', finalPosition);
+  
+  return finalPosition;
 };
 
 /**
@@ -277,6 +286,7 @@ export const scrollToElement = async (
 
 /**
  * Wait for lazy-loaded content in a specific section
+ * Enhanced to avoid interference from other sections
  */
 const waitForLazyContentInSection = async (sectionElement: HTMLElement): Promise<void> => {
   return new Promise<void>((resolve) => {
@@ -285,11 +295,12 @@ const waitForLazyContentInSection = async (sectionElement: HTMLElement): Promise
     const iframes = sectionElement.querySelectorAll('iframe[loading="lazy"]');
     
     if (lazyImages.length === 0 && iframes.length === 0) {
+      console.log('No lazy content in section:', sectionElement.id);
       resolve();
       return;
     }
 
-    console.log('Waiting for lazy content in section:', sectionElement.id);
+    console.log('Waiting for lazy content in section:', sectionElement.id, 'Found:', lazyImages.length + iframes.length, 'elements');
     
     // Wait for all lazy content to load
     const allLazyElements = [...lazyImages, ...iframes];
@@ -314,12 +325,16 @@ const waitForLazyContentInSection = async (sectionElement: HTMLElement): Promise
         }
       } else if (element instanceof HTMLIFrameElement) {
         // For iframes, we can't easily detect load, so we'll wait a bit
-        setTimeout(onElementLoad, 100);
+        // But reduce the wait time to avoid delays
+        setTimeout(onElementLoad, 50);
       }
     });
 
-    // Fallback timeout
-    setTimeout(resolve, 2000);
+    // Reduced fallback timeout to prevent long delays
+    setTimeout(() => {
+      console.log('Timeout waiting for lazy content in section:', sectionElement.id);
+      resolve();
+    }, 1000);
   });
 };
 
