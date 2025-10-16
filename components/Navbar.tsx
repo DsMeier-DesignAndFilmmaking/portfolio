@@ -106,13 +106,20 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
+    // Add # prefix if not present
+    const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
+    console.log('Scrolling to:', selector);
+    
     // Fast, direct scroll without extensive waiting
-    const targetElement = document.querySelector(targetId);
+    const targetElement = document.querySelector(selector);
     if (targetElement) {
+      console.log('Target element found:', targetElement);
       const rect = targetElement.getBoundingClientRect();
       const absoluteTop = rect.top + window.pageYOffset;
       const navbarHeight = 80; // Approximate navbar height
       const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+      
+      console.log('Scrolling to position:', finalPosition);
       
       // Smooth scroll to target
       window.scrollTo({
@@ -126,14 +133,18 @@ const Navbar = () => {
         window.dispatchEvent(new CustomEvent('scrollComplete'));
       }, 800); // Slightly longer than scroll duration
     } else {
+      console.log('Target element not found:', selector);
       // Fallback: try again after a short delay
       setTimeout(() => {
-        const retryElement = document.querySelector(targetId);
+        const retryElement = document.querySelector(selector);
         if (retryElement) {
+          console.log('Retry: Target element found:', retryElement);
           const rect = retryElement.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
           const navbarHeight = 80;
           const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+          
+          console.log('Retry: Scrolling to position:', finalPosition);
           
           window.scrollTo({
             top: finalPosition,
@@ -145,6 +156,7 @@ const Navbar = () => {
             window.dispatchEvent(new CustomEvent('scrollComplete'));
           }, 800);
         } else {
+          console.log('Retry: Target element still not found:', selector);
           setIsScrollingToAnchor(false);
         }
       }, 100);
