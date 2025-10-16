@@ -110,69 +110,63 @@ const Navbar = () => {
     const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
     console.log('Scrolling to:', selector);
     
-    // Fast, direct scroll without extensive waiting
-    const targetElement = document.querySelector(selector);
-    if (targetElement) {
-      console.log('Target element found:', targetElement);
-      const rect = targetElement.getBoundingClientRect();
-      const absoluteTop = rect.top + window.pageYOffset;
-      
-      // Special handling for travelogue section to show earth-map background better
-      let navbarHeight = 80; // Default navbar height
+    // For travelogue section, ensure video section is loaded first to prevent layout shifts
+    const scrollToTarget = async () => {
       if (targetId === 'travelogue') {
-        navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
-      }
-      
-      const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
-      
-      console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
-      
-      // Smooth scroll to target
-      window.scrollTo({
-        top: finalPosition,
-        behavior: 'smooth'
-      });
-      
-      // Mark scrolling as complete after animation
-      setTimeout(() => {
-        setIsScrollingToAnchor(false);
-        window.dispatchEvent(new CustomEvent('scrollComplete'));
-      }, 800); // Slightly longer than scroll duration
-    } else {
-      console.log('Target element not found:', selector);
-      // Fallback: try again after a short delay
-      setTimeout(() => {
-        const retryElement = document.querySelector(selector);
-        if (retryElement) {
-          console.log('Retry: Target element found:', retryElement);
-          const rect = retryElement.getBoundingClientRect();
-          const absoluteTop = rect.top + window.pageYOffset;
+        console.log('Pre-loading video section for stable travelogue scroll...');
+        
+        // Trigger video section loading by scrolling slightly to make it visible
+        const videoSection = document.getElementById('video-projects');
+        if (videoSection) {
+          const videoRect = videoSection.getBoundingClientRect();
+          const videoTop = videoRect.top + window.pageYOffset;
           
-          // Special handling for travelogue section to show earth-map background better
-          let navbarHeight = 80; // Default navbar height
-          if (targetId === 'travelogue') {
-            navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
-          }
-          
-          const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
-          
-          console.log('Retry: Scrolling to position:', finalPosition, 'for target:', targetId);
-          
+          // Scroll to make video section visible (this triggers iframe loading)
           window.scrollTo({
-            top: finalPosition,
-            behavior: 'smooth'
+            top: Math.max(videoTop - 200, 0), // 200px before video section
+            behavior: 'auto'
           });
           
-          setTimeout(() => {
-            setIsScrollingToAnchor(false);
-            window.dispatchEvent(new CustomEvent('scrollComplete'));
-          }, 800);
-        } else {
-          console.log('Retry: Target element still not found:', selector);
-          setIsScrollingToAnchor(false);
+          // Wait for video section to stabilize
+          await new Promise(resolve => setTimeout(resolve, 500));
         }
-      }, 100);
-    }
+      }
+      
+      // Now scroll to the actual target
+      const targetElement = document.querySelector(selector);
+      if (targetElement) {
+        console.log('Target element found:', targetElement);
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = rect.top + window.pageYOffset;
+        
+        // Special handling for travelogue section to show earth-map background better
+        let navbarHeight = 80; // Default navbar height
+        if (targetId === 'travelogue') {
+          navbarHeight = 40; // Reduced offset for travelogue to show more of the background image
+        }
+        
+        const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+        
+        console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+        
+        // Smooth scroll to target
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'smooth'
+        });
+        
+        // Mark scrolling as complete after animation
+        setTimeout(() => {
+          setIsScrollingToAnchor(false);
+          window.dispatchEvent(new CustomEvent('scrollComplete'));
+        }, 800); // Slightly longer than scroll duration
+      } else {
+        console.log('Target element not found:', selector);
+        setIsScrollingToAnchor(false);
+      }
+    };
+    
+    scrollToTarget();
   };
 
   const toggleMobileMenu = () => {
