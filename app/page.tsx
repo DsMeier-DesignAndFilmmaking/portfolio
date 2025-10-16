@@ -112,7 +112,7 @@ export default function HomePage() {
                       className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
                       style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
                     >
-                      <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
                     </h1>
                     
                     {/* Desktop Version - Original */}
