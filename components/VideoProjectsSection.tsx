@@ -88,12 +88,12 @@ export default function VideoProjectsSection() {
             {videoProjects.map((project, index) => (
               <div key={index} className="group">
                 <div 
-                  className="relative w-full bg-gray-900 rounded-lg" 
+                  className="relative w-full bg-black rounded-lg" 
                   style={{ paddingBottom: '56.25%' }}
                 >
                   {/* Placeholder to maintain aspect ratio */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-gray-900 rounded-lg flex items-center justify-center">
-                    <div className="text-gray-500 text-sm">Loading video...</div>
+                  <div className="absolute top-0 left-0 w-full h-full bg-black rounded-lg flex items-center justify-center">
+                    <div className="text-gray-400 text-sm">Loading video...</div>
                   </div>
                   <iframe
                     ref={(el) => {
@@ -109,7 +109,7 @@ export default function VideoProjectsSection() {
                     onLoad={(e) => {
                       // Hide placeholder when iframe loads
                       const target = e.target as HTMLIFrameElement;
-                      const placeholder = target.parentElement?.querySelector('.absolute.bg-gray-900') as HTMLElement;
+                      const placeholder = target.parentElement?.querySelector('.absolute.bg-black') as HTMLElement;
                       if (placeholder) {
                         placeholder.style.display = 'none';
                       }
