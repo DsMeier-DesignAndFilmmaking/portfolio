@@ -392,12 +392,16 @@ export const scrollToAnchor = async (
     }
     updateProgress(70);
     
-    // For world-travel-diaries, use a more direct scroll approach
+    // For world-travel-diaries, use a more direct scroll approach with extended loader
     if (anchorId === 'world-travel-diaries') {
       // Force immediate scroll without additional waiting
       const targetPosition = calculateTargetPosition(targetElement, navbarElement);
       console.log('Direct scroll to world-travel-diaries at position:', targetPosition);
       await smoothScrollTo(targetPosition, duration);
+      
+      // Add extra delay to ensure scroll is completely finished before hiding loader
+      await new Promise(resolve => setTimeout(resolve, 300));
+      console.log('Travelogue scroll completed with extra delay');
     } else {
       // Perform the actual scroll with full logic for other sections
       await scrollToElement(targetElement, navbarElement, {
@@ -412,7 +416,8 @@ export const scrollToAnchor = async (
     await new Promise(resolve => {
       let lastScrollY = window.scrollY;
       let stableCount = 0;
-      const maxStableCount = 15; // Wait for 15 consecutive stable readings
+      // Use more stable readings for travelogue section
+      const maxStableCount = anchorId === 'world-travel-diaries' ? 25 : 15;
       
       const checkStable = () => {
         const currentScrollY = window.scrollY;
@@ -421,6 +426,7 @@ export const scrollToAnchor = async (
         if (Math.abs(currentScrollY - lastScrollY) < 1) {
           stableCount++;
           if (stableCount >= maxStableCount) {
+            console.log('Scroll stable for', anchorId, 'after', stableCount, 'readings');
             resolve(true);
             return;
           }
@@ -433,8 +439,9 @@ export const scrollToAnchor = async (
         requestAnimationFrame(checkStable);
       };
       
-      // Start checking after a short delay
-      setTimeout(checkStable, 50);
+      // Start checking after a short delay (longer for travelogue)
+      const initialDelay = anchorId === 'world-travel-diaries' ? 100 : 50;
+      setTimeout(checkStable, initialDelay);
     });
     
     updateProgress(100);
