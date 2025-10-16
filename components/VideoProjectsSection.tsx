@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import FadeInSection from './FadeInSection';
 import { isCurrentlyAnchorScrolling } from '@/utils/scrollUtils';
+import VideoSection from './VideoSection';
 
 const videoProjects = [
   {
@@ -87,38 +88,11 @@ export default function VideoProjectsSection() {
           <div className="grid grid-cols-1 gap-16">
             {videoProjects.map((project, index) => (
               <div key={index} className="group">
-                <div 
-                  className="relative w-full bg-black rounded-lg" 
-                  style={{ 
-                    aspectRatio: '16 / 9', // Fixed aspect ratio prevents layout shifts
-                    minHeight: '400px' // Fallback minimum height
-                  }}
-                >
-                  {/* Placeholder to maintain aspect ratio and stable height */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-black rounded-lg flex items-center justify-center">
-                    <div className="text-gray-400 text-sm">Loading video...</div>
-                  </div>
-                  <iframe
-                    ref={(el) => {
-                      videoRefs.current[index] = el;
-                    }}
-                    title={`vimeo-player-${index}`}
-                    src={isVisible ? project.videoUrl : "about:blank"}
-                    frameBorder="0"
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute top-0 left-0 w-full h-full rounded-lg"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    onLoad={(e) => {
-                      // Hide placeholder when iframe loads
-                      const target = e.target as HTMLIFrameElement;
-                      const placeholder = target.parentElement?.querySelector('.absolute.bg-black') as HTMLElement;
-                      if (placeholder) {
-                        placeholder.style.display = 'none';
-                      }
-                    }}
-                  />
-                </div>
+                <VideoSection
+                  iframeSrc={project.videoUrl}
+                  aspectRatio={16 / 9}
+                  fallbackHeight={400}
+                />
               </div>
             ))}
           </div>

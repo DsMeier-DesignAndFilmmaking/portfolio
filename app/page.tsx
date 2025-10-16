@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import useScrollToHash from '@/hooks/useScrollToHash';
 import HashNavigationHandler from '@/components/HashNavigationHandler';
+import { useHashScrollWithResize } from '@/hooks/useHashScrollWithResize';
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -33,6 +34,9 @@ export default function HomePage() {
     smooth: true,
     offset: 120 // Account for fixed navbar
   });
+
+  // Use the new hash scroll hook with resize observer for stable layout
+  useHashScrollWithResize([]);
   const mobileHeroRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {

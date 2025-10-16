@@ -322,6 +322,31 @@ html {
   scroll-margin-top: 40px; /* Reduced offset for optimal earth-map visibility */
 }
 
+/* Video container styles for stable layout */
+.video-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #000; /* optional poster background */
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+/* placeholder styling — visible before iframe loads */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background-color: #000;
+  /* optionally place a poster image:
+     background-image: url('/path/to/poster.jpg'); background-size: cover; */
+}
+
+/* account for fixed navbar height so scroll lands correctly */
+section, .anchor-target {
+  scroll-margin-top: 80px; /* adjust to your navbar height */
+}
+
 /* Keep the badge scroll margin for any direct links to it */
 #world-travel-diaries-badge {
   scroll-margin-top: 100px;
