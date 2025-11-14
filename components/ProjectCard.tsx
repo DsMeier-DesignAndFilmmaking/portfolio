@@ -74,9 +74,11 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
               </span>
             </div>
           )}
-          <div className="w-[90%] p-6 text-gray-900 bg-white">
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="mb-4 text-gray-600">{description}</p>
+          <div className="w-[90%] p-6 text-gray-900 bg-white h-[200px] flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-bold mb-2">{title}</h3>
+              <p className="mb-4 text-gray-600">{description}</p>
+            </div>
             
             <Link
               href={link}
