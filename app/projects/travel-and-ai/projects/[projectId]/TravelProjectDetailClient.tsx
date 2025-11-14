@@ -35,7 +35,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
-    { id: 'design-exploration', label: 'Problems & Opportunities' },
     { id: 'research-audience', label: 'Audience & Research' },
     { id: 'designs-strategy', label: 'Concept & Strategy' },
     { id: 'wireframes-ui', label: 'Design Evolution' },
@@ -136,103 +135,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion ? (
         <>
-          {/* Problem & Opportunity Section */}
-          <section id="design-exploration" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-black">
-                    Problems & Opportunities
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    Understanding the landscape and uncovering real pain points in spontaneous travel experiences
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Background</h3>
-                    <p className="text-gray-600">
-                      Some of my most memorable travel experiences have been unplanned, unfolding in the moment. While plenty of apps cover booking and navigation, there's still a gap in intelligent, context-aware tools that genuinely support spontaneous exploration.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Problem Statement</h3>
-                    <p className="text-gray-600">
-                      Today's travelers want freedom and authentic experiences—but most apps cater to planners, not explorers. Spontaneous travel often means rushed decisions, low-context options, and scattered tools, making the experience stressful and limiting.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Why It Matters</h3>
-                    <p className="text-gray-600">
-                      Spontaneous trips lead to real connections, less stress, and way more memorable adventures. For locals, it means tourism that feels more genuine and new chances to benefit from visitors.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Market Opportunity</h3>
-                    <p className="text-gray-600">
-                      The global travel app market is growing fast, but most tools focus on booking—not helping travelers make smart, in-the-moment decisions or enjoy spontaneous experiences with AI-powered support.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Real Pain Points List */}
-                <div className="mt-16">
-                  <h3 className="text-2xl font-semibold mb-8 text-center text-gray-900">Real Pain Points from Travelers</h3>
-                  <div className="space-y-8">
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Fake spontaneity" or pre-planned "spontaneous" events</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically staged photo-ops for Instagram."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/solotravel</p>
-                        <p className="italic">"I joined a 'spontaneous' pub crawl that turned out to be a weekly commercial thing. It felt forced and salesy."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/travel</p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Tourist echo chambers"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"I was hoping to meet locals or go off the beaten path, but it was just the same backpacker scene recycled across countries."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/backpacking</p>
-                        <p className="italic">"Met great people, but we all ended up doing the same top 5 things from TripAdvisor. No real cultural immersion."</p>
-                        <p className="text-sm text-gray-500">— Blog Comment on Nomadic Matt</p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Last-minute logistics are a nightmare"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"Tried being spontaneous with my itinerary, but trains were booked, hostels full, and tours sold out."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/onebag</p>
-                        <p className="italic">"Spontaneity sounds romantic until you're stuck in a rural town on a Sunday with no food or transport."</p>
-                        <p className="text-sm text-gray-500">— TripAdvisor Review</p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Hard to find trustworthy, in-the-moment suggestions"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"I just want a quick, honest suggestion of where to eat or hang out nearby without scrolling through 400 generic reviews."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/travelhacks</p>
-                        <p className="italic">"Google Maps and TripAdvisor are gamed to death. Where are the real recommendations?"</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/UXDesign (travel app feedback)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
           {/* Audience & Research Section */}
           <section id="research-audience" className="py-20 bg-black">
             <div className="container mx-auto px-6">
