@@ -22,7 +22,7 @@ const projects = [
     link: "/projects/ai-sandbox"
   },
   {
-    title: "Previous Projects",
+    title: "Client Work",
     description: "A collection of past projects highlighting expertise in UX, UI, and web design.",
     imageUrl: "./images/timbertech-card.jpg",
     tags: ["Web Development", "Design", "Software", "Portfolio"],

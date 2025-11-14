@@ -102,13 +102,13 @@ export default function PreviousProjectsPage() {
                   href="/projects/ai-sandbox" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
-                  AI Sandbox
+                  Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
-                  Previous Projects
+                  Client Work
                 </Link>
               </nav>
             </div>
@@ -138,14 +138,14 @@ export default function PreviousProjectsPage() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
-                  AI Sandbox
+                  Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
-                  Previous Projects
+                  Client Work
                 </Link>
               </nav>
             </motion.div>

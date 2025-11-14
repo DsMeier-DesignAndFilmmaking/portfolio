@@ -220,13 +220,13 @@ export default function AISandboxPage() {
                   href="/projects/ai-sandbox" 
                   className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
-                  AI Sandbox
+                  Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
-                  Previous Projects
+                  Client Work
                 </Link>
               </nav>
             </div>
@@ -256,14 +256,14 @@ export default function AISandboxPage() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                  AI Sandbox
+                  Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                  Previous Projects
+                  Client Work
                 </Link>
               </nav>
             </motion.div>
