@@ -135,7 +135,7 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    I'm Dan Meier, a Designer and Creative Technologist. Alongside leading digital design projects at Purdue University, I'm building an AI-driven product that reimagines how the travel industry connects with travelers to support spontaneous, authentic, and meaningful experiences.
+                    I'm Dan Meier, a Designer and Creative Technologist. Alongside leading digital design projects at Purdue University, I produce video content, and design AI-driven tools addressing travel industry pain points. My current focus is a spontaneous travel product that supports travelers with authentic, meaningful experiences, while I continue exploring other solutions to enhance travel.
                     </p>
 
                     {/* Design Journey Path Marker */}
