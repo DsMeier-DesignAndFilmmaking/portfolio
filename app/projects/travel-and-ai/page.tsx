@@ -519,28 +519,28 @@ export default function AISandboxPage() {
                 title: "Spontaneous Travel Companion",
                 description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
-                link: "#"
+                link: "/projects/travel-and-ai/projects/spontaneous-travel-companion"
               },
               {
                 id: 2,
                 title: "Cultural Context Engine",
                 description: "Machine learning system that provides cultural insights and local recommendations.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
-                link: "#"
+                link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
               {
                 id: 3,
                 title: "Travel Planning Assistant",
                 description: "Intelligent assistant that adapts to spontaneous travel preferences and constraints.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
-                link: "#"
+                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
                 id: 4,
                 title: "Local Experience Finder",
                 description: "Context-aware discovery platform connecting travelers with authentic local experiences.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
-                link: "#"
+                link: "/projects/travel-and-ai/projects/local-experience-finder"
               }
             ].map((project, index) => (
               <motion.div
@@ -549,10 +549,10 @@ export default function AISandboxPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
-                <Link href={project.link}>
-                  <div className="relative w-full h-64 overflow-hidden">
+                <Link href={project.link} className="flex flex-col h-full">
+                  <div className="relative w-full h-64 overflow-hidden flex-shrink-0">
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
@@ -561,14 +561,16 @@ export default function AISandboxPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-                    <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex-grow">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300 mt-4">
                       View Project
                       <svg
                         className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
