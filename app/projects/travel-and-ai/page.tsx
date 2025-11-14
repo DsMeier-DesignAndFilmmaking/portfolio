@@ -27,6 +27,7 @@ export default function AISandboxPage() {
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [atTop, setAtTop] = useState(true);
+  const [isNavbarWhite, setIsNavbarWhite] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +42,9 @@ export default function AISandboxPage() {
       // Check if we're over black background sections
       const isOverBlack = scrollPosition >= audienceSectionStart;
       setIsOverBlackBg(isOverBlack);
+
+      // Navbar color transition: start black, turn white after scrolling 100px
+      setIsNavbarWhite(scrollPosition > 100);
 
       // Close mobile menu on scroll
       if (isMobileMenuOpen) {
@@ -63,6 +67,9 @@ export default function AISandboxPage() {
       }
       setLastScrollY(currentScrollY);
     };
+
+    // Initial check on mount
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -169,7 +176,11 @@ export default function AISandboxPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isNavbarWhite 
+            ? 'bg-white' 
+            : 'bg-black'
+        } ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
@@ -187,17 +198,25 @@ export default function AISandboxPage() {
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className="h-9 w-auto brightness-0"
+                  className={`h-9 w-auto transition-all duration-500 ${
+                    isNavbarWhite ? 'brightness-0' : 'brightness-0 invert'
+                  }`}
                 />
               </button>
-              <div className="h-6 w-px bg-black/30"></div>
-              <span className="text-sm font-medium text-black/70">Design Work</span>
+              <div className={`h-6 w-px transition-colors duration-500 ${
+                isNavbarWhite ? 'bg-black/30' : 'bg-white/30'
+              }`}></div>
+              <span className={`text-sm font-medium transition-colors duration-500 ${
+                isNavbarWhite ? 'text-black/70' : 'text-white/70'
+              }`}>Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg flex items-center justify-end text-black"
+              className={`md:hidden pl-4 py-2 rounded-lg flex items-center justify-end transition-colors duration-500 ${
+                isNavbarWhite ? 'text-black' : 'text-white'
+              }`}
               aria-label="Toggle mobile menu"
             >
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -212,19 +231,31 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-black hover:text-blue-400' 
+                      : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/travel-and-ai" 
-                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-black hover:text-blue-400' 
+                      : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-black hover:text-blue-400' 
+                      : 'text-white hover:text-blue-400'
+                  }`}
                 >
                   Client Work
                 </Link>
@@ -241,27 +272,41 @@ export default function AISandboxPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg mx-6"
+              className={`md:hidden absolute top-full left-0 right-0 mt-2 backdrop-blur-sm rounded-lg shadow-lg mx-6 transition-colors duration-500 ${
+                isNavbarWhite ? 'bg-white/95' : 'bg-black/95'
+              }`}
             >
               <nav className="flex flex-col p-4 px-6 space-y-4">
                 <Link 
                   href="/projects/purdue" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-gray-600 hover:text-gray-900' 
+                      : 'text-gray-300 hover:text-white'
+                  }`}
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-gray-600 hover:text-gray-900' 
+                      : 'text-gray-300 hover:text-white'
+                  }`}
                 >
                   Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className={`text-[11pt] transition-colors duration-500 ${
+                    isNavbarWhite 
+                      ? 'text-gray-600 hover:text-gray-900' 
+                      : 'text-gray-300 hover:text-white'
+                  }`}
                 >
                   Client Work
                 </Link>
