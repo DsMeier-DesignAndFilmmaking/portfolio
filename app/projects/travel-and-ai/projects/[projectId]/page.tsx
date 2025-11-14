@@ -319,6 +319,16 @@ const projectData: Record<string, any> = {
   }
 };
 
+// Generate static params for all project IDs
+export function generateStaticParams() {
+  return [
+    { projectId: 'spontaneous-travel-companion' },
+    { projectId: 'cultural-context-engine' },
+    { projectId: 'travel-planning-assistant' },
+    { projectId: 'local-experience-finder' }
+  ];
+}
+
 export default function TravelProjectDetailPage({ params }: { params: { projectId: string } }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
