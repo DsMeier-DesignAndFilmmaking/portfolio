@@ -105,13 +105,14 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {isSpontaneousTravelCompanion && <StickyProgressNav sections={sections} />}
 
       {/* Hero Section */}
-      <section className="bg-white py-20 md:py-32" aria-label="Project Hero">
+      <section className="bg-white pt-20 md:pt-32" aria-label="Project Hero">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="text-center"
             >
               {/* Project Title */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -119,7 +120,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
               </h1>
               
               {/* Subtitle */}
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
                 {isSpontaneousTravelCompanion 
                   ? "AI-powered tool that helps travelers discover authentic experiences in real-time." 
                   : project?.tagline || "Project description"}
@@ -127,7 +128,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
               
               {/* Metadata Row */}
               {project?.metadata && (
-                <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-base text-gray-500 border-t border-gray-200 pt-8">
+                <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm md:text-base text-gray-500 border-t border-gray-200 pt-8">
                   {project.metadata.role && (
                     <>
                       <span className="font-medium text-gray-700">
