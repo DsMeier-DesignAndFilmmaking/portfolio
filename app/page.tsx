@@ -383,10 +383,10 @@ export default function HomePage() {
               Purdue University
             </Link>
             <Link 
-              href="/projects/ai-sandbox" 
+              href="/projects/travel-and-ai" 
               className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
             >
-              AI Sandbox
+              Travel & AI
             </Link>
             <Link 
               href="/projects/previous" 

@@ -116,7 +116,7 @@ export default function PurdueProjectPage() {
                   Purdue University
                 </Link>
                 <Link 
-                  href="/projects/ai-sandbox" 
+                  href="/projects/travel-and-ai" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   Travel & AI
@@ -151,7 +151,7 @@ export default function PurdueProjectPage() {
                   Purdue University
                 </Link>
                 <Link 
-                  href="/projects/ai-sandbox" 
+                  href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-300 hover:text-white transition-colors"
                 >
@@ -484,17 +484,17 @@ export default function PurdueProjectPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Next Project Card */}
-            <Link href="/projects/ai-sandbox" className="group">
+            <Link href="/projects/travel-and-ai" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
                   src="/portfolio/images/travelApp-card.jpg"
-                  alt="AI Sandbox Project"
+                  alt="Travel & AI Project"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">AI Sandbox</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Travel & AI</h3>
                   <p className="text-gray-200 mb-4">Currently, I am building a travel application using AI tools.</p>
                   <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
                     View Project

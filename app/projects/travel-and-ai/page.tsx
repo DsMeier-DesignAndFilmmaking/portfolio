@@ -217,7 +217,7 @@ export default function AISandboxPage() {
                   Purdue University
                 </Link>
                 <Link 
-                  href="/projects/ai-sandbox" 
+                  href="/projects/travel-and-ai" 
                   className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Travel & AI
@@ -252,7 +252,7 @@ export default function AISandboxPage() {
                   Purdue University
                 </Link>
                 <Link 
-                  href="/projects/ai-sandbox" 
+                  href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
@@ -394,15 +394,15 @@ export default function AISandboxPage() {
               }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-                <span className="text-gray-200">Travel & AI Case Study</span>
+                <span className="text-gray-200">AI Travel Projects</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                  AI Sandbox
+                  Designing AI-Driven Travel Experiences
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                With 41 countries behind me, I've gathered stories, insights, and lessons from the road. Now I'm combining that global perspective with my background in design and technology to create smarter, more meaningful tools for modern travelers.
+                After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
               </p>
             </motion.div>
           </div>

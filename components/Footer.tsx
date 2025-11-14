@@ -33,8 +33,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/projects/ai-sandbox/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
-                  AI Sandbox (Travel App)
+                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/projects/travel-and-ai/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
+                  Travel & AI
                 </Link>
               </li>
               <li>
