@@ -313,6 +313,6 @@ export function generateStaticParams() {
 export default function TravelProjectDetailPage({ params }: { params: { projectId: string } }) {
   const project = projectData[params?.projectId || ''];
   
-  return <TravelProjectDetailClient project={project} />;
+  return <TravelProjectDetailClient project={project} projectId={params?.projectId || ''} />;
 }
 
