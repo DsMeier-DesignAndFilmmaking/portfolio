@@ -90,29 +90,60 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center text-white overflow-hidden" aria-label="Project Hero">
-        <Image
-          src={isSpontaneousTravelCompanion ? "/portfolio/images/travelApp-card.jpg" : project.heroImage}
-          alt={isSpontaneousTravelCompanion ? "Spontaneous Travel Companion" : project.title}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              {isSpontaneousTravelCompanion ? "Spontaneous Travel Companion" : project.title}
-            </h1>
-            <p className="text-lg md:text-xl font-light">
-              {isSpontaneousTravelCompanion ? "AI-powered tool that helps travelers discover authentic experiences in real-time." : project.tagline}
-            </p>
-          </motion.div>
+      <section className="bg-white py-20 md:py-32" aria-label="Project Hero">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Project Title */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                {isSpontaneousTravelCompanion ? "Spontaneous Travel Companion" : project?.title || "Project Title"}
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl leading-relaxed">
+                {isSpontaneousTravelCompanion 
+                  ? "AI-powered tool that helps travelers discover authentic experiences in real-time." 
+                  : project?.tagline || "Project description"}
+              </p>
+              
+              {/* Metadata Row */}
+              {project?.metadata && (
+                <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-base text-gray-500 border-t border-gray-200 pt-8">
+                  {project.metadata.role && (
+                    <>
+                      <span className="font-medium text-gray-700">
+                        {project.metadata.role}
+                      </span>
+                      {(project.metadata.timeline || (project.metadata.tools && project.metadata.tools.length > 0)) && (
+                        <span className="text-gray-300">•</span>
+                      )}
+                    </>
+                  )}
+                  
+                  {project.metadata.timeline && (
+                    <>
+                      <span>{project.metadata.timeline}</span>
+                      {project.metadata.tools && project.metadata.tools.length > 0 && (
+                        <span className="text-gray-300">•</span>
+                      )}
+                    </>
+                  )}
+                  
+                  {project.metadata.tools && project.metadata.tools.length > 0 && (
+                    <span>{project.metadata.tools.join(', ')}</span>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          </div>
         </div>
+        
+        {/* Subtle Divider */}
+        <div className="border-b border-gray-100 mt-16 md:mt-20"></div>
       </section>
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
