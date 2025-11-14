@@ -83,7 +83,11 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
               onClick={handleClick}
               className="inline-flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors hover:underline"
             >
-              {title === "Previous Projects" ? "View Projects" : "View Project"}
+              {title === "Purdue University" 
+                ? "View Work" 
+                : title === "Travel & AI" 
+                ? "View Case Studies" 
+                : "View Projects"}
               <motion.svg
                 className="w-4 h-4 ml-2"
                 fill="none"

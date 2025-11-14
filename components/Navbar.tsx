@@ -252,7 +252,7 @@ const Navbar = () => {
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
-                Digital Design
+                Design
               </a>
               <a 
                 href="#video-projects" 
@@ -272,16 +272,6 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
-                href="/my-pulse"
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
-                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
-                }`}
-                target="_self"
-                rel=""
-              >
-                My Pulse
-              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
@@ -318,7 +308,7 @@ const Navbar = () => {
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                Digital Design
+                Design
               </a>
               <a 
                 href="#video-projects" 
@@ -338,17 +328,6 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
-              <Link 
-                href="/my-pulse"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
-                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
-                }`}
-                target="_self"
-                rel=""
-              >
-                My Pulse
-              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
