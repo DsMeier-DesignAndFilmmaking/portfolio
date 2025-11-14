@@ -140,7 +140,7 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
           x: isVisible ? 0 : 20
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="hidden md:block fixed right-6 top-1/2 -translate-y-1/2 z-40"
+        className="hidden md:block fixed right-6 top-[40%] -translate-y-1/2 z-40"
         role="navigation"
         aria-label="Page sections navigation"
       >

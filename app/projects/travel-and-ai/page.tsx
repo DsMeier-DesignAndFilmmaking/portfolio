@@ -306,8 +306,37 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
-        {/* Hero Video Background */}
+      <section id="intro" className="relative w-full bg-black min-h-screen flex items-center" aria-label="Project Hero">
+        {/* Hero Content */}
+        <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
+          <div className="container mx-auto px-6 py-20 md:py-32">
+            <motion.div 
+              className={`max-w-2xl ${isMobile ? 'text-center' : ''}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.3
+              }}
+            >
+              <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
+                <span className="text-gray-200">AI Travel Projects</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-white">
+                  Designing AI-Driven Travel Experiences
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-white leading-relaxed">
+                After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="relative w-full overflow-hidden" aria-label="Video Background">
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Fallback Image - Always loaded first for instant display */}
           <motion.div
@@ -412,34 +441,6 @@ export default function AISandboxPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
-          </div>
-        </div>
-
-        {/* Hero Content */}
-        <div className={`absolute inset-0 z-20 flex items-center ${isMobile ? 'justify-center' : ''}`}>
-          <div className="container mx-auto px-6">
-            <motion.div 
-              className={`max-w-2xl ${isMobile ? 'text-center' : 'mt-[100px]'}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: (isVideoError || isMobileVideoError || showFallbackImage) ? 0.3 : 
-                       (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 
-              }}
-            >
-              <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-                <span className="text-gray-200">AI Travel Projects</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                  Designing AI-Driven Travel Experiences
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-white leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>

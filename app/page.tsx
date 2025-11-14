@@ -365,14 +365,6 @@ export default function HomePage() {
         </section>
         
 
-
-        {/* Cursor AI Tag */}
-        <div className="fixed bottom-4 right-4 z-50">
-          <div className="bg-black/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-            <span className="text-white/70 text-xs font-mono">Built with Cursor</span>
-          </div>
-        </div>
-
         {/* Mobile Navigation Links */}
         <div className="hidden flex flex-col p-4 pl-[30px] space-y-4">
           <div className="flex items-center justify-between">
