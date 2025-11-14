@@ -125,35 +125,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   ? "AI-powered tool that helps travelers discover authentic experiences in real-time." 
                   : project?.tagline || "Project description"}
               </p>
-              
-              {/* Metadata Row */}
-              {project?.metadata && (
-                <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm md:text-base text-gray-500 border-t border-gray-200 pt-8">
-                  {project.metadata.role && (
-                    <>
-                      <span className="font-medium text-gray-700">
-                        {project.metadata.role}
-                      </span>
-                      {(project.metadata.timeline || (project.metadata.tools && project.metadata.tools.length > 0)) && (
-                        <span className="text-gray-300">•</span>
-                      )}
-                    </>
-                  )}
-                  
-                  {project.metadata.timeline && (
-                    <>
-                      <span>{project.metadata.timeline}</span>
-                      {project.metadata.tools && project.metadata.tools.length > 0 && (
-                        <span className="text-gray-300">•</span>
-                      )}
-                    </>
-                  )}
-                  
-                  {project.metadata.tools && project.metadata.tools.length > 0 && (
-                    <span>{project.metadata.tools.join(', ')}</span>
-                  )}
-                </div>
-              )}
             </motion.div>
           </div>
         </div>
