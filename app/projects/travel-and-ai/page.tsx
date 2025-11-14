@@ -505,6 +505,89 @@ export default function AISandboxPage() {
         </div>
       </section>
 
+      {/* Project Cards Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                id: 1,
+                title: "Spontaneous Travel Companion",
+                description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
+                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                link: "#"
+              },
+              {
+                id: 2,
+                title: "Cultural Context Engine",
+                description: "Machine learning system that provides cultural insights and local recommendations.",
+                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                link: "#"
+              },
+              {
+                id: 3,
+                title: "Travel Planning Assistant",
+                description: "Intelligent assistant that adapts to spontaneous travel preferences and constraints.",
+                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                link: "#"
+              },
+              {
+                id: 4,
+                title: "Local Experience Finder",
+                description: "Context-aware discovery platform connecting travelers with authentic local experiences.",
+                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                link: "#"
+              }
+            ].map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+              >
+                <Link href={project.link}>
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                    <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
+                      View Project
+                      <svg
+                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Problem & Opportunity Section */}
       <section id="design-exploration" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
