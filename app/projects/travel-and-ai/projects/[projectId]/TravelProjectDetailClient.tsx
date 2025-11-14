@@ -2064,6 +2064,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </div>
         </div>
       </section>
+        </>
+      )}
 
       {/* Back to Projects Link */}
       <section className="py-12 bg-gray-50">
