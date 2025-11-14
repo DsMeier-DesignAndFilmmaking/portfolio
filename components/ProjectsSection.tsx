@@ -14,7 +14,7 @@ const projects = [
     ongoingClient: true
   },
   {
-    title: "AI Sandbox",
+    title: "Travel & AI",
     description: "Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.",
     imageUrl: "./images/travelApp-card.jpg",
     tags: ["AI", "Machine Learning", "Education", "Interactive"],
