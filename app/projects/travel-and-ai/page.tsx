@@ -7,7 +7,6 @@ import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
-import StickyProgressNav from '../../../components/StickyProgressNav';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -154,15 +153,6 @@ export default function AISandboxPage() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  // Define sections for the sticky progress nav
-  const sections = [
-    { id: 'design-exploration', label: 'Problems / Opportunities / Research' },
-    { id: 'designs-strategy', label: 'Concept & Strategy' },
-    { id: 'wireframes-ui', label: 'Designing + Building with AI' },
-    { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
-    { id: 'learnings-next', label: 'Learnings & Next Steps' }
-  ];
 
   return (
     <main className="bg-white text-black overflow-hidden">
@@ -314,9 +304,6 @@ export default function AISandboxPage() {
           )}
         </AnimatePresence>
       </motion.nav>
-
-      {/* Sticky Progress Navigation */}
-      <StickyProgressNav sections={sections} />
 
       {/* Hero Section */}
       <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">

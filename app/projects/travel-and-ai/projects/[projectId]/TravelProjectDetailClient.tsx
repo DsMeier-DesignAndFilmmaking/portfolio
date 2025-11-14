@@ -18,6 +18,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../../components/PageTransitionOverlay';
+import StickyProgressNav from '../../../../../components/StickyProgressNav';
 
 interface TravelProjectDetailClientProps {
   project: any;
@@ -31,6 +32,17 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
   
   // Check if this is the spontaneous-travel-companion project
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
+
+  // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
+  const sections = [
+    { id: 'design-exploration', label: 'Problems & Opportunities' },
+    { id: 'research-audience', label: 'Audience & Research' },
+    { id: 'designs-strategy', label: 'Concept & Strategy' },
+    { id: 'wireframes-ui', label: 'Design Evolution' },
+    { id: 'prototyping-ai', label: 'Development & Build' },
+    { id: 'outcomes-launch', label: 'Launch & Testing' },
+    { id: 'learnings-next', label: 'Outcome & Learnings' }
+  ];
 
   useEffect(() => {
     // Handle scroll for navbar
@@ -88,6 +100,9 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </div>
         </div>
       </motion.nav>
+
+      {/* Sticky Progress Navigation - Only for spontaneous-travel-companion */}
+      {isSpontaneousTravelCompanion && <StickyProgressNav sections={sections} />}
 
       {/* Hero Section */}
       <section className="bg-white py-20 md:py-32" aria-label="Project Hero">
