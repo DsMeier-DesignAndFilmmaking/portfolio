@@ -420,10 +420,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Top black gradient - fades from black navbar into transparent */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black via-black/80 via-black/40 to-transparent" />
-            {/* Center radial gradient */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
+            {/* Top black gradient - solid black at top fading down to white gradient */}
+            <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-black via-black/90 via-black/70 via-black/50 via-black/30 to-transparent" />
             {/* Bottom white gradient - fades to white page background */}
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
           </div>
