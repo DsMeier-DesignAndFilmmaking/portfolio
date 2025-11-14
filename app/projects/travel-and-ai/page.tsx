@@ -442,57 +442,26 @@ export default function AISandboxPage() {
             {/* Bottom white gradient - fades to white page background */}
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
           </div>
-        </div>
-      </section>
 
-      {/* Quote Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            whileInView={{ 
-              opacity: 1, 
-              y: 0, 
-              scale: 1 
-            }}
-            viewport={{ 
-              once: true, 
-              amount: 0.1
-            }}
-            transition={{ 
-              duration: 1.2, 
-              ease: "easeOut",
-              delay: 0.2
-            }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <motion.div 
-              className="p-12 rounded-2xl"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <motion.blockquote 
-                className="text-3xl md:text-4xl font-light text-gray-800 italic leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 1, delay: 0.6 }}
+          {/* Quote Overlay - Left Aligned */}
+          <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
+            <div className="container mx-auto px-6 md:px-12">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                className="max-w-2xl"
               >
-                "A good traveler has no fixed plans and is not intent on arriving."
-              </motion.blockquote>
-              <motion.p 
-                className="text-lg text-gray-600"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                — Lao Tzu
-              </motion.p>
-            </motion.div>
-          </motion.div>
+                <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white italic leading-relaxed mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                  "A good traveler has no fixed plans and is not intent on arriving."
+                </blockquote>
+                <p className="text-base md:text-lg text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                  — Lao Tzu
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
