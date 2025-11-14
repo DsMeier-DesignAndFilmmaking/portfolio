@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
+import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -45,11 +46,6 @@ const project = {
   description: "Information architecture and web design work for Rich Products, focusing on improving user navigation and content organization.",
   heroImage: "/portfolio/images/richProducts-card.jpg",
   year: "IA & Web Design",
-  stats: {
-    users: "35k+",
-    countries: "5",
-    impact: "88%"
-  },
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   images: [
     "/portfolio/images/FarmRich_wireSpecs_02-07-2011.png",
@@ -157,16 +153,6 @@ export default function RichProductsProjectPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-          </div>
-        </div>
-      </section>
 
       {/* Project Images Section */}
       <section className="py-20 bg-black">
@@ -191,7 +177,7 @@ export default function RichProductsProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including wireframes, specifications, and design assets.
+            Explore detailed documentation and deliverables from this project.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
@@ -264,94 +250,12 @@ export default function RichProductsProjectPage() {
       </section>
 
       {/* Next Project Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
-            More Design Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Project Card 1 */}
-            <Link href="/projects/previous/mcdonalds-kiosk" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/mcDonalds-card.jpg"
-                  alt="McDonalds Kiosk"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">McDonalds Kiosk</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative self-service ordering experience</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 2 */}
-            <Link href="/projects/previous/sphere-software" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/sphere-card.jpg"
-                  alt="Sphere Software"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Sphere Software</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative software solutions for modern businesses</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 3 */}
-            <Link href="/projects/previous/havas-agency" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/havas-card.jpg"
-                  alt="Havas Agency"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Havas Agency</h3>
-                  <p className="text-sm text-gray-200 mb-4">Creative digital solutions for global advertising</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 4 */}
-            <Link href="/projects/previous/rich-products" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/richProducts-card.jpg"
-                  alt="Rich Products"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Rich Products</h3>
-                  <p className="text-sm text-gray-200 mb-4">Digital transformation for food industry leader</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ViewMoreWorkSection 
+        currentProjectId="rich-products"
+        title="More Design Work"
+        bgColor="bg-white"
+        textColor="text-gray-400"
+      />
     </main>
   );
 } 

@@ -2,6 +2,281 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for navbar width transitions */
+:root {
+  --hero-max-width: 576px;
+  --design-max-width: 1280px; /* max-w-7xl = 80rem = 1280px */
+}
+
+/* ===== NAVBAR COMPLETE STYLES ===== */
+
+/* Core Navbar Wrapper */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Navbar Container */
+.navbar-container {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  line-height: inherit;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39/var(--tw-text-opacity,1));
+  font-family: __Inter_f367f3,__Inter_Fallback_f367f3;
+  font-style: normal;
+  pointer-events: auto;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59,130,246,.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-contain-size: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  --tw-contain-style: ;
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.5s ease;
+}
+
+/* Navbar content container for width transitions */
+.navbar-content {
+  transition: max-width 0.6s ease, margin 0.6s ease;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 576px; /* current default width at page load */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-content.shrink {
+  max-width: 56rem; /* matches Tailwind max-w-4xl */
+  margin: 0 auto;
+  padding-left: 1.5rem; /* matches px-6 (24px) */
+  padding-right: 1.5rem; /* matches px-6 (24px) */
+}
+
+/* Mobile responsive - disable width animation on mobile */
+@media (max-width: 768px) {
+  .navbar-container {
+    transition: background-color 0.5s ease;
+  }
+  
+  .navbar-content {
+    max-width: 576px !important; /* matches hero content width */
+    margin: 0 auto !important;
+    padding-left: 1.5rem !important; /* add padding for logo and menu button */
+    padding-right: 1.5rem !important; /* add padding for logo and menu button */
+    transition: none;
+  }
+  
+  .navbar-content.shrink {
+    max-width: 576px !important; /* matches hero content width */
+    margin: 0 auto !important;
+    padding-left: 1.5rem !important; /* add padding for logo and menu button */
+    padding-right: 1.5rem !important; /* add padding for logo and menu button */
+  }
+}
+
+/* Background States */
+.bg-white-90 { background-color: rgba(255, 255, 255, 0.9); }
+.bg-black-90 { background-color: rgba(0, 0, 0, 0.9); }
+.bg-white-95 { background-color: rgba(255, 255, 255, 0.95); }
+.bg-black-95 { background-color: rgba(0, 0, 0, 0.95); }
+
+/* Layout & Spacing */
+.max-w-4xl { 
+  max-width: 56rem; 
+  margin-left: auto; 
+  margin-right: auto; 
+  padding-left: 1.5rem; 
+  padding-right: 1.5rem;
+}
+.mx-auto { margin-left: auto; margin-right: auto; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.pl-4 { padding-left: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+/* Flexbox */
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.items-center { align-items: center; }
+.flex-col { flex-direction: column; }
+.space-x-8 > * + * { margin-left: 2rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+
+/* Typography */
+.text-12pt { font-size: 12pt; }
+.font-normal { font-weight: 400; }
+.text-black { color: #000000; }
+.text-white { color: #ffffff; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-600 { color: #4b5563; }
+.text-blue-400 { color: #60a5fa; }
+
+/* Hover States */
+.hover-text-blue-400:hover { color: #60a5fa; }
+.hover-opacity-80:hover { opacity: 0.8; }
+
+/* Transitions */
+.transition-colors { 
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all { 
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-opacity { 
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.duration-300 { transition-duration: 300ms; }
+.duration-500 { transition-duration: 500ms; }
+
+/* Hamburger Menu */
+.hamburger-container {
+  width: 1.5rem;
+  height: 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.hamburger-line {
+  width: 100%;
+  height: 0.125rem;
+  background-color: currentColor;
+  transition: all 0.3s ease;
+}
+.hamburger-line-1.open { transform: rotate(45deg) translateY(0.5rem); }
+.hamburger-line-2.open { opacity: 0; }
+.hamburger-line-3.open { transform: rotate(-45deg) translateY(-0.5rem); }
+
+/* Mobile Menu */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
+  transition: background-color 0.5s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.fade-in { 
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+.slide-down { 
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slideDown 0.2s ease-in-out forwards;
+}
+
+/* Utilities */
+.rounded-lg { border-radius: 0.5rem; }
+.hidden { display: none; }
+.w-full { width: 100%; }
+.h-9 { height: 2.25rem; }
+.w-auto { width: auto; }
+.cursor-pointer { cursor: pointer; }
+.invert { filter: invert(1); }
+
+/* Responsive */
+@media (min-width: 768px) {
+  .md-block { display: block; }
+  .md-hidden { display: none; }
+}
+
+/* Focus & Accessibility */
+.nav-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+body {
+  scroll-margin-top: 120px;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-rgb: 0, 0, 0;
@@ -14,22 +289,62 @@ body {
   overflow-x: hidden;
 }
 
+/* Add padding on mobile to prevent content from going under fixed navbar */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px; /* Adjust based on your navbar height */
+  }
+}
+
 /* Smooth scrolling and anchor positioning */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px; /* Global anchor offset for fixed navbar */
+  /* Disabled CSS scroll-behavior to use custom JS implementation */
+  /* scroll-behavior: smooth; - Disabled to prevent conflicts with custom JavaScript scrolling */
+  /* scroll-padding-top: 120px; - Removed to let custom scroll calculations handle positioning */
 }
 
 /* Anchor offset for all main sections to account for fixed navbar */
 #black-section,
 #video-projects,
 #world-travel-diaries,
+#travelogue,
 #photography {
-  scroll-margin-top: 120px; /* adjust if navbar height changes */
+  scroll-margin-top: 80px; /* Fixed navbar height */
   /* Ensure stable positioning */
   position: relative;
-  /* Optimize for immediate scroll positioning */
-  scroll-behavior: smooth;
+  /* Prevent layout shifts during scroll */
+  min-height: 100vh;
+  /* Remove conflicting scroll behavior */
+}
+
+/* Special scroll margin for travelogue background element */
+#world-travel-diaries-background {
+  scroll-margin-top: -426px; /* Negative offset to scroll to desired position (8988.609375) */
+}
+
+/* Video container styles for stable layout */
+.video-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #000; /* optional poster background */
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+/* placeholder styling — visible before iframe loads */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background-color: #000;
+  /* optionally place a poster image:
+     background-image: url('/path/to/poster.jpg'); background-size: cover; */
+}
+
+/* account for fixed navbar height so scroll lands correctly */
+section, .anchor-target {
+  scroll-margin-top: 80px; /* adjust to your navbar height */
 }
 
 /* Keep the badge scroll margin for any direct links to it */

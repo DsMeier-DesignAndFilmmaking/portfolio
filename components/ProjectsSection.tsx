@@ -1,12 +1,13 @@
 'use client';
 import ProjectCard from './ProjectCard';
 import StatsSection from './StatsSection';
+import FadeInSection from './FadeInSection';
 import Image from 'next/image';
 
 const projects = [
   {
     title: "Purdue University",
-    description: "A web redesign project focused on enhancing UX, UI, and streamlining content management.",
+    description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
     imageUrl: "./images/PU-Memorial-Mall-DJI.jpg",
     tags: ["Education", "Research", "Engineering", "Technology"],
     link: "/projects/purdue",
@@ -31,26 +32,50 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section id="black-section" className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-6">
-        <div id="stats-section" className="mb-0 md:mb-24">
-          <StatsSection />
-        </div>
+    <section id="black-section" className="py-24" style={{ backgroundColor: '#1A1A1A' }}>
+      <div className="max-w-4xl mx-auto px-6">
+        <FadeInSection 
+          delay={0.1}
+          duration={0.8}
+          direction="up"
+          distance={40}
+          threshold={0.2}
+        >
+          <div id="stats-section" className="mb-0 md:mb-24">
+            <StatsSection />
+          </div>
+        </FadeInSection>
 
-        <div className="mb-16">
-          <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
-            Select Design Work
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl font-sans">
-            A selection of my recent work in design and development.
-          </p>
-        </div>
+        <FadeInSection 
+          delay={0.2}
+          duration={0.8}
+          direction="up"
+          distance={30}
+          threshold={0.2}
+        >
+          <div className="mb-16">
+            <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
+              Work and Projects
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl font-sans">
+              A collection of selected projects across design and development.
+            </p>
+          </div>
+        </FadeInSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
-        </div>
+        <FadeInSection 
+          delay={0.3}
+          duration={0.8}
+          direction="up"
+          distance={50}
+          threshold={0.1}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard key={index} {...project} />
+            ))}
+          </div>
+        </FadeInSection>
       </div>
     </section>
   );

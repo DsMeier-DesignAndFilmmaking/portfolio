@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Favicon Generator - Square Design with Teal & Terracotta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .favicon-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .favicon-preview {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .download-btn {
+            background: #1E5A74;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .download-btn:hover {
+            background: #16495E;
+        }
+        .color-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>DM Favicon Generator - Square Design with Teal & Terracotta</h1>
+    <p>Clean, modern square favicon with your initials using professional color gradients - optimized for maximum space utilization.</p>
+    
+    <div class="color-info">
+        <h3>Color Palette:</h3>
+        <p><strong>Teal Gradient:</strong> #1E5A74 → #16495E (Background)</p>
+        <p><strong>Terracotta Gradient:</strong> #C77B30 → #B86B27 (Border)</p>
+        <p><strong>Text:</strong> White for maximum contrast</p>
+    </div>
+    
+    <div class="favicon-container">
+        <div class="favicon-preview">
+            <h3>16x16 Favicon</h3>
+            <canvas id="canvas16" width="16" height="16"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadCanvas('canvas16', 'favicon-16x16.png')">Download 16x16</button>
+        </div>
+        
+        <div class="favicon-preview">
+            <h3>32x32 Favicon</h3>
+            <canvas id="canvas32" width="32" height="32"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadCanvas('canvas32', 'favicon-32x32.png')">Download 32x32</button>
+        </div>
+        
+        <div class="favicon-preview">
+            <h3>512x512 Favicon</h3>
+            <canvas id="canvas512" width="512" height="512"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadCanvas('canvas512', 'favicon-512x512.png')">Download 512x512</button>
+        </div>
+    </div>
+
+    <script>
+        // Color definitions
+        const colors = {
+            tealStart: '#1E5A74',
+            tealEnd: '#16495E',
+            terracottaStart: '#C77B30',
+            terracottaEnd: '#B86B27',
+            white: '#FFFFFF'
+        };
+
+        // Draw favicon at different sizes
+        function drawFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 32;
+            
+            // Create teal gradient
+            const tealGradient = ctx.createLinearGradient(0, 0, size, size);
+            tealGradient.addColorStop(0, colors.tealStart);
+            tealGradient.addColorStop(1, colors.tealEnd);
+            
+            // Create terracotta gradient
+            const terracottaGradient = ctx.createLinearGradient(0, 0, size, size);
+            terracottaGradient.addColorStop(0, colors.terracottaStart);
+            terracottaGradient.addColorStop(1, colors.terracottaEnd);
+            
+            // Background square with teal gradient
+            ctx.fillStyle = tealGradient;
+            ctx.fillRect(2 * scale, 2 * scale, size - 4 * scale, size - 4 * scale);
+            
+            // Border square with terracotta gradient
+            ctx.strokeStyle = terracottaGradient;
+            ctx.lineWidth = 2 * scale;
+            ctx.strokeRect(2 * scale, 2 * scale, size - 4 * scale, size - 4 * scale);
+            
+            // DM text in white - larger font to maximize square space
+            ctx.fillStyle = colors.white;
+            ctx.font = `bold ${14 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('DM', size/2, size/2);
+        }
+
+        // Download function
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Generate all favicons
+        function generateFavicons() {
+            drawFavicon(document.getElementById('canvas16'), 16);
+            drawFavicon(document.getElementById('canvas32'), 32);
+            drawFavicon(document.getElementById('canvas512'), 512);
+        }
+
+        // Generate on load
+        window.onload = generateFavicons;
+    </script>
+</body>
+</html>

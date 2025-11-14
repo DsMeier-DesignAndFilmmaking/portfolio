@@ -1,0 +1,201 @@
+{
+  "totalPrompts": 150,
+  "promptsByDay": {
+    "2025-10-11": 3,
+    "2025-09-25": 5,
+    "2025-09-20": 5,
+    "2025-10-03": 8,
+    "2025-09-30": 4,
+    "2025-10-05": 6,
+    "2025-10-06": 7,
+    "2025-09-15": 10,
+    "2025-09-17": 4,
+    "2025-10-09": 3,
+    "2025-09-23": 4,
+    "2025-10-12": 7,
+    "2025-09-22": 6,
+    "2025-09-18": 6,
+    "2025-10-14": 6,
+    "2025-10-13": 5,
+    "2025-10-08": 6,
+    "2025-09-24": 7,
+    "2025-10-10": 3,
+    "2025-09-21": 3,
+    "2025-10-04": 5,
+    "2025-10-07": 3,
+    "2025-09-26": 5,
+    "2025-09-19": 7,
+    "2025-10-01": 3,
+    "2025-09-28": 5,
+    "2025-09-29": 2,
+    "2025-09-16": 5,
+    "2025-10-02": 2,
+    "2025-09-27": 5
+  },
+  "topPrompts": [
+    {
+      "prompt": "Add error handling to this async function",
+      "count": 22
+    },
+    {
+      "prompt": "Refactor this component to use hooks",
+      "count": 18
+    },
+    {
+      "prompt": "Generate documentation for this module",
+      "count": 15
+    },
+    {
+      "prompt": "Add input validation to this form",
+      "count": 14
+    },
+    {
+      "prompt": "Implement responsive design for mobile",
+      "count": 11
+    },
+    {
+      "prompt": "Fix the TypeScript error in this function",
+      "count": 11
+    },
+    {
+      "prompt": "Generate a React component for user authentication",
+      "count": 11
+    },
+    {
+      "prompt": "Fix memory leak in this component",
+      "count": 9
+    },
+    {
+      "prompt": "Create unit tests for this API endpoint",
+      "count": 9
+    },
+    {
+      "prompt": "Create reusable utility functions",
+      "count": 8
+    }
+  ],
+  "recentPrompts": [
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Create reusable utility functions",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Create reusable utility functions",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Create unit tests for this API endpoint",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Implement responsive design for mobile",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": false
+    },
+    {
+      "timestamp": "2025-10-14T14:26:34.499Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:26:34.499Z",
+      "prompt": "Generate documentation for this module",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:26:34.499Z",
+      "prompt": "Generate a React component for user authentication",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:26:34.499Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:26:34.499Z",
+      "prompt": "Implement responsive design for mobile",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-13T14:26:34.499Z",
+      "prompt": "Optimize bundle size and performance",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Generate documentation for this module",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Add input validation to this form",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Implement responsive design for mobile",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Review this code for security vulnerabilities",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Create unit tests for this API endpoint",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Add error handling to this async function",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-12T14:26:34.499Z",
+      "prompt": "Fix memory leak in this component",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T14:26:34.499Z",
+      "prompt": "Refactor this component to use hooks",
+      "model": "gpt-4",
+      "success": true
+    },
+    {
+      "timestamp": "2025-10-11T14:26:34.499Z",
+      "prompt": "Convert this class component to functional component",
+      "model": "gpt-4",
+      "success": true
+    }
+  ],
+  "generatedAt": "2025-10-14T14:26:34.500Z",
+  "source": "cursor-usage-parser"
+}

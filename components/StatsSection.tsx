@@ -154,56 +154,41 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
   }, []);
 
   return (
-    <div className={`bg-black py-24 ${className}`}>
+    <div id="design" className={`py-24 ${className}`} style={{ backgroundColor: '#1A1A1A' }}>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 order-2 lg:order-1">  
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 order-2 lg:order-1">  
             {/* Industries Served */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">Industries Served</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
+              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Industries Served</h3>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>8</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
                 </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">8</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
 
             {/* Projects Completed */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">Projects Completed</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
+              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Projects Completed</h3>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>50+</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
                 </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">50+</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
 
             {/* URLs Impacted */}
-            <div className="stat-card bg-white backdrop-blur-sm rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-black">URLs Impacted</h3>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+            <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
+              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">URLs Impacted</h3>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>10,000+</div>
+                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
                 </div>
-              </div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 mb-4">10,000+</div>
-              <div className="h-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full overflow-hidden">
-                <div className="progress-bar h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
           </div>
@@ -212,7 +197,7 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
           <div className="lg:col-span-2 flex flex-col justify-center order-1 lg:order-2">
             <p className="text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider">DESIGN CAREER</p>
             <h2 className="text-4xl font-bold mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">11+ Years</span>
+              <span style={{ color: 'rgb(37 99 235)' }}>11+ Years</span>
               <span className="text-white"> Turning Pixels into Impact</span>
             </h2>
           </div>

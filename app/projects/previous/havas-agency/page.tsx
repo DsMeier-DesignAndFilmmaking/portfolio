@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
+import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -42,19 +43,13 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 // Project data for Havas Agency
 const project = {
   title: "Havas Agency",
-  description: "UX and web design work for Havas Agency, focusing on creating engaging digital experiences.",
+  description: "UX and web design at Havas Agency, creating engaging, on-brand digital experiences.",
   heroImage: "/portfolio/images/havas-card.jpg",
   year: "UX & Web Design",
-  stats: {
-    users: "25k+",
-    countries: "3",
-    impact: "84%"
-  },
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   images: [
-    "/portfolio/images/havas-card.jpg",
-    "/portfolio/images/havas-card.jpg",
-    "/portfolio/images/havas-card.jpg"
+    "/portfolio/images/Q2_ProgramFlowChart_08-20-15.jpg",
+    "/portfolio/images/optimized/IFP_PhotoContestPages_funcSpec-0701158.jpg"
   ]
 };
 
@@ -158,29 +153,52 @@ export default function HavasAgencyProjectPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-          </div>
-        </div>
-      </section>
 
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="space-y-8">
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover object-top"
-                />
+              <div key={index}>
+                {image.endsWith('.pdf') ? (
+                  // PDF Document Link
+                  <a 
+                    href={image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-8 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className="w-16 h-16 bg-red-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-2">
+                          {index === 1 ? "Q2 Program Flow Chart" : "IFP Photo Contest Functional Spec"}
+                        </h3>
+                        <p className="text-gray-400">
+                          {index === 1 ? "Program flow documentation and process charts from August 2015" : "Photo contest functional specifications and requirements documentation"}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-1">PDF Document</p>
+                      </div>
+                    </div>
+                    <svg className="w-6 h-6 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                ) : (
+                  // Image Display
+                  <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={`${project.title} - Image ${index + 1}`}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -192,11 +210,11 @@ export default function HavasAgencyProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including wireframes, specifications, and design assets.
+            Explore detailed documentation and deliverables from this project.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/havas-website-redesign-specs.pdf" 
+              href="/portfolio/documents/Camel_ReDesign_UX_072215.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -209,7 +227,7 @@ export default function HavasAgencyProjectPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">Website Redesign Specs</h3>
-                  <p className="text-gray-400 text-sm">Comprehensive specifications for the Q1 website redesign</p>
+                  <p className="text-gray-400 text-sm">Comprehensive specifications for the Camel website redesign</p>
                 </div>
               </div>
               <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,94 +239,12 @@ export default function HavasAgencyProjectPage() {
       </section>
 
       {/* Next Project Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
-            More Design Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Project Card 1 */}
-            <Link href="/projects/previous/mcdonalds-kiosk" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/mcDonalds-card.jpg"
-                  alt="McDonalds Kiosk"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">McDonalds Kiosk</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative self-service ordering experience</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 2 */}
-            <Link href="/projects/previous/sphere-software" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/sphere-card.jpg"
-                  alt="Sphere Software"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Sphere Software</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative software solutions for modern businesses</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 3 */}
-            <Link href="/projects/previous/havas-agency" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/havas-card.jpg"
-                  alt="Havas Agency"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Havas Agency</h3>
-                  <p className="text-sm text-gray-200 mb-4">Creative digital solutions for global advertising</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 4 */}
-            <Link href="/projects/previous/rich-products" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/richProducts-card.jpg"
-                  alt="Rich Products"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Rich Products</h3>
-                  <p className="text-sm text-gray-200 mb-4">Digital transformation for food industry leader</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ViewMoreWorkSection 
+        currentProjectId="havas-agency"
+        title="More Design Work"
+        bgColor="bg-white"
+        textColor="text-gray-400"
+      />
     </main>
   );
 } 

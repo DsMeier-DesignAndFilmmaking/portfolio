@@ -49,7 +49,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
       </AnimatePresence>
 
       <div className="relative h-[480px] w-full overflow-hidden">
-        <div className="relative w-3/5 h-full">
+        <div className="relative w-[70%] h-full">
           <Image
             src={imageUrl}
             alt={title}
@@ -68,7 +68,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
         
         <div className="absolute inset-0 flex items-center justify-center">
           {ongoingClient && (
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+            <div className="absolute top-4 right-[5%] z-10">
               <span className="inline-block bg-black text-[#cfb991] text-xs font-medium px-2 py-1 rounded border border-white">
                 Ongoing Client
               </span>

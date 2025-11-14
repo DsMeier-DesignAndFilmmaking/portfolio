@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
+import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -61,19 +62,15 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for Sphere Software
 const project = {
   title: "Sphere Software",
-  description: "Designed and developed enterprise software solutions for Sphere Software, focusing on creating intuitive user interfaces and improving workflow efficiency.",
+  description: "Design Director for an enterprise HR software suite. Led design on client-facing web projects.",
   heroImage: "/portfolio/images/sphere-card.jpg",
-  year: "Software Startup",
-  stats: {
-    users: "20k+",
-    countries: "8",
-    impact: "89%"
-  },
+  year: "Internal Startup & Client Consulting",
   overview: "Develop enterprise software solutions",
   images: [
-    "/portfolio/images/sphere-home-page-scaled.jpg",
-    "/portfolio/images/timbertech-figma-components.jpg",
-    "/portfolio/images/sphere-home-page-scaled.jpg"
+    "/portfolio/images/chairliftAllScreens.png",
+    "/portfolio/images/optimized/CHAIRLIFTdatamap.jpg",
+    "/portfolio/images/optimized/2_OKR_CheckInUserFlow_03-14-16.jpg",
+    "/portfolio/images/optimized/MeDashboard-EmployeeView-WithUpdates.jpg"
   ]
 };
 
@@ -177,31 +174,62 @@ export default function SphereSoftwareProjectPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Users" />
-            <StatCard icon={FaChartLine} value={project.stats.countries} label="Countries" />
-            <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Impact" />
-          </div>
-        </div>
-      </section>
 
       {/* Project Images Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
-          <div className="space-y-8">
-            {project.images.map((image, index) => (
-              <div key={index} className="relative w-full aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover object-top"
-                />
-              </div>
-            ))}
+          <div className="space-y-6">
+            {/* First image - chairlift screens (7:4 ratio) */}
+            <div className="relative w-full aspect-[7/4] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} - Chairlift Application Screens`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Second image - data map (square, 1.02:1 ratio) */}
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[1]}
+                alt={`${project.title} - Chairlift Data Map`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Third image - OKR flow (2:1 ratio) */}
+            <div className="relative w-full aspect-[2/1] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[2]}
+                alt={`${project.title} - OKR Check-In User Flow`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
+
+            {/* Fourth image - vertical dashboard (very tall) */}
+            <div className="relative w-full max-w-md mx-auto aspect-[750/3712] rounded-lg overflow-hidden bg-gray-900">
+              <Image
+                src={project.images[3]}
+                alt={`${project.title} - Employee Dashboard View`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 500px"
+                quality={85}
+                style={{ objectFit: 'contain', objectPosition: 'center' }}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -211,7 +239,7 @@ export default function SphereSoftwareProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including white papers and service desk documentation.
+            Explore detailed documentation and deliverables from this project.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
@@ -256,99 +284,59 @@ export default function SphereSoftwareProjectPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
+            <a 
+              href="/portfolio/documents/Reports_09-06-16.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">Project Reports</h3>
+                  <p className="text-gray-400 text-sm">Detailed project reports and analysis documentation from September 2016.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a 
+              href="/portfolio/documents/iOS_v2_10-25-2016.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">iOS v2 Specifications</h3>
+                  <p className="text-gray-400 text-sm">Mobile application specifications and design documentation for iOS version 2.</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Next Project Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
-            More Design Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Project Card 1 */}
-            <Link href="/projects/previous/mcdonalds-kiosk" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/mcDonalds-card.jpg"
-                  alt="McDonalds Kiosk"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">McDonalds Kiosk</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative self-service ordering experience</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 2 */}
-            <Link href="/projects/previous/sphere-software" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/sphere-card.jpg"
-                  alt="Sphere Software"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Sphere Software</h3>
-                  <p className="text-sm text-gray-200 mb-4">Innovative software solutions for modern businesses</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 3 */}
-            <Link href="/projects/previous/havas-agency" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/havas-card.jpg"
-                  alt="Havas Agency"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Havas Agency</h3>
-                  <p className="text-sm text-gray-200 mb-4">Creative digital solutions for global advertising</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project Card 4 */}
-            <Link href="/projects/previous/rich-products" className="group">
-              <div className="group relative w-full h-[300px] overflow-hidden rounded-xl">
-                <Image
-                  src="/portfolio/images/richProducts-card.jpg"
-                  alt="Rich Products"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">Rich Products</h3>
-                  <p className="text-sm text-gray-200 mb-4">Digital transformation for food industry leader</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ViewMoreWorkSection 
+        currentProjectId="sphere-software"
+        title="More Design Work"
+        bgColor="bg-white"
+        textColor="text-gray-400"
+      />
     </main>
   );
 } 

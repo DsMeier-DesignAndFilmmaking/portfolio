@@ -4,29 +4,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-white;
+  }
+  body {
+    @apply bg-white text-[#2F2A3B];
+  }
+}
+
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --foreground-rgb: 47, 42, 59;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
 }
 
 html {
-  /* Removed smooth scroll behavior for better performance */
-  /* scroll-behavior: smooth; */
+  /* Disable native smooth scrolling to prevent conflicts with custom JavaScript scrolling */
+  scroll-behavior: auto;
+  /* Remove scroll-padding-top to let custom scroll calculations handle positioning */
+  background-color: white;
+  background: white;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
+  background-color: white;
+  background: white;
   font-family: 'SF Pro Text', system-ui, -apple-system, sans-serif;
   /* Optimize for better scroll performance */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
+
 
 @layer utilities {
   .text-balance {
@@ -37,5 +56,68 @@ body {
   .scroll-optimized {
     transform: translate3d(0, 0, 0);
     will-change: scroll-position;
+  }
+  
+  /* Navbar wrapper - always at top */
+  .navbar-wrapper {
+    background: transparent;
+  }
+  
+  /* Enhanced backdrop blur support */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  /* Navigation scroll optimizations */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus styles for accessibility */
+  .nav-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Image loading animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Image optimization utilities */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-fade-in {
+    transition: opacity 0.4s ease-out;
+  }
+
+  .image-loading {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Mobile scroll optimizations */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth; /* Keep smooth scroll on mobile for navigation */
+      scroll-padding-top: 80px; /* Account for mobile navigation */
+    }
+    
+    body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: none;
+      /* Improve touch scrolling performance */
+      touch-action: pan-y;
+    }
   }
 } 

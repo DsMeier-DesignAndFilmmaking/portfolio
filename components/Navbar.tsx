@@ -1,99 +1,99 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { scrollToElement } from '@/utils/scrollUtils';
+import { calculateTravelogueScrollOffset } from '@/utils/travelogueScrollUtils';
 
 const Navbar = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
+  const pathname = usePathname();
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
-  const [textColor, setTextColor] = useState('white');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOverBlackSection, setIsOverBlackSection] = useState(false);
+  const [isInDesignSection, setIsInDesignSection] = useState(false);
+
+
+
+  // Determine if we're on a project page
+  const isOnPurduePage = pathname?.includes('/projects/purdue');
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
     let rafId: number;
-    let lastScrollY = 0;
+    let ticking = false;
 
-    const handleScroll = () => {
-      // Use requestAnimationFrame for better performance
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-      
-      rafId = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        
-        // Only update if scroll position changed significantly
-        if (Math.abs(currentScrollY - lastScrollY) > 5) {
-          setIsScrolling(true);
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(() => {
-            setIsScrolling(false);
-          }, 100);
-          
-          lastScrollY = currentScrollY;
-        }
-      });
-    };
+    const updateNavbarColor = () => {
+      const navbar = document.getElementById('site-navbar');
+      const scrollY = window.scrollY;
 
-    // Throttled scroll handler for color changes
-    let colorUpdateTimeout: NodeJS.Timeout;
-    let lastColorUpdate = 0;
-    const handleColorUpdate = () => {
-      const now = Date.now();
-      if (now - lastColorUpdate < 100) return; // Throttle to 10fps
-      
-      if (colorUpdateTimeout) {
-        clearTimeout(colorUpdateTimeout);
+      if (!navbar) {
+        ticking = false;
+        return;
       }
-      
-      colorUpdateTimeout = setTimeout(() => {
-        // Cache DOM queries
+
+
+      let isOverBlack = false;
+
+      // Special handling for Purdue page - turn black on scroll
+      if (isOnPurduePage) {
+        // Turn black after scrolling down 100px
+        isOverBlack = scrollY > 100;
+      } else {
+        // Homepage behavior - check section overlap
         const blackSection = document.getElementById('black-section');
         const videoSection = document.getElementById('video-projects');
-        const navElement = document.querySelector('nav');
 
-        if (blackSection && videoSection && navElement) {
-          const navRect = navElement.getBoundingClientRect();
-          const blackSectionTop = blackSection.getBoundingClientRect().top;
-          const videoSectionTop = videoSection.getBoundingClientRect().top;
+        const navRect = navbar.getBoundingClientRect();
+        const navBottom = navRect.bottom;
+        const navTop = navRect.top;
 
-          // Only change color if we've scrolled past the hero section
-          if (window.scrollY > 100) {
-            if (navRect.bottom > videoSectionTop) {
-              setTextColor('white');
-            } else if (navRect.bottom > blackSectionTop) {
-              setTextColor('white');
-            } else {
-              setTextColor('white');
-            }
-          } else {
-            setTextColor('white');
+        // Check if navbar overlaps with black section
+        if (blackSection) {
+          const blackRect = blackSection.getBoundingClientRect();
+          if (navTop < blackRect.bottom && navBottom > blackRect.top) {
+            isOverBlack = true;
           }
         }
-        lastColorUpdate = Date.now();
-      }, 16); // ~60fps
+
+        // Check if navbar overlaps with video section
+        if (videoSection && !isOverBlack) {
+          const videoRect = videoSection.getBoundingClientRect();
+          if (navTop < videoRect.bottom && navBottom > videoRect.top) {
+            isOverBlack = true;
+          }
+        }
+
+        // Width transition should trigger at the same time as color transition
+        // Use the same isOverBlack logic for perfect synchronization
+        setIsInDesignSection(isOverBlack);
+      }
+
+      setIsOverBlackSection(isOverBlack);
+      ticking = false;
     };
 
+    const handleScroll = () => {
+      if (!ticking) {
+        rafId = requestAnimationFrame(updateNavbarColor);
+        ticking = true;
+      }
+    };
+
+    // Initial check
+    updateNavbarColor();
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('scroll', handleColorUpdate, { passive: true });
-    
-    // Set initial color to white
-    setTextColor('white');
+    window.addEventListener('resize', updateNavbarColor, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleColorUpdate);
-      clearTimeout(scrollTimeout);
-      clearTimeout(colorUpdateTimeout);
+      window.removeEventListener('resize', updateNavbarColor);
       if (rafId) {
         cancelAnimationFrame(rafId);
       }
     };
-  }, []);
+  }, [isOnPurduePage]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -107,26 +107,83 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    const targetElement = document.getElementById(targetId);
-    const navElement = document.getElementById('site-navbar') as HTMLElement | null;
+    // Add # prefix if not present
+    const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
+    console.log('Scrolling to:', selector);
     
-    if (targetElement) {
-      // Use the utility function for robust anchor scrolling
-      scrollToElement(targetElement, navElement, {
-        behavior: 'smooth',
-        correctionDelay: 300,
-        correctionThreshold: 5
-      }).catch((error) => {
-        console.warn('Error during anchor scroll:', error);
-      });
-    } else {
-      console.warn(`Target element with id '${targetId}' not found`);
-    }
+    // For travelogue section, use a more robust approach to ensure stable scroll
+    const scrollToTarget = async () => {
+      if (targetId === 'travelogue') {
+        console.log('Ensuring stable layout for travelogue scroll...');
+        
+        // Wait for DOM to be fully stable and all elements to have their final dimensions
+        await new Promise(resolve => {
+          // Wait for any pending layout calculations
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              // Additional wait for any lazy-loaded content to settle
+              setTimeout(resolve, 100);
+            });
+          });
+        });
+        
+        // Force a reflow to ensure all measurements are accurate
+        const videoSection = document.getElementById('video-projects');
+        if (videoSection) {
+          videoSection.offsetHeight; // Force reflow
+        }
+      }
+      
+      // Now scroll to the actual target with accurate measurements
+      let targetElement = document.querySelector(selector);
+      
+      // For travelogue, target the background element specifically
+      if (targetId === 'travelogue') {
+        const backgroundElement = document.getElementById('world-travel-diaries-background');
+        if (backgroundElement) {
+          targetElement = backgroundElement;
+          console.log('Using background element for travelogue scroll');
+        }
+      }
+      
+      if (targetElement) {
+        console.log('Target element found:', targetElement);
+        
+        // Force a reflow to ensure accurate measurements
+        (targetElement as HTMLElement).offsetHeight;
+        
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = rect.top + window.pageYOffset;
+        
+        // Special handling for travelogue section to show earth-map background better
+        let navbarHeight = 80; // Default navbar height
+        if (targetId === 'travelogue') {
+          // Calculate dynamic offset based on video section loading state
+          navbarHeight = calculateTravelogueScrollOffset();
+        }
+        
+        const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+        
+        console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+        
+        // Smooth scroll to target
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'smooth'
+        });
+        
+        // Mark scrolling as complete after animation
+        setTimeout(() => {
+          setIsScrollingToAnchor(false);
+          window.dispatchEvent(new CustomEvent('scrollComplete'));
+        }, 800); // Slightly longer than scroll duration
+      } else {
+        console.log('Target element not found:', selector);
+        setIsScrollingToAnchor(false);
+      }
+    };
     
-    // Reset the scrolling state after animation completes
-    setTimeout(() => {
-      setIsScrollingToAnchor(false);
-    }, 1000);
+    scrollToTarget();
   };
 
   const toggleMobileMenu = () => {
@@ -134,17 +191,20 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav 
-      id="site-navbar"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 scroll-optimized ${
-        isScrolling && !isScrollingToAnchor ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-6">
-        <div className="flex justify-between items-center">
+    <div className="navbar-wrapper">
+      <motion.nav 
+        id="site-navbar"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className={`navbar-container ${
+          isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
+        }`}
+      >
+        <div className="navbar-inner">
+          <div 
+            className={`navbar-content ${isInDesignSection ? 'shrink' : ''}`}
+          >
           {/* Left side navigation */}
           <div className="py-4">
             <button
@@ -160,10 +220,8 @@ const Navbar = () => {
                 alt="Daniel Meier"
                 width={150}
                 height={37}
-                className={`h-9 w-auto transition-all duration-200 ${
-                  textColor === 'white' 
-                    ? 'brightness-0 invert' 
-                    : 'brightness-0'
+                className={`h-9 w-auto transition-all duration-500 ${
+                  isOverBlackSection ? 'invert' : ''
                 }`}
               />
             </button>
@@ -172,28 +230,26 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className={`md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end ${
-              textColor === 'white' ? 'text-white' : 'text-gray-900'
+            className={`md:hidden pl-4 py-2 rounded-lg transition-colors duration-500 flex items-center justify-end ${
+              isOverBlackSection ? 'text-white' : 'text-black'
             }`}
             aria-label="Toggle mobile menu"
           >
-            <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <div className="hamburger-container">
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-1 open' : 'hamburger-line-1'}`} />
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-2 open' : 'hamburger-line-2'}`} />
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'hamburger-line-3 open' : 'hamburger-line-3'}`} />
             </div>
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block rounded-lg px-6 py-4">
+          <div className="hidden md:block py-4">
             <nav className="flex items-center space-x-8">
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
-                  textColor === 'white' 
-                    ? 'text-white hover:text-blue-400' 
-                    : 'text-gray-900 hover:text-blue-600'
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Digital Design
@@ -201,32 +257,36 @@ const Navbar = () => {
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
-                  textColor === 'white' 
-                    ? 'text-white hover:text-blue-400' 
-                    : 'text-gray-900 hover:text-blue-600'
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Video
               </a>
               <a 
-                href="#world-travel-diaries" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className={`text-[12pt] transition-colors duration-200 cursor-pointer ${
-                  textColor === 'white' 
-                    ? 'text-white hover:text-blue-400' 
-                    : 'text-gray-900 hover:text-blue-600'
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Travelogue
               </a>
+              <Link 
+                href="/my-pulse"
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
+                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
+                target="_self"
+                rel=""
+              >
+                My Pulse
+              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-[12pt] transition-colors duration-200 cursor-pointer ${
-                  textColor === 'white' 
-                    ? 'text-white hover:text-blue-400' 
-                    : 'text-gray-900 hover:text-blue-600'
+                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
                 Wayfinder Diaries
@@ -234,7 +294,8 @@ const Navbar = () => {
             </nav>
           </div>
         </div>
-      </div>
+        </div>
+      </motion.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -244,42 +305,65 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 rounded-lg shadow-lg"
+            className={`mobile-menu md:hidden ${
+              isOverBlackSection ? 'bg-black-95' : 'bg-white-95'
+            }`}
           >
-            <nav className="flex flex-col p-4 px-6 space-y-4">
+            <div className="max-w-4xl mx-auto px-6">
+              <nav className="flex flex-col py-4 space-y-4">
               <a 
                 href="#black-section" 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Digital Design
               </a>
               <a 
                 href="#video-projects" 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Video
               </a>
               <a 
-                href="#world-travel-diaries" 
-                onClick={(e) => handleAnchorClick(e, 'world-travel-diaries')}
-                className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                href="#travelogue" 
+                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Travelogue
               </a>
+              <Link 
+                href="/my-pulse"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-12pt hover-text-blue-400 transition-colors duration-500 ${
+                  pathname === '/my-pulse' ? 'text-blue-400' : isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
+                target="_self"
+                rel=""
+              >
+                My Pulse
+              </Link>
               <a 
                 href="#photography" 
                 onClick={(e) => handleAnchorClick(e, 'photography')}
-                className="hidden text-[12pt] text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
               >
                 Wayfinder Diaries
               </a>
-            </nav>
+              </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </div>
   );
 };
 

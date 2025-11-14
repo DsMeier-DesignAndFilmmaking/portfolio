@@ -173,7 +173,7 @@ export default function HealthcareProjectPage() {
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
-              <p>Improve accessibility and UX across multiple healthcare platforms</p>
+              <p>Improve accessibility and UX across multiple healthcare websites and platforms</p>
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function HealthcareProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard icon={FaUsers} value={project.stats.users} label="Client Facing Projects" />
+            <StatCard icon={FaUsers} value={project.stats.users} label="Patient and Client Facing Projects" />
             <StatCard icon={FaChartLine} value={project.stats.countries} label="Avg. Increase in Patient Engagement" />
             <StatCard icon={FaCheckCircle} value={project.stats.impact} label="Design Components Updated or Created" />
           </div>
@@ -234,7 +234,7 @@ export default function HealthcareProjectPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-white">Sample Deliverables</h2>
           <p className="text-gray-300 mb-12 max-w-2xl">
-            Explore detailed documentation and deliverables from this project, including wireframes, specifications, and design assets.
+            Explore detailed documentation and deliverables from this project.
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 

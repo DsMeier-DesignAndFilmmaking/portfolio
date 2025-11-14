@@ -21,4 +21,4 @@ yarn-error.log*
 *.log
 
 # Misc
-.env* 
+.env* CursorLens/

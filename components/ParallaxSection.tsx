@@ -40,17 +40,23 @@ export default function ParallaxSection({
 
   if (!isClient) {
     return (
-      <div ref={ref} className={`relative h-screen ${className}`}>
+      <div ref={ref} className={`relative ${className}`} style={{ height: '100vh' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">
           <div className="w-full h-full flex items-center justify-center">
             <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
           </div>
         </div>
         <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
-          <div className="text-center max-w-4xl mx-auto px-6 bg-transparent">
-            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black">
-              {title}
-            </h2>
+          <div className="text-center max-w-4xl mx-auto px-6 bg-transparent" style={{ maxWidth: '576px', margin: '0 auto' }}>
+            {modelPath === 'torus' ? (
+              <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
+                {title}
+              </p>
+            ) : (
+              <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                {title}
+              </h2>
+            )}
             {description && (
               <p className="text-lg md:text-xl text-black">{description}</p>
             )}
@@ -61,7 +67,7 @@ export default function ParallaxSection({
   }
 
   return (
-    <div ref={ref} className={`relative h-screen ${className}`}>
+    <div ref={ref} className={`relative ${className}`} style={{ height: '100vh' }}>
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0"
@@ -79,7 +85,12 @@ export default function ParallaxSection({
         )}
       </motion.div>
       {modelPath === 'torus' && (
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 via-black/40 via-black/60 to-black z-10" />
+        <div 
+          className="absolute inset-0 z-10" 
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.2), rgba(0,0,0,0.4), rgba(0,0,0,0.6), #1A1A1A)'
+          }}
+        />
       )}
       <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
         <motion.div
@@ -87,10 +98,17 @@ export default function ParallaxSection({
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto px-6 bg-transparent"
+          style={{ maxWidth: '576px', margin: '0 auto' }}
         >
-          <h2 className={`mb-4 text-4xl font-bold md:text-6xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`}>
-            {title}
-          </h2>
+          {modelPath === 'torus' ? (
+            <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
+              {title}
+            </p>
+          ) : (
+            <h2 className="mb-4 text-4xl font-bold md:text-6xl text-black" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              {title}
+            </h2>
+          )}
           {description && (
             <p className={`text-lg md:text-xl ${modelPath === 'torus' ? 'text-white' : 'text-black'}`}>{description}</p>
           )}

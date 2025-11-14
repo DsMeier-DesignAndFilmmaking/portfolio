@@ -7,6 +7,7 @@ import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
+import StickyProgressNav from '../../../components/StickyProgressNav';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -18,8 +19,11 @@ export default function AISandboxPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isVideoError, setIsVideoError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
+  const [isMobileVideoError, setIsMobileVideoError] = useState(false);
+  const [showFallbackImage, setShowFallbackImage] = useState(false);
   const router = useRouter();
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [atTop, setAtTop] = useState(true);
@@ -66,7 +70,7 @@ export default function AISandboxPage() {
     };
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Handle video loading
+  // Handle video loading with error detection
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoLoaded(true);
@@ -85,6 +89,31 @@ export default function AISandboxPage() {
       return () => clearTimeout(timer);
     }
   }, [isVideoLoaded]);
+
+  // Handle video error detection and fallback
+  useEffect(() => {
+    if (isVideoLoaded && !isVideoReady) {
+      const errorTimer = setTimeout(() => {
+        // If video hasn't loaded after 4 seconds, assume it failed
+        setIsVideoError(true);
+        setShowFallbackImage(true);
+      }, 4000);
+
+      return () => clearTimeout(errorTimer);
+    }
+  }, [isVideoLoaded, isVideoReady]);
+
+  // Handle mobile video error detection
+  useEffect(() => {
+    if (isMobile && !isMobileVideoLoaded) {
+      const errorTimer = setTimeout(() => {
+        setIsMobileVideoError(true);
+        setShowFallbackImage(true);
+      }, 3000);
+
+      return () => clearTimeout(errorTimer);
+    }
+  }, [isMobile, isMobileVideoLoaded]);
 
   // Mobile detection
   useEffect(() => {
@@ -120,6 +149,15 @@ export default function AISandboxPage() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Define sections for the sticky progress nav
+  const sections = [
+    { id: 'design-exploration', label: 'Problems / Opportunities / Research' },
+    { id: 'designs-strategy', label: 'Concept & Strategy' },
+    { id: 'wireframes-ui', label: 'Designing + Building with AI' },
+    { id: 'prototyping-ai', label: 'Prototyping, Builds & AI Integration' },
+    { id: 'learnings-next', label: 'Learnings & Next Steps' }
+  ];
+
   return (
     <main className="bg-white text-black overflow-hidden">
       <AnimatePresence>
@@ -131,7 +169,7 @@ export default function AISandboxPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 mt-5 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-transform duration-300 ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
@@ -149,23 +187,17 @@ export default function AISandboxPage() {
                   alt="Daniel Meier"
                   width={150}
                   height={37}
-                  className={`h-9 w-auto transition-all duration-300 ${
-                    isOverBlackBg ? 'brightness-0 invert' : isScrolled ? 'brightness-0' : 'brightness-0 invert'
-                  }`}
+                  className="h-9 w-auto brightness-0"
                 />
               </button>
-              <div className={`h-6 w-px transition-colors duration-300 ${
-                isOverBlackBg ? 'bg-white/30' : isScrolled ? 'bg-black/30' : 'bg-white/30'
-              }`}></div>
-              <span className={`text-sm font-medium transition-colors duration-300 ${
-                isOverBlackBg ? 'text-white/70' : isScrolled ? 'text-black/70' : 'text-white/70'
-              }`}>Design Work</span>
+              <div className="h-6 w-px bg-black/30"></div>
+              <span className="text-sm font-medium text-black/70">Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
+              className="md:hidden pl-4 py-2 rounded-lg flex items-center justify-end text-black"
               aria-label="Toggle mobile menu"
             >
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
@@ -180,25 +212,19 @@ export default function AISandboxPage() {
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/purdue" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
-                  }`}
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
-                  }`}
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
-                  className={`text-[12pt] transition-colors duration-300 ${
-                    isOverBlackBg ? 'text-white hover:text-gray-300' : isScrolled ? 'text-black hover:text-gray-600' : 'text-white hover:text-blue-400'
-                  }`}
+                  className="text-[11pt] text-black hover:text-blue-400 transition-colors"
                 >
                   Previous Projects
                 </Link>
@@ -221,21 +247,21 @@ export default function AISandboxPage() {
                 <Link 
                   href="/projects/purdue" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Purdue University
                 </Link>
                 <Link 
                   href="/projects/ai-sandbox" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   AI Sandbox
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[12pt] text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[11pt] text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Previous Projects
                 </Link>
@@ -245,13 +271,33 @@ export default function AISandboxPage() {
         </AnimatePresence>
       </motion.nav>
 
+      {/* Sticky Progress Navigation */}
+      <StickyProgressNav sections={sections} />
+
       {/* Hero Section */}
-      <section className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
+      <section id="intro" className={`relative w-full overflow-hidden ${isMobile ? 'h-screen' : ''}`} aria-label="Project Hero">
         {/* Hero Video Background */}
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
+          {/* Fallback Image - Always loaded first for instant display */}
+          <motion.div
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: showFallbackImage || (isVideoError || isMobileVideoError) ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <Image
+              src="/portfolio/images/ai-travel-hero.svg"
+              alt="AI Sandbox - Creative technology playground with abstract digital elements and neural network patterns representing AI innovation and travel technology"
+              fill
+              className="object-cover"
+              priority
+              quality={90}
+            />
+          </motion.div>
+
           {/* Loading Overlay */}
           <AnimatePresence>
-            {(!isVideoReady && !isMobile) || (!isMobileVideoLoaded && isMobile) ? (
+            {(!isVideoReady && !isMobile && !isVideoError) || (!isMobileVideoLoaded && isMobile && !isMobileVideoError) ? (
               <motion.div
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -272,7 +318,7 @@ export default function AISandboxPage() {
           </AnimatePresence>
 
           {/* Desktop Video Container (Vimeo iframe) */}
-          {!isMobile && (
+          {!isMobile && !isVideoError && (
             <motion.div
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
@@ -287,13 +333,17 @@ export default function AISandboxPage() {
                   allowFullScreen
                   className="absolute inset-0 w-full h-full"
                   frameBorder="0"
+                  onError={() => {
+                    setIsVideoError(true);
+                    setShowFallbackImage(true);
+                  }}
                 />
               )}
             </motion.div>
           )}
 
           {/* Mobile Video Container (Local video) */}
-          {isMobile && (
+          {isMobile && !isMobileVideoError && (
             <motion.div
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
@@ -307,6 +357,14 @@ export default function AISandboxPage() {
                   loop
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover"
+                  onError={() => {
+                    setIsMobileVideoError(true);
+                    setShowFallbackImage(true);
+                  }}
+                  onLoadStart={() => {
+                    // Reset error state when video starts loading
+                    setIsMobileVideoError(false);
+                  }}
                 >
                   <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
@@ -329,10 +387,14 @@ export default function AISandboxPage() {
               className={`max-w-2xl ${isMobile ? 'text-center' : 'mt-[100px]'}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: (isVideoError || isMobileVideoError || showFallbackImage) ? 0.3 : 
+                       (isMobile ? isMobileVideoLoaded : isVideoReady) ? 0.3 : 0.8 
+              }}
             >
               <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-                <span className="text-gray-200">Travel & AI</span>
+                <span className="text-gray-200">Travel & AI Case Study</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
@@ -399,7 +461,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Problem & Opportunity Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="design-exploration" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -496,7 +558,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Audience & Research Section */}
-      <section className="py-20 bg-black">
+      <section id="research-audience" className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -632,7 +694,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Concept & Strategy Section */}
-      <section className="py-20 bg-white">
+      <section id="designs-strategy" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1357,7 +1419,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Design Process Section */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section id="wireframes-ui" className="py-20 bg-[#0a0a0a]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1367,7 +1429,7 @@ export default function AISandboxPage() {
           >
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-6 text-white">
-                Design Process
+                Design Evolution
               </h2>
               <p className="text-gray-300 text-lg">
                 I design to support spontaneity—prioritizing action over planning, with UX that's targeted, valuable, and ready to go.
@@ -1433,12 +1495,157 @@ export default function AISandboxPage() {
                 </div>
               </div>
             </motion.div>
+            
+            {/* Travel App Figma UX Pilot */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-16"
+            >
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-semibold mb-4 text-white">
+                  Iterating with AI
+                </h3>
+                <p className="text-gray-300 max-w-2xl mx-auto">
+                  Design exploration and wireframing in Figma & UX Pilot
+                </p>
+              </div>
+              
+              <div className="relative max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/portfolio/images/optimized/TravelApp_FIgma-UXPilot_1.webp"
+                    alt="Travel App Figma UX Pilot - Design exploration and user experience prototyping interface"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                    quality={85}
+                  />
+                  
+                  {/* Image overlay for better UX */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Mobile Design Mockups */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-16"
+            >
+              {/* Wireframes Row */}
+              <div className="mb-12">
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png"
+                        alt="Travel App wireframe - homescreen design exploration"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png"
+                        alt="Travel App wireframe - homescreen layout iteration"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png"
+                        alt="Travel App wireframe - homescreen user flow"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png"
+                        alt="Travel App wireframe - homescreen interaction design"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-48">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png"
+                        alt="Travel App wireframe - homescreen final concept"
+                        fill
+                        className="object-cover"
+                        sizes="192px"
+                        priority={false}
+                        quality={85}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* High-Fidelity Mockups Row */}
+              <div>
+                <div className="flex justify-center gap-8 flex-wrap">
+                  <div className="w-64 md:w-72">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
+                      <Image
+                        src="/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png"
+                        alt="Travel App high-fidelity mockup - recommendation screen design"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 256px, 288px"
+                        priority={false}
+                        quality={90}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-64 md:w-72">
+                    <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
+                      <Image
+                        src="/portfolio/images/HomeScreen-UX-Pilot-Recco.png"
+                        alt="Travel App high-fidelity mockup - homescreen recommendation interface"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 256px, 288px"
+                        priority={false}
+                        quality={90}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Development & Build Section */}
-      <section className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+      <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1454,6 +1661,77 @@ export default function AISandboxPage() {
                 Work In Progress
               </p>
             </div>
+            
+            {/* AI Workflow Process Diagram */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-16"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                  {/* ChatGPT Step */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white group-hover:text-green-300 transition-colors">ChatGPT</h3>
+                        <p className="text-sm text-gray-300">Writing Prompts</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Arrow 1 */}
+                  <div className="flex items-center justify-center">
+                    <svg className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+
+                  {/* Cursor Step */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">Cursor</h3>
+                        <p className="text-sm text-gray-300">AI-assisted Code</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Arrow 2 */}
+                  <div className="flex items-center justify-center">
+                    <svg className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+
+                  {/* Xcode Step */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">Xcode</h3>
+                        <p className="text-sm text-gray-300">Real iOS Build</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
               <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
@@ -1502,7 +1780,6 @@ export default function AISandboxPage() {
             </div>
             
             <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-              <h3 className="text-xl font-semibold mb-4 text-gray-200">Challenges & Solutions</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-medium text-gray-200 mb-2">Challenge</h4>
@@ -1560,12 +1837,154 @@ export default function AISandboxPage() {
                 </div>
               </div>
             </motion.div>
+
+            {/* Mobile Build Iterations Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-20"
+            >
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-3 text-white">
+                    Mobile Build Iterations
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    Rapid prototyping using ChatGPT, Cursor and Xcode
+                  </p>
+                </div>
+                
+                {/* Mobile Screenshots Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Screenshot 1 - October 1 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp"
+                        alt="iPhone Simulator - October 1, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 2 - October 3 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp"
+                        alt="iPhone Simulator - October 3, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 3 - October 4 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp"
+                        alt="iPhone Simulator - October 4, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 4 - October 5 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp"
+                        alt="iPhone Simulator - October 5, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 5 - October 7 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp"
+                        alt="iPhone Simulator - October 7, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Screenshot 6 - September 29 */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="relative group"
+                  >
+                    <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src="/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp"
+                        alt="iPhone Simulator - September 29, 2025"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Launch & Testing Section */}
-      <section className="py-20 bg-black">
+      <section id="outcomes-launch" className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1609,7 +2028,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Outcome & Learnings Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
+      <section id="learnings-next" className="py-20 bg-gray-100">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1618,40 +2037,40 @@ export default function AISandboxPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6 text-white">
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">
                 Outcome & Learnings
               </h2>
-              <p className="text-gray-300 text-lg">
-                Honest reflection on achievements and growth opportunities
+              <p className="text-gray-600 text-lg">
+                Coming Soon
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4 text-white">Metrics & Impact</h3>
-                <p className="text-gray-300">TBD</p>
+              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Metrics & Impact</h3>
+                <p className="text-gray-600">TBD</p>
               </div>
               
-              <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4 text-white">Key Learnings</h3>
-                <p className="text-gray-300">TBD</p>
+              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                <p className="text-gray-600">TBD</p>
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-              <h3 className="text-xl font-semibold mb-4 text-white">Next Steps</h3>
+            <div className="bg-white/90 p-8 rounded-xl shadow-lg border border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Road Map and Next Steps</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="text-lg font-medium text-amber-400 mb-2">Phase 2</h4>
-                  <p className="text-gray-300">Advanced AI features and machine learning optimization</p>
+                  <h4 className="text-lg font-medium text-amber-600 mb-2">Phase 2</h4>
+                  <p className="text-gray-600">Advanced AI features and machine learning optimization</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-emerald-400 mb-2">Phase 3</h4>
-                  <p className="text-gray-300">Social platform expansion and community features</p>
+                  <h4 className="text-lg font-medium text-emerald-600 mb-2">Phase 3</h4>
+                  <p className="text-gray-600">Social platform expansion and community features</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-cyan-400 mb-2">Phase 4</h4>
-                  <p className="text-gray-300">Enterprise partnerships and B2B solutions</p>
+                  <h4 className="text-lg font-medium text-cyan-600 mb-2">Phase 4</h4>
+                  <p className="text-gray-600">Enterprise partnerships and B2B solutions</p>
                 </div>
               </div>
             </div>
