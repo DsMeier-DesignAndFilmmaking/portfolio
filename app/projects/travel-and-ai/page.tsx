@@ -329,27 +329,28 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="travel-ai-hero relative w-full min-h-screen flex items-center overflow-hidden" 
+        className="travel-ai-hero relative w-full min-h-screen flex items-center" 
         style={{ backgroundColor: '#E8FBF8' }} 
         aria-label="Project Hero"
       >
-        {/* Gradient fade at bottom of hero - using ::after pseudo-element */}
+        {/* Gradient fade at bottom of hero - extends beyond section for seamless transition */}
         <style dangerouslySetInnerHTML={{
           __html: `
             .travel-ai-hero::after {
               content: '';
               position: absolute;
-              bottom: 0;
+              bottom: -60px;
               left: 0;
               width: 100%;
-              height: 150px;
-              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.95) 25%, rgba(232, 251, 248, 0.7) 50%, rgba(232, 251, 248, 0.4) 75%, rgba(232, 251, 248, 0) 100%);
+              height: 200px;
+              background: linear-gradient(to bottom, #E8FBF8 0%, #E8FBF8 30%, rgba(232, 251, 248, 0.95) 50%, rgba(232, 251, 248, 0.7) 70%, rgba(232, 251, 248, 0.4) 85%, rgba(232, 251, 248, 0) 100%);
               pointer-events: none;
               z-index: 1;
             }
             @media (max-width: 768px) {
               .travel-ai-hero::after {
-                height: 100px;
+                bottom: -40px;
+                height: 120px;
               }
             }
           `
@@ -382,8 +383,17 @@ export default function AISandboxPage() {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="relative w-full overflow-hidden" aria-label="Video Background">
+      {/* Video Section - negative margin to overlap with hero gradient */}
+      <section className="relative w-full overflow-hidden" style={{ marginTop: '-60px', zIndex: 0 }} aria-label="Video Background">
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @media (max-width: 768px) {
+              section[aria-label="Video Background"] {
+                margin-top: -40px;
+              }
+            }
+          `
+        }} />
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Fallback Image - Always loaded first for instant display */}
           <motion.div
@@ -482,10 +492,10 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Solid top section - no transparency */}
-            <div className="absolute inset-x-0 top-0 h-12" style={{ backgroundColor: '#E8FBF8' }} />
+            {/* Solid top section - seamlessly continues from hero section */}
+            <div className="absolute inset-x-0 top-0 h-16" style={{ backgroundColor: '#E8FBF8' }} />
             {/* Top gradient - smoothly fades from hero section background color */}
-            <div className="absolute inset-x-0 top-12 h-48 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/90 via-[#E8FBF8]/70 via-[#E8FBF8]/40 via-[#E8FBF8]/15 to-transparent" />
+            <div className="absolute inset-x-0 top-16 h-44 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/95 via-[#E8FBF8]/80 via-[#E8FBF8]/60 via-[#E8FBF8]/30 via-[#E8FBF8]/10 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
@@ -523,7 +533,7 @@ export default function AISandboxPage() {
                 id: 1,
                 title: "Trust & Authenticity",
                 description: "Machine learning system that provides cultural insights and local recommendations.",
-                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                imageUrl: "/portfolio/images/travel-ai-authenticity-card.svg",
                 link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
               {
@@ -565,6 +575,17 @@ export default function AISandboxPage() {
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Tags/Ribbons for Spontaneous Travel Companion */}
+                    {project.id === 2 && (
+                      <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
+                        <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
+                          iOS
+                        </span>
+                        <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
+                          API Plugin
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
