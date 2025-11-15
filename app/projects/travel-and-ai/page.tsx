@@ -451,7 +451,7 @@ export default function AISandboxPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className="max-w-2xl"
+                className="max-w-[45vw]"
               >
                 <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white italic leading-relaxed mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                   "A good traveler has no fixed plans and is not intent on arriving."
@@ -474,7 +474,7 @@ export default function AISandboxPage() {
                 id: 1,
                 title: "Spontaneous Travel Companion",
                 description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
-                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                imageUrl: "/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp",
                 link: "/projects/travel-and-ai/projects/spontaneous-travel-companion"
               },
               {
