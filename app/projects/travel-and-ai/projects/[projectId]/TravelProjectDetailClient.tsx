@@ -1178,23 +1178,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       Design exploration and wireframing in Figma & UX Pilot
                     </p>
                   </div>
-                  
-                  <div className="relative max-w-4xl mx-auto">
-                    <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-                      <Image
-                        src="/portfolio/images/optimized/TravelApp_FIgma-UXPilot_1.webp"
-                        alt="Travel App Figma UX Pilot - Design exploration and user experience prototyping interface"
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                        priority={false}
-                        quality={85}
-                      />
-                      
-                      {/* Image overlay for better UX */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
                 </motion.div>
                 
                 {/* Mobile Design Mockups */}
@@ -1663,9 +1646,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <h2 className="text-3xl font-bold mb-6 text-white">
                     Launch & Testing
                   </h2>
-                  <p className="text-gray-300 text-lg">
-                    TBD
-                  </p>
                 </div>
                 
                 <div className="space-y-8">
