@@ -342,14 +342,14 @@ export default function AISandboxPage() {
               bottom: 0;
               left: 0;
               width: 100%;
-              height: 120px;
-              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.7) 40%, rgba(232, 251, 248, 0.3) 70%, rgba(232, 251, 248, 0) 100%);
+              height: 150px;
+              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.95) 25%, rgba(232, 251, 248, 0.7) 50%, rgba(232, 251, 248, 0.4) 75%, rgba(232, 251, 248, 0) 100%);
               pointer-events: none;
               z-index: 1;
             }
             @media (max-width: 768px) {
               .travel-ai-hero::after {
-                height: 80px;
+                height: 100px;
               }
             }
           `
@@ -482,8 +482,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Top gradient - starts transparent to continue hero fade, then transitions to video overlay */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-transparent via-[#E8FBF8]/20 via-black/15 to-black/30" />
+            {/* Top gradient - seamlessly continues from hero fade */}
+            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/80 via-[#E8FBF8]/40 via-[#E8FBF8]/10 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
