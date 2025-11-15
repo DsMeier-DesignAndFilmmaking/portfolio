@@ -270,40 +270,36 @@ export default function PurdueProjectPage() {
               </div>
             </div>
             <div className="space-y-6">
-              <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/20">
+              <div className="relative aspect-[3024/1964] rounded-xl overflow-hidden bg-black/20">
                 <Image
                   src="/portfolio/images/sitebulb-screenshot_1.jpg"
                   alt="Sitebulb Screenshot"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
-              <div className="mb-8">
+              <div className="relative aspect-[2648/1156] rounded-xl overflow-hidden bg-black/20">
                 <Image
                   src="/portfolio/images/Sitebulb-duplicateGraph.jpg"
                   alt="Sitebulb Duplicate Graph"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
-              <div className="mb-8">
+              <div className="relative aspect-[1512/905] rounded-xl overflow-hidden bg-black/20">
                 <Image
                   src="/portfolio/images/GA-EventsScreenshot 1.png"
                   alt="Google Analytics Events Screenshot"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
-              <div className="mb-8">
+              <div className="relative aspect-[2936/1344] rounded-xl overflow-hidden bg-black/20">
                 <Image
                   src="/portfolio/images/crawl_force-directed_www_purdue_edu_202506072022.png"
                   alt="Purdue.edu Crawl Force Directed Graph"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
             </div>
@@ -337,13 +333,12 @@ export default function PurdueProjectPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Navigation */}
             <div className="space-y-4">
-              <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+              <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
                   src="/portfolio/images/Existing-howToApply_Screenshot (2).jpg"
                   alt="Existing How To Apply Screenshot 2"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Navigation</p>
@@ -351,13 +346,12 @@ export default function PurdueProjectPage() {
 
             {/* Program Page */}
             <div className="space-y-4">
-              <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+              <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
                   src="/portfolio/images/Existing-howToApply_Screenshot (1).jpg"
                   alt="Existing How To Apply Screenshot 1"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Program Page</p>
@@ -365,13 +359,12 @@ export default function PurdueProjectPage() {
 
             {/* How to Apply */}
             <div className="space-y-4">
-              <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+              <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
                   src="/portfolio/images/Existing-howToApply_Screenshot.jpg"
                   alt="Existing How To Apply Screenshot"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">How to Apply</p>
@@ -379,13 +372,12 @@ export default function PurdueProjectPage() {
 
             {/* Application Page */}
             <div className="space-y-4">
-              <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+              <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
                   src="/portfolio/images/Existing-fellowships_Screenshot.jpg"
                   alt="Existing Fellowships Screenshot"
-                  width={800}
-                  height={600}
-                  className="rounded-lg shadow-lg"
+                  fill
+                  className="object-cover rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Fellowships Landing Page</p>
@@ -465,7 +457,7 @@ export default function PurdueProjectPage() {
           <div className="space-y-4">
             <div className="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
-                src="/portfolio/images/purdueHome-screenshot.jpg"
+                src="/portfolio/images/purdue_homepage_screenshot.jpg"
                 alt="Purdue OGSPS Website Screenshot"
                 fill
                 className="object-cover"
