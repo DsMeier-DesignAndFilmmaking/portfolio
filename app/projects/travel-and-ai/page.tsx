@@ -329,27 +329,28 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="travel-ai-hero relative w-full min-h-screen flex items-center overflow-hidden" 
+        className="travel-ai-hero relative w-full min-h-screen flex items-center" 
         style={{ backgroundColor: '#E8FBF8' }} 
         aria-label="Project Hero"
       >
-        {/* Gradient fade at bottom of hero - using ::after pseudo-element */}
+        {/* Gradient fade at bottom of hero - extends into video section */}
         <style dangerouslySetInnerHTML={{
           __html: `
             .travel-ai-hero::after {
               content: '';
               position: absolute;
-              bottom: 0;
+              bottom: -200px;
               left: 0;
               width: 100%;
-              height: 150px;
-              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.95) 25%, rgba(232, 251, 248, 0.7) 50%, rgba(232, 251, 248, 0.4) 75%, rgba(232, 251, 248, 0) 100%);
+              height: 200px;
+              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.98) 10%, rgba(232, 251, 248, 0.9) 25%, rgba(232, 251, 248, 0.7) 45%, rgba(232, 251, 248, 0.4) 65%, rgba(232, 251, 248, 0.15) 85%, rgba(232, 251, 248, 0) 100%);
               pointer-events: none;
-              z-index: 1;
+              z-index: 100;
             }
             @media (max-width: 768px) {
               .travel-ai-hero::after {
-                height: 100px;
+                bottom: -120px;
+                height: 120px;
               }
             }
           `
@@ -382,8 +383,20 @@ export default function AISandboxPage() {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="relative w-full overflow-hidden" aria-label="Video Background">
+      {/* Video Section - negative margin to overlap with hero gradient */}
+      <section className="relative w-full overflow-hidden video-section-overlap" aria-label="Video Background">
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .video-section-overlap {
+              margin-top: -200px;
+            }
+            @media (max-width: 768px) {
+              .video-section-overlap {
+                margin-top: -120px;
+              }
+            }
+          `
+        }} />
         <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
           {/* Fallback Image - Always loaded first for instant display */}
           <motion.div
@@ -482,8 +495,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Top gradient - seamlessly continues from hero fade */}
-            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/80 via-[#E8FBF8]/40 via-[#E8FBF8]/10 to-transparent" />
+            {/* Top gradient - seamlessly continues from hero fade, starts where hero gradient ends */}
+            <div className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-transparent via-transparent via-[#E8FBF8]/5 via-black/10 to-black/25" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
