@@ -456,10 +456,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Solid top section - no transparency */}
-            <div className="absolute inset-x-0 top-0 h-12" style={{ backgroundColor: '#E8FBF8' }} />
-            {/* Top gradient - fades from hero section color into transparent */}
-            <div className="absolute inset-x-0 top-12 h-36 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/95 via-[#E8FBF8]/70 via-[#E8FBF8]/40 to-transparent" />
+            {/* Top gradient - matches bottom gradient style, fades from hero section color */}
+            <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/50 via-black/25 to-black/50" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
