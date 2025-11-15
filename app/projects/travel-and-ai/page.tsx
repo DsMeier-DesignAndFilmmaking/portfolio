@@ -188,15 +188,15 @@ export default function AISandboxPage() {
                   width={150}
                   height={37}
                   className={`h-9 w-auto transition-all duration-500 ${
-                    isNavbarWhite ? 'brightness-0' : 'brightness-0 invert'
+                    isNavbarWhite ? 'brightness-0' : 'brightness-0'
                   }`}
                 />
               </button>
               <div className={`h-6 w-px transition-colors duration-500 ${
-                isNavbarWhite ? 'bg-black/30' : 'bg-white/30'
+                isNavbarWhite ? 'bg-black/30' : 'bg-gray-700/30'
               }`}></div>
               <span className={`text-sm font-medium transition-colors duration-500 ${
-                isNavbarWhite ? 'text-black/70' : 'text-white/70'
+                isNavbarWhite ? 'text-black/70' : 'text-gray-700/70'
               }`}>Design Work</span>
             </div>
 
@@ -204,7 +204,7 @@ export default function AISandboxPage() {
             <button
               onClick={toggleMobileMenu}
               className={`md:hidden pl-4 py-2 rounded-lg flex items-center justify-end transition-colors duration-500 ${
-                isNavbarWhite ? 'text-black' : 'text-white'
+                isNavbarWhite ? 'text-black' : 'text-gray-700'
               }`}
               aria-label="Toggle mobile menu"
             >
@@ -223,7 +223,7 @@ export default function AISandboxPage() {
                   className={`text-[11pt] transition-colors duration-500 ${
                     isNavbarWhite 
                       ? 'text-black hover:text-blue-400' 
-                      : 'text-white hover:text-blue-400'
+                      : 'text-gray-700 hover:text-blue-400'
                   }`}
                 >
                   Purdue University
@@ -233,7 +233,7 @@ export default function AISandboxPage() {
                   className={`text-[11pt] transition-colors duration-500 ${
                     isNavbarWhite 
                       ? 'text-black hover:text-blue-400' 
-                      : 'text-white hover:text-blue-400'
+                      : 'text-gray-700 hover:text-blue-400'
                   }`}
                 >
                   Travel & AI
@@ -243,7 +243,7 @@ export default function AISandboxPage() {
                   className={`text-[11pt] transition-colors duration-500 ${
                     isNavbarWhite 
                       ? 'text-black hover:text-blue-400' 
-                      : 'text-white hover:text-blue-400'
+                      : 'text-gray-700 hover:text-blue-400'
                   }`}
                 >
                   Client Work
@@ -306,7 +306,7 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="intro" className="relative w-full bg-black min-h-screen flex items-center" aria-label="Project Hero">
+      <section id="intro" className="relative w-full min-h-screen flex items-center" style={{ backgroundColor: '#E8FBF8' }} aria-label="Project Hero">
         {/* Hero Content */}
         <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
           <div className="container mx-auto px-6 py-20 md:py-32">
@@ -319,15 +319,15 @@ export default function AISandboxPage() {
                 delay: 0.3
               }}
             >
-              <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-                <span className="text-gray-200">AI Travel Projects</span>
+              <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
+                <span className="text-gray-600">AI Travel Projects</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-white">
+                <span className="text-gray-900">
                   Designing AI-Driven Travel Experiences
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-white leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                 After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
               </p>
             </motion.div>
@@ -435,8 +435,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Top black gradient - fades from black navbar into transparent */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black via-black/80 via-black/40 to-transparent" />
+            {/* Top gradient - fades from hero section color into transparent */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/80 via-[#E8FBF8]/40 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}

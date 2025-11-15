@@ -463,7 +463,7 @@ export default function PurdueProjectPage() {
             Along with improving information hierarchy and user experience, the redesign delivers a modern, accessible interface and a modular CMS design system that allows Purdue's teams to manage and scale content with ease.
           </p>
           <div className="space-y-4">
-            <div className="relative w-full h-[600px] rounded-lg overflow-hidden bg-black/20 shadow-xl">
+            <div className="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
                 src="/portfolio/images/purdueHome-screenshot.jpg"
                 alt="Purdue OGSPS Website Screenshot"
