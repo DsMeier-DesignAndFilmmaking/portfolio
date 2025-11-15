@@ -16,13 +16,7 @@ export default function AISandboxPage() {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
-  const [isVideoError, setIsVideoError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
-  const [isMobileVideoError, setIsMobileVideoError] = useState(false);
-  const [showFallbackImage, setShowFallbackImage] = useState(false);
   const router = useRouter();
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
@@ -96,51 +90,6 @@ export default function AISandboxPage() {
     };
   }, []); // Empty dependency array since we're using refs
 
-  // Handle video loading with error detection
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVideoLoaded(true);
-    }, 1500); // Increased delay to ensure iframe starts loading
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Handle video ready state for smooth transition
-  useEffect(() => {
-    if (isVideoLoaded) {
-      const timer = setTimeout(() => {
-        setIsVideoReady(true);
-      }, 500); // Additional delay for smooth transition
-
-      return () => clearTimeout(timer);
-    }
-  }, [isVideoLoaded]);
-
-  // Handle video error detection and fallback
-  useEffect(() => {
-    if (isVideoLoaded && !isVideoReady) {
-      const errorTimer = setTimeout(() => {
-        // If video hasn't loaded after 4 seconds, assume it failed
-        setIsVideoError(true);
-        setShowFallbackImage(true);
-      }, 4000);
-
-      return () => clearTimeout(errorTimer);
-    }
-  }, [isVideoLoaded, isVideoReady]);
-
-  // Handle mobile video error detection
-  useEffect(() => {
-    if (isMobile && !isMobileVideoLoaded) {
-      const errorTimer = setTimeout(() => {
-        setIsMobileVideoError(true);
-        setShowFallbackImage(true);
-      }, 3000);
-
-      return () => clearTimeout(errorTimer);
-    }
-  }, [isMobile, isMobileVideoLoaded]);
-
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
@@ -152,17 +101,6 @@ export default function AISandboxPage() {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Handle mobile video loading
-  useEffect(() => {
-    if (isMobile) {
-      const timer = setTimeout(() => {
-        setIsMobileVideoLoaded(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isMobile]);
 
   const handleBackHome = () => {
     setIsTransitioning(true);
@@ -329,32 +267,10 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="travel-ai-hero relative w-full min-h-screen flex items-center" 
+        className="relative w-full min-h-screen flex items-center" 
         style={{ backgroundColor: '#E8FBF8' }} 
         aria-label="Project Hero"
       >
-        {/* Gradient fade at bottom of hero - extends beyond section for seamless transition */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            .travel-ai-hero::after {
-              content: '';
-              position: absolute;
-              bottom: -60px;
-              left: 0;
-              width: 100%;
-              height: 200px;
-              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 1) 30%, rgba(232, 251, 248, 0.98) 50%, rgba(232, 251, 248, 0.95) 65%, rgba(232, 251, 248, 0.85) 78%, rgba(232, 251, 248, 0.70) 88%, rgba(232, 251, 248, 0.50) 94%, rgba(232, 251, 248, 0.30) 98%, rgba(232, 251, 248, 0) 100%);
-              pointer-events: none;
-              z-index: 1;
-            }
-            @media (max-width: 768px) {
-              .travel-ai-hero::after {
-                bottom: -40px;
-                height: 120px;
-              }
-            }
-          `
-        }} />
         {/* Hero Content */}
         <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
           <div className="container mx-auto px-6 py-20 md:py-32">
@@ -379,150 +295,6 @@ export default function AISandboxPage() {
                 After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
               </p>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Section - negative margin to overlap with hero gradient */}
-      <section className="relative w-full overflow-hidden" style={{ marginTop: '-60px', zIndex: 0 }} aria-label="Video Background">
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            @media (max-width: 768px) {
-              section[aria-label="Video Background"] {
-                margin-top: -40px;
-              }
-            }
-          `
-        }} />
-        <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={{ ...(!isMobile ? { aspectRatio: '16/9' } : {}), backgroundColor: '#E8FBF8' }}>
-          {/* Fallback Image - Always loaded first for instant display */}
-          <motion.div
-            className="absolute inset-0 w-full h-full"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: showFallbackImage || (isVideoError || isMobileVideoError) ? 1 : 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <Image
-              src="/portfolio/images/ai-travel-hero.svg"
-              alt="AI Sandbox - Creative technology playground with abstract digital elements and neural network patterns representing AI innovation and travel technology"
-              fill
-              className="object-cover"
-              priority
-              quality={90}
-            />
-          </motion.div>
-
-          {/* Loading Overlay */}
-          <AnimatePresence>
-            {(!isVideoReady && !isMobile && !isVideoError) || (!isMobileVideoLoaded && isMobile && !isMobileVideoError) ? (
-              <motion.div
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="absolute inset-0 bg-black z-20 flex items-center justify-center"
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4 mx-auto"></div>
-                  <p className="text-white/70 text-sm">Loading video...</p>
-                </motion.div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          {/* Desktop Video Container (Vimeo iframe) */}
-          {!isMobile && !isVideoError && (
-            <motion.div
-              className="absolute inset-0 w-full h-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isVideoReady ? 1 : 0 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-            >
-              {isVideoLoaded && (
-                <iframe
-                  title="vimeo-player"
-                  src="https://player.vimeo.com/video/1096119218?h=92fa54736f&autoplay=1&muted=1&background=1"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                  frameBorder="0"
-                  onError={() => {
-                    setIsVideoError(true);
-                    setShowFallbackImage(true);
-                  }}
-                />
-              )}
-            </motion.div>
-          )}
-
-          {/* Mobile Video Container (Local video) */}
-          {isMobile && !isMobileVideoError && (
-            <motion.div
-              className="absolute inset-0 w-full h-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isMobileVideoLoaded ? 1 : 0 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-            >
-              {isMobileVideoLoaded && (
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={() => {
-                    setIsMobileVideoError(true);
-                    setShowFallbackImage(true);
-                  }}
-                  onLoadStart={() => {
-                    // Reset error state when video starts loading
-                    setIsMobileVideoError(false);
-                  }}
-                >
-                  <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )}
-            </motion.div>
-          )}
-          
-          {/* Gradient Overlay - single div, overlays exactly over the video */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Extended top gradient - matches bottom gradient structure for smooth fade */}
-            <div 
-              className="absolute inset-x-0 top-0 h-80" 
-              style={{
-                background: 'linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.98) 20%, rgba(232, 251, 248, 0.95) 35%, rgba(232, 251, 248, 0.85) 50%, rgba(232, 251, 248, 0.70) 65%, rgba(232, 251, 248, 0.50) 78%, rgba(232, 251, 248, 0.30) 88%, rgba(232, 251, 248, 0.15) 94%, rgba(232, 251, 248, 0.05) 98%, rgba(232, 251, 248, 0) 100%)'
-              }}
-            />
-            {/* Center radial gradient */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
-            {/* Bottom white gradient - fades to white page background */}
-            <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-white via-white/50 via-black/25 to-black/50" />
-          </div>
-
-          {/* Quote Overlay - Left Aligned */}
-          <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
-            <div className="container mx-auto px-6 md:px-12">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className="max-w-[30vw]"
-              >
-                <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white italic leading-relaxed mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                  "A good traveler has no fixed plans and is not intent on arriving."
-                </blockquote>
-                <p className="text-base md:text-lg text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-                  — Lao Tzu
-                </p>
-              </motion.div>
-            </div>
           </div>
         </div>
       </section>
