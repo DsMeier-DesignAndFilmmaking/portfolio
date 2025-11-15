@@ -327,7 +327,33 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="intro" className="relative w-full min-h-screen flex items-center" style={{ backgroundColor: '#E8FBF8' }} aria-label="Project Hero">
+      <section 
+        id="intro" 
+        className="travel-ai-hero relative w-full min-h-screen flex items-center overflow-hidden" 
+        style={{ backgroundColor: '#E8FBF8' }} 
+        aria-label="Project Hero"
+      >
+        {/* Gradient fade at bottom of hero - using ::after pseudo-element */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .travel-ai-hero::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 120px;
+              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.7) 40%, rgba(232, 251, 248, 0.3) 70%, rgba(232, 251, 248, 0) 100%);
+              pointer-events: none;
+              z-index: 1;
+            }
+            @media (max-width: 768px) {
+              .travel-ai-hero::after {
+                height: 80px;
+              }
+            }
+          `
+        }} />
         {/* Hero Content */}
         <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
           <div className="container mx-auto px-6 py-20 md:py-32">
@@ -456,8 +482,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Top gradient - matches bottom gradient style, fades from hero section color */}
-            <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/50 via-black/25 to-black/50" />
+            {/* Top gradient - starts transparent to continue hero fade, then transitions to video overlay */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-transparent via-[#E8FBF8]/20 via-black/15 to-black/30" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
