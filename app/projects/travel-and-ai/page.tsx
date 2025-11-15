@@ -451,7 +451,7 @@ export default function AISandboxPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className="max-w-[45vw]"
+                className="max-w-[30vw]"
               >
                 <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white italic leading-relaxed mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                   "A good traveler has no fixed plans and is not intent on arriving."

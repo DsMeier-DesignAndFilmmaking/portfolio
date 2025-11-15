@@ -198,10 +198,10 @@ export default function PurdueProjectPage() {
                 Purdue University
               </span>
               <br />
-              <span className="text-white">Website Audit & Redesign</span>
+              <span className="text-white">Website Audits & Redesigns</span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-              A full redesign of Purdue's Graduate School and Postdoc Scholars site—reworking the structure, streamlining navigation, and updating the content and interface to be more intuitive, accessible, and in line with today's design standards.
+              Lead the design process for multiple high-visibility Purdue University web and digital projects across various departments, while restructuring information architecture, improving navigation, and modernizing content and interfaces.
             </p>
           </motion.div>
         </div>
