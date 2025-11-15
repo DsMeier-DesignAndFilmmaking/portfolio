@@ -275,7 +275,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/sitebulb-screenshot_1.jpg"
                   alt="Sitebulb Screenshot"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <div className="relative aspect-[2648/1156] rounded-xl overflow-hidden bg-black/20">
@@ -283,7 +283,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/Sitebulb-duplicateGraph.jpg"
                   alt="Sitebulb Duplicate Graph"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <div className="relative aspect-[1512/905] rounded-xl overflow-hidden bg-black/20">
@@ -291,7 +291,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/GA-EventsScreenshot 1.png"
                   alt="Google Analytics Events Screenshot"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <div className="relative aspect-[2936/1344] rounded-xl overflow-hidden bg-black/20">
@@ -299,7 +299,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/crawl_force-directed_www_purdue_edu_202506072022.png"
                   alt="Purdue.edu Crawl Force Directed Graph"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
             </div>
@@ -328,7 +328,7 @@ export default function PurdueProjectPage() {
             Old Website
           </h2>
           <p className="text-gray-300 mb-12 max-w-[calc(50%-1rem)]">
-            Purdue University's website is cluttered, hard to navigate, and stuck in an outdated design. Users often struggle to find key information, and the overall experience felt behind the times.
+            Many of Purdue University's websites are cluttered, hard to navigate, and stuck in an outdated design. Users often struggle to find key information, and the overall experience felt behind the times.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Navigation */}
@@ -338,7 +338,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/Existing-howToApply_Screenshot (2).jpg"
                   alt="Existing How To Apply Screenshot 2"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Navigation</p>
@@ -351,7 +351,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/Existing-howToApply_Screenshot (1).jpg"
                   alt="Existing How To Apply Screenshot 1"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Program Page</p>
@@ -364,7 +364,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/Existing-howToApply_Screenshot.jpg"
                   alt="Existing How To Apply Screenshot"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">How to Apply</p>
@@ -377,7 +377,7 @@ export default function PurdueProjectPage() {
                   src="/portfolio/images/Existing-fellowships_Screenshot.jpg"
                   alt="Existing Fellowships Screenshot"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain rounded-lg shadow-lg"
                 />
               </div>
               <p className="text-sm text-gray-400">Fellowships Landing Page</p>
@@ -460,7 +460,7 @@ export default function PurdueProjectPage() {
                 src="/portfolio/images/purdue_homepage_screenshot.jpg"
                 alt="Purdue OGSPS Website Screenshot"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>

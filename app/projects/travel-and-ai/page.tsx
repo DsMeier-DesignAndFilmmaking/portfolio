@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/fa';
@@ -26,54 +26,75 @@ export default function AISandboxPage() {
   const router = useRouter();
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
+  
+  // Use refs to avoid recreating the event listener
+  const lastScrollYRef = useRef(0);
+  const isMobileMenuOpenRef = useRef(false);
+
+  // Update refs when state changes
+  useEffect(() => {
+    lastScrollYRef.current = lastScrollY;
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    isMobileMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const heroHeight = window.innerHeight; // 100vh
-      const quoteSectionStart = heroHeight; // Quote section starts after hero
-      const problemSectionStart = heroHeight + 400; // Problem section (bg-gray-50)
-      const audienceSectionStart = heroHeight + 1200; // Audience section (bg-black)
-      
-      setIsScrolled(scrollPosition > heroHeight * 0.8); // Change color when 80% past hero
-      
-      // Check if we're over black background sections
-      const isOverBlack = scrollPosition >= audienceSectionStart;
-      setIsOverBlackBg(isOverBlack);
+      try {
+        const scrollPosition = window.scrollY;
+        const heroHeight = window.innerHeight; // 100vh
+        const quoteSectionStart = heroHeight; // Quote section starts after hero
+        const problemSectionStart = heroHeight + 400; // Problem section (bg-gray-50)
+        const audienceSectionStart = heroHeight + 1200; // Audience section (bg-black)
+        
+        setIsScrolled(scrollPosition > heroHeight * 0.8); // Change color when 80% past hero
+        
+        // Check if we're over black background sections
+        const isOverBlack = scrollPosition >= audienceSectionStart;
+        setIsOverBlackBg(isOverBlack);
 
-      // Navbar color transition: start black, turn white after scrolling 100px
-      setIsNavbarWhite(scrollPosition > 100);
+        // Navbar color transition: start black, turn white after scrolling 100px
+        setIsNavbarWhite(scrollPosition > 100);
 
-      // Close mobile menu on scroll
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+        // Close mobile menu on scroll
+        if (isMobileMenuOpenRef.current) {
+          setIsMobileMenuOpen(false);
+        }
+
+        // Track if at top
+        setAtTop(scrollPosition === 0);
+
+        // Handle navbar hide/show on mobile based on scroll direction
+        const currentScrollY = window.scrollY;
+        const previousScrollY = lastScrollYRef.current;
+        if (currentScrollY > previousScrollY) {
+          // Scrolling down
+          setScrollDirection('down');
+          setIsScrolling(true);
+        } else if (currentScrollY < previousScrollY) {
+          // Scrolling up
+          setScrollDirection('up');
+          setIsScrolling(false);
+        }
+        lastScrollYRef.current = currentScrollY;
+        setLastScrollY(currentScrollY);
+      } catch (error) {
+        // Silently handle any errors (often from browser extensions)
+        console.debug('Scroll handler error:', error);
       }
-
-      // Track if at top
-      setAtTop(scrollPosition === 0);
-
-      // Handle navbar hide/show on mobile based on scroll direction
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setScrollDirection('down');
-        setIsScrolling(true);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
-        setScrollDirection('up');
-        setIsScrolling(false);
-      }
-      setLastScrollY(currentScrollY);
     };
 
     // Initial check on mount
     handleScroll();
 
-    window.addEventListener('scroll', handleScroll);
+    // Use passive listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY, isMobileMenuOpen]);
+  }, []); // Empty dependency array since we're using refs
 
   // Handle video loading with error detection
   useEffect(() => {
@@ -436,7 +457,7 @@ export default function AISandboxPage() {
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
             {/* Top gradient - fades from hero section color into transparent */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/80 via-[#E8FBF8]/40 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/90 via-[#E8FBF8]/70 via-[#E8FBF8]/40 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
