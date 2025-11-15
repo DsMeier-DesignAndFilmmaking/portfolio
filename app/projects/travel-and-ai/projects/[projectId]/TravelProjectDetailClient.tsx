@@ -170,7 +170,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h3 className="text-xl font-semibold mb-3 text-gray-900">Market Opportunity</h3>
                     <p className="text-gray-600">
-                      The global travel app market is growing fast, but most tools focus on booking—not helping travelers make smart, in-the-moment decisions or enjoy spontaneous experiences with AI-powered support.
+                      The mobile travel market continues to expand—expected to surpass $250B by 2028—yet more than 80% of leading travel apps focus on trip planning and reservations, not the in-destination experience.
                     </p>
                   </div>
                 </div>
