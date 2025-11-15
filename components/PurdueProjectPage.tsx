@@ -465,13 +465,12 @@ export default function PurdueProjectPage() {
           <div className="space-y-4">
             <div className="relative w-full h-[600px] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
-                src="/portfolio/images/purdueFigma_Screenshot (2).jpg"
-                alt="Purdue Figma Screenshot"
+                src="/portfolio/images/purdueHome-screenshot.jpg"
+                alt="Purdue OGSPS Website Screenshot"
                 fill
                 className="object-cover"
               />
             </div>
-            <p className="text-sm text-gray-400">Working Figma File</p>
           </div>
           <div className="mt-12 text-center">
             <a
