@@ -211,7 +211,7 @@ export default function PurdueProjectPage() {
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <StatCard icon={FaChartLine} value="1,500+" label="URLs to Enhance or Migrate" />
+            <StatCard icon={FaChartLine} value="1,500+" label="Enhanced and Migrated URLs" />
             <StatCard icon={FaUsers} value="44k" label="Avg. Monthly Visitors" />
             <StatCard icon={FaClock} value="1.5M" label="Page Views" />
             <StatCard icon={FaCheckCircle} value="132k" label="Event Count" />
@@ -226,7 +226,7 @@ export default function PurdueProjectPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="pt-0">
               <h2 className="text-3xl font-bold mb-6 text-[#cfb991]">
-                Project Overview
+                Overview
               </h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -329,7 +329,7 @@ export default function PurdueProjectPage() {
       <section id="current-website" className="py-20 bg-black/40">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-6 text-[#cfb991]">
-            Current Website
+            Old Website
           </h2>
           <p className="text-gray-300 mb-12 max-w-[calc(50%-1rem)]">
             Purdue University's website is cluttered, hard to navigate, and stuck in an outdated design. Users often struggle to find key information, and the overall experience felt behind the times.
