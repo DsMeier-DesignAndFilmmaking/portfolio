@@ -482,8 +482,10 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
+            {/* Solid top section - no transparency */}
+            <div className="absolute inset-x-0 top-0 h-12" style={{ backgroundColor: '#E8FBF8' }} />
             {/* Top gradient - smoothly fades from hero section background color */}
-            <div className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/90 via-[#E8FBF8]/70 via-[#E8FBF8]/40 via-[#E8FBF8]/15 to-transparent" />
+            <div className="absolute inset-x-0 top-12 h-48 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/90 via-[#E8FBF8]/70 via-[#E8FBF8]/40 via-[#E8FBF8]/15 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
@@ -519,17 +521,17 @@ export default function AISandboxPage() {
             {[
               {
                 id: 1,
+                title: "Trust & Authenticity",
+                description: "Machine learning system that provides cultural insights and local recommendations.",
+                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                link: "/projects/travel-and-ai/projects/cultural-context-engine"
+              },
+              {
+                id: 2,
                 title: "Spontaneous Travel Companion",
                 description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
                 imageUrl: "/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp",
                 link: "/projects/travel-and-ai/projects/spontaneous-travel-companion"
-              },
-              {
-                id: 2,
-                title: "Cultural Context Engine",
-                description: "Machine learning system that provides cultural insights and local recommendations.",
-                imageUrl: "/portfolio/images/travelApp-card.jpg",
-                link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
               {
                 id: 3,
