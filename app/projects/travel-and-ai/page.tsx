@@ -343,7 +343,7 @@ export default function AISandboxPage() {
               left: 0;
               width: 100%;
               height: 200px;
-              background: linear-gradient(to bottom, #E8FBF8 0%, #E8FBF8 30%, rgba(232, 251, 248, 0.95) 50%, rgba(232, 251, 248, 0.7) 70%, rgba(232, 251, 248, 0.4) 85%, rgba(232, 251, 248, 0) 100%);
+              background: linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 1) 30%, rgba(232, 251, 248, 0.98) 50%, rgba(232, 251, 248, 0.95) 65%, rgba(232, 251, 248, 0.85) 78%, rgba(232, 251, 248, 0.70) 88%, rgba(232, 251, 248, 0.50) 94%, rgba(232, 251, 248, 0.30) 98%, rgba(232, 251, 248, 0) 100%);
               pointer-events: none;
               z-index: 1;
             }
@@ -492,8 +492,13 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Extended top gradient - more gradual fade from hero section background color */}
-            <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/98 via-[#E8FBF8]/95 via-[#E8FBF8]/90 via-[#E8FBF8]/80 via-[#E8FBF8]/65 via-[#E8FBF8]/45 via-[#E8FBF8]/30 via-[#E8FBF8]/15 via-[#E8FBF8]/5 to-transparent" />
+            {/* Extended top gradient - matches bottom gradient structure for smooth fade */}
+            <div 
+              className="absolute inset-x-0 top-0 h-80" 
+              style={{
+                background: 'linear-gradient(to bottom, #E8FBF8 0%, rgba(232, 251, 248, 0.98) 20%, rgba(232, 251, 248, 0.95) 35%, rgba(232, 251, 248, 0.85) 50%, rgba(232, 251, 248, 0.70) 65%, rgba(232, 251, 248, 0.50) 78%, rgba(232, 251, 248, 0.30) 88%, rgba(232, 251, 248, 0.15) 94%, rgba(232, 251, 248, 0.05) 98%, rgba(232, 251, 248, 0) 100%)'
+              }}
+            />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
