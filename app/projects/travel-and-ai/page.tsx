@@ -394,7 +394,7 @@ export default function AISandboxPage() {
             }
           `
         }} />
-        <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={!isMobile ? { aspectRatio: '16/9' } : {}}>
+        <div className={`relative w-full ${isMobile ? 'h-full' : ''}`} style={{ ...(!isMobile ? { aspectRatio: '16/9' } : {}), backgroundColor: '#E8FBF8' }}>
           {/* Fallback Image - Always loaded first for instant display */}
           <motion.div
             className="absolute inset-0 w-full h-full"
@@ -492,10 +492,8 @@ export default function AISandboxPage() {
           
           {/* Gradient Overlay - single div, overlays exactly over the video */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
-            {/* Solid top section - seamlessly continues from hero section */}
-            <div className="absolute inset-x-0 top-0 h-16" style={{ backgroundColor: '#E8FBF8' }} />
-            {/* Top gradient - smoothly fades from hero section background color */}
-            <div className="absolute inset-x-0 top-16 h-44 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/95 via-[#E8FBF8]/80 via-[#E8FBF8]/60 via-[#E8FBF8]/30 via-[#E8FBF8]/10 to-transparent" />
+            {/* Extended top gradient - more gradual fade from hero section background color */}
+            <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-[#E8FBF8] via-[#E8FBF8]/98 via-[#E8FBF8]/95 via-[#E8FBF8]/90 via-[#E8FBF8]/80 via-[#E8FBF8]/65 via-[#E8FBF8]/45 via-[#E8FBF8]/30 via-[#E8FBF8]/15 via-[#E8FBF8]/5 to-transparent" />
             {/* Center radial gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black/80" />
             {/* Bottom white gradient - fades to white page background */}
@@ -545,14 +543,14 @@ export default function AISandboxPage() {
               },
               {
                 id: 3,
-                title: "Travel Planning Assistant",
+                title: "Fragmentation of Planning Tools",
                 description: "Intelligent assistant that adapts to spontaneous travel preferences and constraints.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
                 link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
                 id: 4,
-                title: "Local Experience Finder",
+                title: "Real-Time Information Gaps",
                 description: "Context-aware discovery platform connecting travelers with authentic local experiences.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
                 link: "/projects/travel-and-ai/projects/local-experience-finder"
