@@ -457,7 +457,7 @@ export default function PurdueProjectPage() {
       <section id="design" className="py-20 bg-white/5">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-6 text-[#cfb991] text-center">
-            Design in Progress
+            New Design
           </h2>
           <p className="text-gray-300 mb-12 max-w-2xl mx-auto text-center">
             Along with improving information hierarchy and user experience, the redesign delivers a modern, accessible interface and a modular CMS design system that allows Purdue's teams to manage and scale content with ease.
@@ -472,6 +472,17 @@ export default function PurdueProjectPage() {
               />
             </div>
             <p className="text-sm text-gray-400">Working Figma File</p>
+          </div>
+          <div className="mt-12 text-center">
+            <a
+              href="https://www.purdue.edu/academics/ogsps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-4 bg-[#cfb991] text-black font-semibold rounded-lg hover:bg-[#d4c19f] transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              View Live Site
+              <FaArrowRight className="ml-2" />
+            </a>
           </div>
         </div>
       </section>
