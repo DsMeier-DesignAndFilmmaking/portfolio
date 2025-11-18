@@ -38,7 +38,8 @@ export default function AISandboxPage() {
     const handleScroll = () => {
       try {
         const scrollPosition = window.scrollY;
-        const heroHeight = window.innerHeight; // 100vh
+        // Hero section is now ~55-60vh, calculate based on viewport
+        const heroHeight = window.innerHeight * 0.6; // Approximately 60vh
         const quoteSectionStart = heroHeight; // Quote section starts after hero
         const problemSectionStart = heroHeight + 400; // Problem section (bg-gray-50)
         const audienceSectionStart = heroHeight + 1200; // Audience section (bg-black)
@@ -267,13 +268,13 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="relative w-full min-h-screen flex items-center" 
+        className="relative w-full min-h-[55vh] md:min-h-[60vh] flex items-center" 
         style={{ backgroundColor: '#E8FBF8' }} 
         aria-label="Project Hero"
       >
         {/* Hero Content */}
         <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
-          <div className="container mx-auto px-6 py-20 md:py-32">
+          <div className="container mx-auto px-6 py-12 md:py-16">
             <motion.div 
               className={`max-w-2xl ${isMobile ? 'text-center' : ''}`}
               initial={{ opacity: 0, y: 20 }}
@@ -283,15 +284,15 @@ export default function AISandboxPage() {
                 delay: 0.3
               }}
             >
-              <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-4 md:mb-5">
                 <span className="text-gray-600">AI Travel Projects</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-5">
                 <span className="text-gray-900">
                   Designing AI-Driven Travel Experiences
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                 After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
               </p>
             </motion.div>
@@ -300,7 +301,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Project Cards Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-12 md:pt-16 pb-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -347,7 +348,7 @@ export default function AISandboxPage() {
                       src={project.imageUrl}
                       alt={project.title}
                       fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 group-hover:scale-105`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
