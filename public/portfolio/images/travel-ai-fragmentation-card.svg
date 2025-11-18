@@ -1,0 +1,92 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8FBF8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D1F5F0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#F0F9F7;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Fragmented cards (top, scattered) -->
+  <g opacity="0.6">
+    <!-- Card 1 - Booking -->
+    <rect x="80" y="80" width="140" height="100" rx="8" fill="url(#cardGradient)" stroke="#B0E5DF" stroke-width="2"/>
+    <rect x="95" y="95" width="110" height="8" rx="4" fill="#4A90E2" opacity="0.3"/>
+    <rect x="95" y="110" width="80" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <rect x="95" y="122" width="60" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <circle cx="200" cy="100" r="4" fill="#4A90E2" opacity="0.4"/>
+    
+    <!-- Card 2 - Itinerary -->
+    <rect x="280" y="60" width="140" height="100" rx="8" fill="url(#cardGradient)" stroke="#B0E5DF" stroke-width="2"/>
+    <rect x="295" y="75" width="110" height="8" rx="4" fill="#4A90E2" opacity="0.3"/>
+    <rect x="295" y="90" width="90" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <rect x="295" y="102" width="70" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <circle cx="400" cy="80" r="4" fill="#4A90E2" opacity="0.4"/>
+    
+    <!-- Card 3 - Discovery -->
+    <rect x="500" y="100" width="140" height="100" rx="8" fill="url(#cardGradient)" stroke="#B0E5DF" stroke-width="2"/>
+    <rect x="515" y="115" width="110" height="8" rx="4" fill="#4A90E2" opacity="0.3"/>
+    <rect x="515" y="130" width="85" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <rect x="515" y="142" width="65" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <circle cx="620" cy="120" r="4" fill="#4A90E2" opacity="0.4"/>
+    
+    <!-- Card 4 - Maps -->
+    <rect x="180" y="220" width="140" height="100" rx="8" fill="url(#cardGradient)" stroke="#B0E5DF" stroke-width="2"/>
+    <rect x="195" y="235" width="110" height="8" rx="4" fill="#4A90E2" opacity="0.3"/>
+    <rect x="195" y="250" width="95" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <rect x="195" y="262" width="75" height="6" rx="3" fill="#7B8A9B" opacity="0.2"/>
+    <circle cx="300" cy="240" r="4" fill="#4A90E2" opacity="0.4"/>
+  </g>
+  
+  <!-- Connection lines (dashed, showing fragmentation) -->
+  <g opacity="0.3" stroke="#7B8A9B" stroke-width="1.5" stroke-dasharray="4,4" fill="none">
+    <line x1="150" y1="130" x2="350" y2="110"/>
+    <line x1="350" y1="110" x2="570" y2="150"/>
+    <line x1="250" y1="180" x2="250" y2="270"/>
+  </g>
+  
+  <!-- Unified platform (bottom center, larger) -->
+  <g>
+    <!-- Main unified card -->
+    <rect x="250" y="360" width="300" height="180" rx="12" fill="url(#cardGradient)" stroke="#4A90E2" stroke-width="3"/>
+    
+    <!-- Unified header -->
+    <rect x="270" y="380" width="260" height="12" rx="6" fill="#4A90E2" opacity="0.6"/>
+    
+    <!-- Unified content sections -->
+    <rect x="270" y="405" width="120" height="8" rx="4" fill="#4A90E2" opacity="0.4"/>
+    <rect x="270" y="420" width="100" height="6" rx="3" fill="#7B8A9B" opacity="0.3"/>
+    
+    <rect x="410" y="405" width="120" height="8" rx="4" fill="#4A90E2" opacity="0.4"/>
+    <rect x="410" y="420" width="100" height="6" rx="3" fill="#7B8A9B" opacity="0.3"/>
+    
+    <rect x="270" y="445" width="260" height="8" rx="4" fill="#4A90E2" opacity="0.4"/>
+    <rect x="270" y="460" width="200" height="6" rx="3" fill="#7B8A9B" opacity="0.3"/>
+    <rect x="270" y="472" width="180" height="6" rx="3" fill="#7B8A9B" opacity="0.3"/>
+    
+    <!-- Integration indicator (small connecting nodes) -->
+    <circle cx="400" cy="500" r="6" fill="#4A90E2" opacity="0.6"/>
+    <circle cx="380" cy="510" r="4" fill="#4A90E2" opacity="0.4"/>
+    <circle cx="420" cy="510" r="4" fill="#4A90E2" opacity="0.4"/>
+    
+    <!-- Connection arrows pointing to unified platform -->
+    <g stroke="#4A90E2" stroke-width="2" fill="none" opacity="0.5">
+      <path d="M 150 180 Q 200 270 250 360" stroke-dasharray="3,3"/>
+      <path d="M 350 160 Q 350 260 400 360" stroke-dasharray="3,3"/>
+      <path d="M 570 200 Q 500 280 450 360" stroke-dasharray="3,3"/>
+      <path d="M 250 270 Q 250 315 250 360" stroke-dasharray="3,3"/>
+    </g>
+  </g>
+  
+  <!-- Subtle accent elements -->
+  <circle cx="100" cy="500" r="40" fill="#B0E5DF" opacity="0.2"/>
+  <circle cx="700" cy="100" r="50" fill="#B0E5DF" opacity="0.15"/>
+</svg>
+

@@ -307,7 +307,7 @@ export default function AISandboxPage() {
               {
                 id: 1,
                 title: "Trust & Authenticity",
-                description: "Machine learning system that provides cultural insights and local recommendations.",
+                description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
                 imageUrl: "/portfolio/images/travel-ai-authenticity-card.svg",
                 link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
@@ -321,8 +321,8 @@ export default function AISandboxPage() {
               {
                 id: 3,
                 title: "Fragmentation of Planning Tools",
-                description: "Intelligent assistant that adapts to spontaneous travel preferences and constraints.",
-                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
+                imageUrl: "/portfolio/images/travel-ai-fragmentation-card.svg",
                 link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
