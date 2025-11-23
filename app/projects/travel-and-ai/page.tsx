@@ -352,9 +352,15 @@ export default function AISandboxPage() {
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Status Pill Badge */}
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="bg-[#f2b134] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
+                        {project.id === 2 ? 'In Development' : 'In R & D and Design'}
+                      </span>
+                    </div>
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
                     {project.id === 2 && (
-                      <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
+                      <div className="absolute top-12 right-3 flex flex-col gap-2 z-10">
                         <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
                           iOS
                         </span>
