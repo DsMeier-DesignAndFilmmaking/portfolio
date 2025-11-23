@@ -77,36 +77,38 @@ const projectData: Record<string, any> = {
     }
   },
   'cultural-context-engine': {
-    title: 'Cultural Context Engine',
-    tagline: 'Machine learning system that provides cultural insights and local recommendations.',
+    title: 'Trust & Authenticity Layer for Travel AI',
+    tagline: 'A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.',
     heroImage: '/portfolio/images/travelApp-card.jpg',
     overview: {
-      description: 'An intelligent system that analyzes cultural patterns and provides contextual recommendations to help travelers understand and engage with local cultures authentically.',
+      description: 'An early-stage R&D project addressing the growing trust crisis in travel recommendations. As travelers increasingly distrust AI-generated itineraries, online reviews, and travel content, this project explores systems-level solutions for establishing authenticity, transparency, and reliability in AI-powered travel experiences.',
       goals: [
-        'Provide real-time cultural context and insights',
-        'Enable deeper cultural understanding for travelers',
-        'Support authentic local engagement',
-        'Bridge cultural gaps through AI-powered recommendations'
+        'Solve the trust crisis in travel recommendations and AI-generated content',
+        'Establish transparency and source provenance for travel AI systems',
+        'Develop confidence scoring mechanisms for recommendations',
+        'Create verification systems for real traveler data and experiences'
       ],
       outcomes: [
-        'Improved cultural engagement scores by 52%',
-        'Reduced cultural misunderstandings',
-        'Increased local business discovery by 38%'
+        'Early-stage research project — outcomes to be measured',
+        'Identified key trust signals and verification mechanisms',
+        'Developed initial framework for authenticity scoring'
       ]
     },
     metadata: {
-      role: 'Product Designer & AI Strategist',
-      skills: ['UX Design', 'AI/ML Integration', 'User Research', 'Data Visualization'],
-      tools: ['Figma', 'Python', 'TensorFlow', 'Tableau'],
-      timeline: 'Q3 2024 - Present'
+      role: 'Product Designer & Research Strategist',
+      skills: ['UX Research', 'Systems Design', 'Product Strategy', 'Market Research'],
+      tools: ['Figma', 'Miro', 'Notion', 'Research Tools'],
+      timeline: 'Q4 2024 - Present (Early R&D)'
     },
     research: {
-      title: 'Research & Insights',
-      description: 'Conducted ethnographic research and cultural analysis to understand how travelers interact with local cultures and identify opportunities for AI assistance.',
+      title: 'The Problem: Trust Crisis in Travel',
+      description: 'Industry research reveals a critical decline in traveler trust. Studies show 68% of travelers are skeptical of online reviews, with concerns about review manipulation, sponsored content, and AI hallucinations. Gen Z travelers show particular skepticism, with 74% expressing doubt about AI-generated travel recommendations. TripAdvisor and Booking.com face ongoing credibility challenges, while Airbnb reviews are increasingly questioned for bias.',
       insights: [
-        'Travelers struggle with cultural context in real-time situations',
-        'Language barriers limit authentic cultural experiences',
-        'Local recommendations often lack cultural depth'
+        '68% of travelers distrust online reviews due to manipulation and fraud concerns',
+        '74% of Gen Z travelers are skeptical of AI-generated travel recommendations',
+        'Review platforms face credibility crisis: 42% of users suspect fake reviews',
+        'AI hallucinations in travel content create misinformation and unreliable itineraries',
+        'Travelers want transparency: 81% want to know the source of recommendations'
       ],
       images: [
         '/portfolio/images/travelApp-card.jpg',
@@ -114,8 +116,8 @@ const projectData: Record<string, any> = {
       ]
     },
     uxDesign: {
-      title: 'UX Design & Wireframes',
-      description: 'Designed intuitive interfaces for displaying cultural insights and recommendations in contextually relevant moments.',
+      title: 'Initial Concepts & Hypotheses',
+      description: 'Early exploration of trust signals, source provenance, and confidence scoring mechanisms. Concepts include visual indicators for recommendation reliability, source attribution for AI-generated content, and verification systems that distinguish real traveler experiences from manipulated data.',
       images: [
         '/portfolio/images/travelApp-card.jpg',
         '/portfolio/images/travelApp-card.jpg',
@@ -123,22 +125,22 @@ const projectData: Record<string, any> = {
       ]
     },
     uiDesign: {
-      title: 'UI Design & Visuals',
-      description: 'Created a visually rich interface that celebrates cultural diversity while maintaining clarity and usability.',
+      title: 'Concept Visualizations',
+      description: 'Placeholder visualizations exploring how trust and authenticity could be communicated in travel AI interfaces. Concepts include: trust signal indicators, source provenance displays, confidence scoring visualizations, and verification badges for real traveler data.',
       images: [
         '/portfolio/images/travelApp-card.jpg',
         '/portfolio/images/travelApp-card.jpg'
       ]
     },
     development: {
-      title: 'Development & Tech Stack',
-      description: 'Built with advanced ML models for cultural pattern recognition and real-time recommendation systems.',
+      title: 'R&D Approach & Next Steps',
+      description: 'Early-stage research focusing on systems design, verification mechanisms, and user perception studies. Next steps include developing prototype trust indicators, testing confidence scoring models, and validating authenticity verification systems with real traveler data.',
       techStack: [
-        'Python',
-        'TensorFlow',
-        'React Native',
-        'Firebase',
-        'MongoDB'
+        'Research & Prototyping',
+        'Systems Design',
+        'User Testing',
+        'Data Analysis',
+        'Concept Validation'
       ],
       images: [
         '/portfolio/images/travelApp-card.jpg'
