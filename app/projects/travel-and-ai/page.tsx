@@ -284,11 +284,11 @@ export default function AISandboxPage() {
               }}
             >
               <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
-                <span className="text-gray-600">AI Travel Projects</span>
+                <span className="text-gray-600">Intelligent Travel Systems</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="text-gray-900">
-                  Designing AI-Driven Travel Experiences
+                  Engineering AI-Enhanced Travel Experiences
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
