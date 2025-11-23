@@ -300,7 +300,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Project Cards Section */}
-      <section className="pb-20 bg-white">
+      <section className="pb-20" style={{ backgroundColor: '#E8FBF8' }}>
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -327,8 +327,8 @@ export default function AISandboxPage() {
               },
               {
                 id: 4,
-                title: "Real-Time Information Gaps",
-                description: "Context-aware discovery platform connecting travelers with authentic local experiences.",
+                title: "A Social Layer for Global Exploration",
+                description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
                 imageUrl: "/portfolio/images/travelApp-card.jpg",
                 link: "/projects/travel-and-ai/projects/local-experience-finder"
               }
