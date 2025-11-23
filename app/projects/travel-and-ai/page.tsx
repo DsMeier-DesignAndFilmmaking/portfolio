@@ -300,7 +300,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Project Cards Section */}
-      <section className="pb-20" style={{ backgroundColor: '#E8FBF8' }}>
+      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }}>
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -339,7 +339,7 @@ export default function AISandboxPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
+                className="group bg-white rounded-lg overflow-hidden shadow-sm md:hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
                 <Link href={project.link} className="flex flex-col h-full">
                   <div className={`relative w-full h-64 overflow-hidden flex-shrink-0 ${project.imageUrl.endsWith('.svg') ? 'bg-[#E8FBF8]' : ''}`}>
@@ -348,10 +348,10 @@ export default function AISandboxPage() {
                         src={project.imageUrl}
                         alt={project.title}
                         fill
-                        className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 group-hover:scale-105`}
+                        className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 md:group-hover:scale-105`}
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
                     {/* Status Pill Badge */}
                     <div className="absolute top-3 right-3 z-10">
                       <span className={`${project.id === 2 ? 'bg-[#F2B134]' : 'bg-[#00A9A5]'} text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md`}>
@@ -372,17 +372,17 @@ export default function AISandboxPage() {
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
                         {project.title}
                       </h3>
                       <p className="text-sm text-gray-600 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
-                    <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300 mt-4">
+                    <span className="inline-flex items-center text-sm font-medium text-blue-600 md:group-hover:text-blue-700 transition-colors duration-300 mt-4">
                       View Project
                       <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        className="w-4 h-4 ml-2 md:group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -417,13 +417,13 @@ export default function AISandboxPage() {
                   src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
                   alt="Purdue University Project"
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 md:group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
                   <h3 className="text-2xl font-bold text-white mb-2">Purdue University</h3>
                   <p className="text-gray-200 mb-4">A comprehensive redesign of Purdue University's digital presence, focusing on enhancing user experience and modernizing their brand identity.</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
+                  <div className="inline-flex items-center font-medium text-white md:hover:text-gray-300 transition-colors">
                     View Project
                   </div>
                 </div>
@@ -437,13 +437,13 @@ export default function AISandboxPage() {
                   src="/portfolio/images/timbertech-card.jpg"
                   alt="TimberTech Project"
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 md:group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
                   <h3 className="text-2xl font-bold text-white mb-2">Client Work</h3>
                   <p className="text-gray-200 mb-4">View work samples from previous projects I have worked on.</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
+                  <div className="inline-flex items-center font-medium text-white md:hover:text-gray-300 transition-colors">
                     View Projects
                   </div>
                 </div>
