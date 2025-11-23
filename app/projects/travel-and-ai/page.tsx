@@ -355,7 +355,7 @@ export default function AISandboxPage() {
                     {/* Status Pill Badge */}
                     <div className="absolute top-3 right-3 z-10">
                       <span className={`${project.id === 2 ? 'bg-[#F2B134]' : 'bg-[#00A9A5]'} text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md`}>
-                        {project.id === 2 ? 'In Development' : 'In R & D and Design'}
+                        {project.id === 2 ? 'In Development' : 'In R & D'}
                       </span>
                     </div>
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
