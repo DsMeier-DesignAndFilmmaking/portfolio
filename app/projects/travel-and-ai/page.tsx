@@ -308,7 +308,7 @@ export default function AISandboxPage() {
                 id: 1,
                 title: "Trust & Authenticity",
                 description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
-                imageUrl: "/portfolio/images/travel-ai-authenticity-card.svg",
+                imageUrl: "/portfolio/images/Travel-trust-chatGPT-image.png",
                 link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
               {
