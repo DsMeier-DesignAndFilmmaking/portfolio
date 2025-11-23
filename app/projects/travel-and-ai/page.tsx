@@ -352,6 +352,22 @@ export default function AISandboxPage() {
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* In R & D and Design Ribbon for all cards except Spontaneous Travel Companion */}
+                    {project.id !== 2 && (
+                      <div className="absolute top-[20px] right-0 z-10 overflow-hidden">
+                        <div className="bg-[#cfb991] text-black text-xs font-medium px-7 py-1 transform rotate-45 translate-x-6 translate-y-1 shadow-md">
+                          In R & D and Design
+                        </div>
+                      </div>
+                    )}
+                    {/* In Development Ribbon for Spontaneous Travel Companion */}
+                    {project.id === 2 && (
+                      <div className="absolute top-[20px] right-0 z-10 overflow-hidden">
+                        <div className="bg-[#cfb991] text-black text-xs font-medium px-7 py-1 transform rotate-45 translate-x-6 translate-y-1 shadow-md">
+                          In Development
+                        </div>
+                      </div>
+                    )}
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
                     {project.id === 2 && (
                       <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
