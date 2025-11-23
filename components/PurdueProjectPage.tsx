@@ -201,7 +201,7 @@ export default function PurdueProjectPage() {
               <span className="text-white">Website Audits & Redesigns</span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-              Lead the design process for multiple high-visibility Purdue University web and digital projects across various departments, while restructuring information architecture, improving navigation, and modernizing content and interfaces.
+              Lead design for multiple high-visibility Purdue University web and digital projects across various departments.
             </p>
           </motion.div>
         </div>
