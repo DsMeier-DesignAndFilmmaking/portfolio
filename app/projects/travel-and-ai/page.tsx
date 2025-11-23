@@ -322,7 +322,7 @@ export default function AISandboxPage() {
                 id: 3,
                 title: "Fragmentation of Planning Tools",
                 description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
-                imageUrl: "/portfolio/images/travel-ai-fragmentation-card.svg",
+                imageUrl: "/portfolio/images/planningFragmentationTool-placeholder.jpg",
                 link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
