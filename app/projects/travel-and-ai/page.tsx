@@ -342,13 +342,15 @@ export default function AISandboxPage() {
                 className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
                 <Link href={project.link} className="flex flex-col h-full">
-                  <div className="relative w-full h-64 overflow-hidden flex-shrink-0">
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 group-hover:scale-105`}
-                    />
+                  <div className={`relative w-full h-64 overflow-hidden flex-shrink-0 ${project.imageUrl.endsWith('.svg') ? 'bg-[#E8FBF8]' : ''}`}>
+                    <div className={project.imageUrl.endsWith('.svg') ? 'absolute inset-4' : 'absolute inset-0'}>
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 group-hover:scale-105`}
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
                     {project.id === 2 && (

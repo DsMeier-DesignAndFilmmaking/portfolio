@@ -102,13 +102,14 @@ const projectData: Record<string, any> = {
     },
     research: {
       title: 'The Problem: Trust Crisis in Travel',
-      description: 'Industry research reveals a critical decline in traveler trust. Studies show 68% of travelers are skeptical of online reviews, with concerns about review manipulation, sponsored content, and AI hallucinations. Gen Z travelers show particular skepticism, with 74% expressing doubt about AI-generated travel recommendations. TripAdvisor and Booking.com face ongoing credibility challenges, while Airbnb reviews are increasingly questioned for bias.',
+      description: 'Industry research reveals growing concerns about traveler trust in recommendations and reviews. While studies show consumers still rely on online reviews, manipulation and fraud concerns are rising. The Federal Trade Commission has taken enforcement action against fake review schemes, including cases affecting major travel platforms. Gen Z travelers demonstrate particular skepticism toward AI-generated content and automated recommendations. Major platforms like TripAdvisor, Booking.com, and Airbnb face ongoing credibility challenges as users increasingly question review authenticity and AI-generated travel content reliability.',
       insights: [
-        '68% of travelers distrust online reviews due to manipulation and fraud concerns',
-        '74% of Gen Z travelers are skeptical of AI-generated travel recommendations',
-        'Review platforms face credibility crisis: 42% of users suspect fake reviews',
-        'AI hallucinations in travel content create misinformation and unreliable itineraries',
-        'Travelers want transparency: 81% want to know the source of recommendations'
+        'BrightLocal (2023) reports that while 79% of consumers trust reviews, concerns about manipulation are growing, with many users questioning review authenticity',
+        'FTC enforcement actions (2023-2024) reveal widespread fake review schemes affecting travel and hospitality platforms, highlighting systemic trust issues',
+        'Pew Research Center (2023) indicates Gen Z shows higher skepticism toward AI-generated content and automated recommendations compared to older generations',
+        'Industry reports show significant portions of users question review authenticity on major platforms, creating a credibility crisis for review-based systems',
+        'AI hallucinations in travel content create misinformation risks, with studies showing travelers want transparency in source attribution and verification',
+        'Research indicates travelers increasingly demand transparency in recommendation sources, with many preferring verified, human-generated insights over AI-only content'
       ],
       images: [
         '/portfolio/images/travelApp-card.jpg',
