@@ -433,10 +433,10 @@ export default function AISandboxPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Previous Projects</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Client Work</h3>
                   <p className="text-gray-200 mb-4">View work samples from previous projects I have worked on.</p>
                   <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
+                    View Projects
                   </div>
                 </div>
               </div>
