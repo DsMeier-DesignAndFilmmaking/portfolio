@@ -171,7 +171,7 @@ export default function PreviousProjectsPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-               A collection of digital design work across a range of industries.
+               A collection of digital design work spanning contract, freelance, and full-time roles across a range of industries.
             </p>
           </motion.div>
         </div>
