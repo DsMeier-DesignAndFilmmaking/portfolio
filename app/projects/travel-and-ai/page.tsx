@@ -38,7 +38,7 @@ export default function AISandboxPage() {
     const handleScroll = () => {
       try {
         const scrollPosition = window.scrollY;
-        const heroHeight = window.innerHeight; // 100vh
+        const heroHeight = window.innerHeight * 0.8; // 80vh
         const quoteSectionStart = heroHeight; // Quote section starts after hero
         const problemSectionStart = heroHeight + 400; // Problem section (bg-gray-50)
         const audienceSectionStart = heroHeight + 1200; // Audience section (bg-black)
@@ -267,15 +267,15 @@ export default function AISandboxPage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="relative w-full min-h-screen flex items-center" 
+        className="relative w-full h-[80vh] flex items-center" 
         style={{ backgroundColor: '#E8FBF8' }} 
         aria-label="Project Hero"
       >
         {/* Hero Content */}
         <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
-          <div className="container mx-auto px-6 py-20 md:py-32">
+          <div className="container mx-auto px-6 relative z-20">
             <motion.div 
-              className={`max-w-2xl ${isMobile ? 'text-center' : ''}`}
+              className={`max-w-2xl ${isMobile ? 'text-center' : ''} mt-[100px]`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -300,7 +300,7 @@ export default function AISandboxPage() {
       </section>
 
       {/* Project Cards Section */}
-      <section className="py-20 bg-white">
+      <section className="pb-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
