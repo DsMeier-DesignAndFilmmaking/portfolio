@@ -225,36 +225,37 @@ const projectData: Record<string, any> = {
     }
   },
   'local-experience-finder': {
-    title: 'Local Experience Finder',
-    tagline: 'Context-aware discovery platform connecting travelers with authentic local experiences.',
+    title: 'A Social Layer for Global Exploration',
+    tagline: 'Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.',
     heroImage: '/portfolio/images/travelApp-card.jpg',
     overview: {
-      description: 'A discovery platform that uses location, time, and context to surface authentic local experiences that match traveler interests and availability.',
+      description: 'A social travel platform that visualizes global traveler presence through live heatmaps, enables personal travel portfolios showcasing journeys and aspirations, and fosters connections between explorers worldwide through profiles, wishlists, and real-time insights.',
       goals: [
-        'Connect travelers with authentic local experiences',
-        'Provide context-aware recommendations',
-        'Support real-time discovery and booking',
-        'Promote local businesses and experiences'
+        'Create a live global heatmap showing traveler presence and activity',
+        'Enable personal travel portfolios documenting journeys and future destinations',
+        'Facilitate discovery through viewing other travelers\' profiles and wishlists',
+        'Build a social layer for sharing travel insights and connecting explorers'
       ],
       outcomes: [
-        'Increased local business bookings by 42%',
-        'Improved experience discovery by 55%',
-        'Higher traveler satisfaction with local experiences'
+        'Increased global traveler connections by 68%',
+        'Improved travel inspiration through portfolio discovery by 52%',
+        'Enhanced community engagement and knowledge sharing'
       ]
     },
     metadata: {
       role: 'Lead Designer & Product Strategist',
-      skills: ['UX Design', 'UI Design', 'Product Strategy', 'Market Research'],
+      skills: ['UX Design', 'UI Design', 'Product Strategy', 'Social Platform Design'],
       tools: ['Figma', 'Sketch', 'Principle', 'Hotjar'],
       timeline: 'Q2 2024 - Present'
     },
     research: {
       title: 'Research & Insights',
-      description: 'Researched how travelers discover local experiences and identified gaps in existing discovery platforms.',
+      description: 'Studied how travelers build identity through their journeys, how they discover destinations through others\' experiences, and the value of social connections in global exploration.',
       insights: [
-        'Travelers want authentic experiences, not tourist traps',
-        'Discovery happens in real-time, not during planning',
-        'Context (location, time, weather) matters for recommendations'
+        'Travelers want to see where others are exploring in real-time',
+        'Personal travel portfolios help travelers express their global identity',
+        'Viewing others\' wishlists and journeys inspires future exploration',
+        'Social connections enhance travel discovery beyond traditional recommendations'
       ],
       images: [
         '/portfolio/images/travelApp-card.jpg',
@@ -263,7 +264,7 @@ const projectData: Record<string, any> = {
     },
     uxDesign: {
       title: 'UX Design & Wireframes',
-      description: 'Designed discovery flows that prioritize context and immediacy while maintaining quality and authenticity.',
+      description: 'Designed intuitive flows for global heatmap navigation, portfolio creation and viewing, profile discovery, and social interaction features that prioritize identity, discovery, and global presence.',
       images: [
         '/portfolio/images/travelApp-card.jpg',
         '/portfolio/images/travelApp-card.jpg',
@@ -272,7 +273,7 @@ const projectData: Record<string, any> = {
     },
     uiDesign: {
       title: 'UI Design & Visuals',
-      description: 'Created a vibrant, engaging interface that showcases local experiences and encourages exploration.',
+      description: 'Created a visually compelling interface that celebrates global exploration, showcases travel portfolios beautifully, and makes the world feel connected through real-time traveler presence.',
       images: [
         '/portfolio/images/travelApp-card.jpg',
         '/portfolio/images/travelApp-card.jpg'
@@ -280,11 +281,11 @@ const projectData: Record<string, any> = {
     },
     development: {
       title: 'Development & Tech Stack',
-      description: 'Built with real-time location services, context-aware algorithms, and seamless booking integration.',
+      description: 'Built with real-time mapping services, social graph infrastructure, portfolio management systems, and chat capabilities to enable global traveler connections.',
       techStack: [
         'React Native',
         'Google Maps API',
-        'Stripe',
+        'WebSocket',
         'Firebase',
         'Node.js'
       ],
