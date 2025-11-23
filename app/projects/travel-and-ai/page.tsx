@@ -288,7 +288,7 @@ export default function AISandboxPage() {
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="text-gray-900">
-                  Engineering AI-Enhanced Travel Experiences
+                  Building AI-Enhanced Travel Experiences
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
