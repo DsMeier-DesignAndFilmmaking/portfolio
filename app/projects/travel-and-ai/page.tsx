@@ -354,7 +354,7 @@ export default function AISandboxPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {/* Status Pill Badge */}
                     <div className="absolute top-3 right-3 z-10">
-                      <span className="bg-[#f2b134] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
+                      <span className={`${project.id === 2 ? 'bg-[#F2B134]' : 'bg-[#00A9A5]'} text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md`}>
                         {project.id === 2 ? 'In Development' : 'In R & D and Design'}
                       </span>
                     </div>
