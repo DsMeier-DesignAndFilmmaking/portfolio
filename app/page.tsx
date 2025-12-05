@@ -135,37 +135,7 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    I’m Dan Meier, a Designer and Creative Technologist with over a decade of professional experience shaping digital products across universities, agencies, and independent client work. I approach design through a systems-thinking lens, understanding how people, interfaces, environments, and technology interact as part of a larger ecosystem. Currently, I split my time between client design work and building AI-driven travel tools that address real traveler and business pain points. My current priority is a spontaneous travel product designed to improve how people discover authentic experiences by aligning behavior, context, and intelligent systems into a cohesive journey.
-                    </p>
-
-                    {/* Design Journey Path Marker */}
-                    <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
-                      <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
-                    </div>
-                    
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
-                    </p>
-                    
-                    {/* Travel Discovery Divider */}
-                    <div className="flex items-center justify-center py-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      </div>
-                    </div>
-                    
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
+                    I'm Dan Meier, a Designer and Creative Technologist with over a decade of professional experience shaping digital products across universities, agencies, and independent client work. I approach design through a systems-thinking lens, understanding how people, interfaces, environments, and technology interact as part of a larger ecosystem. Currently, I split my time between client design work and building AI-driven travel tools that address real traveler and business pain points. My current priority is a spontaneous travel product designed to improve how people discover authentic experiences by aligning behavior, context, and intelligent systems into a cohesive journey.
                     </p>
                   </div>
                 </motion.div>
@@ -380,7 +350,7 @@ export default function HomePage() {
                     className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
                     style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
                   >
-                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
                   </h1>
                   
                   {/* Desktop Version - Original */}
@@ -393,14 +363,10 @@ export default function HomePage() {
                       marginBottom: 'calc(1.32 * 1.5rem)'
                     }}
                   >
-                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
                   </h1>
                 </div>
                 <div className="space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                  <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    I'm Dan Meier, a Designer and Creative Technologist with over a decade of professional experience shaping digital products across universities, agencies, and independent client work. I approach design through a systems-thinking lens, understanding how people, interfaces, environments, and technology interact as part of a larger ecosystem. Currently, I split my time between client design work and building AI-driven travel tools that address real traveler and business pain points. My current priority is a spontaneous travel product designed to improve how people discover authentic experiences by aligning behavior, context, and intelligent systems into a cohesive journey.
-                  </p>
-
                   {/* Design Journey Path Marker */}
                   <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
                     <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
