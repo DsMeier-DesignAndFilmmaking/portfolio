@@ -58,7 +58,7 @@ export default function ProjectsSection() {
               Work and Projects
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
-              A curated collection of work and projects showcasing UX, UI, Web, and Product Design.
+              A curated collection of work and projects showcasing UX, UI, Web, Graphic and Product Design.
             </p>
           </div>
         </FadeInSection>

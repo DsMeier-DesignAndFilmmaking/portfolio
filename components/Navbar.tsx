@@ -252,16 +252,7 @@ const Navbar = () => {
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
-                Design
-              </a>
-              <a 
-                href="#video-projects" 
-                onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-white' : 'text-black'
-                }`}
-              >
-                Video
+                Work
               </a>
               <a 
                 href="#travelogue" 
@@ -273,13 +264,22 @@ const Navbar = () => {
                 Travelogue
               </a>
               <a 
-                href="#photography" 
-                onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                href="#about" 
+                onClick={(e) => handleAnchorClick(e, 'about')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
               >
-                Wayfinder Diaries
+                About
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => handleAnchorClick(e, 'contact')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
+              >
+                Contact
               </a>
             </nav>
           </div>
@@ -308,17 +308,9 @@ const Navbar = () => {
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                Design
+                Work
               </a>
-              <a 
-                href="#video-projects" 
-                onClick={(e) => handleAnchorClick(e, 'video-projects')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
-                }`}
-              >
-                Video
-              </a>
+              
               <a 
                 href="#travelogue" 
                 onClick={(e) => handleAnchorClick(e, 'travelogue')}
@@ -328,14 +320,25 @@ const Navbar = () => {
               >
                 Travelogue
               </a>
+              
               <a 
-                href="#photography" 
-                onClick={(e) => handleAnchorClick(e, 'photography')}
-                className={`hidden text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                href="#about" 
+                onClick={(e) => handleAnchorClick(e, 'about')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                Wayfinder Diaries
+                About
+              </a>
+              
+              <a 
+                href="#contact" 
+                onClick={(e) => handleAnchorClick(e, 'contact')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
+              >
+                Contact
               </a>
               </nav>
             </div>
