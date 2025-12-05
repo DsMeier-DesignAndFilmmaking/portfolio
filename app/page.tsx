@@ -364,6 +364,47 @@ export default function HomePage() {
           </div>
         </section>
         
+        {/* About Me Section */}
+        <section id="about" className="py-24 md:py-32 bg-white" aria-label="About Me">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="w-full">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-full text-left"
+              >
+                <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                  {/* Mobile Version - Simplified */}
+                  <h1 
+                    className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
+                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
+                  >
+                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                  </h1>
+                  
+                  {/* Desktop Version - Original */}
+                  <h1 
+                    className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
+                    style={{ 
+                      fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
+                      whiteSpace: 'normal',
+                      fontFamily: "'tiempos-headline-regular', serif",
+                      marginBottom: 'calc(1.32 * 1.5rem)'
+                    }}
+                  >
+                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                  </h1>
+                </div>
+                <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+                  <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] space-y-2 md:space-y-4 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    I'm Dan Meier, a Designer and Creative Technologist with over a decade of professional experience shaping digital products across universities, agencies, and independent client work. I approach design through a systems-thinking lens, understanding how people, interfaces, environments, and technology interact as part of a larger ecosystem. Currently, I split my time between client design work and building AI-driven travel tools that address real traveler and business pain points. My current priority is a spontaneous travel product designed to improve how people discover authentic experiences by aligning behavior, context, and intelligent systems into a cohesive journey.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         {/* Mobile Navigation Links */}
         <div className="hidden flex flex-col p-4 pl-[30px] space-y-4">

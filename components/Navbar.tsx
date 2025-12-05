@@ -134,6 +134,31 @@ const Navbar = () => {
         }
       }
       
+      // Special handling for contact - scroll to bottom of page
+      if (targetId === 'contact') {
+        const scrollToBottom = () => {
+          const scrollHeight = document.documentElement.scrollHeight;
+          const viewportHeight = window.innerHeight;
+          const finalPosition = scrollHeight - viewportHeight;
+          
+          console.log('Scrolling to bottom of page for contact');
+          
+          window.scrollTo({
+            top: finalPosition,
+            behavior: 'smooth'
+          });
+          
+          // Mark scrolling as complete after animation
+          setTimeout(() => {
+            setIsScrollingToAnchor(false);
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+          }, 800);
+        };
+        
+        scrollToBottom();
+        return;
+      }
+      
       // Now scroll to the actual target with accurate measurements
       let targetElement = document.querySelector(selector);
       
