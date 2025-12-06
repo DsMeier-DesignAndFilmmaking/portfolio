@@ -149,7 +149,10 @@ const Navbar = () => {
   };
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    // Immediately prevent ALL default anchor behavior to stop browser from auto-scrolling
     e.preventDefault();
+    e.stopPropagation();
+    
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
@@ -295,8 +298,8 @@ const Navbar = () => {
             // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
             navbarHeight = 80 - 60;
           } else if (targetId === 'about') {
-            // Subtract 40px offset for about section to scroll further down
-            navbarHeight = 80 - 40;
+            // Subtract 60px offset for about section to scroll further down (40px + 20px)
+            navbarHeight = 80 - 60;
           }
           
           const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
@@ -420,6 +423,7 @@ const Navbar = () => {
             <nav className="flex items-center space-x-8">
               <a 
                 href="#black-section" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
@@ -429,6 +433,7 @@ const Navbar = () => {
               </a>
               <a 
                 href="#video-projects" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
@@ -438,6 +443,7 @@ const Navbar = () => {
               </a>
               <a 
                 href="#about" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'about')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
@@ -447,6 +453,7 @@ const Navbar = () => {
               </a>
               <a 
                 href="#contact" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'contact')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
@@ -476,6 +483,7 @@ const Navbar = () => {
               <nav className="flex flex-col py-4 space-y-4">
               <a 
                 href="#black-section" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
@@ -486,6 +494,7 @@ const Navbar = () => {
               
               <a 
                 href="#travelogue" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'travelogue')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
@@ -496,6 +505,7 @@ const Navbar = () => {
               
               <a 
                 href="#about" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'about')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
@@ -506,6 +516,7 @@ const Navbar = () => {
               
               <a 
                 href="#contact" 
+                onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'contact')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
