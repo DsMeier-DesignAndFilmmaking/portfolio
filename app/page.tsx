@@ -344,7 +344,7 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full text-left"
               >
-                <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                <div className="mb-6 md:mb-10">
                   {/* Mobile Version - Simplified */}
                   <h1 
                     className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -366,7 +366,7 @@ export default function HomePage() {
                     <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
                   </h1>
                 </div>
-                <div className="space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                <div className="space-y-8">
                   {/* Design Journey Path Marker */}
                   <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
                     <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>

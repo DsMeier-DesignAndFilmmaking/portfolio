@@ -219,7 +219,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 {/* First Hero Image */}
                 <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/images/Micro-Adventure_ConceptGraphic.png"
+                    src="/portfolio/images/Micro-Adventure_ConceptGraphic.png"
                     alt="Micro Adventure Concept Graphic"
                     fill
                     className="object-cover"
@@ -231,7 +231,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 {/* Second Hero Image */}
                 <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/images/Micro-Adventure_ConceptGraphic_2.png"
+                    src="/portfolio/images/Micro-Adventure_ConceptGraphic_2.png"
                     alt="Micro Adventure Concept Graphic 2"
                     fill
                     className="object-cover"
