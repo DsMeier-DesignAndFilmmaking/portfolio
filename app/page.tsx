@@ -376,14 +376,14 @@ export default function HomePage() {
                     </div>
                   </motion.div>
 
-                  {/* Second Image (Duplicate) */}
+                  {/* Second Image (Portrait) */}
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="w-full"
                   >
-                    <div className="w-full" style={{ aspectRatio: '4/3' }}>
+                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
                       <img 
                         id="me_heroImage-1_1.1.1-about-2"
                         src="/portfolio/images/portrait-4shots_2.jpg" 
