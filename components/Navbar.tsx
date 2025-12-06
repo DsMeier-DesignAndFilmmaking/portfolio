@@ -238,8 +238,8 @@ const Navbar = () => {
           // Calculate dynamic offset based on video section loading state
           navbarHeight = calculateTravelogueScrollOffset();
         } else if (targetId === 'video-projects') {
-          // Add extra 60px offset for video-projects (Travelogue link)
-          navbarHeight = 80 + 60;
+          // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
+          navbarHeight = 80 - 60;
         }
         
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);

@@ -205,6 +205,44 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </motion.div>
           </div>
         </div>
+
+        {/* Hero Images - Only for spontaneous-travel-companion */}
+        {isSpontaneousTravelCompanion && (
+          <div className="container mx-auto px-6 mt-12 md:mt-16">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+              >
+                {/* First Hero Image */}
+                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/Micro-Adventure_ConceptGraphic.png"
+                    alt="Micro Adventure Concept Graphic"
+                    fill
+                    className="object-cover"
+                    priority
+                    quality={90}
+                  />
+                </div>
+
+                {/* Second Hero Image */}
+                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/Micro-Adventure_ConceptGraphic_2.png"
+                    alt="Micro Adventure Concept Graphic 2"
+                    fill
+                    className="object-cover"
+                    priority
+                    quality={90}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
         
         {/* Subtle Divider */}
         <div className="border-b border-gray-100 mt-16 md:mt-20"></div>
