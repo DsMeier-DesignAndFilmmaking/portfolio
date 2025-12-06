@@ -241,16 +241,12 @@ const Navbar = () => {
             };
             document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
           } else if (document.readyState === 'interactive') {
-            // DOM ready but resources still loading
-            if (document.readyState === 'complete') {
+            // DOM ready but resources still loading, wait for load event
+            window.addEventListener('load', () => {
               waitForStableLayout();
-            } else {
-              window.addEventListener('load', () => {
-                waitForStableLayout();
-              }, { once: true });
-            }
+            }, { once: true });
           } else {
-            // Document fully loaded, just wait for layout stability
+            // Document fully loaded (readyState === 'complete'), just wait for layout stability
             waitForStableLayout();
           }
         });
