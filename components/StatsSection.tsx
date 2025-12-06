@@ -157,7 +157,7 @@ export default function StatsSection({ className = '', containerClassName = '', 
   }, []);
 
   return (
-    <div id="design" className={`py-24 ${className}`} style={{ backgroundColor: '#1A1A1A' }}>
+    <div id="design" className={`py-24 ${className}`} style={{ backgroundColor: variant === 'travel' ? '#000000' : '#1A1A1A' }}>
       <div className={containerClassName || 'max-w-7xl mx-auto'}>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
