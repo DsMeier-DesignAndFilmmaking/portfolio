@@ -152,7 +152,7 @@ export default function HomePage() {
         />
 
         <ParallaxSection
-          title="I tinker & build things."
+          title="I tinker & build things & experiences."
           description=""
           modelPath="design-build"
           className="bg-transparent"

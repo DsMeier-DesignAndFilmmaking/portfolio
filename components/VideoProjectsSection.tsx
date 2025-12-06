@@ -5,6 +5,7 @@ import Image from 'next/image';
 import FadeInSection from './FadeInSection';
 import { isCurrentlyAnchorScrolling } from '@/utils/scrollUtils';
 import VideoSection from './VideoSection';
+import StatsSection from './StatsSection';
 
 const videoProjects = [
   {
@@ -57,6 +58,11 @@ export default function VideoProjectsSection() {
       id="video-projects" 
       className="py-24 bg-black"
     >
+      {/* Stats Section */}
+      <div className="mb-16">
+        <StatsSection />
+      </div>
+
       <div className="max-w-4xl mx-auto px-6">
         <FadeInSection 
           delay={0.1}
