@@ -280,8 +280,8 @@ const Navbar = () => {
                 Work
               </a>
               <a 
-                href="#travelogue" 
-                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                href="#video-projects" 
+                onClick={(e) => handleAnchorClick(e, 'video-projects')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-white' : 'text-black'
                 }`}
