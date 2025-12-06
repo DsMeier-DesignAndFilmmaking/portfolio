@@ -44,6 +44,7 @@ const Navbar = () => {
         // Homepage behavior - check section overlap
         const blackSection = document.getElementById('black-section');
         const videoSection = document.getElementById('video-projects');
+        const travelogueSection = document.getElementById('travelogue');
 
         const navRect = navbar.getBoundingClientRect();
         const navBottom = navRect.bottom;
@@ -67,6 +68,14 @@ const Navbar = () => {
           }
         }
 
+        // Check if navbar overlaps with travelogue section
+        if (travelogueSection && !isOverBlack) {
+          const travelogueRect = travelogueSection.getBoundingClientRect();
+          if (navTop < travelogueRect.bottom && navBottom > travelogueRect.top) {
+            isOverBlack = true;
+          }
+        }
+
         // Track if we've ever entered the design section
         if (isCurrentlyInDesign && !hasEnteredDesignSection) {
           setHasEnteredDesignSection(true);
@@ -74,15 +83,31 @@ const Navbar = () => {
 
         // Determine if navbar should be shrunk
         // Once we've entered the design section, keep shrunk for all sections below
-        // Only un-shrink if we scroll back to the top of the page
+        // This includes video section, travelogue section, about section, etc.
+        // Only un-shrink if we scroll back to the top of the page (above design section)
         if (hasEnteredDesignSection) {
-          // If we're near the top of the page, reset the flag and un-shrink
-          if (scrollY < 300) {
-            setHasEnteredDesignSection(false);
-            setIsInDesignSection(false);
+          // Check if we're back above the design section
+          if (blackSection) {
+            const blackRect = blackSection.getBoundingClientRect();
+            const designSectionTop = blackRect.top + scrollY;
+            
+            // If we're above the design section (with some buffer), reset
+            if (scrollY < designSectionTop - 200) {
+              setHasEnteredDesignSection(false);
+              setIsInDesignSection(false);
+            } else {
+              // We're at or past the design section, keep shrunk
+              setIsInDesignSection(true);
+            }
           } else {
-            // We've entered the design section, keep shrunk for rest of page
-            setIsInDesignSection(true);
+            // Fallback: if we're near the top of the page, reset
+            if (scrollY < 300) {
+              setHasEnteredDesignSection(false);
+              setIsInDesignSection(false);
+            } else {
+              // We've entered the design section, keep shrunk for rest of page
+              setIsInDesignSection(true);
+            }
           }
         } else {
           // Use normal logic if we haven't entered design section yet
@@ -114,7 +139,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, [isOnPurduePage]);
+  }, [isOnPurduePage, hasEnteredDesignSection]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -127,6 +152,12 @@ const Navbar = () => {
     e.preventDefault();
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
+    
+    // If clicking "Work" (black-section), immediately trigger navbar width animation
+    if (targetId === 'black-section') {
+      setHasEnteredDesignSection(true);
+      setIsInDesignSection(true);
+    }
     
     // Add # prefix if not present
     const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
