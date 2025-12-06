@@ -113,9 +113,10 @@ const StatCard = ({
 
 interface StatsSectionProps {
   className?: string;
+  containerClassName?: string;
 }
 
-export default function StatsSection({ className = '' }: StatsSectionProps) {
+export default function StatsSection({ className = '', containerClassName = '' }: StatsSectionProps) {
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -155,7 +156,7 @@ export default function StatsSection({ className = '' }: StatsSectionProps) {
 
   return (
     <div id="design" className={`py-24 ${className}`} style={{ backgroundColor: '#1A1A1A' }}>
-      <div className="max-w-7xl mx-auto">
+      <div className={containerClassName || 'max-w-7xl mx-auto'}>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
           <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 order-2 lg:order-1">  
