@@ -10,10 +10,9 @@ type Props = {
 
 export default function VideoSection({ iframeSrc, aspectRatio = 16 / 9, fallbackHeight = 360 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [hasLoadedIframe, setHasLoadedIframe] = useState(false);
-  const [lockedHeight, setLockedHeight] = useState<number | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
-  // Lazy load when intersecting (optional): keeps behavior but placeholder keeps layout
+  // Lazy load video source when intersecting, but container always renders
   useEffect(() => {
     if (!containerRef.current) return;
     const node = containerRef.current;
@@ -21,7 +20,7 @@ export default function VideoSection({ iframeSrc, aspectRatio = 16 / 9, fallback
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            setHasLoadedIframe(true);
+            setShouldLoadVideo(true);
             io.disconnect();
           }
         });
@@ -32,65 +31,22 @@ export default function VideoSection({ iframeSrc, aspectRatio = 16 / 9, fallback
     return () => io.disconnect();
   }, []);
 
-  // ResizeObserver: lock container height so layout doesn't shift after iframe load
-  useEffect(() => {
-    const node = containerRef.current;
-    if (!node) return;
-    // start by using aspect-ratio to reserve space; if browser doesn't support or if iframe changes, use ResizeObserver
-    // compute fallback height based on width and aspect ratio
-    const computeAndLock = () => {
-      const width = node.getBoundingClientRect().width || node.offsetWidth;
-      if (width) {
-        const h = Math.round(width / aspectRatio);
-        setLockedHeight(h);
-      }
-    };
-
-    // Initial compute
-    computeAndLock();
-
-    const ro = new ResizeObserver(() => {
-      computeAndLock();
-    });
-    ro.observe(node);
-
-    return () => ro.disconnect();
-  }, [aspectRatio]);
-
-  // Render: placeholder always present (prevents shift). Only swap in iframe when `hasLoadedIframe` true.
+  // Render: videoFrame container ALWAYS renders on first paint to reserve height
+  // Only the iframe source loads lazily, maintaining identical dimensions at all times
   return (
     <section aria-label="Video" className="video-section">
-      <div
-        ref={containerRef}
-        className="video-container"
-        style={
-          lockedHeight
-            ? { height: lockedHeight }
-            : {
-                // fallback if ResizeObserver didn't run quickly enough — reserve by aspect-ratio
-                aspectRatio: `${aspectRatio}`,
-                minHeight: fallbackHeight,
-              }
-        }
-      >
-        {!hasLoadedIframe && (
-          <div className="video-placeholder" aria-hidden>
-            {/* Optionally show a poster image or loader */}
-          </div>
-        )}
-
-        {hasLoadedIframe && (
+      <div ref={containerRef} className="videoFrame">
+        {shouldLoadVideo ? (
           <iframe
             src={iframeSrc}
             title="Travel video"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            onLoad={() => {
-              // iframe loaded — we already locked height via ResizeObserver; nothing further required
-            }}
             style={{ width: "100%", height: "100%", display: "block" }}
           />
+        ) : (
+          <div style={{ width: "100%", height: "100%" }} />
         )}
       </div>
     </section>

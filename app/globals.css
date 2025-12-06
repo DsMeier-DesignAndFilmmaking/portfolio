@@ -120,4 +120,17 @@ body {
       touch-action: pan-y;
     }
   }
+
+  /* Video frame container with stable aspect ratio - prevents layout shift */
+  .videoFrame {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* adjust to match actual video ratio */
+    background: #000;
+    overflow: hidden;
+  }
+
+  /* Scroll margin for anchor targets - prevents misalignment from sticky header */
+  [id] {
+    scroll-margin-top: 80px; /* adjust for sticky header */
+  }
 } 

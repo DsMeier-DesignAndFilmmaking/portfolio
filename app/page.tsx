@@ -10,9 +10,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import useScrollToHash from '@/hooks/useScrollToHash';
 import HashNavigationHandler from '@/components/HashNavigationHandler';
-import { useHashScrollWithResize } from '@/hooks/useHashScrollWithResize';
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -27,16 +25,6 @@ const AITravelScene = () => (
 
 export default function HomePage() {
   const videoRef = useRef<HTMLIFrameElement>(null);
-  
-  // Handle hash navigation after components mount
-  useScrollToHash({
-    delay: 500, // Allow time for components to mount and animations to stabilize
-    smooth: true,
-    offset: 120 // Account for fixed navbar
-  });
-
-  // Use the new hash scroll hook with resize observer for stable layout
-  useHashScrollWithResize([]);
   const mobileHeroRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -94,7 +82,7 @@ export default function HomePage() {
 
   return (
     <ErrorBoundary>
-      <HashNavigationHandler delay={500} smooth={true} offset={120} />
+      <HashNavigationHandler delay={100} smooth={true} offset={120} />
       <main className="min-h-screen relative overflow-hidden bg-white">
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         

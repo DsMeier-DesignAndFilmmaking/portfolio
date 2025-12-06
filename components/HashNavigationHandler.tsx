@@ -20,6 +20,7 @@ export default function HashNavigationHandler({
     // Step 1: Prevent browser from auto-scrolling on load
     // Reset to top immediately if there's a hash, so browser doesn't jump
     if (window.location.hash) {
+      // Prevent native instant jump
       window.scrollTo(0, 0);
     }
 
@@ -53,7 +54,7 @@ export default function HashNavigationHandler({
       link.addEventListener('click', handleAnchorClick);
     });
 
-    // Handle page load with hash
+    // Handle page load with hash - ensure only one smooth scroll happens
     const handlePageLoad = () => {
       if (!window.location.hash) return;
 
@@ -69,10 +70,11 @@ export default function HashNavigationHandler({
     };
 
     // Wait for load event before handling initial hash
+    window.addEventListener('load', handlePageLoad, { once: true });
+
+    // Also handle if already loaded
     if (document.readyState === 'complete') {
       handlePageLoad();
-    } else {
-      window.addEventListener('load', handlePageLoad, { once: true });
     }
 
     // Cleanup
@@ -82,7 +84,7 @@ export default function HashNavigationHandler({
       });
       window.removeEventListener('load', handlePageLoad);
     };
-  }, [delay, smooth, offset]);
+  }, [delay]);
 
   // This component doesn't render anything
   return null;
