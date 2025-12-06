@@ -211,6 +211,19 @@ const Navbar = () => {
         return;
       }
       
+      // Special handling for About section - wait for animations to stabilize
+      if (targetId === 'about') {
+        // Wait for motion animations and layout to stabilize
+        await new Promise(resolve => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              // Additional wait for motion.div animations (0.8s duration + 0.2s delay)
+              setTimeout(resolve, 1000);
+            });
+          });
+        });
+      }
+      
       // Now scroll to the actual target with accurate measurements
       let targetElement = document.querySelector(selector);
       
@@ -228,6 +241,12 @@ const Navbar = () => {
         
         // Force a reflow to ensure accurate measurements
         (targetElement as HTMLElement).offsetHeight;
+        
+        // Force reflow on parent containers that might affect layout
+        const section = (targetElement as HTMLElement).closest('section');
+        if (section) {
+          (section as HTMLElement).offsetHeight;
+        }
         
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = rect.top + window.pageYOffset;
