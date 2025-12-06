@@ -20,7 +20,14 @@ export default function HashNavigationHandler({
   const hasHandledHashRef = useRef(false);
 
   useEffect(() => {
-    const handleHashNavigation = () => {
+    // Step 1: Prevent browser from auto-scrolling on load
+    // Reset to top immediately if there's a hash, so browser doesn't jump
+    if (window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
+    // Step 2: Wait for images/lazy-loaded elements to render, then scroll
+    const handleInitialHashScroll = () => {
       const hash = window.location.hash;
       
       if (!hash || hasHandledHashRef.current) {
@@ -49,23 +56,19 @@ export default function HashNavigationHandler({
           
           console.log('HashNavigationHandler: Final scroll position:', finalPosition);
           
-          // Scroll to target
-          if (smooth) {
+          // Wait a bit more for any remaining layout shifts
+          setTimeout(() => {
+            // Scroll to target with smooth behavior
             window.scrollTo({
               top: finalPosition,
               behavior: 'smooth'
             });
-          } else {
-            window.scrollTo({
-              top: finalPosition,
-              behavior: 'auto'
-            });
-          }
-          
-          // Dispatch custom event to trigger animations
-          setTimeout(() => {
-            window.dispatchEvent(new CustomEvent('scrollComplete'));
-          }, 100);
+            
+            // Dispatch custom event to trigger animations
+            setTimeout(() => {
+              window.dispatchEvent(new CustomEvent('scrollComplete'));
+            }, 100);
+          }, 150);
         } else {
           console.log('HashNavigationHandler: Target not found, retrying:', hash);
           // Retry after a short delay if element not found
@@ -73,27 +76,55 @@ export default function HashNavigationHandler({
         }
       };
 
-      // Use requestAnimationFrame to ensure DOM is ready
+      scrollToTarget();
+    };
+
+    // Wait for load event (images/media/layout shifts finish)
+    if (document.readyState === 'complete') {
+      // Already loaded, execute immediately
+      handleInitialHashScroll();
+    } else {
+      // Wait for load event
+      window.addEventListener('load', handleInitialHashScroll, { once: true });
+    }
+
+    // Handle hash changes (when user clicks anchor links after page load)
+    const handleHashChange = () => {
+      hasHandledHashRef.current = false;
+      // For hash changes after load, use the original logic
+      const scrollToTarget = async () => {
+        const hash = window.location.hash;
+        if (!hash) return;
+        
+        const target = document.querySelector(hash);
+        if (target) {
+          // If scrolling to travelogue section, wait for video layout to stabilize
+          if (hash === '#travelogue' || hash === '#world-travel-diaries') {
+            await waitForVideoLayoutStable();
+          }
+          
+          const rect = target.getBoundingClientRect();
+          const absoluteTop = rect.top + window.pageYOffset;
+          const finalPosition = Math.max(absoluteTop - offset, 0);
+          
+          setTimeout(() => {
+            window.scrollTo({
+              top: finalPosition,
+              behavior: smooth ? 'smooth' : 'auto'
+            });
+          }, 150);
+        }
+      };
+      
       requestAnimationFrame(() => {
         setTimeout(scrollToTarget, delay);
       });
     };
 
-    // Handle initial hash on mount
-    handleHashNavigation();
-
-    // Handle hash changes
-    const handleHashChange = () => {
-      hasHandledHashRef.current = false;
-      handleHashNavigation();
-    };
-
     window.addEventListener('hashchange', handleHashChange);
-
-    // Reset flag when route changes (for App Router, we'll use a different approach)
-    // Note: App Router doesn't have events like Pages Router
     
     return () => {
+      window.removeEventListener('load', handleInitialHashScroll);
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, [delay, smooth, offset]);

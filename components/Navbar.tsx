@@ -298,8 +298,8 @@ const Navbar = () => {
             // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
             navbarHeight = 80 - 60;
           } else if (targetId === 'about') {
-            // Subtract 60px offset for about section to scroll further down (40px + 20px)
-            navbarHeight = 80 - 60;
+            // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
+            navbarHeight = 80 - 90;
           }
           
           const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
