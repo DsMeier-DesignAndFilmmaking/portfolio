@@ -394,6 +394,44 @@ export default function HomePage() {
                       />
                     </div>
                   </motion.div>
+
+                  {/* Third Image (Portrait - Duplicate) */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="w-full"
+                  >
+                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
+                      <img 
+                        id="me_heroImage-1_1.1.1-about-3"
+                        src="/portfolio/images/portrait-4shots_1.jpg" 
+                        alt="Dan Meier"
+                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        loading="eager"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Fourth Image (Portrait) */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="w-full"
+                  >
+                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
+                      <img 
+                        id="me_heroImage-1_1.1.1-about-4"
+                        src="/portfolio/images/portrait-4shots_3.jpg" 
+                        alt="Dan Meier"
+                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        loading="eager"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Right Side: Text Content */}
