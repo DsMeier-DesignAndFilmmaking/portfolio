@@ -364,14 +364,14 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="w-full"
                   >
-                    <div className="w-full" style={{ aspectRatio: '4/3' }}>
+                    <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about"
                         src="/portfolio/images/me-arches-wine.jpg" 
                         alt="Dan Meier"
-                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: 'auto' }}
                       />
                     </div>
                   </motion.div>
@@ -383,14 +383,14 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="w-full"
                   >
-                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
+                    <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-2"
                         src="/portfolio/images/portrait-4shots_2.jpg" 
                         alt="Dan Meier"
-                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: 'auto' }}
                       />
                     </div>
                   </motion.div>
@@ -402,14 +402,14 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="w-full"
                   >
-                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
+                    <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-3"
                         src="/portfolio/images/portrait-4shots_1.jpg" 
                         alt="Dan Meier"
-                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: 'auto' }}
                       />
                     </div>
                   </motion.div>
@@ -421,14 +421,14 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="w-full"
                   >
-                    <div className="w-full" style={{ aspectRatio: '3/4' }}>
+                    <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-4"
                         src="/portfolio/images/portrait-4shots_3.jpg" 
                         alt="Dan Meier"
-                        className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: 'auto' }}
                       />
                     </div>
                   </motion.div>
