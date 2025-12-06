@@ -286,7 +286,7 @@ const Navbar = () => {
           const rect = targetElement.getBoundingClientRect();
           const absoluteTop = rect.top + window.pageYOffset;
           
-          // Special handling for travelogue/video-projects section to show earth-map background better
+          // Special handling for travelogue/video-projects/about section to show earth-map background better
           let navbarHeight = 80; // Default navbar height
           if (targetId === 'travelogue') {
             // Calculate dynamic offset based on video section loading state
@@ -294,6 +294,9 @@ const Navbar = () => {
           } else if (targetId === 'video-projects') {
             // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
             navbarHeight = 80 - 60;
+          } else if (targetId === 'about') {
+            // Subtract 40px offset for about section to scroll further down
+            navbarHeight = 80 - 40;
           }
           
           const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
