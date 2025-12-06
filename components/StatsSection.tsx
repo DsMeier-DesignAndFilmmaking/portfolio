@@ -115,9 +115,10 @@ interface StatsSectionProps {
   className?: string;
   containerClassName?: string;
   hideThirdBlock?: boolean;
+  variant?: 'design' | 'travel';
 }
 
-export default function StatsSection({ className = '', containerClassName = '', hideThirdBlock = false }: StatsSectionProps) {
+export default function StatsSection({ className = '', containerClassName = '', hideThirdBlock = false, variant = 'design' }: StatsSectionProps) {
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -161,30 +162,38 @@ export default function StatsSection({ className = '', containerClassName = '', 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
           <div className={`lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 ${hideThirdBlock ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-4 order-2 lg:order-1`}>  
-            {/* Countries visited */}
+            {/* First Stat Block */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
-              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Countries visited</h3>
+              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">
+                {variant === 'travel' ? 'Countries visited' : 'Industries Served'}
+              </h3>
               <div className="flex-1 flex flex-col justify-end">
-                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>41</div>
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>
+                  {variant === 'travel' ? '41' : '8'}
+                </div>
                 <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
                   <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
                 </div>
               </div>
             </div>
 
-            {/* Cities Visited */}
+            {/* Second Stat Block */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
-              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Cities Visited</h3>
+              <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">
+                {variant === 'travel' ? 'Cities Visited' : 'Projects Completed'}
+              </h3>
               <div className="flex-1 flex flex-col justify-end">
-                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>72</div>
+                <div className="text-2xl font-bold mb-3" style={{ color: 'rgb(37 99 235)' }}>
+                  {variant === 'travel' ? '72' : '50+'}
+                </div>
                 <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
                   <div className="progress-bar h-full rounded-full" style={{ width: '100%', background: 'rgb(37 99 235)' }} />
                 </div>
               </div>
             </div>
 
-            {/* URLs Impacted */}
-            {!hideThirdBlock && (
+            {/* Third Stat Block - Only shown for design variant */}
+            {!hideThirdBlock && variant === 'design' && (
               <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
                 <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">URLs Impacted</h3>
                 <div className="flex-1 flex flex-col justify-end">
@@ -199,9 +208,18 @@ export default function StatsSection({ className = '', containerClassName = '', 
 
           {/* Text Block */}
           <div className="lg:col-span-2 flex flex-col justify-center order-1 lg:order-2">
-            <p className="text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider">GLOBAL TRAVELS</p>
+            <p className="text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider">
+              {variant === 'travel' ? 'GLOBAL TRAVELS' : 'DESIGN CAREER'}
+            </p>
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-white">I currently reside in Denver, but consider planet earth my home.</span>
+              {variant === 'travel' ? (
+                <span className="text-white">I currently reside in Denver, but consider planet earth my home.</span>
+              ) : (
+                <>
+                  <span style={{ color: 'rgb(37 99 235)' }}>11+ Years</span>
+                  <span className="text-white"> Turning Pixels into Impact</span>
+                </>
+              )}
             </h2>
           </div>
         </div>

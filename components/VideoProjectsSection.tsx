@@ -60,7 +60,7 @@ export default function VideoProjectsSection() {
     >
       {/* Stats Section */}
       <div className="mb-16">
-        <StatsSection containerClassName="max-w-4xl mx-auto px-6" hideThirdBlock={true} />
+        <StatsSection containerClassName="max-w-4xl mx-auto px-6" hideThirdBlock={true} variant="travel" />
       </div>
 
       <div className="max-w-4xl mx-auto px-6">
