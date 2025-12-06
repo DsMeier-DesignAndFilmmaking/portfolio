@@ -67,7 +67,7 @@ export default function VideoProjectsSection() {
         >
           <div className="pt-20">
             <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
-              Video Projects
+              Travelogue
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
               A collection of video projects showcasing my work in cinematography and visual storytelling.
