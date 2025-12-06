@@ -232,11 +232,14 @@ const Navbar = () => {
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = rect.top + window.pageYOffset;
         
-        // Special handling for travelogue section to show earth-map background better
+        // Special handling for travelogue/video-projects section to show earth-map background better
         let navbarHeight = 80; // Default navbar height
         if (targetId === 'travelogue') {
           // Calculate dynamic offset based on video section loading state
           navbarHeight = calculateTravelogueScrollOffset();
+        } else if (targetId === 'video-projects') {
+          // Add extra 60px offset for video-projects (Travelogue link)
+          navbarHeight = 80 + 60;
         }
         
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
