@@ -133,4 +133,22 @@ body {
   [id] {
     scroll-margin-top: 80px; /* adjust for sticky header */
   }
+
+  /* Stable layout containers - prevents height changes during lazy loading */
+  .stable-layout-container {
+    contain: layout style paint;
+  }
+
+  /* Image placeholder containers with aspect ratio */
+  .image-container-stable {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f3f4f6;
+    overflow: hidden;
+  }
+
+  /* Section containers that should maintain height */
+  section[id] {
+    min-height: fit-content;
+  }
 } 

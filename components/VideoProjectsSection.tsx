@@ -116,77 +116,71 @@ export default function VideoProjectsSection() {
             <div className="grid grid-cols-1 gap-8">
               {[1, 2, 3, 4, 5, 6].map((index) => (
                 <div key={index} className="relative">
-                  <div className="relative bg-white/10 overflow-hidden">
+                  <div className="relative bg-white/10 overflow-hidden" style={{ aspectRatio: '16/9' }}>
                     {index === 1 ? (
                       <Image
                         src="/portfolio/images/Istanbul-frames-2.jpg"
                         alt="Istanbul Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : index === 2 ? (
                       <Image
                         src="/portfolio/images/japan-frames.jpg"
                         alt="Japan Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : index === 3 ? (
                       <Image
                         src="/portfolio/images/Terratorium-stillFrames.jpg"
                         alt="Terratorium Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : index === 4 ? (
                       <Image
                         src="/portfolio/images/Teleportal-frames.jpg"
                         alt="Teleportal Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : index === 5 ? (
                       <Image
                         src="/portfolio/images/Morrocco-frames.jpg"
                         alt="Morocco Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : index === 6 ? (
                       <Image
                         src="/portfolio/images/Indonesia-frames.jpg"
                         alt="Indonesia Video Frames"
-                        width={0}
-                        height={0}
+                        fill
                         sizes="100vw"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ objectFit: 'cover' }}
                         className="shadow-lg"
                       />
                     ) : (

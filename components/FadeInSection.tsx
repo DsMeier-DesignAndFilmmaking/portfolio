@@ -188,16 +188,29 @@ export default function FadeInSection({
 
   const shouldAnimate = triggerOnce ? (isVisible || hasAnimated) : isVisible;
 
+  // Reserve space for animations that move content (prevent layout shift)
+  // Use transform: translateY/translateX which doesn't affect layout flow
+  // But ensure container has min-height to prevent collapse
   return (
-    <motion.div
-      ref={elementRef}
-      className={className}
-      initial="hidden"
-      animate={shouldAnimate ? "visible" : "hidden"}
-      variants={getVariants()}
-      viewport={{ once: triggerOnce, amount: threshold }}
-    >
-      {children}
-    </motion.div>
+    <div style={{ 
+      // Reserve space for directional animations to prevent layout shift
+      minHeight: direction === 'up' || direction === 'down' ? `${distance}px` : 'auto',
+      minWidth: direction === 'left' || direction === 'right' ? `${distance}px` : 'auto'
+    }}>
+      <motion.div
+        ref={elementRef}
+        className={className}
+        initial="hidden"
+        animate={shouldAnimate ? "visible" : "hidden"}
+        variants={getVariants()}
+        viewport={{ once: triggerOnce, amount: threshold }}
+        style={{
+          // Ensure transform doesn't affect layout flow
+          willChange: 'transform, opacity'
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }

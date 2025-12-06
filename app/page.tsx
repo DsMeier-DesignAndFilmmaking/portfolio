@@ -157,13 +157,16 @@ export default function HomePage() {
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <img 
-                id="me_heroImage-1_1.1.1"
-                src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
-                alt="Dan Meier"
-                className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                loading="eager"
-              />
+              <div className="w-full" style={{ aspectRatio: '4/3' }}>
+                <img 
+                  id="me_heroImage-1_1.1.1"
+                  src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
+                  alt="Dan Meier"
+                  className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                  loading="eager"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
             </div>
           </div>
         </section>
