@@ -211,73 +211,148 @@ const Navbar = () => {
         return;
       }
       
-      // Special handling for About section - wait for animations to stabilize
-      if (targetId === 'about') {
-        // Wait for motion animations and layout to stabilize
-        await new Promise(resolve => {
-          requestAnimationFrame(() => {
+      // Scroll function that can be called multiple times
+      const performScroll = async () => {
+        // Wait for layout to stabilize - handle both loaded and loading states
+        await new Promise<void>((resolve) => {
+          const waitForStableLayout = () => {
+            // Use multiple requestAnimationFrames to ensure layout is stable
             requestAnimationFrame(() => {
-              // Additional wait for motion.div animations (0.8s duration + 0.2s delay)
-              setTimeout(resolve, 1000);
+              requestAnimationFrame(() => {
+                // Additional timeout for lazy-loaded elements and animations
+                setTimeout(() => {
+                  resolve();
+                }, 100);
+              });
             });
-          });
+          };
+          
+          // If document is still loading, wait for load event first
+          if (document.readyState === 'loading') {
+            const onDOMContentLoaded = () => {
+              document.removeEventListener('DOMContentLoaded', onDOMContentLoaded);
+              if (document.readyState === 'complete') {
+                waitForStableLayout();
+              } else {
+                window.addEventListener('load', () => {
+                  waitForStableLayout();
+                }, { once: true });
+              }
+            };
+            document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+          } else if (document.readyState === 'interactive') {
+            // DOM ready but resources still loading
+            if (document.readyState === 'complete') {
+              waitForStableLayout();
+            } else {
+              window.addEventListener('load', () => {
+                waitForStableLayout();
+              }, { once: true });
+            }
+          } else {
+            // Document fully loaded, just wait for layout stability
+            waitForStableLayout();
+          }
         });
-      }
-      
-      // Now scroll to the actual target with accurate measurements
-      let targetElement = document.querySelector(selector);
-      
-      // For travelogue, target the background element specifically
-      if (targetId === 'travelogue') {
-        const backgroundElement = document.getElementById('world-travel-diaries-background');
-        if (backgroundElement) {
-          targetElement = backgroundElement;
-          console.log('Using background element for travelogue scroll');
-        }
-      }
-      
-      if (targetElement) {
-        console.log('Target element found:', targetElement);
         
-        // Force a reflow to ensure accurate measurements
-        (targetElement as HTMLElement).offsetHeight;
+        // Now scroll to the actual target with accurate measurements
+        let targetElement = document.querySelector(selector);
         
-        // Force reflow on parent containers that might affect layout
-        const section = (targetElement as HTMLElement).closest('section');
-        if (section) {
-          (section as HTMLElement).offsetHeight;
-        }
-        
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = rect.top + window.pageYOffset;
-        
-        // Special handling for travelogue/video-projects section to show earth-map background better
-        let navbarHeight = 80; // Default navbar height
+        // For travelogue, target the background element specifically
         if (targetId === 'travelogue') {
-          // Calculate dynamic offset based on video section loading state
-          navbarHeight = calculateTravelogueScrollOffset();
-        } else if (targetId === 'video-projects') {
-          // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
-          navbarHeight = 80 - 60;
+          const backgroundElement = document.getElementById('world-travel-diaries-background');
+          if (backgroundElement) {
+            targetElement = backgroundElement;
+            console.log('Using background element for travelogue scroll');
+          }
         }
         
-        const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
-        
-        console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
-        
-        // Smooth scroll to target
+        if (targetElement) {
+          console.log('Target element found:', targetElement);
+          
+          // Force a reflow to ensure accurate measurements
+          (targetElement as HTMLElement).offsetHeight;
+          
+          // Force reflow on parent containers that might affect layout
+          const section = (targetElement as HTMLElement).closest('section');
+          if (section) {
+            (section as HTMLElement).offsetHeight;
+          }
+          
+          // Force reflow on all sections before this one to ensure accurate layout
+          const allSections = document.querySelectorAll('section');
+          allSections.forEach((sec) => {
+            if (sec.compareDocumentPosition(targetElement as HTMLElement) & Node.DOCUMENT_POSITION_PRECEDING) {
+              (sec as HTMLElement).offsetHeight;
+            }
+          });
+          
+          const rect = targetElement.getBoundingClientRect();
+          const absoluteTop = rect.top + window.pageYOffset;
+          
+          // Special handling for travelogue/video-projects section to show earth-map background better
+          let navbarHeight = 80; // Default navbar height
+          if (targetId === 'travelogue') {
+            // Calculate dynamic offset based on video section loading state
+            navbarHeight = calculateTravelogueScrollOffset();
+          } else if (targetId === 'video-projects') {
+            // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
+            navbarHeight = 80 - 60;
+          }
+          
+          const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+          
+          console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+          
+          return { targetElement, finalPosition };
+        } else {
+          console.log('Target element not found:', selector);
+          return null;
+        }
+      };
+      
+      // Initial scroll
+      const scrollResult = await performScroll();
+      if (scrollResult) {
         window.scrollTo({
-          top: finalPosition,
+          top: scrollResult.finalPosition,
           behavior: 'smooth'
         });
         
-        // Mark scrolling as complete after animation
-        setTimeout(() => {
-          setIsScrollingToAnchor(false);
-          window.dispatchEvent(new CustomEvent('scrollComplete'));
-        }, 800); // Slightly longer than scroll duration
+        // For About section, re-trigger scroll after layout stabilizes
+        if (targetId === 'about') {
+          // Wait for animations and any layout shifts to complete
+          setTimeout(async () => {
+            const recheckResult = await performScroll();
+            if (recheckResult) {
+              const currentScroll = window.pageYOffset;
+              const expectedScroll = recheckResult.finalPosition;
+              const difference = Math.abs(currentScroll - expectedScroll);
+              
+              // If we're more than 50px off, re-scroll
+              if (difference > 50) {
+                console.log('Re-scrolling to correct position. Difference:', difference);
+                window.scrollTo({
+                  top: recheckResult.finalPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }
+            
+            // Mark scrolling as complete
+            setTimeout(() => {
+              setIsScrollingToAnchor(false);
+              window.dispatchEvent(new CustomEvent('scrollComplete'));
+            }, 800);
+          }, 1200); // Wait for motion animations (0.8s + 0.2s delay + buffer)
+        } else {
+          // Mark scrolling as complete after animation
+          setTimeout(() => {
+            setIsScrollingToAnchor(false);
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+          }, 800);
+        }
       } else {
-        console.log('Target element not found:', selector);
         setIsScrollingToAnchor(false);
       }
     };

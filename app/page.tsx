@@ -335,9 +335,9 @@ export default function HomePage() {
         </section>
         
         {/* About Me Section */}
-        <section id="about" className="py-24 md:py-32 bg-white" aria-label="About Me" style={{ minHeight: '600px' }}>
+        <section id="about" className="py-24 md:py-32 bg-white" aria-label="About Me">
           <div className="max-w-4xl mx-auto px-6">
-            <div className="w-full" style={{ minHeight: '600px' }}>
+            <div className="w-full">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
