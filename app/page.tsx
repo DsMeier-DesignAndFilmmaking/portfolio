@@ -329,35 +329,59 @@ export default function HomePage() {
         <section id="about" className="py-24 md:py-32 bg-white" aria-label="About Me">
           <div className="max-w-4xl mx-auto px-6">
             <div className="w-full">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full text-left"
-              >
-                <div className="mb-6 md:mb-10">
-                  {/* Mobile Version - Simplified */}
-                  <h1 
-                    className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-                    style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
-                  >
-                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
-                  </h1>
-                  
-                  {/* Desktop Version - Original */}
-                  <h1 
-                    className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
-                    style={{ 
-                      fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
-                      whiteSpace: 'normal',
-                      fontFamily: "'tiempos-headline-regular', serif",
-                      marginBottom: 'calc(1.32 * 1.5rem)'
-                    }}
-                  >
-                    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
-                  </h1>
-                </div>
-                <div className="space-y-8">
+              {/* Heading */}
+              <div className="mb-6 md:mb-10">
+                {/* Mobile Version - Simplified */}
+                <h1 
+                  className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
+                  style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
+                >
+                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
+                </h1>
+                
+                {/* Desktop Version - Original */}
+                <h1 
+                  className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
+                  style={{ 
+                    fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
+                    whiteSpace: 'normal',
+                    fontFamily: "'tiempos-headline-regular', serif",
+                    marginBottom: 'calc(1.32 * 1.5rem)'
+                  }}
+                >
+                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
+                </h1>
+              </div>
+
+              {/* 50/50 Grid Layout: Image Left, Text Right */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+                {/* Left Side: Image */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="w-full"
+                >
+                  <div className="w-full" style={{ aspectRatio: '4/3' }}>
+                    <img 
+                      id="me_heroImage-1_1.1.1-about"
+                      src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
+                      alt="Dan Meier"
+                      className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
+                      loading="eager"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Right Side: Text Content */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="w-full text-left"
+                >
+                  <div className="space-y-8">
                   {/* Design Journey Path Marker */}
                   <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
                     <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
@@ -384,11 +408,12 @@ export default function HomePage() {
                     </div>
                   </div>
                   
-                  <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
-                  </p>
-                </div>
-              </motion.div>
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
