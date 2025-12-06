@@ -13,6 +13,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
+  const [hasEnteredDesignSection, setHasEnteredDesignSection] = useState(false);
 
 
 
@@ -48,11 +49,13 @@ const Navbar = () => {
         const navBottom = navRect.bottom;
         const navTop = navRect.top;
 
-        // Check if navbar overlaps with black section
+        // Check if navbar overlaps with black section (design section)
+        let isCurrentlyInDesign = false;
         if (blackSection) {
           const blackRect = blackSection.getBoundingClientRect();
           if (navTop < blackRect.bottom && navBottom > blackRect.top) {
             isOverBlack = true;
+            isCurrentlyInDesign = true;
           }
         }
 
@@ -64,9 +67,27 @@ const Navbar = () => {
           }
         }
 
-        // Width transition should trigger at the same time as color transition
-        // Use the same isOverBlack logic for perfect synchronization
-        setIsInDesignSection(isOverBlack);
+        // Track if we've ever entered the design section
+        if (isCurrentlyInDesign && !hasEnteredDesignSection) {
+          setHasEnteredDesignSection(true);
+        }
+
+        // Determine if navbar should be shrunk
+        // Once we've entered the design section, keep shrunk for all sections below
+        // Only un-shrink if we scroll back to the top of the page
+        if (hasEnteredDesignSection) {
+          // If we're near the top of the page, reset the flag and un-shrink
+          if (scrollY < 300) {
+            setHasEnteredDesignSection(false);
+            setIsInDesignSection(false);
+          } else {
+            // We've entered the design section, keep shrunk for rest of page
+            setIsInDesignSection(true);
+          }
+        } else {
+          // Use normal logic if we haven't entered design section yet
+          setIsInDesignSection(isOverBlack);
+        }
       }
 
       setIsOverBlackSection(isOverBlack);
