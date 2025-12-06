@@ -214,30 +214,36 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
               >
                 {/* First Hero Image */}
-                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/portfolio/images/Micro-Adventure_ConceptGraphic.png"
-                    alt="Micro Adventure Concept Graphic"
-                    fill
-                    className="object-cover"
-                    priority
-                    quality={90}
-                  />
+                <div className="relative w-full flex justify-center">
+                  <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+                    <Image
+                      src="/portfolio/images/Micro-Adventure_ConceptGraphic.png"
+                      alt="Micro Adventure Concept Graphic"
+                      width={800}
+                      height={1600}
+                      className="w-full h-auto object-contain"
+                      priority
+                      quality={90}
+                    />
+                  </div>
                 </div>
 
                 {/* Second Hero Image */}
-                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/portfolio/images/Micro-Adventure_ConceptGraphic_2.png"
-                    alt="Micro Adventure Concept Graphic 2"
-                    fill
-                    className="object-cover"
-                    priority
-                    quality={90}
-                  />
+                <div className="relative w-full flex justify-center">
+                  <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+                    <Image
+                      src="/portfolio/images/Micro-Adventure_ConceptGraphic_2.png"
+                      alt="Micro Adventure Concept Graphic 2"
+                      width={800}
+                      height={1600}
+                      className="w-full h-auto object-contain"
+                      priority
+                      quality={90}
+                    />
+                  </div>
                 </div>
               </motion.div>
             </div>
