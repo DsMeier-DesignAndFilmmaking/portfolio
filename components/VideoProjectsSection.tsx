@@ -91,7 +91,7 @@ export default function VideoProjectsSection() {
           distance={50}
           threshold={0.1}
         >
-          <div className="grid grid-cols-1 gap-16">
+          <div className="grid grid-cols-1 gap-16 mb-12">
             {videoProjects.map((project, index) => (
               <div key={index} className="group">
                 <VideoSection
