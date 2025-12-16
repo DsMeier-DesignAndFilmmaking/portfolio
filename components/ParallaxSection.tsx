@@ -13,6 +13,8 @@ interface ParallaxSectionProps {
   description: string;
   className?: string;
   modelPath?: string;
+  hideGradient?: boolean;
+  textColor?: 'black' | 'white';
 }
 
 export default function ParallaxSection({
@@ -20,6 +22,8 @@ export default function ParallaxSection({
   description,
   className = '',
   modelPath,
+  hideGradient = false,
+  textColor,
 }: ParallaxSectionProps) {
   const ref = useRef(null);
   const [isClient, setIsClient] = useState(false);
@@ -49,7 +53,7 @@ export default function ParallaxSection({
         <div className="relative z-20 flex h-full items-center justify-center bg-transparent">
           <div className="text-center max-w-4xl mx-auto px-6 bg-transparent" style={{ maxWidth: '576px', margin: '0 auto' }}>
             {modelPath === 'torus' ? (
-              <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
+              <p className={`text-2xl md:text-3xl leading-relaxed ${textColor === 'black' ? 'text-black' : 'text-white'}`} style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
                 {title}
               </p>
             ) : (
@@ -84,7 +88,7 @@ export default function ParallaxSection({
           <ParallaxBackground modelPath={modelPath} />
         )}
       </motion.div>
-      {modelPath === 'torus' && (
+      {modelPath === 'torus' && !hideGradient && (
         <div 
           className="absolute inset-0 z-10" 
           style={{
@@ -101,7 +105,7 @@ export default function ParallaxSection({
           style={{ maxWidth: '576px', margin: '0 auto' }}
         >
           {modelPath === 'torus' ? (
-            <p className="text-2xl md:text-3xl leading-relaxed text-white" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
+            <p className={`text-2xl md:text-3xl leading-relaxed ${textColor === 'black' ? 'text-black' : 'text-white'}`} style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.65rem' }}>
               {title}
             </p>
           ) : (

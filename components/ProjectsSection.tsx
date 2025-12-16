@@ -13,7 +13,7 @@ const projects = [
     link: "/projects/travel-and-ai"
   },
   {
-    title: "Client Work",
+    title: "Featured Work",
     description: "A collection of past projects highlighting expertise in UX, UI, and web design.",
     imageUrl: "./images/timbertech-card.jpg",
     tags: ["Web Development", "Design", "Software", "Portfolio"],
