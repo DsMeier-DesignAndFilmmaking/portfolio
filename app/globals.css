@@ -150,6 +150,32 @@ body {
     scroll-margin-top: 80px; /* adjust for sticky header */
   }
 
+  /* Stable anchor offset element - zero height, positioned before dynamic content */
+  /* This element provides a stable scroll target that doesn't shift when content loads */
+  .anchor-offset {
+    position: relative;
+    width: 1px;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    visibility: hidden;
+    /* Offset for fixed navbar - accounts for navbar height (80px) */
+    scroll-margin-top: 80px;
+    /* Ensure it doesn't affect layout flow */
+    display: block;
+    line-height: 0;
+    /* Prevent any layout shifts */
+    contain: strict;
+  }
+
+  /* Specific scroll margin for About section anchor */
+  #about.anchor-offset {
+    scroll-margin-top: 80px;
+  }
+
   /* Stable layout containers - prevents height changes during lazy loading */
   .stable-layout-container {
     contain: layout style paint;

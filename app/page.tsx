@@ -158,14 +158,14 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div className="w-full" style={{ aspectRatio: '4/3' }}>
-                <img 
-                  id="me_heroImage-1_1.1.1"
-                  src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
-                  alt="Dan Meier"
+              <img 
+                id="me_heroImage-1_1.1.1"
+                src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
+                alt="Dan Meier"
                   className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
-                  loading="eager"
+                loading="eager"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+              />
               </div>
             </div>
           </div>
@@ -325,8 +325,11 @@ export default function HomePage() {
           </div>
         </section>
         
+        {/* Stable anchor target for About section - zero height, positioned before content */}
+        <div id="about" className="anchor-offset" aria-hidden="true"></div>
+        
         {/* About Me Section */}
-        <section id="about" className="py-24 md:py-32 bg-white" aria-label="About Me">
+        <section className="py-24 md:py-32 bg-white" aria-label="About Me">
           <div className="max-w-4xl mx-auto px-6">
             <div className="w-full">
               {/* Heading */}
