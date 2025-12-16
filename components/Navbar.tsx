@@ -45,10 +45,24 @@ const Navbar = () => {
         const blackSection = document.getElementById('black-section');
         const videoSection = document.getElementById('video-projects');
         const travelogueSection = document.getElementById('travelogue');
+        const aboutSection = document.getElementById('about');
 
         const navRect = navbar.getBoundingClientRect();
         const navBottom = navRect.bottom;
         const navTop = navRect.top;
+
+        // Check if navbar overlaps with About section
+        let isCurrentlyInAbout = false;
+        if (aboutSection) {
+          // Find the actual About section element (the section that follows the anchor-offset div)
+          const aboutSectionElement = aboutSection.nextElementSibling as HTMLElement;
+          if (aboutSectionElement && aboutSectionElement.tagName === 'SECTION') {
+            const aboutRect = aboutSectionElement.getBoundingClientRect();
+            if (navTop < aboutRect.bottom && navBottom > aboutRect.top) {
+              isCurrentlyInAbout = true;
+            }
+          }
+        }
 
         // Check if navbar overlaps with black section (design section)
         let isCurrentlyInDesign = false;
@@ -76,27 +90,61 @@ const Navbar = () => {
           }
         }
 
-        // Track if we've ever entered the design section
-        if (isCurrentlyInDesign && !hasEnteredDesignSection) {
+        // Track if we've ever entered a section that requires navbar shrink
+        // This includes About, Work (black-section), Video, and Travelogue sections
+        if ((isCurrentlyInAbout || isCurrentlyInDesign) && !hasEnteredDesignSection) {
           setHasEnteredDesignSection(true);
         }
 
         // Determine if navbar should be shrunk
-        // Once we've entered the design section, keep shrunk for all sections below
-        // This includes video section, travelogue section, about section, etc.
-        // Only un-shrink if we scroll back to the top of the page (above design section)
+        // Once we've entered any section requiring shrink (About, Work, Video, Travelogue),
+        // keep shrunk for all sections below
+        // Only un-shrink if we scroll back above all these sections
         if (hasEnteredDesignSection) {
-          // Check if we're back above the design section
-          if (blackSection) {
+          // Check if we're back above the About section (first section that triggers shrink)
+          if (aboutSection) {
+            const aboutSectionElement = aboutSection.nextElementSibling as HTMLElement;
+            if (aboutSectionElement && aboutSectionElement.tagName === 'SECTION') {
+              const aboutRect = aboutSectionElement.getBoundingClientRect();
+              const aboutSectionTop = aboutRect.top + scrollY;
+              
+              // If we're above the About section (with some buffer), reset
+              if (scrollY < aboutSectionTop - 200) {
+                setHasEnteredDesignSection(false);
+                setIsInDesignSection(false);
+              } else {
+                // We're at or past the About section, keep shrunk
+                setIsInDesignSection(true);
+              }
+            } else if (blackSection) {
+              // Fallback to black section check
+              const blackRect = blackSection.getBoundingClientRect();
+              const designSectionTop = blackRect.top + scrollY;
+              
+              if (scrollY < designSectionTop - 200) {
+                setHasEnteredDesignSection(false);
+                setIsInDesignSection(false);
+              } else {
+                setIsInDesignSection(true);
+              }
+            } else {
+              // Fallback: if we're near the top of the page, reset
+              if (scrollY < 300) {
+                setHasEnteredDesignSection(false);
+                setIsInDesignSection(false);
+              } else {
+                setIsInDesignSection(true);
+              }
+            }
+          } else if (blackSection) {
+            // Fallback to black section check if About section not found
             const blackRect = blackSection.getBoundingClientRect();
             const designSectionTop = blackRect.top + scrollY;
             
-            // If we're above the design section (with some buffer), reset
             if (scrollY < designSectionTop - 200) {
               setHasEnteredDesignSection(false);
               setIsInDesignSection(false);
             } else {
-              // We're at or past the design section, keep shrunk
               setIsInDesignSection(true);
             }
           } else {
@@ -105,13 +153,13 @@ const Navbar = () => {
               setHasEnteredDesignSection(false);
               setIsInDesignSection(false);
             } else {
-              // We've entered the design section, keep shrunk for rest of page
               setIsInDesignSection(true);
             }
           }
         } else {
-          // Use normal logic if we haven't entered design section yet
-        setIsInDesignSection(isOverBlack);
+          // Use normal logic if we haven't entered any shrink-triggering section yet
+          // Trigger shrink if we're in About, Work, Video, or Travelogue sections
+          setIsInDesignSection(isCurrentlyInAbout || isOverBlack);
         }
       }
 
@@ -156,8 +204,8 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    // If clicking "Work" (black-section), immediately trigger navbar width animation
-    if (targetId === 'black-section') {
+    // If clicking "Work" (black-section) or "About", immediately trigger navbar width animation
+    if (targetId === 'black-section' || targetId === 'about') {
       setHasEnteredDesignSection(true);
       setIsInDesignSection(true);
     }
