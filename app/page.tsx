@@ -178,12 +178,6 @@ export default function HomePage() {
           className="bg-transparent"
         />
 
-        {/* Projects Section */}
-        <ProjectsSection />
-
-        {/* Video Projects Section */}
-        <VideoProjectsSection />
-        
         {/* Stable anchor target for About section - zero height, positioned before content */}
         <div id="about" className="anchor-offset" aria-hidden="true"></div>
         
@@ -339,6 +333,12 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Projects Section */}
+        <ProjectsSection />
+
+        {/* Video Projects Section */}
+        <VideoProjectsSection />
         
         {/* Travel Photography and Stills Section */}
         <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>

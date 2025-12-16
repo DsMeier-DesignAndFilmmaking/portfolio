@@ -111,7 +111,7 @@ const Navbar = () => {
           }
         } else {
           // Use normal logic if we haven't entered design section yet
-          setIsInDesignSection(isOverBlack);
+        setIsInDesignSection(isOverBlack);
         }
       }
 
@@ -253,24 +253,24 @@ const Navbar = () => {
             waitForStableLayout();
           }
         });
-        
-        // Now scroll to the actual target with accurate measurements
-        let targetElement = document.querySelector(selector);
-        
-        // For travelogue, target the background element specifically
-        if (targetId === 'travelogue') {
-          const backgroundElement = document.getElementById('world-travel-diaries-background');
-          if (backgroundElement) {
-            targetElement = backgroundElement;
-            console.log('Using background element for travelogue scroll');
-          }
+      
+      // Now scroll to the actual target with accurate measurements
+      let targetElement = document.querySelector(selector);
+      
+      // For travelogue, target the background element specifically
+      if (targetId === 'travelogue') {
+        const backgroundElement = document.getElementById('world-travel-diaries-background');
+        if (backgroundElement) {
+          targetElement = backgroundElement;
+          console.log('Using background element for travelogue scroll');
         }
+      }
+      
+      if (targetElement) {
+        console.log('Target element found:', targetElement);
         
-        if (targetElement) {
-          console.log('Target element found:', targetElement);
-          
-          // Force a reflow to ensure accurate measurements
-          (targetElement as HTMLElement).offsetHeight;
+        // Force a reflow to ensure accurate measurements
+        (targetElement as HTMLElement).offsetHeight;
           
           // Force reflow on parent containers that might affect layout
           const section = (targetElement as HTMLElement).closest('section');
@@ -285,27 +285,27 @@ const Navbar = () => {
               (sec as HTMLElement).offsetHeight;
             }
           });
-          
-          const rect = targetElement.getBoundingClientRect();
-          const absoluteTop = rect.top + window.pageYOffset;
-          
+        
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = rect.top + window.pageYOffset;
+        
           // Special handling for travelogue/video-projects/about section to show earth-map background better
-          let navbarHeight = 80; // Default navbar height
-          if (targetId === 'travelogue') {
-            // Calculate dynamic offset based on video section loading state
-            navbarHeight = calculateTravelogueScrollOffset();
+        let navbarHeight = 80; // Default navbar height
+        if (targetId === 'travelogue') {
+          // Calculate dynamic offset based on video section loading state
+          navbarHeight = calculateTravelogueScrollOffset();
           } else if (targetId === 'video-projects') {
             // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
             navbarHeight = 80 - 60;
           } else if (targetId === 'about') {
             // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
             navbarHeight = 80 - 90;
-          }
-          
-          const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
-          
-          console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
-          
+        }
+        
+        const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
+        
+        console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+        
           return { targetElement, finalPosition };
         } else {
           console.log('Target element not found:', selector);
@@ -348,10 +348,10 @@ const Navbar = () => {
             }, 800);
           }, 1200); // Wait for motion animations (0.8s + 0.2s delay + buffer)
         } else {
-          // Mark scrolling as complete after animation
-          setTimeout(() => {
-            setIsScrollingToAnchor(false);
-            window.dispatchEvent(new CustomEvent('scrollComplete'));
+        // Mark scrolling as complete after animation
+        setTimeout(() => {
+          setIsScrollingToAnchor(false);
+          window.dispatchEvent(new CustomEvent('scrollComplete'));
           }, 800);
         }
       } else {
@@ -422,6 +422,16 @@ const Navbar = () => {
           <div className="hidden md:block py-4">
             <nav className="flex items-center space-x-8">
               <a 
+                href="#about" 
+                onMouseDown={(e) => e.preventDefault()} 
+                onClick={(e) => handleAnchorClick(e, 'about')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-white' : 'text-black'
+                }`}
+              >
+                About
+              </a>
+              <a 
                 href="#black-section" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
@@ -440,16 +450,6 @@ const Navbar = () => {
                 }`}
               >
                 Travelogue
-              </a>
-              <a 
-                href="#about" 
-                onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'about')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-white' : 'text-black'
-                }`}
-              >
-                About
               </a>
               <a 
                 href="#contact" 
@@ -482,6 +482,17 @@ const Navbar = () => {
             <div className="max-w-4xl mx-auto px-6">
               <nav className="flex flex-col py-4 space-y-4">
               <a 
+                href="#about" 
+                onMouseDown={(e) => e.preventDefault()} 
+                onClick={(e) => handleAnchorClick(e, 'about')}
+                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
+                }`}
+              >
+                About
+              </a>
+              
+              <a 
                 href="#black-section" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
@@ -501,18 +512,7 @@ const Navbar = () => {
                 }`}
               >
                 Travelogue
-              </a>
-              
-              <a 
-                href="#about" 
-                onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'about')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
-                }`}
-              >
-                About
-              </a>
+              </a> 
               
               <a 
                 href="#contact" 
