@@ -184,147 +184,6 @@ export default function HomePage() {
         {/* Video Projects Section */}
         <VideoProjectsSection />
         
-        {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
-          {/* Keep the old ID for backward compatibility */}
-          <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
-          {/* World Map Background - This is the main target for scrolling */}
-          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
-            <img 
-              src="/portfolio/images/textures/earth-map.webp" 
-              alt="World Map Background"
-              className="w-full h-full object-cover"
-              loading="eager"
-              style={{ 
-                width: '100%', 
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center'
-              }}
-            />
-          </div>
-          
-          <div className="max-w-4xl mx-auto px-6 relative z-10">
-            <FadeInSection 
-              delay={0.1}
-              duration={0.8}
-              direction="up"
-              distance={40}
-              threshold={0.2}
-            >
-              <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  In Development
-                </div>
-                <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
-                  fontFamily: "'tiempos-headline-regular', serif",
-                  color: '#FFD700'
-                }}>
-                  World Travel Diaries
-                </h2>
-                <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
-                  fontFamily: "'Roboto', Helvetica, sans-serif",
-                  fontSize: '1.1rem',
-                  color: '#9899ab'
-                }}>
-                  I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
-                </p>
-              </div>
-            </FadeInSection>
-            
-            {/* Modern Coming Soon Card */}
-            <FadeInSection 
-              delay={0.2}
-              duration={0.8}
-              direction="up"
-              distance={50}
-              threshold={0.1}
-            >
-              <div className="relative">
-                <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
-                  {/* Background Image */}
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
-                    style={{
-                      backgroundImage: 'url(/portfolio/images/Morocco_girlsBike_Natgeo.webp)'
-                    }}
-                  ></div>
-                  {/* Dark overlay for better text readability */}
-                  <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                      {/* Left Content */}
-                      <div className="flex-1 text-left">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                          <div style={{ maxWidth: '576px', margin: '0 auto' }}>
-                              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                               Travel Photo Journal
-                             </h3>
-                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>Interactive Travel Stories</p>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-4 mb-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                            A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Photography</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Travel Stories</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Interactive</span>
-                          </div>
-                        </div>
-                        
-
-                      </div>
-                      
-                      {/* Right Content */}
-                      <div className="flex-shrink-0">
-                        <div className="bg-white rounded-2xl p-8 text-center text-black shadow-xl">
-                          <div className="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                          </div>
-                            <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </FadeInSection>
-            
-            {/* Tech Stack */}
-            <FadeInSection 
-              delay={0.3}
-              duration={0.8}
-              direction="up"
-              distance={30}
-              threshold={0.1}
-            >
-              <div className="mt-12 text-center">
-                <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
-                  <span className="text-gray-600 text-sm font-medium">Building with</span>
-                  <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
-                    <span className="text-gray-400">+</span>
-                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
-                  </div>
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-        
         {/* Stable anchor target for About section - zero height, positioned before content */}
         <div id="about" className="anchor-offset" aria-hidden="true"></div>
         
@@ -478,6 +337,147 @@ export default function HomePage() {
                 </motion.div>
               </div>
             </div>
+          </div>
+        </section>
+        
+        {/* Travel Photography and Stills Section */}
+        <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+          {/* Keep the old ID for backward compatibility */}
+          <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
+          {/* World Map Background - This is the main target for scrolling */}
+          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
+            <img 
+              src="/portfolio/images/textures/earth-map.webp" 
+              alt="World Map Background"
+              className="w-full h-full object-cover"
+              loading="eager"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
+            />
+          </div>
+          
+          <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <FadeInSection 
+              delay={0.1}
+              duration={0.8}
+              direction="up"
+              distance={40}
+              threshold={0.2}
+            >
+              <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  In Development
+                </div>
+                <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
+                  fontFamily: "'tiempos-headline-regular', serif",
+                  color: '#FFD700'
+                }}>
+                  World Travel Diaries
+                </h2>
+                <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
+                  fontFamily: "'Roboto', Helvetica, sans-serif",
+                  fontSize: '1.1rem',
+                  color: '#9899ab'
+                }}>
+                  I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
+                </p>
+              </div>
+            </FadeInSection>
+            
+            {/* Modern Coming Soon Card */}
+            <FadeInSection 
+              delay={0.2}
+              duration={0.8}
+              direction="up"
+              distance={50}
+              threshold={0.1}
+            >
+              <div className="relative">
+                <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
+                    style={{
+                      backgroundImage: 'url(/portfolio/images/Morocco_girlsBike_Natgeo.webp)'
+                    }}
+                  ></div>
+                  {/* Dark overlay for better text readability */}
+                  <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                      {/* Left Content */}
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          </div>
+                          <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+                              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                               Travel Photo Journal
+                             </h3>
+                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>Interactive Travel Stories</p>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-4 mb-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                            A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Photography</span>
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Travel Stories</span>
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Interactive</span>
+                          </div>
+                        </div>
+                        
+
+                      </div>
+                      
+                      {/* Right Content */}
+                      <div className="flex-shrink-0">
+                        <div className="bg-white rounded-2xl p-8 text-center text-black shadow-xl">
+                          <div className="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                            <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+            
+            {/* Tech Stack */}
+            <FadeInSection 
+              delay={0.3}
+              duration={0.8}
+              direction="up"
+              distance={30}
+              threshold={0.1}
+            >
+              <div className="mt-12 text-center">
+                <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
+                  <span className="text-gray-600 text-sm font-medium">Building with</span>
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
+                    <span className="text-gray-400">+</span>
+                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
           </div>
         </section>
 
