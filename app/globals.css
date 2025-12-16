@@ -129,6 +129,22 @@ body {
     overflow: hidden;
   }
 
+  /* Travelogue section - scoped video and image styling */
+  #video-projects .videoFrame {
+    aspect-ratio: 2.39 / 1; /* Cinematic aspect ratio for Travelogue */
+  }
+
+  #video-projects .travelogue-image-item {
+    width: 100%;
+  }
+
+  #video-projects .travelogue-image-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
   /* Scroll margin for anchor targets - prevents misalignment from sticky header */
   [id] {
     scroll-margin-top: 80px; /* adjust for sticky header */

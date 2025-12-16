@@ -35,18 +35,42 @@ export default function VideoSection({ iframeSrc, aspectRatio = 16 / 9, fallback
   // Only the iframe source loads lazily, maintaining identical dimensions at all times
   return (
     <section aria-label="Video" className="video-section">
-      <div ref={containerRef} className="videoFrame">
+      <div 
+        ref={containerRef} 
+        className="videoFrame"
+        style={{ 
+          aspectRatio: `${aspectRatio} / 1`,
+          position: 'relative',
+          width: '100%',
+          maxWidth: '100%'
+        }}
+      >
         {shouldLoadVideo ? (
           <iframe
             src={iframeSrc}
             title="Travel video"
             frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
             allowFullScreen
-            style={{ width: "100%", height: "100%", display: "block" }}
+            loading="lazy"
+            style={{ 
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: "100%", 
+              height: "100%", 
+              display: "block",
+              border: 'none'
+            }}
           />
         ) : (
-          <div style={{ width: "100%", height: "100%" }} />
+          <div style={{ 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: "100%", 
+            height: "100%" 
+          }} />
         )}
       </div>
     </section>

@@ -96,7 +96,7 @@ export default function VideoProjectsSection() {
               <div key={index} className="group">
                 <VideoSection
                   iframeSrc={project.videoUrl}
-                  aspectRatio={16 / 9}
+                  aspectRatio={2.39 / 1}
                   fallbackHeight={400}
                 />
               </div>
@@ -115,72 +115,108 @@ export default function VideoProjectsSection() {
           <div>
             <div className="grid grid-cols-1 gap-8">
               {[1, 2, 3, 4, 5, 6].map((index) => (
-                <div key={index} className="relative">
-                  <div className="relative bg-white/10 overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                <div key={index} className="relative travelogue-image-item">
+                  <div className="relative w-full flex items-center justify-center">
                     {index === 1 ? (
                       <Image
                         src="/portfolio/images/Istanbul-frames-2.jpg"
                         alt="Istanbul Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : index === 2 ? (
                       <Image
                         src="/portfolio/images/japan-frames.jpg"
                         alt="Japan Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : index === 3 ? (
                       <Image
                         src="/portfolio/images/Terratorium-stillFrames.jpg"
                         alt="Terratorium Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : index === 4 ? (
                       <Image
                         src="/portfolio/images/Teleportal-frames.jpg"
                         alt="Teleportal Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : index === 5 ? (
                       <Image
                         src="/portfolio/images/Morrocco-frames.jpg"
                         alt="Morocco Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : index === 6 ? (
                       <Image
                         src="/portfolio/images/Indonesia-frames.jpg"
                         alt="Indonesia Video Frames"
-                        fill
-                        sizes="100vw"
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                         priority={index <= 2}
                         loading={index <= 2 ? "eager" : "lazy"}
-                        style={{ objectFit: 'cover' }}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
                         className="shadow-lg"
                       />
                     ) : (
