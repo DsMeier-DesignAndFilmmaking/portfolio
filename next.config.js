@@ -13,12 +13,17 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  basePath: '/portfolio',
+  // basePath: '/portfolio' for GitHub Pages, empty for Vercel
+  // Vercel sets VERCEL=1 during builds, VERCEL_URL at runtime
+  // Check multiple Vercel environment variables for reliability
+  basePath: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV) ? '' : '/portfolio',
   // Add headers for better caching
   async headers() {
+    const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV;
+    const imagePath = isVercel ? '/images/:path*' : '/portfolio/images/:path*';
     return [
       {
-        source: '/portfolio/images/:path*',
+        source: imagePath,
         headers: [
           {
             key: 'Cache-Control',
