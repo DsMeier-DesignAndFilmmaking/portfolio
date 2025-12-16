@@ -178,16 +178,6 @@ export default function AISandboxPage() {
             <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
-                  href="/projects/purdue" 
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-black hover:text-blue-400' 
-                      : 'text-gray-700 hover:text-blue-400'
-                  }`}
-                >
-                  Purdue University
-                </Link>
-                <Link 
                   href="/projects/travel-and-ai" 
                   className={`text-[11pt] transition-colors duration-500 ${
                     isNavbarWhite 
@@ -225,17 +215,6 @@ export default function AISandboxPage() {
               }`}
             >
               <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/projects/purdue" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-gray-600 hover:text-gray-900' 
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  Purdue University
-                </Link>
                 <Link 
                   href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}

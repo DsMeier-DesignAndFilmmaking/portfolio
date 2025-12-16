@@ -93,12 +93,6 @@ export default function PreviousProjectsPage() {
             <div className="hidden md:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
-                  href="/projects/purdue" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  Purdue University
-                </Link>
-                <Link 
                   href="/projects/travel-and-ai" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                 >
@@ -126,13 +120,6 @@ export default function PreviousProjectsPage() {
               className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
             >
               <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/projects/purdue" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                >
-                  Purdue University
-                </Link>
                 <Link 
                   href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -189,7 +176,7 @@ export default function PreviousProjectsPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-white/[0.08] rounded-lg"
               >
-                <Link href={project.id ? `/projects/previous/${project.id}` : '#'}>
+                <Link href={project.id === 'purdue' ? '/projects/purdue' : (project.id ? `/projects/previous/${project.id}` : '#')}>
                   <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
                     <Image
                       src={project.imageUrl}

@@ -8,6 +8,13 @@ export interface Project {
 
 export const allProjects: Project[] = [
   {
+    id: 'purdue',
+    title: "Purdue University",
+    description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
+    imageUrl: "/portfolio/images/PU-Memorial-Mall-DJI.jpg",
+    year: "Web Design"
+  },
+  {
     id: 'timbertech',
     title: "TimberTech",
     description: "A full redesign for TimberTech.com and their existing design system.",

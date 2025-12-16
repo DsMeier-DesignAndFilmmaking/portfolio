@@ -13,9 +13,10 @@ interface ProjectCardProps {
   link: string;
   currentProject?: boolean;
   ongoingClient?: boolean;
+  'data-project'?: string;
 }
 
-export default function ProjectCard({ title, description, imageUrl, tags, link, currentProject, ongoingClient }: ProjectCardProps) {
+export default function ProjectCard({ title, description, imageUrl, tags, link, currentProject, ongoingClient, 'data-project': dataProject }: ProjectCardProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
 
@@ -36,6 +37,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className="group relative rounded-2xl overflow-hidden transition-shadow duration-300"
+      data-project={dataProject}
     >
       <AnimatePresence>
         {isTransitioning && (

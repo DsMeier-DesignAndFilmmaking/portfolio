@@ -6,15 +6,6 @@ import Image from 'next/image';
 
 const projects = [
   {
-    title: "Purdue University",
-    description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
-    imageUrl: "./images/PU-Memorial-Mall-DJI.jpg",
-    tags: ["Education", "Research", "Engineering", "Technology"],
-    link: "/projects/purdue",
-    currentProject: true,
-    ongoingClient: true
-  },
-  {
     title: "Travel & AI",
     description: "Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.",
     imageUrl: "./images/travelApp-card.jpg",
@@ -70,10 +61,34 @@ export default function ProjectsSection() {
           distance={50}
           threshold={0.1}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
+          <div className="space-y-16">
+            {/* Product Explorations Block */}
+            <div>
+              <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
+                Product Explorations
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <ProjectCard 
+                  key="travel-ai"
+                  data-project="travel-ai"
+                  {...projects[0]} 
+                />
+              </div>
+            </div>
+
+            {/* Selected Client & Institutional Work Block */}
+            <div>
+              <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
+                Selected Client & Institutional Work
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <ProjectCard 
+                  key="select-client-work"
+                  data-project="select-client-work"
+                  {...projects[1]} 
+                />
+              </div>
+            </div>
           </div>
         </FadeInSection>
       </div>
