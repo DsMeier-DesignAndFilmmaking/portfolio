@@ -76,7 +76,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
               </span>
             </div>
           )}
-          <div className="w-[90%] pt-6 px-6 pb-6 text-gray-900 bg-white h-[264px] flex flex-col justify-between">
+          <div className="w-[90%] pt-6 px-6 pb-6 text-gray-900 bg-white h-[220px] flex flex-col justify-between">
             <div>
               <h3 className="text-xl font-bold mb-2">{title}</h3>
               <p className="mb-4 text-gray-600">{description}</p>
@@ -85,7 +85,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
             <Link
               href={link}
               onClick={handleClick}
-              className="inline-flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors hover:underline mt-auto"
+              className="inline-flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors hover:underline"
             >
               {title === "Purdue University" 
                 ? "View Work" 
