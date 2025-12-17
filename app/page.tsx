@@ -231,7 +231,7 @@ export default function HomePage() {
                     <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about"
-                        src="/portfolio/images/me-arches-wine.jpg" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
                         alt="Dan Meier"
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
@@ -250,7 +250,7 @@ export default function HomePage() {
                     <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-2"
-                        src="/portfolio/images/portrait-4shots_2.jpg" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
                         alt="Dan Meier"
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
@@ -269,7 +269,7 @@ export default function HomePage() {
                     <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-3"
-                        src="/portfolio/images/portrait-4shots_1.jpg" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
                         alt="Dan Meier"
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
@@ -288,7 +288,7 @@ export default function HomePage() {
                     <div className="w-full">
                       <img 
                         id="me_heroImage-1_1.1.1-about-4"
-                        src="/portfolio/images/portrait-4shots_3.jpg" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
                         alt="Dan Meier"
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
                         loading="eager"
