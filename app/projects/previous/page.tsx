@@ -35,17 +35,47 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Remove body padding on mobile for this page to prevent white space
+  // Remove body padding and adjust hero positioning on mobile for this page
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      document.body.style.paddingTop = '0';
-      document.body.style.marginTop = '0';
-    }
+    const handleMobileSpacing = () => {
+      // Check if we're on the correct page and mobile viewport
+      if (window.location.pathname === '/projects/previous/' && window.innerWidth <= 768) {
+        // Remove body padding/margin
+        document.body.style.paddingTop = '0';
+        document.body.style.marginTop = '0';
+        
+        // Find navbar and hero section
+        const navbar = document.querySelector('nav');
+        const hero = document.querySelector('.hero-section');
+        
+        if (navbar && hero) {
+          // Remove any top margin/padding from hero
+          (hero as HTMLElement).style.marginTop = '0';
+          (hero as HTMLElement).style.paddingTop = '0';
+          
+          // If navbar is fixed, adjust hero to sit directly below it
+          // Get navbar height and use transform to pull hero up by that amount
+          const navbarHeight = navbar.getBoundingClientRect().height;
+          (hero as HTMLElement).style.transform = `translateY(-${navbarHeight}px)`;
+        }
+      }
+    };
+    
+    // Run immediately and on resize
+    handleMobileSpacing();
+    window.addEventListener('resize', handleMobileSpacing);
+    
     return () => {
-      // Cleanup: restore default if needed
+      // Cleanup: restore default styles
       document.body.style.paddingTop = '';
       document.body.style.marginTop = '';
+      const hero = document.querySelector('.hero-section');
+      if (hero) {
+        (hero as HTMLElement).style.transform = '';
+        (hero as HTMLElement).style.marginTop = '';
+        (hero as HTMLElement).style.paddingTop = '';
+      }
+      window.removeEventListener('resize', handleMobileSpacing);
     };
   }, []);
 
