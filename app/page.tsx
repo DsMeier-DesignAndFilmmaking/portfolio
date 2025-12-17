@@ -355,8 +355,12 @@ export default function HomePage() {
           {/* World Map Background - This is the main target for scrolling */}
           <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
             <img 
-              src="/portfolio/images/textures/earth-map.webp" 
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.webp`}
               alt="World Map Background"
+              onError={(e) => {
+                // Fallback if image fails to load
+                console.warn('Failed to load earth-map.webp, using fallback');
+              }}
               className="w-full h-full object-cover"
               loading="eager"
               style={{ 

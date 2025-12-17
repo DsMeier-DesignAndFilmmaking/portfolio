@@ -17,6 +17,9 @@ const nextConfig = {
   // Vercel sets VERCEL=1 during builds, VERCEL_URL at runtime
   // Check multiple Vercel environment variables for reliability
   basePath: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV) ? '' : '/portfolio',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV) ? '' : '/portfolio',
+  },
 }
 
 module.exports = nextConfig 

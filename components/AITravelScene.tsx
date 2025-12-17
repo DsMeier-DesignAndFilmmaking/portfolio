@@ -32,7 +32,10 @@ function Globe() {
   const [textureLoaded, setTextureLoaded] = useState(false);
   
   // Try to load the optimized WebP texture with proper path
-  const earthTexture = useTexture('/portfolio/images/textures/earth-map.webp');
+  // Use basePath-aware path: empty on Vercel, /portfolio on GitHub Pages
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const texturePath = `${basePath}/images/textures/earth-map.webp`;
+  const earthTexture = useTexture(texturePath);
   
   useEffect(() => {
     // Check if texture loaded successfully
