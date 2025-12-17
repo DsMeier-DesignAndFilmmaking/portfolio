@@ -166,7 +166,7 @@ export default function HomePage() {
               <div className="w-full" style={{ aspectRatio: '4/3' }}>
               <img 
                 id="me_heroImage-1_1.1.1"
-                src="/portfolio/images/me_heroImage-1_1.1.1.webp" 
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
                 alt="Dan Meier"
                   className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
                 loading="eager"
