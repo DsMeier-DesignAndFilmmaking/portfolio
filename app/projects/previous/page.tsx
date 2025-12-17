@@ -35,11 +35,52 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Add data attribute to body for CSS targeting on this specific page
+  // Mobile-only hero fix on /projects/previous/ - positions hero directly below navbar
   useEffect(() => {
-    document.body.setAttribute('data-page', 'projects-previous');
+    const handleMobileHeroFix = () => {
+      if (window.location.pathname === '/projects/previous/' && window.innerWidth <= 768) {
+        const navbar = document.querySelector('nav');
+        const hero = document.querySelector('.hero-section');
+
+        if (navbar && hero) {
+          // Get actual navbar height
+          const navbarHeight = navbar.getBoundingClientRect().height;
+
+          // Remove any top spacing on hero
+          (hero as HTMLElement).style.marginTop = '0px';
+          (hero as HTMLElement).style.paddingTop = '0px';
+          (hero as HTMLElement).style.position = 'relative';
+          (hero as HTMLElement).style.top = '0px';
+          (hero as HTMLElement).style.transform = 'none';
+
+          // Ensure hero sits directly below navbar using negative margin
+          (hero as HTMLElement).style.marginTop = `-${navbarHeight}px`;
+
+          // Remove extra body padding if navbar is fixed/sticky
+          const bodyStyle = window.getComputedStyle(document.body);
+          if (parseInt(bodyStyle.paddingTop) > 0) {
+            document.body.style.paddingTop = '0px';
+          }
+        }
+      }
+    };
+
+    // Run on mount and resize
+    handleMobileHeroFix();
+    window.addEventListener('resize', handleMobileHeroFix);
+
     return () => {
-      document.body.removeAttribute('data-page');
+      // Cleanup
+      const hero = document.querySelector('.hero-section');
+      if (hero) {
+        (hero as HTMLElement).style.marginTop = '';
+        (hero as HTMLElement).style.paddingTop = '';
+        (hero as HTMLElement).style.position = '';
+        (hero as HTMLElement).style.top = '';
+        (hero as HTMLElement).style.transform = '';
+      }
+      document.body.style.paddingTop = '';
+      window.removeEventListener('resize', handleMobileHeroFix);
     };
   }, []);
 
