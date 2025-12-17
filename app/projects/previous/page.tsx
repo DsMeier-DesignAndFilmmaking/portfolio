@@ -142,13 +142,17 @@ export default function PreviousProjectsPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center bg-black pt-20 md:pt-0" aria-label="Project Hero">
+      <section 
+        className="relative h-[80vh] flex items-center bg-black md:pt-0" 
+        aria-label="Project Hero"
+        style={{ marginTop: 0, paddingTop: 0 }}
+      >
         <div className="container mx-auto px-6 relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl md:mt-[100px]"
+            className="max-w-2xl pt-20 md:pt-0 md:mt-[100px]"
           >
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
               <span className="text-gray-400">UX / UI / Web / Product Design</span>
