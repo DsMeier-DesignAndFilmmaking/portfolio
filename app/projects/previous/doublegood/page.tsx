@@ -126,7 +126,7 @@ export default function DoubleGoodProjectPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center pt-20 md:pt-0" aria-label="Project Hero">
+      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
         <div className="absolute inset-0">
           <Image
@@ -142,7 +142,7 @@ export default function DoubleGoodProjectPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mt-[100px]"
+            className="max-w-2xl pt-20 md:pt-0 md:mt-[100px]"
           >
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
               <span className="text-gray-400">{project.year}</span>
