@@ -28,10 +28,6 @@ export default function PurdueProjectPage() {
     }, 500);
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <div className="min-h-screen bg-black text-white">
       <AnimatePresence>
