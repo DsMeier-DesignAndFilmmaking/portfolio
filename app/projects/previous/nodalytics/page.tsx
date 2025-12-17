@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Nodalytics",
   description: "Designed and prototyped a product concept for a blockchain start-up, created specifically to support investment pitches and demonstrate innovative analytics capabilities.",
-  heroImage: "/portfolio/images/Nodalytics_heroGraphic-3.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Nodalytics_heroGraphic-3.jpg`,
   year: "Product Design",
   stats: {
     users: "30k+",
@@ -72,8 +72,8 @@ const project = {
   },
   overview: "Designed and developed an analytics platform that helps businesses make data-driven decisions through intuitive visualization and reporting tools.",
   images: [
-    "/portfolio/images/Noda_cropped-container.jpg",
-    "/portfolio/images/Nodalytics_heroGraphic-3.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Noda_cropped-container.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Nodalytics_heroGraphic-3.jpg`
   ]
 };
 
@@ -220,7 +220,7 @@ export default function NodalyticsProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/images/Nodalytics UI Style Guide.jpg" 
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Nodalytics UI Style Guide.jpg`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

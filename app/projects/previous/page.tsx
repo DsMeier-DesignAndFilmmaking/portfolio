@@ -209,7 +209,7 @@ export default function PreviousProjectsPage() {
             <Link href="/projects/travel-and-ai" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/travelApp-card.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`}
                   alt="Travel & AI Project"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -229,7 +229,7 @@ export default function PreviousProjectsPage() {
             <Link href="/projects/purdue" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/PU-Memorial-Mall-DJI.jpg`}
                   alt="Purdue University Project"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

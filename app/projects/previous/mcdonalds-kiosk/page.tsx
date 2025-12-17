@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "McDonald's Kiosk",
   description: "Partnered with an agency to enhance McDonald's kiosk experience, focusing on improving upsell and cross-sell opportunities through smarter UX and design.",
-  heroImage: "/portfolio/images/mcDonalds-card.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mcDonalds-card.jpg`,
   year: "Product Design",
   stats: {
     users: "7",
@@ -72,10 +72,10 @@ const project = {
   },
   overview: "Designed and implemented a next-generation self-service kiosk system for McDonald's, enhancing customer experience and operational efficiency.",
   images: [
-    "/portfolio/images/DynamicYield_ConceptFlows_2.jpg",
-    "/portfolio/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg",
-    "/portfolio/images/Homepage - RememberMe - Default Mode - Authenticated_screen2.jpg",
-    "/portfolio/images/mcDs_kiosk_screen-1.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/DynamicYield_ConceptFlows_2.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/MCD -DY-Cross-sell-Up-sell-DansFlow.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Homepage - RememberMe - Default Mode - Authenticated_screen2.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mcDs_kiosk_screen-1.jpg`
   ]
 };
 

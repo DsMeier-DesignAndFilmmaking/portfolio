@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Newdea",
   description: "Designed an interactive prototype for a blockchain-based digital infrastructure tool that aims to support economic development across Africa through innovative technology solutions.",
-  heroImage: "/portfolio/images/newdea_hero_containerGraphic-5.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/newdea_hero_containerGraphic-5.jpg`,
   year: "Product Design",
   stats: {
     users: "45k+",
@@ -72,9 +72,9 @@ const project = {
   },
   overview: "Led the redesign of Newdea's project management platform, focusing on improving user experience and workflow efficiency.",
   images: [
-    "/portfolio/images/newdea_hero_containerGraphic-whitebackground-2.jpg",
-    "/portfolio/images/newdea_hero_containerGraphic-3.jpg",
-    "/portfolio/images/website_newdea_imageFullWidth-stretch.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/newdea_hero_containerGraphic-whitebackground-2.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/newdea_hero_containerGraphic-3.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/website_newdea_imageFullWidth-stretch.jpg`
   ]
 };
 

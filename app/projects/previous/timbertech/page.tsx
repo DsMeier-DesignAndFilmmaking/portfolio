@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import { getImagePath } from '../../../../utils/imagePath';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -64,11 +65,11 @@ const project = {
   title: "TimberTech",
   year: "2021",
   description: "A comprehensive website redesign for TimberTech, focusing on improving user experience, product discovery, and conversion rates through modern design and streamlined navigation.",
-  heroImage: "/portfolio/images/timbertech-card.jpg",
+  heroImage: getImagePath("images/timbertech-card.jpg"),
   images: [
-    "/portfolio/images/TT_FIGMA_Dsktp.png",
-    "/portfolio/images/SAMPLES_Dsktp.jpg",
-    "/portfolio/images/TT_Sustainability-Scroll_Dsktp.png"
+    getImagePath("images/TT_FIGMA_Dsktp.png"),
+    getImagePath("images/SAMPLES_Dsktp.jpg"),
+    getImagePath("images/TT_Sustainability-Scroll_Dsktp.png")
   ],
   stats: {
     users: "30k+",

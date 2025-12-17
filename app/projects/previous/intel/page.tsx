@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Intel Virtual Gatherings",
   description: "Designed 7 early-stage tech concepts to support market research and inform Intel's product roadmaps.",
-  heroImage: "/portfolio/images/heroGraphic.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/heroGraphic.jpg`,
   year: "Market Research",
   stats: {
     concepts: "7",
@@ -71,9 +71,9 @@ const project = {
   },
   overview: "Conducted comprehensive market research and analysis for Intel's sustainability initiatives, providing actionable insights for environmental impact reduction.",
   images: [
-    "/portfolio/images/211206_IntelVirtualGatherings-reduced-4.jpg",
-    "/portfolio/images/synthesisDeck-page-2.jpg",
-    "/portfolio/images/heroGraphic.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/211206_IntelVirtualGatherings-reduced-4.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/synthesisDeck-page-2.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/heroGraphic.jpg`
   ]
 };
 

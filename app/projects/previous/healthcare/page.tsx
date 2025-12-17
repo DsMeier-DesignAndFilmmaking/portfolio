@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Digital Solutions for Healthcare",
   description: "Worked with multiple healthcare clients to lead and support website redesigns, focusing on improving accessibility, user experience, and compliance with healthcare standards.",
-  heroImage: "/portfolio/images/healthcare-card.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/healthcare-card.jpg`,
   year: "IA & UI",
   stats: {
     users: "10+",
@@ -72,10 +72,10 @@ const project = {
   },
   overview: "The healthcare website redesign project aimed to create a more intuitive and accessible platform for medical professionals and patients. The project focused on improving navigation, enhancing the user interface, and ensuring compliance with healthcare accessibility standards.",
   images: [
-    "/portfolio/images/GamC_HCP_sitemap_v1.jpg",
-    "/portfolio/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg",
-    "/portfolio/images/NovoCare-SLDS-Components.jpg",
-    "/portfolio/images/SLDS_Mobile_Default-Form.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/GamC_HCP_sitemap_v1.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Personal-Info_NotParentCaregiver_NotTaxDependent-errorState-desktop.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/NovoCare-SLDS-Components.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/SLDS_Mobile_Default-Form.jpg`
   ]
 };
 

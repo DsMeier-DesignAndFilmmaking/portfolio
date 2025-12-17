@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "DoubleGood",
   description: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions, focusing on creating an intuitive and engaging user experience.",
-  heroImage: "/portfolio/images/doubleGoodImage.webp",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/doubleGoodImage.webp`,
   year: "Mobile Design",
   stats: {
     users: "200k+",
@@ -72,10 +72,10 @@ const project = {
   },
   overview: "Designed a mobile-first platform for fundraising and community engagement through virtual events and auctions.",
   images: [
-    "/portfolio/images/DoubleGood_mobileFlow_1.jpg",
-    "/portfolio/images/2.8_FiltersApplied_Opt_2.png",
-    "/portfolio/images/2.5_SweetCategory_page.png",
-    "/portfolio/images/2.8_FiltersApplied_Opt_2.png"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/DoubleGood_mobileFlow_1.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/2.8_FiltersApplied_Opt_2.png`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/2.5_SweetCategory_page.png`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/2.8_FiltersApplied_Opt_2.png`
   ]
 };
 
@@ -196,7 +196,7 @@ export default function DoubleGoodProjectPage() {
             {/* Link to open first image in new window */}
             <div className="text-center">
               <a 
-                href="/portfolio/images/DoubleGood_mobileFlow_1.jpg" 
+                href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/DoubleGood_mobileFlow_1.jpg`} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"

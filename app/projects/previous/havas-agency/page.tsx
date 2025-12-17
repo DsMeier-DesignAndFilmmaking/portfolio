@@ -44,12 +44,12 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 const project = {
   title: "Havas Agency",
   description: "UX and web design at Havas Agency, creating engaging, on-brand digital experiences.",
-  heroImage: "/portfolio/images/havas-card.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/havas-card.jpg`,
   year: "UX & Web Design",
   overview: "Worked on UX and web design projects for Havas Agency, creating engaging digital experiences and improving user interactions.",
   images: [
-    "/portfolio/images/Q2_ProgramFlowChart_08-20-15.jpg",
-    "/portfolio/images/optimized/IFP_PhotoContestPages_funcSpec-0701158.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Q2_ProgramFlowChart_08-20-15.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/IFP_PhotoContestPages_funcSpec-0701158.jpg`
   ]
 };
 

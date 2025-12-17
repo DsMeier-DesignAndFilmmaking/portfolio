@@ -63,14 +63,14 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "Sphere Software",
   description: "Design Director for an enterprise HR software suite. Led design on client-facing web projects.",
-  heroImage: "/portfolio/images/sphere-card.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/sphere-card.jpg`,
   year: "Internal Startup & Client Consulting",
   overview: "Develop enterprise software solutions",
   images: [
-    "/portfolio/images/chairliftAllScreens.png",
-    "/portfolio/images/optimized/CHAIRLIFTdatamap.jpg",
-    "/portfolio/images/optimized/2_OKR_CheckInUserFlow_03-14-16.jpg",
-    "/portfolio/images/optimized/MeDashboard-EmployeeView-WithUpdates.jpg"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/chairliftAllScreens.png`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/CHAIRLIFTdatamap.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/2_OKR_CheckInUserFlow_03-14-16.jpg`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/MeDashboard-EmployeeView-WithUpdates.jpg`
   ]
 };
 

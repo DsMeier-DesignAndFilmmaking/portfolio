@@ -44,12 +44,12 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 const project = {
   title: "Rich Products",
   description: "Information architecture and web design work for Rich Products, focusing on improving user navigation and content organization.",
-  heroImage: "/portfolio/images/richProducts-card.jpg",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/richProducts-card.jpg`,
   year: "IA & Web Design",
   overview: "Worked on information architecture and web design for Rich Products, improving site navigation, content organization, and user experience.",
   images: [
-    "/portfolio/images/FarmRich_wireSpecs_02-07-2011.png",
-    "/portfolio/images/FarmRich_GlobalNav_WhereToBuy_wireSpecs-2.png"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/FarmRich_wireSpecs_02-07-2011.png`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/FarmRich_GlobalNav_WhereToBuy_wireSpecs-2.png`
   ]
 };
 

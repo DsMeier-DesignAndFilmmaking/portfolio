@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 const project = {
   title: "AdviseStream",
   description: "Designed a digital platform to connect healthcare professionals and resources across developing nations, focusing on improving access to medical expertise and knowledge sharing.",
-  heroImage: "/portfolio/images/optimized/Advistestream_mockup-createReport.webp",
+  heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/Advistestream_mockup-createReport.webp`,
   year: "Product Design",
   stats: {
     users: "25% Reduction in User Drop-Off",
@@ -72,9 +72,9 @@ const project = {
   },
   overview: "Created a comprehensive digital platform designed to bridge the gap between healthcare professionals in developing regions and global medical resources.",
   images: [
-    "/portfolio/images/optimized/Advistestream_mockup-createReport.webp",
-    "/portfolio/images/optimized/AdviseStream_mobileScreens.webp",
-    "/portfolio/images/optimized/advisestream_mobileDesigns-1-fast.webp"
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/Advistestream_mockup-createReport.webp`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/AdviseStream_mobileScreens.webp`,
+    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/optimized/advisestream_mobileDesigns-1-fast.webp`
   ]
 };
 
