@@ -6,89 +6,91 @@ export interface Project {
   year: string;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export const allProjects: Project[] = [
   {
     id: 'purdue',
     title: "Purdue University",
     description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
-    imageUrl: "/portfolio/images/PU-Memorial-Mall-DJI.jpg",
+    imageUrl: `${basePath}/images/PU-Memorial-Mall-DJI.jpg`,
     year: "Web Design"
   },
   {
     id: 'timbertech',
     title: "TimberTech",
     description: "A full redesign for TimberTech.com and their existing design system.",
-    imageUrl: "/portfolio/images/timbertech-card.jpg",
+    imageUrl: `${basePath}/images/timbertech-card.jpg`,
     year: "Web Design"
   },
   {
     id: 'healthcare',
     title: "Healthcare",
     description: "A digital platform designed to connect healthcare professionals and patients across developing nations.",
-    imageUrl: "/portfolio/images/healthcare-card.jpg",
+    imageUrl: `${basePath}/images/healthcare-card.jpg`,
     year: "IA & UI"
   },
   {
     id: 'mcdonalds-kiosk',
     title: "McDonalds Kiosk",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/mcDonalds-card.jpg",
+    imageUrl: `${basePath}/images/mcDonalds-card.jpg`,
     year: "Product Design"
   },
   {
     id: 'intel',
     title: "Intel",
     description: "A sustainability tracking application helping businesses monitor and reduce their environmental impact.",
-    imageUrl: "/portfolio/images/heroGraphic.jpg",
+    imageUrl: `${basePath}/images/heroGraphic.jpg`,
     year: "Market Research"
   },
   {
     id: 'nodalytics',
     title: "Nodalytics",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/Nodalytics_heroGraphic-3.jpg",
+    imageUrl: `${basePath}/images/Nodalytics_heroGraphic-3.jpg`,
     year: "Product Design"
   },
   {
     id: 'newdea',
     title: "Newdea",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/newdea_hero_containerGraphic-5.jpg",
+    imageUrl: `${basePath}/images/newdea_hero_containerGraphic-5.jpg`,
     year: "Product Design"
   },
   {
     id: 'doublegood',
     title: "DoubleGood",
     description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
-    imageUrl: "/portfolio/images/doubleGoodImage.webp",
+    imageUrl: `${basePath}/images/doubleGoodImage.webp`,
     year: "Web Design (Mobile)"
   },
   {
     id: 'advisestream',
     title: "AdviseStream",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/Advistestream_mockup-createReport.jpg",
+    imageUrl: `${basePath}/images/Advistestream_mockup-createReport.jpg`,
     year: "Product Design"
   },
   {
     id: 'sphere-software',
     title: "Sphere Software",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/chairliftAllScreens.png",
+    imageUrl: `${basePath}/images/chairliftAllScreens.png`,
     year: "Product & Web Design"
   },
   {
     id: 'havas-agency',
     title: "Havas Agency",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/havas-card.jpg",
+    imageUrl: `${basePath}/images/havas-card.jpg`,
     year: "UX & Web Design"
   },
   {
     id: 'rich-products',
     title: "Rich Products",
     description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
-    imageUrl: "/portfolio/images/websiteCards_template.png",
+    imageUrl: `${basePath}/images/websiteCards_template.png`,
     year: "IA & Web Design"
   }
 ];

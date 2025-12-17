@@ -287,28 +287,28 @@ export default function AISandboxPage() {
                 id: 1,
                 title: "Trust & Authenticity",
                 description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
-                imageUrl: "/portfolio/images/Travel-trust-chatGPT-image.png",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Travel-trust-chatGPT-image.png`,
                 link: "/projects/travel-and-ai/projects/cultural-context-engine"
               },
               {
                 id: 2,
                 title: "Spontaneous Travel Companion",
                 description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
-                imageUrl: "/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp`,
                 link: "/projects/travel-and-ai/projects/spontaneous-travel-companion"
               },
               {
                 id: 3,
                 title: "Fragmentation of Planning Tools",
                 description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
-                imageUrl: "/portfolio/images/planningFragmentationTool-placeholder.jpg",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/planningFragmentationTool-placeholder.jpg`,
                 link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
                 id: 4,
                 title: "A Social Layer for Global Exploration",
                 description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
-                imageUrl: "/portfolio/images/travelApp-card.jpg",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`,
                 link: "/projects/travel-and-ai/projects/local-experience-finder"
               }
             ].map((project, index) => (
@@ -393,7 +393,7 @@ export default function AISandboxPage() {
             <Link href="/projects/purdue" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/PU-Memorial-Mall-DJI.jpg`}
                   alt="Purdue University Project"
                   fill
                   className="object-cover transition-transform duration-500 md:group-hover:scale-105"
@@ -413,7 +413,7 @@ export default function AISandboxPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/timbertech-card.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/timbertech-card.jpg`}
                   alt="TimberTech Project"
                   fill
                   className="object-cover transition-transform duration-500 md:group-hover:scale-105"
