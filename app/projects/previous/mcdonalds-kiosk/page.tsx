@@ -419,7 +419,7 @@ export default function McDonaldsKioskProjectPage() {
       <ViewMoreWorkSection 
         currentProjectId="mcdonalds-kiosk"
         title="More Design Work"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>

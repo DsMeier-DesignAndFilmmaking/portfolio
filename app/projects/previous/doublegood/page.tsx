@@ -263,7 +263,7 @@ export default function DoubleGoodProjectPage() {
       <ViewMoreWorkSection 
         currentProjectId="doublegood"
         title="More Design Work"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>

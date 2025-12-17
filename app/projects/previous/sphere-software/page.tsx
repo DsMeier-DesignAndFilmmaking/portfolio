@@ -335,7 +335,7 @@ export default function SphereSoftwareProjectPage() {
       <ViewMoreWorkSection 
         currentProjectId="sphere-software"
         title="More Design Work"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>

@@ -258,7 +258,7 @@ export default function TimberTechProjectPage() {
       {/* View More Work Section */}
       <ViewMoreWorkSection 
         currentProjectId="timbertech"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>

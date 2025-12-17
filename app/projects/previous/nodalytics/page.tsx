@@ -249,7 +249,7 @@ export default function NodalyticsProjectPage() {
       <ViewMoreWorkSection 
         currentProjectId="nodalytics"
         title="More Design Work"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>

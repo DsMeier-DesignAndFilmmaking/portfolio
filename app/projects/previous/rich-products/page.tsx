@@ -254,7 +254,7 @@ export default function RichProductsProjectPage() {
       <ViewMoreWorkSection 
         currentProjectId="rich-products"
         title="More Design Work"
-        bgColor="bg-white"
+        bgColor="bg-black"
         textColor="text-gray-400"
       />
     </main>
