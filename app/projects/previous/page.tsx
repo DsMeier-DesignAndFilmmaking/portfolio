@@ -35,6 +35,20 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
+  // Remove body padding on mobile for this page to prevent white space
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      document.body.style.paddingTop = '0';
+      document.body.style.marginTop = '0';
+    }
+    return () => {
+      // Cleanup: restore default if needed
+      document.body.style.paddingTop = '';
+      document.body.style.marginTop = '';
+    };
+  }, []);
+
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault();
     router.push('/');
@@ -45,7 +59,7 @@ export default function PreviousProjectsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black" style={{ marginTop: 0, paddingTop: 0 }}>
       {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
@@ -143,9 +157,9 @@ export default function PreviousProjectsPage() {
 
       {/* Hero Section */}
       <section 
-        className="relative h-[80vh] flex items-center bg-black md:pt-0" 
+        className="hero-section relative h-[80vh] flex items-center bg-black md:pt-0" 
         aria-label="Project Hero"
-        style={{ marginTop: 0, paddingTop: 0 }}
+        style={{ marginTop: 0, paddingTop: 0, top: 0 }}
       >
         <div className="container mx-auto px-6 relative z-20">
           <motion.div

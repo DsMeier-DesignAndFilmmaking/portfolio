@@ -119,6 +119,12 @@ body {
       /* Improve touch scrolling performance */
       touch-action: pan-y;
     }
+
+    /* Remove all spacing for projects previous page hero section on mobile */
+    .hero-section {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
   }
 
   /* Video frame container with stable aspect ratio - prevents layout shift */
