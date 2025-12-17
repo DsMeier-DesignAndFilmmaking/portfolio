@@ -23,22 +23,22 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
+                <Link href="https://dan-meier-portfolio.vercel.app/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/projects/purdue/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
+                <Link href="https://dan-meier-portfolio.vercel.app/projects/purdue/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
                   Purdue University
                 </Link>
               </li>
               <li>
-                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/projects/travel-and-ai/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
+                <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
                   Travel & AI
                 </Link>
               </li>
               <li>
-                <Link href="https://dsmeier-designandfilmmaking.github.io/portfolio/projects/previous/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
+                <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-gray-600 hover:text-gray-900 transition-colors" target="_blank" rel="noopener noreferrer">
                   Previous Projects
                 </Link>
               </li>

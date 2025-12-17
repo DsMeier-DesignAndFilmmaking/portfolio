@@ -72,14 +72,14 @@ export default function ModernHeader({
               {/* Left side - Logo and title */}
               <div className="flex items-center gap-4">
                 <Link 
-                  href="https://dsmeier-designandfilmmaking.github.io/portfolio/"
+                  href="https://dan-meier-portfolio.vercel.app/"
                   className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
                   aria-label="Go to homepage"
                   target="_self"
                   rel=""
                 >
                   <Image
-                    src="https://dsmeier-designandfilmmaking.github.io/portfolio/images/signature-25.png"
+                    src="https://dan-meier-portfolio.vercel.app/images/signature-25.png"
                     alt="Daniel Meier signature logo"
                     width={120}
                     height={30}

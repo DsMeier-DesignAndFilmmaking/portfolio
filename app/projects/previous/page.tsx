@@ -54,6 +54,7 @@ export default function PreviousProjectsPage() {
         className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
+        style={{ minHeight: '80px' }}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center">
@@ -141,13 +142,13 @@ export default function PreviousProjectsPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center bg-black" aria-label="Project Hero">
+      <section className="relative h-[80vh] flex items-center bg-black pt-20 md:pt-0" aria-label="Project Hero">
         <div className="container mx-auto px-6 relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mt-[100px]"
+            className="max-w-2xl md:mt-[100px]"
           >
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
               <span className="text-gray-400">UX / UI / Web / Product Design</span>

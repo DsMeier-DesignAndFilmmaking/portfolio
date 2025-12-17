@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowRight, FaChartLine, FaUsers, FaClock, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
@@ -19,37 +19,12 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 export default function PurdueProjectPage() {
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [atTop, setAtTop] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Close mobile menu on scroll
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-      // Track if at top
-      setAtTop(window.scrollY === 0);
-      // Handle navbar hide/show on mobile based on scroll direction
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollY) {
-        setScrollDirection('up');
-      }
-      setLastScrollY(currentScrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isMobileMenuOpen]);
-
-  const handleBackHome = (e: React.MouseEvent) => {
+  const handleBackToProjects = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsTransitioning(true);
     setTimeout(() => {
-      router.push('/');
+      router.push('/projects/previous');
     }, 500);
   };
 
@@ -63,102 +38,32 @@ export default function PurdueProjectPage() {
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
 
-      {/* Top Navigation */}
+      {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
-          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
-        }`}
+        className="absolute top-0 left-0 right-0 z-50 mt-5"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center">
-            {/* Back Home Button */}
-            <div className="py-4 flex items-center gap-4">
+          <div className="flex justify-between items-start">
+            {/* Back Button */}
+            <div className="py-4">
               <button
-                onClick={handleBackHome}
-                className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                aria-label="Return to home page"
+                onClick={handleBackToProjects}
+                className="hover:opacity-80 transition-opacity flex items-center gap-2 text-white"
+                aria-label="Back to projects"
               >
-                <Image
-                  src="/portfolio/images/signature-25.png"
-                  alt="Daniel Meier"
-                  width={150}
-                  height={37}
-                  className="h-9 w-auto brightness-0 invert"
-                />
+                <FaArrowLeft className="w-5 h-5" />
+                <span className="text-[12pt]">Back to Projects</span>
               </button>
-              <div className="h-6 w-px bg-white/30"></div>
-              <span className="text-white/70 text-sm font-medium">Design Work</span>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:block rounded-lg px-6 py-4">
-              <nav className="flex items-center space-x-8">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  Client Work
-                </Link>
-              </nav>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
-            >
-              <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                >
-                  Client Work
-                </Link>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
+      <section className="relative h-[80vh] flex items-center pt-20 md:pt-0" aria-label="Project Hero">
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black z-10" />
         <div className="absolute inset-0">
           <Image
