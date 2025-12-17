@@ -4,7 +4,11 @@ import PageTransition from '@/components/PageTransition';
 export const metadata: Metadata = {
   title: 'My Pulse - Daniel Meier',
   description: 'Personal dashboard & creative insights - A live snapshot of my creative and digital rhythms.',
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#ffffff',
 };
 

@@ -10,8 +10,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Daniel Meier - Digital Designer & Developer',
   description: 'Portfolio showcasing digital design, development, and creative work.',
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#3B82F6',
   icons: {
     icon: [
       { url: '/portfolio/favicon.ico' },
@@ -23,6 +21,12 @@ export const metadata: Metadata = {
       { url: '/portfolio/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#3B82F6',
 };
 
 export default function RootLayout({
