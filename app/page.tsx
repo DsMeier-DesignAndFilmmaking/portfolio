@@ -415,7 +415,7 @@ export default function HomePage() {
                   <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
                     style={{
-                      backgroundImage: 'url(/portfolio/images/Morocco_girlsBike_Natgeo.webp)'
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morocco_girlsBike_Natgeo.webp)`
                     }}
                   ></div>
                   {/* Dark overlay for better text readability */}

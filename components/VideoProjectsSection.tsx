@@ -119,7 +119,7 @@ export default function VideoProjectsSection() {
                   <div className="relative w-full flex items-center justify-center">
                     {index === 1 ? (
                       <Image
-                        src="/portfolio/images/Istanbul-frames-2.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Istanbul-frames-2.jpg`}
                         alt="Istanbul Video Frames"
                         width={1920}
                         height={1080}
@@ -136,7 +136,7 @@ export default function VideoProjectsSection() {
                       />
                     ) : index === 2 ? (
                       <Image
-                        src="/portfolio/images/japan-frames.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/japan-frames.jpg`}
                         alt="Japan Video Frames"
                         width={1920}
                         height={1080}
@@ -153,7 +153,7 @@ export default function VideoProjectsSection() {
                       />
                     ) : index === 3 ? (
                       <Image
-                        src="/portfolio/images/Terratorium-stillFrames.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Terratorium-stillFrames.jpg`}
                         alt="Terratorium Video Frames"
                         width={1920}
                         height={1080}
@@ -170,7 +170,7 @@ export default function VideoProjectsSection() {
                       />
                     ) : index === 4 ? (
                       <Image
-                        src="/portfolio/images/Teleportal-frames.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Teleportal-frames.jpg`}
                         alt="Teleportal Video Frames"
                         width={1920}
                         height={1080}
@@ -187,7 +187,7 @@ export default function VideoProjectsSection() {
                       />
                     ) : index === 5 ? (
                       <Image
-                        src="/portfolio/images/Morrocco-frames.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morrocco-frames.jpg`}
                         alt="Morocco Video Frames"
                         width={1920}
                         height={1080}
@@ -204,7 +204,7 @@ export default function VideoProjectsSection() {
                       />
                     ) : index === 6 ? (
                       <Image
-                        src="/portfolio/images/Indonesia-frames.jpg"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Indonesia-frames.jpg`}
                         alt="Indonesia Video Frames"
                         width={1920}
                         height={1080}
