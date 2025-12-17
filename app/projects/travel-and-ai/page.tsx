@@ -142,7 +142,7 @@ export default function AISandboxPage() {
                 aria-label="Return to home page"
               >
                 <Image
-                  src="/portfolio/images/signature-25.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
                   alt="Daniel Meier"
                   width={150}
                   height={37}
