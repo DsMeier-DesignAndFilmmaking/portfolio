@@ -104,10 +104,10 @@ export default function NodalyticsProjectPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="absolute top-0 left-0 right-0 z-50 mt-5"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center">
             {/* Back Button */}
             <div className="py-4">
               <button
@@ -124,7 +124,7 @@ export default function NodalyticsProjectPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
+      <section className="relative h-[80vh] flex items-center pt-20 md:pt-0" aria-label="Project Hero">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
         <div className="absolute inset-0">
           <Image
