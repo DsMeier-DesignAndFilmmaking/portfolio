@@ -96,7 +96,7 @@ export default function HealthcareProjectPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white" style={{ paddingTop: 0, marginTop: 0 }}>
       <AnimatePresence>
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
@@ -126,7 +126,7 @@ export default function HealthcareProjectPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero">
+      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero" style={{ marginTop: 0, paddingTop: 0 }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
         <div className="absolute inset-0">
           <Image
