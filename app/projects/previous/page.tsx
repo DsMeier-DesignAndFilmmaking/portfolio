@@ -35,6 +35,17 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
+  // Set body background to black for this page
+  useEffect(() => {
+    document.body.style.backgroundColor = 'black';
+    document.documentElement.style.backgroundColor = 'black';
+    
+    return () => {
+      document.body.style.backgroundColor = '';
+      document.documentElement.style.backgroundColor = '';
+    };
+  }, []);
+
   // Mobile-only hero fix on /projects/previous/ - positions hero directly below navbar
   useEffect(() => {
     const handleMobileHeroFix = () => {
@@ -252,7 +263,7 @@ export default function PreviousProjectsPage() {
       </section>
 
       {/* View More Work Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <h2 className="text-base font-normal mb-12 text-center text-gray-400">
             View More Work
