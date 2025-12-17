@@ -125,15 +125,16 @@ export default function NewdeaProjectPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero" style={{ marginTop: 0, paddingTop: 0 }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" />
-        <div className="absolute inset-0">
+      <section className="relative h-[80vh] flex items-center" aria-label="Project Hero" style={{ marginTop: 0, paddingTop: 0, top: 0 }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black z-10" style={{ top: 0 }} />
+        <div className="absolute inset-0" style={{ top: 0 }}>
           <Image
             src={project.heroImage}
             alt={project.title}
             fill
             className="object-cover"
             priority
+            style={{ objectPosition: 'top' }}
           />
         </div>
         <div className="container mx-auto px-6 relative z-20">
