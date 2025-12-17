@@ -121,8 +121,17 @@ body {
     }
 
     /* Remove all spacing for projects previous page hero section on mobile */
+    body[data-page="projects-previous"] .hero-section,
     .hero-section {
       margin-top: 0 !important;
+      padding-top: 0 !important;
+      position: relative !important;
+      top: 0 !important;
+      transform: none !important;
+    }
+
+    /* Remove any extra padding added to body for sticky navbar */
+    body {
       padding-top: 0 !important;
     }
   }
