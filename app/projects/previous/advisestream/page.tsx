@@ -82,6 +82,14 @@ export default function AdviseStreamProjectPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
 
+  // Add body class for CSS targeting on mobile
+  useEffect(() => {
+    document.body.classList.add('projects-previous-page');
+    return () => {
+      document.body.classList.remove('projects-previous-page');
+    };
+  }, []);
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsTransitioning(true);

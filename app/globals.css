@@ -130,8 +130,16 @@ body {
       transform: none !important;
     }
 
-    /* Remove any extra padding added to body for sticky navbar */
-    body {
+    /* Mobile-only fix for previous project pages - remove body padding-top */
+    body.projects-previous-page,
+    body[data-route^="/projects/previous"] {
+      padding-top: 0 !important;
+    }
+
+    /* Extra safety: ensure first section has no top offset on project detail pages */
+    body.projects-previous-page main > section:first-child,
+    body[data-route^="/projects/previous"] main > section:first-child {
+      margin-top: 0 !important;
       padding-top: 0 !important;
     }
   }
