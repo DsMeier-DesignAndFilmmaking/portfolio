@@ -59,7 +59,7 @@ export default function VideoProjectsSection() {
       className="py-24 bg-black"
     >
       {/* Stats Section */}
-      <div className="mb-16">
+      <div className="mb-8 md:mb-16">
         <StatsSection containerClassName="max-w-4xl mx-auto px-6" hideThirdBlock={true} variant="travel" />
       </div>
 
@@ -71,7 +71,7 @@ export default function VideoProjectsSection() {
           distance={40}
           threshold={0.2}
         >
-          <div className="pt-20">
+          <div className="pt-8 md:pt-20">
             <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
               Travelogue
             </h2>
