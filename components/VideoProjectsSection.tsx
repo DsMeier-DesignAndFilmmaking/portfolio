@@ -78,7 +78,7 @@ export default function VideoProjectsSection() {
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
               A collection of video projects showcasing my work in cinematography and visual storytelling.
             </p>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-gray-400 mt-2 mb-8 md:mb-10">
               * All visuals are captured through my lens — nothing AI generated, nothing artificial
             </p>
           </div>
