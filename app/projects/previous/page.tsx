@@ -35,14 +35,20 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Set body background to black for this page
+  // Set body background to black and add page-specific class for this page
   useEffect(() => {
     document.body.style.backgroundColor = 'black';
     document.documentElement.style.backgroundColor = 'black';
     
+    // Add page-specific body class for CSS targeting
+    if (window.location.pathname.startsWith('/projects/previous')) {
+      document.body.classList.add('projects-previous-page');
+    }
+    
     return () => {
       document.body.style.backgroundColor = '';
       document.documentElement.style.backgroundColor = '';
+      document.body.classList.remove('projects-previous-page');
     };
   }, []);
 
