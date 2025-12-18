@@ -146,7 +146,7 @@ export default function HomePage() {
         />
 
         <ParallaxSection
-          title="I tinker & build things & experiences."
+          title="I tinker, I design, and I build."
           description=""
           modelPath="design-build"
           className="bg-transparent"
@@ -178,7 +178,7 @@ export default function HomePage() {
         </section>
 
         <ParallaxSection
-          title="I care about designing products and experiences that bring real value for people, organizations, and the world around us."
+          title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
           description=""
           modelPath="torus"
           className="bg-transparent"
