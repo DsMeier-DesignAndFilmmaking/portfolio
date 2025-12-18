@@ -552,9 +552,9 @@ const Navbar = () => {
               </a>
               
               <a 
-                href="#travelogue" 
+                href="#video-projects" 
                 onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'travelogue')}
+                onClick={(e) => handleAnchorClick(e, 'video-projects')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
