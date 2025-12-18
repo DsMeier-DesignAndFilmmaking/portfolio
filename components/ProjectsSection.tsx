@@ -61,7 +61,7 @@ export default function ProjectsSection() {
           distance={50}
           threshold={0.1}
         >
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 lg:gap-8 px-4 md:px-0">
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-16 md:gap-12 lg:gap-8 px-4 md:px-0">
             {/* Product Explorations Block */}
             <div className="flex-1">
               <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
