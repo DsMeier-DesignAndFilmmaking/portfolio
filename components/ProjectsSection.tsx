@@ -13,7 +13,7 @@ const projects = [
     link: "/projects/travel-and-ai"
   },
   {
-    title: "Featured Work",
+    title: "The Archive",
     description: "A collection of past projects highlighting expertise in UX, UI, and web design.",
     imageUrl: "./images/timbertech-card.jpg",
     tags: ["Web Development", "Design", "Software", "Portfolio"],
@@ -76,10 +76,10 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Selected Client & Institutional Work Block */}
+            {/* Selected Client Work Block */}
             <div className="flex-1">
               <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
-                Selected Client & Institutional Work
+                Selected Client Work
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
                 <ProjectCard 
