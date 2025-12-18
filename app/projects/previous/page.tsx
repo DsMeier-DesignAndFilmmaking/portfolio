@@ -35,20 +35,21 @@ export default function PreviousProjectsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Set body background to black and add page-specific class for this page
+  // Set body background to black and add route-aware body class
   useEffect(() => {
     document.body.style.backgroundColor = 'black';
     document.documentElement.style.backgroundColor = 'black';
     
-    // Add page-specific body class for CSS targeting
-    if (window.location.pathname.startsWith('/projects/previous')) {
-      document.body.classList.add('projects-previous-page');
+    // Add route-aware body class for CSS targeting
+    const isPreviousProject = window.location.pathname.startsWith('/projects/previous');
+    if (isPreviousProject) {
+      document.body.classList.add('no-mobile-nav-offset');
     }
     
     return () => {
       document.body.style.backgroundColor = '';
       document.documentElement.style.backgroundColor = '';
-      document.body.classList.remove('projects-previous-page');
+      document.body.classList.remove('no-mobile-nav-offset');
     };
   }, []);
 

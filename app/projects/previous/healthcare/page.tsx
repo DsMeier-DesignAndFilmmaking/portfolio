@@ -83,11 +83,14 @@ export default function HealthcareProjectPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
 
-  // Add body class for CSS targeting on mobile
+  // Add route-aware body class for CSS targeting
   useEffect(() => {
-    document.body.classList.add('projects-previous-page');
+    const isPreviousProject = window.location.pathname.startsWith('/projects/previous');
+    if (isPreviousProject) {
+      document.body.classList.add('no-mobile-nav-offset');
+    }
     return () => {
-      document.body.classList.remove('projects-previous-page');
+      document.body.classList.remove('no-mobile-nav-offset');
     };
   }, []);
 

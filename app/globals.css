@@ -130,15 +130,13 @@ body {
       transform: none !important;
     }
 
-    /* Mobile-only fix for previous project pages - remove body padding-top */
-    body.projects-previous-page,
-    body[data-route^="/projects/previous"] {
+    /* REMOVE mobile navbar offset on previous project pages */
+    body.no-mobile-nav-offset {
       padding-top: 0 !important;
     }
 
-    /* Extra safety: ensure first section has no top offset on project detail pages */
-    body.projects-previous-page main > section:first-child,
-    body[data-route^="/projects/previous"] main > section:first-child {
+    /* Optional safety: Ensure hero never reintroduces spacing */
+    body.no-mobile-nav-offset main > *:first-child {
       margin-top: 0 !important;
       padding-top: 0 !important;
     }
