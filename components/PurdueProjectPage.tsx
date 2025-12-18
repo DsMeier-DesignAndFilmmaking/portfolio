@@ -63,7 +63,7 @@ export default function PurdueProjectPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black z-10" />
         <div className="absolute inset-0">
           <Image
-            src="/portfolio/images/PU-Memorial-Mall-DJI.jpg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/PU-Memorial-Mall-DJI.jpg`}
             alt="Purdue University Campus"
             fill
             className="object-cover"
@@ -160,7 +160,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-6">
               <div className="relative aspect-[3024/1964] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="/portfolio/images/sitebulb-screenshot_1.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/sitebulb-screenshot_1.jpg`}
                   alt="Sitebulb Screenshot"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -168,7 +168,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="relative aspect-[2648/1156] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="/portfolio/images/Sitebulb-duplicateGraph.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Sitebulb-duplicateGraph.jpg`}
                   alt="Sitebulb Duplicate Graph"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -176,7 +176,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="relative aspect-[1512/905] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="/portfolio/images/GA-EventsScreenshot 1.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/GA-EventsScreenshot 1.png`}
                   alt="Google Analytics Events Screenshot"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -184,7 +184,7 @@ export default function PurdueProjectPage() {
               </div>
               <div className="relative aspect-[2936/1344] rounded-xl overflow-hidden bg-black/20">
                 <Image
-                  src="/portfolio/images/crawl_force-directed_www_purdue_edu_202506072022.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/crawl_force-directed_www_purdue_edu_202506072022.png`}
                   alt="Purdue.edu Crawl Force Directed Graph"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -223,7 +223,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/portfolio/images/Existing-howToApply_Screenshot (2).jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Existing-howToApply_Screenshot (2).jpg`}
                   alt="Existing How To Apply Screenshot 2"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -236,7 +236,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/portfolio/images/Existing-howToApply_Screenshot (1).jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Existing-howToApply_Screenshot (1).jpg`}
                   alt="Existing How To Apply Screenshot 1"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -249,7 +249,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/portfolio/images/Existing-howToApply_Screenshot.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Existing-howToApply_Screenshot.jpg`}
                   alt="Existing How To Apply Screenshot"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -262,7 +262,7 @@ export default function PurdueProjectPage() {
             <div className="space-y-4">
               <div className="relative aspect-[1512/899] rounded-lg overflow-hidden bg-black/20 shadow-xl">
                 <Image
-                  src="/portfolio/images/Existing-fellowships_Screenshot.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Existing-fellowships_Screenshot.jpg`}
                   alt="Existing Fellowships Screenshot"
                   fill
                   className="object-contain rounded-lg shadow-lg"
@@ -345,7 +345,7 @@ export default function PurdueProjectPage() {
           <div className="space-y-4">
             <div className="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-black/20 shadow-xl">
               <Image
-                src="/portfolio/images/purdue_homepage_screenshot.jpg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/purdue_homepage_screenshot.jpg`}
                 alt="Purdue OGSPS Website Screenshot"
                 fill
                 className="object-contain"
@@ -377,7 +377,7 @@ export default function PurdueProjectPage() {
             <Link href="/projects/travel-and-ai" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/travelApp-card.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`}
                   alt="Travel & AI Project"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -410,7 +410,7 @@ export default function PurdueProjectPage() {
             <Link href="/projects/previous" className="group">
               <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
                 <Image
-                  src="/portfolio/images/timbertech-card.jpg"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/timbertech-card.jpg`}
                   alt="TimberTech Project"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
