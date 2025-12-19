@@ -14,7 +14,7 @@ const projects = [
   },
   {
     title: "The Archive",
-    description: "A collection of past projects highlighting expertise in UX, UI, and web design.",
+    description: "A collection of past projects highlighting expertise in UX, UI, web and product design.",
     imageUrl: "./images/timbertech-card.jpg",
     tags: ["Web Development", "Design", "Software", "Portfolio"],
     link: "/projects/previous"

@@ -30,6 +30,21 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
   
+  // Helper function to normalize image paths (handle both /portfolio/ prefix and base path)
+  const normalizeImagePath = (imagePath: string): string => {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    // If path starts with /portfolio/, replace it with basePath
+    if (imagePath.startsWith('/portfolio/')) {
+      return `${basePath}${imagePath.replace('/portfolio', '')}`;
+    }
+    // If path doesn't start with /, prepend basePath
+    if (!imagePath.startsWith('/')) {
+      return `${basePath}/${imagePath}`;
+    }
+    // Otherwise, prepend basePath to absolute paths
+    return `${basePath}${imagePath}`;
+  };
+  
   // Video-related state
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -220,7 +235,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 <div className="relative w-full flex justify-center">
                   <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
                     <Image
-                      src="/portfolio/images/Micro-Adventure_ConceptGraphic.png"
+                      src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
                       alt="Micro Adventure Concept Graphic"
                       width={800}
                       height={1600}
@@ -235,7 +250,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 <div className="relative w-full flex justify-center">
                   <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
                     <Image
-                      src="/portfolio/images/Micro-Adventure_ConceptGraphic_2.png"
+                      src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
                       alt="Micro Adventure Concept Graphic 2"
                       width={800}
                       height={1600}
@@ -357,7 +372,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 >
                   <Image
-                    src="/portfolio/images/ai-travel-hero.svg"
+                    src={normalizeImagePath("/portfolio/images/ai-travel-hero.svg")}
                     alt="AI Sandbox - Creative technology playground with abstract digital elements and neural network patterns representing AI innovation and travel technology"
                     fill
                     className="object-cover"
@@ -1371,10 +1386,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="relative max-w-4xl mx-auto">
                     <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/portfolio/images/figmatravelAppScreenshot.png"
+                        src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
                         alt="Figma Travel App Design Screenshot"
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 896px"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                         priority={false}
                         quality={85}
@@ -1451,10 +1467,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
-                            src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png"
+                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png")}
                             alt="Travel App wireframe - homescreen design exploration"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1464,10 +1481,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
-                            src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png"
+                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png")}
                             alt="Travel App wireframe - homescreen layout iteration"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1477,10 +1495,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
-                            src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png"
+                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png")}
                             alt="Travel App wireframe - homescreen user flow"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1490,10 +1509,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
-                            src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png"
+                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png")}
                             alt="Travel App wireframe - homescreen interaction design"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1503,10 +1523,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
-                            src="/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png"
+                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png")}
                             alt="Travel App wireframe - homescreen final concept"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1522,10 +1543,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="w-64 md:w-72">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
                           <Image
-                            src="/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png"
+                            src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png")}
                             alt="Travel App high-fidelity mockup - recommendation screen design"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 768px) 256px, 288px"
                             priority={false}
                             quality={90}
@@ -1535,10 +1557,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div className="w-64 md:w-72">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
                           <Image
-                            src="/portfolio/images/HomeScreen-UX-Pilot-Recco.png"
+                            src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco.png")}
                             alt="Travel App high-fidelity mockup - homescreen recommendation interface"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 768px) 256px, 288px"
                             priority={false}
                             quality={90}
@@ -1710,10 +1733,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="relative max-w-4xl mx-auto">
                     <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/portfolio/images/xcode-screenshot.jpg"
+                        src={normalizeImagePath("/portfolio/images/xcode-screenshot.jpg")}
                         alt="Xcode Development Screenshot"
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 896px"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                         priority={false}
                       />
@@ -1734,10 +1758,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="relative max-w-4xl mx-auto">
                     <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/portfolio/images/n8n_travelAgent-1.png"
+                        src={normalizeImagePath("/portfolio/images/n8n_travelAgent-1.png")}
                         alt="N8N Travel Agent Workflow"
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 896px"
                       />
                       
                       {/* Image overlay for better UX */}
@@ -1774,10 +1799,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp")}
                             alt="iPhone Simulator - October 1, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1794,10 +1820,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp")}
                             alt="iPhone Simulator - October 3, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1814,10 +1841,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp")}
                             alt="iPhone Simulator - October 4, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1834,10 +1862,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp")}
                             alt="iPhone Simulator - October 5, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1854,10 +1883,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp")}
                             alt="iPhone Simulator - October 7, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1874,10 +1904,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       >
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
-                            src="/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp"
+                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp")}
                             alt="iPhone Simulator - September 29, 2025"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -2123,10 +2154,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     className="group relative w-full h-64 rounded-lg overflow-hidden"
                   >
                     <Image
-                      src={image}
+                      src={normalizeImagePath(image)}
                       alt={`Research insight ${index + 1}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </motion.div>
                 ))}
@@ -2161,10 +2193,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     className="group relative w-full h-80 rounded-lg overflow-hidden bg-white shadow-sm"
                   >
                     <Image
-                      src={image}
+                      src={normalizeImagePath(image)}
                       alt={`Wireframe ${index + 1}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 30vw"
                     />
                   </motion.div>
                 ))}
@@ -2202,10 +2235,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     className="group relative w-full h-96 rounded-lg overflow-hidden shadow-lg"
                   >
                     <Image
-                      src={image}
+                      src={normalizeImagePath(image)}
                       alt={`UI Design ${index + 1}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 45vw"
                     />
                   </motion.div>
                 ))}
@@ -2253,10 +2287,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     className="group relative w-full h-64 rounded-lg overflow-hidden bg-white shadow-sm"
                   >
                     <Image
-                      src={image}
+                      src={normalizeImagePath(image)}
                       alt={`Development ${index + 1}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 896px"
                     />
                   </motion.div>
                 ))}

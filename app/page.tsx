@@ -3,7 +3,6 @@ import AnimatedHeading from '@/components/AnimatedHeading';
 import ProjectsSection from '@/components/ProjectsSection';
 import VideoProjectsSection from '@/components/VideoProjectsSection';
 import PhotographyGridSection from '@/components/PhotographyGridSection';
-import ParallaxSection from '@/components/ParallaxSection';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import FadeInSection from '@/components/FadeInSection';
 import dynamic from 'next/dynamic';
@@ -11,6 +10,21 @@ import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import HashNavigationHandler from '@/components/HashNavigationHandler';
+import Image from 'next/image';
+
+// Dynamically import heavy components with Suspense boundaries
+const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'), {
+  loading: () => (
+    <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-center" style={{ maxWidth: '576px', margin: '0 auto' }}>
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
+        </div>
+      </div>
+    </div>
+  ),
+  ssr: false,
+});
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -137,54 +151,63 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Optimized Parallax Sections */}
-        <ParallaxSection
-          title="Always Curious."
-          description=""
-          modelPath="ai-travel"
-          className="bg-transparent"
-        />
+        {/* Optimized Parallax Sections - Dynamically loaded */}
+        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+          <ParallaxSection
+            title="Always Curious."
+            description=""
+            modelPath="ai-travel"
+            className="bg-transparent"
+          />
+        </Suspense>
 
-        <ParallaxSection
-          title="I tinker, I design, and I build."
-          description=""
-          modelPath="design-build"
-          className="bg-transparent"
-        />
+        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+          <ParallaxSection
+            title="I tinker, I design, and I build."
+            description=""
+            modelPath="design-build"
+            className="bg-transparent"
+          />
+        </Suspense>
 
-        <ParallaxSection
-          title="I shape narrative through the art of cinematic imagery."
-          description=""
-          modelPath="cinematography"
-          className="bg-transparent"
-        />
+        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+          <ParallaxSection
+            title="I shape narrative through the art of cinematic imagery."
+            description=""
+            modelPath="cinematography"
+            className="bg-transparent"
+          />
+        </Suspense>
 
         {/* Hero Image Section */}
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <div className="w-full" style={{ aspectRatio: '4/3' }}>
-              <img 
-                id="me_heroImage-1_1.1.1"
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
-                alt="Dan Meier"
-                  className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-300"
-                loading="eager"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+              <div className="w-full relative" style={{ aspectRatio: '4/3' }}>
+                <Image 
+                  id="me_heroImage-1_1.1.1"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
+                  alt="Dan Meier"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 576px"
+                  className="object-cover rounded-lg shadow-lg transition-all duration-300"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        <ParallaxSection
-          title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
-          description=""
-          modelPath="torus"
-          className="bg-transparent"
-          hideGradient={true}
-          textColor="black"
-        />
+        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+          <ParallaxSection
+            title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
+            description=""
+            modelPath="torus"
+            className="bg-transparent"
+            hideGradient={true}
+            textColor="black"
+          />
+        </Suspense>
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
         <div id="about" className="anchor-offset" aria-hidden="true"></div>
@@ -228,14 +251,16 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="w-full"
                   >
-                    <div className="w-full">
-                      <img 
+                    <div className="w-full relative">
+                      <Image 
                         id="me_heroImage-1_1.1.1-about"
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
                         alt="Dan Meier"
+                        width={576}
+                        height={768}
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                        loading="eager"
-                        style={{ width: '100%', height: 'auto' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -247,14 +272,16 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="w-full"
                   >
-                    <div className="w-full">
-                      <img 
+                    <div className="w-full relative">
+                      <Image 
                         id="me_heroImage-1_1.1.1-about-2"
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
                         alt="Dan Meier"
+                        width={576}
+                        height={768}
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                        loading="eager"
-                        style={{ width: '100%', height: 'auto' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -266,14 +293,16 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="w-full"
                   >
-                    <div className="w-full">
-                      <img 
+                    <div className="w-full relative">
+                      <Image 
                         id="me_heroImage-1_1.1.1-about-3"
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
                         alt="Dan Meier"
+                        width={576}
+                        height={768}
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                        loading="eager"
-                        style={{ width: '100%', height: 'auto' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -285,14 +314,16 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="w-full"
                   >
-                    <div className="w-full">
-                      <img 
+                    <div className="w-full relative">
+                      <Image 
                         id="me_heroImage-1_1.1.1-about-4"
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
                         alt="Dan Meier"
+                        width={576}
+                        height={768}
                         className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
-                        loading="eager"
-                        style={{ width: '100%', height: 'auto' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -354,20 +385,16 @@ export default function HomePage() {
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
           <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
-            <img 
+            <Image 
               src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.webp`}
               alt="World Map Background"
+              fill
+              className="object-cover object-center"
+              loading="lazy"
+              sizes="100vw"
               onError={(e) => {
                 // Fallback if image fails to load
                 console.warn('Failed to load earth-map.webp, using fallback');
-              }}
-              className="w-full h-full object-cover"
-              loading="eager"
-              style={{ 
-                width: '100%', 
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center'
               }}
             />
           </div>
@@ -412,12 +439,16 @@ export default function HomePage() {
               <div className="relative">
                 <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                   {/* Background Image */}
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl"
-                    style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morocco_girlsBike_Natgeo.webp)`
-                    }}
-                  ></div>
+                  <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morocco_girlsBike_Natgeo.webp`}
+                      alt="Morocco Travel"
+                      fill
+                      className="object-cover object-center"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 896px"
+                    />
+                  </div>
                   {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
                   

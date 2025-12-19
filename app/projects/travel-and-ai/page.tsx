@@ -279,83 +279,55 @@ export default function AISandboxPage() {
       </section>
 
       {/* Project Cards Section */}
-      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }}>
+      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Travel & AI Projects">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                id: 1,
-                title: "Trust & Authenticity",
-                description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Travel-trust-chatGPT-image.png`,
-                link: "/projects/travel-and-ai/projects/cultural-context-engine"
-              },
-              {
-                id: 2,
-                title: "Spontaneous Travel Companion",
-                description: "AI-powered tool that helps travelers discover authentic experiences in real-time.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp`,
-                link: "/projects/travel-and-ai/projects/spontaneous-travel-companion"
-              },
-              {
-                id: 3,
-                title: "Fragmentation of Planning Tools",
-                description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/planningFragmentationTool-placeholder.jpg`,
-                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
-              },
-              {
-                id: 4,
-                title: "A Social Layer for Global Exploration",
-                description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`,
-                link: "/projects/travel-and-ai/projects/local-experience-finder"
-              }
-            ].map((project, index) => (
+            {/* Flagship Project: Spontaneous Travel Companion - First in DOM order for hierarchy */}
+            <article 
+              aria-label="Spontaneous Travel Companion - Flagship Project"
+              className="contents"
+            >
               <motion.div
-                key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: 0 }}
                 className="group bg-white rounded-lg overflow-hidden shadow-sm md:hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
-                <Link href={project.link} className="flex flex-col h-full">
-                  <div className={`relative w-full h-64 overflow-hidden flex-shrink-0 ${project.imageUrl.endsWith('.svg') ? 'bg-[#E8FBF8]' : ''}`}>
-                    <div className={project.imageUrl.endsWith('.svg') ? 'absolute inset-4' : 'absolute inset-0'}>
+                <Link href="/projects/travel-and-ai/projects/spontaneous-travel-companion" className="flex flex-col h-full">
+                  <div className="relative w-full h-64 overflow-hidden flex-shrink-0">
+                    <div className="absolute inset-0">
                       <Image
-                        src={project.imageUrl}
-                        alt={project.title}
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp`}
+                        alt="Spontaneous Travel Companion"
                         fill
-                        className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 md:group-hover:scale-105`}
+                        className="object-cover object-center transition-transform duration-500 md:group-hover:scale-105"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
                     {/* Status Pill Badge */}
                     <div className="absolute top-3 right-3 z-10">
-                      <span className={`${project.id === 2 ? 'bg-[#F2B134]' : 'bg-[#00A9A5]'} text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md`}>
-                        {project.id === 2 ? 'In Development' : 'In R & D'}
+                      <span className="bg-[#F2B134] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
+                        In Development
                       </span>
                     </div>
                     {/* Tags/Ribbons for Spontaneous Travel Companion */}
-                    {project.id === 2 && (
-                      <div className="absolute top-12 right-3 flex flex-col gap-2 z-10">
-                        <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
-                          iOS
-                        </span>
-                        <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
-                          API Plugin
-                        </span>
-                      </div>
-                    )}
+                    <div className="absolute top-12 right-3 flex flex-col gap-2 z-10">
+                      <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
+                        iOS
+                      </span>
+                      <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
+                        API Plugin
+                      </span>
+                    </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
-                        {project.title}
-                      </h3>
+                      <h2 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
+                        Spontaneous Travel Companion
+                      </h2>
                       <p className="text-sm text-gray-600 leading-relaxed">
-                        {project.description}
+                        AI-powered tool that helps travelers discover authentic experiences in real-time.
                       </p>
                     </div>
                     <span className="inline-flex items-center text-sm font-medium text-blue-600 md:group-hover:text-blue-700 transition-colors duration-300 mt-4">
@@ -377,6 +349,91 @@ export default function AISandboxPage() {
                   </div>
                 </Link>
               </motion.div>
+            </article>
+
+            {/* Supporting Projects - Grouped semantically */}
+            {[
+              {
+                id: 1,
+                title: "Trust & Authenticity",
+                description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Travel-trust-chatGPT-image.png`,
+                link: "/projects/travel-and-ai/projects/cultural-context-engine"
+              },
+              {
+                id: 3,
+                title: "Fragmentation of Planning Tools",
+                description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/planningFragmentationTool-placeholder.jpg`,
+                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
+              },
+              {
+                id: 4,
+                title: "A Social Layer for Global Exploration",
+                description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
+                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`,
+                link: "/projects/travel-and-ai/projects/local-experience-finder"
+              }
+            ].map((project, index) => (
+              <article 
+                key={project.id}
+                aria-label={`${project.title} - Supporting Project`}
+                className="contents"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
+                  className="group bg-white rounded-lg overflow-hidden shadow-sm md:hover:shadow-lg transition-shadow duration-300 flex flex-col"
+                >
+                  <Link href={project.link} className="flex flex-col h-full">
+                    <div className={`relative w-full h-64 overflow-hidden flex-shrink-0 ${project.imageUrl.endsWith('.svg') ? 'bg-[#E8FBF8]' : ''}`}>
+                      <div className={project.imageUrl.endsWith('.svg') ? 'absolute inset-4' : 'absolute inset-0'}>
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 md:group-hover:scale-105`}
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Status Pill Badge */}
+                      <div className="absolute top-3 right-3 z-10">
+                        <span className="bg-[#00A9A5] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
+                          In R & D
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex-grow">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {project.description}
+                        </p>
+                      </div>
+                      <span className="inline-flex items-center text-sm font-medium text-blue-600 md:group-hover:text-blue-700 transition-colors duration-300 mt-4">
+                        View Project
+                        <svg
+                          className="w-4 h-4 ml-2 md:group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              </article>
             ))}
           </div>
         </div>
