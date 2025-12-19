@@ -1470,7 +1470,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App wireframe - homescreen design exploration"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1484,7 +1483,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App wireframe - homescreen layout iteration"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1498,7 +1496,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App wireframe - homescreen user flow"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1512,7 +1509,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App wireframe - homescreen interaction design"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1526,7 +1522,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App wireframe - homescreen final concept"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="192px"
                             priority={false}
                             quality={85}
@@ -1546,7 +1541,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App high-fidelity mockup - recommendation screen design"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 768px) 256px, 288px"
                             priority={false}
                             quality={90}
@@ -1560,7 +1554,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="Travel App high-fidelity mockup - homescreen recommendation interface"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 768px) 256px, 288px"
                             priority={false}
                             quality={90}
@@ -1736,7 +1729,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                         alt="Xcode Development Screenshot"
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 896px"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                         priority={false}
                       />
@@ -1802,7 +1794,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - October 1, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1823,7 +1814,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - October 3, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1844,7 +1834,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - October 4, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1865,7 +1854,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - October 5, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1886,7 +1874,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - October 7, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
@@ -1907,7 +1894,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             alt="iPhone Simulator - September 29, 2025"
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             loading="lazy"
                             decoding="async"
