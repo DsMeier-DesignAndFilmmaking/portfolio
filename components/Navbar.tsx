@@ -348,6 +348,10 @@ const Navbar = () => {
           } else if (targetId === 'about') {
             // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
             navbarHeight = 80 - 90;
+          } else if (targetId === 'black-section') {
+            // Use standard navbar height for black-section (Work link)
+            // The section's padding-top accounts for the scroll position
+            navbarHeight = 80;
         }
         
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
@@ -369,8 +373,9 @@ const Navbar = () => {
           behavior: 'smooth'
         });
         
-        // For About section, re-trigger scroll after layout stabilizes
-        if (targetId === 'about') {
+        // For About and black-section, re-trigger scroll after layout stabilizes
+        // These sections use FadeInSection animations that can cause layout shifts
+        if (targetId === 'about' || targetId === 'black-section') {
           // Wait for animations and any layout shifts to complete
           setTimeout(async () => {
             const recheckResult = await performScroll();

@@ -164,11 +164,6 @@ body {
     object-fit: contain;
   }
 
-  /* Scroll margin for anchor targets - prevents misalignment from sticky header */
-  [id] {
-    scroll-margin-top: 80px; /* adjust for sticky header */
-  }
-
   /* Stable anchor offset element - zero height, positioned before dynamic content */
   /* This element provides a stable scroll target that doesn't shift when content loads */
   .anchor-offset {
