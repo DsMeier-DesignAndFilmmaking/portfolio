@@ -1390,7 +1390,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                         alt="Figma Travel App Design Screenshot"
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 896px"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                         priority={false}
                         quality={85}
