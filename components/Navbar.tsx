@@ -216,6 +216,26 @@ const Navbar = () => {
     
     // For travelogue section, use a more robust approach to ensure stable scroll
     const scrollToTarget = async () => {
+      // For black-section and about, wait for navbar state change to apply before calculating scroll
+      // This ensures the navbar shrink animation doesn't cause layout shifts during scroll
+      if (targetId === 'black-section' || targetId === 'about') {
+        // Wait for React state update to propagate and navbar layout to stabilize
+        await new Promise(resolve => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              // Give navbar shrink animation time to apply (typically one frame)
+              setTimeout(resolve, 50);
+            });
+          });
+        });
+        
+        // Force reflow to ensure navbar measurements are accurate
+        const navbar = document.getElementById('site-navbar');
+        if (navbar) {
+          navbar.offsetHeight;
+        }
+      }
+      
       if (targetId === 'travelogue') {
         console.log('Ensuring stable layout for travelogue scroll...');
         
@@ -365,7 +385,7 @@ const Navbar = () => {
         }
       };
       
-      // Initial scroll
+      // Single, accurate scroll after layout is fully stable
       const scrollResult = await performScroll();
       if (scrollResult) {
         window.scrollTo({
@@ -373,40 +393,11 @@ const Navbar = () => {
           behavior: 'smooth'
         });
         
-        // For About and black-section, re-trigger scroll after layout stabilizes
-        // These sections use FadeInSection animations that can cause layout shifts
-        if (targetId === 'about' || targetId === 'black-section') {
-          // Wait for animations and any layout shifts to complete
-          setTimeout(async () => {
-            const recheckResult = await performScroll();
-            if (recheckResult) {
-              const currentScroll = window.pageYOffset;
-              const expectedScroll = recheckResult.finalPosition;
-              const difference = Math.abs(currentScroll - expectedScroll);
-              
-              // If we're more than 50px off, re-scroll
-              if (difference > 50) {
-                console.log('Re-scrolling to correct position. Difference:', difference);
-                window.scrollTo({
-                  top: recheckResult.finalPosition,
-                  behavior: 'smooth'
-                });
-              }
-            }
-            
-            // Mark scrolling as complete
-            setTimeout(() => {
-              setIsScrollingToAnchor(false);
-              window.dispatchEvent(new CustomEvent('scrollComplete'));
-            }, 800);
-          }, 1200); // Wait for motion animations (0.8s + 0.2s delay + buffer)
-        } else {
         // Mark scrolling as complete after animation
         setTimeout(() => {
           setIsScrollingToAnchor(false);
           window.dispatchEvent(new CustomEvent('scrollComplete'));
-          }, 800);
-        }
+        }, 800);
       } else {
         setIsScrollingToAnchor(false);
       }

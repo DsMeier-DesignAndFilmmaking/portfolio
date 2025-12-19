@@ -166,6 +166,20 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
     }, 500);
   };
 
+  // Handle smooth scroll for anchor links in hero CTAs
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    const target = document.querySelector(hash);
+    if (target) {
+      const offset = 120; // Account for fixed navbar
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
@@ -197,81 +211,219 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {isSpontaneousTravelCompanion && <StickyProgressNav sections={sections} />}
 
       {/* Hero Section */}
-      <section className="bg-white pt-20 md:pt-32" aria-label="Project Hero">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
-            >
-              {/* Project Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                {isSpontaneousTravelCompanion ? "Spontaneous Travel Companion" : project?.title || "Project Title"}
-              </h1>
-              
-              {/* Subtitle */}
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                {isSpontaneousTravelCompanion 
-                  ? "AI-powered tool that helps travelers discover authentic experiences in real-time." 
-                  : project?.tagline || "Project description"}
-              </p>
-            </motion.div>
+      <section className="bg-white pt-20 md:pt-24 lg:pt-32 pb-12 md:pb-16 lg:pb-20" aria-label="Project Hero">
+        {isSpontaneousTravelCompanion ? (
+          /* Mobile-First Hero Layout for Spontaneous Travel Engine */
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              {/* Mobile: Single Column - Text First, Then Images */}
+              {/* Desktop: Two Column - Text Left, Images Right */}
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-16 lg:items-center">
+                {/* Text Content - Left Column on Desktop, First on Mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  {/* Product Name (H1) - Strongest Visual Element */}
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 md:mb-5 lg:mb-6 leading-tight tracking-tight">
+                    Spontaneous Travel Engine
+                  </h1>
+                  
+                  {/* Subtitle (Meta / Subhead) - Subdued and Supportive */}
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    Self-initiated product exploration · Travel · AI
+                  </p>
+                  
+                  {/* CTAs - Clear Visual Hierarchy */}
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    {/* Primary CTA - Visually Dominant */}
+                    <a
+                      href="#design-exploration"
+                      onClick={(e) => handleAnchorClick(e, '#design-exploration')}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                    
+                    {/* Secondary CTA - Outlined/Muted Style */}
+                    <a
+                      href="#prototyping-ai"
+                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                      aria-label="Explore Working Prototype (Experimental)"
+                    >
+                      Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
+                    </a>
+                  </nav>
+                </motion.div>
+
+                {/* Images - Right Column on Desktop, Below Text on Mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-10 md:mt-12 lg:mt-0"
+                >
+                  {/* Mobile: Stacked Vertically */}
+                  {/* Tablet: Side-by-Side */}
+                  {/* Desktop: Stacked Vertically (Right Column) */}
+                  <div className="flex flex-col md:flex-row lg:flex-col gap-6 md:gap-6 lg:gap-8 items-center md:items-start lg:items-center">
+                    {/* First Hero Image */}
+                    <div className="relative w-full flex justify-center md:justify-start lg:justify-center">
+                      <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-[320px] lg:max-w-md rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
+                          alt="Micro Adventure Concept Graphic"
+                          width={800}
+                          height={1600}
+                          className="w-full h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 45vw, 512px"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Second Hero Image */}
+                    <div className="relative w-full flex justify-center md:justify-end lg:justify-center">
+                      <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-[320px] lg:max-w-md rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
+                          alt="Micro Adventure Concept Graphic 2"
+                          width={800}
+                          height={1600}
+                          className="w-full h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 45vw, 512px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Hero Images - Only for spontaneous-travel-companion */}
-        {isSpontaneousTravelCompanion && (
-          <div className="container mx-auto px-6 mt-12 md:mt-16">
-            <div className="max-w-6xl mx-auto">
+        ) : (
+          /* Default Hero Layout for Other Projects */
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
+                transition={{ duration: 0.8 }}
+                className="text-center"
               >
-                {/* First Hero Image */}
-                <div className="relative w-full flex justify-center">
-                  <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-                    <Image
-                      src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
-                      alt="Micro Adventure Concept Graphic"
-                      width={800}
-                      height={1600}
-                      className="w-full h-auto object-contain"
-                      priority
-                      quality={90}
-                    />
-                  </div>
-                </div>
-
-                {/* Second Hero Image */}
-                <div className="relative w-full flex justify-center">
-                  <div className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-                    <Image
-                      src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                      alt="Micro Adventure Concept Graphic 2"
-                      width={800}
-                      height={1600}
-                      className="w-full h-auto object-contain"
-                      priority
-                      quality={90}
-                    />
-                  </div>
-                </div>
+                {/* Project Title */}
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  {project?.title || "Project Title"}
+                </h1>
+                
+                {/* Subtitle */}
+                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  {project?.tagline || "Project description"}
+                </p>
               </motion.div>
             </div>
           </div>
         )}
         
         {/* Subtle Divider */}
-        <div className="border-b border-gray-100 mt-16 md:mt-20"></div>
+        <div className="border-b border-gray-100 mt-16 md:mt-20 lg:mt-24"></div>
       </section>
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion ? (
         <>
+          {/* Problem / Motivation Section */}
+          <section className="py-24 md:py-32 bg-black">
+            <div className="container mx-auto px-6">
+              <div className="max-w-5xl mx-auto">
+                {/* Large Headline */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-16 md:mb-20 leading-tight text-center"
+                >
+                  Travel discovery is repetitive, commercialized, and lacks context-aware spontaneity.
+                </motion.h2>
+
+                {/* Supporting Points */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+                >
+                  {/* Point 1 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </div>
+                    <p className="text-lg md:text-xl font-semibold text-white">
+                      Over-optimized top-10 content
+                    </p>
+                  </div>
+
+                  {/* Point 2 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 15.536c-1.171 1.952-3.07 1.952-4.242 0-1.172-1.953-1.172-5.119 0-7.072 1.171-1.952 3.07-1.952 4.242 0M8 10.5h4m-4 3h4m9-1.5a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="text-lg md:text-xl font-semibold text-white">
+                      Fake or staged spontaneity
+                    </p>
+                  </div>
+
+                  {/* Point 3 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <p className="text-lg md:text-xl font-semibold text-white">
+                      Lack of real-time situational context
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Core Insight Section */}
+          <section className="py-16 md:py-24 bg-white">
+            <div className="container mx-auto px-6">
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="relative bg-gray-50 border-l-4 border-blue-500 p-8 md:p-12 rounded-lg shadow-sm"
+                >
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 leading-relaxed text-center">
+                    Authentic travel experiences emerge from{' '}
+                    <span className="text-blue-600 font-semibold">timing</span>,{' '}
+                    <span className="text-blue-600 font-semibold">proximity</span>, and{' '}
+                    <span className="text-blue-600 font-semibold">social context</span>
+                    {' '}— not static top-10 lists.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
           {/* Problem & Opportunity Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
