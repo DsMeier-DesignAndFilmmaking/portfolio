@@ -46,7 +46,7 @@ function normalizeImagePath(imagePath: string): string {
   return `${basePath}${imagePath}`;
 }
 
-export default function TravelProjectDetailClient({ project, projectId }: TravelProjectDetailClientProps) {
+const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailClientProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
@@ -3474,5 +3474,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       </section>
     </main>
   );
-}
+};
+
+export default TravelProjectDetailClient;
 
