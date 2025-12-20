@@ -50,6 +50,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
+  
+  // Video-related state
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isVideoError, setIsVideoError] = useState(false);
@@ -58,11 +60,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [isMobileVideoError, setIsMobileVideoError] = useState(false);
   const [showFallbackImage, setShowFallbackImage] = useState(false);
   
+  // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
   const isCulturalContextEngine = projectId === 'cultural-context-engine';
   const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
   const isLocalExperienceFinder = projectId === 'local-experience-finder';
   const isOtherProject = isCulturalContextEngine || isTravelPlanningAssistant || isLocalExperienceFinder;
+
+  // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
     { id: 'design-exploration', label: 'Observed Travel Frictions' },
     { id: 'research-audience', label: 'Audience & Research' },
@@ -74,55 +79,81 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   ];
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {});
-    return () => window.removeEventListener('scroll', () => {});
+    // Handle scroll for navbar
+    const handleScroll = () => {
+      // Add scroll behavior if needed
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Mobile detection
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Handle video loading with error detection
   useEffect(() => {
-    const timer = setTimeout(() => setIsVideoLoaded(true), 1500);
+    const timer = setTimeout(() => {
+      setIsVideoLoaded(true);
+    }, 1500); // Increased delay to ensure iframe starts loading
+
     return () => clearTimeout(timer);
   }, []);
 
+  // Handle video ready state for smooth transition
   useEffect(() => {
     if (isVideoLoaded) {
-      const timer = setTimeout(() => setIsVideoReady(true), 500);
+      const timer = setTimeout(() => {
+        setIsVideoReady(true);
+      }, 500); // Additional delay for smooth transition
+
       return () => clearTimeout(timer);
     }
     return undefined;
   }, [isVideoLoaded]);
 
+  // Handle video error detection and fallback
   useEffect(() => {
     if (isVideoLoaded && !isVideoReady) {
       const errorTimer = setTimeout(() => {
+        // If video hasn't loaded after 4 seconds, assume it failed
         setIsVideoError(true);
         setShowFallbackImage(true);
       }, 4000);
+
       return () => clearTimeout(errorTimer);
     }
     return undefined;
   }, [isVideoLoaded, isVideoReady]);
 
+  // Handle mobile video error detection
   useEffect(() => {
     if (isMobile && !isMobileVideoLoaded) {
       const errorTimer = setTimeout(() => {
         setIsMobileVideoError(true);
         setShowFallbackImage(true);
       }, 3000);
+
       return () => clearTimeout(errorTimer);
     }
     return undefined;
   }, [isMobile, isMobileVideoLoaded]);
 
+  // Handle mobile video loading
   useEffect(() => {
     if (isMobile) {
-      const timer = setTimeout(() => setIsMobileVideoLoaded(true), 1000);
+      const timer = setTimeout(() => {
+        setIsMobileVideoLoaded(true);
+      }, 1000);
+
       return () => clearTimeout(timer);
     }
     return undefined;
@@ -130,22 +161,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {!project ? (
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-            <Link href="/projects/travel-and-ai" className="text-blue-600 hover:text-blue-700">
-              Back to Travel & AI Projects
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <>
-          <AnimatePresence>
-            {isTransitioning && <PageTransitionOverlay />}
-          </AnimatePresence>
+      <AnimatePresence>
+        {isTransitioning && <PageTransitionOverlay />}
+      </AnimatePresence>
 
-          {/* Navigation */}
+      {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -3428,23 +3448,23 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
-
-          {/* Back to Projects Link */}
-          <section className="py-12 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <Link
-                  href="/projects/travel-and-ai"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
-                >
-                  <FaArrowLeft className="w-4 h-4" />
-                  Back to Travel & AI Projects
-                </Link>
-              </div>
-            </div>
-          </section>
         </>
       )}
+
+      {/* Back to Projects Link */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <Link
+              href="/projects/travel-and-ai"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
+            >
+              <FaArrowLeft className="w-4 h-4" />
+              Back to Travel & AI Projects
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
