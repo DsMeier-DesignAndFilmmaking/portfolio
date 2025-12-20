@@ -20,6 +20,19 @@ import {
   FaBrain,
   FaLightbulb as FaBulb,
   FaShareAlt,
+  FaUniversity,
+  FaArchive,
+  FaUserGraduate,
+  FaCheckCircle,
+  FaCertificate,
+  FaCloudSun,
+  FaPlane,
+  FaExclamationTriangle,
+  FaListUl,
+  FaShieldAlt,
+  FaLock,
+  FaUserCircle,
+  FaTags,
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -2115,9 +2128,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="text-center mb-8">
                       <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">Development Workflow</p>
                     </div>
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 flex-wrap">
                       {/* ChatGPT Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
                         <div className="flex flex-col items-center text-center gap-4">
                           <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -2133,13 +2146,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       
                       {/* Arrow 1 */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </div>
 
                       {/* Cursor Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
                         <div className="flex flex-col items-center text-center gap-4">
                           <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -2155,13 +2168,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       
                       {/* Arrow 2 */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </div>
 
                       {/* Xcode Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
                         <div className="flex flex-col items-center text-center gap-4">
                           <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -2171,6 +2184,50 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div>
                             <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
                             <p className="text-sm text-gray-400">Real iOS Build</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Arrow 3 */}
+                      <div className="flex items-center justify-center">
+                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+
+                      {/* API Plugin Step */}
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
+                        <div className="flex flex-col items-center text-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
+                            <p className="text-sm text-gray-400">Travel Industry Integration</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Arrow 4 */}
+                      <div className="flex items-center justify-center">
+                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+
+                      {/* Widget Step */}
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
+                        <div className="flex flex-col items-center text-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
+                            <p className="text-sm text-gray-400">Client-facing Embeddable</p>
                           </div>
                         </div>
                       </div>
@@ -2197,7 +2254,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-4">
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">Frontend</span>
-                        <span className="text-amber-400 font-medium">Xcode SwiftUI</span>
+                        <span className="text-amber-400 font-medium text-sm leading-relaxed">Xcode SwiftUI (iOS), React/Next.js (Widget & API Dashboard)</span>
                       </div>
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">Backend</span>
@@ -2205,12 +2262,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">Database</span>
-                        <span className="text-emerald-400 font-medium">Firestore, Realm, PostgreSQL</span>
-                    </div>
+                        <span className="text-emerald-400 font-medium text-sm leading-relaxed">Firestore, Realm, PostgreSQL</span>
+                      </div>
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">AI/ML</span>
-                        <span className="text-orange-400 font-medium">OpenAI / LangChain</span>
-                  </div>
+                        <span className="text-orange-400 font-medium text-sm leading-relaxed">OpenAI / LangChain</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">API & Plugin</span>
+                        <span className="text-cyan-400 font-medium text-sm leading-relaxed">REST / GraphQL endpoints, SDK for integration</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">Widget</span>
+                        <span className="text-teal-400 font-medium text-sm leading-relaxed">Embeddable HTML/JS component for travel clients</span>
+                      </div>
                     </div>
                   </motion.div>
                   
@@ -2248,6 +2313,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <li className="flex items-start gap-2">
                         <span className="text-cyan-400 mt-1">•</span>
                         <span>Scalable cloud deployment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>API Plugin & Widget modular design</span>
                       </li>
                     </ul>
                   </motion.div>
@@ -2287,6 +2356,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <span className="text-purple-400 mt-1">•</span>
                         <span>Push notifications</span>
                       </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>API Plugin for client integration</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>Embeddable Widget for travel platforms</span>
+                      </li>
                     </ul>
                   </motion.div>
                 </div>
@@ -2308,7 +2385,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                         <h4 className="text-xl font-bold text-white">Challenge</h4>
                     </div>
-                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency</p>
+                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency and extending the system for API & Widget client integrations</p>
                   </div>
                     <div className="flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
@@ -2319,7 +2396,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                         <h4 className="text-xl font-bold text-white">Solution</h4>
                       </div>
-                      <p className="text-gray-300 leading-relaxed">Built a robust sync system with conflict resolution and queue management</p>
+                      <p className="text-gray-300 leading-relaxed">Built a robust sync system with conflict resolution and queue management, alongside modular API & Widget design for external clients</p>
                     </div>
                   </div>
                 </motion.div>
@@ -3108,20 +3185,347 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                 </div>
                 
-                {/* Simplified System Diagram */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Source Collection</h3>
-                    <p className="text-gray-300 text-sm">Aggregates data from verified sources with provenance tracking</p>
+                {/* Detailed 3-Stage Flow Diagram */}
+                <div className="relative">
+                  {/* Main Grid Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                    
+                    {/* Stage 1 - Source Collection (Left) */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-indigo-400 text-center lg:text-left mb-6">
+                        Verified Provenance Ingest
+                      </h3>
+                      
+                      {/* Data Source Nodes */}
+                      {[
+                        { icon: FaUniversity, label: 'Museums', desc: 'Curated collections' },
+                        { icon: FaArchive, label: 'Local Archives', desc: 'Historical records' },
+                        { icon: FaUserGraduate, label: 'Verified Historians', desc: 'Expert knowledge' },
+                      ].map((source, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.05, x: 5 }}
+                          className="group relative"
+                        >
+                          {/* Connection line to verification layer */}
+                          <div className="hidden lg:block absolute right-0 top-1/2 w-full h-0.5 bg-gradient-to-r from-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                          
+                          {/* Glass card */}
+                          <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg hover:border-indigo-500/50 transition-all duration-300">
+                            {/* Glowing icon */}
+                            <div className="flex items-center gap-4 mb-3">
+                              <div className="relative">
+                                <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full" />
+                                <source.icon className="w-6 h-6 text-indigo-400 relative z-10" />
+                              </div>
+                              <h4 className="text-white font-semibold text-base">{source.label}</h4>
+                            </div>
+                            <p className="text-gray-400 text-sm">{source.desc}</p>
+                            
+                            {/* Data flow particles */}
+                            <motion.div
+                              className="absolute -right-2 top-1/2 w-2 h-2 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100"
+                              animate={{
+                                x: [0, 200, 200],
+                                opacity: [0, 1, 0],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.3,
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                      
+                      {/* Merging Stream Animation */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="hidden lg:block relative h-1 mt-4"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/30 via-indigo-400/50 to-transparent rounded-full" />
+                        <motion.div
+                          className="absolute inset-0 bg-indigo-400 rounded-full"
+                          animate={{
+                            width: ['0%', '100%', '100%'],
+                            opacity: [0, 1, 0],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Stage 2 - Verification Layer (Center) */}
+                    <div className="flex justify-center my-12 lg:my-0">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="relative"
+                      >
+                        {/* Verification Prism - Animated Processing Box */}
+                        <div className="relative w-64 h-64 md:w-80 md:h-80">
+                          <svg
+                            className="w-full h-full"
+                            viewBox="0 0 320 320"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            {/* Outer Ring - Source Verification - Rotating */}
+                            <motion.g
+                              animate={{ rotate: 360 }}
+                              transition={{
+                                duration: 20,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                              style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+                            >
+                              <circle
+                                cx="160"
+                                cy="160"
+                                r="140"
+                                fill="none"
+                                stroke="url(#verificationOuterGradient)"
+                                strokeWidth="2"
+                                strokeDasharray="8 4"
+                                opacity="0.6"
+                              />
+                            </motion.g>
+                            
+                            {/* Middle Ring - Cross-Reference Validation - Pulsing */}
+                            <motion.g
+                              animate={{
+                                scale: [1, 1.05, 1],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                              style={{ transformOrigin: '160px 160px' }}
+                            >
+                              <motion.circle
+                                cx="160"
+                                cy="160"
+                                r="110"
+                                fill="none"
+                                stroke="url(#verificationMiddleGradient)"
+                                strokeWidth="2.5"
+                                animate={{
+                                  opacity: [0.8, 1, 0.8],
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                              />
+                            </motion.g>
+                            
+                            {/* Inner Core - Multi-Mechanism Validation */}
+                            <motion.circle
+                              cx="160"
+                              cy="160"
+                              r="60"
+                              fill="url(#verificationCoreGradient)"
+                              opacity="0.9"
+                              animate={{
+                                scale: [1, 1.1, 1],
+                                opacity: [0.9, 1, 0.9],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                            
+                            {/* Verification nodes inside core */}
+                            {[...Array(6)].map((_, i) => {
+                              const angle = (i * 360) / 6;
+                              const rad = (angle * Math.PI) / 180;
+                              const x = 160 + Math.cos(rad) * 40;
+                              const y = 160 + Math.sin(rad) * 40;
+                              return (
+                                <motion.circle
+                                  key={i}
+                                  cx={x}
+                                  cy={y}
+                                  r="4"
+                                  fill="#818cf8"
+                                  animate={{
+                                    opacity: [0.4, 1, 0.4],
+                                    scale: [1, 1.3, 1],
+                                  }}
+                                  transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    delay: i * 0.2,
+                                    ease: "easeInOut",
+                                  }}
+                                />
+                              );
+                            })}
+                            
+                            {/* Gradients */}
+                            <defs>
+                              <linearGradient id="verificationOuterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#818cf8" stopOpacity="0.8" />
+                              </linearGradient>
+                              <linearGradient id="verificationMiddleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#818cf8" stopOpacity="0.9" />
+                                <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.9" />
+                              </linearGradient>
+                              <radialGradient id="verificationCoreGradient">
+                                <stop offset="0%" stopColor="#a78bfa" />
+                                <stop offset="100%" stopColor="#6366f1" />
+                              </radialGradient>
+                            </defs>
+                          </svg>
+                          
+                          {/* Center Label */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
+                                Multi-Mechanism
+                              </div>
+                              <div className="text-xl md:text-2xl font-bold text-white">
+                                VALIDATION
+                              </div>
+                              <div className="text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
+                                Prism
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Ring Labels */}
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Source Verification
+                          </div>
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Cross-Reference
+                          </div>
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                            Validation Core
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Stage 3 - Transparent Output (Right) */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-violet-400 text-center lg:text-right mb-6">
+                        Attributed Recommendations
+                      </h3>
+                      
+                      {/* Output Card - Context Card UI */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        whileHover={{ scale: 1.02, x: -5 }}
+                        className="group relative"
+                      >
+                        {/* Connection line from verification layer */}
+                        <div className="hidden lg:block absolute left-0 top-1/2 w-full h-0.5 bg-gradient-to-l from-violet-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                        
+                        {/* Context Card UI */}
+                        <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg hover:border-violet-500/50 transition-all duration-300">
+                          {/* Verified Badge */}
+                          <div className="flex items-center gap-2 mb-4">
+                            <FaCheckCircle className="w-5 h-5 text-emerald-400" />
+                            <span className="text-emerald-400 text-sm font-semibold uppercase tracking-wider">Verified</span>
+                          </div>
+                          
+                          {/* Recommendation Content */}
+                          <div className="mb-4">
+                            <h4 className="text-white font-semibold text-base mb-2">
+                              Cultural Context Recommendation
+                            </h4>
+                            <p className="text-gray-300 text-sm leading-relaxed">
+                              This recommendation has been verified through multiple sources and cross-referenced for authenticity.
+                            </p>
+                          </div>
+                          
+                          {/* Source Links */}
+                          <div className="pt-4 border-t border-white/10">
+                            <p className="text-gray-400 text-xs mb-2 uppercase tracking-wider">Sources</p>
+                            <div className="flex flex-wrap gap-2">
+                              {['Museum Archive', 'Local Historian', 'Verified Record'].map((source, idx) => (
+                                <motion.div
+                                  key={idx}
+                                  whileHover={{ scale: 1.05 }}
+                                  className="inline-flex items-center gap-1 px-2 py-1 bg-white/5 rounded-md border border-white/10 hover:border-violet-400/50 transition-colors"
+                                >
+                                  <FaLink className="w-3 h-3 text-violet-400" />
+                                  <span className="text-violet-300 text-xs">{source}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {/* Freshness Indicator */}
+                          <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
+                            <FaClock className="w-3 h-3" />
+                            <span>Last verified: 2 days ago</span>
+                          </div>
+                          
+                          {/* Output particles */}
+                          <motion.div
+                            className="absolute -left-2 top-1/2 w-2 h-2 bg-violet-400 rounded-full opacity-0 group-hover:opacity-100"
+                            animate={{
+                              x: [0, -200, -200],
+                              opacity: [0, 1, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 0.3,
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Verification Layer</h3>
-                    <p className="text-gray-300 text-sm">Validates authenticity through multiple verification mechanisms</p>
-                  </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Transparent Output</h3>
-                    <p className="text-gray-300 text-sm">Delivers recommendations with full source attribution and freshness indicators</p>
-                  </div>
+                  
+                  {/* Information Lineage Formula - Bottom */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="mt-16 pt-8 border-t border-white/10"
+                  >
+                    <div className="text-center">
+                      <p className="text-gray-400 text-sm mb-2">The Cultural Context Engine Lineage</p>
+                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
+                        <div className="text-white font-mono text-sm md:text-base">
+                          <div className="mb-2">R<sub>trust</sub> = V(S<sub>1</sub>, S<sub>2</sub>, ..., S<sub>n</sub>) × C<sub>fresh</sub> × A<sub>trans</sub></div>
+                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                            <div>S: Verified sources (museums, archives, historians)</div>
+                            <div>V: Multi-mechanism validation function</div>
+                            <div>C: Freshness coefficient (temporal relevance)</div>
+                            <div>A: Attribution transparency (source links & provenance)</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -3867,20 +4271,366 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                 </div>
                 
-                {/* Simplified System Diagram */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Constraint Detection</h3>
-                    <p className="text-gray-300 text-sm">Monitors real-time constraints including delays, closures, weather, and availability</p>
+                {/* Dynamic Feedback Loop Diagram */}
+                <div className="relative">
+                  {/* Main Grid Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+                    
+                    {/* Stage 1 - Constraint Detection (Left) */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-amber-400 text-center lg:text-left mb-6">
+                        Constraint Detection
+                      </h3>
+                      
+                      {/* Constraint Sensor Icons - Floating with Ping Animation */}
+                      {[
+                        { icon: FaCloudSun, label: 'Weather', desc: 'Real-time conditions', color: 'amber' },
+                        { icon: FaPlane, label: 'Delays', desc: 'Flight & transit status', color: 'amber' },
+                        { icon: FaExclamationTriangle, label: 'Closures', desc: 'Business hours & availability', color: 'amber' },
+                      ].map((sensor, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.05, x: 5 }}
+                          className="group relative"
+                        >
+                          {/* Connection line to processor */}
+                          <div className="hidden lg:block absolute right-0 top-1/2 w-full h-0.5 bg-gradient-to-r from-amber-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                          
+                          {/* Sensor Card with Ping Effect */}
+                          <div className="relative backdrop-blur-xl bg-white/5 border border-amber-500/30 rounded-xl p-6 shadow-lg hover:border-amber-400/60 transition-all duration-300">
+                            {/* Ping Animation Ring */}
+                            <motion.div
+                              className="absolute inset-0 rounded-xl border-2 border-amber-400/40"
+                              animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 0, 0.5],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.4,
+                                ease: "easeOut",
+                              }}
+                            />
+                            
+                            {/* Glowing icon */}
+                            <div className="flex items-center gap-4 mb-3 relative z-10">
+                              <div className="relative">
+                                <div className="absolute inset-0 bg-amber-500/30 blur-xl rounded-full" />
+                                <sensor.icon className="w-6 h-6 text-amber-400 relative z-10" />
+                              </div>
+                              <h4 className="text-white font-semibold text-base">{sensor.label}</h4>
+                            </div>
+                            <p className="text-gray-400 text-sm relative z-10">{sensor.desc}</p>
+                            
+                            {/* Data flow particles to center */}
+                            <motion.div
+                              className="absolute -right-2 top-1/2 w-2 h-2 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100"
+                              animate={{
+                                x: [0, 200, 200],
+                                opacity: [0, 1, 0],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.3,
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Stage 2 - Adaptive Algorithms (Center) */}
+                    <div className="flex justify-center my-12 lg:my-0">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="relative"
+                      >
+                        {/* Hexagonal Constraint Processor */}
+                        <div className="relative w-64 h-64 md:w-80 md:h-80">
+                          <svg
+                            className="w-full h-full"
+                            viewBox="0 0 320 320"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            {/* Outer Hexagon - Constraint Input Ring */}
+                            <motion.g
+                              animate={{ rotate: 360 }}
+                              transition={{
+                                duration: 25,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                              style={{ transformBox: 'fill-box', transformOrigin: '160px 160px' }}
+                            >
+                              <polygon
+                                points="160,20 280,80 280,200 160,260 40,200 40,80"
+                                fill="none"
+                                stroke="url(#constraintOuterGradient)"
+                                strokeWidth="2"
+                                strokeDasharray="8 4"
+                                opacity="0.6"
+                              />
+                            </motion.g>
+                            
+                            {/* Middle Hexagon - Processing Layer - Pulsing */}
+                            <motion.g
+                              animate={{
+                                scale: [1, 1.05, 1],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                              style={{ transformOrigin: '160px 160px' }}
+                            >
+                              <motion.polygon
+                                points="160,50 250,95 250,185 160,230 70,185 70,95"
+                                fill="none"
+                                stroke="url(#constraintMiddleGradient)"
+                                strokeWidth="2.5"
+                                animate={{
+                                  opacity: [0.8, 1, 0.8],
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                              />
+                            </motion.g>
+                            
+                            {/* Inner Hexagon - Algorithm Core - Re-arranging Blocks */}
+                            <motion.polygon
+                              points="160,80 220,110 220,170 160,200 100,170 100,110"
+                              fill="url(#constraintCoreGradient)"
+                              opacity="0.9"
+                              animate={{
+                                scale: [1, 1.08, 1],
+                                opacity: [0.9, 1, 0.9],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                            
+                            {/* Internal Blocks - Re-arranging on Constraint Ping */}
+                            {[...Array(6)].map((_, i) => {
+                              const angle = (i * 360) / 6;
+                              const rad = (angle * Math.PI) / 180;
+                              const baseX = 160 + Math.cos(rad) * 50;
+                              const baseY = 160 + Math.sin(rad) * 50;
+                              return (
+                                <motion.g key={i}>
+                                  <motion.rect
+                                    x={baseX - 8}
+                                    y={baseY - 8}
+                                    width="16"
+                                    height="16"
+                                    fill="#fbbf24"
+                                    rx="2"
+                                    animate={{
+                                      x: [baseX - 8, baseX - 8 + Math.cos(rad) * 10, baseX - 8],
+                                      y: [baseY - 8, baseY - 8 + Math.sin(rad) * 10, baseY - 8],
+                                      opacity: [0.6, 1, 0.6],
+                                      rotate: [0, 90, 0],
+                                    }}
+                                    transition={{
+                                      duration: 3,
+                                      repeat: Infinity,
+                                      delay: i * 0.3,
+                                      ease: "easeInOut",
+                                    }}
+                                  />
+                                </motion.g>
+                              );
+                            })}
+                            
+                            {/* Gradients */}
+                            <defs>
+                              <linearGradient id="constraintOuterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.8" />
+                              </linearGradient>
+                              <linearGradient id="constraintMiddleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.9" />
+                                <stop offset="100%" stopColor="#fcd34d" stopOpacity="0.9" />
+                              </linearGradient>
+                              <radialGradient id="constraintCoreGradient">
+                                <stop offset="0%" stopColor="#fcd34d" />
+                                <stop offset="100%" stopColor="#f59e0b" />
+                              </radialGradient>
+                            </defs>
+                          </svg>
+                          
+                          {/* Center Label */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-xs font-semibold text-amber-300 uppercase tracking-wider mb-1">
+                                Adaptive
+                              </div>
+                              <div className="text-xl md:text-2xl font-bold text-white">
+                                PROCESSOR
+                              </div>
+                              <div className="text-xs font-medium text-amber-400 uppercase tracking-wider mt-1">
+                                Re-calculating
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Hexagon Labels */}
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Constraint Input
+                          </div>
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Processing Layer
+                          </div>
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                            Algorithm Core
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Stage 3 - Unified Planning (Right) */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-cyan-400 text-center lg:text-right mb-6">
+                        Unified Planning
+                      </h3>
+                      
+                      {/* Fluid Timeline Visualization */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        whileHover={{ scale: 1.02, x: -5 }}
+                        className="group relative"
+                      >
+                        {/* Connection line from processor */}
+                        <div className="hidden lg:block absolute left-0 top-1/2 w-full h-0.5 bg-gradient-to-l from-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                        
+                        {/* Timeline Card */}
+                        <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg hover:border-cyan-500/50 transition-all duration-300">
+                          {/* Timeline Header */}
+                          <div className="flex items-center gap-2 mb-4">
+                            <FaListUl className="w-5 h-5 text-cyan-400" />
+                            <h4 className="text-white font-semibold text-base">Fluid Timeline</h4>
+                          </div>
+                          
+                          {/* Timeline Items - Shifting in Real-time */}
+                          <div className="space-y-3">
+                            {[
+                              { time: '9:00 AM', activity: 'Museum Visit', status: 'confirmed' },
+                              { time: '12:00 PM', activity: 'Lunch', status: 'flexible' },
+                              { time: '3:00 PM', activity: 'Walking Tour', status: 'adjusted' },
+                            ].map((item, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ x: 0 }}
+                                animate={{
+                                  x: [0, idx % 2 === 0 ? 5 : -5, 0],
+                                  opacity: [1, 0.8, 1],
+                                }}
+                                transition={{
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  delay: idx * 0.5,
+                                  ease: "easeInOut",
+                                }}
+                                className="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-cyan-400/50 transition-colors"
+                              >
+                                {/* Time Indicator */}
+                                <div className="flex flex-col items-center min-w-[60px]">
+                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mb-1" />
+                                  <span className="text-cyan-300 text-xs font-medium">{item.time}</span>
+                                </div>
+                                
+                                {/* Activity Content */}
+                                <div className="flex-1">
+                                  <p className="text-white text-sm font-medium mb-1">{item.activity}</p>
+                                  <div className="flex items-center gap-2">
+                                    <span className={`text-xs px-2 py-0.5 rounded ${
+                                      item.status === 'confirmed' ? 'bg-emerald-500/20 text-emerald-300' :
+                                      item.status === 'flexible' ? 'bg-amber-500/20 text-amber-300' :
+                                      'bg-cyan-500/20 text-cyan-300'
+                                    }`}>
+                                      {item.status}
+                                    </span>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                          
+                          {/* Real-time Update Indicator */}
+                          <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-gray-400">
+                            <motion.div
+                              className="w-2 h-2 bg-cyan-400 rounded-full"
+                              animate={{
+                                opacity: [1, 0.3, 1],
+                              }}
+                              transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                            <span>Updating in real-time</span>
+                          </div>
+                          
+                          {/* Output particles */}
+                          <motion.div
+                            className="absolute -left-2 top-1/2 w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100"
+                            animate={{
+                              x: [0, -200, -200],
+                              opacity: [0, 1, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 0.3,
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Adaptive Algorithms</h3>
-                    <p className="text-gray-300 text-sm">Processes constraints and preferences to generate flexible plan adjustments</p>
-                  </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Unified Planning</h3>
-                    <p className="text-gray-300 text-sm">Delivers integrated planning that bridges pre-trip organization with on-the-ground flexibility</p>
-                  </div>
+                  
+                  {/* Feedback Loop Formula - Bottom */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="mt-16 pt-8 border-t border-white/10"
+                  >
+                    <div className="text-center">
+                      <p className="text-gray-400 text-sm mb-2">The Travel Planning Assistant Feedback Loop</p>
+                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
+                        <div className="text-white font-mono text-sm md:text-base">
+                          <div className="mb-2">P<sub>adaptive</sub> = f(C<sub>t</sub>, P<sub>t-1</sub>, U<sub>pref</sub>) + ΔC</div>
+                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                            <div>C<sub>t</sub>: Real-time constraints (weather, delays, closures)</div>
+                            <div>P<sub>t-1</sub>: Previous plan state</div>
+                            <div>U<sub>pref</sub>: User preferences and constraints</div>
+                            <div>ΔC: Constraint change delta (triggers re-calculation)</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -4626,20 +5376,350 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                 </div>
                 
-                {/* Simplified System Diagram */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Identity Processing</h3>
-                    <p className="text-gray-300 text-sm">Processes travel identity, interests, and experiences to create connection signals</p>
+                {/* Privacy-Gated Matching Diagram */}
+                <div className="relative">
+                  {/* Main Grid Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                    
+                    {/* Stage 1 - Identity Processing (Left) */}
+                    <div className="space-y-8">
+                      <h3 className="text-lg font-semibold text-indigo-400 text-center lg:text-left mb-6">
+                        Identity Processing
+                      </h3>
+                      
+                      {/* Two Identity Clusters */}
+                      {[
+                        {
+                          user: 'User A',
+                          interests: ['Architecture', 'Street Food', 'Photography'],
+                          color: 'indigo',
+                        },
+                        {
+                          user: 'User B',
+                          interests: ['Street Food', 'Art', 'Local Culture'],
+                          color: 'violet',
+                        },
+                      ].map((identity, clusterIndex) => (
+                        <motion.div
+                          key={clusterIndex}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: clusterIndex * 0.2 }}
+                          className="group relative"
+                        >
+                          {/* Identity Cluster Card */}
+                          <div className={`relative backdrop-blur-xl bg-white/5 border ${clusterIndex === 0 ? 'border-indigo-500/30 hover:border-indigo-400/60' : 'border-violet-500/30 hover:border-violet-400/60'} rounded-xl p-6 shadow-lg transition-all duration-300`}>
+                            {/* User Profile Icon */}
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="relative">
+                                <div className={`absolute inset-0 ${clusterIndex === 0 ? 'bg-indigo-500/30' : 'bg-violet-500/30'} blur-xl rounded-full`} />
+                                <FaUserCircle className={`w-8 h-8 ${clusterIndex === 0 ? 'text-indigo-400' : 'text-violet-400'} relative z-10`} />
+                              </div>
+                              <h4 className="text-white font-semibold text-base">{identity.user}</h4>
+                            </div>
+                            
+                            {/* Floating Interest Tags */}
+                            <div className="space-y-2">
+                              {identity.interests.map((interest, tagIndex) => (
+                                <motion.div
+                                  key={tagIndex}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  whileInView={{ opacity: 1, y: 0 }}
+                                  viewport={{ once: true }}
+                                  animate={{
+                                    y: [0, -3, 0],
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    delay: clusterIndex * 0.2 + tagIndex * 0.2,
+                                    ease: "easeInOut",
+                                  }}
+                                  className={`inline-flex items-center gap-2 px-3 py-1.5 ${clusterIndex === 0 ? 'bg-indigo-500/20 border-indigo-400/30' : 'bg-violet-500/20 border-violet-400/30'} border rounded-lg mr-2 mb-2`}
+                                >
+                                  <FaTags className={`w-3 h-3 ${clusterIndex === 0 ? 'text-indigo-300' : 'text-violet-300'}`} />
+                                  <span className={`${clusterIndex === 0 ? 'text-indigo-300' : 'text-violet-300'} text-xs font-medium`}>{interest}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                            
+                            {/* Data signal to privacy layer */}
+                            <motion.div
+                              className={`absolute -right-2 top-1/2 w-2 h-2 ${clusterIndex === 0 ? 'bg-indigo-400' : 'bg-violet-400'} rounded-full opacity-0 group-hover:opacity-100`}
+                              animate={{
+                                x: [0, 200, 200],
+                                opacity: [0, 1, 0],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: clusterIndex * 0.3,
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Stage 2 - Privacy Layer (Center) */}
+                    <div className="flex justify-center my-12 lg:my-0">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="relative"
+                      >
+                        {/* Privacy Shield Gateway */}
+                        <div className="relative w-48 h-96 md:w-56 md:h-[500px] flex flex-col items-center justify-center">
+                          {/* Translucent Vertical Gateway Bar */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <motion.div
+                              className="w-1 h-full bg-gradient-to-b from-emerald-500/20 via-emerald-400/40 to-emerald-500/20 rounded-full backdrop-blur-sm border border-emerald-400/30"
+                              animate={{
+                                opacity: [0.6, 1, 0.6],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Shield Icon - Centered */}
+                          <div className="relative z-10">
+                            <motion.div
+                              animate={{
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                              className="w-24 h-24 md:w-32 md:h-32 bg-emerald-500/20 backdrop-blur-xl rounded-full border-2 border-emerald-400/50 flex items-center justify-center"
+                            >
+                              <FaShieldAlt className="w-12 h-12 md:w-16 md:h-16 text-emerald-400" />
+                            </motion.div>
+                          </div>
+                          
+                          {/* Data Signals Attempting to Pass Through */}
+                          {/* Blocked Signal (from left) */}
+                          <motion.div
+                            className="absolute left-0 top-1/4 w-3 h-3 bg-red-400 rounded-full"
+                            animate={{
+                              x: [0, 100, 100],
+                              opacity: [1, 0.5, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 0.5,
+                              ease: "easeIn",
+                            }}
+                          />
+                          <motion.div
+                            className="absolute left-0 top-1/4 w-1 h-12 bg-red-400/50 rounded-full"
+                            animate={{
+                              x: [0, 100, 100],
+                              opacity: [0.5, 0, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 0.5,
+                              ease: "easeIn",
+                            }}
+                          />
+                          
+                          {/* Allowed Signal (from left - Opt-in) */}
+                          <motion.div
+                            className="absolute left-0 top-1/2 w-3 h-3 bg-emerald-400 rounded-full"
+                            animate={{
+                              x: [0, 120, 120],
+                              opacity: [1, 1, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 1.5,
+                              ease: "easeInOut",
+                            }}
+                          />
+                          <motion.div
+                            className="absolute left-0 top-1/2 w-1 h-12 bg-emerald-400/50 rounded-full"
+                            animate={{
+                              x: [0, 120, 120],
+                              opacity: [0.5, 0.5, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 1.5,
+                              ease: "easeInOut",
+                            }}
+                          />
+                          
+                          {/* Blocked Signal (from right) */}
+                          <motion.div
+                            className="absolute right-0 top-3/4 w-3 h-3 bg-red-400 rounded-full"
+                            animate={{
+                              x: [0, -100, -100],
+                              opacity: [1, 0.5, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 2.5,
+                              ease: "easeIn",
+                            }}
+                          />
+                          <motion.div
+                            className="absolute right-0 top-3/4 w-1 h-12 bg-red-400/50 rounded-full"
+                            animate={{
+                              x: [0, -100, -100],
+                              opacity: [0.5, 0, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 2.5,
+                              ease: "easeIn",
+                            }}
+                          />
+                          
+                          {/* Labels */}
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium whitespace-nowrap">
+                            Privacy Gateway
+                          </div>
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Opt-in Only
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Stage 3 - Connection Matching (Right) */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-emerald-400 text-center lg:text-right mb-6">
+                        Connection Matching
+                      </h3>
+                      
+                      {/* Match Notification */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        whileHover={{ scale: 1.02, x: -5 }}
+                        className="group relative"
+                      >
+                        {/* Connection Signal Pulse */}
+                        <motion.div
+                          className="absolute -left-4 top-1/2 w-16 h-16 border-2 border-emerald-400/50 rounded-full"
+                          animate={{
+                            scale: [1, 1.5, 1],
+                            opacity: [0.6, 0, 0.6],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                          }}
+                        />
+                        <motion.div
+                          className="absolute -left-4 top-1/2 w-12 h-12 border-2 border-emerald-400/70 rounded-full"
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.8, 0, 0.8],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: 0.2,
+                            ease: "easeOut",
+                          }}
+                        />
+                        
+                        {/* Match Card */}
+                        <div className="relative backdrop-blur-xl bg-white/5 border border-emerald-500/30 rounded-xl p-6 shadow-lg hover:border-emerald-400/60 transition-all duration-300">
+                          {/* Match Header */}
+                          <div className="flex items-center gap-3 mb-4">
+                            <motion.div
+                              animate={{
+                                scale: [1, 1.2, 1],
+                              }}
+                              transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            >
+                              <FaCheckCircle className="w-6 h-6 text-emerald-400" />
+                            </motion.div>
+                            <h4 className="text-white font-semibold text-base">Match Found</h4>
+                          </div>
+                          
+                          {/* Connection Details */}
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-sm text-gray-300">
+                              <span className="text-indigo-400 font-medium">User A</span>
+                              <span className="text-gray-500">↔</span>
+                              <span className="text-violet-400 font-medium">User B</span>
+                            </div>
+                            
+                            {/* Shared Interests */}
+                            <div className="pt-3 border-t border-white/10">
+                              <p className="text-gray-400 text-xs mb-2 uppercase tracking-wider">Shared Interests</p>
+                              <div className="flex flex-wrap gap-2">
+                                {['Street Food'].map((interest, idx) => (
+                                  <motion.div
+                                    key={idx}
+                                    whileHover={{ scale: 1.05 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/20 rounded-md border border-emerald-400/30"
+                                  >
+                                    <FaTags className="w-3 h-3 text-emerald-300" />
+                                    <span className="text-emerald-300 text-xs">{interest}</span>
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            {/* Privacy Status */}
+                            <div className="pt-3 border-t border-white/10 flex items-center gap-2 text-xs text-gray-400">
+                              <FaLock className="w-3 h-3 text-emerald-400" />
+                              <span>Both users opted in</span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Privacy Layer</h3>
-                    <p className="text-gray-300 text-sm">Enforces granular privacy controls and opt-in discovery mechanisms</p>
-                  </div>
-                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">Connection Matching</h3>
-                    <p className="text-gray-300 text-sm">Delivers identity-based matches with full user control over visibility and interaction</p>
-                  </div>
+                  
+                  {/* Privacy-Gated Matching Formula - Bottom */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="mt-16 pt-8 border-t border-white/10"
+                  >
+                    <div className="text-center">
+                      <p className="text-gray-400 text-sm mb-2">The Local Experience Finder Privacy-Gated Matching</p>
+                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
+                        <div className="text-white font-mono text-sm md:text-base">
+                          <div className="mb-2">M<sub>connection</sub> = I<sub>A</sub> ∩ I<sub>B</sub> × P<sub>A</sub> × P<sub>B</sub></div>
+                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                            <div>I<sub>A</sub>, I<sub>B</sub>: Identity clusters (interests, experiences, travel style)</div>
+                            <div>P<sub>A</sub>, P<sub>B</sub>: Privacy gates (1 = opt-in, 0 = blocked)</div>
+                            <div>Match only occurs when: I<sub>A</sub> ∩ I<sub>B</sub> ≠ ∅ AND P<sub>A</sub> = P<sub>B</sub> = 1</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
