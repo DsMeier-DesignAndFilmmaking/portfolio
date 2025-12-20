@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -159,41 +159,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
     return undefined;
   }, [isMobile]);
 
-  // Event handlers using useCallback to avoid inline function definitions
-  const handleBackClick = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsTransitioning(true);
-    setTimeout(() => {
-      router.push('/projects/travel-and-ai');
-    }, 500);
-  }, [router]);
-
-  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
-    e.preventDefault();
-    const target = document.querySelector(hash);
-    if (target) {
-      const offset = 120; // Account for fixed navbar
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  }, []);
-
-  if (!project) {
-    return (
-      <main className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <Link href="/projects/travel-and-ai" className="text-blue-600 hover:text-blue-700">
-            Back to Travel & AI Projects
-          </Link>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
@@ -210,7 +175,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center py-4">
             <button
-              onClick={handleBackClick}
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  router.push('/projects/travel-and-ai');
+                }, 500);
+              }}
               className="hover:opacity-80 transition-opacity flex items-center gap-2 text-gray-900"
               aria-label="Back to projects"
             >
@@ -227,25 +198,36 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       {/* Hero Section */}
       <section className="bg-white pt-20 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
         {isSpontaneousTravelCompanion && (
-          <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
-                >
+            >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     Spontaneous Travel Engine
-                  </h1>
+              </h1>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Self-initiated product exploration · Travel · AI
                   </p>
                   <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
                     <a
                       href="#design-exploration"
-                      onClick={(e) => handleAnchorClick(e, '#design-exploration')}
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#design-exploration');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
                       className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                       aria-label="View Case Study"
                     >
@@ -253,50 +235,61 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </a>
                     <a
                       href="#prototyping-ai"
-                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#prototyping-ai');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
                       className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                       aria-label="Explore Working Prototype (Experimental)"
                     >
                       Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
                     </a>
                   </nav>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                   className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
                   <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
                     <div className="relative flex-shrink-0">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                        <Image
+                    <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
-                          alt="Micro Adventure Concept Graphic"
+                      alt="Micro Adventure Concept Graphic"
                           width={280}
                           height={560}
                           className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
+                      priority
+                      quality={90}
                           sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
-                      </div>
-                    </div>
+                    />
+                  </div>
+                </div>
                     <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                        <Image
+                    <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                          alt="Micro Adventure Concept Graphic 2"
+                      alt="Micro Adventure Concept Graphic 2"
                           width={280}
                           height={560}
                           className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
+                      priority
+                      quality={90}
                           sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
+                    />
                       </div>
-                    </div>
                   </div>
+                </div>
                 </motion.div>
               </div>
             </div>
@@ -331,9 +324,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         <>
           {/* Observed Travel Frictions Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto"
@@ -344,9 +337,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                     Real user feedback reveals pattern-level insights about the gaps in current travel discovery tools
-                  </p>
-        </div>
-
+                    </p>
+                  </div>
+                  
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     {/* Fake Spontaneity */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
@@ -536,7 +529,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                     Conceptual system diagram
                     </p>
-                  </div>
+                      </div>
                 
                 {/* Diagram Container */}
                 <div className="relative">
@@ -574,7 +567,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               <div className="relative">
                                 <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full" />
                                 <input.icon className="w-6 h-6 text-indigo-400 relative z-10" />
-                </div>
+                    </div>
                               <h4 className="text-white font-semibold text-base">{input.label}</h4>
                             </div>
                             <p className="text-gray-400 text-sm">{input.desc}</p>
@@ -739,10 +732,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Context Weighting
-                          </div>
+                    </div>
                           <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
                             AI Logic
-                          </div>
+                  </div>
                         </div>
                       </motion.div>
                     </div>
