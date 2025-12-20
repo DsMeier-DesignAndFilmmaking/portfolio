@@ -426,7 +426,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                     </div>
                   </div>
-                </div>
               </motion.div>
             </div>
       </section>
