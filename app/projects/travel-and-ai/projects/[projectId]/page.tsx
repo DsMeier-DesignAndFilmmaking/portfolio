@@ -1,3 +1,5 @@
+import TravelProjectDetailClient from './TravelProjectDetailClient';
+
 // Generate static params for all project IDs
 export function generateStaticParams() {
   return [
@@ -69,22 +71,7 @@ export default function TravelProjectDetailPage({ params }: { params: { projectI
     );
   }
   
-  // For spontaneous-travel-companion, return fallback temporarily
-  return (
-    <main className="min-h-screen bg-white text-gray-900">
-      <section className="max-w-3xl mx-auto px-6 py-24">
-        <h1 className="text-4xl font-semibold mb-6">
-          Spontaneous Travel Companion
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          This project page is temporarily simplified while the system
-          architecture is being refactored.
-        </p>
-        <p className="text-base text-gray-500">
-          Full case study content will return soon.
-        </p>
-      </section>
-    </main>
-  );
+  // For spontaneous-travel-companion, use the full client component
+  return <TravelProjectDetailClient project={null} projectId={projectId} />;
 }
 
