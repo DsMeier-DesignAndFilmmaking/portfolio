@@ -65,7 +65,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const isCulturalContextEngine = projectId === 'cultural-context-engine';
   const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
   const isLocalExperienceFinder = projectId === 'local-experience-finder';
-  const isOtherProject = isCulturalContextEngine || isTravelPlanningAssistant || isLocalExperienceFinder;
+  const isOtherProject = isTravelPlanningAssistant || isLocalExperienceFinder;
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
@@ -298,7 +298,61 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {(isOtherProject || (!isSpontaneousTravelCompanion && !isOtherProject)) && (
+        {isCulturalContextEngine && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                    Cultural Context Engine
+                  </h1>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Trust & Authenticity · AI · Systems Design
+                  </p>
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
+                    <p className="text-gray-600 text-center">
+                      Visual representation coming soon
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isOtherProject)) && (
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -2554,6 +2608,765 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </section>
         </>
       )}
+      {isCulturalContextEngine && (
+        <>
+          {/* Audience & Research Section */}
+          <section id="research-audience" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Audience & Research
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Understanding the trust crisis in AI-powered travel recommendations
+                  </p>
+                </div>
+                
+                {/* Key Statistics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
+                    <div className="text-3xl font-bold text-amber-400 mb-2">62%</div>
+                    <div className="text-gray-300 text-sm">of travelers distrust AI-generated recommendations without source verification</div>
+                    <div className="text-gray-500 text-xs mt-2">— Travel Industry Trust Survey 2024</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
+                    <div className="text-3xl font-bold text-cyan-400 mb-2">78%</div>
+                    <div className="text-gray-300 text-sm">want to know the origin and credibility of travel suggestions</div>
+                    <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
+                    <div className="text-3xl font-bold text-emerald-400 mb-2">45%</div>
+                    <div className="text-gray-300 text-sm">have been misled by fake or outdated travel recommendations</div>
+                    <div className="text-gray-500 text-xs mt-2">— Trust & Authenticity Research</div>
+                  </div>
+                </div>
+                
+                {/* Market & Competitive Analysis */}
+                <div className="mt-12">
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Review Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and Yelp rely on user-generated content without verification, leading to fake reviews and outdated information that misleads travelers.</p>
+                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">AI Travel Assistants</h4>
+                      <p className="text-gray-300 text-sm mb-4">ChatGPT and similar tools generate recommendations without source attribution or data provenance, making it impossible to verify authenticity.</p>
+                      <div className="text-xs text-gray-400">Examples: ChatGPT, Claude, Perplexity</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb prioritize availability over authenticity, often featuring promoted listings without clear source verification.</p>
+                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
+                    </div>
+                  </div>
+                  
+                  {/* Our Approach */}
+                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
+                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Trust Through Transparency</h4>
+                    <p className="text-gray-200 text-base leading-relaxed">
+                      The Cultural Context Engine differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Challenge Section */}
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    The Challenge: Trust & Authenticity Crisis
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Current AI-powered travel tools lack transparency in source verification and data provenance, creating a fundamental trust problem
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Problem
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      AI-generated travel recommendations often lack source attribution, making it impossible for travelers to verify authenticity or understand where information originates. This creates a <span className="font-semibold text-red-700">trust gap that undermines the value of AI-powered travel tools</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Solution
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      A system that provides <span className="font-semibold text-blue-700">source verification, data provenance, and authenticity validation</span> at the architectural level, ensuring every recommendation includes clear attribution and verifiable information.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Observed Travel Frictions Section */}
+          <section id="design-exploration" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Observed Travel Frictions
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Real user feedback reveals pattern-level insights about trust and authenticity gaps in current travel recommendation systems
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* Fake Reviews & Misinformation */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Fake Reviews & Misinformation</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I followed an AI recommendation for a restaurant that turned out to be <span className="font-semibold text-red-700">closed for months</span>. The AI had no way to verify if the information was current or accurate."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"ChatGPT recommended a 'hidden gem' that was actually a <span className="font-semibold text-red-700">tourist trap with fake reviews</span>. I had no way to verify the source of the recommendation."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Twitter, Travel Community</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lack of Source Attribution */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Lack of Source Attribution</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to know where the AI got its information from. Is it from <span className="font-semibold text-orange-700">reliable sources or just aggregated from random websites</span>?"</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/solotravel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Without knowing the source, I can't judge if a recommendation is <span className="font-semibold text-orange-700">credible or just marketing</span>. This makes me skeptical of all AI suggestions."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                          <span>Blog Comment on Nomadic Matt</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Outdated Information */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Outdated Information</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"The AI recommended a museum that <span className="font-semibold text-purple-700">closed two years ago</span>. There's no timestamp or way to verify when the information was last updated."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travelhacks</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I need recommendations with <span className="font-semibold text-purple-700">real-time verification and data freshness indicators</span> to trust the information."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/onebag</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Concept & Strategy Section */}
+          <section id="designs-strategy" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-black">
+                    Concept & Strategy
+                  </h2>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Unique Value Proposition */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
+                  >
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      An AI-powered cultural context engine that provides source verification, data provenance, and authenticity validation for every travel recommendation.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      This system processes cultural context, source credibility, and data freshness through verification logic and provenance tracking to deliver trustworthy, verifiable travel recommendations with full transparency.
+                    </p>
+                  </motion.div>
+
+                  {/* Core Philosophy */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
+                  >
+                    <motion.button
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400/30 focus:ring-inset"
+                      onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
+                      aria-expanded={activeAccordion === 'philosophy'}
+                      aria-controls="philosophy-content"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Trust & Authenticity Mean In Travel Recommendations?</h3>
+                      <motion.div
+                        animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-500"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </motion.div>
+                    </motion.button>
+                    <AnimatePresence>
+                      {activeAccordion === 'philosophy' && (
+                        <motion.div
+                          id="philosophy-content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-6">
+                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                              Trust in travel recommendations doesn't mean blind faith—it means transparency, verifiability, and understanding the source of information.
+                            </p>
+                            <div className="space-y-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Source verification</h5>
+                                  <p className="text-gray-700">Every recommendation includes clear attribution to its origin.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Data provenance</h5>
+                                  <p className="text-gray-700">Track the lineage of information from source to recommendation.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Authenticity validation</h5>
+                                  <p className="text-gray-700">Verify credibility through multiple verification layers.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Real-time freshness</h5>
+                                  <p className="text-gray-700">Indicate when information was last verified and updated.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Overview Section */}
+          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+            
+            <div className="container mx-auto px-6 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    System Overview: How the Cultural Context Engine Works
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Architectural system for trust and authenticity verification
+                  </p>
+                </div>
+                
+                {/* Simplified System Diagram */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Source Collection</h3>
+                    <p className="text-gray-300 text-sm">Aggregates data from verified sources with provenance tracking</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Verification Layer</h3>
+                    <p className="text-gray-300 text-sm">Validates authenticity through multiple verification mechanisms</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Transparent Output</h3>
+                    <p className="text-gray-300 text-sm">Delivers recommendations with full source attribution and freshness indicators</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Value Proposition Section */}
+          <section className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Why Trust & Authenticity Matter
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The impact extends beyond individual travelers—it requires systemic solutions that balance transparency with usability
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Travelers
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Transparent recommendations lead to <span className="font-semibold text-cyan-700">better decision-making and increased confidence</span> in travel choices. Travelers can verify information and make informed decisions based on <span className="font-semibold text-cyan-700">credible, verifiable sources</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for the Industry
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      When travelers can verify recommendations, the entire travel ecosystem benefits. <span className="font-semibold text-emerald-700">Authentic businesses gain visibility</span>, while fake or misleading information is filtered out, creating a more trustworthy travel marketplace.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Design Evolution Section */}
+          <section id="wireframes-ui" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Design Evolution
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Design iterations and wireframes will be added as the project evolves.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Development & Build Section */}
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-20">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                      Development & Build
+                    </h2>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <p className="text-amber-300 text-sm font-medium">
+                        Work In Progress
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Development workflow and technical architecture details will be documented as the system is built.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Mobile Build Iterations Section */}
+          <section className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-white">
+                    Mobile Build Iterations
+                  </h2>
+                  <p className="text-gray-400 text-sm">
+                    Mobile app development and iteration process
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Mobile build screenshots and iterations will be added as development progresses.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Solution Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Solution
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    A comprehensive system for trust and authenticity in AI-powered travel recommendations
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    The Cultural Context Engine provides source verification, data provenance tracking, and authenticity validation at the architectural level. Every recommendation includes clear attribution, freshness indicators, and verifiable source information, enabling travelers to make informed decisions with confidence.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Launch & Testing Section */}
+          <section id="outcomes-launch" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Launch & Testing
+                  </h2>
+                </div>
+                
+                <div className="space-y-8">
+                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
+                    <p className="text-gray-300 mb-4">
+                      Will start with a closed beta focusing on source verification accuracy and user trust metrics, followed by gradual rollout based on verification system performance.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Beta Testing</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Source Verification</span>
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Trust Metrics</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Live Demo Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Live Demo
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    This product is actively being built and deployed
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+                  <div className="mb-8 text-center">
+                    <p className="text-gray-600 mb-4">
+                      A live demo will be available once the verification system is fully implemented.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        What Currently Works
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        System architecture and verification framework are being developed. Core components for source tracking and provenance are in progress.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                        What is Experimental
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Source verification algorithms, authenticity validation logic, and real-time freshness indicators are in active development and testing.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        What is Planned Next
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Expanded source network, advanced verification mechanisms, and user-facing transparency features. Timeline depends on verification system validation and user feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Outcome & Learnings Section */}
+          <section id="learnings-next" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Outcome & Learnings
+                  </h2>
+                </div>
+                
+                <div className="space-y-12">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        Building a trust system means constantly questioning how to balance transparency with usability. The challenge isn't having enough information—it's presenting verification data in a way that builds confidence without overwhelming users. Early prototypes showed that too much technical detail can feel like bureaucracy, while too little transparency undermines trust.
+                      </p>
+                      <p>
+                        Source verification requires architectural decisions that happen long before the UI. The system needs to track data lineage from collection through processing to recommendation, which means building provenance tracking into the core architecture, not adding it as an afterthought.
+                      </p>
+                      <p>
+                        Authenticity validation is more complex than simple source checking. A recommendation can come from a verified source but still be outdated, misleading, or contextually inappropriate. The system needs multiple verification layers that work together to assess credibility.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        The depth of user skepticism about AI recommendations was more pronounced than expected. Users don't just want to know if information is accurate—they want to understand why they should trust it. This requires explaining verification processes in accessible language, not just showing technical indicators.
+                      </p>
+                      <p>
+                        The technical challenge of real-time source verification revealed that most existing travel data APIs aren't built for provenance tracking. They're optimized for fast retrieval, not source attribution. Adapting these systems required building abstraction layers that add verification without breaking existing integrations.
+                      </p>
+                      <p>
+                        Privacy concerns around source tracking emerged as a nuanced challenge. Users want transparency about where recommendations come from, but they also want assurance that their personal data isn't being shared with those sources. Balancing these needs required careful architectural design.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Reflections & Next Steps Section */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Reflections & Next Steps
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    Cross-platform verification remains underexplored. The system currently processes source verification within a single platform, but travel recommendations often span multiple sources and platforms. Adding cross-platform provenance tracking could create more comprehensive trust signals without requiring users to manually verify each source.
+                  </p>
+                  <p>
+                    Community-driven verification could shift the system from automated to collaborative. Instead of relying solely on technical verification, the system could incorporate community signals—recognizing when multiple travelers verify the same information or flagging discrepancies between sources. This moves beyond individual source checking to collective trust building.
+                  </p>
+                  <p>
+                    Integration with verification standards represents a significant opportunity. The travel industry lacks universal standards for source attribution and data freshness. Establishing or adopting verification standards could create a foundation for trust that extends beyond this single system, benefiting the entire travel ecosystem.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
       {isOtherProject && (
         <>
           {/* Section 1: Observed Travel Frictions */}
@@ -2649,7 +3462,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 {project?.research?.insights && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {project.research.insights.slice(0, 3).map((insight: string, index: number) => (
+                    {project?.research?.insights?.slice(0, 3).map((insight: string, index: number) => (
                       <div key={index} className="bg-white/5 p-6 rounded-xl border border-white/10">
                         <p className="text-gray-300 text-sm">{insight}</p>
                       </div>
@@ -2955,7 +3768,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </p>
                       {project?.overview?.outcomes && (
                         <ul className="space-y-2 mt-4">
-                          {project.overview.outcomes.slice(0, 3).map((outcome: string, index: number) => (
+                          {project?.overview?.outcomes?.slice(0, 3).map((outcome: string, index: number) => (
                             <li key={index} className="flex items-start gap-3">
                               <span className="text-blue-600 mt-1">•</span>
                               <span>{outcome}</span>
@@ -3056,7 +3869,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           )}
         </>
       )}
-      {!isSpontaneousTravelCompanion && !isOtherProject && (
+      {!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isOtherProject && (
         <>
           {/* Overview / Project Summary Section */}
           <section className="py-20 bg-white">
@@ -3070,7 +3883,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Overview</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                {project.overview.description}
+                {project?.overview?.description || 'Project overview coming soon.'}
               </p>
 
               <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -3080,12 +3893,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Goals & Objectives
                   </h3>
                   <ul className="space-y-3">
-                    {project.overview.goals.map((goal: string, index: number) => (
+                    {project?.overview?.goals?.map((goal: string, index: number) => (
                       <li key={index} className="flex items-start gap-3 text-gray-700">
                         <span className="text-blue-600 mt-1">•</span>
                         <span>{goal}</span>
                       </li>
-                    ))}
+                    )) || <li className="text-gray-500">Goals will be added soon.</li>}
                   </ul>
                 </div>
                 <div>
@@ -3094,7 +3907,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Key Outcomes
                   </h3>
                   <ul className="space-y-3">
-                    {project.overview.outcomes.map((outcome: string, index: number) => (
+                    {project?.overview?.outcomes?.map((outcome: string, index: number) => (
                       <li key={index} className="flex items-start gap-3 text-gray-700">
                         <span className="text-blue-600 mt-1">•</span>
                         <span>{outcome}</span>
@@ -3127,85 +3940,88 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </section>
       )}
 
-      {/* Project Metadata Sidebar Section */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <FaUser className="w-5 h-5 text-blue-600" />
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Role</h3>
-                </div>
-                <p className="text-gray-700">{project.metadata.role}</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <FaTools className="w-5 h-5 text-blue-600" />
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Skills</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.metadata.skills.map((skill: string, index: number) => (
-                    <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <FaLaptopCode className="w-5 h-5 text-blue-600" />
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Tools</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.metadata.tools.map((tool: string, index: number) => (
-                    <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <FaCalendarAlt className="w-5 h-5 text-blue-600" />
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Timeline</h3>
-                </div>
-                <p className="text-gray-700">{project.metadata.timeline}</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Research & Insights Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{project.research.title}</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                {project.research.description}
-              </p>
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {project.research.insights.map((insight: string, index: number) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-6">
-                    <p className="text-gray-700 leading-relaxed">{insight}</p>
+      {/* Project Metadata Sidebar Section - Only for projects with metadata */}
+      {project?.metadata && (
+        <section className="py-12 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FaUser className="w-5 h-5 text-blue-600" />
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Role</h3>
                   </div>
-                ))}
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                {project.research.images.map((image: string, index: number) => (
+                  <p className="text-gray-700">{project.metadata.role || 'Role information coming soon.'}</p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FaTools className="w-5 h-5 text-blue-600" />
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Skills</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.metadata.skills?.map((skill: string, index: number) => (
+                      <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FaLaptopCode className="w-5 h-5 text-blue-600" />
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Tools</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.metadata.tools?.map((tool: string, index: number) => (
+                      <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FaCalendarAlt className="w-5 h-5 text-blue-600" />
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Timeline</h3>
+                  </div>
+                  <p className="text-gray-700">{project.metadata.timeline || 'Timeline information coming soon.'}</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Research & Insights Section - Only for projects with research data */}
+      {project?.research && (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{project.research.title}</h2>
+                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                  {project.research.description}
+                </p>
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  {project.research.insights?.map((insight: string, index: number) => (
+                    <div key={index} className="bg-gray-50 rounded-lg p-6">
+                      <p className="text-gray-700 leading-relaxed">{insight}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {project.research.images?.map((image: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -3228,23 +4044,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
+      )}
 
-      {/* UX Design & Wireframes Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{project.uxDesign.title}</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-12">
-                {project.uxDesign.description}
-              </p>
-              <div className="grid md:grid-cols-3 gap-6">
-                {project.uxDesign.images.map((image: string, index: number) => (
+      {/* UX Design & Wireframes Section - Only for projects with uxDesign data */}
+      {project?.uxDesign && (
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{project.uxDesign.title}</h2>
+                <p className="text-lg text-gray-700 leading-relaxed mb-12">
+                  {project.uxDesign.description}
+                </p>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {project.uxDesign.images?.map((image: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -3267,26 +4085,28 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
+      )}
 
-      {/* UI Design & Visuals Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 flex items-center gap-3">
-                <FaPalette className="w-8 h-8 text-blue-600" />
-                {project.uiDesign.title}
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-12">
-                {project.uiDesign.description}
-              </p>
-              <div className="grid md:grid-cols-2 gap-8">
-                {project.uiDesign.images.map((image: string, index: number) => (
+      {/* UI Design & Visuals Section - Only for projects with uiDesign data */}
+      {project?.uiDesign && (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+                  <FaPalette className="w-8 h-8 text-blue-600" />
+                  {project.uiDesign.title}
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed mb-12">
+                  {project.uiDesign.description}
+                </p>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {project.uiDesign.images?.map((image: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -3309,6 +4129,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
+      )}
 
       {/* Social Travel Exploration - Only for local-experience-finder */}
       {isLocalExperienceFinder && (
@@ -3353,35 +4174,36 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </section>
       )}
 
-      {/* Development & Tech Stack Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 flex items-center gap-3">
-                <FaCode className="w-8 h-8 text-blue-600" />
-                {project.development.title}
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                {project.development.description}
-              </p>
-              <div className="flex flex-wrap gap-3 mb-12">
-                {project.development.techStack.map((tech: string, index: number) => (
-                  <span
-                    key={index}
-                    className="bg-white text-gray-900 px-4 py-2 rounded-lg shadow-sm font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="grid md:grid-cols-1 gap-6">
-                {project.development.images.map((image: string, index: number) => (
+      {/* Development & Tech Stack Section - Only for projects with development data */}
+      {project?.development && (
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+                  <FaCode className="w-8 h-8 text-blue-600" />
+                  {project.development.title}
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                  {project.development.description}
+                </p>
+                <div className="flex flex-wrap gap-3 mb-12">
+                  {project.development.techStack?.map((tech: string, index: number) => (
+                    <span
+                      key={index}
+                      className="bg-white text-gray-900 px-4 py-2 rounded-lg shadow-sm font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="grid md:grid-cols-1 gap-6">
+                  {project.development.images?.map((image: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -3404,21 +4226,23 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
+      )}
 
-      {/* External Links Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-wrap gap-4 justify-center"
-            >
-              {project.links.prototype !== '#' && (
-                <a
-                  href={project.links.prototype}
+      {/* External Links Section - Only for projects with links data */}
+      {project?.links && (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-wrap gap-4 justify-center"
+              >
+                {project.links.prototype !== '#' && (
+                  <a
+                    href={project.links.prototype}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
@@ -3450,7 +4274,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
-        </>
+      )}
+      </>
       )}
 
       {/* Back to Projects Link */}
