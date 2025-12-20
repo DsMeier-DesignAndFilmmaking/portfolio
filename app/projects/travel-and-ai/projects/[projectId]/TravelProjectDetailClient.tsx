@@ -128,7 +128,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
     return undefined;
   }, [isMobile]);
 
-    return (
+  return (
     <main className="min-h-screen bg-white text-gray-900">
       {!project ? (
         <div className="min-h-screen flex items-center justify-center">
