@@ -191,7 +191,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
   };
 
   return (
-    <main className="min-h-screen bg-white text-gray-900">
+    <>
+      <main className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
@@ -3504,7 +3505,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
 
