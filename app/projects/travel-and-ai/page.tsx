@@ -358,7 +358,7 @@ export default function AISandboxPage() {
                 title: "Trust & Authenticity",
                 description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
                 imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Travel-trust-chatGPT-image.png`,
-                link: "/projects/travel-and-ai/projects/cultural-context-engine"
+                link: "/projects/travel-and-ai/projects/trust-framework-ai-travel"
               },
               {
                 id: 3,
@@ -372,7 +372,7 @@ export default function AISandboxPage() {
                 title: "A Social Layer for Global Exploration",
                 description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
                 imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`,
-                link: "/projects/travel-and-ai/projects/local-experience-finder"
+                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               }
             ].map((project, index) => (
               <article 

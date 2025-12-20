@@ -75,9 +75,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
-  const isCulturalContextEngine = projectId === 'cultural-context-engine';
+  const isCulturalContextEngine = projectId === 'trust-framework-ai-travel';
   const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
-  const isLocalExperienceFinder = projectId === 'local-experience-finder';
+  const isLocalExperienceFinder = projectId === 'social-graph-driven-travel-network';
   const isOtherProject = false; // All projects now have full implementations
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
@@ -322,7 +322,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    Cultural Context Engine
+                    A Trust Framework for AI-Driven Travel Experiences
                   </h1>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Trust & Authenticity · AI · Systems Design
@@ -430,10 +430,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    Local Experience Finder
+                    A Social Graph–Driven Travel Network
                   </h1>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    Social Discovery · AI · Community Design
+                    Social Networks · AI · Systems Design
                   </p>
                   <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
                     <a
@@ -2862,7 +2862,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
                     <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Trust Through Transparency</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
-                      The Cultural Context Engine differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
+                      This trust framework differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
                     </p>
                   </div>
                 </div>
@@ -3079,7 +3079,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   >
                     <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                      An AI-powered cultural context engine that provides source verification, data provenance, and authenticity validation for every travel recommendation.
+                      A systems-design framework that provides source verification, data provenance, and authenticity validation for every AI-powered travel recommendation.
                     </p>
                     <p className="text-gray-600 leading-relaxed">
                       This system processes cultural context, source credibility, and data freshness through verification logic and provenance tracking to deliver trustworthy, verifiable travel recommendations with full transparency.
@@ -3178,7 +3178,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    System Overview: How the Cultural Context Engine Works
+                    System Overview: How the Trust Framework Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                     Architectural system for trust and authenticity verification
@@ -3512,7 +3512,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Cultural Context Engine Lineage</p>
+                      <p className="text-gray-400 text-sm mb-2">The Trust Framework Information Lineage</p>
                       <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
                         <div className="text-white font-mono text-sm md:text-base">
                           <div className="mb-2">R<sub>trust</sub> = V(S<sub>1</sub>, S<sub>2</sub>, ..., S<sub>n</sub>) × C<sub>fresh</sub> × A<sub>trans</sub></div>
@@ -3697,7 +3697,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
                   <p className="text-gray-700 leading-relaxed text-lg">
-                    The Cultural Context Engine provides source verification, data provenance tracking, and authenticity validation at the architectural level. Every recommendation includes clear attribution, freshness indicators, and verifiable source information, enabling travelers to make informed decisions with confidence.
+                    This trust framework provides source verification, data provenance tracking, and authenticity validation at the architectural level. Every recommendation includes clear attribution, freshness indicators, and verifiable source information, enabling travelers to make informed decisions with confidence.
                   </p>
                 </div>
               </motion.div>
@@ -5051,9 +5051,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Identity-Focused Discovery</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Social Graph–Driven Discovery</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
-                      The Local Experience Finder differentiates itself by providing identity-focused discovery with granular privacy controls. Rather than forcing public profiles or generic meetups, it enables travelers to connect based on shared interests, travel styles, and experiences while maintaining full control over what they share and who can discover them.
+                      This social graph–driven travel network differentiates itself by connecting travelers through network effects rather than listings. The system builds social graphs connecting people, places, trips, and intent—enabling travelers to discover travel through real people rather than static listings. Rather than forcing public profiles or generic meetups, it enables travelers to connect based on shared interests, travel styles, and experiences while maintaining full control over what they share and who can discover them.
                     </p>
                   </div>
                 </div>
@@ -5109,7 +5109,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      A system that provides <span className="font-semibold text-blue-700">identity-focused discovery with granular privacy controls</span>, enabling travelers to connect based on shared interests and experiences while maintaining full control over their information.
+                      A system that provides <span className="font-semibold text-blue-700">social graph–driven discovery through network effects</span>, enabling travelers to discover travel through real people and social connections rather than listings, while maintaining full control over their information and privacy.
                     </p>
                   </div>
                 </div>
@@ -5369,10 +5369,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    System Overview: How the Local Experience Finder Works
+                    System Overview: How the Social Graph–Driven Travel Network Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Architectural system for identity-focused discovery and privacy-controlled social connection
+                    Architectural system for social graph–driven discovery and network effects in travel
                   </p>
                 </div>
                 
@@ -5381,10 +5381,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Main Grid Layout */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
                     
-                    {/* Stage 1 - Identity Processing (Left) */}
+                    {/* Stage 1 - Social Graph Processing (Left) */}
                     <div className="space-y-8">
                       <h3 className="text-lg font-semibold text-indigo-400 text-center lg:text-left mb-6">
-                        Identity Processing
+                        Social Graph Processing
                       </h3>
                       
                       {/* Two Identity Clusters */}
@@ -5462,7 +5462,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       ))}
                     </div>
                     
-                    {/* Stage 2 - Privacy Layer (Center) */}
+                    {/* Stage 2 - Privacy Gateway (Center) */}
                     <div className="flex justify-center my-12 lg:my-0">
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -5601,10 +5601,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </motion.div>
                     </div>
                     
-                    {/* Stage 3 - Connection Matching (Right) */}
+                    {/* Stage 3 - Network Effects (Right) */}
                     <div className="space-y-6">
                       <h3 className="text-lg font-semibold text-emerald-400 text-center lg:text-right mb-6">
-                        Connection Matching
+                        Network Effects
                       </h3>
                       
                       {/* Match Notification */}
@@ -5707,14 +5707,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Local Experience Finder Privacy-Gated Matching</p>
+                      <p className="text-gray-400 text-sm mb-2">The Social Graph–Driven Travel Network: Privacy-Gated Network Effects</p>
                       <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
                         <div className="text-white font-mono text-sm md:text-base">
                           <div className="mb-2">M<sub>connection</sub> = I<sub>A</sub> ∩ I<sub>B</sub> × P<sub>A</sub> × P<sub>B</sub></div>
                           <div className="text-xs md:text-sm text-gray-400 space-y-1">
-                            <div>I<sub>A</sub>, I<sub>B</sub>: Identity clusters (interests, experiences, travel style)</div>
+                            <div>I<sub>A</sub>, I<sub>B</sub>: Social graph nodes (people, places, trips, intent)</div>
                             <div>P<sub>A</sub>, P<sub>B</sub>: Privacy gates (1 = opt-in, 0 = blocked)</div>
-                            <div>Match only occurs when: I<sub>A</sub> ∩ I<sub>B</sub> ≠ ∅ AND P<sub>A</sub> = P<sub>B</sub> = 1</div>
+                            <div>Network connection occurs when: I<sub>A</sub> ∩ I<sub>B</sub> ≠ ∅ AND P<sub>A</sub> = P<sub>B</sub> = 1</div>
                           </div>
                         </div>
                       </div>
@@ -5891,7 +5891,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
                   <p className="text-gray-700 leading-relaxed text-lg">
-                    The Local Experience Finder provides identity-focused discovery with granular privacy controls. The system processes travel identity, shared interests, and experiences to deliver meaningful connections while maintaining full user control over privacy, visibility, and interaction, enabling travelers to connect authentically while respecting their boundaries.
+                    This social graph–driven travel network provides network-based discovery through social graphs connecting people, places, trips, and intent. The system processes travel identity, shared interests, and experiences to deliver meaningful connections through network effects while maintaining full user control over privacy, visibility, and interaction, enabling travelers to discover travel through real people rather than listings.
                   </p>
                 </div>
               </motion.div>
@@ -6515,7 +6515,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Figma Travel App Design Screenshot - Full Width Background - Only for local-experience-finder */}
+          {/* Figma Travel App Design Screenshot - Full Width Background - Only for social-graph-driven-travel-network */}
           {isLocalExperienceFinder && (
             <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
               <div className="absolute inset-0 w-full h-full">
@@ -6533,7 +6533,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </section>
           )}
 
-          {/* Social Travel Exploration - Only for local-experience-finder */}
+          {/* Social Travel Exploration - Only for social-graph-driven-travel-network */}
           {isLocalExperienceFinder && (
             <section className="py-20 bg-black">
               <div className="container mx-auto px-6">
@@ -6627,7 +6627,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </div>
       </section>
 
-      {/* Figma Travel App Design Screenshot - Full Width Background - Only for local-experience-finder */}
+      {/* Figma Travel App Design Screenshot - Full Width Background - Only for social-graph-driven-travel-network */}
       {isLocalExperienceFinder && (
         <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
@@ -6837,7 +6837,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       </section>
       )}
 
-      {/* Social Travel Exploration - Only for local-experience-finder */}
+      {/* Social Travel Exploration - Only for social-graph-driven-travel-network */}
       {isLocalExperienceFinder && (
         <section className="py-20 bg-black">
           <div className="container mx-auto px-6">

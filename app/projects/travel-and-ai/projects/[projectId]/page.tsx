@@ -4,9 +4,9 @@ import TravelProjectDetailClient from './TravelProjectDetailClient';
 export function generateStaticParams() {
   return [
     { projectId: 'spontaneous-travel-companion' },
-    { projectId: 'cultural-context-engine' },
+    { projectId: 'trust-framework-ai-travel' },
     { projectId: 'travel-planning-assistant' },
-    { projectId: 'local-experience-finder' }
+    { projectId: 'social-graph-driven-travel-network' }
   ];
 }
 
