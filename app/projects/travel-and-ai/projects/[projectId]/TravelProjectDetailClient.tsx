@@ -60,19 +60,22 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
   const [isMobileVideoError, setIsMobileVideoError] = useState(false);
   const [showFallbackImage, setShowFallbackImage] = useState(false);
   
-  // Check if this is the spontaneous-travel-companion project
+  // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
+  const isCulturalContextEngine = projectId === 'cultural-context-engine';
+  const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
   const isLocalExperienceFinder = projectId === 'local-experience-finder';
+  const isOtherProject = isCulturalContextEngine || isTravelPlanningAssistant || isLocalExperienceFinder;
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
-    { id: 'design-exploration', label: 'Problems & Opportunities' },
+    { id: 'design-exploration', label: 'Observed Travel Frictions' },
     { id: 'research-audience', label: 'Audience & Research' },
     { id: 'designs-strategy', label: 'Concept & Strategy' },
     { id: 'wireframes-ui', label: 'Design Evolution' },
-    { id: 'prototyping-ai', label: 'Development & Build' },
+    { id: 'prototyping-ai', label: 'Build & Iteration' },
     { id: 'outcomes-launch', label: 'Launch & Testing' },
-    { id: 'learnings-next', label: 'Outcome & Learnings' }
+    { id: 'learnings-next', label: 'Learnings & Reflections' }
   ];
 
   useEffect(() => {
@@ -313,8 +316,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
               </div>
             </div>
           </div>
-        ) : (
-          /* Default Hero Layout for Other Projects */
+        ) : isOtherProject ? (
+          /* Hero Layout for Other Travel & AI Projects */
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -328,7 +331,26 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   {project?.title || "Project Title"}
                 </h1>
                 
-                {/* Subtitle */}
+                {/* Subtitle - Refined to state what, when, why */}
+                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  {project?.tagline || "Project description"}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        ) : (
+          /* Fallback Hero Layout */
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  {project?.title || "Project Title"}
+                </h1>
                 <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
                   {project?.tagline || "Project description"}
                 </p>
@@ -344,93 +366,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion ? (
         <>
-          {/* Problem / Motivation Section */}
-          <section className="py-24 md:py-32 bg-black">
-            <div className="container mx-auto px-6">
-              <div className="max-w-5xl mx-auto">
-                {/* Large Headline */}
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-16 md:mb-20 leading-tight text-center"
-                >
-                  Travel discovery is repetitive, commercialized, and lacks context-aware spontaneity.
-                </motion.h2>
-
-                {/* Supporting Points */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
-                >
-                  {/* Point 1 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    </div>
-                    <p className="text-lg md:text-xl font-semibold text-white">
-                      Over-optimized top-10 content
-                    </p>
-                  </div>
-
-                  {/* Point 2 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 15.536c-1.171 1.952-3.07 1.952-4.242 0-1.172-1.953-1.172-5.119 0-7.072 1.171-1.952 3.07-1.952 4.242 0M8 10.5h4m-4 3h4m9-1.5a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p className="text-lg md:text-xl font-semibold text-white">
-                      Fake or staged spontaneity
-                    </p>
-                  </div>
-
-                  {/* Point 3 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-lg md:text-xl font-semibold text-white">
-                      Lack of real-time situational context
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-
-          {/* Core Insight Section */}
-          <section className="py-16 md:py-24 bg-white">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="relative bg-gray-50 border-l-4 border-blue-500 p-8 md:p-12 rounded-lg shadow-sm"
-                >
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 leading-relaxed text-center">
-                    Authentic travel experiences emerge from{' '}
-                    <span className="text-blue-600 font-semibold">timing</span>,{' '}
-                    <span className="text-blue-600 font-semibold">proximity</span>, and{' '}
-                    <span className="text-blue-600 font-semibold">social context</span>
-                    {' '}— not static top-10 lists.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-
-          {/* Problem & Opportunity Section */}
+          {/* Observed Travel Frictions Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
               <motion.div
@@ -439,72 +375,16 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  {/* Background Card */}
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-md border border-blue-100 hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900">Background</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
-                      Some of my most memorable travel experiences have been <span className="font-semibold text-blue-700">unplanned, unfolding in the moment</span>. While plenty of apps cover booking and navigation, there's still a <span className="font-semibold text-blue-700">gap in intelligent, context-aware tools</span> that genuinely support spontaneous exploration.
-                    </p>
-                  </div>
-                  
-                  {/* Problem Statement Card */}
-                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-2xl shadow-md border border-amber-100 hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900">Problem Statement</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
-                      Today's travelers want <span className="font-semibold text-amber-700">freedom and authentic experiences</span>—but most apps cater to <span className="font-semibold text-amber-700">planners, not explorers</span>. Spontaneous travel often means rushed decisions, low-context options, and scattered tools, making the experience stressful and limiting.
-                    </p>
-                  </div>
-                  
-                  {/* Market Opportunity Card */}
-                  <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-8 rounded-2xl shadow-md border border-emerald-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900">Market Opportunity</h3>
-                    </div>
-                    <div className="space-y-4">
-                      <p className="text-gray-700 leading-relaxed">
-                        The mobile travel market continues to expand—yet <span className="font-semibold text-emerald-700">more than 80%</span> of leading travel apps focus on trip planning and reservations, not the in-destination experience.
-                      </p>
-                      <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-200">
-                        <div className="text-3xl font-bold text-emerald-600 mb-1">$250B</div>
-                        <div className="text-sm text-gray-600">Expected market value by 2028</div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Observed Travel Frictions
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Real user feedback reveals pattern-level insights about the gaps in current travel discovery tools
+                  </p>
                 </div>
                 
-                {/* Real Pain Points List */}
-                <div className="mt-20">
-                  <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold mb-4">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                      Real User Feedback
-                    </div>
-                    <h3 className="text-3xl font-bold mb-3 text-gray-900">Pain Points from Travelers</h3>
-                    <p className="text-gray-600">What travelers are actually saying</p>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     {/* Fake Spontaneity */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
                       <div className="absolute top-4 right-4">
@@ -615,7 +495,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </section>
 
-          {/* Why It Matters Section */}
+          {/* Why Spontaneity Is a Systems Problem Section */}
           <section className="py-16 md:py-20 bg-white">
             <div className="container mx-auto px-6">
               <motion.div
@@ -626,16 +506,12 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 className="max-w-5xl mx-auto"
               >
                 <div className="text-center mb-12">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Value Proposition
-                  </div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Why It Matters
+                    Why Spontaneity Is a Systems Problem
                   </h2>
-                  <p className="text-gray-600 text-lg">The impact extends beyond individual travelers</p>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The impact extends beyond individual travelers—it requires a systemic approach that balances traveler needs with community benefits
+                  </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
@@ -1141,7 +1017,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     Audience & Research
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Grounding the solution in real user insights and market research
+                    Grounding the solution in behavioral insights, constraints, and user context
                   </p>
                 </div>
                 
@@ -2080,7 +1956,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </section>
 
-          {/* Development & Build Section */}
+          {/* Build & Iteration Section */}
           <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
             <div className="container mx-auto px-6">
               <motion.div
@@ -2097,7 +1973,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     transition={{ duration: 0.6 }}
                   >
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-                      Development & Build
+                      Build & Iteration
                     </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
@@ -2375,7 +2251,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </div>
                 </motion.div>
 
-                {/* Mobile Build Iterations Section */}
+                {/* Mobile Build Iterations - Part of Build & Iteration */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2385,7 +2261,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-8">
                       <h3 className="text-2xl font-bold mb-3 text-white">
-                        Mobile Build Iterations
+                        Build Iterations
                       </h3>
                       <p className="text-gray-400 text-sm">
                         Rapid prototyping using ChatGPT, Cursor and Xcode
@@ -2637,8 +2513,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </section>
 
-          {/* Outcome & Learnings Section */}
-          <section id="learnings-next" className="py-20 bg-gray-100">
+          {/* Learnings & Reflections Section */}
+          <section id="learnings-next" className="py-20 bg-white">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -2648,58 +2524,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Outcome & Learnings
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    Coming Soon
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                  <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Metrics & Impact</h3>
-                    <p className="text-gray-600">TBD</p>
-                  </div>
-                  
-                  <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
-                    <p className="text-gray-600">TBD</p>
-                  </div>
-                </div>
-                
-                <div className="bg-white/90 p-8 rounded-xl shadow-lg border border-gray-200">
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">Road Map and Next Steps</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                      <h4 className="text-lg font-medium text-amber-600 mb-2">Phase 2</h4>
-                      <p className="text-gray-600">Advanced AI features and machine learning optimization</p>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium text-emerald-600 mb-2">Phase 3</h4>
-                      <p className="text-gray-600">Social platform expansion and community features</p>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium text-cyan-600 mb-2">Phase 4</h4>
-                      <p className="text-gray-600">Enterprise partnerships and B2B solutions</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Reflections & Next Steps Section */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Reflections & Next Steps
+                    Learnings & Reflections
                   </h2>
                 </div>
                 
@@ -2720,7 +2545,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     </div>
                   </div>
 
-                  {/* What Surprised You */}
+                  {/* What Surprised Me */}
                   <div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -2735,19 +2560,341 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       </p>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
 
-                  {/* Where It Could Evolve Next */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Where the Product Could Evolve Next</h3>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
-                      <p>
-                        Social context remains underexplored. The system currently processes individual behavior, but travel decisions are often made in groups or influenced by nearby travelers. Adding social signals—recognizing when others are making similar choices or identifying shared interests—could create more resonant suggestions without requiring explicit social networks.
+          {/* Where the Product Could Evolve Next Section */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Where the Product Could Evolve Next
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    Social context remains underexplored. The system currently processes individual behavior, but travel decisions are often made in groups or influenced by nearby travelers. Adding social signals—recognizing when others are making similar choices or identifying shared interests—could create more resonant suggestions without requiring explicit social networks.
+                  </p>
+                  <p>
+                    Long-term pattern recognition could shift the system from reactive to predictive. Instead of responding to immediate context, it could learn travel preferences over months or years, understanding that someone who visits markets in one city might enjoy similar experiences elsewhere. This moves beyond trip-specific context to lifetime travel behavior.
+                  </p>
+                  <p>
+                    Integration with physical spaces represents a significant opportunity. The system knows where you are, but doesn't yet understand the environment itself—a restaurant's current energy level, a venue's capacity, a trail's current conditions. Partnerships with location-based services could close this gap, creating a richer context layer that informs more accurate suggestions.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      ) : isOtherProject ? (
+        <>
+          {/* Section 1: Observed Travel Frictions */}
+          <section id="design-exploration" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Observed Travel Frictions
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Real-world breakdowns during travel, not planning
+                  </p>
+                </div>
+                
+                {/* Map research insights to friction patterns */}
+                <div className="space-y-6">
+                  {project?.research?.insights?.slice(0, 3).map((insight: string, index: number) => (
+                    <div key={index} className="bg-white p-6 rounded-xl border border-gray-200">
+                      <p className="text-gray-700 leading-relaxed">{insight}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 2: Why This Is a Systems Problem */}
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Why This Is a Systems Problem
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Why current tools fail structurally and why this cannot be solved with better UI alone
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                    {project?.research?.description || project?.overview?.description}
+                  </p>
+                  {isCulturalContextEngine && (
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      This trust crisis cannot be solved through UI improvements alone—it requires fundamental changes to how recommendation systems handle source verification, data provenance, and authenticity validation at the architectural level.
+                    </p>
+                  )}
+                  {isTravelPlanningAssistant && (
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      The fragmentation between planning and spontaneous exploration is a structural issue—it requires systems that can adapt in real-time to changing constraints and preferences, not just better interfaces for existing rigid planning tools.
+                    </p>
+                  )}
+                  {isLocalExperienceFinder && (
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      Building meaningful social connections in travel requires rethinking how travelers discover and connect with each other—moving beyond traditional social networks to create identity-focused discovery mechanisms that respect privacy while enabling authentic connection.
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 3: Audience & Research */}
+          <section id="research-audience" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Audience & Research
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Behavioral insights, constraints, and user context
+                  </p>
+                </div>
+                
+                {project?.research?.insights && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {project.research.insights.slice(0, 3).map((insight: string, index: number) => (
+                      <div key={index} className="bg-white/5 p-6 rounded-xl border border-white/10">
+                        <p className="text-gray-300 text-sm">{insight}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 4: Concept & Strategy */}
+          <section id="designs-strategy" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-black">
+                    Concept & Strategy
+                  </h2>
+                </div>
+                
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">Core Hypothesis</h3>
+                  <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                    {project?.overview?.description}
+                  </p>
+                  
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <h4 className="text-xl font-semibold mb-4 text-gray-900">Strategic Restraint</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      {project?.overview?.goals?.slice(0, 3).map((goal: string, index: number) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span>{goal}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 5: System Overview */}
+          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+            <div className="container mx-auto px-6 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    System Overview
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    How the system works at a conceptual level
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-8">
+                  <p className="text-gray-300 leading-relaxed">
+                    {project?.overview?.description}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 6: Design Evolution */}
+          <section id="wireframes-ui" className="py-20 bg-[#0a0a0a]">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Design Evolution
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    UX decisions as intent-driven outcomes, highlighting removals and simplifications
+                  </p>
+                </div>
+                
+                {project?.uxDesign && (
+                  <div className="mb-12">
+                    <p className="text-gray-300 leading-relaxed mb-8">{project.uxDesign.description}</p>
+                    {project.uxDesign.images && project.uxDesign.images.length > 0 && (
+                      <div className="grid md:grid-cols-3 gap-6">
+                        {project.uxDesign.images.slice(0, 3).map((image: string, index: number) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="group relative w-full h-64 rounded-lg overflow-hidden"
+                          >
+                            <Image
+                              src={normalizeImagePath(image)}
+                              alt={`Design evolution ${index + 1}`}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 30vw"
+                            />
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 7: Build & Iteration */}
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-20">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                    Build & Iteration
+                  </h2>
+                </div>
+                
+                {project?.development && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
+                      <h3 className="text-xl font-bold text-white mb-6">Tech Stack</h3>
+                      {project.development.techStack && (
+                        <ul className="space-y-3 text-gray-300">
+                          {project.development.techStack.map((tech: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-1">•</span>
+                              <span>{tech}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
+                      <h3 className="text-xl font-bold text-white mb-6">Development Approach</h3>
+                      <p className="text-gray-300 leading-relaxed">{project.development.description}</p>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 8: Core Technical Challenge → Solution */}
+          <section className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="bg-gradient-to-r from-amber-500/10 via-cyan-500/10 to-purple-500/10 p-8 md:p-10 rounded-2xl border border-amber-500/20 backdrop-blur-sm">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Challenge</h4>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">
+                        {isCulturalContextEngine && 'Establishing trust and authenticity in AI-powered travel recommendations requires systemic solutions beyond UI improvements.'}
+                        {isTravelPlanningAssistant && 'Balancing flexible planning with spontaneous exploration requires adaptive systems that respond to real-time constraints.'}
+                        {isLocalExperienceFinder && 'Creating meaningful social connections in travel requires balancing privacy, discovery, and authentic interaction.'}
                       </p>
-                      <p>
-                        Long-term pattern recognition could shift the system from reactive to predictive. Instead of responding to immediate context, it could learn travel preferences over months or years, understanding that someone who visits markets in one city might enjoy similar experiences elsewhere. This moves beyond trip-specific context to lifetime travel behavior.
-                      </p>
-                      <p>
-                        Integration with physical spaces represents a significant opportunity. The system knows where you are, but doesn't yet understand the environment itself—a restaurant's current energy level, a venue's capacity, a trail's current conditions. Partnerships with location-based services could close this gap, creating a richer context layer that informs more accurate suggestions.
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Solution</h4>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">
+                        {isCulturalContextEngine && 'Developing verification systems, source provenance tracking, and confidence scoring mechanisms that operate at the data layer.'}
+                        {isTravelPlanningAssistant && 'Building adaptive planning algorithms that maintain flexibility while providing structure when needed.'}
+                        {isLocalExperienceFinder && 'Designing opt-in social layers with granular privacy controls and identity-focused discovery mechanisms.'}
                       </p>
                     </div>
                   </div>
@@ -2755,6 +2902,199 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
               </motion.div>
             </div>
           </section>
+
+          {/* Section 9: Live Product Status / Demo */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Live Product Status
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    Current functionality and limitations
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        Current Status
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {isCulturalContextEngine && 'Early-stage R&D project exploring trust and authenticity mechanisms for travel AI systems.'}
+                        {isTravelPlanningAssistant && 'Development in progress—adaptive planning algorithms and flexible itinerary management.'}
+                        {isLocalExperienceFinder && 'Active development—social layer infrastructure and global traveler connection features.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 10: Launch & Validation Plan */}
+          <section id="outcomes-launch" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Launch & Validation Plan
+                  </h2>
+                </div>
+                
+                <div className="space-y-8">
+                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 className="text-xl font-semibold mb-4 text-white">Validation Strategy</h3>
+                    <p className="text-gray-300 mb-4">
+                      {isCulturalContextEngine && 'Early research validation through user perception studies and trust signal analysis. Prototype testing with real traveler data to validate authenticity verification mechanisms.'}
+                      {isTravelPlanningAssistant && 'Beta testing with flexible travel scenarios, measuring adaptability and user satisfaction with spontaneous planning support.'}
+                      {isLocalExperienceFinder && 'Community-driven validation through early adopter groups, measuring connection quality and social discovery effectiveness.'}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 11: Learnings & Reflections */}
+          <section id="learnings-next" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Learnings & Reflections
+                  </h2>
+                </div>
+                
+                <div className="space-y-12">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        {isCulturalContextEngine && 'Trust cannot be designed into a system after the fact—it must be architected from the ground up. Verification and provenance tracking require data-layer solutions, not just UI indicators.'}
+                        {isTravelPlanningAssistant && 'Flexible planning requires balancing structure with spontaneity. The challenge is providing enough guidance to reduce stress while maintaining freedom for unplanned exploration.'}
+                        {isLocalExperienceFinder && 'Social connections in travel require careful privacy design. Identity-focused discovery works better when travelers control what they share and who can discover them.'}
+                      </p>
+                      {project?.overview?.outcomes && (
+                        <ul className="space-y-2 mt-4">
+                          {project.overview.outcomes.slice(0, 3).map((outcome: string, index: number) => (
+                            <li key={index} className="flex items-start gap-3">
+                              <span className="text-blue-600 mt-1">•</span>
+                              <span>{outcome}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 12: Where This Could Evolve Next */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Where This Could Evolve Next
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    {isCulturalContextEngine && 'Expanding verification mechanisms to include real-time traveler verification, cross-platform trust signals, and community-driven authenticity validation. Long-term evolution could include blockchain-based provenance tracking and decentralized trust networks.'}
+                    {isTravelPlanningAssistant && 'Evolving toward predictive planning that learns from travel patterns, integrating real-time constraint detection, and expanding to group travel scenarios. Future iterations could include AI that anticipates needs before they arise.'}
+                    {isLocalExperienceFinder && 'Expanding social discovery to include real-time meetup facilitation, travel group formation, and long-term traveler network building. Evolution could move toward creating sustained global traveler communities beyond single trips.'}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Figma Travel App Design Screenshot - Full Width Background - Only for local-experience-finder */}
+          {isLocalExperienceFinder && (
+            <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
+                  alt="Figma Travel App Design Screenshot"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority={true}
+                  quality={90}
+                />
+              </div>
+              <div className="absolute inset-0 bg-black/40" />
+            </section>
+          )}
+
+          {/* Social Travel Exploration - Only for local-experience-finder */}
+          {isLocalExperienceFinder && (
+            <section className="py-20 bg-black">
+              <div className="container mx-auto px-6">
+                <div className="max-w-4xl mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-semibold mb-4 text-white">
+                        Social Travel Exploration
+                      </h3>
+                      <p className="text-gray-300 max-w-2xl mx-auto">
+                        An early design concept and prototype demo
+                      </p>
+                    </div>
+                    
+                    <div className="relative max-w-4xl mx-auto">
+                      <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                        <iframe
+                          title="vimeo-player"
+                          src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
+                          width="100%"
+                          height="100%"
+                          frameBorder="0"
+                          allow="autoplay; fullscreen"
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </section>
+          )}
         </>
       ) : (
         <>

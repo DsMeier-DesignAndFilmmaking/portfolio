@@ -439,47 +439,26 @@ export default function AISandboxPage() {
         </div>
       </section>
 
-      {/* Next Project Section */}
+      {/* View More Work Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <h2 className="text-base font-normal mb-12 text-center text-black">
-            View More Design Work
+          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
+            View More Work
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Next Project Card */}
-            <Link href="/projects/purdue" className="group">
-              <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/PU-Memorial-Mall-DJI.jpg`}
-                  alt="Purdue University Project"
-                  fill
-                  className="object-cover transition-transform duration-500 md:group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Purdue University</h3>
-                  <p className="text-gray-200 mb-4">A comprehensive redesign of Purdue University's digital presence, focusing on enhancing user experience and modernizing their brand identity.</p>
-                  <div className="inline-flex items-center font-medium text-white md:hover:text-gray-300 transition-colors">
-                    View Project
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Previous Project Card */}
+          <div className="flex justify-center">
             <Link href="/projects/previous" className="group">
-              <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
+              <div className="group relative w-full max-w-[600px] h-[480px] overflow-hidden rounded-xl">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/timbertech-card.jpg`}
-                  alt="TimberTech Project"
+                  alt="Client Work"
                   fill
-                  className="object-cover transition-transform duration-500 md:group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
                   <h3 className="text-2xl font-bold text-white mb-2">Client Work</h3>
                   <p className="text-gray-200 mb-4">View work samples from previous projects I have worked on.</p>
-                  <div className="inline-flex items-center font-medium text-white md:hover:text-gray-300 transition-colors">
+                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
                     View Projects
                   </div>
                 </div>
