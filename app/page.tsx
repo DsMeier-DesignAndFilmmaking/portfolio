@@ -213,7 +213,7 @@ export default function HomePage() {
         <div id="about" className="anchor-offset" aria-hidden="true"></div>
         
         {/* About Me Section */}
-        <section className="py-24 md:py-32 bg-white" aria-label="About Me">
+        <section className="pt-24 md:pt-32 pb-12 md:pb-16 bg-white" aria-label="About Me">
           <div className="max-w-4xl mx-auto px-6">
             <div className="w-full">
               {/* Heading */}

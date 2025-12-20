@@ -28,11 +28,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="https://dan-meier-portfolio.vercel.app/projects/purdue/" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Purdue University
-                </Link>
-              </li>
-              <li>
                 <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Travel & AI
                 </Link>

@@ -265,40 +265,37 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0"
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
-                  {/* Mobile: Stacked Vertically with constrained height */}
-                  {/* Tablet: Side-by-Side with constrained height */}
-                  {/* Desktop: Stacked Vertically with constrained height and slight overlap */}
-                  <div className="relative flex flex-col md:flex-row lg:flex-col gap-4 md:gap-4 lg:gap-4 items-center md:items-start lg:items-center lg:-space-y-8">
+                  {/* Mobile: Stacked Vertically, Centered */}
+                  {/* Tablet & Desktop: Side-by-Side with proper alignment */}
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
                     {/* First Hero Image */}
-                    <div className="relative w-full flex justify-center md:justify-start lg:justify-center z-10">
-                      <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[260px] lg:max-w-[280px] xl:max-w-[300px] h-[420px] sm:h-[460px] md:h-[440px] lg:h-[420px] xl:h-[440px] rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                    <div className="relative flex-shrink-0">
+                      <div className="relative w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[9/16] rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
                           alt="Micro Adventure Concept Graphic"
-                          width={800}
-                          height={1600}
-                          className="w-full h-full object-contain"
+                          fill
+                          className="object-contain"
                           priority
                           quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 300px"
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
                         />
                       </div>
                     </div>
 
-                    {/* Second Hero Image */}
-                    <div className="relative w-full flex justify-center md:justify-end lg:justify-center z-0 lg:translate-x-6">
-                      <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[260px] lg:max-w-[280px] xl:max-w-[300px] h-[420px] sm:h-[460px] md:h-[440px] lg:h-[420px] xl:h-[440px] rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                    {/* Second Hero Image - Slightly offset on desktop for visual interest */}
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                      <div className="relative w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[9/16] rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
                           alt="Micro Adventure Concept Graphic 2"
-                          width={800}
-                          height={1600}
-                          className="w-full h-full object-contain"
+                          fill
+                          className="object-contain"
                           priority
                           quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 300px"
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
                         />
                       </div>
                     </div>
@@ -433,23 +430,23 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Background</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Background</h3>
                     <p className="text-gray-600">
                       Some of my most memorable travel experiences have been unplanned, unfolding in the moment. While plenty of apps cover booking and navigation, there's still a gap in intelligent, context-aware tools that genuinely support spontaneous exploration.
                     </p>
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Problem Statement</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Problem Statement</h3>
                     <p className="text-gray-600">
                       Today's travelers want freedom and authentic experiences—but most apps cater to planners, not explorers. Spontaneous travel often means rushed decisions, low-context options, and scattered tools, making the experience stressful and limiting.
                     </p>
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Market Opportunity</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Market Opportunity</h3>
                     <p className="text-gray-600">
                       The mobile travel market continues to expand—expected to surpass $250B by 2028—yet more than 80% of leading travel apps focus on trip planning and reservations, not the in-destination experience.
                     </p>
@@ -819,81 +816,39 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </div>
                 </div>
                 
-                {/* Competitive Analysis - Reframed by Approach */}
-                <div className="mt-12 bg-white/5 p-6 md:p-8 rounded-xl backdrop-blur-sm border border-white/10">
+                {/* Market & Competitive Analysis */}
+                <div className="mt-12">
                   <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
                   
-                  {/* Comparison Grid */}
-                  <div className="overflow-x-auto -mx-2 px-2 md:mx-0 md:px-0">
-                    <div className="grid grid-cols-4 gap-3 md:gap-4" style={{ minWidth: 'max-content' }}>
-                      {/* Headers */}
-                      <div className="hidden md:block"></div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
-                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Approach</h4>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
-                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Key Gap</h4>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
-                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Examples</h4>
-                      </div>
-                      
-                      {/* Planning-first */}
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <h5 className="text-sm md:text-base font-medium text-white">Planning-first</h5>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">Requires pre-planning, structured itineraries</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-400">No spontaneity support</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">Wanderlog, TripIt</p>
-                      </div>
-                      
-                      {/* Inventory-first */}
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <h5 className="text-sm md:text-base font-medium text-white">Inventory-first</h5>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">Focus on booking availability and transactions</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-400">Rigid booking flow, limited context</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">Booking.com, Airbnb</p>
-                      </div>
-                      
-                      {/* Review-first */}
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <h5 className="text-sm md:text-base font-medium text-white">Review-first</h5>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">Relies on user-generated reviews and ratings</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-400">Overwhelming information, no real-time context</p>
-                      </div>
-                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
-                        <p className="text-xs md:text-sm text-gray-300">TripAdvisor, Yelp</p>
-                      </div>
-                      
-                      {/* Context-first - Spontaneity Engine */}
-                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
-                        <h5 className="text-sm md:text-base font-semibold text-white">Context-first</h5>
-                      </div>
-                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
-                        <p className="text-xs md:text-sm text-white font-medium">Responds to location, time, and behavior in real-time</p>
-                      </div>
-                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
-                        <p className="text-xs md:text-sm text-white font-medium">Enables spontaneous, human-centered exploration</p>
-                      </div>
-                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
-                        <p className="text-xs md:text-sm text-white font-medium">Spontaneity Engine</p>
-                      </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    {/* Competitor 1 */}
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Planning Tools</h4>
+                      <p className="text-gray-300 text-sm mb-4">Tools like Wanderlog and TripIt focus on structured itinerary planning, requiring users to plan ahead and maintain rigid schedules.</p>
+                      <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
                     </div>
+                    
+                    {/* Competitor 2 */}
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb excel at inventory management and transactions, but their interfaces prioritize availability over context and spontaneity.</p>
+                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
+                    </div>
+                    
+                    {/* Competitor 3 */}
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Review Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and Yelp rely heavily on user-generated reviews, creating information overload without real-time context or personalized recommendations.</p>
+                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
+                    </div>
+                  </div>
+                  
+                  {/* Our Approach */}
+                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
+                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Context-First</h4>
+                    <p className="text-gray-200 text-base leading-relaxed">
+                      The Spontaneity Engine differentiates itself by responding to real-world context—location, time, and behavior—in real-time. Rather than requiring pre-planning or overwhelming users with static reviews, it enables spontaneous, human-centered exploration through intelligent, context-aware suggestions.
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -2335,6 +2290,74 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     <div>
                       <h4 className="text-lg font-medium text-cyan-600 mb-2">Phase 4</h4>
                       <p className="text-gray-600">Enterprise partnerships and B2B solutions</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Reflections & Next Steps Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Reflections & Next Steps
+                  </h2>
+                </div>
+                
+                <div className="space-y-12">
+                  {/* Key Learnings */}
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        Building a context-aware system means constantly questioning when and how to surface information. The challenge isn't having enough data—it's knowing when to withhold it. Early prototypes showed that too many suggestions, even relevant ones, can feel like planning in disguise. The system needs restraint, only activating when context genuinely creates value.
+                      </p>
+                      <p>
+                        Offline-first architecture was non-negotiable for a travel product, but it exposed gaps in how AI recommendations should degrade gracefully. A suggestion that works with full connectivity shouldn't break without it. This forced a redesign of the recommendation engine to be modular, where core logic works independently of real-time data layers.
+                      </p>
+                      <p>
+                        Real-world context is messier than prototypes suggest. Location accuracy varies, time zones shift, and behavioral patterns aren't always consistent. The system needed multiple fallback strategies, not just one primary path. This complexity is invisible to users but essential for reliability.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* What Surprised You */}
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        The friction between spontaneity and decision-making emerged more clearly than expected. Users don't want unlimited choices—they want one good suggestion at the right moment. The system's success isn't about providing options, but about reducing cognitive load when someone is already in motion.
+                      </p>
+                      <p>
+                        Privacy concerns were more nuanced than anticipated. Users were comfortable sharing location and behavior data if the value exchange was clear and immediate. However, they became uncomfortable when the system seemed to know too much without explanation. Transparency in AI reasoning became a feature requirement, not just a design consideration.
+                      </p>
+                      <p>
+                        The technical challenge of real-time context processing revealed that most existing travel APIs aren't built for moment-to-moment decision support. They're optimized for pre-trip planning. Adapting these systems required building abstraction layers that translate booking-focused data into context-rich signals.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Where It Could Evolve Next */}
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Where the Product Could Evolve Next</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        Social context remains underexplored. The system currently processes individual behavior, but travel decisions are often made in groups or influenced by nearby travelers. Adding social signals—recognizing when others are making similar choices or identifying shared interests—could create more resonant suggestions without requiring explicit social networks.
+                      </p>
+                      <p>
+                        Long-term pattern recognition could shift the system from reactive to predictive. Instead of responding to immediate context, it could learn travel preferences over months or years, understanding that someone who visits markets in one city might enjoy similar experiences elsewhere. This moves beyond trip-specific context to lifetime travel behavior.
+                      </p>
+                      <p>
+                        Integration with physical spaces represents a significant opportunity. The system knows where you are, but doesn't yet understand the environment itself—a restaurant's current energy level, a venue's capacity, a trail's current conditions. Partnerships with location-based services could close this gap, creating a richer context layer that informs more accurate suggestions.
+                      </p>
                     </div>
                   </div>
                 </div>
