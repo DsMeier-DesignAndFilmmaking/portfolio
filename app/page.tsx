@@ -1,5 +1,6 @@
 'use client';
 import AnimatedHeading from '@/components/AnimatedHeading';
+import ProjectsSection from '@/components/ProjectsSection';
 import VideoProjectsSection from '@/components/VideoProjectsSection';
 import PhotographyGridSection from '@/components/PhotographyGridSection';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -371,6 +372,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Projects Section */}
+        <ProjectsSection />
 
         {/* Video Projects Section */}
         <VideoProjectsSection />
