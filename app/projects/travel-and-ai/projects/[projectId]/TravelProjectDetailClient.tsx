@@ -128,24 +128,24 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
     return undefined;
   }, [isMobile]);
 
-  return (
+    return (
     <main className="min-h-screen bg-white text-gray-900">
       {!project ? (
         <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-            <Link href="/projects/travel-and-ai" className="text-blue-600 hover:text-blue-700">
-              Back to Travel & AI Projects
-            </Link>
-          </div>
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+          <Link href="/projects/travel-and-ai" className="text-blue-600 hover:text-blue-700">
+            Back to Travel & AI Projects
+          </Link>
+        </div>
         </div>
       ) : (
         <>
-          <AnimatePresence>
-            {isTransitioning && <PageTransitionOverlay />}
-          </AnimatePresence>
+      <AnimatePresence>
+        {isTransitioning && <PageTransitionOverlay />}
+      </AnimatePresence>
 
-          {/* Navigation */}
+      {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -353,22 +353,22 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             <span>Reddit, r/travel</span>
                           </div>
                         </div>
-                  </div>
-                </div>
+                      </div>
+                    </div>
 
                     {/* Tourist Echo Chambers */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
                       <div className="absolute top-4 right-4">
                         <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                  </div>
+                      </div>
                       <div className="flex items-center gap-3 mb-6">
                         <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                           <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                           </svg>
-                </div>
+                        </div>
                         <h4 className="text-xl font-bold text-gray-900">Tourist Echo Chambers</h4>
-            </div>
+                      </div>
                       <div className="space-y-5">
                         <div className="relative pl-4 border-l-2 border-orange-200">
                           <p className="text-gray-700 italic mb-3 leading-relaxed">"I was hoping to meet locals or go off the beaten path, but it was just the <span className="font-semibold text-orange-700">same backpacker scene recycled across countries</span>."</p>
@@ -377,7 +377,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                             </svg>
                             <span>Reddit, r/backpacking</span>
-          </div>
+                          </div>
                         </div>
                         <div className="relative pl-4 border-l-2 border-orange-200">
                           <p className="text-gray-700 italic mb-3 leading-relaxed">"Met great people, but we all ended up doing the <span className="font-semibold text-orange-700">same top 5 things from TripAdvisor</span>. No real cultural immersion."</p>
@@ -3429,20 +3429,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </div>
       </section>
 
-          {/* Back to Projects Link */}
-          <section className="py-12 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <Link
-                  href="/projects/travel-and-ai"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
-                >
-                  <FaArrowLeft className="w-4 h-4" />
-                  Back to Travel & AI Projects
-                </Link>
-              </div>
-            </div>
-          </section>
+      {/* Back to Projects Link */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <Link
+              href="/projects/travel-and-ai"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
+            >
+              <FaArrowLeft className="w-4 h-4" />
+              Back to Travel & AI Projects
+            </Link>
+          </div>
+        </div>
+      </section>
         </>
       )}
     </main>
