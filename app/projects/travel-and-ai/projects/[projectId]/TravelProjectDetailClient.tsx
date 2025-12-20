@@ -433,73 +433,172 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 className="max-w-4xl mx-auto"
               >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-lg font-bold mb-4 text-gray-900">Background</h3>
-                    <p className="text-gray-600">
-                      Some of my most memorable travel experiences have been unplanned, unfolding in the moment. While plenty of apps cover booking and navigation, there's still a gap in intelligent, context-aware tools that genuinely support spontaneous exploration.
+                  {/* Background Card */}
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-md border border-blue-100 hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900">Background</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Some of my most memorable travel experiences have been <span className="font-semibold text-blue-700">unplanned, unfolding in the moment</span>. While plenty of apps cover booking and navigation, there's still a <span className="font-semibold text-blue-700">gap in intelligent, context-aware tools</span> that genuinely support spontaneous exploration.
                     </p>
                   </div>
                   
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-lg font-bold mb-4 text-gray-900">Problem Statement</h3>
-                    <p className="text-gray-600">
-                      Today's travelers want freedom and authentic experiences—but most apps cater to planners, not explorers. Spontaneous travel often means rushed decisions, low-context options, and scattered tools, making the experience stressful and limiting.
+                  {/* Problem Statement Card */}
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-2xl shadow-md border border-amber-100 hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900">Problem Statement</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Today's travelers want <span className="font-semibold text-amber-700">freedom and authentic experiences</span>—but most apps cater to <span className="font-semibold text-amber-700">planners, not explorers</span>. Spontaneous travel often means rushed decisions, low-context options, and scattered tools, making the experience stressful and limiting.
                     </p>
                   </div>
                   
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-lg font-bold mb-4 text-gray-900">Market Opportunity</h3>
-                    <p className="text-gray-600">
-                      The mobile travel market continues to expand—expected to surpass $250B by 2028—yet more than 80% of leading travel apps focus on trip planning and reservations, not the in-destination experience.
-                    </p>
+                  {/* Market Opportunity Card */}
+                  <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-8 rounded-2xl shadow-md border border-emerald-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900">Market Opportunity</h3>
+                    </div>
+                    <div className="space-y-4">
+                      <p className="text-gray-700 leading-relaxed">
+                        The mobile travel market continues to expand—yet <span className="font-semibold text-emerald-700">more than 80%</span> of leading travel apps focus on trip planning and reservations, not the in-destination experience.
+                      </p>
+                      <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-200">
+                        <div className="text-3xl font-bold text-emerald-600 mb-1">$250B</div>
+                        <div className="text-sm text-gray-600">Expected market value by 2028</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
                 {/* Real Pain Points List */}
-                <div className="mt-16">
-                  <h3 className="text-2xl font-semibold mb-10 md:mb-12 text-center text-gray-900">Real Pain Points from Travelers</h3>
+                <div className="mt-20">
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold mb-4">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                      Real User Feedback
+                    </div>
+                    <h3 className="text-3xl font-bold mb-3 text-gray-900">Pain Points from Travelers</h3>
+                    <p className="text-gray-600">What travelers are actually saying</p>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     {/* Fake Spontaneity */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-bold mb-4 text-gray-900">Fake Spontaneity</h4>
-                      <div className="space-y-4 text-gray-600">
-                        <div>
-                          <p className="italic mb-2">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically staged photo-ops for Instagram."</p>
-                          <p className="text-sm text-gray-500">— Reddit, r/solotravel</p>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
+                      <div className="absolute top-4 right-4">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                      </div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          </svg>
                         </div>
-                        <div>
-                          <p className="italic mb-2">"I joined a 'spontaneous' pub crawl that turned out to be a weekly commercial thing. It felt forced and salesy."</p>
-                          <p className="text-sm text-gray-500">— Reddit, r/travel</p>
+                        <h4 className="text-xl font-bold text-gray-900">Fake Spontaneity</h4>
+                      </div>
+                      <div className="space-y-5">
+                        <div className="relative pl-4 border-l-2 border-red-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically <span className="font-semibold text-red-700">staged photo-ops for Instagram</span>."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                            </svg>
+                            <span>Reddit, r/solotravel</span>
+                          </div>
+                        </div>
+                        <div className="relative pl-4 border-l-2 border-red-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I joined a 'spontaneous' pub crawl that turned out to be a <span className="font-semibold text-red-700">weekly commercial thing</span>. It felt forced and salesy."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                            </svg>
+                            <span>Reddit, r/travel</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                     
                     {/* Tourist Echo Chambers */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-bold mb-4 text-gray-900">Tourist Echo Chambers</h4>
-                      <div className="space-y-4 text-gray-600">
-                        <div>
-                          <p className="italic mb-2">"I was hoping to meet locals or go off the beaten path, but it was just the same backpacker scene recycled across countries."</p>
-                          <p className="text-sm text-gray-500">— Reddit, r/backpacking</p>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
+                      <div className="absolute top-4 right-4">
+                        <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                      </div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
                         </div>
-                        <div>
-                          <p className="italic mb-2">"Met great people, but we all ended up doing the same top 5 things from TripAdvisor. No real cultural immersion."</p>
-                          <p className="text-sm text-gray-500">— Blog Comment on Nomadic Matt</p>
+                        <h4 className="text-xl font-bold text-gray-900">Tourist Echo Chambers</h4>
+                      </div>
+                      <div className="space-y-5">
+                        <div className="relative pl-4 border-l-2 border-orange-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I was hoping to meet locals or go off the beaten path, but it was just the <span className="font-semibold text-orange-700">same backpacker scene recycled across countries</span>."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                            </svg>
+                            <span>Reddit, r/backpacking</span>
+                          </div>
+                        </div>
+                        <div className="relative pl-4 border-l-2 border-orange-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Met great people, but we all ended up doing the <span className="font-semibold text-orange-700">same top 5 things from TripAdvisor</span>. No real cultural immersion."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                            </svg>
+                            <span>Blog Comment on Nomadic Matt</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                     
                     {/* Last-Minute Friction */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-bold mb-4 text-gray-900">Last-Minute Friction</h4>
-                      <div className="space-y-4 text-gray-600">
-                        <div>
-                          <p className="italic mb-2">"Tried being spontaneous with my itinerary, but trains were booked, hostels full, and tours sold out."</p>
-                          <p className="text-sm text-gray-500">— Reddit, r/onebag</p>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                      <div className="absolute top-4 right-4">
+                        <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                      </div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                         </div>
-                        <div>
-                          <p className="italic mb-2">"I just want a quick, honest suggestion of where to eat or hang out nearby without scrolling through 400 generic reviews."</p>
-                          <p className="text-sm text-gray-500">— Reddit, r/travelhacks</p>
+                        <h4 className="text-xl font-bold text-gray-900">Last-Minute Friction</h4>
+                      </div>
+                      <div className="space-y-5">
+                        <div className="relative pl-4 border-l-2 border-purple-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Tried being spontaneous with my itinerary, but <span className="font-semibold text-purple-700">trains were booked, hostels full, and tours sold out</span>."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                            </svg>
+                            <span>Reddit, r/onebag</span>
+                          </div>
+                        </div>
+                        <div className="relative pl-4 border-l-2 border-purple-200">
+                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I just want a quick, honest suggestion of where to eat or hang out nearby without <span className="font-semibold text-purple-700">scrolling through 400 generic reviews</span>."</p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                            </svg>
+                            <span>Reddit, r/travelhacks</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -519,28 +618,51 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 transition={{ duration: 0.6 }}
                 className="max-w-5xl mx-auto"
               >
-                <h2 className="text-2xl md:text-3xl font-semibold mb-10 md:mb-12 text-gray-900 text-center">
-                  Why It Matters
-                </h2>
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Value Proposition
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Why It Matters
+                  </h2>
+                  <p className="text-gray-600 text-lg">The impact extends beyond individual travelers</p>
+                </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   {/* Impact for Travelers */}
-                  <div>
-                    <h3 className="text-lg font-medium mb-4 text-gray-900">
-                      Impact for Travelers
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Spontaneous travel leads to deeper connections with places and people. It reduces the pressure of rigid planning and opens space for unexpected moments that become the most memorable parts of a journey.
+                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Travelers
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Spontaneous travel leads to <span className="font-semibold text-cyan-700">deeper connections with places and people</span>. It reduces the pressure of rigid planning and opens space for <span className="font-semibold text-cyan-700">unexpected moments that become the most memorable parts of a journey</span>.
                     </p>
                   </div>
                   
                   {/* Impact for Local Communities */}
-                  <div>
-                    <h3 className="text-lg font-medium mb-4 text-gray-900">
-                      Impact for Local Communities
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      When travelers explore beyond predictable routes, local businesses and communities benefit. Tourism becomes more distributed, creating opportunities for authentic cultural exchange and economic growth.
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Local Communities
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      When travelers explore beyond predictable routes, local businesses and communities benefit. Tourism becomes more distributed, creating opportunities for <span className="font-semibold text-emerald-700">authentic cultural exchange and economic growth</span>.
                     </p>
                   </div>
                 </div>
@@ -2255,8 +2377,9 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   {/* Demo Link */}
                   <div className="mb-8 text-center">
                     <a
-                      href="#prototyping-ai"
-                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                      href="https://spontaneity-engine.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 min-h-[48px] text-center"
                       aria-label="View Live Demo"
                     >
