@@ -65,7 +65,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const isCulturalContextEngine = projectId === 'cultural-context-engine';
   const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
   const isLocalExperienceFinder = projectId === 'local-experience-finder';
-  const isOtherProject = isTravelPlanningAssistant || isLocalExperienceFinder;
+  const isOtherProject = false; // All projects now have full implementations
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
@@ -352,7 +352,115 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isOtherProject)) && (
+        {isTravelPlanningAssistant && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                    Travel Planning Assistant
+                  </h1>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Adaptive Planning · AI · Systems Design
+                  </p>
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
+                    <p className="text-gray-600 text-center">
+                      Visual representation coming soon
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isLocalExperienceFinder && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                    Local Experience Finder
+                  </h1>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Social Discovery · AI · Community Design
+                  </p>
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
+                    <p className="text-gray-600 text-center">
+                      Visual representation coming soon
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isOtherProject)) && (
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -3360,6 +3468,1524 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                   <p>
                     Integration with verification standards represents a significant opportunity. The travel industry lacks universal standards for source attribution and data freshness. Establishing or adopting verification standards could create a foundation for trust that extends beyond this single system, benefiting the entire travel ecosystem.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
+      {isTravelPlanningAssistant && (
+        <>
+          {/* Audience & Research Section */}
+          <section id="research-audience" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Audience & Research
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Understanding the fragmentation between planning and spontaneous exploration
+                  </p>
+                </div>
+                
+                {/* Key Statistics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
+                    <div className="text-3xl font-bold text-amber-400 mb-2">71%</div>
+                    <div className="text-gray-300 text-sm">of travelers struggle with balancing structured planning and spontaneous exploration</div>
+                    <div className="text-gray-500 text-xs mt-2">— Travel Planning Behavior Study 2024</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
+                    <div className="text-3xl font-bold text-cyan-400 mb-2">64%</div>
+                    <div className="text-gray-300 text-sm">feel overwhelmed by fragmented planning tools that don't work together</div>
+                    <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
+                    <div className="text-3xl font-bold text-emerald-400 mb-2">58%</div>
+                    <div className="text-gray-300 text-sm">want planning tools that adapt to real-time changes and constraints</div>
+                    <div className="text-gray-500 text-xs mt-2">— Travel Technology Research</div>
+                  </div>
+                </div>
+                
+                {/* Market & Competitive Analysis */}
+                <div className="mt-12">
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Rigid Planning Tools</h4>
+                      <p className="text-gray-300 text-sm mb-4">Tools like Wanderlog and TripIt require extensive pre-planning and don't adapt well to spontaneous changes or real-time constraints.</p>
+                      <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Spontaneous Discovery Apps</h4>
+                      <p className="text-gray-300 text-sm mb-4">Apps like Spontaneity focus on real-time discovery but lack the structure needed for complex trip planning and logistics management.</p>
+                      <div className="text-xs text-gray-400">Examples: Spontaneity, Foursquare, Google Maps</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb excel at transactions but don't provide integrated planning that bridges pre-trip organization with on-the-ground flexibility.</p>
+                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
+                    </div>
+                  </div>
+                  
+                  {/* Our Approach */}
+                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
+                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Adaptive Planning</h4>
+                    <p className="text-gray-200 text-base leading-relaxed">
+                      The Travel Planning Assistant differentiates itself by providing adaptive planning that balances structure with spontaneity. Rather than forcing rigid itineraries or pure discovery, it enables flexible planning that adapts to real-time constraints, preferences, and opportunities.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Challenge Section */}
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    The Challenge: Fragmentation Between Planning and Spontaneity
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Current travel tools force travelers to choose between rigid planning and pure spontaneity, creating a fundamental disconnect
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Problem
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Travel planning tools require extensive pre-planning and don't adapt to real-time changes, while spontaneous discovery apps lack the structure needed for complex trips. This creates a <span className="font-semibold text-red-700">fragmentation that forces travelers to switch between disconnected tools</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Solution
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      A system that provides <span className="font-semibold text-blue-700">adaptive planning algorithms that maintain flexibility while providing structure when needed</span>, enabling travelers to plan and explore seamlessly.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Observed Travel Frictions Section */}
+          <section id="design-exploration" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Observed Travel Frictions
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Real user feedback reveals pattern-level insights about the gaps between planning and spontaneous exploration
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* Tool Fragmentation */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Tool Fragmentation</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I use TripIt for flights, Google Sheets for itinerary, Booking.com for hotels, and Google Maps for discovery. <span className="font-semibold text-red-700">Nothing talks to each other</span>."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Planning a trip means juggling <span className="font-semibold text-red-700">five different apps that don't sync</span>. There has to be a better way."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Twitter, Travel Community</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Rigid Planning Constraints */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Rigid Planning Constraints</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I planned everything in advance, but when I got there, <span className="font-semibold text-orange-700">the weather changed and half my plans were useless</span>. The app didn't help me adapt."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/solotravel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"My itinerary was set in stone, but I wanted to <span className="font-semibold text-orange-700">extend my stay somewhere</span>. Reorganizing everything was a nightmare."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                          <span>Blog Comment on Nomadic Matt</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Lack of Real-Time Adaptation */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Lack of Real-Time Adaptation</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I need a tool that <span className="font-semibold text-purple-700">adapts when trains are delayed or attractions are closed</span>, not one that just shows me a static plan."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travelhacks</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Planning tools assume everything goes according to plan. <span className="font-semibold text-purple-700">Real travel is messy and needs flexibility</span>."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/onebag</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Concept & Strategy Section */}
+          <section id="designs-strategy" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-black">
+                    Concept & Strategy
+                  </h2>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Unique Value Proposition */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
+                  >
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      An AI-powered travel planning assistant that adapts to real-time constraints and preferences, balancing structure with spontaneity.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      This system processes travel constraints, preferences, and real-time context through adaptive algorithms to deliver flexible planning that maintains structure when needed while enabling spontaneous exploration.
+                    </p>
+                  </motion.div>
+
+                  {/* Core Philosophy */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
+                  >
+                    <motion.button
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
+                      onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
+                      aria-expanded={activeAccordion === 'philosophy'}
+                      aria-controls="philosophy-content"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Adaptive Planning Mean In Travel?</h3>
+                      <motion.div
+                        animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-500"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </motion.div>
+                    </motion.button>
+                    <AnimatePresence>
+                      {activeAccordion === 'philosophy' && (
+                        <motion.div
+                          id="philosophy-content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-6">
+                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                              Adaptive planning doesn't mean no planning—it means planning that flexes with reality, providing structure when needed and freedom when desired.
+                            </p>
+                            <div className="space-y-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Flexible structure</h5>
+                                  <p className="text-gray-700">Provide enough planning to reduce stress without locking travelers into rigid schedules.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Real-time adaptation</h5>
+                                  <p className="text-gray-700">Adjust plans automatically when constraints change—delays, closures, weather, preferences.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Unified experience</h5>
+                                  <p className="text-gray-700">Consolidate planning, booking, and discovery into a single adaptive system.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Context-aware suggestions</h5>
+                                  <p className="text-gray-700">Provide recommendations that adapt to current location, time, weather, and preferences.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Overview Section */}
+          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+            
+            <div className="container mx-auto px-6 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    System Overview: How the Travel Planning Assistant Works
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Architectural system for adaptive planning and real-time constraint management
+                  </p>
+                </div>
+                
+                {/* Simplified System Diagram */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Constraint Detection</h3>
+                    <p className="text-gray-300 text-sm">Monitors real-time constraints including delays, closures, weather, and availability</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Adaptive Algorithms</h3>
+                    <p className="text-gray-300 text-sm">Processes constraints and preferences to generate flexible plan adjustments</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Unified Planning</h3>
+                    <p className="text-gray-300 text-sm">Delivers integrated planning that bridges pre-trip organization with on-the-ground flexibility</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Value Proposition Section */}
+          <section className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Why Adaptive Planning Matters
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The impact extends beyond individual travelers—it requires systemic solutions that balance structure with flexibility
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Travelers
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Adaptive planning leads to <span className="font-semibold text-cyan-700">reduced stress and increased confidence</span> in travel decisions. Travelers can plan with structure while maintaining the <span className="font-semibold text-cyan-700">freedom to explore spontaneously</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for the Industry
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      When planning tools adapt to real-time constraints, the entire travel ecosystem becomes more resilient. <span className="font-semibold text-emerald-700">Travelers make better decisions</span>, businesses optimize operations, and the industry becomes more responsive to changing conditions.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Design Evolution Section */}
+          <section id="wireframes-ui" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Design Evolution
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Designing for adaptability and flexibility—prioritizing real-time constraint management and adaptive planning in the user experience.
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Design iterations and wireframes will be added as the project evolves.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Development & Build Section */}
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-20">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                      Development & Build
+                    </h2>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <p className="text-amber-300 text-sm font-medium">
+                        Work In Progress
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Development workflow and technical architecture details will be documented as the system is built.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Mobile Build Iterations Section */}
+          <section className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-white">
+                    Mobile Build Iterations
+                  </h2>
+                  <p className="text-gray-400 text-sm">
+                    Mobile app development and iteration process
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Mobile build screenshots and iterations will be added as development progresses.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Solution Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Solution
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    A comprehensive system for adaptive planning that bridges structure with spontaneity
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    The Travel Planning Assistant provides adaptive planning algorithms that maintain flexibility while providing structure when needed. The system processes real-time constraints, preferences, and context to deliver unified planning that adapts to changing conditions, enabling travelers to plan and explore seamlessly.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Launch & Testing Section */}
+          <section id="outcomes-launch" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Launch & Testing
+                  </h2>
+                </div>
+                
+                <div className="space-y-8">
+                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
+                    <p className="text-gray-300 mb-4">
+                      Will start with a closed beta focusing on adaptive planning accuracy and user satisfaction with flexible itinerary management, followed by gradual rollout based on constraint detection system performance.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Beta Testing</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Adaptive Algorithms</span>
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Constraint Detection</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Live Demo Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Live Demo
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    This product is actively being built and deployed
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+                  <div className="mb-8 text-center">
+                    <p className="text-gray-600 mb-4">
+                      A live demo will be available once the adaptive planning system is fully implemented.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        What Currently Works
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        System architecture and adaptive planning framework are being developed. Core components for constraint detection and flexible itinerary management are in progress.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                        What is Experimental
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Adaptive planning algorithms, real-time constraint detection, and flexible itinerary adjustment logic are in active development and testing.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        What is Planned Next
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Expanded constraint detection, advanced adaptive algorithms, and user-facing flexibility features. Timeline depends on adaptive system validation and user feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Outcome & Learnings Section */}
+          <section id="learnings-next" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Outcome & Learnings
+                  </h2>
+                </div>
+                
+                <div className="space-y-12">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        Building an adaptive planning system means constantly questioning when to provide structure versus when to enable freedom. The challenge isn't having enough planning features—it's knowing when to step back and let travelers explore. Early prototypes showed that too much structure can feel restrictive, while too little can feel chaotic. The system needs to find the right balance for each traveler and situation.
+                      </p>
+                      <p>
+                        Real-time constraint detection requires architectural decisions that happen at the data layer. The system needs to monitor multiple constraint sources—delays, closures, weather, availability—and process them in real-time to generate adaptive suggestions. This means building constraint detection into the core architecture, not adding it as an afterthought.
+                      </p>
+                      <p>
+                        Flexible planning is more complex than simply allowing edits. A plan can be technically editable but still feel rigid if the adaptation process is cumbersome. The system needs to make adaptation feel natural and effortless, automatically suggesting alternatives when constraints change.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        The depth of user frustration with tool fragmentation was more pronounced than expected. Users don't just want better planning tools—they want tools that work together seamlessly. This requires building integration capabilities from the ground up, not just improving individual features.
+                      </p>
+                      <p>
+                        The technical challenge of real-time constraint processing revealed that most existing travel APIs aren't built for adaptive planning. They're optimized for static booking and search, not dynamic constraint monitoring. Adapting these systems required building abstraction layers that translate booking-focused data into constraint-rich signals.
+                      </p>
+                      <p>
+                        User preferences around planning flexibility emerged as highly individual. Some travelers want minimal structure, others want detailed plans that adapt. The system needed to learn and adapt to individual preferences, not assume a one-size-fits-all approach.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Reflections & Next Steps Section */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Reflections & Next Steps
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    Predictive constraint detection remains underexplored. The system currently processes constraints reactively, but travel planning could benefit from predictive models that anticipate delays, closures, or availability issues before they occur. This moves beyond adaptive planning to predictive planning.
+                  </p>
+                  <p>
+                    Group travel adaptation could shift the system from individual to collaborative. Instead of processing constraints for a single traveler, the system could adapt plans for groups, balancing individual preferences with group dynamics and shared constraints. This moves beyond solo travel planning to group travel coordination.
+                  </p>
+                  <p>
+                    Integration with booking platforms represents a significant opportunity. The system knows about constraints and preferences, but doesn't yet integrate deeply with booking systems to automatically adjust reservations. Partnerships with booking platforms could close this gap, creating a more seamless adaptive planning experience.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
+      {isLocalExperienceFinder && (
+        <>
+          {/* Audience & Research Section */}
+          <section id="research-audience" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Audience & Research
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Understanding the need for meaningful social connections in travel
+                  </p>
+                </div>
+                
+                {/* Key Statistics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
+                    <div className="text-3xl font-bold text-amber-400 mb-2">69%</div>
+                    <div className="text-gray-300 text-sm">of solo travelers want to meet like-minded people but struggle to find authentic connections</div>
+                    <div className="text-gray-500 text-xs mt-2">— Solo Travel Social Connection Study 2024</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
+                    <div className="text-3xl font-bold text-cyan-400 mb-2">54%</div>
+                    <div className="text-gray-300 text-sm">feel that traditional social networks don't facilitate meaningful travel connections</div>
+                    <div className="text-gray-500 text-xs mt-2">— Travel Social Behavior Research</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
+                    <div className="text-3xl font-bold text-emerald-400 mb-2">62%</div>
+                    <div className="text-gray-300 text-sm">want privacy controls when sharing travel experiences and connecting with others</div>
+                    <div className="text-gray-500 text-xs mt-2">— Privacy & Travel Social Survey</div>
+                  </div>
+                </div>
+                
+                {/* Market & Competitive Analysis */}
+                <div className="mt-12">
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Social Travel Apps</h4>
+                      <p className="text-gray-300 text-sm mb-4">Apps like Couchsurfing and Meetup focus on meetups but lack identity-focused discovery and granular privacy controls that travelers need.</p>
+                      <div className="text-xs text-gray-400">Examples: Couchsurfing, Meetup, Travel Buddies</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">General Social Networks</h4>
+                      <p className="text-gray-300 text-sm mb-4">Facebook and Instagram enable connection but aren't designed for travel-specific discovery or privacy-focused social interaction.</p>
+                      <div className="text-xs text-gray-400">Examples: Facebook Groups, Instagram, Twitter</div>
+                    </div>
+                    
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h4 className="text-lg font-bold text-white mb-4">Travel Review Platforms</h4>
+                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and similar platforms enable reviews but don't facilitate real-time connection or identity-based discovery between travelers.</p>
+                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
+                    </div>
+                  </div>
+                  
+                  {/* Our Approach */}
+                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
+                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Identity-Focused Discovery</h4>
+                    <p className="text-gray-200 text-base leading-relaxed">
+                      The Local Experience Finder differentiates itself by providing identity-focused discovery with granular privacy controls. Rather than forcing public profiles or generic meetups, it enables travelers to connect based on shared interests, travel styles, and experiences while maintaining full control over what they share and who can discover them.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Challenge Section */}
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    The Challenge: Social Connection in Travel
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Current social platforms don't facilitate meaningful travel connections while respecting privacy and enabling authentic discovery
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Problem
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Travelers want to connect with like-minded people but struggle to find authentic connections. Traditional social networks lack <span className="font-semibold text-red-700">travel-specific discovery mechanisms and privacy controls</span>, while travel-focused apps don't facilitate meaningful social interaction.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        The Solution
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      A system that provides <span className="font-semibold text-blue-700">identity-focused discovery with granular privacy controls</span>, enabling travelers to connect based on shared interests and experiences while maintaining full control over their information.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Observed Travel Frictions Section */}
+          <section id="design-exploration" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Observed Travel Frictions
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Real user feedback reveals pattern-level insights about the gaps in social connection for travelers
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* Lack of Authentic Connections */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Lack of Authentic Connections</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to meet people who share my travel style, but <span className="font-semibold text-red-700">most apps are just for hookups or generic meetups</span>. There's no way to find like-minded travelers."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/solotravel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-red-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I joined a travel group but it was just <span className="font-semibold text-red-700">tourists doing tourist things</span>. I want to connect with people who explore like I do."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Twitter, Travel Community</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Privacy Concerns */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Privacy Concerns</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to share my travel experiences but <span className="font-semibold text-orange-700">don't want everyone to see where I am in real-time</span>. There's no middle ground."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/solotravel</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-orange-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Social travel apps require <span className="font-semibold text-orange-700">full profile visibility</span>. I want to control who sees what about me."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                          <span>Blog Comment on Nomadic Matt</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Generic Discovery Mechanisms */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900">Generic Discovery</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I need a way to find people based on <span className="font-semibold text-purple-700">shared interests and travel style</span>, not just location or age."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travelhacks</span>
+                        </div>
+                      </div>
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Current apps show me everyone nearby, but I want to <span className="font-semibold text-purple-700">discover people who match my travel identity</span>."</p>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/onebag</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Concept & Strategy Section */}
+          <section id="designs-strategy" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-black">
+                    Concept & Strategy
+                  </h2>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Unique Value Proposition */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
+                  >
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      An AI-powered social discovery platform that connects travelers through identity-focused discovery with granular privacy controls.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      This system processes travel identity, shared interests, and experiences through discovery algorithms to deliver meaningful connections while maintaining full user control over privacy and visibility.
+                    </p>
+                  </motion.div>
+
+                  {/* Core Philosophy */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
+                  >
+                    <motion.button
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
+                      onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
+                      aria-expanded={activeAccordion === 'philosophy'}
+                      aria-controls="philosophy-content"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Identity-Focused Discovery Mean In Travel?</h3>
+                      <motion.div
+                        animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-500"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </motion.div>
+                    </motion.button>
+                    <AnimatePresence>
+                      {activeAccordion === 'philosophy' && (
+                        <motion.div
+                          id="philosophy-content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-6">
+                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                              Identity-focused discovery doesn't mean public profiles—it means connecting based on shared travel identity, interests, and experiences while respecting privacy.
+                            </p>
+                            <div className="space-y-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Identity-based matching</h5>
+                                  <p className="text-gray-700">Connect travelers based on shared travel style, interests, and experiences, not just location.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Granular privacy controls</h5>
+                                  <p className="text-gray-700">Control what information is visible, to whom, and when—full transparency and control.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Opt-in discovery</h5>
+                                  <p className="text-gray-700">Travelers choose when and how to be discoverable, maintaining agency over their social connections.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Authentic connections</h5>
+                                  <p className="text-gray-700">Facilitate meaningful connections based on shared values and travel experiences, not just proximity.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Overview Section */}
+          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+            
+            <div className="container mx-auto px-6 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    System Overview: How the Local Experience Finder Works
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Architectural system for identity-focused discovery and privacy-controlled social connection
+                  </p>
+                </div>
+                
+                {/* Simplified System Diagram */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Identity Processing</h3>
+                    <p className="text-gray-300 text-sm">Processes travel identity, interests, and experiences to create connection signals</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Privacy Layer</h3>
+                    <p className="text-gray-300 text-sm">Enforces granular privacy controls and opt-in discovery mechanisms</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">Connection Matching</h3>
+                    <p className="text-gray-300 text-sm">Delivers identity-based matches with full user control over visibility and interaction</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Value Proposition Section */}
+          <section className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Why Social Connection Matters in Travel
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The impact extends beyond individual travelers—it requires systemic solutions that balance connection with privacy
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Travelers
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Meaningful social connections lead to <span className="font-semibold text-cyan-700">richer travel experiences and deeper cultural understanding</span>. Travelers can connect with like-minded people while maintaining <span className="font-semibold text-cyan-700">full control over their privacy and visibility</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Communities
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      When travelers connect authentically, local communities benefit from <span className="font-semibold text-emerald-700">more meaningful cultural exchange</span>. Identity-based discovery creates connections that respect both traveler privacy and local community values.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Design Evolution Section */}
+          <section id="wireframes-ui" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Design Evolution
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Designing for privacy and connection—prioritizing identity-focused discovery and granular privacy controls in the user experience.
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Design iterations and wireframes will be added as the project evolves.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Development & Build Section */}
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-20">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                      Development & Build
+                    </h2>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <p className="text-amber-300 text-sm font-medium">
+                        Work In Progress
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Development workflow and technical architecture details will be documented as the system is built.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Mobile Build Iterations Section */}
+          <section className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-white">
+                    Mobile Build Iterations
+                  </h2>
+                  <p className="text-gray-400 text-sm">
+                    Mobile app development and iteration process
+                  </p>
+                </div>
+                
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                  <p className="text-gray-300 text-center">
+                    Mobile build screenshots and iterations will be added as development progresses.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Solution Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Solution
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    A comprehensive system for identity-focused discovery that balances connection with privacy
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    The Local Experience Finder provides identity-focused discovery with granular privacy controls. The system processes travel identity, shared interests, and experiences to deliver meaningful connections while maintaining full user control over privacy, visibility, and interaction, enabling travelers to connect authentically while respecting their boundaries.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Launch & Testing Section */}
+          <section id="outcomes-launch" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    Launch & Testing
+                  </h2>
+                </div>
+                
+                <div className="space-y-8">
+                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
+                    <p className="text-gray-300 mb-4">
+                      Will start with a closed beta focusing on identity-based matching accuracy and user satisfaction with privacy controls, followed by gradual rollout based on connection quality metrics.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Beta Testing</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Identity Matching</span>
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Privacy Controls</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Live Demo Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Live Demo
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    This product is actively being built and deployed
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+                  <div className="mb-8 text-center">
+                    <p className="text-gray-600 mb-4">
+                      A live demo will be available once the identity-focused discovery system is fully implemented.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        What Currently Works
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        System architecture and identity processing framework are being developed. Core components for privacy controls and connection matching are in progress.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                        What is Experimental
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Identity-based matching algorithms, privacy control mechanisms, and connection quality scoring are in active development and testing.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        What is Planned Next
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Expanded identity processing, advanced privacy features, and user-facing connection tools. Timeline depends on identity system validation and user feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Outcome & Learnings Section */}
+          <section id="learnings-next" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Outcome & Learnings
+                  </h2>
+                </div>
+                
+                <div className="space-y-12">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        Building an identity-focused discovery system means constantly questioning how to balance connection with privacy. The challenge isn't having enough social features—it's knowing when to enable discovery versus when to protect privacy. Early prototypes showed that too much visibility can feel invasive, while too much privacy can prevent meaningful connections. The system needs to find the right balance for each traveler and situation.
+                      </p>
+                      <p>
+                        Privacy controls require architectural decisions that happen at the data layer. The system needs to enforce granular privacy settings—controlling what information is visible, to whom, and when—which means building privacy enforcement into the core architecture, not adding it as an afterthought.
+                      </p>
+                      <p>
+                        Identity-based matching is more complex than simple profile matching. A connection can be technically possible but still feel inauthentic if the identity signals don't align. The system needs multiple matching layers that work together to assess connection quality and authenticity.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p>
+                        The depth of user concern about privacy in social travel apps was more pronounced than expected. Users don't just want privacy controls—they want to understand how their data is used and who can see what. This requires explaining privacy mechanisms in accessible language, not just showing technical settings.
+                      </p>
+                      <p>
+                        The technical challenge of identity processing revealed that most existing social APIs aren't built for identity-focused discovery. They're optimized for location-based or profile-based matching, not identity-rich connection signals. Adapting these systems required building abstraction layers that translate profile data into identity signals.
+                      </p>
+                      <p>
+                        User preferences around social connection emerged as highly individual. Some travelers want minimal discovery, others want extensive connection opportunities. The system needed to learn and adapt to individual preferences, not assume a one-size-fits-all approach.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Reflections & Next Steps Section */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Reflections & Next Steps
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    Real-time meetup facilitation remains underexplored. The system currently processes identity and matches travelers, but doesn't yet facilitate real-time meetups or group formation. Adding real-time coordination could create more immediate connection opportunities without requiring extensive pre-planning.
+                  </p>
+                  <p>
+                    Long-term traveler networks could shift the system from trip-specific to lifetime connections. Instead of processing connections for a single trip, the system could maintain traveler networks over months or years, understanding that connections made in one location might be valuable in future destinations. This moves beyond single-trip social discovery to lifetime traveler community building.
+                  </p>
+                  <p>
+                    Integration with travel platforms represents a significant opportunity. The system knows about traveler identity and preferences, but doesn't yet integrate deeply with booking or planning platforms to facilitate connections around shared itineraries. Partnerships with travel platforms could close this gap, creating a more seamless social discovery experience.
                   </p>
                 </div>
               </motion.div>
