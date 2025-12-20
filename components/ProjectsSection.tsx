@@ -24,9 +24,7 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <>
-      {/* Stable anchor target for Work section - zero height, positioned before content */}
-      <div id="black-section" className="anchor-offset" aria-hidden="true"></div>
-      <section className="py-24" style={{ backgroundColor: '#1A1A1A' }}>
+      <section id="black-section" className="py-24" style={{ backgroundColor: '#1A1A1A' }}>
         <div className="max-w-4xl mx-auto px-6">
         <FadeInSection 
           delay={0.1}

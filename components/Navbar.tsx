@@ -237,33 +237,29 @@ const Navbar = () => {
         
         // For black-section, ensure FadeInSection animations are triggered before scroll calculation
         if (targetId === 'black-section') {
-          // Find the section element (after the anchor-offset div)
-          const anchorElement = document.getElementById('black-section');
-          if (anchorElement) {
-            const section = anchorElement.nextElementSibling as HTMLElement;
-            if (section && section.tagName === 'SECTION') {
-              // Trigger FadeInSection visibility by simulating intersection
-              // Dispatch scrollComplete to trigger FadeInSection's event listener
-              window.dispatchEvent(new CustomEvent('scrollComplete'));
-              
-              // Wait for FadeInSection state updates and initial animation frame
-              await new Promise(resolve => {
+          const section = document.getElementById('black-section');
+          if (section && section.tagName === 'SECTION') {
+            // Trigger FadeInSection visibility by simulating intersection
+            // Dispatch scrollComplete to trigger FadeInSection's event listener
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+            
+            // Wait for FadeInSection state updates and initial animation frame
+            await new Promise(resolve => {
+              requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                   requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                      setTimeout(resolve, 150);
-                    });
+                    setTimeout(resolve, 150);
                   });
                 });
               });
-              
-              // Force reflow on the section and all its children
-              section.offsetHeight;
-              const allChildren = section.querySelectorAll('*');
-              allChildren.forEach((child) => {
-                (child as HTMLElement).offsetHeight;
-              });
-            }
+            });
+            
+            // Force reflow on the section and all its children
+            section.offsetHeight;
+            const allChildren = section.querySelectorAll('*');
+            allChildren.forEach((child) => {
+              (child as HTMLElement).offsetHeight;
+            });
           }
         }
       }
