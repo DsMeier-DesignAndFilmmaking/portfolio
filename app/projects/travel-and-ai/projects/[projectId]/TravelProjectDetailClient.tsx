@@ -38,6 +38,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../../components/PageTransitionOverlay';
 import StickyProgressNav from '../../../../../components/StickyProgressNav';
+import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils } from 'lucide-react';
 
 interface TravelProjectDetailClientProps {
   project: any;
@@ -58,6 +59,368 @@ function normalizeImagePath(imagePath: string): string {
   // Otherwise, prepend basePath to absolute paths
   return `${basePath}${imagePath}`;
 }
+
+// Trust Framework Visual Component - "The Trust Stack"
+const TrustFrameworkVisual = () => {
+  return (
+    <div className="relative w-full max-w-md aspect-[4/3] mx-auto">
+      {/* Container with 3D perspective */}
+      <div className="relative w-full h-full" style={{ perspective: '1000px' }}>
+        {/* Base Layer - Data Layer Grid */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 rounded-xl overflow-hidden"
+          style={{ transformStyle: 'preserve-3d', transform: 'translateZ(-20px) scale(0.95)' }}
+        >
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
+              {[...Array(48)].map((_, i) => (
+                <div
+                  key={i}
+                  className="border border-cyan-500/20"
+                  style={{
+                    animationDelay: `${i * 0.1}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Data Input Nodes */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="grid grid-cols-3 gap-4 w-full px-6">
+              {['Itineraries', 'Preferences', 'Context'].map((label, i) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="w-12 h-12 mx-auto mb-2 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center backdrop-blur-sm">
+                    <Sparkles className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <p className="text-xs text-cyan-300/70 font-medium">{label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Middle Layer - Trust Framework Glassmorphism Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ transformStyle: 'preserve-3d', transform: 'translateZ(10px)' }}
+        >
+          <div className="relative w-[85%] h-[70%] bg-gradient-to-br from-indigo-800/40 via-indigo-700/30 to-cyan-800/40 backdrop-blur-xl rounded-2xl border border-cyan-400/30 shadow-2xl">
+            {/* Glowing Verification Nodes */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-32 h-32">
+                {/* Pulsing Core */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute inset-0 bg-cyan-400/30 rounded-full blur-xl"
+                />
+                
+                {/* Verification Nodes */}
+                {[...Array(6)].map((_, i) => {
+                  const angle = (i * 360) / 6;
+                  const rad = (angle * Math.PI) / 180;
+                  const radius = 50;
+                  const x = Math.cos(rad) * radius;
+                  const y = Math.sin(rad) * radius;
+                  
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+                      className="absolute"
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        transform: 'translate(-50%, -50%)',
+                      }}
+                    >
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [0.7, 1, 0.7],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3,
+                          ease: 'easeInOut',
+                        }}
+                        className="w-8 h-8 bg-cyan-400 rounded-full border-2 border-cyan-300 flex items-center justify-center shadow-lg shadow-cyan-400/50"
+                      >
+                        <CheckCircle className="w-4 h-4 text-indigo-900" />
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+                
+                {/* Center Shield Icon */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <Shield className="w-12 h-12 text-cyan-300" />
+                </motion.div>
+              </div>
+            </div>
+            
+            {/* Framework Label */}
+            <div className="absolute bottom-4 left-0 right-0 text-center">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className="text-xs font-semibold text-cyan-300 uppercase tracking-wider"
+              >
+                Trust & Authenticity Framework
+              </motion.p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Top Layer - Verified Travel Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1,
+            y: [0, -8, 0],
+          }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 0.6,
+            y: {
+              duration: 3,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }
+          }}
+          className="absolute top-4 right-4 w-[60%]"
+          style={{ transformStyle: 'preserve-3d', transform: 'translateZ(30px)' }}
+        >
+          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl p-4 shadow-2xl border border-cyan-400/20 backdrop-blur-sm">
+            {/* AI Authenticity Badge */}
+            <div className="flex items-center justify-between mb-3">
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="flex items-center gap-2 px-2.5 py-1 bg-cyan-500/20 border border-cyan-400/40 rounded-lg"
+              >
+                <Shield className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="text-xs font-semibold text-cyan-300">AI Verified</span>
+              </motion.div>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+              </motion.div>
+            </div>
+            
+            {/* Destination */}
+            <div className="mb-2">
+              <h3 className="text-sm font-bold text-white mb-1">Santorini Retreat</h3>
+              <p className="text-xs text-gray-400">Cultural & Historical Experience</p>
+            </div>
+            
+            {/* Verification Details */}
+            <div className="space-y-1.5 pt-2 border-t border-gray-700/50">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-3 h-3 text-cyan-400 flex-shrink-0" />
+                <span className="text-xs text-gray-300">3 Verified Sources</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-3 h-3 text-cyan-400 flex-shrink-0" />
+                <span className="text-xs text-gray-300">Updated 2 days ago</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// Planning Assistant Visual Component - "The Intelligent Orchestrator"
+const PlanningAssistantVisual = () => {
+  const constraints = [
+    { label: '$200/day', icon: Sparkles },
+    { label: 'Vegetarian', icon: Utensils },
+    { label: 'Hidden Gems', icon: MapPin },
+    { label: 'Tokyo', icon: MapPin },
+  ];
+
+  const activities = [
+    { time: 'Morning', title: 'Tsukiji Market', icon: MapPin },
+    { time: 'Afternoon', title: 'TeamLab Borderless', icon: Sparkles },
+    { time: 'Evening', title: 'Shibuya Sky', icon: Clock },
+  ];
+
+  return (
+    <div className="relative w-full max-w-md aspect-[4/3] mx-auto">
+      <div className="relative w-full h-full flex items-center justify-between px-2 md:px-4">
+        {/* Left: Constraint Chips */}
+        <div className="flex flex-col gap-3 w-1/4 items-start">
+          {constraints.map((constraint, i) => {
+            const Icon = constraint.icon;
+            return (
+              <motion.div
+                key={constraint.label}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: [0, 15, 0],
+                }}
+                transition={{ 
+                  opacity: {
+                    duration: 0.6, 
+                    delay: i * 0.15,
+                  },
+                  x: {
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: i * 0.5 + 0.6,
+                    ease: 'easeInOut',
+                  }
+                }}
+                className="relative"
+              >
+                <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-br from-violet-100/80 to-blue-100/80 dark:from-violet-900/40 dark:to-blue-900/40 backdrop-blur-sm rounded-lg border border-violet-200/50 dark:border-violet-700/50 shadow-sm">
+                  <Icon className="w-3 h-3 text-violet-600 dark:text-violet-400" />
+                  <span className="text-xs font-medium text-violet-700 dark:text-violet-300 whitespace-nowrap">
+                    {constraint.label}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Center: Processing Unit */}
+        <div className="relative w-1/3 h-full flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative w-full h-[80%] bg-gradient-to-br from-violet-200/40 via-blue-200/30 to-violet-200/40 dark:from-violet-900/30 dark:via-blue-900/20 dark:to-violet-900/30 backdrop-blur-xl rounded-2xl border border-violet-300/40 dark:border-violet-700/40 shadow-lg overflow-hidden"
+          >
+            {/* Scanning Light Bar */}
+            <motion.div
+              animate={{
+                y: ['0%', '100%'],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
+              style={{ top: '-2px' }}
+            />
+            
+            {/* Processing Indicator */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.6, 1, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-400/40 to-blue-400/40 backdrop-blur-sm border border-violet-300/50 dark:border-violet-600/50 flex items-center justify-center"
+              >
+                <Sparkles className="w-8 h-8 text-violet-600 dark:text-violet-400" />
+              </motion.div>
+            </div>
+
+            {/* Processing Label */}
+            <div className="absolute bottom-3 left-0 right-0 text-center">
+              <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider">
+                Processing
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right: Activity Cards with Timeline */}
+        <div className="flex flex-col gap-3 w-1/3 items-end relative">
+          {/* Timeline Line */}
+          <div className="absolute right-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-300/50 via-blue-300/50 to-violet-300/50 dark:from-violet-600/50 dark:via-blue-600/50 dark:to-violet-600/50" />
+          
+          {activities.map((activity, i) => {
+            const Icon = activity.icon;
+            return (
+              <motion.div
+                key={activity.title}
+                initial={{ opacity: 0, x: 30, scale: 0.9 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  scale: 1,
+                }}
+                transition={{ 
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 20,
+                  delay: 0.6 + i * 0.2,
+                }}
+                className="relative w-full pr-2"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute right-5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-violet-400 dark:bg-violet-500 border-2 border-white dark:border-gray-900 shadow-sm z-10" />
+                
+                {/* Activity Card */}
+                <div className="bg-gradient-to-br from-white/90 to-violet-50/90 dark:from-gray-800/90 dark:to-violet-900/30 backdrop-blur-sm rounded-lg p-3 border border-violet-200/50 dark:border-violet-700/50 shadow-md">
+                  <div className="flex items-start gap-2 mb-1.5">
+                    <Icon className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-semibold text-violet-700 dark:text-violet-300 uppercase tracking-wide">
+                          {activity.time}
+                        </span>
+                      </div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">
+                        {activity.title}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailClientProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -226,6 +589,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     Spontaneous Travel Engine
               </h1>
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                      In Development
+                    </span>
+                  </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Self-initiated product exploration · Travel · AI
                   </p>
@@ -324,6 +692,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     A Trust Framework for AI-Driven Travel Experiences
                   </h1>
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                      Research & Development
+                    </span>
+                  </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Trust & Authenticity · AI · Systems Design
                   </p>
@@ -355,11 +728,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
-                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
-                    <p className="text-gray-600 text-center">
-                      Visual representation coming soon
-                    </p>
-                  </div>
+                  <TrustFrameworkVisual />
                 </motion.div>
               </div>
             </div>
@@ -378,6 +747,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     Travel Planning Assistant
                   </h1>
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                      Research & Development
+                    </span>
+                  </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Adaptive Planning · AI · Systems Design
                   </p>
@@ -409,10 +783,71 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
-                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
-                    <p className="text-gray-600 text-center">
-                      Visual representation coming soon
-                    </p>
+                  <PlanningAssistantVisual />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isLocalExperienceFinder && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                    A Social Graph–Driven Travel Network
+                  </h1>
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                      Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Social Networks · AI · Systems Design
+                  </p>
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <div className="relative w-full max-w-lg aspect-[16/10] rounded-xl overflow-hidden shadow-lg bg-gray-50">
+                    <Image
+                      src={normalizeImagePath("/images/HomeScreen_Website_x2.png")}
+                      alt="Social Graph–Driven Travel Network Home Screen"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                      priority
+                      quality={90}
+                    />
                   </div>
                 </motion.div>
               </div>
@@ -432,6 +867,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     A Social Graph–Driven Travel Network
                   </h1>
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                      Research & Development
+                    </span>
+                  </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Social Networks · AI · Systems Design
                   </p>
@@ -910,7 +1350,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Context Weighting
                     </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
                             AI Logic
                   </div>
                         </div>
@@ -3419,7 +3859,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Cross-Reference
                           </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
                             Validation Core
                           </div>
                         </div>
@@ -4496,7 +4936,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Processing Layer
                           </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
                             Algorithm Core
                           </div>
                         </div>
