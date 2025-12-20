@@ -84,7 +84,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       // Add scroll behavior if needed
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Mobile detection
@@ -160,7 +162,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   }, [isMobile]);
 
   return (
-    <main className="min-h-screen bg-white text-gray-900">
+    <>
+      <div className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
         {isTransitioning && <PageTransitionOverlay />}
       </AnimatePresence>
@@ -373,8 +376,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             <span>Reddit, r/travel</span>
                           </div>
                         </div>
-                  </div>
-                </div>
+                      </div>
+                    </div>
 
                     {/* Tourist Echo Chambers */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
@@ -446,10 +449,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                     </div>
                   </div>
-                </div>
               </motion.div>
             </div>
-      </section>
+          </section>
 
           {/* Why Spontaneity Is a Systems Problem Section */}
           <section className="py-16 md:py-20 bg-white">
@@ -3465,7 +3467,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
-    </main>
+      </div>
+    </>
   );
 };
 
