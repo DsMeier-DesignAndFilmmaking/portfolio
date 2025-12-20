@@ -56,6 +56,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
   
   // Check if this is the spontaneous-travel-companion project
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
+  const isLocalExperienceFinder = projectId === 'local-experience-finder';
 
   // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
   const sections = [
@@ -1748,41 +1749,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </div>
                 </motion.div>
                 
-                {/* Interactive Prototype Demo */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mt-16"
-                >
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-semibold mb-4 text-white">
-                      Social Travel Exploration
-                    </h3>
-                    <p className="text-gray-300 max-w-2xl mx-auto">
-                      An early design concept and prototype demo
-                    </p>
-                  </div>
-                  
-                  <div className="relative max-w-4xl mx-auto">
-                    <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-                      <iframe
-                        title="vimeo-player"
-                        src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
-                        width="100%"
-                        height="100%"
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
-                        allowFullScreen
-                        className="absolute inset-0 w-full h-full"
-                      />
-                      
-                      {/* Video overlay for better UX */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
-                </motion.div>
-                
                 {/* Travel App Figma UX Pilot */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -2824,6 +2790,49 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </div>
         </div>
       </section>
+
+      {/* Social Travel Exploration - Only for local-experience-finder */}
+      {isLocalExperienceFinder && (
+        <section className="py-20 bg-black">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-semibold mb-4 text-white">
+                    Social Travel Exploration
+                  </h3>
+                  <p className="text-gray-300 max-w-2xl mx-auto">
+                    An early design concept and prototype demo
+                  </p>
+                </div>
+                
+                <div className="relative max-w-4xl mx-auto">
+                  <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                    
+                    {/* Video overlay for better UX */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Development & Tech Stack Section */}
       <section className="py-20 bg-gray-50">
