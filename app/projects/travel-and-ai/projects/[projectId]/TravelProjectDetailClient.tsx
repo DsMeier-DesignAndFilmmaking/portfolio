@@ -14,6 +14,12 @@ import {
   FaLightbulb,
   FaPalette,
   FaLaptopCode,
+  FaMapMarkerAlt,
+  FaClock,
+  FaHeartbeat,
+  FaBrain,
+  FaLightbulb as FaBulb,
+  FaShareAlt,
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -672,94 +678,313 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </section>
 
           {/* System Overview Section */}
-          <section className="py-16 md:py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
+          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+            
+            <div className="container mx-auto px-6 relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
               >
-                <h2 className="text-2xl md:text-3xl font-semibold mb-3 md:mb-4 text-center text-gray-900">
-                  System Overview: How the Spontaneity Engine Works
-                </h2>
-                <p className="text-sm md:text-base text-gray-500 text-center mb-10 md:mb-12">
-                  Conceptual system diagram
-                </p>
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    System Overview: How the Spontaneity Engine Works
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Conceptual system diagram
+                  </p>
+                </div>
                 
                 {/* Diagram Container */}
-                <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
-                  {/* Flow Diagram */}
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
-                    {/* Inputs */}
-                    <div className="flex-1 w-full md:w-auto">
-                      <div className="text-center mb-3">
-                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Inputs</h3>
-                      </div>
-                      <div className="space-y-2 md:space-y-3">
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Location</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Time</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Behavior</p>
-                        </div>
-                      </div>
+                <div className="relative">
+                  {/* Main Grid Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                    
+                    {/* Left Column - Inputs */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-indigo-400 text-center lg:text-left mb-6">
+                        Contextual Awareness
+                      </h3>
+                      
+                      {/* Input Cards */}
+                      {[
+                        { icon: FaMapMarkerAlt, label: 'Real-time Location', desc: 'Where the traveler is' },
+                        { icon: FaClock, label: 'Temporal Context', desc: 'Current time & weather' },
+                        { icon: FaHeartbeat, label: 'User Behavior', desc: 'Historical preferences' },
+                      ].map((input, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.05, x: 5 }}
+                          className="group relative"
+                        >
+                          {/* Connection line to core */}
+                          <div className="hidden lg:block absolute right-0 top-1/2 w-full h-0.5 bg-gradient-to-r from-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                          
+                          {/* Glass card */}
+                          <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg hover:border-indigo-500/50 transition-all duration-300">
+                            {/* Glowing icon */}
+                            <div className="flex items-center gap-4 mb-3">
+                              <div className="relative">
+                                <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full" />
+                                <input.icon className="w-6 h-6 text-indigo-400 relative z-10" />
+                              </div>
+                              <h4 className="text-white font-semibold text-base">{input.label}</h4>
+                            </div>
+                            <p className="text-gray-400 text-sm">{input.desc}</p>
+                            
+                            {/* Energy particles */}
+                            <motion.div
+                              className="absolute -right-2 top-1/2 w-2 h-2 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100"
+                              animate={{
+                                x: [0, 200, 200],
+                                opacity: [0, 1, 0],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.3,
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
                     </div>
                     
-                    {/* Arrow */}
-                    <div className="flex-shrink-0 flex items-center justify-center">
-                      <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
+                    {/* Center Column - The Engine Core */}
+                    <div className="flex justify-center my-12 lg:my-0">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="relative"
+                      >
+                        {/* Animated SVG Core */}
+                        <div className="relative w-64 h-64 md:w-80 md:h-80">
+                          <svg
+                            className="w-full h-full"
+                            viewBox="0 0 320 320"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            {/* Outer Ring - Rules & Constraints - Rotating */}
+                            <motion.g
+                              animate={{ rotate: 360 }}
+                              transition={{
+                                duration: 20,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                              style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+                            >
+                              <circle
+                                cx="160"
+                                cy="160"
+                                r="140"
+                                fill="none"
+                                stroke="url(#outerGradient)"
+                                strokeWidth="2"
+                                strokeDasharray="8 4"
+                                opacity="0.6"
+                              />
+                            </motion.g>
+                            
+                            {/* Middle Ring - Context Weighting */}
+                            <motion.g
+                              animate={{
+                                scale: [1, 1.05, 1],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                              style={{ transformOrigin: '160px 160px' }}
+                            >
+                              <motion.circle
+                                cx="160"
+                                cy="160"
+                                r="110"
+                                fill="none"
+                                stroke="url(#middleGradient)"
+                                strokeWidth="2.5"
+                                animate={{
+                                  opacity: [0.8, 1, 0.8],
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                              />
+                            </motion.g>
+                            
+                            {/* Inner Nucleus - AI Logic */}
+                            <circle
+                              cx="160"
+                              cy="160"
+                              r="60"
+                              fill="url(#coreGradient)"
+                              opacity="0.9"
+                            />
+                            
+                            {/* Shimmering nodes inside nucleus */}
+                            {[...Array(8)].map((_, i) => {
+                              const angle = (i * 360) / 8;
+                              const rad = (angle * Math.PI) / 180;
+                              const x = 160 + Math.cos(rad) * 40;
+                              const y = 160 + Math.sin(rad) * 40;
+                              return (
+                                <motion.circle
+                                  key={i}
+                                  cx={x}
+                                  cy={y}
+                                  r="4"
+                                  fill="#a78bfa"
+                                  animate={{
+                                    opacity: [0.4, 1, 0.4],
+                                    scale: [1, 1.3, 1],
+                                  }}
+                                  transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    delay: i * 0.2,
+                                    ease: "easeInOut",
+                                  }}
+                                />
+                              );
+                            })}
+                            
+                            {/* Gradients */}
+                            <defs>
+                              <linearGradient id="outerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                              </linearGradient>
+                              <linearGradient id="middleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.9" />
+                                <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.9" />
+                              </linearGradient>
+                              <radialGradient id="coreGradient">
+                                <stop offset="0%" stopColor="#a78bfa" />
+                                <stop offset="100%" stopColor="#6366f1" />
+                              </radialGradient>
+                            </defs>
+                          </svg>
+                          
+                          {/* Center Label */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
+                                The
+                              </div>
+                              <div className="text-xl md:text-2xl font-bold text-white">
+                                SPONTANEITY AI
+                              </div>
+                              <div className="text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
+                                Engine
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Ring Labels */}
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Rules & Constraints
+                          </div>
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                            Context Weighting
+                          </div>
+                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap">
+                            AI Logic
+                          </div>
+                        </div>
+                      </motion.div>
                     </div>
                     
-                    {/* Intelligence */}
-                    <div className="flex-1 w-full md:w-auto">
-                      <div className="text-center mb-3">
-                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Intelligence</h3>
-                      </div>
-                      <div className="space-y-2 md:space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">AI logic</p>
-                        </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Rules & constraints</p>
-                        </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Context weighting</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Arrow */}
-                    <div className="flex-shrink-0 flex items-center justify-center">
-                      <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                    
-                    {/* Outputs */}
-                    <div className="flex-1 w-full md:w-auto">
-                      <div className="text-center mb-3">
-                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Outputs</h3>
-                      </div>
-                      <div className="space-y-2 md:space-y-3">
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Suggestions</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Prompts</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
-                          <p className="text-sm md:text-base text-gray-700 font-medium">Social triggers</p>
-                        </div>
-                      </div>
+                    {/* Right Column - Outputs */}
+                    <div className="space-y-6">
+                      <h3 className="text-lg font-semibold text-violet-400 text-center lg:text-right mb-6">
+                        Frictionless Discovery
+                      </h3>
+                      
+                      {/* Output Cards */}
+                      {[
+                        { icon: FaBulb, label: 'Smart Suggestions', desc: 'Actionable recommendations' },
+                        { icon: FaBrain, label: 'Adaptive Prompts', desc: 'Context-aware guidance' },
+                        { icon: FaShareAlt, label: 'Viral Social Triggers', desc: 'Engagement catalysts' },
+                      ].map((output, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.05, x: -5 }}
+                          className="group relative"
+                        >
+                          {/* Connection line from core */}
+                          <div className="hidden lg:block absolute left-0 top-1/2 w-full h-0.5 bg-gradient-to-l from-violet-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1/2" />
+                          
+                          {/* Glass card */}
+                          <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg hover:border-violet-500/50 transition-all duration-300">
+                            {/* Glowing icon */}
+                            <div className="flex items-center gap-4 mb-3 lg:flex-row-reverse">
+                              <div className="relative">
+                                <div className="absolute inset-0 bg-violet-500/20 blur-xl rounded-full" />
+                                <output.icon className="w-6 h-6 text-violet-400 relative z-10" />
+                              </div>
+                              <h4 className="text-white font-semibold text-base lg:text-right">{output.label}</h4>
+                            </div>
+                            <p className="text-gray-400 text-sm lg:text-right">{output.desc}</p>
+                            
+                            {/* Energy particles */}
+                            <motion.div
+                              className="absolute -left-2 top-1/2 w-2 h-2 bg-violet-400 rounded-full opacity-0 group-hover:opacity-100"
+                              animate={{
+                                x: [0, -200, -200],
+                                opacity: [0, 1, 0],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.3,
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
+                  
+                  {/* Mathematical Formula - Bottom */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="mt-16 pt-8 border-t border-white/10"
+                  >
+                    <div className="text-center">
+                      <p className="text-gray-400 text-sm mb-2">The Spontaneity Engine Logic</p>
+                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
+                        <div className="text-white font-mono text-sm md:text-base">
+                          <div className="mb-2">S<sub>score</sub> = w<sub>1</sub>(L) + w<sub>2</sub>(T) + w<sub>3</sub>(B) - ΣC</div>
+                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                            <div>L, T, B: Location, Time, and Behavior variables</div>
+                            <div>w: Dynamic weights based on AI learning</div>
+                            <div>C: Constraints (e.g., closing times, budget, travel distance)</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -1724,31 +1949,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </p>
                 </div>
                 
-                {/* Figma Travel App Screenshot */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                  className="mb-16"
-                >
-                  <div className="relative max-w-4xl mx-auto">
-                    <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-                      <Image
-                        src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
-                        alt="Figma Travel App Design Screenshot"
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                        priority={false}
-                        quality={85}
-                      />
-                      
-                      {/* Image overlay for better UX */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
-                </motion.div>
-                
                 {/* Travel App Figma UX Pilot */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -2607,6 +2807,25 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </div>
         </div>
       </section>
+
+      {/* Figma Travel App Design Screenshot - Full Width Background - Only for local-experience-finder */}
+      {isLocalExperienceFinder && (
+        <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
+              alt="Figma Travel App Design Screenshot"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority={true}
+              quality={90}
+            />
+          </div>
+          {/* Transparent overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+        </section>
+      )}
 
       {/* Project Metadata Sidebar Section */}
       <section className="py-12 bg-gray-50">
