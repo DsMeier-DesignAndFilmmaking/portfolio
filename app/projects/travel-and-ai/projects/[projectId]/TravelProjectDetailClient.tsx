@@ -190,6 +190,148 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
     }
   };
 
+  // Hero section content for different project types
+  const heroContentSpontaneous = (
+    <div className="container mx-auto px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:order-1"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+              Spontaneous Travel Engine
+            </h1>
+            <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+              Self-initiated product exploration · Travel · AI
+            </p>
+            <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+              <a
+                href="#design-exploration"
+                onClick={(e) => handleAnchorClick(e, '#design-exploration')}
+                className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                aria-label="View Case Study"
+              >
+                View Case Study
+              </a>
+              <a
+                href="#prototyping-ai"
+                onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                aria-label="Explore Working Prototype (Experimental)"
+              >
+                Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
+              </a>
+            </nav>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+          >
+            <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+              <div className="relative flex-shrink-0">
+                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                  <Image
+                    src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
+                    alt="Micro Adventure Concept Graphic"
+                    width={280}
+                    height={560}
+                    className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                    priority
+                    quality={90}
+                    sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                  />
+                </div>
+              </div>
+              <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                  <Image
+                    src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
+                    alt="Micro Adventure Concept Graphic 2"
+                    width={280}
+                    height={560}
+                    className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                    priority
+                    quality={90}
+                    sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const heroContentOther = (
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            {project?.title || "Project Title"}
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            {project?.tagline || "Project description"}
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  );
+
+  const heroContentFallback = (
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            {project?.title || "Project Title"}
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            {project?.tagline || "Project description"}
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  );
+
+  // Determine hero content based on project type - avoid nested ternaries
+  const getHeroContent = () => {
+    if (isSpontaneousTravelCompanion) {
+      return heroContentSpontaneous;
+    } else if (isOtherProject) {
+      return heroContentOther;
+    } else {
+      return heroContentFallback;
+    }
+  };
+  const heroContent = getHeroContent();
+
+  // Determine main content based on project type - use helper function to avoid nested ternaries
+  const getMainContent = () => {
+    if (isSpontaneousTravelCompanion) {
+      return 'spontaneous';
+    } else if (isOtherProject) {
+      return 'other';
+    } else {
+      return 'fallback';
+    }
+  };
+  const mainContentType = getMainContent();
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
@@ -222,152 +364,20 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       {/* Hero Section */}
       <section className="bg-white pt-20 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
-        {isSpontaneousTravelCompanion ? (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
-              {/* Mobile: Single Column - Text First, Then Images */}
-              {/* Desktop: Two Column - Text Left, Images Right */}
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                {/* Text Content - Left Column on Desktop, First on Mobile */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  {/* Product Name (H1) - Strongest Visual Element */}
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    Spontaneous Travel Engine
-                  </h1>
-                  
-                  {/* Subtitle (Meta / Subhead) - Subdued and Supportive */}
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    Self-initiated product exploration · Travel · AI
-                  </p>
-                  
-                  {/* CTAs - Clear Visual Hierarchy */}
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    {/* Primary CTA - Visually Dominant */}
-                    <a
-                      href="#design-exploration"
-                      onClick={(e) => handleAnchorClick(e, '#design-exploration')}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                    
-                    {/* Secondary CTA - Outlined/Muted Style */}
-                    <a
-                      href="#prototyping-ai"
-                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
-                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                      aria-label="Explore Working Prototype (Experimental)"
-                    >
-                      Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
-                    </a>
-                  </nav>
-                </motion.div>
-
-                {/* Images - Right Column on Desktop, Below Text on Mobile */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  {/* Mobile: Stacked Vertically, Centered */}
-                  {/* Tablet & Desktop: Side-by-Side with proper alignment */}
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                    {/* First Hero Image */}
-                    <div className="relative flex-shrink-0">
-                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                        <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
-                          alt="Micro Adventure Concept Graphic"
-                          width={280}
-                          height={560}
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Second Hero Image - Slightly offset on desktop for visual interest */}
-                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
-                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                        <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                          alt="Micro Adventure Concept Graphic 2"
-                          width={280}
-                          height={560}
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        ) : isOtherProject ? (
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center"
-              >
-                {/* Project Title */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  {project?.title || "Project Title"}
-                </h1>
-                
-                {/* Subtitle - Refined to state what, when, why */}
-                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  {project?.tagline || "Project description"}
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        ) : (
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center"
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  {project?.title || "Project Title"}
-                </h1>
-                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  {project?.tagline || "Project description"}
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        )}
+        {heroContent}
         
         {/* Subtle Divider */}
         <div className="border-b border-gray-100 mt-16 md:mt-20 lg:mt-24"></div>
       </section>
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
-      {isSpontaneousTravelCompanion ? (
+      {mainContentType === 'spontaneous' && (
         <>
           {/* Observed Travel Frictions Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
+        <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto"
@@ -379,8 +389,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                     Real user feedback reveals pattern-level insights about the gaps in current travel discovery tools
                   </p>
-                </div>
-                
+        </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     {/* Fake Spontaneity */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
@@ -414,22 +424,22 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                             <span>Reddit, r/travel</span>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    
+                  </div>
+                </div>
+
                     {/* Tourist Echo Chambers */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
                       <div className="absolute top-4 right-4">
                         <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                      </div>
+                  </div>
                       <div className="flex items-center gap-3 mb-6">
                         <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                           <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                           </svg>
-                        </div>
+                </div>
                         <h4 className="text-xl font-bold text-gray-900">Tourist Echo Chambers</h4>
-                      </div>
+            </div>
                       <div className="space-y-5">
                         <div className="relative pl-4 border-l-2 border-orange-200">
                           <p className="text-gray-700 italic mb-3 leading-relaxed">"I was hoping to meet locals or go off the beaten path, but it was just the <span className="font-semibold text-orange-700">same backpacker scene recycled across countries</span>."</p>
@@ -438,7 +448,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                             </svg>
                             <span>Reddit, r/backpacking</span>
-                          </div>
+          </div>
                         </div>
                         <div className="relative pl-4 border-l-2 border-orange-200">
                           <p className="text-gray-700 italic mb-3 leading-relaxed">"Met great people, but we all ended up doing the <span className="font-semibold text-orange-700">same top 5 things from TripAdvisor</span>. No real cultural immersion."</p>
@@ -490,7 +500,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 </div>
               </motion.div>
             </div>
-          </section>
+      </section>
 
           {/* Why Spontaneity Is a Systems Problem Section */}
           <section className="py-16 md:py-20 bg-white">
@@ -508,9 +518,9 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                     The impact extends beyond individual travelers—it requires a systemic approach that balances traveler needs with community benefits
-                  </p>
-                </div>
-                
+                    </p>
+                  </div>
+                  
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   {/* Impact for Travelers */}
                   <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
@@ -569,8 +579,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                     Conceptual system diagram
-                  </p>
-                </div>
+                    </p>
+                  </div>
                 
                 {/* Diagram Container */}
                 <div className="relative">
@@ -608,7 +618,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                               <div className="relative">
                                 <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full" />
                                 <input.icon className="w-6 h-6 text-indigo-400 relative z-10" />
-                              </div>
+                </div>
                               <h4 className="text-white font-semibold text-base">{input.label}</h4>
                             </div>
                             <p className="text-gray-400 text-sm">{input.desc}</p>
@@ -626,7 +636,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                                 delay: index * 0.3,
                               }}
                             />
-                          </div>
+                      </div>
                         </motion.div>
                       ))}
                     </div>
@@ -764,13 +774,13 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                               <div className="text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
                                 Engine
                               </div>
-                            </div>
-                          </div>
-                          
+                      </div>
+                    </div>
+                    
                           {/* Ring Labels */}
                           <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Rules & Constraints
-                          </div>
+                      </div>
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Context Weighting
                           </div>
@@ -812,9 +822,9 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                               <div className="relative">
                                 <div className="absolute inset-0 bg-violet-500/20 blur-xl rounded-full" />
                                 <output.icon className="w-6 h-6 text-violet-400 relative z-10" />
-                              </div>
+                      </div>
                               <h4 className="text-white font-semibold text-base lg:text-right">{output.label}</h4>
-                            </div>
+                    </div>
                             <p className="text-gray-400 text-sm lg:text-right">{output.desc}</p>
                             
                             {/* Energy particles */}
@@ -830,7 +840,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                                 delay: index * 0.3,
                               }}
                             />
-                          </div>
+                  </div>
                         </motion.div>
                       ))}
                     </div>
@@ -1049,8 +1059,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <h4 className="text-lg font-bold text-white mb-4">Planning Tools</h4>
                       <p className="text-gray-300 text-sm mb-4">Tools like Wanderlog and TripIt focus on structured itinerary planning, requiring users to plan ahead and maintain rigid schedules.</p>
                       <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
-                    </div>
-                    
+                        </div>
+                        
                     {/* Competitor 2 */}
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
@@ -1063,9 +1073,9 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <h4 className="text-lg font-bold text-white mb-4">Review Platforms</h4>
                       <p className="text-gray-300 text-sm mb-4">TripAdvisor and Yelp rely heavily on user-generated reviews, creating information overload without real-time context or personalized recommendations.</p>
                       <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
-                    </div>
-                  </div>
-                  
+                          </div>
+                        </div>
+                        
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
                     <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Context-First</h4>
@@ -1971,12 +1981,12 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   >
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                       Build & Iteration
-                    </h2>
+                  </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
                       <p className="text-amber-300 text-sm font-medium">
-                        Work In Progress
-                      </p>
+                    Work In Progress
+                  </p>
                     </div>
                   </motion.div>
                 </div>
@@ -2070,7 +2080,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                         </svg>
                       </div>
                       <h3 className="text-xl font-bold text-white">Tech Stack</h3>
-                    </div>
+                      </div>
                     <div className="space-y-4">
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">Frontend</span>
@@ -2083,11 +2093,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">Database</span>
                         <span className="text-emerald-400 font-medium">Firestore, Realm, PostgreSQL</span>
-                      </div>
+                    </div>
                       <div>
                         <span className="text-gray-400 text-sm block mb-1">AI/ML</span>
                         <span className="text-orange-400 font-medium">OpenAI / LangChain</span>
-                      </div>
+                  </div>
                     </div>
                   </motion.div>
                   
@@ -2182,18 +2192,18 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                           <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                           </svg>
-                        </div>
-                        <h4 className="text-xl font-bold text-white">Challenge</h4>
-                      </div>
-                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency</p>
                     </div>
+                        <h4 className="text-xl font-bold text-white">Challenge</h4>
+                    </div>
+                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency</p>
+                  </div>
                     <div className="flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                        </div>
+                </div>
                         <h4 className="text-xl font-bold text-white">Solution</h4>
                       </div>
                       <p className="text-gray-300 leading-relaxed">Built a robust sync system with conflict resolution and queue management</p>
@@ -2540,8 +2550,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                         Real-world context is messier than prototypes suggest. Location accuracy varies, time zones shift, and behavioral patterns aren't always consistent. The system needed multiple fallback strategies, not just one primary path. This complexity is invisible to users but essential for reliability.
                       </p>
                     </div>
-                  </div>
-
+                </div>
+                
                   {/* What Surprised Me */}
                   <div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
@@ -2555,7 +2565,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                       <p>
                         The technical challenge of real-time context processing revealed that most existing travel APIs aren't built for moment-to-moment decision support. They're optimized for pre-trip planning. Adapting these systems required building abstraction layers that translate booking-focused data into context-rich signals.
                       </p>
-                    </div>
+                  </div>
                   </div>
                 </div>
               </motion.div>
@@ -2575,7 +2585,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">
                     Where the Product Could Evolve Next
                   </h2>
-                </div>
+                  </div>
                 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
@@ -2592,7 +2602,8 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </section>
         </>
-      ) : isOtherProject ? (
+      )}
+      {mainContentType === 'other' && (
         <>
           {/* Section 1: Observed Travel Frictions */}
           <section id="design-exploration" className="py-20 bg-gray-50">
@@ -2885,7 +2896,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                           <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                        </div>
+                    </div>
                         <h4 className="text-xl font-bold text-white">Solution</h4>
                       </div>
                       <p className="text-gray-300 leading-relaxed">
@@ -3093,11 +3104,12 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </section>
           )}
         </>
-      ) : (
+      )}
+      {mainContentType === 'fallback' && (
         <>
           {/* Overview / Project Summary Section */}
           <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
