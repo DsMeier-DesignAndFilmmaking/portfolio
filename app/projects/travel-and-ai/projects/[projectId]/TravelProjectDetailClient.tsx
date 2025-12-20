@@ -190,148 +190,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
     }
   };
 
-  // Hero section content for different project types
-  const heroContentSpontaneous = (
-    <div className="container mx-auto px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="order-1 lg:order-1"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-              Spontaneous Travel Engine
-            </h1>
-            <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-              Self-initiated product exploration · Travel · AI
-            </p>
-            <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-              <a
-                href="#design-exploration"
-                onClick={(e) => handleAnchorClick(e, '#design-exploration')}
-                className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                aria-label="View Case Study"
-              >
-                View Case Study
-              </a>
-              <a
-                href="#prototyping-ai"
-                onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
-                className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                aria-label="Explore Working Prototype (Experimental)"
-              >
-                Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
-              </a>
-            </nav>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
-          >
-            <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-              <div className="relative flex-shrink-0">
-                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                  <Image
-                    src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
-                    alt="Micro Adventure Concept Graphic"
-                    width={280}
-                    height={560}
-                    className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                    priority
-                    quality={90}
-                    sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                  />
-                </div>
-              </div>
-              <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
-                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                  <Image
-                    src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                    alt="Micro Adventure Concept Graphic 2"
-                    width={280}
-                    height={560}
-                    className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                    priority
-                    quality={90}
-                    sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const heroContentOther = (
-    <div className="container mx-auto px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            {project?.title || "Project Title"}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            {project?.tagline || "Project description"}
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  );
-
-  const heroContentFallback = (
-    <div className="container mx-auto px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            {project?.title || "Project Title"}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            {project?.tagline || "Project description"}
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  );
-
-  // Determine hero content based on project type - avoid nested ternaries
-  const getHeroContent = () => {
-    if (isSpontaneousTravelCompanion) {
-      return heroContentSpontaneous;
-    } else if (isOtherProject) {
-      return heroContentOther;
-    } else {
-      return heroContentFallback;
-    }
-  };
-  const heroContent = getHeroContent();
-
-  // Determine main content based on project type - use helper function to avoid nested ternaries
-  const getMainContent = () => {
-    if (isSpontaneousTravelCompanion) {
-      return 'spontaneous';
-    } else if (isOtherProject) {
-      return 'other';
-    } else {
-      return 'fallback';
-    }
-  };
-  const mainContentType = getMainContent();
-
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <AnimatePresence>
@@ -364,14 +222,108 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       {/* Hero Section */}
       <section className="bg-white pt-20 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
-        {heroContent}
+        {isSpontaneousTravelCompanion && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                    Spontaneous Travel Engine
+                  </h1>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Self-initiated product exploration · Travel · AI
+                  </p>
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#design-exploration"
+                      onClick={(e) => handleAnchorClick(e, '#design-exploration')}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                    <a
+                      href="#prototyping-ai"
+                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                      aria-label="Explore Working Prototype (Experimental)"
+                    >
+                      Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                    <div className="relative flex-shrink-0">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
+                          alt="Micro Adventure Concept Graphic"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                        />
+                      </div>
+                    </div>
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
+                          alt="Micro Adventure Concept Graphic 2"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isOtherProject)) && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  {project?.title || "Project Title"}
+                </h1>
+                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  {project?.tagline || "Project description"}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        )}
         
         {/* Subtle Divider */}
         <div className="border-b border-gray-100 mt-16 md:mt-20 lg:mt-24"></div>
       </section>
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
-      {mainContentType === 'spontaneous' && (
+      {isSpontaneousTravelCompanion && (
         <>
           {/* Observed Travel Frictions Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
@@ -2603,7 +2555,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           </section>
         </>
       )}
-      {mainContentType === 'other' && (
+      {isOtherProject && (
         <>
           {/* Section 1: Observed Travel Frictions */}
           <section id="design-exploration" className="py-20 bg-gray-50">
@@ -3105,7 +3057,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
           )}
         </>
       )}
-      {mainContentType === 'fallback' && (
+      {!isSpontaneousTravelCompanion && !isOtherProject && (
         <>
           {/* Overview / Project Summary Section */}
           <section className="py-20 bg-white">
