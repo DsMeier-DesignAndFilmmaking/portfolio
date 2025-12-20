@@ -272,12 +272,13 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
                     {/* First Hero Image */}
                     <div className="relative flex-shrink-0">
-                      <div className="relative w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[9/16] rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
                           alt="Micro Adventure Concept Graphic"
-                          fill
-                          className="object-contain"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
                           priority
                           quality={90}
                           sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
@@ -287,12 +288,13 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
                     {/* Second Hero Image - Slightly offset on desktop for visual interest */}
                     <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
-                      <div className="relative w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[9/16] rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
                           alt="Micro Adventure Concept Graphic 2"
-                          fill
-                          className="object-contain"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
                           priority
                           quality={90}
                           sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
@@ -1799,79 +1801,92 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 transition={{ duration: 0.6 }}
                 className="max-w-6xl mx-auto"
               >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Development & Build
-                  </h2>
-                  <p className="text-gray-300 text-lg">
-                    Work In Progress
-                  </p>
+                {/* Enhanced Header */}
+                <div className="text-center mb-20">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                      Development & Build
+                    </h2>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <p className="text-amber-300 text-sm font-medium">
+                        Work In Progress
+                      </p>
+                    </div>
+                  </motion.div>
                 </div>
                 
-                {/* AI Workflow Process Diagram */}
+                {/* Enhanced AI Workflow Process Diagram */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.1 }}
-                  className="mb-16"
+                  className="mb-20"
                 >
-                  <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                  <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-8">
+                      <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">Development Workflow</p>
+                    </div>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
                       {/* ChatGPT Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                        <div className="flex flex-col items-center text-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-white group-hover:text-green-300 transition-colors">ChatGPT</h3>
-                            <p className="text-sm text-gray-300">Writing Prompts</p>
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-green-300 transition-colors">ChatGPT</h3>
+                            <p className="text-sm text-gray-400">Writing Prompts</p>
                           </div>
                         </div>
                       </div>
                       
                       {/* Arrow 1 */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg className="w-8 h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </div>
 
                       {/* Cursor Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                        <div className="flex flex-col items-center text-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">Cursor</h3>
-                            <p className="text-sm text-gray-300">AI-assisted Code</p>
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">Cursor</h3>
+                            <p className="text-sm text-gray-400">AI-assisted Code</p>
                           </div>
                         </div>
                       </div>
                       
                       {/* Arrow 2 */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg className="w-8 h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </div>
 
                       {/* Xcode Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300 group">
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[280px]">
+                        <div className="flex flex-col items-center text-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">Xcode</h3>
-                            <p className="text-sm text-gray-300">Real iOS Build</p>
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
+                            <p className="text-sm text-gray-400">Real iOS Build</p>
                           </div>
                         </div>
                       </div>
@@ -1879,64 +1894,151 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </div>
                 </motion.div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Tech Stack</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-start">
-                        <span className="text-gray-300">Frontend</span>
-                        <span className="text-amber-400 text-right">Xcode SwiftUI</span>
+                {/* Enhanced Three Column Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
                       </div>
-                      <div className="flex justify-between items-start">
-                        <span className="text-gray-300">Backend</span>
-                        <span className="text-emerald-400 text-right max-w-[60%]">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
+                      <h3 className="text-xl font-bold text-white">Tech Stack</h3>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">Frontend</span>
+                        <span className="text-amber-400 font-medium">Xcode SwiftUI</span>
                       </div>
-                      <div className="flex justify-between items-start">
-                        <span className="text-gray-300">Database</span>
-                        <span className="text-emerald-400 text-right">Firestore, Realm, PostgreSQL</span>
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">Backend</span>
+                        <span className="text-emerald-400 font-medium text-sm leading-relaxed">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
                       </div>
-                      <div className="flex justify-between items-start">
-                        <span className="text-gray-300">AI/ML</span>
-                        <span className="text-orange-400 text-right">OpenAI / LangChain</span>
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">Database</span>
+                        <span className="text-emerald-400 font-medium">Firestore, Realm, PostgreSQL</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-400 text-sm block mb-1">AI/ML</span>
+                        <span className="text-orange-400 font-medium">OpenAI / LangChain</span>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                   
-                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Architecture</h3>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">Architecture</h3>
+                    </div>
                     <ul className="space-y-3 text-gray-300">
-                      <li>• Microservices architecture</li>
-                      <li>• Offline-first with sync</li>
-                      <li>• Real-time notifications</li>
-                      <li>• Multi-language support</li>
-                      <li>• Scalable cloud deployment</li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>Microservices architecture</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>Offline-first with sync</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>Real-time notifications</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>Multi-language support</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>Scalable cloud deployment</span>
+                      </li>
                     </ul>
-                  </div>
+                  </motion.div>
                   
-                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Key Features to Build</h3>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">Key Features to Build</h3>
+                    </div>
                     <ul className="space-y-3 text-gray-300">
-                      <li>• Offline map functionality</li>
-                      <li>• AI recommendation engine</li>
-                      <li>• Real-time translation</li>
-                      <li>• Social sharing system</li>
-                      <li>• Push notifications</li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>Offline map functionality</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>AI recommendation engine</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>Real-time translation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>Social sharing system</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>Push notifications</span>
+                      </li>
                     </ul>
-                  </div>
+                  </motion.div>
                 </div>
                 
-                <div className="bg-gradient-to-r from-amber-500/10 to-cyan-500/10 p-8 rounded-xl border border-amber-500/20">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="text-lg font-medium text-gray-200 mb-2">Challenge</h4>
-                      <p className="text-gray-300">Implementing offline functionality while maintaining data consistency</p>
+                {/* Enhanced Challenge/Solution Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="bg-gradient-to-r from-amber-500/10 via-cyan-500/10 to-purple-500/10 p-8 md:p-10 rounded-2xl border border-amber-500/20 backdrop-blur-sm"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Challenge</h4>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency</p>
                     </div>
-                    <div>
-                      <h4 className="text-lg font-medium text-gray-200 mb-2">Solution</h4>
-                      <p className="text-gray-300">Built a robust sync system with conflict resolution and queue management</p>
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Solution</h4>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">Built a robust sync system with conflict resolution and queue management</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
                 
                 {/* Xcode Screenshot Image */}
                 <motion.div

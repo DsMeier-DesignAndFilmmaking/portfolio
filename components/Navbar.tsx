@@ -42,7 +42,6 @@ const Navbar = () => {
         isOverBlack = scrollY > 100;
       } else {
         // Homepage behavior - check section overlap
-        const blackSection = document.getElementById('black-section');
         const videoSection = document.getElementById('video-projects');
         const travelogueSection = document.getElementById('travelogue');
         const aboutSection = document.getElementById('about');
@@ -64,16 +63,6 @@ const Navbar = () => {
           }
         }
 
-        // Check if navbar overlaps with black section (design section)
-        let isCurrentlyInDesign = false;
-        if (blackSection) {
-          const blackRect = blackSection.getBoundingClientRect();
-          if (navTop < blackRect.bottom && navBottom > blackRect.top) {
-            isOverBlack = true;
-            isCurrentlyInDesign = true;
-          }
-        }
-
         // Check if navbar overlaps with video section
         if (videoSection && !isOverBlack) {
           const videoRect = videoSection.getBoundingClientRect();
@@ -91,13 +80,13 @@ const Navbar = () => {
         }
 
         // Track if we've ever entered a section that requires navbar shrink
-        // This includes About, Work (black-section), Video, and Travelogue sections
-        if ((isCurrentlyInAbout || isCurrentlyInDesign) && !hasEnteredDesignSection) {
+        // This includes About, Video, and Travelogue sections
+        if (isCurrentlyInAbout && !hasEnteredDesignSection) {
           setHasEnteredDesignSection(true);
         }
 
         // Determine if navbar should be shrunk
-        // Once we've entered any section requiring shrink (About, Work, Video, Travelogue),
+        // Once we've entered any section requiring shrink (About, Video, Travelogue),
         // keep shrunk for all sections below
         // Only un-shrink if we scroll back above all these sections
         if (hasEnteredDesignSection) {
@@ -116,17 +105,6 @@ const Navbar = () => {
                 // We're at or past the About section, keep shrunk
                 setIsInDesignSection(true);
               }
-            } else if (blackSection) {
-              // Fallback to black section check
-              const blackRect = blackSection.getBoundingClientRect();
-              const designSectionTop = blackRect.top + scrollY;
-              
-              if (scrollY < designSectionTop - 200) {
-                setHasEnteredDesignSection(false);
-                setIsInDesignSection(false);
-              } else {
-                setIsInDesignSection(true);
-              }
             } else {
               // Fallback: if we're near the top of the page, reset
               if (scrollY < 300) {
@@ -135,17 +113,6 @@ const Navbar = () => {
               } else {
                 setIsInDesignSection(true);
               }
-            }
-          } else if (blackSection) {
-            // Fallback to black section check if About section not found
-            const blackRect = blackSection.getBoundingClientRect();
-            const designSectionTop = blackRect.top + scrollY;
-            
-            if (scrollY < designSectionTop - 200) {
-              setHasEnteredDesignSection(false);
-              setIsInDesignSection(false);
-            } else {
-              setIsInDesignSection(true);
             }
           } else {
             // Fallback: if we're near the top of the page, reset
@@ -158,7 +125,7 @@ const Navbar = () => {
           }
         } else {
           // Use normal logic if we haven't entered any shrink-triggering section yet
-          // Trigger shrink if we're in About, Work, Video, or Travelogue sections
+          // Trigger shrink if we're in About, Video, or Travelogue sections
           setIsInDesignSection(isCurrentlyInAbout || isOverBlack);
         }
       }
@@ -204,8 +171,8 @@ const Navbar = () => {
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
-    // If clicking "Work" (black-section) or "About", immediately trigger navbar width animation
-    if (targetId === 'black-section' || targetId === 'about') {
+    // If clicking "About", immediately trigger navbar width animation
+    if (targetId === 'about') {
       setHasEnteredDesignSection(true);
       setIsInDesignSection(true);
     }
@@ -216,9 +183,9 @@ const Navbar = () => {
     
     // For travelogue section, use a more robust approach to ensure stable scroll
     const scrollToTarget = async () => {
-      // For black-section and about, wait for navbar state change to apply before calculating scroll
+      // For about, wait for navbar state change to apply before calculating scroll
       // This ensures the navbar shrink animation doesn't cause layout shifts during scroll
-      if (targetId === 'black-section' || targetId === 'about') {
+      if (targetId === 'about') {
         // Wait for React state update to propagate and navbar layout to stabilize
         await new Promise(resolve => {
           requestAnimationFrame(() => {
@@ -233,45 +200,6 @@ const Navbar = () => {
         const navbar = document.getElementById('site-navbar');
         if (navbar) {
           navbar.offsetHeight;
-        }
-        
-        // For black-section, ensure FadeInSection animations are triggered before scroll calculation
-        if (targetId === 'black-section') {
-          // Find the section element (after the anchor-offset div)
-          const anchorElement = document.getElementById('black-section');
-          if (anchorElement) {
-            const section = anchorElement.nextElementSibling as HTMLElement;
-            if (section && section.tagName === 'SECTION') {
-              // Trigger FadeInSection visibility by simulating intersection
-              // FadeInSection uses IntersectionObserver with threshold 0.2
-              // We need to ensure elements are considered "visible" before scroll
-              // Dispatch scrollComplete to trigger FadeInSection's event listener
-              window.dispatchEvent(new CustomEvent('scrollComplete'));
-              
-              // Wait for FadeInSection state updates and initial animation frame
-              // The animations use transform which doesn't affect layout, but we want
-              // to ensure they've started to prevent any timing issues
-              await new Promise(resolve => {
-                // Multiple RAF cycles to ensure React state updates propagate
-                requestAnimationFrame(() => {
-                  requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                      // Small additional wait for IntersectionObserver callbacks
-                      setTimeout(resolve, 150);
-                    });
-                  });
-                });
-              });
-              
-              // Force reflow on the section and all its children to ensure
-              // any FadeInSection layout calculations are complete
-              section.offsetHeight;
-              const allChildren = section.querySelectorAll('*');
-              allChildren.forEach((child) => {
-                (child as HTMLElement).offsetHeight;
-              });
-            }
-          }
         }
       }
       
@@ -411,9 +339,6 @@ const Navbar = () => {
         } else if (targetId === 'about') {
           // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
           navbarHeight = 80 - 90;
-        } else if (targetId === 'black-section' && scrollMarginTop > 0) {
-          // For black-section with anchor-offset, use CSS scroll-margin-top
-          navbarHeight = scrollMarginTop;
         }
         
         // Calculate final scroll position
@@ -520,16 +445,6 @@ const Navbar = () => {
                 About
               </a>
               <a 
-                href="#black-section" 
-                onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-white' : 'text-black'
-                }`}
-              >
-                Work
-              </a>
-              <a 
                 href="#video-projects" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'video-projects')}
@@ -578,17 +493,6 @@ const Navbar = () => {
                 }`}
               >
                 About
-              </a>
-              
-              <a 
-                href="#black-section" 
-                onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'black-section')}
-                className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
-                }`}
-              >
-                Work
               </a>
               
               <a 
