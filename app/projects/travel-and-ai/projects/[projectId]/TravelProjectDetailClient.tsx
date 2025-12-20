@@ -31,25 +31,25 @@ interface TravelProjectDetailClientProps {
   projectId: string;
 }
 
+// Helper function to normalize image paths (handle both /portfolio/ prefix and base path)
+function normalizeImagePath(imagePath: string): string {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  // If path starts with /portfolio/, replace it with basePath
+  if (imagePath.startsWith('/portfolio/')) {
+    return `${basePath}${imagePath.replace('/portfolio', '')}`;
+  }
+  // If path doesn't start with /, prepend basePath
+  if (!imagePath.startsWith('/')) {
+    return `${basePath}/${imagePath}`;
+  }
+  // Otherwise, prepend basePath to absolute paths
+  return `${basePath}${imagePath}`;
+}
+
 export default function TravelProjectDetailClient({ project, projectId }: TravelProjectDetailClientProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
-  
-  // Helper function to normalize image paths (handle both /portfolio/ prefix and base path)
-  const normalizeImagePath = (imagePath: string): string => {
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-    // If path starts with /portfolio/, replace it with basePath
-    if (imagePath.startsWith('/portfolio/')) {
-      return `${basePath}${imagePath.replace('/portfolio', '')}`;
-    }
-    // If path doesn't start with /, prepend basePath
-    if (!imagePath.startsWith('/')) {
-      return `${basePath}/${imagePath}`;
-    }
-    // Otherwise, prepend basePath to absolute paths
-    return `${basePath}${imagePath}`;
-  };
   
   // Video-related state
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -117,6 +117,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [isVideoLoaded]);
 
   // Handle video error detection and fallback
@@ -130,6 +131,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       return () => clearTimeout(errorTimer);
     }
+    return undefined;
   }, [isVideoLoaded, isVideoReady]);
 
   // Handle mobile video error detection
@@ -142,6 +144,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       return () => clearTimeout(errorTimer);
     }
+    return undefined;
   }, [isMobile, isMobileVideoLoaded]);
 
   // Handle mobile video loading
@@ -153,6 +156,7 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
 
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [isMobile]);
 
   if (!project) {
