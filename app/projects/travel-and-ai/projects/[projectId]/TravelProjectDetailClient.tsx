@@ -223,7 +223,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {/* Hero Section */}
       <section className="bg-white pt-20 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
         {isSpontaneousTravelCompanion ? (
-          /* Mobile-First Hero Layout for Spontaneous Travel Engine */
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               {/* Mobile: Single Column - Text First, Then Images */}
@@ -317,7 +316,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </div>
         ) : isOtherProject ? (
-          /* Hero Layout for Other Travel & AI Projects */
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -339,7 +337,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
             </div>
           </div>
         ) : (
-          /* Fallback Hero Layout */
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
