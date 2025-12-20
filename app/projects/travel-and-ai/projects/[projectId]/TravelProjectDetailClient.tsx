@@ -211,14 +211,14 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       {isSpontaneousTravelCompanion && <StickyProgressNav sections={sections} />}
 
       {/* Hero Section */}
-      <section className="bg-white pt-20 md:pt-24 lg:pt-32 pb-12 md:pb-16 lg:pb-20" aria-label="Project Hero">
+      <section className="bg-white pt-20 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
         {isSpontaneousTravelCompanion ? (
           /* Mobile-First Hero Layout for Spontaneous Travel Engine */
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               {/* Mobile: Single Column - Text First, Then Images */}
               {/* Desktop: Two Column - Text Left, Images Right */}
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-16 lg:items-center">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                 {/* Text Content - Left Column on Desktop, First on Mobile */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -227,12 +227,12 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   className="order-1 lg:order-1"
                 >
                   {/* Product Name (H1) - Strongest Visual Element */}
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 md:mb-5 lg:mb-6 leading-tight tracking-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
                     Spontaneous Travel Engine
                   </h1>
                   
                   {/* Subtitle (Meta / Subhead) - Subdued and Supportive */}
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
                     Self-initiated product exploration · Travel · AI
                   </p>
                   
@@ -265,40 +265,40 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-10 md:mt-12 lg:mt-0"
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0"
                 >
-                  {/* Mobile: Stacked Vertically */}
-                  {/* Tablet: Side-by-Side */}
-                  {/* Desktop: Stacked Vertically (Right Column) */}
-                  <div className="flex flex-col md:flex-row lg:flex-col gap-6 md:gap-6 lg:gap-8 items-center md:items-start lg:items-center">
+                  {/* Mobile: Stacked Vertically with constrained height */}
+                  {/* Tablet: Side-by-Side with constrained height */}
+                  {/* Desktop: Stacked Vertically with constrained height and slight overlap */}
+                  <div className="relative flex flex-col md:flex-row lg:flex-col gap-4 md:gap-4 lg:gap-4 items-center md:items-start lg:items-center lg:-space-y-8">
                     {/* First Hero Image */}
-                    <div className="relative w-full flex justify-center md:justify-start lg:justify-center">
-                      <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-[320px] lg:max-w-md rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+                    <div className="relative w-full flex justify-center md:justify-start lg:justify-center z-10">
+                      <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[260px] lg:max-w-[280px] xl:max-w-[300px] h-[420px] sm:h-[460px] md:h-[440px] lg:h-[420px] xl:h-[440px] rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
                           alt="Micro Adventure Concept Graphic"
                           width={800}
                           height={1600}
-                          className="w-full h-auto object-contain"
+                          className="w-full h-full object-contain"
                           priority
                           quality={90}
-                          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 45vw, 512px"
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 300px"
                         />
                       </div>
                     </div>
 
                     {/* Second Hero Image */}
-                    <div className="relative w-full flex justify-center md:justify-end lg:justify-center">
-                      <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-[320px] lg:max-w-md rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+                    <div className="relative w-full flex justify-center md:justify-end lg:justify-center z-0 lg:translate-x-6">
+                      <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[260px] lg:max-w-[280px] xl:max-w-[300px] h-[420px] sm:h-[460px] md:h-[440px] lg:h-[420px] xl:h-[440px] rounded-xl overflow-hidden shadow-lg bg-gray-100">
                         <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
                           alt="Micro Adventure Concept Graphic 2"
                           width={800}
                           height={1600}
-                          className="w-full h-auto object-contain"
+                          className="w-full h-full object-contain"
                           priority
                           quality={90}
-                          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 45vw, 512px"
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 300px"
                         />
                       </div>
                     </div>
@@ -449,13 +449,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">Why It Matters</h3>
-                    <p className="text-gray-600">
-                      Spontaneous trips lead to real connections, less stress, and way more memorable adventures. For locals, it means tourism that feels more genuine and new chances to benefit from visitors.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h3 className="text-xl font-semibold mb-3 text-gray-900">Market Opportunity</h3>
                     <p className="text-gray-600">
                       The mobile travel market continues to expand—expected to surpass $250B by 2028—yet more than 80% of leading travel apps focus on trip planning and reservations, not the in-destination experience.
@@ -465,45 +458,183 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                 
                 {/* Real Pain Points List */}
                 <div className="mt-16">
-                  <h3 className="text-2xl font-semibold mb-8 text-center text-gray-900">Real Pain Points from Travelers</h3>
-                  <div className="space-y-8">
+                  <h3 className="text-2xl font-semibold mb-10 md:mb-12 text-center text-gray-900">Real Pain Points from Travelers</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    {/* Fake Spontaneity */}
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Fake spontaneity" or pre-planned "spontaneous" events</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically staged photo-ops for Instagram."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/solotravel</p>
-                        <p className="italic">"I joined a 'spontaneous' pub crawl that turned out to be a weekly commercial thing. It felt forced and salesy."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/travel</p>
+                      <h4 className="text-lg font-bold mb-4 text-gray-900">Fake Spontaneity</h4>
+                      <div className="space-y-4 text-gray-600">
+                        <div>
+                          <p className="italic mb-2">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically staged photo-ops for Instagram."</p>
+                          <p className="text-sm text-gray-500">— Reddit, r/solotravel</p>
+                        </div>
+                        <div>
+                          <p className="italic mb-2">"I joined a 'spontaneous' pub crawl that turned out to be a weekly commercial thing. It felt forced and salesy."</p>
+                          <p className="text-sm text-gray-500">— Reddit, r/travel</p>
+                        </div>
                       </div>
                     </div>
                     
+                    {/* Tourist Echo Chambers */}
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Tourist echo chambers"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"I was hoping to meet locals or go off the beaten path, but it was just the same backpacker scene recycled across countries."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/backpacking</p>
-                        <p className="italic">"Met great people, but we all ended up doing the same top 5 things from TripAdvisor. No real cultural immersion."</p>
-                        <p className="text-sm text-gray-500">— Blog Comment on Nomadic Matt</p>
+                      <h4 className="text-lg font-bold mb-4 text-gray-900">Tourist Echo Chambers</h4>
+                      <div className="space-y-4 text-gray-600">
+                        <div>
+                          <p className="italic mb-2">"I was hoping to meet locals or go off the beaten path, but it was just the same backpacker scene recycled across countries."</p>
+                          <p className="text-sm text-gray-500">— Reddit, r/backpacking</p>
+                        </div>
+                        <div>
+                          <p className="italic mb-2">"Met great people, but we all ended up doing the same top 5 things from TripAdvisor. No real cultural immersion."</p>
+                          <p className="text-sm text-gray-500">— Blog Comment on Nomadic Matt</p>
+                        </div>
                       </div>
                     </div>
                     
+                    {/* Last-Minute Friction */}
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Last-minute logistics are a nightmare"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"Tried being spontaneous with my itinerary, but trains were booked, hostels full, and tours sold out."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/onebag</p>
-                        <p className="italic">"Spontaneity sounds romantic until you're stuck in a rural town on a Sunday with no food or transport."</p>
-                        <p className="text-sm text-gray-500">— TripAdvisor Review</p>
+                      <h4 className="text-lg font-bold mb-4 text-gray-900">Last-Minute Friction</h4>
+                      <div className="space-y-4 text-gray-600">
+                        <div>
+                          <p className="italic mb-2">"Tried being spontaneous with my itinerary, but trains were booked, hostels full, and tours sold out."</p>
+                          <p className="text-sm text-gray-500">— Reddit, r/onebag</p>
+                        </div>
+                        <div>
+                          <p className="italic mb-2">"I just want a quick, honest suggestion of where to eat or hang out nearby without scrolling through 400 generic reviews."</p>
+                          <p className="text-sm text-gray-500">— Reddit, r/travelhacks</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Why It Matters Section */}
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <h2 className="text-2xl md:text-3xl font-semibold mb-10 md:mb-12 text-gray-900 text-center">
+                  Why It Matters
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                  {/* Impact for Travelers */}
+                  <div>
+                    <h3 className="text-lg font-medium mb-4 text-gray-900">
+                      Impact for Travelers
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Spontaneous travel leads to deeper connections with places and people. It reduces the pressure of rigid planning and opens space for unexpected moments that become the most memorable parts of a journey.
+                    </p>
+                  </div>
+                  
+                  {/* Impact for Local Communities */}
+                  <div>
+                    <h3 className="text-lg font-medium mb-4 text-gray-900">
+                      Impact for Local Communities
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      When travelers explore beyond predictable routes, local businesses and communities benefit. Tourism becomes more distributed, creating opportunities for authentic cultural exchange and economic growth.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Overview Section */}
+          <section className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <h2 className="text-2xl md:text-3xl font-semibold mb-3 md:mb-4 text-center text-gray-900">
+                  System Overview: How the Spontaneity Engine Works
+                </h2>
+                <p className="text-sm md:text-base text-gray-500 text-center mb-10 md:mb-12">
+                  Conceptual system diagram
+                </p>
+                
+                {/* Diagram Container */}
+                <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
+                  {/* Flow Diagram */}
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                    {/* Inputs */}
+                    <div className="flex-1 w-full md:w-auto">
+                      <div className="text-center mb-3">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Inputs</h3>
+                      </div>
+                      <div className="space-y-2 md:space-y-3">
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Location</p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Time</p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Behavior</p>
+                        </div>
                       </div>
                     </div>
                     
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                      <h4 className="text-lg font-semibold mb-3 text-gray-900">"Hard to find trustworthy, in-the-moment suggestions"</h4>
-                      <div className="space-y-2 text-gray-600">
-                        <p className="italic">"I just want a quick, honest suggestion of where to eat or hang out nearby without scrolling through 400 generic reviews."</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/travelhacks</p>
-                        <p className="italic">"Google Maps and TripAdvisor are gamed to death. Where are the real recommendations?"</p>
-                        <p className="text-sm text-gray-500">— Reddit, r/UXDesign (travel app feedback)</p>
+                    {/* Arrow */}
+                    <div className="flex-shrink-0 flex items-center justify-center">
+                      <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                    
+                    {/* Intelligence */}
+                    <div className="flex-1 w-full md:w-auto">
+                      <div className="text-center mb-3">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Intelligence</h3>
+                      </div>
+                      <div className="space-y-2 md:space-y-3">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">AI logic</p>
+                        </div>
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Rules & constraints</p>
+                        </div>
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Context weighting</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <div className="flex-shrink-0 flex items-center justify-center">
+                      <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-400 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                    
+                    {/* Outputs */}
+                    <div className="flex-1 w-full md:w-auto">
+                      <div className="text-center mb-3">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Outputs</h3>
+                      </div>
+                      <div className="space-y-2 md:space-y-3">
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Suggestions</p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Prompts</p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 md:py-3 text-center">
+                          <p className="text-sm md:text-base text-gray-700 font-medium">Social triggers</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -667,18 +798,12 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                   </p>
                 </div>
                 
-                {/* Key Statistics Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {/* Key Statistics Grid - Reduced to 2-3 figures */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                   <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
                     <div className="text-3xl font-bold text-amber-400 mb-2">73%</div>
                     <div className="text-gray-300 text-sm">of travelers prefer spontaneous experiences over rigid itineraries</div>
                     <div className="text-gray-500 text-xs mt-2">— Booking.com Travel Trends 2024</div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
-                    <div className="text-3xl font-bold text-emerald-400 mb-2">$1.2T</div>
-                    <div className="text-gray-300 text-sm">global travel app market value by 2027</div>
-                    <div className="text-gray-500 text-xs mt-2">— Statista Market Research</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
@@ -687,96 +812,86 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-500/30">
-                    <div className="text-3xl font-bold text-purple-400 mb-2">89%</div>
-                    <div className="text-gray-300 text-sm">want AI-powered personalized recommendations</div>
-                    <div className="text-gray-500 text-xs mt-2">— Skift Travel Technology Report</div>
+                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
+                    <div className="text-3xl font-bold text-emerald-400 mb-2">$1.2T</div>
+                    <div className="text-gray-300 text-sm">global travel app market value by 2027</div>
+                    <div className="text-gray-500 text-xs mt-2">— Statista Market Research</div>
                   </div>
                 </div>
                 
-                {/* Competitive Analytics */}
-                <div className="mt-12 bg-white/5 p-6 rounded-xl backdrop-blur-sm border border-white/10">
-                  <h3 className="text-xl font-semibold mb-6 text-white">Competitive Analytics</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="text-lg font-medium mb-4 text-amber-400">Market Leaders Analysis</h4>
-                      <div className="space-y-4">
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">Booking.com</h5>
-                            <span className="text-xs text-gray-400">Market Share: 67%</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: Comprehensive inventory, global reach</p>
-                          <p className="text-sm text-gray-300">Gaps: No spontaneous planning, rigid booking flow</p>
-                        </div>
-                        
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">Airbnb</h5>
-                            <span className="text-xs text-gray-400">Market Share: 23%</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: Local experiences, community focus</p>
-                          <p className="text-sm text-gray-300">Gaps: Limited last-minute availability, no AI assistance</p>
-                        </div>
-                        
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">TripAdvisor</h5>
-                            <span className="text-xs text-gray-400">Market Share: 18%</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: Rich review database, local insights</p>
-                          <p className="text-sm text-gray-300">Gaps: Overwhelming information, no real-time context</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-medium mb-4 text-emerald-400">Emerging Competitors</h4>
-                      <div className="space-y-4">
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">Hopper</h5>
-                            <span className="text-xs text-gray-400">AI Focus: High</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: AI price predictions, flexible booking</p>
-                          <p className="text-sm text-gray-300">Gaps: Limited to flights, no local experiences</p>
-                        </div>
-                        
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">Wanderlog</h5>
-                            <span className="text-xs text-gray-400">Planning Focus: High</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: Collaborative planning, offline maps</p>
-                          <p className="text-sm text-gray-300">Gaps: Requires pre-planning, no spontaneity support</p>
-                        </div>
-                        
-                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                          <div className="flex justify-between items-start mb-2">
-                            <h5 className="font-medium text-white">GetYourGuide</h5>
-                            <span className="text-xs text-gray-400">Experience Focus: High</span>
-                          </div>
-                          <p className="text-sm text-gray-300 mb-2">Strengths: Curated experiences, instant booking</p>
-                          <p className="text-sm text-gray-300">Gaps: Limited to tours, no AI personalization</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {/* Competitive Analysis - Reframed by Approach */}
+                <div className="mt-12 bg-white/5 p-6 md:p-8 rounded-xl backdrop-blur-sm border border-white/10">
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
                   
-                  <div className="mt-8 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 p-6 rounded-lg border border-cyan-500/20">
-                    <h4 className="text-lg font-medium mb-3 text-white">Key Competitive Advantages</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                        <span className="text-gray-300">Real-time AI assistance</span>
+                  {/* Comparison Grid */}
+                  <div className="overflow-x-auto -mx-2 px-2 md:mx-0 md:px-0">
+                    <div className="grid grid-cols-4 gap-3 md:gap-4" style={{ minWidth: 'max-content' }}>
+                      {/* Headers */}
+                      <div className="hidden md:block"></div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
+                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Approach</h4>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                        <span className="text-gray-300">Spontaneous planning support</span>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
+                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Key Gap</h4>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                        <span className="text-gray-300">Cultural context awareness</span>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10">
+                        <h4 className="text-xs md:text-sm font-semibold text-gray-300 mb-1">Examples</h4>
+                      </div>
+                      
+                      {/* Planning-first */}
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <h5 className="text-sm md:text-base font-medium text-white">Planning-first</h5>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">Requires pre-planning, structured itineraries</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-400">No spontaneity support</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">Wanderlog, TripIt</p>
+                      </div>
+                      
+                      {/* Inventory-first */}
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <h5 className="text-sm md:text-base font-medium text-white">Inventory-first</h5>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">Focus on booking availability and transactions</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-400">Rigid booking flow, limited context</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">Booking.com, Airbnb</p>
+                      </div>
+                      
+                      {/* Review-first */}
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <h5 className="text-sm md:text-base font-medium text-white">Review-first</h5>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">Relies on user-generated reviews and ratings</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-400">Overwhelming information, no real-time context</p>
+                      </div>
+                      <div className="bg-white/5 p-3 md:p-4 rounded-lg border border-white/10 flex items-center">
+                        <p className="text-xs md:text-sm text-gray-300">TripAdvisor, Yelp</p>
+                      </div>
+                      
+                      {/* Context-first - Spontaneity Engine */}
+                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
+                        <h5 className="text-sm md:text-base font-semibold text-white">Context-first</h5>
+                      </div>
+                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
+                        <p className="text-xs md:text-sm text-white font-medium">Responds to location, time, and behavior in real-time</p>
+                      </div>
+                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
+                        <p className="text-xs md:text-sm text-white font-medium">Enables spontaneous, human-centered exploration</p>
+                      </div>
+                      <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-3 md:p-4 rounded-lg border border-cyan-500/30 flex items-center">
+                        <p className="text-xs md:text-sm text-white font-medium">Spontaneity Engine</p>
                       </div>
                     </div>
                   </div>
@@ -809,10 +924,11 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     className="bg-gray-50 p-8 rounded-xl border border-gray-200"
                   >
                     <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                      An AI-powered travel companion that combines real-time context awareness, 
-                      cultural intelligence, and personalized recommendations to transform how 
-                      people experience new destinations.
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      An AI-powered travel companion that responds to real-world context, enabling spontaneous, human-centered exploration.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      This system processes location, time, and behavior through AI logic and context weighting to deliver suggestions, prompts, and social triggers that support authentic travel experiences.
                     </p>
                   </motion.div>
 
@@ -2055,6 +2171,81 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
                     </div>
                   </div>
                 </motion.div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Live Demo Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
+                    Live Demo
+                  </h2>
+                  <p className="text-gray-600 text-lg">
+                    This product is actively being built and deployed
+                  </p>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+                  {/* Demo Link */}
+                  <div className="mb-8 text-center">
+                    <a
+                      href="#prototyping-ai"
+                      onClick={(e) => handleAnchorClick(e, '#prototyping-ai')}
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 min-h-[48px] text-center"
+                      aria-label="View Live Demo"
+                    >
+                      View Live Demo
+                      <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
+                  
+                  {/* Status Breakdown */}
+                  <div className="space-y-6">
+                    {/* What Currently Works */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        What Currently Works
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Core UI components, basic navigation, and foundational architecture are functional. The app structure and design system are in place.
+                      </p>
+                    </div>
+                    
+                    {/* What is Experimental */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                        What is Experimental
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        AI recommendation logic, real-time context processing, and offline functionality are in active development. Performance and accuracy are being refined through ongoing iteration.
+                      </p>
+                    </div>
+                    
+                    {/* What is Planned Next */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        What is Planned Next
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Social features, advanced AI personalization, and expanded destination coverage. Timeline depends on user feedback and technical validation from current builds.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </section>

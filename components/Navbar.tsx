@@ -234,6 +234,45 @@ const Navbar = () => {
         if (navbar) {
           navbar.offsetHeight;
         }
+        
+        // For black-section, ensure FadeInSection animations are triggered before scroll calculation
+        if (targetId === 'black-section') {
+          // Find the section element (after the anchor-offset div)
+          const anchorElement = document.getElementById('black-section');
+          if (anchorElement) {
+            const section = anchorElement.nextElementSibling as HTMLElement;
+            if (section && section.tagName === 'SECTION') {
+              // Trigger FadeInSection visibility by simulating intersection
+              // FadeInSection uses IntersectionObserver with threshold 0.2
+              // We need to ensure elements are considered "visible" before scroll
+              // Dispatch scrollComplete to trigger FadeInSection's event listener
+              window.dispatchEvent(new CustomEvent('scrollComplete'));
+              
+              // Wait for FadeInSection state updates and initial animation frame
+              // The animations use transform which doesn't affect layout, but we want
+              // to ensure they've started to prevent any timing issues
+              await new Promise(resolve => {
+                // Multiple RAF cycles to ensure React state updates propagate
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                      // Small additional wait for IntersectionObserver callbacks
+                      setTimeout(resolve, 150);
+                    });
+                  });
+                });
+              });
+              
+              // Force reflow on the section and all its children to ensure
+              // any FadeInSection layout calculations are complete
+              section.offsetHeight;
+              const allChildren = section.querySelectorAll('*');
+              allChildren.forEach((child) => {
+                (child as HTMLElement).offsetHeight;
+              });
+            }
+          }
+        }
       }
       
       if (targetId === 'travelogue') {
@@ -357,23 +396,28 @@ const Navbar = () => {
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = rect.top + window.pageYOffset;
         
-          // Special handling for travelogue/video-projects/about section to show earth-map background better
+        // Check for CSS scroll-margin-top (used by anchor-offset elements)
+        const computedStyle = window.getComputedStyle(targetElement as HTMLElement);
+        const scrollMarginTop = parseFloat(computedStyle.scrollMarginTop || '0');
+        
+        // Special handling for different sections
         let navbarHeight = 80; // Default navbar height
         if (targetId === 'travelogue') {
           // Calculate dynamic offset based on video section loading state
           navbarHeight = calculateTravelogueScrollOffset();
-          } else if (targetId === 'video-projects') {
-            // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
-            navbarHeight = 80 - 60;
-          } else if (targetId === 'about') {
-            // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
-            navbarHeight = 80 - 90;
-          } else if (targetId === 'black-section') {
-            // Use standard navbar height for black-section (Work link)
-            // The section's padding-top accounts for the scroll position
-            navbarHeight = 80;
+        } else if (targetId === 'video-projects') {
+          // Subtract 60px offset for video-projects (Travelogue link) to scroll further down
+          navbarHeight = 80 - 60;
+        } else if (targetId === 'about') {
+          // Subtract 90px offset for about section to scroll further down (40px + 20px + 30px)
+          navbarHeight = 80 - 90;
+        } else if (targetId === 'black-section' && scrollMarginTop > 0) {
+          // For black-section with anchor-offset, use CSS scroll-margin-top
+          navbarHeight = scrollMarginTop;
         }
         
+        // Calculate final scroll position
+        // If scrollMarginTop is set, it's already accounted for in navbarHeight
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
         
         console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
