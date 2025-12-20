@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -159,6 +159,28 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
     return undefined;
   }, [isMobile]);
 
+  // Event handlers using useCallback to avoid inline function definitions
+  const handleBackClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsTransitioning(true);
+    setTimeout(() => {
+      router.push('/projects/travel-and-ai');
+    }, 500);
+  }, [router]);
+
+  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    const target = document.querySelector(hash);
+    if (target) {
+      const offset = 120; // Account for fixed navbar
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+
   if (!project) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
@@ -171,28 +193,6 @@ export default function TravelProjectDetailClient({ project, projectId }: Travel
       </main>
     );
   }
-
-  const handleBackClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsTransitioning(true);
-    setTimeout(() => {
-      router.push('/projects/travel-and-ai');
-    }, 500);
-  };
-
-  // Handle smooth scroll for anchor links in hero CTAs
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
-    e.preventDefault();
-    const target = document.querySelector(hash);
-    if (target) {
-      const offset = 120; // Account for fixed navbar
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
