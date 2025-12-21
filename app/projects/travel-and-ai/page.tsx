@@ -276,7 +276,7 @@ export default function AISandboxPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            Travel taught me the problems. Design and technology help me solve them.<br />
+            Travel taught me the problems. Design and technology help me solve them.<br /><br />
             With experience across 41 countries, I’m building a modular AI travel system — replacing fragmented apps with shared intelligence for planning, trust, social context, and spontaneity.
             </p>
           </motion.div>

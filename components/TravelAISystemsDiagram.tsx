@@ -44,45 +44,121 @@ export default function TravelAISystemsDiagram() {
     );
   }
 
-  /* ---------------- DESKTOP SVG ---------------- */
-  return (
-    <svg viewBox="0 0 440 420" className="w-full max-w-[460px] h-auto">
-      {/* Static connections */}
-      <line x1="220" y1="80" x2="220" y2="130" stroke="#CBD5E1" strokeWidth="2" />
-      <line x1="90" y1="210" x2="220" y2="170" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
-      <line x1="350" y1="210" x2="220" y2="170" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
-      <line x1="220" y1="300" x2="220" y2="235" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
-
+  /* ---------------- DESKTOP SVG (Improved Layout) ---------------- */
+return (
+    <svg
+      viewBox="0 0 520 520"
+      className="w-full max-w-[520px] h-auto"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      {/* === CONNECTIONS === */}
+  
+      {/* Trust → Planning */}
+      <line
+        x1="120"
+        y1="260"
+        x2="260"
+        y2="150"
+        stroke="#CBD5E1"
+        strokeWidth="2"
+      />
+  
+      {/* Social → Core (optional) */}
+      <line
+        x1="400"
+        y1="260"
+        x2="260"
+        y2="230"
+        stroke="#CBD5E1"
+        strokeWidth="2"
+        strokeDasharray="6 6"
+      />
+  
+      {/* Business → Core (optional) */}
+      <line
+        x1="260"
+        y1="400"
+        x2="260"
+        y2="270"
+        stroke="#CBD5E1"
+        strokeWidth="2"
+        strokeDasharray="6 6"
+      />
+  
       {/* Animated Planning → Core */}
       <motion.line
-        x1="220"
-        y1="130"
-        x2="220"
-        y2="170"
+        x1="260"
+        y1="170"
+        x2="260"
+        y2="210"
         stroke="#0F766E"
         strokeWidth="3"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
         transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
       />
-
-      {/* Micro labels */}
-      <text x="230" y="150" fontSize="11" fill="#475569">
-        Shared Signals
+  
+      {/* === MICRO LABELS === */}
+      <text x="272" y="195" fontSize="11" fill="#475569">
+        Shared signals
       </text>
-      <text x="305" y="190" fontSize="11" fill="#64748B">
-        Optional Integration
+  
+      <text x="340" y="245" fontSize="11" fill="#64748B">
+        Optional integration
       </text>
-
-      {/* Nodes */}
-      <NodeRect x={220} y={170} w={170} h={70} label="Spontaneity Core Engine" color="#0F766E" />
-      <NodeRect x={220} y={100} w={180} h={70} label="Travel Planning Assistant" color="#059669" />
-      <NodeCircle x={90} y={210} label="Trust & Authenticity Layer" color="#2563EB" />
-      <NodeCircle x={350} y={210} label="Social Travel Network" color="#7C3AED" />
-      <NodeCircle x={220} y={320} label="Partner & Business Tools" color="#EA580C" />
+  
+      {/* === NODES === */}
+  
+      {/* Planning Assistant */}
+      <NodeRect
+        x={260}
+        y={140}
+        w={200}
+        h={72}
+        label="Travel Planning Assistant"
+        color="#059669"
+      />
+  
+      {/* Core Engine */}
+      <NodeRect
+        x={260}
+        y={240}
+        w={210}
+        h={76}
+        label="Spontaneity Core Engine"
+        color="#0F766E"
+      />
+  
+      {/* Trust Layer */}
+      <NodeCircle
+        x={120}
+        y={280}
+        r={52}
+        label="Trust & Authenticity Layer"
+        color="#2563EB"
+      />
+  
+      {/* Social Network */}
+      <NodeCircle
+        x={400}
+        y={280}
+        r={52}
+        label="Social Travel Network"
+        color="#7C3AED"
+      />
+  
+      {/* Business Tools */}
+      <NodeCircle
+        x={260}
+        y={420}
+        r={52}
+        label="Partner & Business Tools"
+        color="#EA580C"
+      />
     </svg>
   );
-}
+  
+
 
 /* ---------- Node Components ---------- */
 
@@ -116,38 +192,52 @@ function NodeRect({
 }
 
 function NodeCircle({
-  x,
-  y,
-  label,
-  color,
-}: {
-  x: number;
-  y: number;
-  label: string;
-  color: string;
-}) {
-  return (
-    <motion.g
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <circle cx={x} cy={y} r={55} fill={color} />
-      <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="white"
-        fontSize="11"
-        fontWeight="600"
+    x,
+    y,
+    r,
+    label,
+    color,
+  }: {
+    x: number;
+    y: number;
+    r: number;
+    label: string;
+    color: string;
+  }) {
+    return (
+      <motion.g
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
       >
-        {label.split(" ").map((word, i) => (
-          <tspan key={i} x={x} dy={i === 0 ? "0" : "1.2em"}>
-            {word}
-          </tspan>
-        ))}
-      </text>
-    </motion.g>
-  );
+        <circle cx={x} cy={y} r={r} fill={color} />
+        <text
+          x={x}
+          y={y}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="white"
+          fontSize="11"
+          fontWeight="600"
+        >
+          {label
+  .split(" ")
+  .reduce((lines: string[][], word) => {
+    if (!lines.length || lines[lines.length - 1].join(" ").length > 14) {
+      lines.push([word]);
+    } else {
+      lines[lines.length - 1].push(word);
+    }
+    return lines;
+  }, [])
+  .map((line, i) => (
+    <tspan key={i} x={x} dy={i === 0 ? "0" : "1.2em"}>
+      {line.join(" ")}
+    </tspan>
+))}
+
+        </text>
+      </motion.g>
+    );
+  }
 }
