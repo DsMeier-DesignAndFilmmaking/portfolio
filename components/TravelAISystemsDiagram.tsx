@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-/* ---------------- Media Query Hook (Inline) ---------------- */
+/* ---------------- Media Query Hook ---------------- */
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -15,8 +15,6 @@ function useMediaQuery(query: string) {
   }, [query]);
   return matches;
 }
-
-/* ========================================================= */
 
 export default function TravelAISystemsDiagram() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
@@ -46,27 +44,25 @@ export default function TravelAISystemsDiagram() {
     <div className="flex justify-center lg:justify-end w-full">
       <div className="relative w-full max-w-[600px] aspect-[4/5]">
         <svg
-          viewBox="0 0 520 650" /* Increased height to stop overlapping */
+          viewBox="0 0 520 600" 
           className="w-full h-auto"
           preserveAspectRatio="xMidYMid meet"
         >
           {/* === CONNECTIONS === */}
           
-          {/* Trust → Core */}
-          <line x1="110" y1="320" x2="200" y2="320" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+          {/* Horizontal Connections (Side Nodes) */}
+          <line x1="110" y1="300" x2="190" y2="300" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+          <line x1="410" y1="300" x2="330" y2="300" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
 
-          {/* Social → Core */}
-          <line x1="410" y1="320" x2="320" y2="320" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+          {/* Shortened Bottom Connection (Partner Tools) */}
+          <line x1="260" y1="420" x2="260" y2="340" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
 
-          {/* Business → Core */}
-          <line x1="260" y1="500" x2="260" y2="370" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
-
-          {/* Animated Planning → Core */}
+          {/* Shortened Animated Top Connection (Planning Assistant) */}
           <motion.line
             x1="260"
-            y1="160"
+            y1="190"
             x2="260"
-            y2="280"
+            y2="260"
             stroke="#0F766E"
             strokeWidth="2.5"
             initial={{ pathLength: 0 }}
@@ -74,17 +70,12 @@ export default function TravelAISystemsDiagram() {
             transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
           />
 
-          {/* === MICRO LABELS === */}
-          <text x="270" y="220" fontSize="10" fill="#64748B" fontWeight="500">
-            Shared signals
-          </text>
-
           {/* === NODES === */}
 
-          {/* Top Node: Planning Assistant */}
+          {/* Top Node: Planning Assistant (Moved Down) */}
           <NodeRect
             x={260}
-            y={110}
+            y={160}
             w={200}
             h={60}
             label="Travel Planning Assistant"
@@ -94,7 +85,7 @@ export default function TravelAISystemsDiagram() {
           {/* Center Node: Core Engine */}
           <NodeRect
             x={260}
-            y={325}
+            y={300}
             w={220}
             h={75}
             label="Spontaneity Core Engine"
@@ -103,8 +94,8 @@ export default function TravelAISystemsDiagram() {
 
           {/* Left: Trust Layer */}
           <NodeCircle
-            x={90}
-            y={325}
+            x={80}
+            y={300}
             r={50}
             label="Trust & Authenticity"
             color="#2563EB"
@@ -112,17 +103,17 @@ export default function TravelAISystemsDiagram() {
 
           {/* Right: Social Network */}
           <NodeCircle
-            x={430}
-            y={325}
+            x={440}
+            y={300}
             r={50}
             label="Social Travel Network"
             color="#7C3AED"
           />
 
-          {/* Bottom: Business Tools */}
+          {/* Bottom: Business Tools (Moved Up) */}
           <NodeCircle
             x={260}
-            y={520}
+            y={450}
             r={50}
             label="Partner Tools"
             color="#EA580C"
@@ -137,11 +128,7 @@ export default function TravelAISystemsDiagram() {
 
 function NodeRect({ x, y, w, h, label, color }: any) {
   return (
-    <motion.g
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
       <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="14" fill={color} />
       <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="600">
         {label}
@@ -153,15 +140,11 @@ function NodeRect({ x, y, w, h, label, color }: any) {
 function NodeCircle({ x, y, r, label, color }: any) {
   const words = label.split(" ");
   return (
-    <motion.g
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.g initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
       <circle cx={x} cy={y} r={r} fill={color} />
       <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="10" fontWeight="600">
         {words.map((word: string, i: number) => (
-          <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.6}em` : "1.2em"}>
+          <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.5}em` : "1.1em"}>
             {word}
           </tspan>
         ))}
