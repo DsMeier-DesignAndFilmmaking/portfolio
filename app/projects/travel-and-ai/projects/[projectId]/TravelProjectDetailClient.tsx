@@ -572,7 +572,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       </motion.nav>
 
     {/* Sticky Progress Navigation */}
-    {(isSpontaneousTravelCompanion || isCulturalContextEngine) && (
+    {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant) && (
       <StickyProgressNav sections={sections} />
     )}
 
