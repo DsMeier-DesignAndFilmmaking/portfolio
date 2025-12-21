@@ -833,6 +833,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     >
                       View Case Study
                     </a>
+                    <a
+                      href="#prototyping-ai"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#prototyping-ai');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                      aria-label="Explore Working Prototype (Experimental)"
+                    >
+                      View Figma Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Video Demo)</span>
+                    </a>
                   </nav>
                 </motion.div>
                 <motion.div
@@ -861,8 +880,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                      alt="Micro Adventure Concept Graphic 2"
+                          src={normalizeImagePath("public/images/travelWhereYouveBeen_screen.png")}
+                      alt="Social Travel Network Concept Graphic 2"
                           width={280}
                           height={560}
                           className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
