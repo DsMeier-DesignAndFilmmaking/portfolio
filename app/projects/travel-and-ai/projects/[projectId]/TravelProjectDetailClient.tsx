@@ -575,7 +575,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       {isSpontaneousTravelCompanion && <StickyProgressNav sections={sections} />}
 
       {/* Hero Section */}
-      <section className="bg-white pt-32 md:pt-20 lg:pt-24 pb-8 md:pb-12 lg:pb-16" aria-label="Project Hero">
+      <section className=" bg-white
+  min-h-[80vh]
+  flex items-center
+  pt-20 pb-20" aria-label="Project Hero">
         {isSpontaneousTravelCompanion && (
         <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
