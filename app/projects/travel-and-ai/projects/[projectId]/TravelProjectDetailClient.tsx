@@ -571,8 +571,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </div>
       </motion.nav>
 
-      {/* Sticky Progress Navigation */}
-      {isSpontaneousTravelCompanion, isCulturalContextEngine && <StickyProgressNav sections={sections} />}
+    {/* Sticky Progress Navigation */}
+    {(isSpontaneousTravelCompanion || isCulturalContextEngine) && (
+      <StickyProgressNav sections={sections} />
+    )}
 
       {/* Hero Section */}
       <section className=" bg-white
