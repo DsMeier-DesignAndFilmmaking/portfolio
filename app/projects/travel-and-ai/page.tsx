@@ -276,14 +276,8 @@ export default function AISandboxPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              After traveling to 41 countries, I've gathered stories, insights,
-              and lessons from around the world. I now use that perspective,
-              alongside my design and tech expertise, to build tools that solve
-              real pain points for travelers and travel businesses alike.
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            Rather than building isolated travel apps, I’m exploring a modular AI travel system.
-            Each product experiment contributes shared intelligence — enabling planning, trust, social context, and spontaneous decision-making to work together when useful.
+            Travel taught me the problems. Design and technology help me solve them.<br />
+            With experience across 41 countries, I’m building a modular AI travel system — replacing fragmented apps with shared intelligence for planning, trust, social context, and spontaneity.
             </p>
           </motion.div>
         </div>
