@@ -834,12 +834,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       View Case Study
                     </a>
                     <a
-                      href="#prototyping-ai"
+                      href="#wireframes-ui"
                       onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                         e.preventDefault();
-                        const target = document.querySelector('#prototyping-ai');
+                        // Changed selector to match the "Design Evolution" section ID
+                        const target = document.querySelector('#wireframes-ui');
                         if (target) {
-                          const offset = 120;
+                          const offset = 100; // Adjust based on your header height
                           const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                           window.scrollTo({
                             top: targetPosition,
@@ -847,8 +848,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           });
                         }
                       }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                      aria-label="Explore Working Prototype (Experimental)"
+                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                      aria-label="View Design Evolution Video Demo"
                     >
                       View Figma Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Video Demo)</span>
                     </a>
@@ -1113,13 +1114,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
                     System Overview: How the Spontaneity Engine Works
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     Conceptual system diagram
                     </p>
-                      </div>
+                  </div>
                 
                 {/* Diagram Container */}
                 <div className="relative">
@@ -3282,11 +3283,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-[0_8px_30px_rgb(245,158,11,0.2)]">
+                      <svg 
+                        className="w-7 h-7 text-white" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" 
+                        />
+                      </svg>
+                    </div>
                       <h3 className="text-2xl font-bold text-gray-900">
                         The Problem
                       </h3>
@@ -3555,10 +3566,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
                     System Overview: How the Trust Framework Works
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     Architectural system for trust and authenticity verification
                   </p>
                 </div>
@@ -4641,10 +4652,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
                     System Overview: How the Travel Planning Assistant Works
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     Architectural system for adaptive planning and real-time constraint management
                   </p>
                 </div>
@@ -6626,7 +6637,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                     System Overview
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     How the system works at a conceptual level
                   </p>
                 </div>
