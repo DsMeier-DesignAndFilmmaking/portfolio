@@ -854,65 +854,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {isLocalExperienceFinder && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    A Social Graph–Driven Travel Network
-                  </h1>
-                  <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
-                      Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    Social Networks · AI · Systems Design
-                  </p>
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#research-audience"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#research-audience');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                  </nav>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  <div className="bg-gray-100 rounded-xl p-8 w-full max-w-md">
-                    <p className="text-gray-600 text-center">
-                      Visual representation coming soon
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
         {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isOtherProject)) && (
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
@@ -1350,7 +1291,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Context Weighting
                     </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
+                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             AI Logic
                   </div>
                         </div>
@@ -1644,7 +1585,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Context-First</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Context-First</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
                       The Spontaneity Engine differentiates itself by responding to real-world context—location, time, and behavior—in real-time. Rather than requiring pre-planning or overwhelming users with static reviews, it enables spontaneous, human-centered exploration through intelligent, context-aware suggestions.
                     </p>
@@ -2568,9 +2509,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="text-center mb-8">
                       <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">Development Workflow</p>
                     </div>
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 flex-wrap">
-                      {/* ChatGPT Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
+                    <div className="flex flex-col items-center justify-center gap-6">
+                      {/* ChatGPT Step - Top */}
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group w-full max-w-[280px]">
                         <div className="flex flex-col items-center text-center gap-4">
                           <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -2584,15 +2525,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </div>
                       </div>
                       
-                      {/* Arrow 1 */}
+                      {/* Arrow 1 - Down */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                       </div>
 
                       {/* Cursor Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group w-full max-w-[280px]">
                         <div className="flex flex-col items-center text-center gap-4">
                           <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -2606,68 +2547,57 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </div>
                       </div>
                       
-                      {/* Arrow 2 */}
+                      {/* Arrow 2 - Down */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                       </div>
 
-                      {/* Xcode Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
-                        <div className="flex flex-col items-center text-center gap-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
-                            </svg>
-                          </div>
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
-                            <p className="text-sm text-gray-400">Real iOS Build</p>
+                      {/* Bottom Row: iOS, API Plugin, Widget */}
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
+                        {/* Xcode Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
+                              <p className="text-sm text-gray-400">Real iOS Build</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Arrow 3 */}
-                      <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </div>
-
-                      {/* API Plugin Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
-                        <div className="flex flex-col items-center text-center gap-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
-                            <p className="text-sm text-gray-400">Travel Industry Integration</p>
+                        {/* API Plugin Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
+                              <p className="text-sm text-gray-400">Travel Industry Integration</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Arrow 4 */}
-                      <div className="flex items-center justify-center">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-500 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </div>
-
-                      {/* Widget Step */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] min-w-[200px]">
-                        <div className="flex flex-col items-center text-center gap-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
-                            <p className="text-sm text-gray-400">Client-facing Embeddable</p>
+                        {/* Widget Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
+                              <p className="text-sm text-gray-400">Client-facing Embeddable</p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -3300,7 +3230,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Trust Through Transparency</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Trust Through Transparency</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
                       This trust framework differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
                     </p>
@@ -3859,7 +3789,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Cross-Reference
                           </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
+                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             Validation Core
                           </div>
                         </div>
@@ -4386,7 +4316,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Adaptive Planning</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Adaptive Planning</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
                       The Travel Planning Assistant differentiates itself by providing adaptive planning that balances structure with spontaneity. Rather than forcing rigid itineraries or pure discovery, it enables flexible planning that adapts to real-time constraints, preferences, and opportunities.
                     </p>
@@ -4936,7 +4866,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
                             Processing Layer
                           </div>
-                          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-full -ml-12 text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50">
+                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             Algorithm Core
                           </div>
                         </div>
@@ -5491,7 +5421,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Our Approach: Social Graph–Driven Discovery</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Social Graph–Driven Discovery</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
                       This social graph–driven travel network differentiates itself by connecting travelers through network effects rather than listings. The system builds social graphs connecting people, places, trips, and intent—enabling travelers to discover travel through real people rather than static listings. Rather than forcing public profiles or generic meetups, it enables travelers to connect based on shared interests, travel styles, and experiences while maintaining full control over what they share and who can discover them.
                     </p>

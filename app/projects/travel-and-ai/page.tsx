@@ -132,7 +132,7 @@ export default function AISandboxPage() {
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="container mx-auto px-6">
           <div className="flex justify-between items-center">
             {/* Back Home Button */}
             <div className="py-4 flex items-center gap-4">
@@ -448,11 +448,11 @@ export default function AISandboxPage() {
           <div className="flex justify-center">
             <Link href="/projects/previous" className="group block">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="group relative w-full max-w-[600px] h-[480px] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                className="group relative w-full max-w-[600px] h-[480px] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-gray-100"
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/timbertech-card.jpg`}
