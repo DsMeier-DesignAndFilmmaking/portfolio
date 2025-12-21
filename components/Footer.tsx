@@ -24,20 +24,24 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Quick Links</h3>
             <Link href="https://dan-meier-portfolio.vercel.app/" className="text-sm text-gray-600 hover:text-black transition-colors">Home</Link>
-            <Link href="/projects" className="text-sm text-gray-600 hover:text-black transition-colors">Projects</Link>
-            <Link href="/about" className="text-sm text-gray-600 hover:text-black transition-colors">About</Link>
+            <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-sm text-gray-600 hover:text-black transition-colors">Travel & AI</Link>
+            <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-sm text-gray-600 hover:text-black transition-colors">Client Work</Link>
           </div>
 
-          {/* Services/Resources */}
-          <div className="flex flex-col space-y-4">
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Contact</h3>
-            <Link href="mailto:danielstevenmeier@gmail.com" className="text-sm text-gray-600 hover:text-black transition-colors">Email Me</Link>
-            {/*<Link href="/resume.pdf" className="text-sm text-gray-600 hover:text-black transition-colors">Download Resume</Link>*/}
-          </div>
+          {/* Combined Contact & Socials Column */}
+          <div className="flex flex-col space-y-6">
+            <div>
+              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                Connect
+              </h3>
+              <Link 
+                href="mailto:danielstevenmeier@gmail.com" 
+                className="text-sm text-gray-600 hover:text-black transition-colors block mb-4"
+              >
+                danielstevenmeier@gmail.com
+              </Link>
+            </div>
 
-          {/* Social Links */}
-          <div className="flex flex-col space-y-4">
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Social</h3>
             <div className="flex space-x-4 text-gray-500">
               {/* GitHub */}
               <a 
@@ -45,16 +49,18 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-black transition-colors"
+                title="GitHub"
               >
                 <Github size={20} />
               </a>
 
-              {/* YouTube - Updated Icon here */}
+              {/* YouTube */}
               <a 
                 href="https://www.youtube.com/@dsmeier" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-black transition-colors"
+                title="YouTube"
               >
                 <Youtube size={20} />
               </a>
@@ -65,6 +71,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-black transition-colors"
+                title="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
@@ -78,8 +85,8 @@ export default function Footer() {
             © {currentYear} Dan Meier. All rights reserved.
           </p>
           <div className="flex space-x-6 text-xs text-gray-400">
-            <Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-gray-900">Terms of Service</Link>
+            {/*<Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-gray-900">Terms of Service</Link>*/}
           </div>
         </div>
       </div>
