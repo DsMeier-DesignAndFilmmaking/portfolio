@@ -3280,7 +3280,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3965,32 +3965,44 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Design Evolution Section */}
-          <section id="wireframes-ui" className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Design Evolution
-                  </h2>
-                  <p className="text-gray-300 text-lg">
-                    Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
-                  </p>
-                </div>
-                
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Design iterations and wireframes will be added as the project evolves.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
+         {/* Design Evolution Section */}
+        <section id="wireframes-ui" className="py-20 bg-black">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-6xl mx-auto"
+            >
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-6 text-white">
+                  Design Evolution
+                </h2>
+                <p className="text-gray-300 text-lg">
+                  Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
+                </p>
+              </div>
+
+              {/* Video Container */}
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-white/5">
+                <iframe
+                  src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&badge=0&autopause=0&player_id=0&app_id=58479"
+                  className="absolute top-0 left-0 w-full h-full"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  title="vimeo-player"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <p className="text-sm text-gray-500 italic">
+                  Project walkthrough: Iterations from low-fidelity wireframes to final UI.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
           {/* Development & Build Section */}
           <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
@@ -4354,7 +4366,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -5417,10 +5429,27 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Social Graph–Driven Discovery</h4>
-                    <p className="text-gray-200 text-base leading-relaxed">
-                      This social graph–driven travel network differentiates itself by connecting travelers through network effects rather than listings. The system builds social graphs connecting people, places, trips, and intent—enabling travelers to discover travel through real people rather than static listings. Rather than forcing public profiles or generic meetups, it enables travelers to connect based on shared interests, travel styles, and experiences while maintaining full control over what they share and who can discover them.
-                    </p>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Prototyping a Peer to Peer Travel Graph</h4>
+                    <div className="grid md:grid-cols-3 gap-12 text-left">
+                      <div>
+                        <h3 className="text-white font-semibold mb-3">Verified Experience</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                          I am designing a system that maps the overlap between one person's past trip and another person's future plans.
+                        </p>
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold mb-3">Future Intent</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                          I am prototyping ways for travelers to find each other based on where they want to go next.
+                        </p>
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold mb-3">Trusted Privacy</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                          I am testing UI patterns that allow for high-level networking while keeping personal data under the user's total control.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -5447,7 +5476,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -5722,9 +5751,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    System Overview: How the Social Graph–Driven Travel Network Works
-                  </h2>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                  System Overview: How the Social Graph Driven Travel Network Works
+                </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                     Architectural system for social graph–driven discovery and network effects in travel
                   </p>
