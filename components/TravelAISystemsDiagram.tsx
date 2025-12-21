@@ -1,13 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import React, { useEffect, useState } from "react";
 
-type Node = {
-  id: string;
-  label: string;
-};
+/* ---------------- Media Query Hook (Inline) ---------------- */
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
 
 export default function TravelAISystemsDiagram() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
@@ -56,11 +66,11 @@ export default function TravelAISystemsDiagram() {
         transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
       />
 
-      {/* Labels */}
+      {/* Micro labels */}
       <text x="230" y="150" fontSize="11" fill="#475569">
         Shared Signals
       </text>
-      <text x="310" y="190" fontSize="11" fill="#64748B">
+      <text x="305" y="190" fontSize="11" fill="#64748B">
         Optional Integration
       </text>
 
@@ -74,7 +84,7 @@ export default function TravelAISystemsDiagram() {
   );
 }
 
-/* ---------- Components ---------- */
+/* ---------- Node Components ---------- */
 
 function NodeRect({
   x,
@@ -92,7 +102,11 @@ function NodeRect({
   color: string;
 }) {
   return (
-    <motion.g initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+    <motion.g
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="18" fill={color} />
       <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="600">
         {label}
@@ -113,7 +127,11 @@ function NodeCircle({
   color: string;
 }) {
   return (
-    <motion.g initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
+    <motion.g
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <circle cx={x} cy={y} r={55} fill={color} />
       <text
         x={x}
