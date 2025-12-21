@@ -25,8 +25,9 @@ export default function TravelAISystemsDiagram() {
     trust: "#94a3b8",
     social: "#71717a",
     partner: "#a1a1aa",
-    line: "#e2e8f0", 
-    activeLine: "#94a3b8" 
+    /* Unified Line Style */
+    lineColor: "#94a3b8", 
+    lineWeight: "2"
   };
 
   const lineTransition = { duration: 1.0, ease: "easeOut" };
@@ -53,7 +54,6 @@ export default function TravelAISystemsDiagram() {
   }
 
   return (
-    /* Added pt-12 and items-start to allow manual downward positioning */
     <div className="flex items-start justify-center lg:justify-end w-full h-full min-h-[600px] pt-16 lg:pt-24">
       <div className="relative w-full max-w-[550px]">
         <svg
@@ -61,32 +61,36 @@ export default function TravelAISystemsDiagram() {
           className="w-full h-auto block"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* === ALL CONNECTIONS (ANIMATING OUTWARD FROM CORE) === */}
+          {/* === UNIFIED CONNECTIONS (OUTWARD FLOW) === */}
           
+          {/* Core -> Top */}
           <motion.line
             x1="260" y1="220" x2="260" y2="150"
-            stroke={colors.activeLine} strokeWidth="2"
+            stroke={colors.lineColor} strokeWidth={colors.lineWeight}
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
+          {/* Core -> Left */}
           <motion.line
             x1="190" y1="260" x2="110" y2="260"
-            stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
+          {/* Core -> Right */}
           <motion.line
             x1="330" y1="260" x2="410" y2="260"
-            stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
+          {/* Core -> Bottom */}
           <motion.line
             x1="260" y1="300" x2="260" y2="380"
-            stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
