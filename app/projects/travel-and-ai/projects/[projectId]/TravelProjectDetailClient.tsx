@@ -2568,7 +2568,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-indigo-400/30 transition-all duration-300 group w-full max-w-[280px]">
                           <div className="flex flex-col items-center text-center gap-4">
                             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              {/* Gemini Sparkle Icon */}
                               <svg className="w-9 h-9 text-white" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 22C12 22 12 17 10 15C8 13 3 13 3 13C3 13 8 13 10 11C12 9 12 4 12 4C12 4 12 9 14 11C16 13 21 13 21 13C21 13 16 13 14 15C12 17 12 22 12 22Z" />
                                 <path d="M19 9C19 9 19 7 18.2 6.2C17.4 5.4 15.4 5.4 15.4 5.4C15.4 5.4 17.4 5.4 18.2 4.6C19 3.8 19 1.8 19 1.8C19 1.8 19 3.8 19.8 4.6C20.6 5.4 22.6 5.4 22.6 5.4C22.6 5.4 20.6 5.4 19.8 6.2C19 7 19 9 19 9Z" />
@@ -2611,9 +2610,52 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
 
-                      {/* Bottom Row */}
+                      {/* Bottom Row: iOS, API Plugin, Widget */}
                       <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
-                        {/* Xcode, API Plugin, Widget code remains the same... */}
+                        {/* Xcode Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
+                              <p className="text-sm text-gray-400">Real iOS Build</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* API Plugin Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
+                              <p className="text-sm text-gray-400">Industry Integration</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Widget Step */}
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
+                              <p className="text-sm text-gray-400">Client-facing</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
