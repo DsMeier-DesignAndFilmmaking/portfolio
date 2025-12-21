@@ -6231,15 +6231,22 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               )}
 
                 {/* Video Container */}
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-white/5">
-                  <iframe
-                    src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&badge=0&autopause=0&player_id=0&app_id=58479"
-                    className="absolute top-0 left-0 w-full h-full"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    title="vimeo-player"
-                    allowFullScreen
-                  ></iframe>
+                <div className="relative max-w-4xl mx-auto">
+                  <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                    <iframe
+                      title="vimeo-player"
+                      src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                    
+                    {/* Video overlay for better UX */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                  </div>
                 </div>
 
               </motion.div>
@@ -7274,49 +7281,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
-      )}
-
-      {/* Social Travel Exploration - Only for social-graph-driven-travel-network */}
-      {isLocalExperienceFinder && (
-        <section className="py-20 bg-black">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-semibold mb-4 text-white">
-                    Social Travel Exploration
-                  </h3>
-                  <p className="text-gray-300 max-w-2xl mx-auto">
-                    An early design concept and prototype demo
-                  </p>
-                </div>
-                
-                <div className="relative max-w-4xl mx-auto">
-                  <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-                    <iframe
-                      title="vimeo-player"
-                      src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&autoplay=1&muted=1&background=1"
-                      width="100%"
-                      height="100%"
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    />
-                    
-                    {/* Video overlay for better UX */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
       )}
 
       {/* Development & Tech Stack Section - Only for projects with development data */}
