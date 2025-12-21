@@ -4028,12 +4028,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   allowFullScreen
                 ></iframe>
               </div>
-              
-              <div className="mt-8 text-center">
-                <p className="text-sm text-gray-500 italic">
-                  Project walkthrough: Iterations from low-fidelity wireframes to final UI.
-                </p>
-              </div>
+             
             </motion.div>
           </div>
         </section>
@@ -6216,6 +6211,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                 </div>
 
+              {/* Figma Travel App Design Screenshot - Full Width Background - Only for social-graph-driven-travel-network */}
+              {isLocalExperienceFinder && (
+                <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
+                      alt="Figma Travel App Design Screenshot"
+                      fill
+                      className="object-cover"
+                      sizes="100vw"
+                      priority={true}
+                      quality={90}
+                    />
+                  </div>
+                  {/* Transparent overlay */}
+                  <div className="absolute inset-0 bg-black/40" />
+                </section>
+              )}
+
                 {/* Video Container */}
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-white/5">
                   <iframe
@@ -6227,12 +6241,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     allowFullScreen
                   ></iframe>
                 </div>
-                
-                <div className="mt-8 text-center">
-                  <p className="text-sm text-gray-500 italic">
-                    Project walkthrough: Iterations from low-fidelity wireframes to final UI.
-                  </p>
-                </div>
+
               </motion.div>
             </div>
           </section>
@@ -7004,6 +7013,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           )}
         </>
       )}
+
       {!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isOtherProject && (
         <>
           {/* Overview / Project Summary Section */}
