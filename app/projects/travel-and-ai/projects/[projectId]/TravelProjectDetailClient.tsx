@@ -880,7 +880,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
-                          src={normalizeImagePath("public/images/travelWhereYouveBeen_screen.png")}
+                          src={normalizeImagePath("/portfolio/images/travelWhereYouveBeen_screen.png")}
                       alt="Social Travel Network Concept Graphic 2"
                           width={280}
                           height={560}
