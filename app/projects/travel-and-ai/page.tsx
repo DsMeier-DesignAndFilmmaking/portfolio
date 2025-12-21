@@ -10,6 +10,7 @@ import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import TravelAISystemsDiagram from "@/components/TravelAISystemsDiagram";
 
 
+
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -246,55 +247,53 @@ export default function AISandboxPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section 
-        id="intro" 
-        className="relative w-full h-[80vh] flex items-center" 
-        style={{ backgroundColor: '#E8FBF8' }} 
-        aria-label="Project Hero"
-      >
-        {/* Hero Content */}
-        <div className="relative z-20 w-full">
-  <div className="container mx-auto px-6">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section
+  id="intro"
+  className="relative w-full h-[80vh] flex items-center"
+  style={{ backgroundColor: "#E8FBF8" }}
+  aria-label="Project Hero"
+>
+  <div className="relative z-20 w-full">
+    <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          <div className="container mx-auto px-6 relative z-20">
-          </div>
+        {/* Left: Hero Content */}
+        <div className={`relative z-20 ${isMobile ? "text-center" : ""}`}>
+          <motion.div
+            className={`max-w-2xl ${isMobile ? "text-center" : ""} mt-[100px]`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
+              <span className="text-gray-600">Intelligent Travel Systems</span>
+            </div>
 
-              {/* Left: Existing Hero Content */}
-      <div className={`relative z-20 ${isMobile ? 'text-center' : ''}`}>
-        
-            <motion.div 
-              className={`max-w-2xl ${isMobile ? 'text-center' : ''} mt-[100px]`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 0.3
-              }}
-            >
-              <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
-                <span className="text-gray-600">Intelligent Travel Systems</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-gray-900">
-                  Building AI-Enhanced Travel Experiences
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                After traveling to 41 countries, I've gathered stories, insights, and lessons from around the world. I now use that perspective, alongside my design and tech expertise, to build tools that solve real pain points for travelers and travel businesses alike.
-              </p>
-            </motion.div>
-          </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <span className="text-gray-900">
+                Building AI-Enhanced Travel Experiences
+              </span>
+            </h1>
 
-           {/* Right: Systems Diagram */}
-      <div className="hidden lg:flex justify-center items-center">
-        <TravelAISystemsDiagram />
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              After traveling to 41 countries, I've gathered stories, insights,
+              and lessons from around the world. I now use that perspective,
+              alongside my design and tech expertise, to build tools that solve
+              real pain points for travelers and travel businesses alike.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Right: Systems Diagram */}
+        <div className="hidden lg:flex justify-center items-center">
+          <TravelAISystemsDiagram />
+        </div>
+
       </div>
-        </div>
-        </div>
+    </div>
+  </div>
+</section>
 
-        </div>
-      </section>
 
       {/* Project Cards Section */}
       <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Travel & AI Projects">
