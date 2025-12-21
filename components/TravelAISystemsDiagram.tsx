@@ -6,16 +6,13 @@ import React, { useEffect, useState } from "react";
 /* ---------------- Media Query Hook (Inline) ---------------- */
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
-
   useEffect(() => {
     const media = window.matchMedia(query);
     setMatches(media.matches);
-
     const listener = () => setMatches(media.matches);
     media.addEventListener("change", listener);
     return () => media.removeEventListener("change", listener);
   }, [query]);
-
   return matches;
 }
 
@@ -24,10 +21,9 @@ function useMediaQuery(query: string) {
 export default function TravelAISystemsDiagram() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
-  /* ---------------- MOBILE STACK ---------------- */
   if (isMobile) {
     return (
-      <div className="flex flex-col items-center gap-6 text-sm text-gray-700">
+      <div className="flex flex-col items-center gap-6 text-sm text-gray-700 p-4">
         {[
           "Spontaneous Signals",
           "Planning Assistant",
@@ -46,116 +42,88 @@ export default function TravelAISystemsDiagram() {
     );
   }
 
-  /* ---------------- DESKTOP DIAGRAM ---------------- */
   return (
     <div className="flex justify-center lg:justify-end w-full">
-      <div className="relative w-full max-w-[520px] aspect-square">
+      <div className="relative w-full max-w-[600px] aspect-[4/5]">
         <svg
-          viewBox="0 0 520 520"
-          className="w-full h-full"
+          viewBox="0 0 520 650" /* Increased height to stop overlapping */
+          className="w-full h-auto"
           preserveAspectRatio="xMidYMid meet"
         >
           {/* === CONNECTIONS === */}
+          
+          {/* Trust → Core */}
+          <line x1="110" y1="320" x2="200" y2="320" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
 
-          {/* Trust → Planning */}
-          <line
-            x1="130"
-            y1="260"
-            x2="260"
-            y2="150"
-            stroke="#CBD5E1"
-            strokeWidth="2"
-          />
+          {/* Social → Core */}
+          <line x1="410" y1="320" x2="320" y2="320" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
 
-          {/* Social → Core (optional) */}
-          <line
-            x1="390"
-            y1="260"
-            x2="260"
-            y2="240"
-            stroke="#CBD5E1"
-            strokeWidth="2"
-            strokeDasharray="6 6"
-          />
-
-          {/* Business → Core (optional) */}
-          <line
-            x1="260"
-            y1="390"
-            x2="260"
-            y2="290"
-            stroke="#CBD5E1"
-            strokeWidth="2"
-            strokeDasharray="6 6"
-          />
+          {/* Business → Core */}
+          <line x1="260" y1="500" x2="260" y2="370" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
 
           {/* Animated Planning → Core */}
           <motion.line
             x1="260"
-            y1="175"
+            y1="160"
             x2="260"
-            y2="225"
+            y2="280"
             stroke="#0F766E"
-            strokeWidth="3"
+            strokeWidth="2.5"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
           />
 
           {/* === MICRO LABELS === */}
-          <text x="272" y="205" fontSize="11" fill="#475569">
+          <text x="270" y="220" fontSize="10" fill="#64748B" fontWeight="500">
             Shared signals
-          </text>
-
-          <text x="332" y="248" fontSize="11" fill="#64748B">
-            Optional integration
           </text>
 
           {/* === NODES === */}
 
-          {/* Planning Assistant */}
+          {/* Top Node: Planning Assistant */}
           <NodeRect
             x={260}
-            y={140}
-            w={220}
-            h={72}
+            y={110}
+            w={200}
+            h={60}
             label="Travel Planning Assistant"
             color="#059669"
           />
 
-          {/* Core Engine */}
+          {/* Center Node: Core Engine */}
           <NodeRect
             x={260}
-            y={260}
-            w={240}
-            h={80}
+            y={325}
+            w={220}
+            h={75}
             label="Spontaneity Core Engine"
             color="#0F766E"
           />
 
-          {/* Trust Layer */}
+          {/* Left: Trust Layer */}
           <NodeCircle
-            x={130}
-            y={260}
-            r={54}
+            x={90}
+            y={325}
+            r={50}
             label="Trust & Authenticity"
             color="#2563EB"
           />
 
-          {/* Social Network */}
+          {/* Right: Social Network */}
           <NodeCircle
-            x={390}
-            y={260}
-            r={54}
+            x={430}
+            y={325}
+            r={50}
             label="Social Travel Network"
             color="#7C3AED"
           />
 
-          {/* Business Tools */}
+          {/* Bottom: Business Tools */}
           <NodeCircle
             x={260}
-            y={390}
-            r={52}
+            y={520}
+            r={50}
             label="Partner Tools"
             color="#EA580C"
           />
@@ -165,99 +133,36 @@ export default function TravelAISystemsDiagram() {
   );
 }
 
-/* ========================================================= */
 /* ---------------- NODE COMPONENTS ------------------------ */
-/* ========================================================= */
 
-function NodeRect({
-  x,
-  y,
-  w,
-  h,
-  label,
-  color,
-}: {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  label: string;
-  color: string;
-}) {
+function NodeRect({ x, y, w, h, label, color }: any) {
   return (
     <motion.g
-      initial={{ opacity: 0, y: 6 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
+      transition={{ duration: 0.5 }}
     >
-      <rect
-        x={x - w / 2}
-        y={y - h / 2}
-        width={w}
-        height={h}
-        rx="18"
-        fill={color}
-      />
-      <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="white"
-        fontSize="12"
-        fontWeight="600"
-      >
+      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="14" fill={color} />
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="600">
         {label}
       </text>
     </motion.g>
   );
 }
 
-function NodeCircle({
-  x,
-  y,
-  r,
-  label,
-  color,
-}: {
-  x: number;
-  y: number;
-  r: number;
-  label: string;
-  color: string;
-}) {
+function NodeCircle({ x, y, r, label, color }: any) {
   const words = label.split(" ");
-  const lines: string[][] = [];
-
-  words.forEach((word) => {
-    if (!lines.length || lines[lines.length - 1].join(" ").length > 12) {
-      lines.push([word]);
-    } else {
-      lines[lines.length - 1].push(word);
-    }
-  });
-
-  const visibleLines = lines.slice(0, 2);
-
   return (
     <motion.g
-      initial={{ opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.45 }}
+      transition={{ duration: 0.5 }}
     >
       <circle cx={x} cy={y} r={r} fill={color} />
-      <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="white"
-        fontSize="11"
-        fontWeight="600"
-      >
-        {visibleLines.map((line, i) => (
-          <tspan key={i} x={x} dy={i === 0 ? "0" : "1.2em"}>
-            {line.join(" ")}
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="10" fontWeight="600">
+        {words.map((word: string, i: number) => (
+          <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.6}em` : "1.2em"}>
+            {word}
           </tspan>
         ))}
       </text>
