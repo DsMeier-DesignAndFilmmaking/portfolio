@@ -53,7 +53,8 @@ export default function TravelAISystemsDiagram() {
   }
 
   return (
-    <div className="flex items-center justify-center lg:justify-end w-full h-full min-h-[500px]">
+    /* Added pt-12 and items-start to allow manual downward positioning */
+    <div className="flex items-start justify-center lg:justify-end w-full h-full min-h-[600px] pt-16 lg:pt-24">
       <div className="relative w-full max-w-[550px]">
         <svg
           viewBox="0 0 520 520" 
@@ -62,7 +63,6 @@ export default function TravelAISystemsDiagram() {
         >
           {/* === ALL CONNECTIONS (ANIMATING OUTWARD FROM CORE) === */}
           
-          {/* Core -> Top (Planning Assistant) */}
           <motion.line
             x1="260" y1="220" x2="260" y2="150"
             stroke={colors.activeLine} strokeWidth="2"
@@ -70,7 +70,6 @@ export default function TravelAISystemsDiagram() {
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core -> Left (Trust & Authenticity) */}
           <motion.line
             x1="190" y1="260" x2="110" y2="260"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
@@ -78,7 +77,6 @@ export default function TravelAISystemsDiagram() {
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core -> Right (Social Travel Network) */}
           <motion.line
             x1="330" y1="260" x2="410" y2="260"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
@@ -86,7 +84,6 @@ export default function TravelAISystemsDiagram() {
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core -> Bottom (Partner Tools) */}
           <motion.line
             x1="260" y1="300" x2="260" y2="380"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
@@ -95,10 +92,8 @@ export default function TravelAISystemsDiagram() {
           />
 
           {/* === NODES === */}
-          {/* Core appears first */}
           <NodeRect x={260} y={260} w={220} h={75} label="Spontaneity Core Engine" borderColor={colors.core} delay={0.2} />
           
-          {/* Peripheral nodes appear as lines reach them */}
           <NodeRect x={260} y={120} w={200} h={60} label="Travel Planning Assistant" borderColor={colors.planning} delay={1.4} />
           <NodeCircle x={80} y={260} r={50} label="Trust & Authenticity" borderColor={colors.trust} delay={1.4} />
           <NodeCircle x={440} y={260} r={50} label="Social Travel Network" borderColor={colors.social} delay={1.4} />
