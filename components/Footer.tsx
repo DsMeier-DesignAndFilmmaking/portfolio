@@ -2,30 +2,34 @@
 
 import React from "react";
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Youtube } from "lucide-react"; // Optional: npm install lucide-react
+import { Github, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full bg-white border-t border-gray-100 py-12 mt-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      {/* Container aligned to navbar settings: max-width 56rem (4xl) and padding 1.5rem (px-6) */}
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
           {/* Brand Section */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="flex flex-col">
             <h2 className="text-xl font-bold text-gray-900 tracking-tight">Dan Meier</h2>
             <p className="mt-4 text-sm text-gray-500 leading-relaxed">
-            Curious about systems, code, and how people experience the world. I design products that connect logic with real life.
+              Curious about systems, code, and how people experience the world. 
+              I design products that connect logic with real life.
             </p>
           </div>
 
           {/* Navigation Links */}
           <div className="flex flex-col space-y-4">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Quick Links</h3>
-            <Link href="https://dan-meier-portfolio.vercel.app/" className="text-sm text-gray-600 hover:text-black transition-colors">Home</Link>
-            <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-sm text-gray-600 hover:text-black transition-colors">Travel & AI</Link>
-            <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-sm text-gray-600 hover:text-black transition-colors">Client Work</Link>
+            <nav className="flex flex-col space-y-3">
+              <Link href="https://dan-meier-portfolio.vercel.app/" className="text-sm text-gray-600 hover:text-black transition-colors">Home</Link>
+              <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-sm text-gray-600 hover:text-black transition-colors">Travel & AI</Link>
+              <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-sm text-gray-600 hover:text-black transition-colors">Client Work</Link>
+            </nav>
           </div>
 
           {/* Combined Contact & Socials Column */}
@@ -34,16 +38,15 @@ export default function Footer() {
               <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
                 Connect
               </h3>
-              <Link 
+              <a 
                 href="mailto:danielstevenmeier@gmail.com" 
                 className="text-sm text-gray-600 hover:text-black transition-colors block mb-4"
               >
                 danielstevenmeier@gmail.com
-              </Link>
+              </a>
             </div>
 
-            <div className="flex space-x-4 text-gray-500">
-              {/* GitHub */}
+            <div className="flex space-x-5 text-gray-400">
               <a 
                 href="https://github.com/DsMeier-DesignAndFilmmaking" 
                 target="_blank" 
@@ -54,7 +57,6 @@ export default function Footer() {
                 <Github size={20} />
               </a>
 
-              {/* YouTube */}
               <a 
                 href="https://www.youtube.com/@dsmeier" 
                 target="_blank" 
@@ -65,7 +67,6 @@ export default function Footer() {
                 <Youtube size={20} />
               </a>
 
-              {/* LinkedIn */}
               <a 
                 href="https://www.linkedin.com/in/dan-meier-16185352/" 
                 target="_blank" 
@@ -80,14 +81,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-gray-50">
           <p className="text-xs text-gray-400">
             © {currentYear} Dan Meier. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-xs text-gray-400">
-            {/*<Link href="/privacy" className="hover:text-gray-900">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-gray-900">Terms of Service</Link>*/}
-          </div>
         </div>
       </div>
     </footer>
