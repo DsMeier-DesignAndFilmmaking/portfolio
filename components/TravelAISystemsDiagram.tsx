@@ -7,7 +7,10 @@ type SystemNode = {
   label: string;
   x: number;
   y: number;
+  width: number;
+  height: number;
   color: string;
+  shape?: "circle" | "rect";
 };
 
 type Connection = {
@@ -22,46 +25,63 @@ const nodes: SystemNode[] = [
     label: "Spontaneity\nCore AI Engine",
     x: 200,
     y: 200,
-    color: "#0F766E", // teal
+    width: 150,
+    height: 70,
+    color: "#0F766E",
+    shape: "rect",
+  },
+  {
+    id: "planning",
+    label: "Travel Planning\nAssistant",
+    x: 200,
+    y: 120,
+    width: 160,
+    height: 70,
+    color: "#059669",
+    shape: "rect",
   },
   {
     id: "trust",
     label: "Trust &\nAuthenticity Layer",
-    x: 200,
-    y: 60,
-    color: "#2563EB", // blue
+    x: 70,
+    y: 200,
+    width: 120,
+    height: 120,
+    color: "#2563EB",
   },
   {
     id: "social",
     label: "Social Travel\nNetwork UX",
-    x: 360,
+    x: 330,
     y: 200,
-    color: "#7C3AED", // purple
+    width: 120,
+    height: 120,
+    color: "#7C3AED",
   },
   {
     id: "business",
     label: "Partner &\nBusiness Tools",
     x: 200,
-    y: 340,
-    color: "#EA580C", // orange
+    y: 330,
+    width: 120,
+    height: 120,
+    color: "#EA580C",
   },
 ];
 
 const connections: Connection[] = [
-  { from: "trust", to: "core" },
-  { from: "social", to: "core" },
+  { from: "trust", to: "planning" },
+  { from: "planning", to: "core" },
+  { from: "social", to: "core", dashed: true },
+  { from: "trust", to: "core", dashed: true },
   { from: "business", to: "core", dashed: true },
-  { from: "trust", to: "social", dashed: true },
 ];
 
 export default function TravelAISystemsDiagram() {
   const getNode = (id: string) => nodes.find((n) => n.id === id)!;
 
   return (
-    <svg
-      viewBox="0 0 400 400"
-      className="w-full max-w-[420px] h-auto"
-    >
+    <svg viewBox="0 0 400 400" className="w-full max-w-[440px] h-auto">
       {/* Connections */}
       {connections.map((conn, i) => {
         const from = getNode(conn.from);
@@ -84,26 +104,40 @@ export default function TravelAISystemsDiagram() {
       {/* Nodes */}
       {nodes.map((node) => (
         <g key={node.id}>
-          <circle
-            cx={node.x}
-            cy={node.y}
-            r={42}
-            fill={node.color}
-          />
+          {node.shape === "rect" ? (
+            <rect
+              x={node.x - node.width / 2}
+              y={node.y - node.height / 2}
+              rx="18"
+              ry="18"
+              width={node.width}
+              height={node.height}
+              fill={node.color}
+            />
+          ) : (
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={node.width / 2}
+              fill={node.color}
+            />
+          )}
+
           <text
             x={node.x}
             y={node.y}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="white"
-            fontSize="11"
+            fontSize="12"
             fontWeight="600"
+            style={{ lineHeight: "1.2em" }}
           >
             {node.label.split("\n").map((line, idx) => (
               <tspan
                 key={idx}
                 x={node.x}
-                dy={idx === 0 ? "0" : "1.2em"}
+                dy={idx === 0 ? "0" : "1.25em"}
               >
                 {line}
               </tspan>
