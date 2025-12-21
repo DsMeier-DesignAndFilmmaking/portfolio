@@ -19,15 +19,15 @@ function useMediaQuery(query: string) {
 export default function TravelAISystemsDiagram() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
-  /* Neutral Color Palette */
+  /* Updated Neutral Palette for Borders */
   const colors = {
-    planning: "#64748b", // Muted Slate
-    core: "#475569",     // Deep Neutral Slate
-    trust: "#94a3b8",    // Light Slate/Blue
-    social: "#71717a",   // Zinc/Grey
-    partner: "#a1a1aa",  // Muted Silver
-    line: "#cbd5e1",     // Soft Grey Line
-    activeLine: "#94a3b8" // Muted Teal/Blue for animation
+    planning: "#64748b", // Slate
+    core: "#475569",     // Deep Slate
+    trust: "#94a3b8",    // Light Slate
+    social: "#71717a",   // Zinc
+    partner: "#a1a1aa",  // Silver
+    line: "#e2e8f0",     // Very light grey for background lines
+    activeLine: "#94a3b8" 
   };
 
   if (isMobile) {
@@ -83,7 +83,7 @@ export default function TravelAISystemsDiagram() {
             w={200}
             h={60}
             label="Travel Planning Assistant"
-            color={colors.planning}
+            borderColor={colors.planning}
           />
 
           <NodeRect
@@ -92,7 +92,7 @@ export default function TravelAISystemsDiagram() {
             w={220}
             h={75}
             label="Spontaneity Core Engine"
-            color={colors.core}
+            borderColor={colors.core}
           />
 
           <NodeCircle
@@ -100,7 +100,7 @@ export default function TravelAISystemsDiagram() {
             y={260}
             r={50}
             label="Trust & Authenticity"
-            color={colors.trust}
+            borderColor={colors.trust}
           />
 
           <NodeCircle
@@ -108,7 +108,7 @@ export default function TravelAISystemsDiagram() {
             y={260}
             r={50}
             label="Social Travel Network"
-            color={colors.social}
+            borderColor={colors.social}
           />
 
           <NodeCircle
@@ -116,7 +116,7 @@ export default function TravelAISystemsDiagram() {
             y={410}
             r={50}
             label="Partner Tools"
-            color={colors.partner}
+            borderColor={colors.partner}
           />
         </svg>
       </div>
@@ -126,23 +126,32 @@ export default function TravelAISystemsDiagram() {
 
 /* ---------------- NODE COMPONENTS ------------------------ */
 
-function NodeRect({ x, y, w, h, label, color }: any) {
+function NodeRect({ x, y, w, h, label, borderColor }: any) {
   return (
     <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="12" fill={color} />
-      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="500">
+      <rect 
+        x={x - w / 2} 
+        y={y - h / 2} 
+        width={w} 
+        height={h} 
+        rx="12" 
+        fill="white" 
+        stroke={borderColor} 
+        strokeWidth="2" 
+      />
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="#334155" fontSize="12" fontWeight="600">
         {label}
       </text>
     </motion.g>
   );
 }
 
-function NodeCircle({ x, y, r, label, color }: any) {
+function NodeCircle({ x, y, r, label, borderColor }: any) {
   const words = label.split(" ");
   return (
     <motion.g initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-      <circle cx={x} cy={y} r={r} fill={color} />
-      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="10" fontWeight="500">
+      <circle cx={x} cy={y} r={r} fill="white" stroke={borderColor} strokeWidth="2" />
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="#334155" fontSize="10" fontWeight="600">
         {words.map((word: string, i: number) => (
           <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.5}em` : "1.1em"}>
             {word}
