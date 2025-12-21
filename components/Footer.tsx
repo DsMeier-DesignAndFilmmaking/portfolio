@@ -34,7 +34,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Previous Projects
+                  Client Work
                 </Link>
               </li>
             </ul>
