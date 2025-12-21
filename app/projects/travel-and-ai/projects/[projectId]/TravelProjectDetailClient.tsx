@@ -576,9 +576,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
       {/* Hero Section */}
       <section className=" bg-white
-  min-h-[80vh]
-  flex items-center
-  pt-20 pb-20" aria-label="Project Hero">
+        min-h-[80vh]
+        flex items-center
+        pt-20 pb-20" aria-label="Project Hero">
         {isSpontaneousTravelCompanion && (
         <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
@@ -836,22 +836,41 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </nav>
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                   className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
-                  <div className="relative w-full max-w-lg aspect-[16/10] rounded-xl overflow-hidden shadow-lg bg-gray-50">
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                    <div className="relative flex-shrink-0">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
-                      src={normalizeImagePath("/images/HomeScreen_Website_x2.png")}
-                      alt="Social Graph–Driven Travel Network Home Screen"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
+                      alt="Micro Adventure Concept Graphic"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
                       priority
                       quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
                     />
                   </div>
+                </div>
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                    <Image
+                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
+                      alt="Micro Adventure Concept Graphic 2"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                      priority
+                      quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                    />
+                      </div>
+                  </div>
+                </div>
                 </motion.div>
               </div>
             </div>
