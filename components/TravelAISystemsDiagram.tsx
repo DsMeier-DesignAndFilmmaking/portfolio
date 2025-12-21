@@ -29,7 +29,7 @@ export default function TravelAISystemsDiagram() {
     activeLine: "#94a3b8" 
   };
 
-  const lineTransition = { duration: 1.2, ease: "easeOut" };
+  const lineTransition = { duration: 1.0, ease: "easeOut" };
 
   if (isMobile) {
     return (
@@ -60,9 +60,9 @@ export default function TravelAISystemsDiagram() {
           className="w-full h-auto block"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* === CONNECTIONS (OUTWARD FLOW) === */}
+          {/* === ALL CONNECTIONS (ANIMATING OUTWARD FROM CORE) === */}
           
-          {/* Core (220) -> Top (150) - DIRECTION REVERSED */}
+          {/* Core -> Top (Planning Assistant) */}
           <motion.line
             x1="260" y1="220" x2="260" y2="150"
             stroke={colors.activeLine} strokeWidth="2"
@@ -70,36 +70,38 @@ export default function TravelAISystemsDiagram() {
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core (190) -> Left (110) */}
+          {/* Core -> Left (Trust & Authenticity) */}
           <motion.line
             x1="190" y1="260" x2="110" y2="260"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-            transition={{ ...lineTransition, delay: 0.8 }}
+            transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core (330) -> Right (410) */}
+          {/* Core -> Right (Social Travel Network) */}
           <motion.line
             x1="330" y1="260" x2="410" y2="260"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-            transition={{ ...lineTransition, delay: 0.8 }}
+            transition={{ ...lineTransition, delay: 0.6 }}
           />
 
-          {/* Core (300) -> Bottom (380) */}
+          {/* Core -> Bottom (Partner Tools) */}
           <motion.line
             x1="260" y1="300" x2="260" y2="380"
             stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-            transition={{ ...lineTransition, delay: 1.0 }}
+            transition={{ ...lineTransition, delay: 0.6 }}
           />
 
           {/* === NODES === */}
-          {/* Staggered delay: Core first, then peripherals */}
+          {/* Core appears first */}
           <NodeRect x={260} y={260} w={220} h={75} label="Spontaneity Core Engine" borderColor={colors.core} delay={0.2} />
-          <NodeRect x={260} y={120} w={200} h={60} label="Travel Planning Assistant" borderColor={colors.planning} delay={0.9} />
-          <NodeCircle x={80} y={260} r={50} label="Trust & Authenticity" borderColor={colors.trust} delay={1.2} />
-          <NodeCircle x={440} y={260} r={50} label="Social Travel Network" borderColor={colors.social} delay={1.2} />
+          
+          {/* Peripheral nodes appear as lines reach them */}
+          <NodeRect x={260} y={120} w={200} h={60} label="Travel Planning Assistant" borderColor={colors.planning} delay={1.4} />
+          <NodeCircle x={80} y={260} r={50} label="Trust & Authenticity" borderColor={colors.trust} delay={1.4} />
+          <NodeCircle x={440} y={260} r={50} label="Social Travel Network" borderColor={colors.social} delay={1.4} />
           <NodeCircle x={260} y={410} r={50} label="Partner Tools" borderColor={colors.partner} delay={1.4} />
         </svg>
       </div>
