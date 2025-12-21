@@ -7,6 +7,8 @@ import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
+import TravelAISystemsDiagram from "@/components/TravelAISystemsDiagram";
+
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -251,8 +253,16 @@ export default function AISandboxPage() {
         aria-label="Project Hero"
       >
         {/* Hero Content */}
-        <div className={`relative z-20 w-full flex items-center ${isMobile ? 'justify-center' : ''}`}>
+        <div className="relative z-20 w-full">
+  <div className="container mx-auto px-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
           <div className="container mx-auto px-6 relative z-20">
+          </div>
+
+              {/* Left: Existing Hero Content */}
+      <div className={`relative z-20 ${isMobile ? 'text-center' : ''}`}>
+        
             <motion.div 
               className={`max-w-2xl ${isMobile ? 'text-center' : ''} mt-[100px]`}
               initial={{ opacity: 0, y: 20 }}
@@ -275,6 +285,14 @@ export default function AISandboxPage() {
               </p>
             </motion.div>
           </div>
+
+           {/* Right: Systems Diagram */}
+      <div className="hidden lg:flex justify-center items-center">
+        <TravelAISystemsDiagram />
+      </div>
+        </div>
+        </div>
+
         </div>
       </section>
 
