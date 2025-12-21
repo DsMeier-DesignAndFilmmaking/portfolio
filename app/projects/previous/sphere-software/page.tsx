@@ -64,7 +64,7 @@ const project = {
   title: "Sphere Software",
   description: "Design Director for an enterprise HR software suite. Led design on client-facing web projects.",
   heroImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/sphere-card.jpg`,
-  year: "Internal Startup & Client Consulting",
+  year: "Product Startup & Client Consulting",
   overview: "Develop enterprise software solutions",
   images: [
     `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/chairliftAllScreens.png`,

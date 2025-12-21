@@ -63,7 +63,7 @@ const ClientIcon = ({ icon: Icon, label, imageSrc, isLarge, align = 'center' }: 
 // Project data for TimberTech
 const project = {
   title: "TimberTech",
-  year: "2021",
+  year: "Web Design",
   description: "A comprehensive website redesign for TimberTech, focusing on improving user experience, product discovery, and conversion rates through modern design and streamlined navigation.",
   heroImage: getImagePath("images/timbertech-card.jpg"),
   images: [
