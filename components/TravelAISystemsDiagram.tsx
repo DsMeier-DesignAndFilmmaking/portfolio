@@ -19,6 +19,17 @@ function useMediaQuery(query: string) {
 export default function TravelAISystemsDiagram() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
+  /* Neutral Color Palette */
+  const colors = {
+    planning: "#64748b", // Muted Slate
+    core: "#475569",     // Deep Neutral Slate
+    trust: "#94a3b8",    // Light Slate/Blue
+    social: "#71717a",   // Zinc/Grey
+    partner: "#a1a1aa",  // Muted Silver
+    line: "#cbd5e1",     // Soft Grey Line
+    activeLine: "#94a3b8" // Muted Teal/Blue for animation
+  };
+
   if (isMobile) {
     return (
       <div className="flex flex-col items-center gap-6 text-sm text-gray-700 p-4">
@@ -41,82 +52,71 @@ export default function TravelAISystemsDiagram() {
   }
 
   return (
-    <div className="flex justify-center lg:justify-end w-full">
-      <div className="relative w-full max-w-[600px] aspect-[4/5]">
+    <div className="flex items-center justify-center lg:justify-end w-full h-full min-h-[500px]">
+      <div className="relative w-full max-w-[550px]">
         <svg
-          viewBox="0 0 520 600" 
-          className="w-full h-auto"
+          viewBox="0 0 520 520" 
+          className="w-full h-auto block"
           preserveAspectRatio="xMidYMid meet"
         >
           {/* === CONNECTIONS === */}
-          
-          {/* Horizontal Connections (Side Nodes) */}
-          <line x1="110" y1="300" x2="190" y2="300" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="410" y1="300" x2="330" y2="300" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+          <line x1="110" y1="260" x2="190" y2="260" stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4" />
+          <line x1="410" y1="260" x2="330" y2="260" stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4" />
+          <line x1="260" y1="380" x2="260" y2="300" stroke={colors.line} strokeWidth="1.5" strokeDasharray="4 4" />
 
-          {/* Shortened Bottom Connection (Partner Tools) */}
-          <line x1="260" y1="420" x2="260" y2="340" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
-
-          {/* Shortened Animated Top Connection (Planning Assistant) */}
           <motion.line
             x1="260"
-            y1="190"
+            y1="150"
             x2="260"
-            y2="260"
-            stroke="#0F766E"
-            strokeWidth="2.5"
+            y2="220"
+            stroke={colors.activeLine}
+            strokeWidth="2"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
           />
 
           {/* === NODES === */}
-
-          {/* Top Node: Planning Assistant (Moved Down) */}
           <NodeRect
             x={260}
-            y={160}
+            y={120}
             w={200}
             h={60}
             label="Travel Planning Assistant"
-            color="#059669"
+            color={colors.planning}
           />
 
-          {/* Center Node: Core Engine */}
           <NodeRect
             x={260}
-            y={300}
+            y={260}
             w={220}
             h={75}
             label="Spontaneity Core Engine"
-            color="#0F766E"
+            color={colors.core}
           />
 
-          {/* Left: Trust Layer */}
           <NodeCircle
             x={80}
-            y={300}
+            y={260}
             r={50}
             label="Trust & Authenticity"
-            color="#2563EB"
+            color={colors.trust}
           />
 
-          {/* Right: Social Network */}
           <NodeCircle
             x={440}
-            y={300}
+            y={260}
             r={50}
             label="Social Travel Network"
-            color="#7C3AED"
+            color={colors.social}
           />
 
-          {/* Bottom: Business Tools (Moved Up) */}
           <NodeCircle
             x={260}
-            y={450}
+            y={410}
             r={50}
             label="Partner Tools"
-            color="#EA580C"
+            color={colors.partner}
           />
         </svg>
       </div>
@@ -129,8 +129,8 @@ export default function TravelAISystemsDiagram() {
 function NodeRect({ x, y, w, h, label, color }: any) {
   return (
     <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="14" fill={color} />
-      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="600">
+      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="12" fill={color} />
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="500">
         {label}
       </text>
     </motion.g>
@@ -142,7 +142,7 @@ function NodeCircle({ x, y, r, label, color }: any) {
   return (
     <motion.g initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
       <circle cx={x} cy={y} r={r} fill={color} />
-      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="10" fontWeight="600">
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="10" fontWeight="500">
         {words.map((word: string, i: number) => (
           <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.5}em` : "1.1em"}>
             {word}
