@@ -878,19 +878,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                     </div>
                     <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
-                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                    <Image
+                      {/* Removed rounded-xl, overflow-hidden, shadow-lg, and bg-gray-100 */}
+                      <div className="relative">
+                        <Image
                           src={normalizeImagePath("/portfolio/images/NetworkTravelers_1.png")}
-                      alt="Social Travel Network Concept Graphic 2"
+                          alt="Social Travel Network Concept Graphic 2"
                           width={280}
                           height={560}
                           className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                      priority
-                      quality={90}
+                          priority
+                          quality={90}
                           sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                    />
+                        />
                       </div>
-                  </div>
+                    </div>
                 </div>
                 </motion.div>
               </div>
