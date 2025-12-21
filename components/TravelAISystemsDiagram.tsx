@@ -25,27 +25,17 @@ export default function TravelAISystemsDiagram() {
     trust: "#94a3b8",
     social: "#71717a",
     partner: "#a1a1aa",
-    /* Unified Line Style */
     lineColor: "#94a3b8", 
-    lineWeight: "2"
   };
 
-  const lineTransition = { duration: 1.0, ease: "easeOut" };
+  const lineTransition = { duration: 1.2, ease: "easeOut" };
 
   if (isMobile) {
     return (
       <div className="flex flex-col items-center gap-6 text-sm text-gray-700 p-4">
-        {[
-          "Spontaneous Signals",
-          "Planning Assistant",
-          "Spontaneity Core",
-          "Social Travel Network",
-          "Partner & Business Tools",
-        ].map((item, i) => (
+        {["Spontaneous Signals", "Planning Assistant", "Spontaneity Core", "Social Travel Network", "Partner & Business Tools"].map((item, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className="px-5 py-3 rounded-xl bg-white shadow-sm border text-center font-medium">
-              {item}
-            </div>
+            <div className="px-5 py-3 rounded-xl bg-white shadow-sm border text-center font-medium">{item}</div>
             {i < 4 && <span className="text-gray-400 mt-2">↓</span>}
           </div>
         ))}
@@ -56,17 +46,15 @@ export default function TravelAISystemsDiagram() {
   return (
     <div className="flex items-start justify-center lg:justify-end w-full h-full min-h-[600px] pt-16 lg:pt-24">
       <div className="relative w-full max-w-[550px]">
-        <svg
-          viewBox="0 0 520 520" 
-          className="w-full h-auto block"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          {/* === UNIFIED CONNECTIONS (OUTWARD FLOW) === */}
+        <svg viewBox="0 0 520 520" className="w-full h-auto block overflow-visible" preserveAspectRatio="xMidYMid meet">
+          
+          {/* === TECH-FORWARD CONNECTIONS === */}
+          {/* strokeLinecap="round" and strokeOpacity="0.6" applied to all lines */}
           
           {/* Core -> Top */}
           <motion.line
             x1="260" y1="220" x2="260" y2="150"
-            stroke={colors.lineColor} strokeWidth={colors.lineWeight}
+            stroke={colors.lineColor} strokeWidth="2" strokeLinecap="round" strokeOpacity="0.6"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
@@ -74,7 +62,7 @@ export default function TravelAISystemsDiagram() {
           {/* Core -> Left */}
           <motion.line
             x1="190" y1="260" x2="110" y2="260"
-            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth="2" strokeLinecap="round" strokeOpacity="0.6" strokeDasharray="6 6"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
@@ -82,7 +70,7 @@ export default function TravelAISystemsDiagram() {
           {/* Core -> Right */}
           <motion.line
             x1="330" y1="260" x2="410" y2="260"
-            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth="2" strokeLinecap="round" strokeOpacity="0.6" strokeDasharray="6 6"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
@@ -90,14 +78,13 @@ export default function TravelAISystemsDiagram() {
           {/* Core -> Bottom */}
           <motion.line
             x1="260" y1="300" x2="260" y2="380"
-            stroke={colors.lineColor} strokeWidth={colors.lineWeight} strokeDasharray="4 4"
+            stroke={colors.lineColor} strokeWidth="2" strokeLinecap="round" strokeOpacity="0.6" strokeDasharray="6 6"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ ...lineTransition, delay: 0.6 }}
           />
 
           {/* === NODES === */}
           <NodeRect x={260} y={260} w={220} h={75} label="Spontaneity Core Engine" borderColor={colors.core} delay={0.2} />
-          
           <NodeRect x={260} y={120} w={200} h={60} label="Travel Planning Assistant" borderColor={colors.planning} delay={1.4} />
           <NodeCircle x={80} y={260} r={50} label="Trust & Authenticity" borderColor={colors.trust} delay={1.4} />
           <NodeCircle x={440} y={260} r={50} label="Social Travel Network" borderColor={colors.social} delay={1.4} />
@@ -112,7 +99,7 @@ export default function TravelAISystemsDiagram() {
 
 function NodeRect({ x, y, w, h, label, borderColor, delay }: any) {
   return (
-    <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay }}>
+    <motion.g initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay }}>
       <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="12" fill="white" stroke={borderColor} strokeWidth="2" />
       <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="#334155" fontSize="12" fontWeight="600">
         {label}
@@ -124,7 +111,7 @@ function NodeRect({ x, y, w, h, label, borderColor, delay }: any) {
 function NodeCircle({ x, y, r, label, borderColor, delay }: any) {
   const words = label.split(" ");
   return (
-    <motion.g initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay }}>
+    <motion.g initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay }}>
       <circle cx={x} cy={y} r={r} fill="white" stroke={borderColor} strokeWidth="2" />
       <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="#334155" fontSize="10" fontWeight="600">
         {words.map((word: string, i: number) => (
