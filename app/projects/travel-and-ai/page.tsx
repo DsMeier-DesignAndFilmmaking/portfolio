@@ -281,6 +281,10 @@ export default function AISandboxPage() {
               alongside my design and tech expertise, to build tools that solve
               real pain points for travelers and travel businesses alike.
             </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            Rather than building isolated travel apps, I’m exploring a modular AI travel system.
+            Each product experiment contributes shared intelligence — enabling planning, trust, social context, and spontaneous decision-making to work together when useful.
+            </p>
           </motion.div>
         </div>
 
@@ -341,7 +345,7 @@ export default function AISandboxPage() {
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
                       <h2 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
-                        Spontaneous Travel Companion
+                      Spontaneity Core Engine
                       </h2>
                       <p className="text-sm text-gray-600 leading-relaxed">
                         AI-powered tool that helps travelers discover authentic experiences in real-time.
@@ -379,7 +383,7 @@ export default function AISandboxPage() {
               },
               {
                 id: 3,
-                title: "Fragmentation of Planning Tools",
+                title: "Travel Planning Assistant",
                 description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
                 imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/planningFragmentationTool-placeholder.jpg`,
                 link: "/projects/travel-and-ai/projects/travel-planning-assistant"

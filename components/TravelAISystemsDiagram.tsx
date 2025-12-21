@@ -1,150 +1,135 @@
 "use client";
 
+import { motion } from "framer-motion";
 import React from "react";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-type SystemNode = {
+type Node = {
   id: string;
   label: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  color: string;
-  shape?: "circle" | "rect";
 };
-
-type Connection = {
-  from: string;
-  to: string;
-  dashed?: boolean;
-};
-
-const nodes: SystemNode[] = [
-  {
-    id: "core",
-    label: "Spontaneity\nCore AI Engine",
-    x: 200,
-    y: 200,
-    width: 150,
-    height: 70,
-    color: "#0F766E",
-    shape: "rect",
-  },
-  {
-    id: "planning",
-    label: "Travel Planning\nAssistant",
-    x: 200,
-    y: 120,
-    width: 160,
-    height: 70,
-    color: "#059669",
-    shape: "rect",
-  },
-  {
-    id: "trust",
-    label: "Trust &\nAuthenticity Layer",
-    x: 70,
-    y: 200,
-    width: 120,
-    height: 120,
-    color: "#2563EB",
-  },
-  {
-    id: "social",
-    label: "Social Travel\nNetwork UX",
-    x: 330,
-    y: 200,
-    width: 120,
-    height: 120,
-    color: "#7C3AED",
-  },
-  {
-    id: "business",
-    label: "Partner &\nBusiness Tools",
-    x: 200,
-    y: 330,
-    width: 120,
-    height: 120,
-    color: "#EA580C",
-  },
-];
-
-const connections: Connection[] = [
-  { from: "trust", to: "planning" },
-  { from: "planning", to: "core" },
-  { from: "social", to: "core", dashed: true },
-  { from: "trust", to: "core", dashed: true },
-  { from: "business", to: "core", dashed: true },
-];
 
 export default function TravelAISystemsDiagram() {
-  const getNode = (id: string) => nodes.find((n) => n.id === id)!;
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
+  /* ---------------- MOBILE STACK ---------------- */
+  if (isMobile) {
+    return (
+      <div className="flex flex-col items-center gap-6 text-sm text-gray-700">
+        {[
+          "Trust & Authenticity Layer",
+          "Travel Planning Assistant",
+          "Spontaneity Core Engine",
+          "Social Travel Network",
+          "Partner & Business Tools",
+        ].map((item, i) => (
+          <div key={i} className="flex flex-col items-center">
+            <div className="px-5 py-3 rounded-xl bg-white shadow-sm border text-center font-medium">
+              {item}
+            </div>
+            {i < 4 && <span className="text-gray-400 mt-2">↓</span>}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  /* ---------------- DESKTOP SVG ---------------- */
   return (
-    <svg viewBox="0 0 400 400" className="w-full max-w-[440px] h-auto">
-      {/* Connections */}
-      {connections.map((conn, i) => {
-        const from = getNode(conn.from);
-        const to = getNode(conn.to);
+    <svg viewBox="0 0 440 420" className="w-full max-w-[460px] h-auto">
+      {/* Static connections */}
+      <line x1="220" y1="80" x2="220" y2="130" stroke="#CBD5E1" strokeWidth="2" />
+      <line x1="90" y1="210" x2="220" y2="170" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
+      <line x1="350" y1="210" x2="220" y2="170" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
+      <line x1="220" y1="300" x2="220" y2="235" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
 
-        return (
-          <line
-            key={i}
-            x1={from.x}
-            y1={from.y}
-            x2={to.x}
-            y2={to.y}
-            stroke="#94A3B8"
-            strokeWidth="2"
-            strokeDasharray={conn.dashed ? "6 6" : "0"}
-          />
-        );
-      })}
+      {/* Animated Planning → Core */}
+      <motion.line
+        x1="220"
+        y1="130"
+        x2="220"
+        y2="170"
+        stroke="#0F766E"
+        strokeWidth="3"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+      />
+
+      {/* Labels */}
+      <text x="230" y="150" fontSize="11" fill="#475569">
+        Shared Signals
+      </text>
+      <text x="310" y="190" fontSize="11" fill="#64748B">
+        Optional Integration
+      </text>
 
       {/* Nodes */}
-      {nodes.map((node) => (
-        <g key={node.id}>
-          {node.shape === "rect" ? (
-            <rect
-              x={node.x - node.width / 2}
-              y={node.y - node.height / 2}
-              rx="18"
-              ry="18"
-              width={node.width}
-              height={node.height}
-              fill={node.color}
-            />
-          ) : (
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.width / 2}
-              fill={node.color}
-            />
-          )}
-
-          <text
-            x={node.x}
-            y={node.y}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill="white"
-            fontSize="12"
-            fontWeight="600"
-            style={{ lineHeight: "1.2em" }}
-          >
-            {node.label.split("\n").map((line, idx) => (
-              <tspan
-                key={idx}
-                x={node.x}
-                dy={idx === 0 ? "0" : "1.25em"}
-              >
-                {line}
-              </tspan>
-            ))}
-          </text>
-        </g>
-      ))}
+      <NodeRect x={220} y={170} w={170} h={70} label="Spontaneity Core Engine" color="#0F766E" />
+      <NodeRect x={220} y={100} w={180} h={70} label="Travel Planning Assistant" color="#059669" />
+      <NodeCircle x={90} y={210} label="Trust & Authenticity Layer" color="#2563EB" />
+      <NodeCircle x={350} y={210} label="Social Travel Network" color="#7C3AED" />
+      <NodeCircle x={220} y={320} label="Partner & Business Tools" color="#EA580C" />
     </svg>
+  );
+}
+
+/* ---------- Components ---------- */
+
+function NodeRect({
+  x,
+  y,
+  w,
+  h,
+  label,
+  color,
+}: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  label: string;
+  color: string;
+}) {
+  return (
+    <motion.g initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="18" fill={color} />
+      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="12" fontWeight="600">
+        {label}
+      </text>
+    </motion.g>
+  );
+}
+
+function NodeCircle({
+  x,
+  y,
+  label,
+  color,
+}: {
+  x: number;
+  y: number;
+  label: string;
+  color: string;
+}) {
+  return (
+    <motion.g initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
+      <circle cx={x} cy={y} r={55} fill={color} />
+      <text
+        x={x}
+        y={y}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill="white"
+        fontSize="11"
+        fontWeight="600"
+      >
+        {label.split(" ").map((word, i) => (
+          <tspan key={i} x={x} dy={i === 0 ? "0" : "1.2em"}>
+            {word}
+          </tspan>
+        ))}
+      </text>
+    </motion.g>
   );
 }
