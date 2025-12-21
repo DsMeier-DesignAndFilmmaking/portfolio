@@ -439,7 +439,7 @@ export default function AISandboxPage() {
         </div>
       </section>
 
-      {/* Editorial Footer Cross-Link */}
+      {/* Editorial Footer Cross-Link 
       <div className="mt-24 mb-8 md:mb-10">
         <hr className="border-0 h-px bg-black/8 dark:bg-white/8" />
         <div className="container mx-auto px-6 mt-8 md:mt-10">
@@ -454,6 +454,7 @@ export default function AISandboxPage() {
           </p>
         </div>
       </div>
+      */}
     </main>
   );
 } 
