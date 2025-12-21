@@ -845,7 +845,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="relative flex-shrink-0">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
+                          src={normalizeImagePath("/portfolio/images/HomeScreen_Website_x2.png")}
                       alt="Micro Adventure Concept Graphic"
                           width={280}
                           height={560}
