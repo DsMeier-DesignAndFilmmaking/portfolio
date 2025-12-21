@@ -5754,9 +5754,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
                   System Overview: How the Social Graph Driven Travel Network Works
                 </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Architectural system for social graph–driven discovery and network effects in travel
-                  </p>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
+                  Architectural system for social graph driven discovery and network effects in travel
+                </p>
                 </div>
                 
                 {/* Privacy-Gated Matching Diagram */}
@@ -6178,13 +6178,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Design Evolution
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Designing for privacy and connection—prioritizing identity-focused discovery and granular privacy controls in the user experience.
+                    Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
                   </p>
                 </div>
+
+                {/* Video Container */}
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-white/5">
+                  <iframe
+                    src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&badge=0&autopause=0&player_id=0&app_id=58479"
+                    className="absolute top-0 left-0 w-full h-full"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    title="vimeo-player"
+                    allowFullScreen
+                  ></iframe>
+                </div>
                 
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Design iterations and wireframes will be added as the project evolves.
+                <div className="mt-8 text-center">
+                  <p className="text-sm text-gray-500 italic">
+                    Project walkthrough: Iterations from low-fidelity wireframes to final UI.
                   </p>
                 </div>
               </motion.div>
