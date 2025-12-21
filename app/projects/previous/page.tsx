@@ -276,47 +276,51 @@ export default function PreviousProjectsPage() {
             View More Work
           </h2>
           <div className="flex justify-center">
-            <Link href="/projects/travel-and-ai" className="group block">
-              <motion.div
-                initial={{ opacity: 1, y: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="group relative w-full max-w-[600px] h-[480px] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-gray-100"
-              >
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`}
-                  alt="Travel & AI Project"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 group-hover:from-black/90 group-hover:via-black/50 group-hover:to-black/20 transition-all duration-500" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
-                    Travel & AI
-                  </h3>
-                  <p className="text-gray-200 mb-6 text-base md:text-lg leading-relaxed max-w-xl">
-                    Currently, I am using AI and systems thinking to solve real-world travel challenges through design, hands-on experimentation and real-world testing.
-                  </p>
-                  <div className="inline-flex items-center font-medium text-white group-hover:text-blue-300 transition-colors duration-300">
-                    View Project
-                    <svg
-                      className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full max-w-[600px]"
+            >
+              <Link href="/projects/travel-and-ai" className="group block">
+                <div className="group relative w-full h-[480px] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`}
+                    alt="Travel & AI Project"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 group-hover:from-black/90 group-hover:via-black/50 group-hover:to-black/20 transition-all duration-500" />
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                      Travel & AI
+                    </h3>
+                    <p className="text-gray-200 mb-6 text-base md:text-lg leading-relaxed max-w-xl">
+                      Currently, I am using AI and systems thinking to solve real-world travel challenges through design, hands-on experimentation and real-world testing.
+                    </p>
+                    <div className="inline-flex items-center font-medium text-white group-hover:text-blue-300 transition-colors duration-300">
+                      View Project
+                      <svg
+                        className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            </Link>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
