@@ -1,11 +1,19 @@
-export default function ProjectsLayout({
+export const metadata = {
+  themeColor: undefined,
+};
+
+export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-black">
-      {children}
-    </div>
-  )
-} 
+    <html lang="en">
+      <body className="bg-white">
+        {children}
+      </body>
+    </html>
+  );
+}
+
+

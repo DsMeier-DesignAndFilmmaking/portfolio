@@ -6229,6 +6229,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="absolute inset-0 bg-black/40" />
                 </section>
               )}
+              <br /><br />
 
                 {/* Video Container */}
                 <div className="relative max-w-4xl mx-auto">
@@ -7073,24 +7074,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </div>
       </section>
 
-      {/* Figma Travel App Design Screenshot - Full Width Background - Only for social-graph-driven-travel-network */}
-      {isLocalExperienceFinder && (
-        <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src={normalizeImagePath("/portfolio/images/figmatravelAppScreenshot.png")}
-              alt="Figma Travel App Design Screenshot"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority={true}
-              quality={90}
-            />
-          </div>
-          {/* Transparent overlay */}
-          <div className="absolute inset-0 bg-black/40" />
-        </section>
-      )}
+      
 
       {/* Project Metadata Sidebar Section - Only for projects with metadata */}
       {project?.metadata && (
