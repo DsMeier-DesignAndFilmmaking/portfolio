@@ -60,6 +60,45 @@ export const smoothScrollTo = (targetY: number, duration: number = 600): Promise
   });
 };
 
+
+// utils/scrollUtils.ts
+
+export function smoothScrollToId(id: string, offset = 0) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const y =
+    el.getBoundingClientRect().top +
+    window.pageYOffset -
+    (window.visualViewport?.offsetTop || 0) -
+    offset;
+
+  const duration = 500; // scroll duration in ms
+
+  const start = window.scrollY;
+  const distance = y - start;
+  let startTime: number | null = null;
+
+  function step(timestamp: number) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+
+    // easeInOutQuad easing
+    const eased = progress < 0.5
+      ? 2 * progress * progress
+      : -1 + (4 - 2 * progress) * progress;
+
+    window.scrollTo(0, start + distance * eased);
+
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  }
+
+  window.requestAnimationFrame(step);
+}
+
+
 /**
  * Wait for all content to be fully loaded (images, fonts, DOM, lazy content)
  * This ensures accurate scroll positioning on first click
