@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { calculateTravelogueScrollOffset } from '@/utils/travelogueScrollUtils';
+import { smoothScrollToId } from '@/utils/scrollUtils';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -508,12 +509,14 @@ const Navbar = () => {
               >
                 About
               </a>
-              <a 
-                href="#work-anchor" 
-                onMouseDown={(e) => e.preventDefault()} 
-                onClick={(e) => handleAnchorClick(e, 'black-section')}
+              <a
+                href="#work-anchor"
+                onClick={(e) => {
+                  e.preventDefault();            
+                  smoothScrollToId('work-anchor', 80); // single call, smooth scroll
+                }}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
-                  isOverBlackSection ? 'text-white' : 'text-black'
+                  isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
                 Work

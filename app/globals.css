@@ -195,7 +195,7 @@ body {
   /* Specific scroll margin for Work section */
   .scroll-anchor {
     position: relative;
-    top: calc(-1 * (env(safe-area-inset-top) + 96px));
+    top: calc(-1 * (env(safe-area-inset-top) + 80px)); /* navbar + safe area */
     height: 0;
     pointer-events: none;
     visibility: hidden;
