@@ -512,8 +512,8 @@ const Navbar = () => {
               <a
                 href="#work-anchor"
                 onClick={(e) => {
-                  e.preventDefault();            
-                  smoothScrollToId('work-anchor', 80); // single call, smooth scroll
+                  e.preventDefault();
+                  setTimeout(() => smoothScrollToId('work-anchor', 80), 50); // delay scroll slightly
                 }}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
