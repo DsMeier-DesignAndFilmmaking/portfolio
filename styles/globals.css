@@ -270,7 +270,7 @@
 
 /* Scroll Behavior */
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   scroll-padding-top: 100px;
 }
 body {
@@ -304,16 +304,16 @@ html {
 }
 
 /* Anchor offset for all main sections to account for fixed navbar */
-#black-section,
+#work-anchor,
 #video-projects,
 #world-travel-diaries,
 #travelogue,
 #photography {
   scroll-margin-top: 80px; /* Fixed navbar height */
   /* Ensure stable positioning */
-  position: relative;
+
   /* Prevent layout shifts during scroll */
-  min-height: 100vh;
+
   /* Remove conflicting scroll behavior */
 }
 

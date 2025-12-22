@@ -1,7 +1,3 @@
-export const metadata = {
-  themeColor: undefined,
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -10,10 +6,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white">
+        {/* Safari status bar buffer */}
+        <div className="h-safe bg-white" />
+
         {children}
       </body>
     </html>
   );
 }
-
-

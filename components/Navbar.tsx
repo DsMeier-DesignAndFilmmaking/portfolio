@@ -509,7 +509,7 @@ const Navbar = () => {
                 About
               </a>
               <a 
-                href="#black-section" 
+                href="#work-anchor" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
@@ -570,7 +570,7 @@ const Navbar = () => {
               </a>
               
               <a 
-                href="#black-section" 
+                href="#work-anchor" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${

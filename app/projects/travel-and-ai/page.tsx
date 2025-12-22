@@ -246,13 +246,13 @@ export default function AISandboxPage() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* Hero Section */}
-      <section
-  id="intro"
-  className="relative w-full h-[80vh] flex items-center"
-  style={{ backgroundColor: "#E8FBF8" }}
-  aria-label="Project Hero"
->
+{/* Hero Section */}
+  <section
+    id="intro"
+    className="relative w-full h-[80vh] flex items-center"
+    style={{ backgroundColor: "#E8FBF8" }}
+    aria-label="Project Hero"
+  >
   <div className="relative z-20 w-full">
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

@@ -23,6 +23,7 @@
 html {
   /* Disable native smooth scrolling to prevent conflicts with custom JavaScript scrolling */
   scroll-behavior: auto !important;
+  overscroll-behavior-y: none;
   /* Remove scroll-padding-top to let custom scroll calculations handle positioning */
   background-color: white;
   background: white;
@@ -67,10 +68,10 @@ body {
     -webkit-backdrop-filter: blur(12px);
   }
   
-  /* Navigation scroll optimizations */
+  /* Navigation scroll optimizations
   .smooth-scroll {
-    scroll-behavior: smooth;
-  }
+    /*scroll-behavior: smooth; 
+  }  /* 
   
   /* Focus styles for accessibility */
   .nav-button:focus {
@@ -109,6 +110,7 @@ body {
     html {
       scroll-behavior: auto !important; /* Disable native smooth scroll - use JS instead */
       scroll-padding-top: 80px; /* Account for mobile navigation */
+      overscroll-behavior-y: none;
     }
     
     body {
@@ -191,9 +193,14 @@ body {
   }
 
   /* Specific scroll margin for Work section */
-  #black-section {
-    scroll-margin-top: 80px;
+  .scroll-anchor {
+    position: relative;
+    top: calc(-1 * (env(safe-area-inset-top) + 96px));
+    height: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
+  
 
   /* Stable layout containers - prevents height changes during lazy loading */
   .stable-layout-container {
@@ -210,6 +217,9 @@ body {
 
   /* Section containers that should maintain height */
   section[id] {
-    min-height: fit-content;
+    min-height: fit-content; /* ensures section height is content-driven */
+    padding-top: calc(2rem + env(safe-area-inset-top)); /* top padding safe for iPhone notch */
+    padding-bottom: 2rem; /* bottom padding for spacing */
+    scroll-margin-top: calc(env(safe-area-inset-top) + 80px); /* optional fallback for anchors */
   }
 } 

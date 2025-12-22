@@ -109,7 +109,7 @@ const isOnProjectPage = pathname?.includes('/projects/') || pathname === '/my-pu
 
 ### Homepage (`/`)
 - Navbar starts transparent white
-- Turns black when overlapping dark sections (#black-section, #video-projects)
+- Turns black when overlapping dark sections (#work-anchor, #video-projects)
 - Returns to white when over light sections
 - Smooth transitions between states
 
