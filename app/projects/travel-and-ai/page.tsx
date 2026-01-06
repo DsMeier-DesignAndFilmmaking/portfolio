@@ -277,7 +277,9 @@ export default function AISandboxPage() {
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
             Travel taught me the problems. Design and technology help me solve them.<br /><br />
-            With experience across 41 countries, I’m building a modular AI travel system — replacing fragmented apps with shared intelligence for planning, trust, social context, and spontaneity.
+            I design AI-powered travel systems that replace generic recommendations with context-aware, human-scale experiences.
+Travel taught me the problems; design and technology help me solve them.
+With experience across 41 countries, I’m building a modular AI travel system that prioritizes spontaneity and context—supported by shared intelligence for trust, social dynamics, and lightweight planning.
             </p>
           </motion.div>
         </div>
