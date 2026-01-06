@@ -24,7 +24,11 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <>
-      <section id="black-section" className="py-24" style={{ backgroundColor: '#1A1A1A' }}>
+      <div id="work-anchor" className="scroll-anchor" aria-hidden />
+      <section
+        className="py-24"
+        style={{ backgroundColor: '#1A1A1A' }}
+      >
         <div className="max-w-4xl mx-auto px-6">
         <FadeInSection 
           delay={0.1}

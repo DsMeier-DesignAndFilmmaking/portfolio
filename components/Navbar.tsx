@@ -510,11 +510,9 @@ const Navbar = () => {
                 About
               </a>
               <a
-                href="#work-anchor"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setTimeout(() => smoothScrollToId('work-anchor', 80), 50); // delay scroll slightly
-                }}
+                href="#black-section"
+                onMouseDown={(e) => e.preventDefault()} 
+                onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
                   isOverBlackSection ? 'text-gray-300' : 'text-gray-600'
                 }`}
@@ -573,7 +571,7 @@ const Navbar = () => {
               </a>
               
               <a 
-                href="#work-anchor" 
+                href="#black-section" 
                 onMouseDown={(e) => e.preventDefault()} 
                 onClick={(e) => handleAnchorClick(e, 'black-section')}
                 className={`text-12pt hover-text-blue-400 transition-all duration-500 cursor-pointer transform hover:translate-y-[-1px] ${
