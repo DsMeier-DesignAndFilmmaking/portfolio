@@ -15,6 +15,18 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
   const [hasEnteredDesignSection, setHasEnteredDesignSection] = useState(false);
+  
+  // Safety check: Don't render Navbar on project pages or My Pulse (they have their own navbars)
+  // This is a defensive measure in case NavigationWrapper doesn't catch it
+  if (pathname) {
+    const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
+      ? pathname.slice(0, -1) 
+      : pathname;
+    
+    if (normalizedPath.startsWith('/projects/') || normalizedPath.startsWith('/my-pulse')) {
+      return null;
+    }
+  }
 
 
 

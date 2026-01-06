@@ -18,20 +18,26 @@ export default function NavigationWrapper() {
   
   // Wait for pathname to be available before rendering to prevent flash
   useEffect(() => {
-    if (pathname) {
+    if (pathname !== null) {
       setIsReady(true);
     }
   }, [pathname]);
   
   // Don't render anything until pathname is confirmed (prevents flash)
-  if (!isReady || !pathname) {
+  if (!isReady || pathname === null) {
     return null;
   }
   
+  // Normalize pathname (remove trailing slash for consistent checking)
+  const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
+    ? pathname.slice(0, -1) 
+    : pathname;
+  
   // Hide global navbar on project pages and My Pulse (they have their own custom navbars)
   // Show it on homepage and other general pages
-  const isProjectPage = pathname.startsWith('/projects/');
-  const isMyPulsePage = pathname.startsWith('/my-pulse');
+  // Check both with and without trailing slash to be safe
+  const isProjectPage = normalizedPath.startsWith('/projects/') || pathname.startsWith('/projects/');
+  const isMyPulsePage = normalizedPath.startsWith('/my-pulse') || pathname.startsWith('/my-pulse');
   
   // Don't render global navbar on project pages or My Pulse
   if (isProjectPage || isMyPulsePage) {
