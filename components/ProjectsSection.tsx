@@ -24,7 +24,8 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <>
-      <div id="work-anchor" className="scroll-anchor" aria-hidden />
+      {/* Stable anchor target for Work section - zero height, positioned before content */}
+      <div id="black-section" className="anchor-offset" aria-hidden="true"></div>
       <section
         className="py-24"
         style={{ backgroundColor: '#1A1A1A' }}
