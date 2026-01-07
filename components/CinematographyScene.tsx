@@ -2,8 +2,12 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function CinematographyScene() {
+  const pathname = usePathname();
+  // Disable Three.js initialization on project routes to avoid race conditions
+  const isProjectPage = pathname?.includes('/projects/') ?? false;
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -11,7 +15,11 @@ export default function CinematographyScene() {
   const modelRef = useRef<THREE.Object3D | null>(null);
 
   useEffect(() => {
+    // Skip initialization on project routes to avoid race conditions
+    if (isProjectPage) return;
     if (!containerRef.current) return;
+
+    let frameId: number | undefined;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -35,8 +43,12 @@ export default function CinematographyScene() {
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Guard DOM mutation - prevent insertion if container unmounted
+    if (!containerRef.current || !containerRef.current.parentNode) return;
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
+    const domElement = renderer.domElement;
 
     // Create cinematography elements
     const filmGroup = new THREE.Group();
@@ -104,7 +116,7 @@ export default function CinematographyScene() {
 
     // Animation
     const animate = () => {
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
 
       if (modelRef.current) {
         modelRef.current.rotation.y += 0.003;
@@ -129,13 +141,40 @@ export default function CinematographyScene() {
 
     // Cleanup
     return () => {
+      // Required disposal pattern for route transitions
+      if (frameId) cancelAnimationFrame(frameId)
+
+      renderer.dispose()
+      renderer.forceContextLoss()
+      renderer.domElement = null as any
+
+      scene.traverse((obj: any) => {
+        if (obj.geometry) obj.geometry.dispose()
+        if (obj.material) {
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((m: any) => m.dispose())
+          } else {
+            obj.material.dispose()
+          }
+        }
+      })
+
       window.removeEventListener('resize', handleResize);
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+
+      // Defensive DOM cleanup (prevents removeChild NotFoundError during fast navigation)
+      // Guard: ensure container and element both have parent nodes
+      try {
+        const container = containerRef.current;
+        if (container && container.parentNode && domElement && domElement.parentNode && container.contains(domElement)) {
+          container.removeChild(domElement);
+        }
+      } catch {
+        // ignore
       }
+
       scene.clear();
     };
-  }, []);
+  }, [isProjectPage]);
 
   return (
     <motion.div

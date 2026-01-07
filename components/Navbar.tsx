@@ -275,7 +275,9 @@ const Navbar = () => {
     
     // Add # prefix if not present
     const selector = targetId.startsWith('#') ? targetId : `#${targetId}`;
-    console.log('Scrolling to:', selector);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Scrolling to:', selector);
+    }
     
     // For travelogue section, use a more robust approach to ensure stable scroll
     const scrollToTarget = async () => {
@@ -347,7 +349,9 @@ const Navbar = () => {
       }
       
       if (targetId === 'travelogue') {
-        console.log('Ensuring stable layout for travelogue scroll...');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Ensuring stable layout for travelogue scroll...');
+        }
         
         // Wait for DOM to be fully stable and all elements to have their final dimensions
         await new Promise(resolve => {
@@ -374,7 +378,9 @@ const Navbar = () => {
           const viewportHeight = window.innerHeight;
           const finalPosition = scrollHeight - viewportHeight;
           
-          console.log('Scrolling to bottom of page for contact');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Scrolling to bottom of page for contact');
+          }
           
           window.scrollTo({
             top: finalPosition,
@@ -452,12 +458,16 @@ const Navbar = () => {
         const backgroundElement = document.getElementById('world-travel-diaries-background');
         if (backgroundElement) {
           targetElement = backgroundElement;
-          console.log('Using background element for travelogue scroll');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Using background element for travelogue scroll');
+          }
         }
       }
       
       if (targetElement) {
-        console.log('Target element found:', targetElement);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Target element found:', targetElement);
+        }
         
         // Force a reflow to ensure accurate measurements
         (targetElement as HTMLElement).offsetHeight;
@@ -503,11 +513,15 @@ const Navbar = () => {
         // If scrollMarginTop is set, it's already accounted for in navbarHeight
         const finalPosition = Math.max(absoluteTop - navbarHeight, 0);
         
-        console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Scrolling to position:', finalPosition, 'for target:', targetId);
+        }
         
           return { targetElement, finalPosition };
         } else {
-          console.log('Target element not found:', selector);
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Target element not found:', selector);
+          }
           return null;
         }
       };
@@ -682,9 +696,10 @@ const Navbar = () => {
       </motion.nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <motion.div
+            key="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

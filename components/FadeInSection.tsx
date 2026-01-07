@@ -31,6 +31,9 @@ export default function FadeInSection({
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -50,62 +53,45 @@ export default function FadeInSection({
       }
     );
 
-    const element = elementRef.current;
-    if (element) {
-      // Check if element is already in viewport on mount (for anchor navigation)
-      const checkViewport = () => {
-        const rect = element.getBoundingClientRect();
-        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isInViewport) {
-          setIsVisible(true);
-          if (triggerOnce) {
-            setHasAnimated(true);
-          }
+    // Check if element is already in viewport on mount (for anchor navigation)
+    const checkViewport = () => {
+      if (!elementRef.current) return;
+      const rect = elementRef.current.getBoundingClientRect();
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (isInViewport) {
+        setIsVisible(true);
+        if (triggerOnce) {
+          setHasAnimated(true);
         }
-      };
-      
-      // Check immediately for anchor navigation
-      checkViewport();
-      
-      // Check after delays to catch delayed anchor navigation
-      const timeouts = [
-        setTimeout(checkViewport, 100),
-        setTimeout(checkViewport, 300),
-        setTimeout(checkViewport, 600),
-        setTimeout(checkViewport, 1000)
-      ];
-      
-      observer.observe(element);
-      
-      // Cleanup timeouts
-      return () => {
-        timeouts.forEach(clearTimeout);
-      };
-    }
+      }
+    };
+    
+    // Check immediately for anchor navigation
+    checkViewport();
+    
+    // Check after delays to catch delayed anchor navigation
+    const timeouts = [
+      setTimeout(checkViewport, 100),
+      setTimeout(checkViewport, 300),
+      setTimeout(checkViewport, 600),
+      setTimeout(checkViewport, 1000)
+    ];
+    
+    observer.observe(element);
 
     // Listen for scroll completion events
     const handleScrollComplete = () => {
-      if (elementRef.current) {
-        const rect = elementRef.current.getBoundingClientRect();
-        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isInViewport) {
-          setIsVisible(true);
-          if (triggerOnce) {
-            setHasAnimated(true);
-          }
-        }
-      }
+      checkViewport();
     };
 
     // Listen for custom scroll completion event
     window.addEventListener('scrollComplete', handleScrollComplete);
 
+    // Full cleanup on unmount
     return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
+      timeouts.forEach(clearTimeout);
+      observer.disconnect();
       window.removeEventListener('scrollComplete', handleScrollComplete);
     };
   }, [threshold, rootMargin, triggerOnce]);

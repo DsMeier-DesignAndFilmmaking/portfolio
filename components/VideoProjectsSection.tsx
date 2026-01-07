@@ -19,6 +19,11 @@ export default function VideoProjectsSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Observe the section container
+    const sectionElement = document.getElementById('video-projects');
+    // Guard DOM mutation - ensure element exists and is mounted
+    if (!sectionElement || !sectionElement.parentNode) return;
+
     // Intersection observer for the section
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -26,11 +31,13 @@ export default function VideoProjectsSection() {
           if (entry.isIntersecting) {
             // Don't trigger video loading if we're currently anchor scrolling
             if (isCurrentlyAnchorScrolling()) {
-              console.log('Skipping video load during anchor scroll');
+              if (process.env.NODE_ENV === 'development') {
+                console.log('Skipping video load during anchor scroll');
+              }
               return;
             }
             setIsVisible(true);
-            sectionObserver.unobserve(entry.target);
+            sectionObserver.disconnect();
           }
         });
       },
@@ -40,16 +47,10 @@ export default function VideoProjectsSection() {
       }
     );
 
-    // Observe the section container
-    const sectionElement = document.getElementById('video-projects');
-    if (sectionElement) {
-      sectionObserver.observe(sectionElement);
-    }
+    sectionObserver.observe(sectionElement);
 
     return () => {
-      if (sectionElement) {
-        sectionObserver.unobserve(sectionElement);
-      }
+      sectionObserver.disconnect();
     };
   }, []);
 

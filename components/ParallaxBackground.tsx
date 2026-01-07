@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import anime from 'animejs';
+import { usePathname } from 'next/navigation';
 
 interface ParallaxBackgroundProps {
   className?: string;
@@ -11,6 +12,9 @@ interface ParallaxBackgroundProps {
 }
 
 export default function ParallaxBackground({ className = '', modelPath }: ParallaxBackgroundProps) {
+  const pathname = usePathname();
+  // Disable Three.js initialization on project routes to avoid race conditions
+  const isProjectPage = pathname?.includes('/projects/') ?? false;
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -24,8 +28,13 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
   }, []);
 
   useEffect(() => {
+    // Skip initialization on project routes to avoid race conditions
+    if (isProjectPage) return;
     if (!containerRef.current || typeof window === 'undefined') return;
 
+    // Track if component is still mounted for async callbacks
+    let isMounted = true;
+    
     // Scene setup
     const scene = new THREE.Scene();
     scene.background = null;
@@ -49,6 +58,9 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Reduced for better performance
+    
+    // Guard DOM mutation - prevent insertion if container unmounted
+    if (!containerRef.current || !containerRef.current.parentNode) return;
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -83,6 +95,8 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       loader.load(
         modelPath,
         (gltf) => {
+          // Guard against unmounted component
+          if (!isMounted) return;
           const model = gltf.scene;
           model.scale.set(2, 2, 2);
           model.position.set(0, 0, 0);
@@ -91,7 +105,10 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
         },
         undefined,
         (error) => {
-          console.error('Error loading model:', error);
+          if (!isMounted) return;
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Error loading model:', error);
+          }
         }
       );
     } else {
@@ -136,8 +153,8 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
     animate();
 
-    // Anime.js animations
-    anime({
+    // Anime.js animations - store reference for cleanup
+    const cameraAnimation = anime({
       targets: camera.position,
       z: [5, 3, 5],
       duration: 15000,
@@ -157,18 +174,56 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
+    // Full cleanup on unmount
     return () => {
+      isMounted = false;
+      
+      // Remove event listeners
       window.removeEventListener('resize', handleResize);
+      
+      // Cancel animation frame
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      
+      // Stop anime.js animation
+      if (cameraAnimation) {
+        cameraAnimation.pause();
       }
+      
+      // Dispose all geometries and materials in the scene
+      scene.traverse((obj: THREE.Object3D) => {
+        if ((obj as THREE.Mesh).geometry) {
+          (obj as THREE.Mesh).geometry.dispose();
+        }
+        if ((obj as THREE.Mesh).material) {
+          const material = (obj as THREE.Mesh).material;
+          if (Array.isArray(material)) {
+            material.forEach(m => m.dispose());
+          } else {
+            material.dispose();
+          }
+        }
+      });
+      
+      // Clear the scene
       scene.clear();
+      
+      // Dispose renderer and force context loss
+      renderer.dispose();
+      renderer.forceContextLoss();
+      
+      // Safe DOM removal - guard against unmounted container
+      const container = containerRef.current;
+      const domElement = renderer.domElement;
+      if (container && container.parentNode && domElement && container.contains(domElement)) {
+        container.removeChild(domElement);
+      }
+      
+      // Null out renderer reference
+      (renderer as any).domElement = null;
     };
-  }, [modelPath]);
+  }, [modelPath, isProjectPage]);
 
   if (!isClient) {
     return (

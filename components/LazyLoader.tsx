@@ -314,7 +314,7 @@ export function useIntersectionObserver(
     observer.observe(element);
 
     return () => {
-      observer.unobserve(element);
+      observer.disconnect();
     };
   }, [elementRef, options, hasIntersected]);
 

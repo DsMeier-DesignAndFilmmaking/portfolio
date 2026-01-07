@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import HashNavigationHandler from '@/components/HashNavigationHandler';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 // Dynamically import heavy components with Suspense boundaries
 const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'), {
@@ -38,10 +39,16 @@ const AITravelScene = () => (
 );
 
 export default function HomePage() {
+  const pathname = usePathname();
+  // Disable heavy motion (parallax, Three.js) on project routes to avoid race conditions
+  const isProjectPage = pathname?.includes('/projects/') ?? false;
   const videoRef = useRef<HTMLIFrameElement>(null);
   const mobileHeroRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -57,14 +64,10 @@ export default function HomePage() {
       { threshold: 0.5 } // Trigger when 50% of the video is visible
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
+    observer.observe(videoElement);
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
-      }
+      observer.disconnect();
     };
   }, []);
 
@@ -102,9 +105,9 @@ export default function HomePage() {
         
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white relative z-10" aria-label="Introduction">
-          {/* Hero Content - Content-driven height */}
+          {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-start justify-center">
-            <div className="max-w-4xl mx-auto px-6 w-full pt-24 pb-20">
+            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-20">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -150,35 +153,40 @@ export default function HomePage() {
         </section>
 
         {/* Optimized Parallax Sections - Dynamically loaded */}
-        {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
-        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
-          <div className="-mt-16 md:-mt-20">
-            <ParallaxSection
-              title="Always Curious."
-              description=""
-              modelPath="ai-travel"
-              className="bg-transparent"
-            />
-          </div>
-        </Suspense>
+        {/* Disable heavy motion on project routes to avoid race conditions during navigation */}
+        {!isProjectPage && (
+          <>
+            {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
+            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+              <div className="-mt-16 md:-mt-20">
+                <ParallaxSection
+                  title="Always Curious."
+                  description=""
+                  modelPath="ai-travel"
+                  className="bg-transparent"
+                />
+              </div>
+            </Suspense>
 
-        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
-          <ParallaxSection
-            title="I tinker, I design, and I build."
-            description=""
-            modelPath="design-build"
-            className="bg-transparent"
-          />
-        </Suspense>
+            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+              <ParallaxSection
+                title="I tinker, I design, and I build."
+                description=""
+                modelPath="design-build"
+                className="bg-transparent"
+              />
+            </Suspense>
 
-        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
-          <ParallaxSection
-            title="I shape narrative through the art of cinematic imagery."
-            description=""
-            modelPath="cinematography"
-            className="bg-transparent"
-          />
-        </Suspense>
+            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+              <ParallaxSection
+                title="I shape narrative through the art of cinematic imagery."
+                description=""
+                modelPath="cinematography"
+                className="bg-transparent"
+              />
+            </Suspense>
+          </>
+        )}
 
         {/* Hero Image Section */}
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
@@ -199,16 +207,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
-          <ParallaxSection
-            title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
-            description=""
-            modelPath="torus"
-            className="bg-transparent"
-            hideGradient={true}
-            textColor="black"
-          />
-        </Suspense>
+        {!isProjectPage && (
+          <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+            <ParallaxSection
+              title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
+              description=""
+              modelPath="torus"
+              className="bg-transparent"
+              hideGradient={true}
+              textColor="black"
+            />
+          </Suspense>
+        )}
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
         <div id="about" className="anchor-offset" aria-hidden="true"></div>

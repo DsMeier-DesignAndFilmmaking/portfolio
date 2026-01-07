@@ -119,8 +119,8 @@ export default function AISandboxPage() {
 
   return (
     <main className="bg-white text-black overflow-hidden">
-      <AnimatePresence>
-        {isTransitioning && <PageTransitionOverlay />}
+      <AnimatePresence mode="wait">
+        {isTransitioning && <PageTransitionOverlay key="page-transition" />}
       </AnimatePresence>
 
       {/* Navigation */}
@@ -207,9 +207,10 @@ export default function AISandboxPage() {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isMobileMenuOpen && (
             <motion.div
+              key="mobile-menu"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}

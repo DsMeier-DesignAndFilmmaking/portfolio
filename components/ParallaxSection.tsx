@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import ParallaxBackground from './ParallaxBackground';
 import DesignBuildScene from './DesignBuildScene';
 import CinematographyScene from './CinematographyScene';
@@ -25,6 +26,9 @@ export default function ParallaxSection({
   hideGradient = false,
   textColor,
 }: ParallaxSectionProps) {
+  const pathname = usePathname();
+  // Disable parallax transforms and scroll-driven motion on project routes to avoid race conditions
+  const isProjectPage = pathname?.includes('/projects/') ?? false;
   const ref = useRef(null);
   const [isClient, setIsClient] = useState(false);
   
@@ -32,15 +36,18 @@ export default function ParallaxSection({
     setIsClient(true);
   }, []);
 
+  // Disable scroll-driven motion on project routes to avoid race conditions
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
 
+  // Disable parallax transforms on project routes - use static values instead
+  // This prevents scroll-driven animations without breaking the hook
   // Optimize transforms with better performance settings
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = isProjectPage ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = isProjectPage ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   if (!isClient) {
     return (

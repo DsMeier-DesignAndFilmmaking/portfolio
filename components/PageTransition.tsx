@@ -8,7 +8,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
   return (
     <AnimatePresence mode="wait">
-      {children}
+      <div key={pathname}>
+        {children}
+      </div>
     </AnimatePresence>
   );
 } 

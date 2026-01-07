@@ -122,7 +122,8 @@ export default function StatsSection({ className = '', containerClassName = '', 
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!statsRef.current) return;
+    // Guard DOM mutation - ensure ref exists and is mounted
+    if (!statsRef.current || !statsRef.current.parentNode) return;
 
     const stats = statsRef.current.querySelectorAll('.stat-value');
     const progressBars = statsRef.current.querySelectorAll('.progress-bar');
