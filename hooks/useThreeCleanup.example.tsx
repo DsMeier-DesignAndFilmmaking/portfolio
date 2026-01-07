@@ -26,6 +26,9 @@ export default function ExampleThreeScene() {
   
   // Initialize Three.js scene
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined') return;
+    
     // Skip initialization on project routes
     if (isProjectPage) return;
     

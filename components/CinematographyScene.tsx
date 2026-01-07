@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { useThreeCleanup } from '@/hooks/useThreeCleanup';
 
 export default function CinematographyScene() {
   const pathname = usePathname();
@@ -13,13 +14,15 @@ export default function CinematographyScene() {
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
+  const frameIdRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined') return;
+    
     // Skip initialization on project routes to avoid race conditions
     if (isProjectPage) return;
     if (!containerRef.current) return;
-
-    let frameId: number | undefined;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -116,7 +119,7 @@ export default function CinematographyScene() {
 
     // Animation
     const animate = () => {
-      frameId = requestAnimationFrame(animate);
+      frameIdRef.current = requestAnimationFrame(animate);
 
       if (modelRef.current) {
         modelRef.current.rotation.y += 0.003;
@@ -139,53 +142,20 @@ export default function CinematographyScene() {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
+    // Cleanup resize listener only (Three.js cleanup handled by hook)
     return () => {
-      // Required disposal pattern for route transitions
-      if (frameId) cancelAnimationFrame(frameId)
-
-      renderer.dispose()
-      renderer.forceContextLoss()
-      renderer.domElement = null as any
-
-      scene.traverse((obj: any) => {
-        if (obj.geometry) obj.geometry.dispose()
-        if (obj.material) {
-          if (Array.isArray(obj.material)) {
-            obj.material.forEach((m: any) => m.dispose())
-          } else {
-            obj.material.dispose()
-          }
-        }
-      })
-
       window.removeEventListener('resize', handleResize);
-
-      // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
-      // Dispose renderer and force context loss immediately
-      renderer.dispose();
-      renderer.forceContextLoss();
-      renderer.domElement = null as any;
-      
-      // Defer DOM removal to next tick to avoid React reconciliation conflicts
-      const container = containerRef.current;
-      if (container && domElement && domElement.parentNode === container) {
-        setTimeout(() => {
-          try {
-            // Double-check element is still a child before removing
-            if (domElement.parentNode === container && container.contains(domElement)) {
-              container.removeChild(domElement);
-            }
-          } catch (error) {
-            // Element may have already been removed by React/Framer Motion
-            // Silently ignore - this is expected during fast route transitions
-          }
-        }, 0);
-      }
-
-      scene.clear();
     };
   }, [isProjectPage]);
+
+  // Use reusable cleanup hook for Three.js resources
+  useThreeCleanup({
+    rendererRef,
+    sceneRef,
+    containerRef,
+    frameIdRef,
+    deps: [isProjectPage],
+  });
 
   return (
     <motion.div

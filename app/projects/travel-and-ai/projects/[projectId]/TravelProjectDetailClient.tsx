@@ -540,8 +540,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   return (
     <>
       <div className="min-h-screen bg-white text-gray-900">
-      <AnimatePresence>
-        {isTransitioning && <PageTransitionOverlay />}
+      <AnimatePresence mode="wait">
+        {isTransitioning && <PageTransitionOverlay key="page-transition" />}
       </AnimatePresence>
 
       {/* Navigation */}

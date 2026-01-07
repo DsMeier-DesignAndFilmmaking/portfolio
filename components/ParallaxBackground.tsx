@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import anime from 'animejs';
 import { usePathname } from 'next/navigation';
+import { useThreeCleanup } from '@/hooks/useThreeCleanup';
 
 interface ParallaxBackgroundProps {
   className?: string;
@@ -21,6 +22,8 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const particlesRef = useRef<THREE.Points | null>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
+  const animationIdRef = useRef<number | null>(null);
+  const cameraAnimationRef = useRef<any>(null);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -28,9 +31,12 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
   }, []);
 
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined') return;
+    
     // Skip initialization on project routes to avoid race conditions
     if (isProjectPage) return;
-    if (!containerRef.current || typeof window === 'undefined') return;
+    if (!containerRef.current) return;
 
     // Track if component is still mounted for async callbacks
     let isMounted = true;
@@ -134,9 +140,8 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     scene.add(pointLight);
 
     // Animation (optimized for performance)
-    let animationId: number;
     const animate = () => {
-      animationId = requestAnimationFrame(animate);
+      animationIdRef.current = requestAnimationFrame(animate);
 
       if (particlesRef.current) {
         particlesRef.current.rotation.y += 0.0002; // Slightly slower for better performance
@@ -154,7 +159,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     animate();
 
     // Anime.js animations - store reference for cleanup
-    const cameraAnimation = anime({
+    cameraAnimationRef.current = anime({
       targets: camera.position,
       z: [5, 3, 5],
       duration: 15000,
@@ -174,69 +179,27 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
     window.addEventListener('resize', handleResize);
 
-    // Full cleanup on unmount
+    // Cleanup resize listener only (Three.js cleanup handled by hook)
     return () => {
       isMounted = false;
-      
-      // Remove event listeners
       window.removeEventListener('resize', handleResize);
-      
-      // Cancel animation frame
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-      
-      // Stop anime.js animation
-      if (cameraAnimation) {
-        cameraAnimation.pause();
-      }
-      
-      // Dispose all geometries and materials in the scene
-      scene.traverse((obj: THREE.Object3D) => {
-        if ((obj as THREE.Mesh).geometry) {
-          (obj as THREE.Mesh).geometry.dispose();
-        }
-        if ((obj as THREE.Mesh).material) {
-          const material = (obj as THREE.Mesh).material;
-          if (Array.isArray(material)) {
-            material.forEach(m => m.dispose());
-          } else {
-            material.dispose();
-          }
-        }
-      });
-      
-      // Clear the scene
-      scene.clear();
-      
-      // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
-      // Use setTimeout to defer cleanup until after React's reconciliation phase
-      const domElement = renderer.domElement;
-      const container = containerRef.current;
-      
-      // Dispose renderer and force context loss
-      renderer.dispose();
-      renderer.forceContextLoss();
-      
-      // Null out renderer reference immediately
-      (renderer as any).domElement = null;
-      
-      // Defer DOM removal to next tick to avoid React reconciliation conflicts
-      if (container && domElement && domElement.parentNode === container) {
-        setTimeout(() => {
-          try {
-            // Double-check element is still a child before removing
-            if (domElement.parentNode === container) {
-              container.removeChild(domElement);
-            }
-          } catch (error) {
-            // Element may have already been removed by React/Framer Motion
-            // Silently ignore - this is expected during fast route transitions
-          }
-        }, 0);
-      }
     };
   }, [modelPath, isProjectPage]);
+
+  // Use reusable cleanup hook for Three.js resources
+  useThreeCleanup({
+    rendererRef,
+    sceneRef,
+    containerRef,
+    frameIdRef: animationIdRef,
+    onCleanup: () => {
+      // Stop anime.js animation
+      if (cameraAnimationRef.current) {
+        cameraAnimationRef.current.pause();
+      }
+    },
+    deps: [isProjectPage],
+  });
 
   if (!isClient) {
     return (

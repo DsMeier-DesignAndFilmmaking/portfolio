@@ -77,6 +77,15 @@ export function useThreeCleanup({
       const renderer = rendererRef.current;
       const scene = sceneRef.current;
       
+      // Early return if already cleaned up
+      if (!renderer) {
+        // Still clear scene ref if it exists
+        if (sceneRef.current) {
+          sceneRef.current = null;
+        }
+        return;
+      }
+      
       // Cancel animation frame if active
       if (frameIdRef?.current) {
         cancelAnimationFrame(frameIdRef.current);
@@ -94,79 +103,87 @@ export function useThreeCleanup({
         }
       }
       
-      // Dispose renderer if it exists
-      if (renderer) {
+      // Dispose all geometries and materials in the scene before disposing renderer
+      if (scene) {
         try {
-          // Dispose all geometries and materials in the scene before disposing renderer
-          if (scene) {
-            scene.traverse((obj: THREE.Object3D) => {
-              const mesh = obj as THREE.Mesh;
-              if (mesh.geometry) {
-                mesh.geometry.dispose();
-              }
-              if (mesh.material) {
-                const material = mesh.material;
-                if (Array.isArray(material)) {
-                  material.forEach((m) => m.dispose());
-                } else {
-                  material.dispose();
-                }
-              }
-            });
-            
-            // Clear the scene
-            scene.clear();
-          }
-          
-          // Get the canvas element before disposing renderer
-          const domElement = renderer.domElement;
-          
-          // Dispose the renderer
-          renderer.dispose();
-          
-          // Force WebGL context loss to release GPU resources immediately
-          renderer.forceContextLoss();
-          
-          // Null out the domElement reference
-          (renderer as any).domElement = null;
-          
-          // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
-          // Safely remove canvas from DOM if container exists
-          if (containerRef?.current && domElement) {
-            const container = containerRef.current;
-            // Guard: ensure element is a direct child of container
-            // This prevents NotFoundError during fast route transitions
-            if (
-              container.parentNode &&
-              domElement.parentNode === container
-            ) {
-              // Defer DOM removal to next tick to avoid React reconciliation conflicts
-              setTimeout(() => {
-                try {
-                  // Double-check element is still a child before removing
-                  if (domElement.parentNode === container && container.contains(domElement)) {
-                    container.removeChild(domElement);
-                  }
-                } catch (error) {
-                  // Element may have already been removed by React/Framer Motion
-                  // Silently ignore - this is expected during fast route transitions
-                }
-              }, 0);
+          scene.traverse((obj: THREE.Object3D) => {
+            const mesh = obj as THREE.Mesh;
+            if (mesh.geometry) {
+              mesh.geometry.dispose();
             }
-          }
+            if (mesh.material) {
+              const material = mesh.material;
+              if (Array.isArray(material)) {
+                material.forEach((m) => m.dispose());
+              } else {
+                material.dispose();
+              }
+            }
+          });
+          
+          // Clear the scene
+          scene.clear();
         } catch (error) {
+          // Scene may already be disposed
           if (process.env.NODE_ENV === 'development') {
-            console.error('Error disposing Three.js renderer:', error);
+            console.warn('Error disposing scene:', error);
           }
         }
         
-        // Clear refs
-        rendererRef.current = null;
+        // Clear scene ref
+        sceneRef.current = null;
       }
       
-      // Clear scene ref
-      if (sceneRef.current) {
-        sceneRef.current = null;
+      // Safe renderer cleanup - check if already disposed or context lost
+      try {
+        // Get the canvas element before disposing renderer
+        const domElement = renderer.domElement;
+        
+        // Check if context is already lost before forcing loss
+        const gl = renderer.getContext();
+        if (gl && !gl.isContextLost()) {
+          // Context is still valid, dispose and force loss
+          renderer.dispose();
+          renderer.forceContextLoss();
+        } else if (!gl || gl.isContextLost()) {
+          // Context already lost, just dispose (don't force again)
+          renderer.dispose();
+        }
+        
+        // Null out the domElement reference
+        rendererRef.current = null;
+        (renderer as any).domElement = null;
+        
+        // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
+        // Safely remove canvas from DOM if container exists
+        if (containerRef?.current && domElement) {
+          const container = containerRef.current;
+          // Guard: ensure element is a direct child of container
+          // This prevents NotFoundError during fast route transitions
+          if (
+            container.parentNode &&
+            domElement.parentNode === container
+          ) {
+            // Defer DOM removal to next tick to avoid React reconciliation conflicts
+            setTimeout(() => {
+              try {
+                // Double-check element is still a child before removing
+                if (domElement.parentNode === container && container.contains(domElement)) {
+                  container.removeChild(domElement);
+                }
+              } catch (error) {
+                // Element may have already been removed by React/Framer Motion
+                // Silently ignore - this is expected during fast route transitions
+              }
+            }, 0);
+          }
+        }
+      } catch (error) {
+        // Renderer may already be disposed
+        rendererRef.current = null;
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Error disposing Three.js renderer:', error);
+        }
       }
     };
   }, deps); // Run cleanup when dependencies change or on unmount
