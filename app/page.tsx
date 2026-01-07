@@ -101,10 +101,10 @@ export default function HomePage() {
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section className="intro-section bg-white" aria-label="Introduction">
-          {/* Hero Content - Full Height */}
+        <section className="intro-section bg-white relative z-10" aria-label="Introduction">
+          {/* Hero Content - Content-driven height */}
           <div className="relative flex items-start justify-center">
-            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh]">
+            <div className="max-w-4xl mx-auto px-6 w-full pt-24 pb-20">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -150,13 +150,16 @@ export default function HomePage() {
         </section>
 
         {/* Optimized Parallax Sections - Dynamically loaded */}
+        {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
         <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
-          <ParallaxSection
-            title="Always Curious."
-            description=""
-            modelPath="ai-travel"
-            className="bg-transparent"
-          />
+          <div className="-mt-16 md:-mt-20">
+            <ParallaxSection
+              title="Always Curious."
+              description=""
+              modelPath="ai-travel"
+              className="bg-transparent"
+            />
+          </div>
         </Suspense>
 
         <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
