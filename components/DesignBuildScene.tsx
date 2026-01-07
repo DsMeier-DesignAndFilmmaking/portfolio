@@ -151,14 +151,17 @@ export default function DesignBuildScene() {
       window.removeEventListener('resize', handleResize);
 
       // Defensive DOM cleanup (prevents removeChild NotFoundError during fast navigation)
-      // Guard: ensure container and element both have parent nodes
-      try {
-        const container = containerRef.current;
-        if (container && container.parentNode && domElement && domElement.parentNode && container.contains(domElement)) {
+      // Check that element is a DIRECT child (not just contained in subtree)
+      const container = containerRef.current;
+      if (container && container.parentNode && domElement && domElement.parentNode === container) {
+        try {
           container.removeChild(domElement);
+        } catch (error) {
+          // Element may have already been removed by React/Framer Motion
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Canvas already removed from DOM:', error);
+          }
         }
-      } catch {
-        // ignore
       }
 
       scene.clear();

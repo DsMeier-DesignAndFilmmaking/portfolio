@@ -214,10 +214,18 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       renderer.forceContextLoss();
       
       // Safe DOM removal - guard against unmounted container
+      // Check that element is a DIRECT child (not just contained in subtree)
       const container = containerRef.current;
       const domElement = renderer.domElement;
-      if (container && container.parentNode && domElement && container.contains(domElement)) {
-        container.removeChild(domElement);
+      if (container && container.parentNode && domElement && domElement.parentNode === container) {
+        try {
+          container.removeChild(domElement);
+        } catch (error) {
+          // Element may have already been removed by React/Framer Motion
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Canvas already removed from DOM:', error);
+          }
+        }
       }
       
       // Null out renderer reference

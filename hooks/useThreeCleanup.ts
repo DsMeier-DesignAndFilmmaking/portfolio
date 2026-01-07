@@ -131,22 +131,22 @@ export function useThreeCleanup({
           (renderer as any).domElement = null;
           
           // Safely remove canvas from DOM if container exists
+          // Check that element is a DIRECT child (not just contained in subtree)
           if (containerRef?.current && domElement) {
-            try {
-              const container = containerRef.current;
-              // Guard: ensure container and element both have parent nodes
-              // This prevents NotFoundError during fast route transitions
-              if (
-                container.parentNode &&
-                domElement.parentNode &&
-                container.contains(domElement)
-              ) {
+            const container = containerRef.current;
+            // Guard: ensure element is a direct child of container
+            // This prevents NotFoundError during fast route transitions
+            if (
+              container.parentNode &&
+              domElement.parentNode === container
+            ) {
+              try {
                 container.removeChild(domElement);
-              }
-            } catch (error) {
-              // Ignore DOM removal errors (element may already be removed)
-              if (process.env.NODE_ENV === 'development') {
-                console.warn('Error removing canvas from DOM:', error);
+              } catch (error) {
+                // Element may have already been removed by React/Framer Motion
+                if (process.env.NODE_ENV === 'development') {
+                  console.warn('Canvas already removed from DOM:', error);
+                }
               }
             }
           }
