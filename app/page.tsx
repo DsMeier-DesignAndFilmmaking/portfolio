@@ -139,12 +139,6 @@ export default function HomePage() {
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       I'm Dan Meier, a product designer and creative technologist with over a decade of experience designing digital products and web-based platforms across startups, universities, agencies, and independent client work.
                     </p>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
-                    </p>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      Alongside client work, I explore and build AI-driven product concepts centered on discovery, spontaneity, and experience-based use cases, with a particular interest in location-aware and travel-adjacent contexts.
-                    </p>
                   </div>
                 </motion.div>
             </div>
@@ -286,6 +280,22 @@ export default function HomePage() {
                     </div>
                   </motion.div>
 
+                  {/* Design Journey Section - Mobile Only (below second image) */}
+                  <div className="md:hidden w-full">
+                    <div className="space-y-8">
+                      {/* Design Journey Path Marker */}
+                      <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
+                        <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                        <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
+                      </div>
+                      
+                      <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                        My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Third Image (Portrait - Duplicate) */}
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -337,14 +347,15 @@ export default function HomePage() {
                   className="w-full text-left"
                 >
                   <div className="space-y-8">
-                  {/* Design Journey Path Marker */}
-                  <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
+                  {/* Design Journey Path Marker - Desktop Only */}
+                  <div className="hidden md:flex items-center gap-3 mb-6 opacity-60 mt-8">
                     <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
                     <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                     <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
                   </div>
                   
-                  <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                  {/* Design Journey Paragraph - Desktop Only */}
+                  <p className="hidden md:block text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                     My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
                   </p>
                   

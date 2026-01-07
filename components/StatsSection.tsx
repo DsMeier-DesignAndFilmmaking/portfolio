@@ -161,7 +161,7 @@ export default function StatsSection({ className = '', containerClassName = '', 
       <div className={containerClassName || 'max-w-7xl mx-auto'}>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Stats Cards */}
-          <div className={`lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 ${hideThirdBlock ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-4 order-2 lg:order-1`}>  
+          <div className={`lg:col-span-3 hidden md:grid grid-cols-1 sm:grid-cols-2 ${hideThirdBlock ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-4 order-2 lg:order-1`}>  
             {/* First Stat Block */}
             <div className="stat-card bg-white backdrop-blur-sm rounded-xl p-5 flex flex-col h-full">
               <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">

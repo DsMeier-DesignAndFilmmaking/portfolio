@@ -259,9 +259,9 @@ export default function AISandboxPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         {/* Left: Hero Content */}
-        <div className={`relative z-20 ${isMobile ? "text-center" : ""}`}>
+        <div className="relative z-20 text-left md:text-left">
           <motion.div
-            className={`max-w-2xl ${isMobile ? "text-center" : ""} mt-[100px]`}
+            className="max-w-2xl text-left md:text-left mt-[100px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -270,13 +270,13 @@ export default function AISandboxPage() {
               <span className="text-gray-600">Intelligent Travel Systems</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-left" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-gray-900">
               Designing AI-Driven Mobility for a World in Motion
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
             I design context-aware AI systems for high-mobility travel, replacing rigid planning with real-time experiences that prioritize trust, social context, and the present moment.

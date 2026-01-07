@@ -44,6 +44,23 @@ export default function ProjectsSection() {
         </FadeInSection>
 
         <FadeInSection 
+          delay={0.15}
+          duration={0.8}
+          direction="up"
+          distance={30}
+          threshold={0.2}
+        >
+          <div className="mb-16 max-w-2xl">
+            <p className="text-xl text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+              My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
+            </p>
+            <p className="text-xl text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+              Alongside client work, I explore and build AI-driven product concepts centered on discovery, spontaneity, and experience-based use cases, with a particular interest in location-aware and travel-adjacent contexts.
+            </p>
+          </div>
+        </FadeInSection>
+
+        <FadeInSection 
           delay={0.2}
           duration={0.8}
           direction="up"

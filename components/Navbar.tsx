@@ -258,6 +258,12 @@ const Navbar = () => {
     e.preventDefault();
     e.stopPropagation();
     
+    // Detect mobile device
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    // Capture menu state before closing it
+    const wasMenuOpen = isMobileMenuOpen;
+    
     setIsScrollingToAnchor(true);
     setIsMobileMenuOpen(false);
     
@@ -273,15 +279,28 @@ const Navbar = () => {
     
     // For travelogue section, use a more robust approach to ensure stable scroll
     const scrollToTarget = async () => {
+      // On mobile, wait for mobile menu to close first (faster close animation)
+      if (isMobile && wasMenuOpen) {
+        await new Promise(resolve => {
+          requestAnimationFrame(() => {
+            setTimeout(resolve, 200); // Wait for menu close animation
+          });
+        });
+      }
+      
       // For black-section and about, wait for navbar state change to apply before calculating scroll
       // This ensures the navbar shrink animation doesn't cause layout shifts during scroll
       if (targetId === 'black-section' || targetId === 'about') {
+        // On mobile, use shorter delays for faster response
+        const delay = isMobile ? 30 : 50;
+        const blackSectionDelay = isMobile ? 50 : 150;
+        
         // Wait for React state update to propagate and navbar layout to stabilize
         await new Promise(resolve => {
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
               // Give navbar shrink animation time to apply (typically one frame)
-              setTimeout(resolve, 50);
+              setTimeout(resolve, delay);
             });
           });
         });
@@ -301,12 +320,18 @@ const Navbar = () => {
             window.dispatchEvent(new CustomEvent('scrollComplete'));
             
             // Wait for FadeInSection state updates and initial animation frame
+            // Shorter delay on mobile for faster scroll
             await new Promise(resolve => {
               requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
-                  requestAnimationFrame(() => {
-                    setTimeout(resolve, 150);
-                  });
+                  if (isMobile) {
+                    // On mobile, skip third RAF for faster response
+                    setTimeout(resolve, blackSectionDelay);
+                  } else {
+                    requestAnimationFrame(() => {
+                      setTimeout(resolve, blackSectionDelay);
+                    });
+                  }
                 });
               });
             });
@@ -369,18 +394,30 @@ const Navbar = () => {
       
       // Scroll function that can be called multiple times
       const performScroll = async () => {
+        // On mobile, use shorter delays for faster response
+        const layoutDelay = isMobile ? 50 : 100;
+        
         // Wait for layout to stabilize - handle both loaded and loading states
         await new Promise<void>((resolve) => {
           const waitForStableLayout = () => {
             // Use multiple requestAnimationFrames to ensure layout is stable
-            requestAnimationFrame(() => {
+            // On mobile, use fewer RAFs for faster response
+            if (isMobile) {
               requestAnimationFrame(() => {
-                // Additional timeout for lazy-loaded elements and animations
                 setTimeout(() => {
                   resolve();
-                }, 100);
+                }, layoutDelay);
               });
-            });
+            } else {
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  // Additional timeout for lazy-loaded elements and animations
+                  setTimeout(() => {
+                    resolve();
+                  }, layoutDelay);
+                });
+              });
+            }
           };
           
           // If document is still loading, wait for load event first
@@ -478,18 +515,61 @@ const Navbar = () => {
       // Single, accurate scroll after layout is fully stable
       const scrollResult = await performScroll();
       if (scrollResult) {
-        window.scrollTo({
-          top: scrollResult.finalPosition,
-          behavior: 'smooth'
-        });
-        
-        // Mark scrolling as complete after animation
-        setTimeout(() => {
-          setIsScrollingToAnchor(false);
-          window.dispatchEvent(new CustomEvent('scrollComplete'));
-        }, 800);
+        // On mobile, use a more reliable smooth scroll approach
+        if (isMobile && targetId === 'black-section') {
+          // Custom smooth scroll for mobile - more reliable than native smooth
+          const startPosition = window.pageYOffset;
+          const distance = scrollResult.finalPosition - startPosition;
+          const duration = Math.min(Math.abs(distance) / 1.2, 600); // Max 600ms, faster scroll
+          let startTime: number | null = null;
+          
+          // Easing function for smooth animation
+          const easeInOutCubic = (t: number): number => {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          };
+          
+          const animateScroll = (currentTime: number) => {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            const ease = easeInOutCubic(progress);
+            const currentPosition = startPosition + distance * ease;
+            
+            window.scrollTo(0, currentPosition);
+            
+            if (progress < 1) {
+              requestAnimationFrame(animateScroll);
+            } else {
+              // Scroll complete
+              if (isMountedRef.current) {
+                setIsScrollingToAnchor(false);
+              }
+              window.dispatchEvent(new CustomEvent('scrollComplete'));
+            }
+          };
+          
+          requestAnimationFrame(animateScroll);
+        } else {
+          // Desktop: use native smooth scroll
+          window.scrollTo({
+            top: scrollResult.finalPosition,
+            behavior: 'smooth'
+          });
+          
+          // Mark scrolling as complete after animation
+          const animationDuration = isMobile ? 600 : 800;
+          setTimeout(() => {
+            if (isMountedRef.current) {
+              setIsScrollingToAnchor(false);
+            }
+            window.dispatchEvent(new CustomEvent('scrollComplete'));
+          }, animationDuration);
+        }
       } else {
-        setIsScrollingToAnchor(false);
+        if (isMountedRef.current) {
+          setIsScrollingToAnchor(false);
+        }
       }
     };
     
