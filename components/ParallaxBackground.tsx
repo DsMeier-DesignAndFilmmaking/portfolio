@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import anime from 'animejs';
 import { usePathname } from 'next/navigation';
 import { useThreeCleanup } from '@/hooks/useThreeCleanup';
+import { useDeepDispose } from '@/hooks/useDeepDispose';
 
 interface ParallaxBackgroundProps {
   className?: string;
@@ -186,7 +187,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     };
   }, [modelPath, isProjectPage]);
 
-  // Use reusable cleanup hook for Three.js resources
+  // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
     rendererRef,
     sceneRef,
@@ -196,9 +197,37 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       // Stop anime.js animation
       if (cameraAnimationRef.current) {
         cameraAnimationRef.current.pause();
+        cameraAnimationRef.current = null;
       }
     },
     deps: [isProjectPage],
+  });
+
+  // Use deep disposal hook for comprehensive GPU memory cleanup
+  // This ensures all geometries, materials, textures, and renderers are fully disposed
+  useDeepDispose({
+    objectRef: sceneRef,
+    rendererRef: rendererRef,
+    onBeforeDispose: () => {
+      // Cancel animation frame before disposal
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
+      }
+      // Stop anime.js animation before disposal
+      if (cameraAnimationRef.current) {
+        cameraAnimationRef.current.pause();
+        cameraAnimationRef.current = null;
+      }
+    },
+    onAfterDispose: () => {
+      // Clean up refs after disposal
+      particlesRef.current = null;
+      modelRef.current = null;
+      cameraRef.current = null;
+    },
+    deps: [modelPath, isProjectPage], // Re-run cleanup when these change
+    verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
   });
 
   if (!isClient) {

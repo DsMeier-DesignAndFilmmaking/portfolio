@@ -3,18 +3,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { allProjects } from '../../../utils/projectUtils';
 import { useState, useEffect } from 'react';
 
 export default function PreviousProjectsPage() {
   const router = useRouter();
+  const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [atTop, setAtTop] = useState(true);
+  // Initialize as false to match server render (server doesn't know scroll position)
+  const [atTop, setAtTop] = useState(false);
+
+  // Set mounted state on client only
+  useEffect(() => {
+    setIsMounted(true);
+    // Initialize scroll state on mount
+    if (typeof window !== 'undefined') {
+      setAtTop(window.scrollY === 0);
+    }
+  }, []);
 
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined' || !isMounted) return;
+
     const handleScroll = () => {
       // Close mobile menu on scroll
       if (isMobileMenuOpen) {
@@ -33,30 +48,39 @@ export default function PreviousProjectsPage() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isMobileMenuOpen]);
+  }, [lastScrollY, isMobileMenuOpen, isMounted]);
 
   // Set body background to black and add route-aware body class
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined' || typeof document === 'undefined' || !isMounted) return;
+    
     document.body.style.backgroundColor = 'black';
     document.documentElement.style.backgroundColor = 'black';
     
     // Add route-aware body class for CSS targeting
-    const isPreviousProject = window.location.pathname.startsWith('/projects/previous');
+    const isPreviousProject = pathname?.startsWith('/projects/previous') ?? false;
     if (isPreviousProject) {
       document.body.classList.add('no-mobile-nav-offset');
     }
     
     return () => {
-      document.body.style.backgroundColor = '';
-      document.documentElement.style.backgroundColor = '';
-      document.body.classList.remove('no-mobile-nav-offset');
+      // Guard DOM manipulation during cleanup
+      if (typeof document !== 'undefined' && document.body) {
+        document.body.style.backgroundColor = '';
+        document.documentElement.style.backgroundColor = '';
+        document.body.classList.remove('no-mobile-nav-offset');
+      }
     };
-  }, []);
+  }, [pathname, isMounted]);
 
   // Mobile-only hero fix on /projects/previous/ - positions hero directly below navbar
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined' || typeof document === 'undefined' || !isMounted) return;
+
     const handleMobileHeroFix = () => {
-      if (window.location.pathname === '/projects/previous/' && window.innerWidth <= 768) {
+      if (pathname === '/projects/previous' && window.innerWidth <= 768) {
         const navbar = document.querySelector('nav');
         const hero = document.querySelector('.hero-section');
 
@@ -97,10 +121,20 @@ export default function PreviousProjectsPage() {
         (hero as HTMLElement).style.top = '';
         (hero as HTMLElement).style.transform = '';
       }
-      document.body.style.paddingTop = '';
+      // Guard DOM manipulation during cleanup
+      if (typeof document !== 'undefined' && document.body) {
+        const hero = document.querySelector('.hero-section');
+        if (hero) {
+          (hero as HTMLElement).style.marginTop = '';
+          (hero as HTMLElement).style.paddingTop = '';
+          (hero as HTMLElement).style.top = '';
+          (hero as HTMLElement).style.transform = '';
+        }
+        document.body.style.paddingTop = '';
+      }
       window.removeEventListener('resize', handleMobileHeroFix);
     };
-  }, []);
+  }, [pathname, isMounted]);
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault();

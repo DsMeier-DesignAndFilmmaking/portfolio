@@ -56,12 +56,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://fonts.cdnfonts.com" crossOrigin="" />
       </head>
-      <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`}>
-        <NavigationWrapper />
-        <PageTransition>
-          <main>{children}</main>
-        </PageTransition>
-        <Footer />
+      <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`} suppressHydrationWarning>
+        {/* Isolation div to protect from browser extension DOM injection */}
+        <div id="__next" suppressHydrationWarning>
+          <NavigationWrapper />
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
+          <Footer />
+        </div>
       </body>
     </html>
   );

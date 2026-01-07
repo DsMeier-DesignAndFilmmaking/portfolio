@@ -1,9 +1,10 @@
 'use client';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useThreeCleanup } from '@/hooks/useThreeCleanup';
+import { useDeepDispose } from '@/hooks/useDeepDispose';
 
 export default function CinematographyScene() {
   const pathname = usePathname();
@@ -15,6 +16,11 @@ export default function CinematographyScene() {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
   const frameIdRef = useRef<number | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -148,7 +154,7 @@ export default function CinematographyScene() {
     };
   }, [isProjectPage]);
 
-  // Use reusable cleanup hook for Three.js resources
+  // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
     rendererRef,
     sceneRef,
@@ -156,6 +162,38 @@ export default function CinematographyScene() {
     frameIdRef,
     deps: [isProjectPage],
   });
+
+  // Use deep disposal hook for comprehensive GPU memory cleanup
+  // This ensures all geometries, materials, textures, and renderers are fully disposed
+  // Critical for CinematographyScene which creates multiple meshes with materials in loops
+  useDeepDispose({
+    objectRef: sceneRef,
+    rendererRef: rendererRef,
+    onBeforeDispose: () => {
+      // Cancel animation frame before disposal
+      if (frameIdRef.current) {
+        cancelAnimationFrame(frameIdRef.current);
+        frameIdRef.current = null;
+      }
+    },
+    onAfterDispose: () => {
+      // Clean up refs after disposal
+      modelRef.current = null;
+      cameraRef.current = null;
+    },
+    deps: [isProjectPage], // Re-run cleanup when this changes
+    verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
+  });
+
+  if (!isClient) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <motion.div

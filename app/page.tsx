@@ -5,6 +5,7 @@ import VideoProjectsSection from '@/components/VideoProjectsSection';
 import PhotographyGridSection from '@/components/PhotographyGridSection';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import FadeInSection from '@/components/FadeInSection';
+import SafeCanvas from '@/components/SafeCanvas';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
@@ -46,6 +47,9 @@ export default function HomePage() {
   const mobileHeroRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined') return;
+    
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
@@ -53,10 +57,20 @@ export default function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && videoRef.current) {
-            // Add autoplay parameter when video comes into view
-            const currentSrc = videoRef.current.src;
-            if (!currentSrc.includes('autoplay=1')) {
-              videoRef.current.src = currentSrc + '&autoplay=1&muted=1';
+            // Guard: ensure element still exists and has parentNode
+            if (!videoRef.current || !videoRef.current.parentNode) return;
+            
+            try {
+              // Add autoplay parameter when video comes into view
+              const currentSrc = videoRef.current.src;
+              if (!currentSrc.includes('autoplay=1')) {
+                videoRef.current.src = currentSrc + '&autoplay=1&muted=1';
+              }
+            } catch (error) {
+              // Silently fail if element is no longer accessible
+              if (process.env.NODE_ENV === 'development') {
+                console.warn('Error updating video source:', error);
+              }
             }
           }
         });
@@ -73,23 +87,38 @@ export default function HomePage() {
 
   // Auto-measure mobile hero line break and apply to desktop
   useEffect(() => {
+    // Ensure DOM exists and skip on server-side
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    if (!mobileHeroRef.current) return;
+
     const measureHeroWidth = () => {
       if (!mobileHeroRef.current) return;
       
       const hero = mobileHeroRef.current;
-      const computedStyle = window.getComputedStyle(hero);
-      const lineHeight = parseFloat(computedStyle.lineHeight);
-      const height = hero.offsetHeight;
-      const lines = Math.round(height / lineHeight);
-      
-      if (lines > 1) {
-        const mobileWidth = hero.offsetWidth + 'px';
-        document.documentElement.style.setProperty('--mobile-hero-width', mobileWidth);
+      try {
+        const computedStyle = window.getComputedStyle(hero);
+        const lineHeight = parseFloat(computedStyle.lineHeight);
+        const height = hero.offsetHeight;
+        const lines = Math.round(height / lineHeight);
+        
+        if (lines > 1) {
+          const mobileWidth = hero.offsetWidth + 'px';
+          document.documentElement.style.setProperty('--mobile-hero-width', mobileWidth);
+        }
+      } catch (error) {
+        // Silently fail if element is no longer in DOM (e.g., during navigation)
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Error measuring hero width:', error);
+        }
       }
     };
 
     // Measure on mount and window resize
-    measureHeroWidth();
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      measureHeroWidth();
+    });
+    
     window.addEventListener('resize', measureHeroWidth);
     
     return () => {
@@ -154,10 +183,21 @@ export default function HomePage() {
 
         {/* Optimized Parallax Sections - Dynamically loaded */}
         {/* Disable heavy motion on project routes to avoid race conditions during navigation */}
+        {/* Using SafeCanvas to prevent hydration errors and WebGL memory leaks */}
         {!isProjectPage && (
           <>
             {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
-            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+            <SafeCanvas
+              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
+              suspenseFallback={
+                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+                  </div>
+                </div>
+              }
+              mountDelay={0}
+            >
               <div className="-mt-16 md:-mt-20">
                 <ParallaxSection
                   title="Always Curious."
@@ -166,25 +206,43 @@ export default function HomePage() {
                   className="bg-transparent"
                 />
               </div>
-            </Suspense>
+            </SafeCanvas>
 
-            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+            <SafeCanvas
+              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
+              suspenseFallback={
+                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+                  </div>
+                </div>
+              }
+            >
               <ParallaxSection
                 title="I tinker, I design, and I build."
                 description=""
                 modelPath="design-build"
                 className="bg-transparent"
               />
-            </Suspense>
+            </SafeCanvas>
 
-            <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+            <SafeCanvas
+              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
+              suspenseFallback={
+                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+                  </div>
+                </div>
+              }
+            >
               <ParallaxSection
                 title="I shape narrative through the art of cinematic imagery."
                 description=""
                 modelPath="cinematography"
                 className="bg-transparent"
               />
-            </Suspense>
+            </SafeCanvas>
           </>
         )}
 
@@ -208,7 +266,16 @@ export default function HomePage() {
         </section>
 
         {!isProjectPage && (
-          <Suspense fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}>
+          <SafeCanvas
+            fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
+            suspenseFallback={
+              <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
+                </div>
+              </div>
+            }
+          >
             <ParallaxSection
               title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
               description=""
@@ -217,7 +284,7 @@ export default function HomePage() {
               hideGradient={true}
               textColor="black"
             />
-          </Suspense>
+          </SafeCanvas>
         )}
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
@@ -422,9 +489,16 @@ export default function HomePage() {
               sizes="100vw"
               onError={(e) => {
                 // Fallback to JPG version if webp fails
-                const target = e.target as HTMLImageElement;
-                if (target && !target.src.includes('.jpg')) {
-                  target.src = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.jpg`;
+                try {
+                  const target = e.target as HTMLImageElement;
+                  if (target && !target.src.includes('.jpg') && target.parentNode) {
+                    target.src = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.jpg`;
+                  }
+                } catch (error) {
+                  // Silently fail if element is no longer accessible
+                  if (process.env.NODE_ENV === 'development') {
+                    console.warn('Error handling image fallback:', error);
+                  }
                 }
               }}
             />

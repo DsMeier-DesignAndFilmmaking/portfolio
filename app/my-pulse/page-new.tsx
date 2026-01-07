@@ -46,7 +46,15 @@ export default function MyPulsePage() {
 
   // Local state
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [lastRefresh, setLastRefresh] = useState<string>(new Date().toLocaleTimeString());
+  // Initialize as empty string to prevent hydration mismatch (server doesn't know current time)
+  const [lastRefresh, setLastRefresh] = useState<string>('');
+
+  // Initialize lastRefresh on client mount only (prevents hydration mismatch)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLastRefresh(new Date().toLocaleTimeString());
+    }
+  }, []);
 
   // Service status indicators
   const services: ServiceStatus[] = [
