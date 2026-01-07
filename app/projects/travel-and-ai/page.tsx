@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/fa';
+import { Sparkles, Shield, MapPin, Users, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
@@ -294,162 +295,152 @@ export default function AISandboxPage() {
 </section>
 
 
-      {/* Project Cards Section */}
-      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Travel & AI Projects">
+      {/* Foundational Systems Section */}
+      <section className="pt-16 md:pt-24 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Foundational Systems">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Flagship Project: Spontaneous Travel Companion - First in DOM order for hierarchy */}
-            <article 
-              aria-label="Spontaneous Travel Companion - Flagship Project"
-              className="contents"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.5, delay: 0 }}
-                className="group bg-white rounded-lg overflow-hidden shadow-sm md:hover:shadow-lg transition-shadow duration-300 flex flex-col"
-              >
-                <Link href="/projects/travel-and-ai/projects/spontaneous-travel-companion" className="flex flex-col h-full">
-                  <div className="relative w-full h-64 overflow-hidden flex-shrink-0">
-                    <div className="absolute inset-0">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp`}
-                        alt="Spontaneous Travel Companion"
-                        fill
-                        className="object-cover object-center transition-transform duration-500 md:group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
-                    {/* Status Pill Badge */}
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="bg-[#F2B134] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
-                        In Development
-                      </span>
-                    </div>
-                    {/* Tags/Ribbons for Spontaneous Travel Companion */}
-                    <div className="absolute top-12 right-3 flex flex-col gap-2 z-10">
-                      <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
-                        iOS
-                      </span>
-                      <span className="px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-md shadow-sm border border-gray-200/50">
-                        API Plugin
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex-grow">
-                      <h2 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
-                      Spontaneity Core Engine
-                      </h2>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        AI-powered tool that helps travelers discover authentic experiences in real-time.
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center text-sm font-medium text-blue-600 md:group-hover:text-blue-700 transition-colors duration-300 mt-4">
-                      View Project
-                      <svg
-                        className="w-4 h-4 ml-2 md:group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            </article>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              Foundational Systems
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl">
+              Core infrastructure that enables intelligent, context-aware travel experiences.
+            </p>
+          </motion.div>
 
-            {/* Supporting Projects - Grouped semantically */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            {/* Spontaneity Engine - Centerpiece */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group relative"
+            >
+              {/* Gradient border wrapper */}
+              <div 
+                className="relative rounded-2xl p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:shadow-2xl transition-all duration-500 h-full"
+                style={{
+                  boxShadow: '0 10px 40px rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1)',
+                }}
+              >
+                {/* Inner content with white background */}
+                <div className="relative bg-white rounded-[14px] p-8 md:p-10 h-full bg-gradient-to-br from-white to-blue-50/20">
+                  {/* Subtle glow effect on hover */}
+                  <div className="absolute inset-0 rounded-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%)',
+                      pointerEvents: 'none'
+                    }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                        <Sparkles className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                        Spontaneity Engine
+                      </h3>
+                    </div>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                      Real-time context processing that converts environmental signals into serendipitous travel opportunities.
+                    </p>
+                    <div className="flex items-center gap-2 text-blue-600 font-medium">
+                      <span className="text-sm">Core Innovation</span>
+                      <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Trust & Authenticity Layer */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  Trust & Authenticity Layer
+                </h3>
+              </div>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                Verification systems for social proof and algorithmic transparency in high-stakes travel decisions.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Applied Systems Section */}
+      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              Applied Systems
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl">
+              Practical applications built on the foundational infrastructure.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                id: 1,
-                title: "Trust & Authenticity",
-                description: "A systems-design approach to solving authenticity, transparency, and reliability in AI-powered travel experiences.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Travel-trust-chatGPT-image.png`,
-                link: "/projects/travel-and-ai/projects/trust-framework-ai-travel"
+                icon: MapPin,
+                title: "Context-Aware Travel Decision System",
+                description: "Dynamic filtering based on location, time, social battery, and environmental constraints.",
+                gradient: "from-blue-500 to-cyan-600"
               },
               {
-                id: 3,
-                title: "Travel Planning Assistant",
-                description: "Unified platform that consolidates booking, itinerary planning, and local discovery into a single intelligent system, eliminating the need to switch between multiple disconnected tools.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/planningFragmentationTool-placeholder.jpg`,
-                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
+                icon: Users,
+                title: "Social Micro-Events",
+                description: "Facilitating low-friction, high-intent social interactions for solo travelers.",
+                gradient: "from-purple-500 to-pink-600"
               },
               {
-                id: 4,
-                title: "A Social Layer for Global Exploration",
-                description: "Platform that connects travelers through shared experiences, real-time insights, and community-driven recommendations to enhance global exploration.",
-                imageUrl: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`,
-                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                icon: BookOpen,
+                title: "Narrative Travel Generator",
+                description: "Transforming raw telemetry and location data into shareable, human-centric travel stories.",
+                gradient: "from-amber-500 to-orange-600"
               }
-            ].map((project, index) => (
-              <article 
-                key={project.id}
-                aria-label={`${project.title} - Supporting Project`}
-                className="contents"
+            ].map((system, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.1 + (index * 0.1) }}
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full"
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
-                  className="group bg-white rounded-lg overflow-hidden shadow-sm md:hover:shadow-lg transition-shadow duration-300 flex flex-col"
-                >
-                  <Link href={project.link} className="flex flex-col h-full">
-                    <div className={`relative w-full h-64 overflow-hidden flex-shrink-0 ${project.imageUrl.endsWith('.svg') ? 'bg-[#E8FBF8]' : ''}`}>
-                      <div className={project.imageUrl.endsWith('.svg') ? 'absolute inset-4' : 'absolute inset-0'}>
-                        <Image
-                          src={project.imageUrl}
-                          alt={project.title}
-                          fill
-                          className={`${project.imageUrl.endsWith('.svg') ? 'object-contain' : 'object-cover'} object-center transition-transform duration-500 md:group-hover:scale-105`}
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
-                      {/* Status Pill Badge */}
-                      <div className="absolute top-3 right-3 z-10">
-                        <span className="bg-[#00A9A5] text-white font-bold py-1 px-3 rounded-full text-[0.8rem] shadow-md">
-                          In R & D
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex-grow">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2 md:group-hover:text-blue-600 transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          {project.description}
-                        </p>
-                      </div>
-                      <span className="inline-flex items-center text-sm font-medium text-blue-600 md:group-hover:text-blue-700 transition-colors duration-300 mt-4">
-                        View Project
-                        <svg
-                          className="w-4 h-4 ml-2 md:group-hover:translate-x-1 transition-transform duration-300"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </span>
-                    </div>
-                  </Link>
-                </motion.div>
-              </article>
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+                  <system.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                  {system.title}
+                </h3>
+                <p className="text-base text-gray-700 leading-relaxed">
+                  {system.description}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
