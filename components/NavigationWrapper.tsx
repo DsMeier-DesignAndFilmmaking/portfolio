@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import Navbar from './Navbar';
 
 /**
@@ -14,35 +14,38 @@ import Navbar from './Navbar';
  */
 export default function NavigationWrapper() {
   const pathname = usePathname();
-  const [isReady, setIsReady] = useState(false);
   
-  // Wait for pathname to be available before rendering to prevent flash
-  useEffect(() => {
-    if (pathname !== null) {
-      setIsReady(true);
+  // Memoize the check to prevent unnecessary re-renders
+  const shouldShowNavbar = useMemo(() => {
+    // Handle null/undefined pathname gracefully
+    if (!pathname) {
+      return false;
     }
+    
+    // Normalize pathname (remove trailing slash for consistent checking)
+    const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
+      ? pathname.slice(0, -1) 
+      : pathname;
+    
+    // Hide global navbar on project pages and My Pulse (they have their own custom navbars)
+    // Show it on homepage and other general pages
+    const isProjectPage = normalizedPath.startsWith('/projects/');
+    const isMyPulsePage = normalizedPath.startsWith('/my-pulse');
+    
+    // Don't render global navbar on project pages or My Pulse
+    return !(isProjectPage || isMyPulsePage);
   }, [pathname]);
   
-  // Don't render anything until pathname is confirmed (prevents flash)
-  if (!isReady || pathname === null) {
+  // Don't render anything if we shouldn't show navbar or pathname is not ready
+  if (!shouldShowNavbar || !pathname) {
     return null;
   }
   
-  // Normalize pathname (remove trailing slash for consistent checking)
-  const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
-    ? pathname.slice(0, -1) 
-    : pathname;
-  
-  // Hide global navbar on project pages and My Pulse (they have their own custom navbars)
-  // Show it on homepage and other general pages
-  // Check both with and without trailing slash to be safe
-  const isProjectPage = normalizedPath.startsWith('/projects/') || pathname.startsWith('/projects/');
-  const isMyPulsePage = normalizedPath.startsWith('/my-pulse') || pathname.startsWith('/my-pulse');
-  
-  // Don't render global navbar on project pages or My Pulse
-  if (isProjectPage || isMyPulsePage) {
+  try {
+    return <Navbar />;
+  } catch (error) {
+    // Silently fail if there's an error rendering Navbar
+    console.error('Error rendering Navbar:', error);
     return null;
   }
-  
-  return <Navbar />;
 } 

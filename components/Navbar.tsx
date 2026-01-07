@@ -18,14 +18,17 @@ const Navbar = () => {
   
   // Safety check: Don't render Navbar on project pages or My Pulse (they have their own navbars)
   // This is a defensive measure in case NavigationWrapper doesn't catch it
-  if (pathname) {
-    const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
-      ? pathname.slice(0, -1) 
-      : pathname;
-    
-    if (normalizedPath.startsWith('/projects/') || normalizedPath.startsWith('/my-pulse')) {
-      return null;
-    }
+  // Must check after hooks are called (React rules of hooks)
+  const normalizedPath = pathname && pathname.endsWith('/') && pathname !== '/' 
+    ? pathname.slice(0, -1) 
+    : pathname;
+  
+  const shouldHideNavbar = normalizedPath 
+    ? (normalizedPath.startsWith('/projects/') || normalizedPath.startsWith('/my-pulse'))
+    : false;
+  
+  if (shouldHideNavbar) {
+    return null;
   }
 
 
@@ -34,10 +37,22 @@ const Navbar = () => {
   const isOnPurduePage = pathname?.includes('/projects/purdue');
 
   useEffect(() => {
+    // Safety check: ensure we're on a page that should have the navbar
+    // and that the DOM is ready
+    if (typeof window === 'undefined' || !document) {
+      return;
+    }
+
     let rafId: number;
     let ticking = false;
 
     const updateNavbarColor = () => {
+      // Ensure we're still on a page that should have the navbar
+      if (!pathname || pathname.startsWith('/projects/') || pathname.startsWith('/my-pulse')) {
+        ticking = false;
+        return;
+      }
+
       const navbar = document.getElementById('site-navbar');
       const scrollY = window.scrollY;
 
@@ -200,7 +215,7 @@ const Navbar = () => {
         cancelAnimationFrame(rafId);
       }
     };
-  }, [isOnPurduePage, hasEnteredDesignSection]);
+  }, [isOnPurduePage, hasEnteredDesignSection, pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({

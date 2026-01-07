@@ -279,7 +279,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            I architect context-aware AI driven human experiences for high-mobility environments, replacing rigid planning with real-time, fluid systems. Leveraging insights from traveling across 40+ countries, I build intelligent travel experiences that prioritize trust, social and cultural context, and the power of the present moment.
+            I design context-aware AI systems for high-mobility travel, replacing rigid planning with real-time experiences that prioritize trust, social context, and the present moment.
             </p>
           </motion.div>
         </div>

@@ -141,7 +141,7 @@ export default function PreviousProjectsPage() {
                 />
               </button>
               <div className="h-6 w-px bg-white/30"></div>
-              <span className="text-white/70 text-sm font-medium">Design Work</span>
+              <span className="text-white/70 text-sm font-medium" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Design Work</span>
             </div>
 
             {/* Mobile Menu Button */}
@@ -163,12 +163,14 @@ export default function PreviousProjectsPage() {
                 <Link 
                   href="/projects/travel-and-ai" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
                   Travel & AI
                 </Link>
                 <Link 
                   href="/projects/previous" 
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
                   Client Work
                 </Link>
@@ -192,6 +194,7 @@ export default function PreviousProjectsPage() {
                   href="/projects/travel-and-ai" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
                   Travel & AI
                 </Link>
@@ -199,6 +202,7 @@ export default function PreviousProjectsPage() {
                   href="/projects/previous" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
                   Client Work
                 </Link>
@@ -221,15 +225,15 @@ export default function PreviousProjectsPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl pt-20 md:pt-0 md:mt-[100px]"
           >
-            <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
               <span className="text-gray-400">UX / UI / Web / Product Design</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-white">
                 Client Work
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed">
+            <p className="text-lg md:text-xl text-white leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                A collection of digital design work spanning contract, freelance, and full-time roles across a range of industries.
             </p>
           </motion.div>
@@ -259,8 +263,8 @@ export default function PreviousProjectsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-4">
-                    <p className="text-xs text-gray-400">{project.year}</p>
-                    <h3 className="text-sm font-normal text-white mt-1">{project.title}</h3>
+                    <p className="text-xs text-gray-400" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>{project.year}</p>
+                    <h3 className="text-sm font-normal text-white mt-1" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>{project.title}</h3>
                   </div>
                 </Link>
               </motion.div>
