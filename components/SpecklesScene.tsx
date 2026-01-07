@@ -130,18 +130,26 @@ export default function SpecklesScene() {
 
       window.removeEventListener('resize', handleResize);
 
-      // Defensive DOM cleanup (prevents removeChild NotFoundError during fast navigation)
-      // Check that element is a DIRECT child (not just contained in subtree)
+      // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
+      // Dispose renderer and force context loss immediately
+      renderer.dispose();
+      renderer.forceContextLoss();
+      renderer.domElement = null as any;
+      
+      // Defer DOM removal to next tick to avoid React reconciliation conflicts
       const container = containerRef.current;
-      if (container && container.parentNode && domElement && domElement.parentNode === container) {
-        try {
-          container.removeChild(domElement);
-        } catch (error) {
-          // Element may have already been removed by React/Framer Motion
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('Canvas already removed from DOM:', error);
+      if (container && domElement && domElement.parentNode === container) {
+        setTimeout(() => {
+          try {
+            // Double-check element is still a child before removing
+            if (domElement.parentNode === container && container.contains(domElement)) {
+              container.removeChild(domElement);
+            }
+          } catch (error) {
+            // Element may have already been removed by React/Framer Motion
+            // Silently ignore - this is expected during fast route transitions
           }
-        }
+        }, 0);
       }
 
       scene.clear();

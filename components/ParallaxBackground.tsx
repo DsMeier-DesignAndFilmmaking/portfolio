@@ -209,27 +209,32 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       // Clear the scene
       scene.clear();
       
+      // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
+      // Use setTimeout to defer cleanup until after React's reconciliation phase
+      const domElement = renderer.domElement;
+      const container = containerRef.current;
+      
       // Dispose renderer and force context loss
       renderer.dispose();
       renderer.forceContextLoss();
       
-      // Safe DOM removal - guard against unmounted container
-      // Check that element is a DIRECT child (not just contained in subtree)
-      const container = containerRef.current;
-      const domElement = renderer.domElement;
-      if (container && container.parentNode && domElement && domElement.parentNode === container) {
-        try {
-          container.removeChild(domElement);
-        } catch (error) {
-          // Element may have already been removed by React/Framer Motion
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('Canvas already removed from DOM:', error);
-          }
-        }
-      }
-      
-      // Null out renderer reference
+      // Null out renderer reference immediately
       (renderer as any).domElement = null;
+      
+      // Defer DOM removal to next tick to avoid React reconciliation conflicts
+      if (container && domElement && domElement.parentNode === container) {
+        setTimeout(() => {
+          try {
+            // Double-check element is still a child before removing
+            if (domElement.parentNode === container) {
+              container.removeChild(domElement);
+            }
+          } catch (error) {
+            // Element may have already been removed by React/Framer Motion
+            // Silently ignore - this is expected during fast route transitions
+          }
+        }, 0);
+      }
     };
   }, [modelPath, isProjectPage]);
 
