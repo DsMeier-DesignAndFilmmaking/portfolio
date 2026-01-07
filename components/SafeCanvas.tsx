@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, ReactNode, Suspense } from 'react';
+import { useState, useEffect, ReactNode, Suspense, useRef } from 'react';
+import { registerDisposalCallback } from './PageTransition';
 
 interface SafeCanvasProps {
   /**
@@ -87,6 +88,8 @@ export default function SafeCanvas({
 }: SafeCanvasProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const disposalCallbackRef = useRef<(() => void) | null>(null);
+  const isReadyRef = useRef(false);
 
   useEffect(() => {
     // Guard: Ensure we're on the client side
@@ -95,8 +98,35 @@ export default function SafeCanvas({
     // Set mounted state immediately
     setIsMounted(true);
 
+    // Register disposal callback for page transition coordination
+    // This ensures Three.js cleanup happens immediately when route changes
+    // Use ref to access current ready state (avoids stale closure)
+    const handleDisposal = () => {
+      if (isReadyRef.current) {
+        isReadyRef.current = false;
+        setIsReady(false);
+        setIsMounted(false);
+        
+        // Call onUnmount callback immediately on route change
+        if (onUnmount) {
+          try {
+            onUnmount();
+          } catch (error) {
+            if (process.env.NODE_ENV === 'development') {
+              console.warn('Error in SafeCanvas onUnmount callback during disposal:', error);
+            }
+          }
+        }
+      }
+    };
+
+    // Register callback and store unregister function
+    const unregister = registerDisposalCallback(handleDisposal);
+    disposalCallbackRef.current = unregister;
+
     // Optional delay to ensure DOM is fully stable
     const mountTimer = setTimeout(() => {
+      isReadyRef.current = true;
       setIsReady(true);
       
       // Call onMount callback if provided
@@ -114,6 +144,14 @@ export default function SafeCanvas({
     // Cleanup function to prevent memory leaks
     return () => {
       clearTimeout(mountTimer);
+      
+      // Unregister disposal callback
+      if (disposalCallbackRef.current) {
+        disposalCallbackRef.current();
+        disposalCallbackRef.current = null;
+      }
+      
+      isReadyRef.current = false;
       setIsMounted(false);
       setIsReady(false);
       

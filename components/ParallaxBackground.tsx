@@ -205,6 +205,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
   // Use deep disposal hook for comprehensive GPU memory cleanup
   // This ensures all geometries, materials, textures, and renderers are fully disposed
+  // Include pathname in deps to trigger cleanup immediately on route change
   useDeepDispose({
     objectRef: sceneRef,
     rendererRef: rendererRef,
@@ -226,7 +227,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       modelRef.current = null;
       cameraRef.current = null;
     },
-    deps: [modelPath, isProjectPage], // Re-run cleanup when these change
+    deps: [modelPath, isProjectPage, pathname], // Re-run cleanup when route or model changes
     verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
   });
 

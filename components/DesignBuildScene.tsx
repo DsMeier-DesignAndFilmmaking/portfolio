@@ -154,10 +154,11 @@ export default function DesignBuildScene() {
 
   // Use deep disposal hook for comprehensive GPU memory cleanup
   // This ensures all geometries, materials, textures, and renderers are fully disposed
+  // Include pathname in deps to trigger cleanup immediately on route change
   useDeepDispose({
     objectRef: sceneRef,
     rendererRef: rendererRef,
-    deps: [isProjectPage], // Re-run cleanup when this changes
+    deps: [isProjectPage, pathname], // Re-run cleanup when route or project state changes
     verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
   });
 

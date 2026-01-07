@@ -2,13 +2,28 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
+
+// Global disposal callbacks registry for coordinating Three.js cleanup during page transitions
+const disposalCallbacksRef = new Set<() => void>();
+
+/**
+ * Register a disposal callback that will be triggered when page transitions occur
+ * This ensures Three.js scenes are cleaned up before new ones mount
+ */
+export function registerDisposalCallback(callback: () => void): () => void {
+  disposalCallbacksRef.add(callback);
+  return () => {
+    disposalCallbacksRef.delete(callback);
+  };
+}
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   const prevPathnameRef = useRef<string | null>(null);
   const isInitialMountRef = useRef(true);
+  const exitStartTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -19,9 +34,46 @@ export default function PageTransition({ children }: { children: React.ReactNode
     return () => clearTimeout(timer);
   }, []);
 
+  // Track pathname changes and trigger disposal immediately on route change
   useEffect(() => {
+    const prevPathname = prevPathnameRef.current;
     prevPathnameRef.current = pathname;
+
+    // Trigger disposal callbacks immediately when route changes (before exit animation)
+    // This ensures Three.js cleanup happens before new scenes try to mount
+    if (prevPathname !== null && prevPathname !== pathname) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Route changed, triggering disposal callbacks...');
+      }
+      
+      // Execute all registered disposal callbacks synchronously
+      disposalCallbacksRef.forEach((callback) => {
+        try {
+          callback();
+        } catch (error) {
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Error in disposal callback:', error);
+          }
+        }
+      });
+    }
   }, [pathname]);
+
+  // Handle exit animation completion
+  const handleExitComplete = useCallback(() => {
+    exitStartTimeRef.current = null;
+    
+    // Additional cleanup after exit animation completes
+    // This ensures any lingering resources are cleaned up
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Exit animation complete');
+    }
+  }, []);
+
+  // Handle when exit animation starts
+  const handleExitStart = useCallback(() => {
+    exitStartTimeRef.current = Date.now();
+  }, []);
 
   // Don't render AnimatePresence until after mount to prevent hydration issues
   if (!isMounted) {
@@ -29,16 +81,30 @@ export default function PageTransition({ children }: { children: React.ReactNode
   }
 
   // Prevent exit animations on initial mount (hydration)
-  const shouldAnimate = !isInitialMountRef.current;
+  const shouldAnimate: boolean = !isInitialMountRef.current;
+  
+  // Ensure stable key - use pathname or fallback to 'default'
+  // This prevents node mismatches during navigation
+  const stableKey = pathname || 'default';
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence 
+      mode="wait" 
+      initial={false}
+      onExitComplete={handleExitComplete}
+    >
       <motion.div
-        key={pathname || 'default'}
-        initial={shouldAnimate ? { opacity: 0 } : false}
+        key={stableKey}
+        initial={shouldAnimate ? { opacity: 0 } : undefined}
         animate={{ opacity: 1 }}
-        exit={shouldAnimate ? { opacity: 0 } : false}
+        exit={shouldAnimate ? { opacity: 0 } : undefined}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
+        onAnimationStart={(definition) => {
+          // Detect if this is an exit animation starting
+          if (definition === 'exit' || (typeof definition === 'object' && 'opacity' in definition && (definition as any).opacity === 0)) {
+            handleExitStart();
+          }
+        }}
         style={{ position: 'relative' }}
       >
         {children}

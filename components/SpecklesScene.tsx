@@ -135,6 +135,7 @@ export default function SpecklesScene() {
   // Use deep disposal hook for comprehensive GPU memory cleanup
   // This ensures all geometries, materials, textures, and renderers are fully disposed
   // Critical for SpecklesScene which creates geometry with BufferAttributes
+  // Include pathname in deps to trigger cleanup immediately on route change
   useDeepDispose({
     objectRef: sceneRef,
     rendererRef: rendererRef,
@@ -150,7 +151,7 @@ export default function SpecklesScene() {
       specklesRef.current = null;
       cameraRef.current = null;
     },
-    deps: [isProjectPage], // Re-run cleanup when this changes
+    deps: [isProjectPage, pathname], // Re-run cleanup when route or project state changes
     verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
   });
 
