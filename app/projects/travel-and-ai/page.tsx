@@ -249,7 +249,7 @@ export default function AISandboxPage() {
 {/* Hero Section */}
   <section
     id="intro"
-    className="relative w-full h-[80vh] flex items-center"
+    className="relative w-full h-[85vh] flex items-center"
     style={{ backgroundColor: "#E8FBF8" }}
     aria-label="Project Hero"
   >
@@ -271,14 +271,14 @@ export default function AISandboxPage() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-gray-900">
-                Building AI-Enhanced Travel Experiences
+              Designing AI-Driven Mobility for a World in Motion
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            Travel taught me the problems. Design and technology help me solve them.
+            Travel revealed the friction. Systems design solves it.
             <br /><br />
-            I design AI-powered travel systems shaped by experience across 40+ countries, replacing generic recommendations with context-aware, real-time experiences that prioritize spontaneity, trust, and social context over heavy planning.
+            I architect context-aware AI driven human experiences for high-mobility environments, replacing rigid planning with real-time, fluid systems. Leveraging insights from traveling across 40+ countries, I build intelligent travel experiences that prioritize trust, social and cultural context, and the power of the present moment.
             </p>
           </motion.div>
         </div>
