@@ -103,7 +103,7 @@ export default function HomePage() {
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
-          <div className="relative min-h-screen flex items-start justify-center">
+          <div className="relative flex items-start justify-center">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh]">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -139,8 +139,10 @@ export default function HomePage() {
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                     I’m Dan Meier, a systems-minded product designer and creative technologist designing adaptive digital experiences. Shaped by a decade of building products and insights from traveling across 41 countries.
                     </p>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    Exploring how systems design, AI, and real-world context create better human experiences.                    </p>
+                    <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left"
+                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      Exploring how systems design, AI, and real-world context create better human experiences.
+                    </p>
                   </div>
                 </motion.div>
             </div>
@@ -406,8 +408,11 @@ export default function HomePage() {
               loading="lazy"
               sizes="100vw"
               onError={(e) => {
-                // Fallback if image fails to load
-                console.warn('Failed to load earth-map.webp, using fallback');
+                // Fallback to JPG version if webp fails
+                const target = e.target as HTMLImageElement;
+                if (target && !target.src.includes('.jpg')) {
+                  target.src = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.jpg`;
+                }
               }}
             />
           </div>
