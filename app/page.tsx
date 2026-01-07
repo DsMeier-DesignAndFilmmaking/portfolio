@@ -103,7 +103,7 @@ export default function HomePage() {
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
-          <div className="relative min-h-screen flex items-start justify-center">
+          <div className="relative flex items-start justify-center py-24">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh]">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -137,8 +137,10 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      I'm Dan Meier, a product designer and creative technologist with over a decade of experience designing digital products and web-based platforms across startups, universities, agencies, and independent client work.
+                    I’m Dan Meier, a systems-minded product designer and creative technologist designing adaptive digital experiences. Shaped by a decade of building products and insights from traveling across 41 countries.
                     </p>
+                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    Exploring how systems design, AI, and real-world context create better human experiences.                    </p>
                   </div>
                 </motion.div>
             </div>
