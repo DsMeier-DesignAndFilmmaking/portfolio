@@ -103,7 +103,7 @@ export default function HomePage() {
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white" aria-label="Introduction">
           {/* Hero Content - Full Height */}
-          <div className="relative flex items-start justify-center py-24">
+          <div className="relative min-h-screen flex items-start justify-center">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh]">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
