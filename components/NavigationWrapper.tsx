@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
 /**
@@ -14,6 +14,19 @@ import Navbar from './Navbar';
  */
 export default function NavigationWrapper() {
   const pathname = usePathname();
+  const [isReady, setIsReady] = useState(false);
+  
+  // Small delay to ensure clean navigation transitions
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 0);
+    
+    return () => {
+      clearTimeout(timer);
+      setIsReady(false);
+    };
+  }, [pathname]);
   
   // Memoize the check to prevent unnecessary re-renders
   const shouldShowNavbar = useMemo(() => {
@@ -36,16 +49,10 @@ export default function NavigationWrapper() {
     return !(isProjectPage || isMyPulsePage);
   }, [pathname]);
   
-  // Don't render anything if we shouldn't show navbar or pathname is not ready
-  if (!shouldShowNavbar || !pathname) {
+  // Don't render anything if we shouldn't show navbar, pathname is not ready, or not ready for render
+  if (!shouldShowNavbar || !pathname || !isReady) {
     return null;
   }
   
-  try {
-    return <Navbar />;
-  } catch (error) {
-    // Silently fail if there's an error rendering Navbar
-    console.error('Error rendering Navbar:', error);
-    return null;
-  }
+  return <Navbar />;
 } 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,11 +10,20 @@ import { smoothScrollToId } from '@/utils/scrollUtils';
 
 const Navbar = () => {
   const pathname = usePathname();
+  const isMountedRef = useRef(true);
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
   const [hasEnteredDesignSection, setHasEnteredDesignSection] = useState(false);
+  
+  // Track mount state to prevent state updates after unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
   
   // Safety check: Don't render Navbar on project pages or My Pulse (they have their own navbars)
   // This is a defensive measure in case NavigationWrapper doesn't catch it
@@ -39,7 +48,7 @@ const Navbar = () => {
   useEffect(() => {
     // Safety check: ensure we're on a page that should have the navbar
     // and that the DOM is ready
-    if (typeof window === 'undefined' || !document) {
+    if (typeof window === 'undefined' || !document || !isMountedRef.current) {
       return;
     }
 
@@ -47,6 +56,12 @@ const Navbar = () => {
     let ticking = false;
 
     const updateNavbarColor = () => {
+      // Check if component is still mounted
+      if (!isMountedRef.current) {
+        ticking = false;
+        return;
+      }
+
       // Ensure we're still on a page that should have the navbar
       if (!pathname || pathname.startsWith('/projects/') || pathname.startsWith('/my-pulse')) {
         ticking = false;
@@ -56,7 +71,7 @@ const Navbar = () => {
       const navbar = document.getElementById('site-navbar');
       const scrollY = window.scrollY;
 
-      if (!navbar) {
+      if (!navbar || !isMountedRef.current) {
         ticking = false;
         return;
       }
@@ -120,7 +135,7 @@ const Navbar = () => {
 
         // Track if we've ever entered a section that requires navbar shrink
         // This includes About, Work (black-section), Video, and Travelogue sections
-        if ((isCurrentlyInAbout || isCurrentlyInDesign) && !hasEnteredDesignSection) {
+        if ((isCurrentlyInAbout || isCurrentlyInDesign) && !hasEnteredDesignSection && isMountedRef.current) {
           setHasEnteredDesignSection(true);
         }
 
@@ -128,7 +143,7 @@ const Navbar = () => {
         // Once we've entered any section requiring shrink (About, Work, Video, Travelogue),
         // keep shrunk for all sections below
         // Only un-shrink if we scroll back above all these sections
-        if (hasEnteredDesignSection) {
+        if (hasEnteredDesignSection && isMountedRef.current) {
           // Check if we're back above the About section (first section that triggers shrink)
           if (aboutSection) {
             const aboutSectionElement = aboutSection.nextElementSibling as HTMLElement;
@@ -184,31 +199,45 @@ const Navbar = () => {
               setIsInDesignSection(true);
             }
           }
-        } else {
+        } else if (isMountedRef.current) {
           // Use normal logic if we haven't entered any shrink-triggering section yet
           // Trigger shrink if we're in About, Work, Video, or Travelogue sections
           setIsInDesignSection(isCurrentlyInAbout || isOverBlack);
         }
       }
 
-      setIsOverBlackSection(isOverBlack);
+      // Only update state if component is still mounted
+      if (isMountedRef.current) {
+        setIsOverBlackSection(isOverBlack);
+      }
       ticking = false;
     };
 
     const handleScroll = () => {
+      // Don't schedule updates if component is unmounted
+      if (!isMountedRef.current) {
+        return;
+      }
       if (!ticking) {
         rafId = requestAnimationFrame(updateNavbarColor);
         ticking = true;
       }
     };
 
-    // Initial check
-    updateNavbarColor();
+    // Small delay to ensure DOM is fully ready after navigation
+    const initTimeout = setTimeout(() => {
+      if (!isMountedRef.current) return;
+      
+      // Initial check (only if mounted)
+      updateNavbarColor();
+    }, 50);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', updateNavbarColor, { passive: true });
 
     return () => {
+      clearTimeout(initTimeout);
+      isMountedRef.current = false;
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', updateNavbarColor);
       if (rafId) {
@@ -233,7 +262,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
     
     // If clicking "Work" (black-section) or "About", immediately trigger navbar width animation
-    if (targetId === 'black-section' || targetId === 'about') {
+    if ((targetId === 'black-section' || targetId === 'about') && isMountedRef.current) {
       setHasEnteredDesignSection(true);
       setIsInDesignSection(true);
     }
