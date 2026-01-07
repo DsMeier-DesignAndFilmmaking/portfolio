@@ -266,17 +266,17 @@ export default function AISandboxPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
               <span className="text-gray-600">Intelligent Travel Systems</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-gray-900">
               Designing AI-Driven Mobility for a World in Motion
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
             I architect context-aware AI driven human experiences for high-mobility environments, replacing rigid planning with real-time, fluid systems. Leveraging insights from traveling across 40+ countries, I build intelligent travel experiences that prioritize trust, social and cultural context, and the power of the present moment.
@@ -308,7 +308,7 @@ export default function AISandboxPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               Foundational Systems
             </h2>
-            <p className="text-lg text-gray-700 max-w-2xl">
+            <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               Core infrastructure that enables intelligent, context-aware travel experiences.
             </p>
           </motion.div>
@@ -344,17 +344,39 @@ export default function AISandboxPage() {
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
                         <Sparkles className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                        Spontaneity Engine
-                      </h3>
-                    </div>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                      Real-time context processing that converts environmental signals into serendipitous travel opportunities.
-                    </p>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                      Spontaneity Engine
+                    </h3>
+                  </div>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    Real-time context processing that converts environmental signals into serendipitous travel opportunities.
+                  </p>
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-blue-600 font-medium">
-                      <span className="text-sm">Core Innovation</span>
+                      <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
                       <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
                     </div>
+                    <Link 
+                      href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                    >
+                      View Project
+                      <svg
+                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -372,13 +394,33 @@ export default function AISandboxPage() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Trust & Authenticity Layer
                 </h3>
               </div>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                 Verification systems for social proof and algorithmic transparency in high-stakes travel decisions.
               </p>
+              <Link 
+                href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
+                className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                View Project
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -397,7 +439,7 @@ export default function AISandboxPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               Applied Systems
             </h2>
-            <p className="text-lg text-gray-700 max-w-2xl">
+            <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               Practical applications built on the foundational infrastructure.
             </p>
           </motion.div>
@@ -408,19 +450,22 @@ export default function AISandboxPage() {
                 icon: MapPin,
                 title: "Context-Aware Travel Decision System",
                 description: "Dynamic filtering based on location, time, social battery, and environmental constraints.",
-                gradient: "from-blue-500 to-cyan-600"
+                gradient: "from-blue-500 to-cyan-600",
+                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
               },
               {
                 icon: Users,
                 title: "Social Micro-Events",
                 description: "Facilitating low-friction, high-intent social interactions for solo travelers.",
-                gradient: "from-purple-500 to-pink-600"
+                gradient: "from-purple-500 to-pink-600",
+                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
               {
                 icon: BookOpen,
                 title: "Narrative Travel Generator",
                 description: "Transforming raw telemetry and location data into shareable, human-centric travel stories.",
-                gradient: "from-amber-500 to-orange-600"
+                gradient: "from-amber-500 to-orange-600",
+                link: null // No specific project page for this yet
               }
             ].map((system, index) => (
               <motion.div
@@ -429,17 +474,39 @@ export default function AISandboxPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: 0.1 + (index * 0.1) }}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
                   <system.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   {system.title}
                 </h3>
-                <p className="text-base text-gray-700 leading-relaxed">
+                <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   {system.description}
                 </p>
+                {system.link && (
+                  <Link 
+                    href={system.link}
+                    className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                    style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                  >
+                    View Project
+                    <svg
+                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
