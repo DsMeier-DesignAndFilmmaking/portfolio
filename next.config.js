@@ -18,9 +18,11 @@ const nextConfig = {
   // basePath: '/portfolio' for GitHub Pages, empty for Vercel
   // Vercel sets VERCEL=1 during builds, VERCEL_URL at runtime
   // Check multiple Vercel environment variables for reliability
-  basePath: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV) ? '' : '/portfolio',
+  // For local dev, use empty basePath (access at http://localhost:3000)
+  // For production, use /portfolio if not on Vercel
+  basePath: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV || process.env.NODE_ENV === 'development') ? '' : '/portfolio',
   env: {
-    NEXT_PUBLIC_BASE_PATH: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV) ? '' : '/portfolio',
+    NEXT_PUBLIC_BASE_PATH: (process.env.VERCEL === '1' || process.env.VERCEL_URL || process.env.VERCEL_ENV || process.env.NODE_ENV === 'development') ? '' : '/portfolio',
   },
   // Optimize production builds
   productionBrowserSourceMaps: false, // Disable source maps in production for smaller bundle

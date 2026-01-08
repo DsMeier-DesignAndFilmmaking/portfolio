@@ -49,6 +49,55 @@ export default function HomePageBodyReset() {
         // Reset pointer-events (project pages might disable interactions)
         document.body.style.pointerEvents = '';
         document.documentElement.style.pointerEvents = '';
+        
+        // ✅ NAVBAR CLEAN SLATE: Reset navbar styles that project pages might set
+        // Find navbar - check both header and nav elements
+        const header = document.querySelector('header');
+        const navbar = document.querySelector('header nav') || 
+                      document.querySelector('nav') || 
+                      header ||
+                      document.querySelector('.navbar');
+        
+        // ✅ CRITICAL: Reset header first (it's the parent container)
+        if (header) {
+          const headerElement = header as HTMLElement;
+          // Force reset ALL background and filter properties that cause "tint"
+          headerElement.style.backgroundColor = '';
+          headerElement.style.background = '';
+          headerElement.style.backdropFilter = '';
+          // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
+          headerElement.style.webkitBackdropFilter = '';
+          headerElement.style.opacity = '1';
+          headerElement.style.boxShadow = '';
+          headerElement.style.filter = '';
+          headerElement.style.transform = '';
+          headerElement.style.color = '';
+          
+          // ✅ Force reapply CSS classes by removing and re-adding
+          // This ensures bg-white/80 backdrop-blur-sm is applied
+          const originalClasses = headerElement.className;
+          headerElement.className = '';
+          // Use requestAnimationFrame to ensure DOM is ready
+          requestAnimationFrame(() => {
+            headerElement.className = originalClasses;
+          });
+        }
+        
+        // Also reset nav element if it exists separately
+        if (navbar && navbar !== header) {
+          const navElement = navbar as HTMLElement;
+          // Force reset the background and filters that cause "tint"
+          navElement.style.backgroundColor = '';
+          navElement.style.background = '';
+          navElement.style.backdropFilter = '';
+          // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
+          navElement.style.webkitBackdropFilter = '';
+          navElement.style.opacity = '1';
+          navElement.style.boxShadow = '';
+          navElement.style.filter = '';
+          navElement.style.transform = '';
+          navElement.style.color = '';
+        }
       }
     });
 
