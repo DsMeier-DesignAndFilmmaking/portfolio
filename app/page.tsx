@@ -64,7 +64,7 @@ export default function HomePage() {
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section className="intro-section bg-white relative z-10 section-padding" aria-label="Introduction">
+        <section className="intro-section bg-white relative z-10" aria-label="Introduction">
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-start md:items-center justify-center min-h-[60vh] md:min-h-[80vh]">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-0 pb-0">
