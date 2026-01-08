@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
 export default function AnimatedHeading({ text }: { text: string }) {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const [mounted, setMounted] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -10,11 +11,6 @@ export default function AnimatedHeading({ text }: { text: string }) {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
 
   useEffect(() => {
     if (headingRef.current) {
@@ -27,6 +23,11 @@ export default function AnimatedHeading({ text }: { text: string }) {
       });
     }
   }, []);
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   return <h1 ref={headingRef} className="text-5xl font-bold text-white">{text}</h1>;
 }

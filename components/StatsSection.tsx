@@ -133,19 +133,20 @@ interface StatsSectionProps {
 }
 
 export default function StatsSection({ className = '', containerClassName = '', hideThirdBlock = false, variant = 'design' }: StatsSectionProps) {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const [mounted, setMounted] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const animationsRef = useRef<anime.AnimeInstance[]>([]);
 
   // ✅ Mounting guard: Prevent hydration crashes
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // ✅ Mounting guard: Return null until mounted
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
   if (!mounted) {
     return null;
   }
-  const statsRef = useRef<HTMLDivElement>(null);
-  const animationsRef = useRef<anime.AnimeInstance[]>([]);
 
   useEffect(() => {
     // Guard DOM mutation - ensure ref exists and is mounted

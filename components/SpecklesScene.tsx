@@ -8,20 +8,11 @@ interface SpecklesSceneProps {
 }
 
 export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {}) {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const [mounted, setMounted] = useState(false);
   const specklesRef = useRef<THREE.Points | null>(null);
   const frameIdRef = useRef<number | null>(null);
   const { scene, camera, renderer } = useWebGL();
-
-  // ✅ Mounting guard: Prevent hydration crashes
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
 
   // Memoize material - this is static and doesn't need to change on route
   // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
@@ -33,10 +24,15 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
     color: 0xffffff
   }), []);
 
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (!scene || !camera || !renderer) {
       console.log('[SpecklesScene] WebGL context not ready yet', { enabled });
-      return;
+      return undefined;
     }
     
     // ✅ Update scene visibility instead of unmounting
@@ -168,6 +164,11 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
       
     };
   }, [enabled, material, scene]); // ✅ Update scene when enabled changes
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   // Component doesn't render anything - it only adds objects to singleton scene
   return null;

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { getScene, getCamera, getRenderer } from './SafeCanvas';
 
 export default function DesignBuildScene() {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const pathname = usePathname();
   // Disable Three.js initialization on project routes to avoid race conditions
   const isProjectPage = pathname?.includes('/projects/') ?? false;
@@ -14,17 +15,6 @@ export default function DesignBuildScene() {
   const frameIdRef = useRef<number | null>(null);
   const [mounted, setMounted] = useState(false);
   const [isClient, setIsClient] = useState(false);
-
-  // ✅ Mounting guard: Prevent hydration crashes
-  useEffect(() => {
-    setMounted(true);
-    setIsClient(true);
-  }, []);
-
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
 
   // Memoize geometries and materials - these are static and don't need to change on route
   // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
@@ -54,14 +44,20 @@ export default function DesignBuildScene() {
     opacity: 0.3,
   }), []);
 
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+    setIsClient(true);
+  }, []);
+
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return undefined;
     
     // Skip initialization on project routes to avoid race conditions
     if (isProjectPage) {
       console.log('[DesignBuildScene] skipped (project page)', { pathname, isProjectPage });
-      return;
+      return undefined;
     }
     
     console.log('[DesignBuildScene] mounted', { pathname, isProjectPage });
