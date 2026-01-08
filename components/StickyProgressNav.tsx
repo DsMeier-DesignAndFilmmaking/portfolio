@@ -55,6 +55,9 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
     setActiveSection(currentSection);
   }, [sections]);
 
+  // ✅ Track RAF ID for throttled scroll to ensure proper cleanup
+  const throttledRafRef = useRef<number | null>(null);
+
   useEffect(() => {
     // Guard: Ensure we're on the client side
     if (typeof window === 'undefined') return;
@@ -64,9 +67,14 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
     
     const throttledScroll = () => {
       if (!ticking) {
-        requestAnimationFrame(() => {
+        // ✅ Cancel any pending RAF before scheduling new one
+        if (throttledRafRef.current !== null) {
+          cancelAnimationFrame(throttledRafRef.current);
+        }
+        throttledRafRef.current = requestAnimationFrame(() => {
           handleScroll();
           ticking = false;
+          throttledRafRef.current = null;
         });
         ticking = true;
       }
@@ -77,8 +85,16 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
     // Initial check
     handleScroll();
 
+    // ✅ Proper cleanup: cancel RAFs and remove listeners
     return () => {
       window.removeEventListener('scroll', throttledScroll);
+      
+      // Cancel any pending throttled RAF
+      if (throttledRafRef.current !== null) {
+        cancelAnimationFrame(throttledRafRef.current);
+        throttledRafRef.current = null;
+      }
+      
       // Cancel any ongoing scroll animation
       if (scrollAnimationRef.current) {
         cancelAnimationFrame(scrollAnimationRef.current);

@@ -65,10 +65,12 @@ export default function PreviousProjectsPage() {
     }
     
     return () => {
-      // Guard DOM manipulation during cleanup
+      // ✅ Guard DOM manipulation during cleanup
+      // RouteChangeCleanup will also reset overflow, but we clean up our specific styles
       if (typeof document !== 'undefined' && document.body) {
         document.body.style.backgroundColor = '';
         document.documentElement.style.backgroundColor = '';
+        document.body.style.overflow = ''; // ✅ Additional safety - reset overflow
         document.body.classList.remove('no-mobile-nav-offset');
       }
     };
@@ -121,7 +123,8 @@ export default function PreviousProjectsPage() {
         (hero as HTMLElement).style.top = '';
         (hero as HTMLElement).style.transform = '';
       }
-      // Guard DOM manipulation during cleanup
+      // ✅ Guard DOM manipulation during cleanup
+      // RouteChangeCleanup will also reset overflow, but we clean up our specific styles
       if (typeof document !== 'undefined' && document.body) {
         const hero = document.querySelector('.hero-section');
         if (hero) {
@@ -131,6 +134,7 @@ export default function PreviousProjectsPage() {
           (hero as HTMLElement).style.transform = '';
         }
         document.body.style.paddingTop = '';
+        document.body.style.overflow = ''; // ✅ Additional safety - reset overflow
       }
       window.removeEventListener('resize', handleMobileHeroFix);
     };

@@ -88,38 +88,14 @@ export default function HomePageWebGL() {
     }
 
     // Dispose renderer
+    // ✅ React owns the DOM lifecycle - we only dispose Three.js resources
+    // The canvas will be automatically removed when React unmounts the container div
     if (rendererRef.current) {
       try {
-        // ✅ Get DOM element reference BEFORE disposing renderer
-        const domElement = rendererRef.current.domElement;
-        const container = containerRef.current;
-        
-        // ✅ Dispose renderer first (this doesn't remove DOM element)
+        // Dispose renderer and force context loss
+        // DO NOT manually remove the canvas - React will handle DOM removal
         rendererRef.current.dispose();
         rendererRef.current.forceContextLoss();
-        
-        // ✅ Defer DOM removal to avoid React reconciliation conflicts (React errors #418, #423)
-        // This prevents "removeChild: node is not a child" errors during fast route transitions
-        if (container && domElement) {
-          // Guard: Verify element is actually a child before removing
-          if (domElement.parentNode === container && container.contains(domElement)) {
-            // Defer to next tick to avoid React reconciliation conflicts
-            setTimeout(() => {
-              try {
-                // Double-check element is still a child before removing
-                if (domElement.parentNode === container && container.contains(domElement)) {
-                  container.removeChild(domElement);
-                }
-              } catch (error) {
-                // Element may have already been removed by React/Framer Motion/PageTransition
-                // Silently ignore - this is expected during fast route transitions
-                if (process.env.NODE_ENV === 'development') {
-                  console.debug('[HomePageWebGL] canvas already removed by React', error);
-                }
-              }
-            }, 0);
-          }
-        }
       } catch (error) {
         console.warn('[HomePageWebGL] error during renderer disposal:', error);
       }

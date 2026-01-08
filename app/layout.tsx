@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
+import './globals.css';
 import '@/styles/globals.css';
 import NavigationWrapper from '@/components/NavigationWrapper';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import RouteChangeCleanup from '@/components/RouteChangeCleanup';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -59,6 +61,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`} suppressHydrationWarning>
         {/* Isolation div to protect from browser extension DOM injection */}
         <div id="__next" suppressHydrationWarning>
+          {/* ✅ Global route change cleanup - resets body overflow on every route change */}
+          <RouteChangeCleanup />
           <NavigationWrapper />
           <PageTransition>
             <main>{children}</main>

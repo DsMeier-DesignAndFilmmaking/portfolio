@@ -26,7 +26,7 @@ import {
   FaUserFriends as FaUserFriendsIcon,
 } from 'react-icons/fa';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 
@@ -82,17 +82,18 @@ const project = {
 export default function DoubleGoodProjectPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   // Add route-aware body class for CSS targeting
   useEffect(() => {
-    const isPreviousProject = window.location.pathname.startsWith('/projects/previous');
+    const isPreviousProject = pathname?.startsWith('/projects/previous');
     if (isPreviousProject) {
       document.body.classList.add('no-mobile-nav-offset');
     }
     return () => {
       document.body.classList.remove('no-mobile-nav-offset');
     };
-  }, []);
+  }, [pathname]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();

@@ -1,10 +1,5 @@
 'use client';
-import AnimatedHeading from '@/components/AnimatedHeading';
-import ProjectsSection from '@/components/ProjectsSection';
-import VideoProjectsSection from '@/components/VideoProjectsSection';
-import PhotographyGridSection from '@/components/PhotographyGridSection';
 import ErrorBoundary from '@/components/ErrorBoundary';
-import FadeInSection from '@/components/FadeInSection';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -13,8 +8,28 @@ import HashNavigationHandler from '@/components/HashNavigationHandler';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// Dynamically import WebGL components to avoid SSR issues
+// ✅ Dynamically import animated components to avoid SSR/hydration issues
 const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
+  ssr: false,
+});
+
+const AnimatedHeading = dynamic(() => import('@/components/AnimatedHeading'), {
+  ssr: false,
+});
+
+const ProjectsSection = dynamic(() => import('@/components/ProjectsSection'), {
+  ssr: false,
+});
+
+const VideoProjectsSection = dynamic(() => import('@/components/VideoProjectsSection'), {
+  ssr: false,
+});
+
+const PhotographyGridSection = dynamic(() => import('@/components/PhotographyGridSection'), {
+  ssr: false,
+});
+
+const FadeInSection = dynamic(() => import('@/components/FadeInSection'), {
   ssr: false,
 });
 
@@ -143,12 +158,13 @@ export default function HomePage() {
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-start justify-center">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-20">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="w-full text-left"
-              >
+              <Suspense fallback={null}>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="w-full text-left"
+                >
                   <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     {/* Mobile Version - Simplified */}
                     <h1 
@@ -183,6 +199,7 @@ export default function HomePage() {
                     </p>
                   </div>
                 </motion.div>
+              </Suspense>
             </div>
           </div>
         </section>
@@ -244,12 +261,13 @@ export default function HomePage() {
                 {/* Left Side: Images Stacked Vertically */}
                 <div className="w-full space-y-8">
                   {/* First Image */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="w-full"
-                  >
+                  <Suspense fallback={null}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="w-full"
+                    >
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about"
@@ -262,15 +280,17 @@ export default function HomePage() {
                         loading="lazy"
                       />
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </Suspense>
 
                   {/* Second Image (Portrait) */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="w-full"
-                  >
+                  <Suspense fallback={null}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                      className="w-full"
+                    >
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-2"
@@ -283,7 +303,8 @@ export default function HomePage() {
                         loading="lazy"
                       />
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </Suspense>
 
                   {/* Design Journey Section - Mobile Only (between 2nd and 3rd images) */}
                   <div className="md:hidden w-full">
@@ -326,12 +347,13 @@ export default function HomePage() {
                   </div>
 
                   {/* Third Image (Portrait - Duplicate) */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full"
-                  >
+                  <Suspense fallback={null}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                      className="w-full"
+                    >
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-3"
@@ -344,15 +366,17 @@ export default function HomePage() {
                         loading="lazy"
                       />
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </Suspense>
 
                   {/* Fourth Image (Portrait) */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="w-full"
-                  >
+                  <Suspense fallback={null}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                      className="w-full"
+                    >
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-4"
@@ -365,17 +389,20 @@ export default function HomePage() {
                         loading="lazy"
                       />
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </Suspense>
                 </div>
 
                 {/* Right Side: Text Content */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="w-full text-left"
-                >
-                  <div className="space-y-8">
+                <div className="w-full">
+                  <Suspense fallback={null}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                      className="w-full text-left"
+                    >
+                    <div className="space-y-8">
                   {/* Design Journey Path Marker - Desktop Only */}
                   <div className="hidden md:flex items-center gap-3 mb-6 opacity-60 mt-8">
                     <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
@@ -407,18 +434,24 @@ export default function HomePage() {
                     <p className="hidden md:block text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
-                  </div>
-                </motion.div>
+                    </div>
+                    </motion.div>
+                  </Suspense>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <ProjectsSection />
+        <Suspense fallback={null}>
+          <ProjectsSection />
+        </Suspense>
 
         {/* Video Projects Section */}
-        <VideoProjectsSection />
+        <Suspense fallback={null}>
+          <VideoProjectsSection />
+        </Suspense>
         
         {/* Travel Photography and Stills Section */}
         <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
@@ -451,13 +484,14 @@ export default function HomePage() {
           </div>
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
-            <FadeInSection 
-              delay={0.1}
-              duration={0.8}
-              direction="up"
-              distance={40}
-              threshold={0.2}
-            >
+            <Suspense fallback={null}>
+              <FadeInSection 
+                delay={0.1}
+                duration={0.8}
+                direction="up"
+                distance={40}
+                threshold={0.2}
+              >
               <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
                 <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -477,10 +511,12 @@ export default function HomePage() {
                   I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
                 </p>
               </div>
-            </FadeInSection>
+              </FadeInSection>
+            </Suspense>
             
             {/* Modern Coming Soon Card */}
-            <FadeInSection 
+            <Suspense fallback={null}>
+              <FadeInSection 
               delay={0.2}
               duration={0.8}
               direction="up"
@@ -551,16 +587,18 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </FadeInSection>
+              </FadeInSection>
+            </Suspense>
             
             {/* Tech Stack */}
-            <FadeInSection 
-              delay={0.3}
-              duration={0.8}
-              direction="up"
-              distance={30}
-              threshold={0.1}
-            >
+            <Suspense fallback={null}>
+              <FadeInSection 
+                delay={0.3}
+                duration={0.8}
+                direction="up"
+                distance={30}
+                threshold={0.1}
+              >
               <div className="mt-12 text-center">
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
                   <span className="text-gray-600 text-sm font-medium">Building with</span>
@@ -571,7 +609,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </FadeInSection>
+              </FadeInSection>
+            </Suspense>
           </div>
         </section>
 
@@ -598,9 +637,11 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-              </div>
+        </div>
       </main>
-      <HomePageWebGL />
+      <Suspense fallback={null}>
+        <HomePageWebGL />
+      </Suspense>
     </ErrorBoundary>
   );
 }

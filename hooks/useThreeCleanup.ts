@@ -135,10 +135,9 @@ export function useThreeCleanup({
       }
       
       // Safe renderer cleanup - check if already disposed or context lost
+      // ✅ React owns the DOM lifecycle - we only dispose Three.js resources
+      // The canvas will be automatically removed when React unmounts the container
       try {
-        // Get the canvas element before disposing renderer
-        const domElement = renderer.domElement;
-        
         // Check if context is already lost
         // IMPORTANT: Do NOT force context loss during navigation - only dispose resources
         // This allows new renderers to initialize properly when navigating back
@@ -152,34 +151,9 @@ export function useThreeCleanup({
           renderer.dispose();
         }
         
-        // Null out the domElement reference
+        // Null out the renderer reference
+        // DO NOT manually remove the canvas - React will handle DOM removal
         rendererRef.current = null;
-        (renderer as any).domElement = null;
-        
-        // Defer DOM cleanup to avoid React error 423 (updates during reconciliation)
-        // Safely remove canvas from DOM if container exists
-        if (containerRef?.current && domElement) {
-          const container = containerRef.current;
-          // Guard: ensure element is a direct child of container
-          // This prevents NotFoundError during fast route transitions
-          if (
-            container.parentNode &&
-            domElement.parentNode === container
-          ) {
-            // Defer DOM removal to next tick to avoid React reconciliation conflicts
-            setTimeout(() => {
-              try {
-                // Double-check element is still a child before removing
-                if (domElement.parentNode === container && container.contains(domElement)) {
-                  container.removeChild(domElement);
-                }
-              } catch (error) {
-                // Element may have already been removed by React/Framer Motion
-                // Silently ignore - this is expected during fast route transitions
-              }
-            }, 0);
-          }
-        }
       } catch (error) {
         // Renderer may already be disposed
         rendererRef.current = null;

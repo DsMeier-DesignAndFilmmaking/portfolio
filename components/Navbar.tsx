@@ -11,6 +11,7 @@ import { smoothScrollToId } from '@/utils/scrollUtils';
 const Navbar = () => {
   const pathname = usePathname();
   const isMountedRef = useRef(true);
+  const rafIdRef = useRef<number | null>(null);
   const [isScrollingToAnchor, setIsScrollingToAnchor] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
@@ -52,19 +53,20 @@ const Navbar = () => {
       return;
     }
 
-    let rafId: number;
     let ticking = false;
 
     const updateNavbarColor = () => {
       // Check if component is still mounted
       if (!isMountedRef.current) {
         ticking = false;
+        rafIdRef.current = null;
         return;
       }
 
       // Ensure we're still on a page that should have the navbar
       if (!pathname || pathname.startsWith('/projects/') || pathname.startsWith('/my-pulse')) {
         ticking = false;
+        rafIdRef.current = null;
         return;
       }
 
@@ -73,6 +75,7 @@ const Navbar = () => {
 
       if (!navbar || !isMountedRef.current) {
         ticking = false;
+        rafIdRef.current = null;
         return;
       }
 
@@ -219,7 +222,11 @@ const Navbar = () => {
         return;
       }
       if (!ticking) {
-        rafId = requestAnimationFrame(updateNavbarColor);
+        // ✅ Cancel any pending RAF before scheduling new one
+        if (rafIdRef.current !== null) {
+          cancelAnimationFrame(rafIdRef.current);
+        }
+        rafIdRef.current = requestAnimationFrame(updateNavbarColor);
         ticking = true;
       }
     };
@@ -235,14 +242,22 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', updateNavbarColor, { passive: true });
 
+    // ✅ Proper cleanup: cancel RAF, remove listeners, reset state
     return () => {
       clearTimeout(initTimeout);
-      isMountedRef.current = false;
+      
+      // Cancel any pending animation frame
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      
+      // Remove event listeners
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', updateNavbarColor);
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
+      
+      // Mark as unmounted
+      isMountedRef.current = false;
     };
   }, [isOnPurduePage, hasEnteredDesignSection, pathname]);
 

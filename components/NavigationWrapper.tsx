@@ -14,23 +14,10 @@ import Navbar from './Navbar';
  */
 export default function NavigationWrapper() {
   const pathname = usePathname();
-  const [isReady, setIsReady] = useState(false);
-  
-  // Small delay to ensure clean navigation transitions
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 0);
-    
-    return () => {
-      clearTimeout(timer);
-      setIsReady(false);
-    };
-  }, [pathname]);
   
   // Memoize the check to prevent unnecessary re-renders
   const shouldShowNavbar = useMemo(() => {
-    // Handle null/undefined pathname gracefully
+    // Handle null/undefined pathname gracefully - wait for pathname to be available
     if (!pathname) {
       return false;
     }
@@ -49,8 +36,8 @@ export default function NavigationWrapper() {
     return !(isProjectPage || isMyPulsePage);
   }, [pathname]);
   
-  // Don't render anything if we shouldn't show navbar, pathname is not ready, or not ready for render
-  if (!shouldShowNavbar || !pathname || !isReady) {
+  // Don't render anything if we shouldn't show navbar or pathname is not ready
+  if (!shouldShowNavbar || !pathname) {
     return null;
   }
   

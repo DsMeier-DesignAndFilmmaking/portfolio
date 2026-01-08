@@ -9,10 +9,13 @@
  * 
  * ✅ May render: <ParallaxBackground />
  * ❌ Must NEVER: touch Three.js renderer, manage canvas, manage RAF
+ * ✅ React-safe: Uses Framer Motion hooks (no direct DOM manipulation)
+ * ✅ Route-guarded: Only renders on homepage
  */
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import ParallaxBackground from './ParallaxBackground';
 import SpecklesScene from './SpecklesScene';
 import AITravelScene from './AITravelScene';
@@ -36,27 +39,50 @@ export default function ParallaxSection({
   textColor,
   enabled = true, // Default to enabled
 }: ParallaxSectionProps) {
-  // enabled prop controls scene visibility, not route-based logic
-  const ref = useRef(null);
+  const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
+  const [isNavigationStable, setIsNavigationStable] = useState(false);
   
+  // ✅ Route guard: Only render on homepage
+  if (pathname !== '/') {
+    return null;
+  }
+
+  // ✅ React-safe ref with proper typing
+  const ref = useRef<HTMLDivElement>(null);
+  
+  // ✅ Client-side check
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    
+    // ✅ Navigation stability check - disable animations during route changes
+    // Wait for navigation to stabilize before enabling animations
+    const stabilityTimer = setTimeout(() => {
+      setIsNavigationStable(true);
+    }, 100);
+    
+    return () => {
+      clearTimeout(stabilityTimer);
+      setIsNavigationStable(false);
+    };
+  }, [pathname]);
 
+  // ✅ Framer Motion hooks - React-safe, automatically clean up scroll listeners
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
 
-  // Disable parallax transforms when disabled - use static values instead
+  // ✅ Disable parallax transforms when disabled or navigation is unstable
   // This prevents scroll-driven animations without breaking the hook
   // Optimize transforms with better performance settings
-  const y = !enabled ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = !enabled ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const shouldAnimate = enabled && isNavigationStable;
+  const y = !shouldAnimate ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = !shouldAnimate ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-  if (!isClient) {
+  // ✅ Loading state - restore layout first, disable animation temporarily
+  if (!isClient || !isNavigationStable) {
     return (
       <div ref={ref} className={`relative ${className}`} style={{ height: '100vh' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">

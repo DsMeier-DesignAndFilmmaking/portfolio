@@ -111,20 +111,77 @@ export function getFocusTrapConfig(containerId: string) {
 
 /**
  * Announce message to screen readers
+ * 
+ * Uses a singleton pattern to avoid manual DOM manipulation.
+ * React owns the DOM lifecycle - we just update content.
+ */
+let announcementContainer: HTMLDivElement | null = null;
+
+function getOrCreateAnnouncementContainer(): HTMLDivElement {
+  if (typeof window === 'undefined') {
+    throw new Error('Cannot create announcement container on server');
+  }
+  
+  if (!announcementContainer) {
+    announcementContainer = document.createElement('div');
+    announcementContainer.setAttribute('aria-live', 'polite');
+    announcementContainer.setAttribute('aria-atomic', 'true');
+    announcementContainer.className = 'sr-only';
+    announcementContainer.style.position = 'absolute';
+    announcementContainer.style.left = '-10000px';
+    announcementContainer.style.width = '1px';
+    announcementContainer.style.height = '1px';
+    announcementContainer.style.overflow = 'hidden';
+    
+    // Append once, React will handle cleanup if needed
+    // But we check if it's already in the DOM to avoid duplicates
+    if (!document.body.contains(announcementContainer)) {
+      document.body.appendChild(announcementContainer);
+    }
+  }
+  
+  return announcementContainer;
+}
+
+/**
+ * Announce message to screen readers
+ * 
+ * ✅ React-safe: No manual removeChild calls
+ * ✅ Uses singleton pattern to avoid DOM manipulation
+ * ✅ Updates content instead of creating/removing nodes
  */
 export function announceToScreenReader(message: string, priority: 'polite' | 'assertive' = 'polite'): void {
   if (typeof window === 'undefined') return;
   
-  const announcement = document.createElement('div');
-  announcement.setAttribute('aria-live', priority);
-  announcement.setAttribute('aria-atomic', 'true');
-  announcement.className = 'sr-only';
-  announcement.textContent = message;
-  
-  document.body.appendChild(announcement);
-  
-  // Remove after announcement
-  setTimeout(() => {
-    document.body.removeChild(announcement);
-  }, 1000);
+  try {
+    const container = getOrCreateAnnouncementContainer();
+    
+    // Update attributes
+    container.setAttribute('aria-live', priority);
+    container.setAttribute('aria-atomic', 'true');
+    
+    // Clear previous content and set new message
+    // This triggers screen reader announcement
+    container.textContent = '';
+    
+    // Use requestAnimationFrame to ensure screen reader picks up the change
+    requestAnimationFrame(() => {
+      if (container && document.body.contains(container)) {
+        container.textContent = message;
+      }
+    });
+    
+    // Clear message after announcement (but keep container)
+    // Screen readers will have announced by this point
+    setTimeout(() => {
+      if (container && document.body.contains(container)) {
+        container.textContent = '';
+      }
+    }, 1000);
+  } catch (error) {
+    // Silently fail if DOM manipulation fails (e.g., during navigation)
+    if (process.env.NODE_ENV === 'development') {
+      console.debug('[announceToScreenReader] Failed to announce:', error);
+    }
+  }
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface AnchorScrollLoaderProps {
   isVisible: boolean;
@@ -10,8 +11,28 @@ interface AnchorScrollLoaderProps {
 }
 
 export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete }: AnchorScrollLoaderProps) {
+  const pathname = usePathname();
   const [internalProgress, setInternalProgress] = useState(0);
   const [showStabilizationOverlay, setShowStabilizationOverlay] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const animationControlsRef = useRef<any>(null);
+
+  // ✅ Route guard: Only render on homepage
+  if (pathname !== '/') {
+    return null;
+  }
+
+  useEffect(() => {
+    // ✅ Cleanup on unmount or route change
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setInternalProgress(0);
+      setShowStabilizationOverlay(false);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (isVisible) {
@@ -21,19 +42,37 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
       
       // If no external progress provided, simulate progress animation
       if (progress === 0) {
-        const interval = setInterval(() => {
+        // ✅ Clear any existing interval
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+        
+        intervalRef.current = setInterval(() => {
           setInternalProgress(prev => {
             if (prev >= 100) {
-              clearInterval(interval);
+              if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+              }
               return 100;
             }
             return prev + 10;
           });
         }, 50); // 500ms total duration
 
-        return () => clearInterval(interval);
+        return () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
       }
     } else {
+      // ✅ Cleanup when not visible
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
       setInternalProgress(0);
       setShowStabilizationOverlay(false);
     }
@@ -86,8 +125,8 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
               <motion.svg 
                 className="w-16 h-16 transform -rotate-90" 
                 viewBox="0 0 64 64"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                animate={isVisible ? { rotate: 360 } : { rotate: 0 }}
+                transition={{ duration: 1, repeat: isVisible ? Infinity : 0, ease: 'linear' }}
               >
                 <circle
                   cx="32"
