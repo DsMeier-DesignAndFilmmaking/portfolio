@@ -211,7 +211,7 @@ export default function HomePage() {
 
             <SafeCanvas
               key={`design-build-${pathname}`}
-              mountDelay={300}
+              mountDelay={400}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -231,7 +231,7 @@ export default function HomePage() {
 
             <SafeCanvas
               key={`cinematography-${pathname}`}
-              mountDelay={500}
+              mountDelay={800}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -273,7 +273,7 @@ export default function HomePage() {
         {!isProjectPage && (
           <SafeCanvas
             key={`torus-${pathname}`}
-            mountDelay={700}
+            mountDelay={1200}
             fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
             suspenseFallback={
               <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>

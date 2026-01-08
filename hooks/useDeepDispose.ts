@@ -146,8 +146,9 @@ function disposeMaterials(material: THREE.Material | THREE.Material[] | undefine
 
 /**
  * Recursively traverses a Three.js object and disposes all resources
+ * Exported for direct use in useEffect cleanup functions
  */
-function deepDisposeObject(
+export function deepDisposeObject(
   object: THREE.Object3D | THREE.Scene,
   verbose: boolean = false
 ): void {
@@ -216,12 +217,13 @@ function deepDisposeObject(
 
 /**
  * Disposes a WebGL renderer and its context
+ * Exported for direct use in useEffect cleanup functions
  * 
  * IMPORTANT: Does NOT call forceContextLoss() during navigation.
  * Only disposes resources to allow new renderers to initialize properly.
  * forceContextLoss() should only be called when the entire app is unmounting.
  */
-function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean = false, forceContextLoss: boolean = false): void {
+export function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean = false, forceContextLoss: boolean = false): void {
   if (!renderer) return;
   
   try {

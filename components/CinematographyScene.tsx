@@ -3,8 +3,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { useThreeCleanup } from '@/hooks/useThreeCleanup';
-import { useDeepDispose } from '@/hooks/useDeepDispose';
+import { deepDisposeObject, disposeRenderer } from '@/hooks/useDeepDispose';
 
 export default function CinematographyScene() {
   const pathname = usePathname();
@@ -171,43 +170,50 @@ export default function CinematographyScene() {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup resize listener only (Three.js cleanup handled by hook)
+    // Consolidated cleanup: ALL cleanup happens here in the unmount phase
     return () => {
+      // 1. Remove resize listener
       window.removeEventListener('resize', handleResize);
-    };
-  }, [isProjectPage, pathname, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Include pathname and memoized objects to recreate on route change
-
-  // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
-  useThreeCleanup({
-    rendererRef,
-    sceneRef,
-    containerRef,
-    frameIdRef,
-    deps: [isProjectPage],
-  });
-
-  // Use deep disposal hook for comprehensive GPU memory cleanup
-  // This ensures all geometries, materials, textures, and renderers are fully disposed
-  // Critical for CinematographyScene which creates multiple meshes with materials in loops
-  // Include pathname in deps to trigger cleanup immediately on route change
-  useDeepDispose({
-    objectRef: sceneRef,
-    rendererRef: rendererRef,
-    onBeforeDispose: () => {
-      // Cancel animation frame before disposal
-      if (frameIdRef.current) {
+      
+      // 2. Cancel animation frame FIRST to stop rendering
+      if (frameIdRef.current !== null) {
         cancelAnimationFrame(frameIdRef.current);
         frameIdRef.current = null;
       }
-    },
-    onAfterDispose: () => {
-      // Clean up refs after disposal
-      modelRef.current = null;
+      
+      // 3. Remove canvas from DOM before disposal
+      if (rendererRef.current?.domElement && containerRef.current) {
+        try {
+          if (containerRef.current.contains(rendererRef.current.domElement)) {
+            containerRef.current.removeChild(rendererRef.current.domElement);
+          }
+        } catch (error) {
+          // Canvas may already be removed
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Error removing canvas from DOM:', error);
+          }
+        }
+      }
+      
+      // 4. Dispose scene and all its resources (geometries, materials, textures)
+      if (sceneRef.current) {
+        const verbose = process.env.NODE_ENV === 'development';
+        deepDisposeObject(sceneRef.current, verbose);
+        sceneRef.current = null;
+      }
+      
+      // 5. Dispose renderer (with forceContextLoss: false for internal navigation)
+      if (rendererRef.current) {
+        const verbose = process.env.NODE_ENV === 'development';
+        disposeRenderer(rendererRef.current, verbose, false);
+        rendererRef.current = null;
+      }
+      
+      // 6. Clear remaining refs
       cameraRef.current = null;
-    },
-    deps: [isProjectPage, pathname], // Re-run cleanup when route or project state changes
-    verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
-  });
+      modelRef.current = null;
+    };
+  }, [pathname, isProjectPage, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Include pathname and memoized objects to recreate on route change
 
   if (!isClient) {
     return (
