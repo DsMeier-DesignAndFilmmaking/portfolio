@@ -1,9 +1,20 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
 export default function AnimatedHeading({ text }: { text: string }) {
+  const [mounted, setMounted] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   useEffect(() => {
     if (headingRef.current) {

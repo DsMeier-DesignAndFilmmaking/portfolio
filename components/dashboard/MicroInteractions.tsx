@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode, Children } from "react";
 import { prefersReducedMotion, getAnimationDuration } from "@/utils/accessibility";
 
 interface MicroInteractionProps {
@@ -23,10 +23,21 @@ export default function MicroInteraction({
   threshold = 0.1,
   triggerOnce = true,
 }: MicroInteractionProps) {
+  const [mounted, setMounted] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: triggerOnce });
   const controls = useAnimation();
   const shouldAnimate = !prefersReducedMotion();
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   const animationDuration = duration || getAnimationDuration(300);
 
@@ -108,15 +119,19 @@ export function ScaleIn({ children, delay = 0, className = "" }: { children: Rea
 
 // Staggered container for multiple items
 interface StaggerContainerProps {
-  children: ReactNode[];
+  children: ReactNode;
   staggerDelay?: number;
   className?: string;
 }
 
 export function StaggerContainer({ children, staggerDelay = 100, className = "" }: StaggerContainerProps) {
+  // ✅ Fix: Safely convert React children to array
+  // React children can be a single element, array, null, or undefined
+  const childrenArray = Children.toArray(children);
+  
   return (
     <div className={className}>
-      {children.map((child, index) => (
+      {childrenArray.map((child, index) => (
         <MicroInteraction
           key={index}
           type="slideUp"

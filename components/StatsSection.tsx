@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import anime from 'animejs';
 
@@ -133,6 +133,17 @@ interface StatsSectionProps {
 }
 
 export default function StatsSection({ className = '', containerClassName = '', hideThirdBlock = false, variant = 'design' }: StatsSectionProps) {
+  const [mounted, setMounted] = useState(false);
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
   const statsRef = useRef<HTMLDivElement>(null);
   const animationsRef = useRef<anime.AnimeInstance[]>([]);
 

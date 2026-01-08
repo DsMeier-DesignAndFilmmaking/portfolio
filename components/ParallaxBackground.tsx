@@ -1,12 +1,23 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useWebGL } from './WebGLContext'
 
 export default function ParallaxBackground({ modelPath }: { modelPath: string }) {
+  const [mounted, setMounted] = useState(false);
   const objectRef = useRef<THREE.Mesh | null>(null)
   const { scene } = useWebGL()
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   useEffect(() => {
     if (!scene) return

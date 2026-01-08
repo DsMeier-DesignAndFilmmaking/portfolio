@@ -118,7 +118,7 @@ function extractTopics(promptText: string, responseText: string): string[] {
   };
   
   const foundTopics: string[] = [];
-  Object.entries(topicKeywords).forEach(([topic, keywords]) => {
+  Object.entries(typeof topicKeywords === 'object' && topicKeywords !== null ? topicKeywords : {}).forEach(([topic, keywords]) => {
     const count = keywords.filter(keyword => text.includes(keyword)).length;
     if (count > 0) {
       foundTopics.push(topic);
@@ -168,12 +168,12 @@ export function useOpenAIAnalytics(): UseOpenAIAnalyticsReturn {
             dailyActivityMap[date] = (dailyActivityMap[date] || 0) + 1;
           });
           
-          const topTopics = Object.entries(topicCounts)
+          const topTopics = Object.entries(typeof topicCounts === 'object' && topicCounts !== null ? topicCounts : {})
             .sort(([,a], [,b]) => b - a)
             .slice(0, 3)
             .map(([topic, count]) => ({ topic, count, color: getTopicColor(topic) }));
           
-          const topicDistribution = Object.entries(topicCounts)
+          const topicDistribution = Object.entries(typeof topicCounts === 'object' && topicCounts !== null ? topicCounts : {})
             .map(([topic, count]) => ({ 
               name: topic, 
               value: count,
@@ -181,7 +181,7 @@ export function useOpenAIAnalytics(): UseOpenAIAnalyticsReturn {
             }))
             .sort((a, b) => b.value - a.value);
           
-          const dailyActivity = Object.entries(dailyActivityMap)
+          const dailyActivity = Object.entries(typeof dailyActivityMap === 'object' && dailyActivityMap !== null ? dailyActivityMap : {})
             .map(([date, count]) => ({ date, count }))
             .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
             .slice(-7); // Last 7 days

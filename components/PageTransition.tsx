@@ -9,12 +9,23 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname()
   const prevPathnameRef = useRef<string | null>(null)
   const isInitialMountRef = useRef(true)
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   // Log route changes for debugging
   useEffect(() => {

@@ -64,9 +64,14 @@ export default function RootLayout({
           {/* ✅ Global route change cleanup - resets body overflow on every route change */}
           <RouteChangeCleanup />
           <NavigationWrapper />
-          <PageTransition>
+          {process.env.NODE_ENV === 'development' && (
+            <PageTransition>
+              <main>{children}</main>
+            </PageTransition>
+          )}
+          {process.env.NODE_ENV !== 'development' && (
             <main>{children}</main>
-          </PageTransition>
+          )}
           <Footer />
         </div>
       </body>

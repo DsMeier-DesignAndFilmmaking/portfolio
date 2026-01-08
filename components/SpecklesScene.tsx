@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
 import { useWebGL } from './WebGLContext';
 
@@ -8,9 +8,20 @@ interface SpecklesSceneProps {
 }
 
 export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {}) {
+  const [mounted, setMounted] = useState(false);
   const specklesRef = useRef<THREE.Points | null>(null);
   const frameIdRef = useRef<number | null>(null);
   const { scene, camera, renderer } = useWebGL();
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   // Memoize material - this is static and doesn't need to change on route
   // Only recreate if component unmounts/remounts (empty deps = create once per component instance)

@@ -104,7 +104,7 @@ function extractBestEfforts(activities: any[]) {
       const time = effort.elapsed_time;
       
       // Find matching target distance (within 5% tolerance)
-      Object.entries(targetDistances).forEach(([key, targetDist]) => {
+      Object.entries(typeof targetDistances === 'object' && targetDistances !== null ? targetDistances : {}).forEach(([key, targetDist]) => {
         const tolerance = targetDist * 0.05; // 5% tolerance
         if (Math.abs(distance - targetDist) <= tolerance) {
           // If no existing best effort or this is better (faster time)
@@ -433,7 +433,7 @@ export default function StravaAnalytics({ className = "" }: StravaAnalyticsProps
       >
         <h4 className="text-white font-semibold mb-3 text-sm">🏆 All-Time PRs</h4>
         <div className="grid grid-cols-2 gap-2">
-          {Object.entries(bestEfforts).map(([distance, effort], index) => (
+          {Object.entries(typeof bestEfforts === 'object' && bestEfforts !== null ? bestEfforts : {}).map(([distance, effort], index) => (
             <motion.div
               key={distance}
               initial={{ opacity: 0, x: -10 }}

@@ -100,7 +100,7 @@ style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
 
       {/* Metrics */}
       <div className="grid grid-cols-2 gap-3">
-        {Object.entries(metrics).map(([key, value], index) => (
+        {Object.entries(typeof metrics === 'object' && metrics !== null ? metrics : {}).map(([key, value], index) => (
           <div key={key} className={`text-center p-3 ${isDarkMode ? '' : 'bg-gray-50'} rounded-lg`}
 style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
             <div className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>

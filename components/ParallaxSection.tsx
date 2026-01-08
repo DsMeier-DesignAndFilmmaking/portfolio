@@ -40,11 +40,22 @@ export default function ParallaxSection({
   enabled = true, // Default to enabled
 }: ParallaxSectionProps) {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [isNavigationStable, setIsNavigationStable] = useState(false);
   
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   // ✅ Route guard: Only render on homepage
   if (pathname !== '/') {
+    return null;
+  }
+  
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
     return null;
   }
 

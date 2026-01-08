@@ -28,9 +28,14 @@ export default function MyPulseLayout({
   return (
     <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       {/* No NavigationWrapper here - My Pulse page has custom navbar */}
-      <PageTransition>
+      {process.env.NODE_ENV === 'development' && (
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+      )}
+      {process.env.NODE_ENV !== 'development' && (
         <main>{children}</main>
-      </PageTransition>
+      )}
       {/* Footer is rendered by root layout, no need to duplicate here */}
     </div>
   );

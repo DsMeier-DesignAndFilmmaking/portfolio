@@ -110,7 +110,7 @@ function processGitHubData(events: any[]): GitHubActivity {
       timestamp: new Date().toISOString(),
       repo: 'portfolio'
     },
-    repositories: Object.values(repositories)
+    repositories: Object.values(typeof repositories === 'object' && repositories !== null ? repositories : {})
   };
 }
 

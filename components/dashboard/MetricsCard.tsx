@@ -52,7 +52,7 @@ style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 gap-4 mb-4">
-        {Object.entries(metrics).map(([key, value], index) => (
+        {Object.entries(typeof metrics === 'object' && metrics !== null ? metrics : {}).map(([key, value], index) => (
           <div key={key} className={`text-center p-3 ${isDarkMode ? '' : 'bg-gray-50'} rounded-lg`}
 style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
             <div className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -83,9 +83,9 @@ style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
       )}
 
       {/* Array data display */}
-      {Object.values(metrics).some(value => Array.isArray(value)) && (
+      {Object.values(typeof metrics === 'object' && metrics !== null ? metrics : {}).some(value => Array.isArray(value)) && (
         <div className="mt-4">
-          {Object.entries(metrics).map(([key, value]) => 
+          {Object.entries(typeof metrics === 'object' && metrics !== null ? metrics : {}).map(([key, value]) => 
             Array.isArray(value) && value.length > 0 && (
               <div key={key} className="mb-2">
                 <div className="text-sm font-medium text-gray-700 dark:text-gray-300 capitalize mb-1">

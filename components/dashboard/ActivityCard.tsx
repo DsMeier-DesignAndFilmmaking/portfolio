@@ -52,7 +52,7 @@ style={isDarkMode ? { backgroundColor: '#1A1A1A' } : undefined}
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 gap-3 mb-4">
-        {Object.entries(metrics).map(([key, value], index) => (
+        {Object.entries(typeof metrics === 'object' && metrics !== null ? metrics : {}).map(([key, value], index) => (
           <div key={key} className={`text-center p-3 ${isDarkMode ? '' : 'bg-gray-50'} rounded-lg`}
 style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
             <div className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -87,7 +87,7 @@ style={isDarkMode ? { backgroundColor: '#2D2D2D' } : undefined}>
         <div className="mt-4 space-y-2">
           <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Recent Activity</div>
           <div className="space-y-2">
-            {Object.entries(metrics).map(([key, value], index) => (
+            {Object.entries(typeof metrics === 'object' && metrics !== null ? metrics : {}).map(([key, value], index) => (
               <div key={key} className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                 <span className="text-sm text-gray-600 dark:text-gray-400 capitalize">

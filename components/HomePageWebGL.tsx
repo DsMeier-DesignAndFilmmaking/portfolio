@@ -306,24 +306,28 @@ export default function HomePageWebGL() {
       renderer={rendererRef.current}
     >
       <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0" />
-      <div className="-mt-16 md:-mt-20">
-        <ParallaxSection
-          title="Always Curious."
-          description=""
-          modelPath="ai-travel"
-          enabled={true}
-          className="bg-transparent"
-        />
-      </div>
-      <ParallaxSection
-        title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
-        description=""
-        modelPath="torus"
-        enabled={true}
-        className="bg-transparent"
-        hideGradient={true}
-        textColor="black"
-      />
+      {process.env.NODE_ENV === 'development' && (
+        <>
+          <div className="-mt-16 md:-mt-20">
+            <ParallaxSection
+              title="Always Curious."
+              description=""
+              modelPath="ai-travel"
+              enabled={true}
+              className="bg-transparent"
+            />
+          </div>
+          <ParallaxSection
+            title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
+            description=""
+            modelPath="torus"
+            enabled={true}
+            className="bg-transparent"
+            hideGradient={true}
+            textColor="black"
+          />
+        </>
+      )}
     </WebGLProvider>
   );
 }

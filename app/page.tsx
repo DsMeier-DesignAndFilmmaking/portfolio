@@ -639,9 +639,11 @@ export default function HomePage() {
         </div>
         </div>
       </main>
-      <Suspense fallback={null}>
-        <HomePageWebGL />
-      </Suspense>
+      {process.env.NODE_ENV === 'development' && (
+        <Suspense fallback={null}>
+          <HomePageWebGL />
+        </Suspense>
+      )}
     </ErrorBoundary>
   );
 }

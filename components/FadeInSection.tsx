@@ -26,9 +26,20 @@ export default function FadeInSection({
   threshold = 0.1,
   rootMargin = '0px 0px -50px 0px'
 }: FadeInSectionProps) {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   useEffect(() => {
     const element = elementRef.current;

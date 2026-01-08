@@ -12,11 +12,19 @@ export default function DesignBuildScene() {
   const containerRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
   const frameIdRef = useRef<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+  // ✅ Mounting guard: Prevent hydration crashes
   useEffect(() => {
+    setMounted(true);
     setIsClient(true);
   }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
 
   // Memoize geometries and materials - these are static and don't need to change on route
   // Only recreate if component unmounts/remounts (empty deps = create once per component instance)

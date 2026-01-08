@@ -286,7 +286,7 @@ const PlanningAssistantVisual = () => {
       <div className="relative w-full h-full flex items-center justify-between px-2 md:px-4">
         {/* Left: Constraint Chips */}
         <div className="flex flex-col gap-3 w-1/4 items-start">
-          {constraints.map((constraint, i) => {
+          {(Array.isArray(constraints) ? constraints : []).map((constraint, i) => {
             const Icon = constraint.icon;
             return (
               <motion.div
@@ -375,7 +375,7 @@ const PlanningAssistantVisual = () => {
           {/* Timeline Line */}
           <div className="absolute right-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-300/50 via-blue-300/50 to-violet-300/50 dark:from-violet-600/50 dark:via-blue-600/50 dark:to-violet-600/50" />
           
-          {activities.map((activity, i) => {
+          {(Array.isArray(activities) ? activities : []).map((activity, i) => {
             const Icon = activity.icon;
             return (
               <motion.div
@@ -5833,7 +5833,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             
                             {/* Floating Interest Tags */}
                             <div className="space-y-2">
-                              {identity.interests.map((interest, tagIndex) => (
+                              {(Array.isArray(identity.interests) ? identity.interests : []).map((interest, tagIndex) => (
                                 <motion.div
                                   key={tagIndex}
                                   initial={{ opacity: 0, y: 10 }}
@@ -6541,7 +6541,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 {/* Map research insights to friction patterns */}
                 <div className="space-y-6">
-                  {project?.research?.insights?.slice(0, 3).map((insight: string, index: number) => (
+                  {(Array.isArray(project?.research?.insights) ? project.research.insights : []).slice(0, 3).map((insight: string, index: number) => (
                     <div key={index} className="bg-white p-6 rounded-xl border border-gray-200">
                       <p className="text-gray-700 leading-relaxed">{insight}</p>
                     </div>
@@ -6614,7 +6614,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 {project?.research?.insights && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {project?.research?.insights?.slice(0, 3).map((insight: string, index: number) => (
+                    {(Array.isArray(project?.research?.insights) ? project.research.insights : []).slice(0, 3).map((insight: string, index: number) => (
                       <div key={index} className="bg-white/5 p-6 rounded-xl border border-white/10">
                         <p className="text-gray-300 text-sm">{insight}</p>
                       </div>
@@ -6649,7 +6649,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mt-8 pt-8 border-t border-gray-200">
                     <h4 className="text-xl font-semibold mb-4 text-gray-900">Strategic Restraint</h4>
                     <ul className="space-y-2 text-gray-700">
-                      {project?.overview?.goals?.slice(0, 3).map((goal: string, index: number) => (
+                      {(Array.isArray(project?.overview?.goals) ? project.overview.goals : []).slice(0, 3).map((goal: string, index: number) => (
                         <li key={index} className="flex items-start gap-3">
                           <span className="text-blue-600 mt-1">•</span>
                           <span>{goal}</span>
@@ -6714,7 +6714,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <p className="text-gray-300 leading-relaxed mb-8">{project.uxDesign.description}</p>
                     {project.uxDesign.images && project.uxDesign.images.length > 0 && (
                       <div className="grid md:grid-cols-3 gap-6">
-                        {project.uxDesign.images.slice(0, 3).map((image: string, index: number) => (
+                        {(Array.isArray(project?.uxDesign?.images) ? project.uxDesign.images : []).slice(0, 3).map((image: string, index: number) => (
                           <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
@@ -6920,7 +6920,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </p>
                       {project?.overview?.outcomes && (
                         <ul className="space-y-2 mt-4">
-                          {project?.overview?.outcomes?.slice(0, 3).map((outcome: string, index: number) => (
+                          {(Array.isArray(project?.overview?.outcomes) ? project.overview.outcomes : []).slice(0, 3).map((outcome: string, index: number) => (
                             <li key={index} className="flex items-start gap-3">
                               <span className="text-blue-600 mt-1">•</span>
                               <span>{outcome}</span>

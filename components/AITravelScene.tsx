@@ -328,6 +328,18 @@ interface AITravelSceneProps {
 }
 
 export default function AITravelScene({ enabled = true }: AITravelSceneProps = {}) {
+  const [mounted, setMounted] = useState(false);
+
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
+    return null;
+  }
+
   // ✅ Update scene visibility instead of unmounting
   // Canvas key removed - component stays mounted, visibility controlled by enabled prop
   

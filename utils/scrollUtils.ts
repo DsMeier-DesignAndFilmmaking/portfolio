@@ -386,7 +386,11 @@ const waitForLazyContentInSection = async (sectionElement: HTMLElement): Promise
     console.log('Waiting for lazy content in section:', sectionElement.id, 'Found:', lazyImages.length + iframes.length, 'elements');
     
     // Wait for all lazy content to load
-    const allLazyElements = [...lazyImages, ...iframes];
+    // ✅ Safe: Convert NodeList to array and add fallbacks
+    const allLazyElements = [
+      ...(Array.isArray(lazyImages) ? lazyImages : Array.from(lazyImages || [])),
+      ...(Array.isArray(iframes) ? iframes : Array.from(iframes || []))
+    ];
     let loadedCount = 0;
     const totalElements = allLazyElements.length;
 

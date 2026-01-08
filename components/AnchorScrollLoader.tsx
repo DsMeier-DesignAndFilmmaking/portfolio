@@ -12,13 +12,24 @@ interface AnchorScrollLoaderProps {
 
 export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete }: AnchorScrollLoaderProps) {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [internalProgress, setInternalProgress] = useState(0);
   const [showStabilizationOverlay, setShowStabilizationOverlay] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const animationControlsRef = useRef<any>(null);
 
+  // ✅ Mounting guard: Prevent hydration crashes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // ✅ Route guard: Only render on homepage
   if (pathname !== '/') {
+    return null;
+  }
+  
+  // ✅ Mounting guard: Return null until mounted
+  if (!mounted) {
     return null;
   }
 

@@ -10,8 +10,12 @@ export function generateStaticParams() {
   ];
 }
 
-export default function TravelProjectDetailPage({ params }: { params: { projectId: string } }) {
-  const projectId = params?.projectId || '';
+export default function TravelProjectDetailPage({ params }: { params: { projectId: string } | { projectId?: string } }) {
+  // ✅ Safe: Handle params being undefined, projectId being array, or missing
+  const projectIdParam = params?.projectId;
+  const projectId = Array.isArray(projectIdParam) 
+    ? projectIdParam[0] || '' 
+    : (typeof projectIdParam === 'string' ? projectIdParam : '');
   
   // Use full client component for all travel AI projects
   return <TravelProjectDetailClient project={null} projectId={projectId} />;

@@ -31,17 +31,23 @@ export default function ProjectsSection() {
         style={{ backgroundColor: '#1A1A1A' }}
       >
         <div className="max-w-4xl mx-auto px-6">
-        <FadeInSection 
-          delay={0.1}
-          duration={0.8}
-          direction="up"
-          distance={40}
-          threshold={0.2}
-        >
+        {process.env.NODE_ENV === 'development' ? (
+          <FadeInSection 
+            delay={0.1}
+            duration={0.8}
+            direction="up"
+            distance={40}
+            threshold={0.2}
+          >
+            <div id="stats-section" className="mb-0 md:mb-24">
+              <StatsSection />
+            </div>
+          </FadeInSection>
+        ) : (
           <div id="stats-section" className="mb-0 md:mb-24">
             <StatsSection />
           </div>
-        </FadeInSection>
+        )}
 
         <FadeInSection 
           delay={0.15}
