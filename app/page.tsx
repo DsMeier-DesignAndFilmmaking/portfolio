@@ -7,7 +7,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import FadeInSection from '@/components/FadeInSection';
 import SafeCanvas from '@/components/SafeCanvas';
 import dynamic from 'next/dynamic';
-import { useEffect, useRef, Suspense } from 'react';
+import { useEffect, useRef, Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import HashNavigationHandler from '@/components/HashNavigationHandler';
@@ -45,6 +45,22 @@ export default function HomePage() {
   const isProjectPage = pathname?.includes('/projects/') ?? false;
   const videoRef = useRef<HTMLIFrameElement>(null);
   const mobileHeroRef = useRef<HTMLHeadingElement>(null);
+  
+  // Strict sequential mounting: Only render 3D sections after client is fully ready
+  // This creates a "Clear Zone" where the GPU can breathe after navigation
+  const [isClientReady, setIsClientReady] = useState(false);
+  
+  useEffect(() => {
+    // Wait for next tick to ensure React has fully committed the route change
+    const readyTimer = setTimeout(() => {
+      setIsClientReady(true);
+    }, 100);
+    
+    return () => {
+      clearTimeout(readyTimer);
+      setIsClientReady(false);
+    };
+  }, [pathname]); // Reset on route change
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -184,12 +200,13 @@ export default function HomePage() {
         {/* Optimized Parallax Sections - Dynamically loaded */}
         {/* Disable heavy motion on project routes to avoid race conditions during navigation */}
         {/* Using SafeCanvas to prevent hydration errors and WebGL memory leaks */}
-        {!isProjectPage && (
+        {/* Strict Sequential Mounting: Only render after client is fully ready */}
+        {!isProjectPage && isClientReady && (
           <>
             {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
             <SafeCanvas
-              key={`ai-travel-${pathname}`}
-              mountDelay={100}
+              key={`ai-travel-${pathname}-0`}
+              mountDelay={500}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -231,10 +248,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {!isProjectPage && (
+        {!isProjectPage && isClientReady && (
           <SafeCanvas
-            key={`torus-${pathname}`}
-            mountDelay={1200}
+            key={`torus-${pathname}-1`}
+            mountDelay={1000}
             fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
             suspenseFallback={
               <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>

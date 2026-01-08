@@ -92,13 +92,17 @@ export default function SafeCanvas({
   const [isReady, setIsReady] = useState(false);
   const disposalCallbackRef = useRef<(() => void) | null>(null);
   const isReadyRef = useRef(false);
+  const isCancelledRef = useRef(false);
+  
+  // GPU "Clear Zone" delay - gives the GPU time to release resources from previous page
+  const GPU_HANDOFF_DELAY = 300;
 
   useEffect(() => {
     // Guard: Ensure we're on the client side
     if (typeof window === 'undefined') return;
-
-    // Set mounted state immediately
-    setIsMounted(true);
+    
+    // Reset cancelled flag on mount
+    isCancelledRef.current = false;
 
     // Register disposal callback for page transition coordination
     // This ensures Three.js cleanup happens immediately when route changes
@@ -106,6 +110,7 @@ export default function SafeCanvas({
     const handleDisposal = () => {
       if (isReadyRef.current) {
         isReadyRef.current = false;
+        isCancelledRef.current = true;
         setIsReady(false);
         setIsMounted(false);
         
@@ -126,33 +131,56 @@ export default function SafeCanvas({
     const unregister = registerDisposalCallback(handleDisposal);
     disposalCallbackRef.current = unregister;
 
-    // Delay to ensure browser has finished disposing of previous page's GPU resources
-    // This "breathing room" prevents WebGL context conflicts during navigation
-    const mountTimer = setTimeout(() => {
-      isReadyRef.current = true;
-      setIsReady(true);
+    // STEP 1: GPU "Handoff" delay - creates a "Clear Zone" for GPU to breathe
+    // This prevents WebGL context conflicts when navigating back from project pages
+    const handoffTimer = setTimeout(() => {
+      // Check if component was unmounted during handoff delay
+      if (isCancelledRef.current) return;
       
-      // Call onMount callback if provided
-      if (onMount) {
-        try {
-          onMount();
-        } catch (error) {
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('Error in SafeCanvas onMount callback:', error);
+      // Now safe to set mounted - GPU has had time to release previous resources
+      setIsMounted(true);
+      
+      // STEP 2: Additional delay before marking as "ready" for WebGL initialization
+      // This staggered approach prevents multiple contexts being created simultaneously
+      const readyTimer = setTimeout(() => {
+        // Check if component was unmounted during ready delay
+        if (isCancelledRef.current) return;
+        
+        isReadyRef.current = true;
+        setIsReady(true);
+        
+        // Call onMount callback if provided
+        if (onMount) {
+          try {
+            onMount();
+          } catch (error) {
+            if (process.env.NODE_ENV === 'development') {
+              console.warn('Error in SafeCanvas onMount callback:', error);
+            }
           }
         }
-      }
-    }, mountDelay);
+      }, mountDelay);
+      
+      // Store ready timer for cleanup
+      (handoffTimer as any)._readyTimer = readyTimer;
+    }, GPU_HANDOFF_DELAY);
 
     // Cleanup function to prevent memory leaks
     return () => {
+      // Mark as cancelled to prevent stale state updates
+      isCancelledRef.current = true;
+      
       // IMMEDIATELY set mounted to false to free up the WebGL context slot
       // This must happen first to prevent hitting browser context limit
       isReadyRef.current = false;
       setIsMounted(false);
       setIsReady(false);
       
-      clearTimeout(mountTimer);
+      // Clear both timers
+      clearTimeout(handoffTimer);
+      if ((handoffTimer as any)._readyTimer) {
+        clearTimeout((handoffTimer as any)._readyTimer);
+      }
       
       // Unregister disposal callback
       if (disposalCallbackRef.current) {
