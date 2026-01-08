@@ -83,8 +83,8 @@ export default function CinematographyScene() {
 
     // Create film strip using memoized geometry and material
     const strip = new THREE.Mesh(stripGeometry, stripMaterial);
-    // ✅ Guard: Ensure strip is valid before setting position
-    if (strip && strip.position) {
+    // ✅ Guard: Ensure strip is valid and .set() exists before setting position
+    if (strip && strip.position && typeof strip.position.set === 'function') {
       strip.position.set(0, 0, 0);
     }
     filmGroup.add(strip);
@@ -92,8 +92,8 @@ export default function CinematographyScene() {
     // Create film frames using memoized geometry and material
     for (let i = -1; i <= 1; i++) {
       const frame = new THREE.Mesh(frameGeometry, frameMaterial);
-      // ✅ Guard: Ensure frame is valid before setting position
-      if (frame && frame.position) {
+      // ✅ Guard: Ensure frame is valid and .set() exists before setting position
+      if (frame && frame.position && typeof frame.position.set === 'function') {
         frame.position.set(i * 1, 0, 0);
       }
       filmGroup.add(frame);
@@ -103,28 +103,22 @@ export default function CinematographyScene() {
     const lens = new THREE.Mesh(lensGeometry, lensMaterial);
     // ✅ Guard: Ensure lens is valid before setting rotation and position
     if (lens && lens.rotation && lens.position) {
-      lens.rotation.x = Math.PI / 2;
-      lens.position.set(0, 0, -1);
+      // ✅ Soft update: rotation.x is a number, but we guard it
+      if (typeof lens.rotation.x === 'number') {
+        lens.rotation.x = Math.PI / 2;
+      }
+      // ✅ Soft update: Use .set() for position
+      if (typeof lens.position.set === 'function') {
+        lens.position.set(0, 0, -1);
+      }
     }
     filmGroup.add(lens);
 
     scene.add(filmGroup);
     modelRef.current = filmGroup;
 
-    // Add lights (only if not already added)
-    // ⚠️ Note: Lights are shared across scenes - they will persist unless explicitly removed
-    const hasLights = scene.children.some(child => child instanceof THREE.AmbientLight);
-    if (!hasLights) {
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambientLight);
-
-      const pointLight = new THREE.PointLight(0xffffff, 1);
-      // ✅ Guard: Ensure pointLight is valid before setting position
-      if (pointLight && pointLight.position) {
-        pointLight.position.set(5, 5, 5);
-      }
-      scene.add(pointLight);
-    }
+    // ✅ Lights are managed by SafeCanvas - no need to add them here
+    // Lights are shared across all scenes and persist for the session
 
     // ✅ Animation loop - SafeCanvas handles rendering, we just update object rotation
     const animate = () => {
@@ -134,10 +128,14 @@ export default function CinematographyScene() {
       
       frameIdRef.current = requestAnimationFrame(animate);
 
-      // ✅ Guard: Ensure rotation exists before mutating
+      // ✅ Guard: Ensure rotation exists and properties are numbers before mutating
       if (modelRef.current.rotation) {
-        modelRef.current.rotation.y += 0.003;
-        modelRef.current.rotation.x += 0.002;
+        if (typeof modelRef.current.rotation.y === 'number') {
+          modelRef.current.rotation.y += 0.003;
+        }
+        if (typeof modelRef.current.rotation.x === 'number') {
+          modelRef.current.rotation.x += 0.002;
+        }
       }
     };
 

@@ -63,7 +63,20 @@ export default function SafeCanvas() {
       0.1,
       1000
     )
-    camera.position.z = 5
+    // ✅ Soft update: Use .set() for position instead of direct assignment
+    if (camera && camera.position && typeof camera.position.set === 'function') {
+      camera.position.set(0, 0, 5)
+    }
+
+    // ✅ Add shared lights to scene (persist for entire session)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+    scene.add(ambientLight)
+
+    const pointLight = new THREE.PointLight(0xffffff, 1)
+    if (pointLight && pointLight.position && typeof pointLight.position.set === 'function') {
+      pointLight.position.set(5, 5, 5)
+    }
+    scene.add(pointLight)
 
     containerRef.current.appendChild(renderer.domElement)
 
@@ -80,10 +93,19 @@ export default function SafeCanvas() {
     renderLoop()
 
     const handleResize = () => {
+      // ✅ Guard: Ensure camera and renderer are valid
       if (!renderer || !camera) return
+      if (!(camera instanceof THREE.PerspectiveCamera)) return
+      
+      // ✅ Soft update: Guard camera.aspect assignment (it's a number, not Vector3, so can't use .set())
+      // But we guard to ensure camera is valid
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
+      
+      // ✅ Guard: Ensure renderer.setSize exists
+      if (renderer && typeof renderer.setSize === 'function') {
+        renderer.setSize(window.innerWidth, window.innerHeight)
+      }
     }
 
     window.addEventListener('resize', handleResize)

@@ -73,16 +73,16 @@ export default function DesignBuildScene() {
 
     // Create a cube using memoized geometry and material
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    // ✅ Guard: Ensure cube is valid before setting position
-    if (cube && cube.position) {
+    // ✅ Guard: Ensure cube is valid and .set() exists before setting position
+    if (cube && cube.position && typeof cube.position.set === 'function') {
       cube.position.set(-1, 0, 0);
     }
     designGroup.add(cube);
 
     // Create a sphere using memoized geometry and material
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    // ✅ Guard: Ensure sphere is valid before setting position
-    if (sphere && sphere.position) {
+    // ✅ Guard: Ensure sphere is valid and .set() exists before setting position
+    if (sphere && sphere.position && typeof sphere.position.set === 'function') {
       sphere.position.set(1, 0, 0);
     }
     designGroup.add(sphere);
@@ -94,20 +94,8 @@ export default function DesignBuildScene() {
     scene.add(designGroup);
     modelRef.current = designGroup;
 
-    // Add lights (only if not already added)
-    // ⚠️ Note: Lights are shared across scenes - they will persist unless explicitly removed
-    const hasLights = scene.children.some(child => child instanceof THREE.AmbientLight);
-    if (!hasLights) {
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambientLight);
-
-      const pointLight = new THREE.PointLight(0xffffff, 1);
-      // ✅ Guard: Ensure pointLight is valid before setting position
-      if (pointLight && pointLight.position) {
-        pointLight.position.set(5, 5, 5);
-      }
-      scene.add(pointLight);
-    }
+    // ✅ Lights are managed by SafeCanvas - no need to add them here
+    // Lights are shared across all scenes and persist for the session
 
     // ✅ Animation loop - SafeCanvas handles rendering, we just update object rotation
     const animate = () => {
@@ -117,10 +105,14 @@ export default function DesignBuildScene() {
       
       frameIdRef.current = requestAnimationFrame(animate);
 
-      // ✅ Guard: Ensure rotation exists before mutating
+      // ✅ Guard: Ensure rotation exists and properties are numbers before mutating
       if (modelRef.current.rotation) {
-        modelRef.current.rotation.y += 0.003;
-        modelRef.current.rotation.x += 0.002;
+        if (typeof modelRef.current.rotation.y === 'number') {
+          modelRef.current.rotation.y += 0.003;
+        }
+        if (typeof modelRef.current.rotation.x === 'number') {
+          modelRef.current.rotation.x += 0.002;
+        }
       }
     };
 

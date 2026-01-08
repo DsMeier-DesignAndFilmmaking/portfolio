@@ -102,10 +102,14 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
       
       frameIdRef.current = requestAnimationFrame(animate);
 
-      // ✅ Guard: Ensure rotation exists before mutating
+      // ✅ Guard: Ensure rotation exists and properties are numbers before mutating
       if (specklesRef.current.rotation) {
-        specklesRef.current.rotation.y += 0.001;
-        specklesRef.current.rotation.x += 0.0005;
+        if (typeof specklesRef.current.rotation.y === 'number') {
+          specklesRef.current.rotation.y += 0.001;
+        }
+        if (typeof specklesRef.current.rotation.x === 'number') {
+          specklesRef.current.rotation.x += 0.0005;
+        }
       }
     };
 
