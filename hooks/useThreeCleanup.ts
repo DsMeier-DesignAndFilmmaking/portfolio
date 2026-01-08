@@ -139,12 +139,14 @@ export function useThreeCleanup({
         // Get the canvas element before disposing renderer
         const domElement = renderer.domElement;
         
-        // Check if context is already lost before forcing loss
+        // Check if context is already lost
+        // IMPORTANT: Do NOT force context loss during navigation - only dispose resources
+        // This allows new renderers to initialize properly when navigating back
         const gl = renderer.getContext();
         if (gl && !gl.isContextLost()) {
-          // Context is still valid, dispose and force loss
+          // Context is still valid, just dispose (don't force loss)
+          // forceContextLoss() prevents new renderers from initializing
           renderer.dispose();
-          renderer.forceContextLoss();
         } else if (!gl || gl.isContextLost()) {
           // Context already lost, just dispose (don't force again)
           renderer.dispose();

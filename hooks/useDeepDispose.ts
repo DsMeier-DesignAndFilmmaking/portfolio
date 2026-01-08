@@ -216,8 +216,12 @@ function deepDisposeObject(
 
 /**
  * Disposes a WebGL renderer and its context
+ * 
+ * IMPORTANT: Does NOT call forceContextLoss() during navigation.
+ * Only disposes resources to allow new renderers to initialize properly.
+ * forceContextLoss() should only be called when the entire app is unmounting.
  */
-function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean = false): void {
+function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean = false, forceContextLoss: boolean = false): void {
   if (!renderer) return;
   
   try {
@@ -225,7 +229,7 @@ function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean 
     
     // Check if context is already lost
     if (gl && !gl.isContextLost()) {
-      // Dispose renderer first
+      // Dispose renderer first (this frees GPU resources)
       if (typeof renderer.dispose === 'function') {
         renderer.dispose();
         if (verbose && process.env.NODE_ENV === 'development') {
@@ -233,8 +237,9 @@ function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean 
         }
       }
       
-      // Force context loss if available
-      if (typeof renderer.forceContextLoss === 'function') {
+      // Only force context loss if explicitly requested (e.g., app unmounting)
+      // During navigation, we want to allow new renderers to initialize
+      if (forceContextLoss && typeof renderer.forceContextLoss === 'function') {
         renderer.forceContextLoss();
         if (verbose && process.env.NODE_ENV === 'development') {
           console.log('Forced WebGL context loss');
@@ -325,9 +330,10 @@ export function useDeepDispose({
         // Dispose the object/scene recursively
         deepDisposeObject(object, verbose);
         
-        // Dispose renderer
+        // Dispose renderer (without forcing context loss during navigation)
+        // This allows new renderers to initialize properly when navigating back
         if (renderer) {
-          disposeRenderer(renderer, verbose);
+          disposeRenderer(renderer, verbose, false); // false = don't force context loss
         }
         
         // Clear references
@@ -376,14 +382,15 @@ export function useDeepDispose({
 export function deepDispose(
   object: THREE.Object3D | THREE.Scene | null,
   renderer?: THREE.WebGLRenderer | null,
-  verbose: boolean = false
+  verbose: boolean = false,
+  forceContextLoss: boolean = false
 ): void {
   if (object) {
     deepDisposeObject(object, verbose);
   }
   
   if (renderer) {
-    disposeRenderer(renderer, verbose);
+    disposeRenderer(renderer, verbose, forceContextLoss);
   }
 }
 

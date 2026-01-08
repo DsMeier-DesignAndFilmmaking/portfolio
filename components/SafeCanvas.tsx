@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, ReactNode, Suspense, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { registerDisposalCallback } from './PageTransition';
 
 interface SafeCanvasProps {
@@ -86,6 +87,7 @@ export default function SafeCanvas({
   onMount,
   onUnmount,
 }: SafeCanvasProps) {
+  const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const disposalCallbackRef = useRef<(() => void) | null>(null);
@@ -166,7 +168,7 @@ export default function SafeCanvas({
         }
       }
     };
-  }, [mountDelay, onMount, onUnmount]);
+  }, [mountDelay, onMount, onUnmount, pathname]); // Include pathname to reset on route change
 
   // During SSR and initial hydration, return fallback or null
   if (!isMounted || !isReady) {

@@ -30,6 +30,13 @@ export default function SpecklesScene() {
     if (isProjectPage) return;
     if (!containerRef.current) return;
 
+    // Reset refs before creating new objects (prevents stale references)
+    sceneRef.current = null;
+    cameraRef.current = null;
+    rendererRef.current = null;
+    specklesRef.current = null;
+    frameIdRef.current = null;
+
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -93,7 +100,17 @@ export default function SpecklesScene() {
     specklesRef.current = speckles;
 
     // Animation
+    // Guard: ensure renderer exists before rendering
     const animate = () => {
+      // Race condition check: ensure renderer still exists before first frame
+      const currentRenderer = rendererRef.current;
+      const currentScene = sceneRef.current;
+      const currentCamera = cameraRef.current;
+      
+      if (!currentRenderer || !currentScene || !currentCamera) {
+        return;
+      }
+      
       frameIdRef.current = requestAnimationFrame(animate);
 
       if (specklesRef.current) {
@@ -101,7 +118,7 @@ export default function SpecklesScene() {
         specklesRef.current.rotation.x += 0.0005;
       }
 
-      renderer.render(scene, camera);
+      currentRenderer.render(currentScene, currentCamera);
     };
 
     animate();
@@ -121,7 +138,7 @@ export default function SpecklesScene() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProjectPage]);
+  }, [isProjectPage, pathname]); // Include pathname to recreate objects on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({

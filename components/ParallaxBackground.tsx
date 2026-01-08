@@ -39,6 +39,15 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     if (isProjectPage) return;
     if (!containerRef.current) return;
 
+    // Reset refs before creating new objects (prevents stale references)
+    sceneRef.current = null;
+    cameraRef.current = null;
+    rendererRef.current = null;
+    particlesRef.current = null;
+    modelRef.current = null;
+    animationIdRef.current = null;
+    cameraAnimationRef.current = null;
+
     // Track if component is still mounted for async callbacks
     let isMounted = true;
     
@@ -141,7 +150,17 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     scene.add(pointLight);
 
     // Animation (optimized for performance)
+    // Guard: ensure renderer exists before rendering
     const animate = () => {
+      // Race condition check: ensure renderer still exists before first frame
+      const currentRenderer = rendererRef.current;
+      const currentScene = sceneRef.current;
+      const currentCamera = cameraRef.current;
+      
+      if (!currentRenderer || !currentScene || !currentCamera) {
+        return;
+      }
+      
       animationIdRef.current = requestAnimationFrame(animate);
 
       if (particlesRef.current) {
@@ -154,7 +173,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
         modelRef.current.rotation.x += 0.001;
       }
 
-      renderer.render(scene, camera);
+      currentRenderer.render(currentScene, currentCamera);
     };
 
     animate();
@@ -185,7 +204,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       isMounted = false;
       window.removeEventListener('resize', handleResize);
     };
-  }, [modelPath, isProjectPage]);
+  }, [modelPath, isProjectPage, pathname]); // Include pathname to recreate objects on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
