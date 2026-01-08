@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useEffect, useMemo } from 'react';
 import * as THREE from 'three';
-import { getScene, getCamera, getRenderer } from '@/components/SafeCanvas';
+import { useWebGL } from './WebGLContext';
 
 interface SpecklesSceneProps {
   enabled?: boolean;
@@ -10,6 +10,7 @@ interface SpecklesSceneProps {
 export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {}) {
   const specklesRef = useRef<THREE.Points | null>(null);
   const frameIdRef = useRef<number | null>(null);
+  const { scene, camera, renderer } = useWebGL();
 
   // Memoize material - this is static and doesn't need to change on route
   // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
@@ -22,11 +23,6 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
   }), []);
 
   useEffect(() => {
-    // ✅ Use singleton renderer/scene/camera from SafeCanvas
-    const scene = getScene();
-    const camera = getCamera();
-    const renderer = getRenderer();
-
     if (!scene || !camera || !renderer) return;
     
     // ✅ Update scene visibility instead of unmounting
@@ -126,8 +122,8 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
         frameIdRef.current = null;
       }
       
-      // Remove objects from singleton scene
-      const cleanupScene = getScene();
+      // Remove objects from scene
+      const cleanupScene = scene;
       if (!cleanupScene) return;
       
       // ✅ Guard: Ensure specklesRef is valid and is an Object3D before removing
@@ -156,10 +152,8 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
       }
       specklesRef.current = null;
       
-      // ⛔ DO NOT dispose renderer - it persists across route changes
-      // ⛔ DO NOT dispose scene - it persists across route changes
     };
-  }, [enabled, material]); // ✅ Update scene when enabled changes, not on route change
+  }, [enabled, material, scene]); // ✅ Update scene when enabled changes
 
   // Component doesn't render anything - it only adds objects to singleton scene
   return null;

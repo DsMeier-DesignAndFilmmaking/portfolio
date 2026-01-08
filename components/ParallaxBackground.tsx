@@ -2,13 +2,13 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { getScene } from './SafeCanvas'
+import { useWebGL } from './WebGLContext'
 
 export default function ParallaxBackground({ modelPath }: { modelPath: string }) {
   const objectRef = useRef<THREE.Mesh | null>(null)
+  const { scene } = useWebGL()
 
   useEffect(() => {
-    const scene = getScene()
     if (!scene) return
 
     console.log('[ParallaxBackground] mounted', { modelPath })
@@ -25,7 +25,7 @@ export default function ParallaxBackground({ modelPath }: { modelPath: string })
       console.log('[ParallaxBackground] unmounted', { modelPath })
       
       const mesh = objectRef.current
-      const cleanupScene = getScene()
+      const cleanupScene = scene
       
       if (!cleanupScene) {
         objectRef.current = null
@@ -63,7 +63,7 @@ export default function ParallaxBackground({ modelPath }: { modelPath: string })
       
       objectRef.current = null
     }
-  }, [modelPath])
+  }, [modelPath, scene])
 
   return null
 }

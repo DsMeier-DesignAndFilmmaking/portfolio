@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowRight, FaChartLine, FaUsers, FaClock, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import PageTransitionOverlay from './PageTransitionOverlay';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -17,23 +15,9 @@ const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 );
 
 export default function PurdueProjectPage() {
-  const router = useRouter();
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const handleBackToProjects = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsTransitioning(true);
-    setTimeout(() => {
-      router.push('/projects/previous');
-    }, 500);
-  };
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <AnimatePresence>
-        {isTransitioning && <PageTransitionOverlay />}
-      </AnimatePresence>
-
       {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
@@ -45,14 +29,14 @@ export default function PurdueProjectPage() {
           <div className="flex justify-between items-start">
             {/* Back Button */}
             <div className="py-4">
-              <button
-                onClick={handleBackToProjects}
+              <Link
+                href="/projects/previous"
                 className="hover:opacity-80 transition-opacity flex items-center gap-2 text-white"
                 aria-label="Back to projects"
               >
                 <FaArrowLeft className="w-5 h-5" />
                 <span className="text-[12pt]">Back to Projects</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

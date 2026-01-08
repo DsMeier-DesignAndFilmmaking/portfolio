@@ -13,7 +13,10 @@ import HashNavigationHandler from '@/components/HashNavigationHandler';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// ParallaxSection is now managed by WebGLSceneManager in root layout
+// Dynamically import WebGL components to avoid SSR issues
+const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
+  ssr: false,
+});
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -184,7 +187,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Parallax Sections are now managed by WebGLSceneManager in root layout */}
 
         {/* Hero Image Section */}
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
@@ -598,6 +600,7 @@ export default function HomePage() {
         </div>
               </div>
       </main>
+      <HomePageWebGL />
     </ErrorBoundary>
   );
 }

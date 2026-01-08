@@ -1,9 +1,7 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 interface ProjectCardProps {
   title: string;
@@ -17,19 +15,6 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, description, imageUrl, tags, link, currentProject, ongoingClient, 'data-project': dataProject }: ProjectCardProps) {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const router = useRouter();
-
-  const handleClick = (e: React.MouseEvent) => {
-    if (link === '/projects/purdue') {
-      e.preventDefault();
-      setIsTransitioning(true);
-      setTimeout(() => {
-        router.push(link);
-      }, 500);
-    }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -39,16 +24,6 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
       className="group relative rounded-2xl overflow-hidden transition-shadow duration-300"
       data-project={dataProject}
     >
-      <AnimatePresence>
-        {isTransitioning && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-50"
-          />
-        )}
-      </AnimatePresence>
 
       <div className="relative h-[480px] w-full overflow-hidden">
         <div className="relative w-[70%] h-full">
@@ -84,7 +59,6 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
             
             <Link
               href={link}
-              onClick={handleClick}
               className="inline-flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors hover:underline"
             >
               {title === "Purdue University" 
