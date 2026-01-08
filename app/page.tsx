@@ -2,6 +2,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import DesignWork from '@/components/DesignWork';
+import dynamic from 'next/dynamic';
+
+// ✅ Dynamic import for client component (body style reset)
+const HomePageBodyReset = dynamic(() => import('@/components/HomePageBodyReset'), {
+  ssr: false,
+});
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -55,8 +61,10 @@ export default function HomePage() {
 
   return (
     <>
+      {/* ✅ HomePageBodyReset - Resets body styles that persist from project pages */}
+      <HomePageBodyReset />
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
-      <main className="min-h-screen relative overflow-hidden bg-white">
+      <main className="min-h-screen relative bg-white">
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
@@ -329,7 +337,7 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+        <section id="travelogue" className="pt-32 md:pt-48 pb-24 md:pb-32 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
@@ -347,7 +355,7 @@ export default function HomePage() {
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
+            <div className="text-center mb-20 md:mb-24" style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development
@@ -438,7 +446,7 @@ export default function HomePage() {
             
             {/* Tech Stack */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="mt-12 text-center">
+            <div className="mt-16 md:mt-20 text-center">
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
                 <span className="text-gray-600 text-sm font-medium">Building with</span>
                 <div className="flex items-center gap-2">

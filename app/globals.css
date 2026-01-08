@@ -203,6 +203,11 @@ body {
     scroll-margin-top: 80px;
   }
 
+  /* Specific scroll margin for Contact section anchor */
+  #contact.anchor-offset {
+    scroll-margin-top: 80px;
+  }
+
   /* Specific scroll margin for Work section */
   .scroll-anchor {
     position: relative;

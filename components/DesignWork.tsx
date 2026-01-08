@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function DesignWork() {
   return (
-    <section id="work" className="pt-24 md:pt-32 pb-12 md:pb-16 bg-black" aria-label="Design Work">
+    <section id="work" className="pt-32 md:pt-48 pb-24 md:pb-32 bg-black" aria-label="Design Work">
       <div className="max-w-4xl mx-auto px-6">
         <div className="w-full">
           {/* Heading */}
@@ -31,7 +31,7 @@ export default function DesignWork() {
           </div>
 
           {/* Description Paragraphs */}
-          <div className="mb-16 max-w-2xl">
+          <div className="mb-20 md:mb-24 max-w-2xl">
             <p className="text-xl text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
             </p>
@@ -41,7 +41,7 @@ export default function DesignWork() {
           </div>
         
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="mb-20 md:mb-24">
           <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase tracking-wider">
             Work and Projects
           </h2>
@@ -51,7 +51,7 @@ export default function DesignWork() {
         </div>
 
         {/* Work Grid */}
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-16 md:gap-12 lg:gap-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-20 md:gap-16 lg:gap-12">
           
           {/* Product Explorations Block */}
           <div className="flex-1">
