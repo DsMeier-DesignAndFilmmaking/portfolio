@@ -64,10 +64,10 @@ export default function HomePage() {
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section className="intro-section bg-white relative z-10" aria-label="Introduction">
+        <section className="intro-section bg-white relative z-10 section-padding" aria-label="Introduction">
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-start justify-center">
-            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-20">
+            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-0">
               {/* ✅ REMOVED - Suspense and motion.div (animations) */}
               <div 
                   className="w-full text-left"
@@ -110,7 +110,7 @@ export default function HomePage() {
 
 
         {/* Hero Image Section */}
-        <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
+        <section className="section-padding bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div className="w-full relative" style={{ aspectRatio: '4/3' }}>
@@ -130,14 +130,14 @@ export default function HomePage() {
 
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
-        <div id="about" className="anchor-offset" aria-hidden="true"></div>
+        <div className="anchor-offset" aria-hidden="true"></div>
         
         {/* About Me Section */}
-        <section className="pt-24 md:pt-32 pb-12 md:pb-16 bg-white" aria-label="About Me">
+        <section id="about" className="bg-white" aria-label="About Me">
           <div className="max-w-4xl mx-auto px-6">
             <div className="w-full">
               {/* Heading */}
-              <div className="mb-6 md:mb-10">
+              <div className="section-header-spacing">
                 {/* Mobile Version - Simplified */}
                 <h1 
                   className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -333,7 +333,7 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="pt-32 md:pt-48 pb-24 md:pb-32 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+        <section id="travelogue" className="relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
@@ -351,7 +351,7 @@ export default function HomePage() {
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="text-center mb-20 md:mb-24" style={{ maxWidth: '576px', margin: '0 auto' }}>
+            <div className="text-center section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development

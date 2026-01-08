@@ -231,11 +231,36 @@ body {
     overflow: hidden;
   }
 
-  /* Section containers that should maintain height */
-  section[id] {
-    min-height: fit-content; /* ensures section height is content-driven */
-    padding-top: calc(2rem + env(safe-area-inset-top)); /* top padding safe for iPhone notch */
-    padding-bottom: 2rem; /* bottom padding for spacing */
-    scroll-margin-top: calc(env(safe-area-inset-top) + 80px); /* optional fallback for anchors */
+  /* ============================================
+     VERTICAL RHYTHM SYSTEM - 8pt Grid Based
+     Based on modern UI design best practices
+     ============================================ */
+  
+  /* Standardized Section Padding - Fluid Responsive Spacing */
+  /* Mobile: 80px, Tablet: 120px, Desktop: 160px */
+  .section-padding {
+    padding-top: clamp(5rem, 10vh, 10rem); /* 80px - 160px */
+    padding-bottom: clamp(5rem, 10vh, 10rem); /* 80px - 160px */
   }
+
+  /* Section containers that should maintain height */
+  /* Exclude #work (Design Work section) to allow custom Tailwind padding */
+  section[id]:not(#work) {
+    min-height: fit-content;
+    /* Apply standardized vertical rhythm */
+    padding-top: clamp(5rem, 10vh, 10rem); /* 80px mobile → 160px desktop */
+    padding-bottom: clamp(5rem, 10vh, 10rem); /* 80px mobile → 160px desktop */
+    scroll-margin-top: calc(env(safe-area-inset-top) + 80px);
+  }
+
+  /* Standardized internal spacing - 8px grid system */
+  .section-header-spacing {
+    margin-bottom: 3rem; /* 48px - consistent gap between H2 and body content */
+  }
+
+  /* 8px-based scale for smaller internal margins */
+  .spacing-xs { margin: 0.5rem; } /* 8px */
+  .spacing-sm { margin: 1rem; } /* 16px */
+  .spacing-md { margin: 1.5rem; } /* 24px */
+  .spacing-lg { margin: 2rem; } /* 32px */
 } 

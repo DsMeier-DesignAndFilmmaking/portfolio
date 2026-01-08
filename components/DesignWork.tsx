@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 export default function DesignWork() {
   return (
-    <section id="work" className="pt-[240px] md:pt-[360px] pb-[180px] md:pb-[240px] bg-black" aria-label="Design Work">
+    <section id="work" className="bg-black" style={{ paddingTop: 'clamp(5rem, 10vh, 10rem)', paddingBottom: 'clamp(5rem, 10vh, 10rem)' }} aria-label="Design Work">
       <div className="max-w-4xl mx-auto px-6">
         <div className="w-full">
           {/* Heading */}
-          <div className="mb-6 md:mb-10">
+          <div className="section-header-spacing">
             {/* Mobile Version - Simplified */}
             <h1 
               className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -31,7 +31,7 @@ export default function DesignWork() {
           </div>
 
           {/* Description Paragraphs */}
-          <div className="mb-20 md:mb-24 max-w-2xl">
+          <div className="section-header-spacing max-w-2xl">
             <p className="text-xl text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
             </p>
@@ -41,7 +41,7 @@ export default function DesignWork() {
           </div>
         
         {/* Section Header */}
-        <div className="mb-20 md:mb-24">
+        <div className="section-header-spacing">
           <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase tracking-wider">
             Work and Projects
           </h2>
