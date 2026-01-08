@@ -1,155 +1,60 @@
-'use client';
-import ErrorBoundary from '@/components/ErrorBoundary';
-import dynamic from 'next/dynamic';
-import { useEffect, useRef, Suspense, useState } from 'react';
-import { motion } from 'framer-motion';
+// ✅ PURE SERVER COMPONENT - No 'use client', no hooks, no client component imports
 import Link from 'next/link';
-import HashNavigationHandler from '@/components/HashNavigationHandler';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+// ✅ REMOVED - ErrorBoundary (client component with 'use client')
+// import ErrorBoundary from '@/components/ErrorBoundary';
 
-// ✅ Dynamically import animated components to avoid SSR/hydration issues
-const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
-  ssr: false,
-});
+// ✅ COMMENTED OUT - All animated/client components
+// const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
+//   ssr: false,
+// });
 
-const AnimatedHeading = dynamic(() => import('@/components/AnimatedHeading'), {
-  ssr: false,
-});
+// const AnimatedHeading = dynamic(() => import('@/components/AnimatedHeading'), {
+//   ssr: false,
+// });
 
-const ProjectsSection = dynamic(() => import('@/components/ProjectsSection'), {
-  ssr: false,
-});
+// const ProjectsSection = dynamic(() => import('@/components/ProjectsSection'), {
+//   ssr: false,
+// });
 
-const VideoProjectsSection = dynamic(() => import('@/components/VideoProjectsSection'), {
-  ssr: false,
-});
+// const VideoProjectsSection = dynamic(() => import('@/components/VideoProjectsSection'), {
+//   ssr: false,
+// });
 
-const PhotographyGridSection = dynamic(() => import('@/components/PhotographyGridSection'), {
-  ssr: false,
-});
+// const PhotographyGridSection = dynamic(() => import('@/components/PhotographyGridSection'), {
+//   ssr: false,
+// });
 
-const FadeInSection = dynamic(() => import('@/components/FadeInSection'), {
-  ssr: false,
-});
+// const FadeInSection = dynamic(() => import('@/components/FadeInSection'), {
+//   ssr: false,
+// });
 
-// Temporarily disable AITravelScene to fix error
-const AITravelScene = () => (
-  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-    <div className="text-center" style={{ maxWidth: '576px', margin: '0 auto' }}>
-      <div className="text-6xl mb-4">🌍</div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
-      <p className="text-gray-600" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>3D visualization coming soon</p>
-    </div>
-  </div>
-);
+// const AITravelScene = () => (
+//   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+//     <div className="text-center" style={{ maxWidth: '576px', margin: '0 auto' }}>
+//       <div className="text-6xl mb-4">🌍</div>
+//       <h3 className="text-xl font-bold text-gray-800 mb-2">AI Travel Scene</h3>
+//       <p className="text-gray-600" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>3D visualization coming soon</p>
+//     </div>
+//   </div>
+// );
 
 export default function HomePage() {
-  const pathname = usePathname();
-  // Disable heavy motion (parallax, Three.js) on project routes to avoid race conditions
-  const isProjectPage = pathname?.includes('/projects/') ?? false;
-  const videoRef = useRef<HTMLIFrameElement>(null);
-  const mobileHeroRef = useRef<HTMLHeadingElement>(null);
+  // ✅ REMOVED - All hooks and runtime logic
+  // const pathname = usePathname();
+  // const isProjectPage = pathname?.includes('/projects/') ?? false;
+  // const videoRef = useRef<HTMLIFrameElement>(null);
+  // const mobileHeroRef = useRef<HTMLHeadingElement>(null);
+  // const [isClientReady, setIsClientReady] = useState(false);
   
-  // Strict sequential mounting: Only render 3D sections after client is fully ready
-  // This creates a "Clear Zone" where the GPU can breathe after navigation
-  const [isClientReady, setIsClientReady] = useState(false);
-  
-  useEffect(() => {
-    // Wait for next tick to ensure React has fully committed the route change
-    const readyTimer = setTimeout(() => {
-      setIsClientReady(true);
-    }, 100);
-    
-    return () => {
-      clearTimeout(readyTimer);
-      setIsClientReady(false);
-    };
-  }, [pathname]); // Reset on route change
-
-  useEffect(() => {
-    // Ensure DOM exists and skip on server-side
-    if (typeof window === 'undefined') return;
-    
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && videoRef.current) {
-            // Guard: ensure element still exists and has parentNode
-            if (!videoRef.current || !videoRef.current.parentNode) return;
-            
-            try {
-              // Add autoplay parameter when video comes into view
-              const currentSrc = videoRef.current.src;
-              if (!currentSrc.includes('autoplay=1')) {
-                videoRef.current.src = currentSrc + '&autoplay=1&muted=1';
-              }
-            } catch (error) {
-              // Silently fail if element is no longer accessible
-              if (process.env.NODE_ENV === 'development') {
-                console.warn('Error updating video source:', error);
-              }
-            }
-          }
-        });
-      },
-      { threshold: 0.5 } // Trigger when 50% of the video is visible
-    );
-
-    observer.observe(videoElement);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // Auto-measure mobile hero line break and apply to desktop
-  useEffect(() => {
-    // Ensure DOM exists and skip on server-side
-    if (typeof window === 'undefined' || typeof document === 'undefined') return;
-    if (!mobileHeroRef.current) return;
-
-    const measureHeroWidth = () => {
-      if (!mobileHeroRef.current) return;
-      
-      const hero = mobileHeroRef.current;
-      try {
-        const computedStyle = window.getComputedStyle(hero);
-        const lineHeight = parseFloat(computedStyle.lineHeight);
-        const height = hero.offsetHeight;
-        const lines = Math.round(height / lineHeight);
-        
-        if (lines > 1) {
-          const mobileWidth = hero.offsetWidth + 'px';
-          document.documentElement.style.setProperty('--mobile-hero-width', mobileWidth);
-        }
-      } catch (error) {
-        // Silently fail if element is no longer in DOM (e.g., during navigation)
-        if (process.env.NODE_ENV === 'development') {
-          console.warn('Error measuring hero width:', error);
-        }
-      }
-    };
-
-    // Measure on mount and window resize
-    // Use requestAnimationFrame to ensure DOM is ready
-    requestAnimationFrame(() => {
-      measureHeroWidth();
-    });
-    
-    window.addEventListener('resize', measureHeroWidth);
-    
-    return () => {
-      window.removeEventListener('resize', measureHeroWidth);
-    };
-  }, []);
+  // ✅ REMOVED - All useEffect hooks
+  // useEffect(() => { ... }, [pathname]);
+  // useEffect(() => { ... }, []); // Video observer
+  // useEffect(() => { ... }, []); // Hero width measurement
 
   return (
-    <ErrorBoundary>
-      <HashNavigationHandler delay={100} smooth={true} offset={120} />
+    <>
+      {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
       <main className="min-h-screen relative overflow-hidden bg-white">
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
@@ -158,21 +63,17 @@ export default function HomePage() {
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-start justify-center">
             <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-20">
-              <Suspense fallback={null}>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
+              {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+              <div 
                   className="w-full text-left"
                 >
                   <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     {/* Mobile Version - Simplified */}
                     <h1 
-                      ref={mobileHeroRef}
                       className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
                       style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
                     >
-                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
                     </h1>
                     
                     {/* Desktop Version - Original */}
@@ -181,12 +82,11 @@ export default function HomePage() {
                       style={{ 
                         fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
                         whiteSpace: 'normal',
-                        maxWidth: 'var(--mobile-hero-width, 100%)',
                         fontFamily: "'tiempos-headline-regular', serif",
                         marginBottom: 'calc(1.32 * 1.5rem)'
                       }}
                     >
-                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Welcome</span>
+                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
                     </h1>
                   </div>
                   <div className="space-y-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
@@ -198,8 +98,7 @@ export default function HomePage() {
                       Exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
                   </div>
-                </motion.div>
-              </Suspense>
+                </div>
             </div>
           </div>
         </section>
@@ -261,13 +160,8 @@ export default function HomePage() {
                 {/* Left Side: Images Stacked Vertically */}
                 <div className="w-full space-y-8">
                   {/* First Image */}
-                  <Suspense fallback={null}>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                      className="w-full"
-                    >
+                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                  <div className="w-full">
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about"
@@ -275,22 +169,16 @@ export default function HomePage() {
                         alt="Dan Meier"
                         width={576}
                         height={768}
-                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
                         loading="lazy"
                       />
                     </div>
-                    </motion.div>
-                  </Suspense>
+                  </div>
 
                   {/* Second Image (Portrait) */}
-                  <Suspense fallback={null}>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                      className="w-full"
-                    >
+                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                  <div className="w-full">
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-2"
@@ -298,13 +186,12 @@ export default function HomePage() {
                         alt="Dan Meier"
                         width={576}
                         height={768}
-                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
                         loading="lazy"
                       />
                     </div>
-                    </motion.div>
-                  </Suspense>
+                  </div>
 
                   {/* Design Journey Section - Mobile Only (between 2nd and 3rd images) */}
                   <div className="md:hidden w-full">
@@ -347,13 +234,8 @@ export default function HomePage() {
                   </div>
 
                   {/* Third Image (Portrait - Duplicate) */}
-                  <Suspense fallback={null}>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      className="w-full"
-                    >
+                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                  <div className="w-full">
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-3"
@@ -361,22 +243,16 @@ export default function HomePage() {
                         alt="Dan Meier"
                         width={576}
                         height={768}
-                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
                         loading="lazy"
                       />
                     </div>
-                    </motion.div>
-                  </Suspense>
+                  </div>
 
                   {/* Fourth Image (Portrait) */}
-                  <Suspense fallback={null}>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      className="w-full"
-                    >
+                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                  <div className="w-full">
                     <div className="w-full relative">
                       <Image 
                         id="me_heroImage-1_1.1.1-about-4"
@@ -384,24 +260,18 @@ export default function HomePage() {
                         alt="Dan Meier"
                         width={576}
                         height={768}
-                        className="w-full h-auto rounded-lg shadow-lg transition-all duration-300"
+                        className="w-full h-auto rounded-lg shadow-lg"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
                         loading="lazy"
                       />
                     </div>
-                    </motion.div>
-                  </Suspense>
+                  </div>
                 </div>
 
                 {/* Right Side: Text Content */}
                 <div className="w-full">
-                  <Suspense fallback={null}>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                      className="w-full text-left"
-                    >
+                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                  <div className="w-full text-left">
                     <div className="space-y-8">
                   {/* Design Journey Path Marker - Desktop Only */}
                   <div className="hidden md:flex items-center gap-3 mb-6 opacity-60 mt-8">
@@ -435,8 +305,7 @@ export default function HomePage() {
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
                     </div>
-                    </motion.div>
-                  </Suspense>
+                  </div>
                 </div>
               </div>
             </div>
@@ -444,14 +313,16 @@ export default function HomePage() {
         </section>
 
         {/* Projects Section */}
-        <Suspense fallback={null}>
+        {/* ✅ COMMENTED OUT - ProjectsSection (client component with animations) */}
+        {/* <Suspense fallback={null}>
           <ProjectsSection />
-        </Suspense>
+        </Suspense> */}
 
         {/* Video Projects Section */}
-        <Suspense fallback={null}>
+        {/* ✅ COMMENTED OUT - VideoProjectsSection (client component with animations) */}
+        {/* <Suspense fallback={null}>
           <VideoProjectsSection />
-        </Suspense>
+        </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
         <section id="travelogue" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
@@ -466,63 +337,35 @@ export default function HomePage() {
               className="object-cover object-center"
               loading="lazy"
               sizes="100vw"
-              onError={(e) => {
-                // Fallback to JPG version if webp fails
-                try {
-                  const target = e.target as HTMLImageElement;
-                  if (target && !target.src.includes('.jpg') && target.parentNode) {
-                    target.src = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.jpg`;
-                  }
-                } catch (error) {
-                  // Silently fail if element is no longer accessible
-                  if (process.env.NODE_ENV === 'development') {
-                    console.warn('Error handling image fallback:', error);
-                  }
-                }
-              }}
+              // ✅ REMOVED - onError handler (not allowed in server components)
             />
           </div>
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
-            <Suspense fallback={null}>
-              <FadeInSection 
-                delay={0.1}
-                duration={0.8}
-                direction="up"
-                distance={40}
-                threshold={0.2}
-              >
-              <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  In Development
-                </div>
-                <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
-                  fontFamily: "'tiempos-headline-regular', serif",
-                  color: '#FFD700'
-                }}>
-                  World Travel Diaries
-                </h2>
-                <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
-                  fontFamily: "'Roboto', Helvetica, sans-serif",
-                  fontSize: '1.1rem',
-                  color: '#9899ab'
-                }}>
-                  I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
-                </p>
+            {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
+            <div className="text-center mb-16" style={{ maxWidth: '576px', margin: '0 auto' }}>
+              <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                In Development
               </div>
-              </FadeInSection>
-            </Suspense>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
+                fontFamily: "'tiempos-headline-regular', serif",
+                color: '#FFD700'
+              }}>
+                World Travel Diaries
+              </h2>
+              <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
+                fontFamily: "'Roboto', Helvetica, sans-serif",
+                fontSize: '1.1rem',
+                color: '#9899ab'
+              }}>
+                I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
+              </p>
+            </div>
             
             {/* Modern Coming Soon Card */}
-            <Suspense fallback={null}>
-              <FadeInSection 
-              delay={0.2}
-              duration={0.8}
-              direction="up"
-              distance={50}
-              threshold={0.1}
-            >
+            {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
+            <div className="relative">
               <div className="relative">
                 <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                   {/* Background Image */}
@@ -587,30 +430,20 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              </FadeInSection>
-            </Suspense>
+            </div>
             
             {/* Tech Stack */}
-            <Suspense fallback={null}>
-              <FadeInSection 
-                delay={0.3}
-                duration={0.8}
-                direction="up"
-                distance={30}
-                threshold={0.1}
-              >
-              <div className="mt-12 text-center">
-                <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
-                  <span className="text-gray-600 text-sm font-medium">Building with</span>
-                  <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
-                    <span className="text-gray-400">+</span>
-                    <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
-                  </div>
+            {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
+            <div className="mt-12 text-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
+                <span className="text-gray-600 text-sm font-medium">Building with</span>
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
+                  <span className="text-gray-400">+</span>
+                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
                 </div>
               </div>
-              </FadeInSection>
-            </Suspense>
+            </div>
           </div>
         </section>
 
@@ -639,11 +472,10 @@ export default function HomePage() {
         </div>
         </div>
       </main>
-      {process.env.NODE_ENV === 'development' && (
-        <Suspense fallback={null}>
-          <HomePageWebGL />
-        </Suspense>
-      )}
-    </ErrorBoundary>
+      {/* ✅ COMMENTED OUT - HomePageWebGL (WebGL/Three.js client component) */}
+      {/* {process.env.NODE_ENV === 'development' && (
+        <HomePageWebGL />
+      )} */}
+    </>
   );
 }

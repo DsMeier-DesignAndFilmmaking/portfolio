@@ -1,11 +1,16 @@
+// ✅ PURE SERVER COMPONENT LAYOUT - No hooks, no client components, no animations
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
-import NavigationWrapper from '@/components/NavigationWrapper';
-import Footer from '@/components/Footer';
-import PageTransition from '@/components/PageTransition';
-import RouteChangeCleanup from '@/components/RouteChangeCleanup';
+// ✅ REMOVED - NavigationWrapper (client component with hooks)
+// import NavigationWrapper from '@/components/NavigationWrapper';
+// ✅ REMOVED - Footer (client component - can be re-added as static version later)
+// import Footer from '@/components/Footer';
+// ✅ REMOVED - PageTransition (client component with animations)
+// import PageTransition from '@/components/PageTransition';
+// ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access)
+// import RouteChangeCleanup from '@/components/RouteChangeCleanup';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -59,20 +64,27 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.cdnfonts.com" crossOrigin="" />
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`} suppressHydrationWarning>
+        {/* ✅ PURE SERVER COMPONENT LAYOUT - No client components, no hooks, no animations */}
         {/* Isolation div to protect from browser extension DOM injection */}
         <div id="__next" suppressHydrationWarning>
-          {/* ✅ Global route change cleanup - resets body overflow on every route change */}
-          <RouteChangeCleanup />
-          <NavigationWrapper />
-          {process.env.NODE_ENV === 'development' && (
+          {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
+          {/* <RouteChangeCleanup /> */}
+          
+          {/* ✅ REMOVED - NavigationWrapper (client component with hooks) */}
+          {/* <NavigationWrapper /> */}
+          
+          {/* ✅ REMOVED - PageTransition (client component with animations) */}
+          {/* {process.env.NODE_ENV === 'development' && (
             <PageTransition>
               <main>{children}</main>
             </PageTransition>
-          )}
-          {process.env.NODE_ENV !== 'development' && (
-            <main>{children}</main>
-          )}
-          <Footer />
+          )} */}
+          
+          {/* ✅ Pure static main - no animations, no transitions */}
+          <main>{children}</main>
+          
+          {/* ✅ REMOVED - Footer (client component - can be re-added as static version later) */}
+          {/* <Footer /> */}
         </div>
       </body>
     </html>
