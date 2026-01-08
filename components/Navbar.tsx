@@ -26,8 +26,8 @@ const Navbar = () => {
     };
   }, []);
 
-  // ✅ NAVBAR STALE STATE FIX: Force reset navbar states on every route change
-  // This ensures that when you land on the Home Page, the Navbar starts at its "top of page" white/transparent state
+  // ✅ RESET NAVBAR STATE ON NAVIGATION
+  // This kills the "gray tint" by resetting states before the next scroll event
   useEffect(() => {
     if (isMountedRef.current) {
       setIsOverBlackSection(false);
@@ -35,6 +35,15 @@ const Navbar = () => {
       setHasEnteredDesignSection(false);
       setIsMobileMenuOpen(false);
       setIsScrollingToAnchor(false);
+      
+      // Explicitly clean up the DOM element in case classes are stuck
+      const navbar = document.getElementById('site-navbar');
+      if (navbar) {
+        navbar.style.backgroundColor = '';
+        navbar.style.backdropFilter = '';
+        // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
+        navbar.style.webkitBackdropFilter = '';
+      }
     }
   }, [pathname]);
 
@@ -64,6 +73,17 @@ const Navbar = () => {
         ticking = false;
         rafIdRef.current = null;
         return;
+      }
+
+      // ✅ NEW GUARD: If we just arrived at home, force a clean state 
+      // until the first real scroll event validates the position.
+      if (typeof window !== 'undefined' && window.scrollY < 10) {
+        if (isMountedRef.current) {
+          setIsOverBlackSection(false);
+          setIsInDesignSection(false);
+          setHasEnteredDesignSection(false);
+        }
+        // Don't return, let it continue but we've primed the reset
       }
 
       const navbar = document.getElementById('site-navbar');
