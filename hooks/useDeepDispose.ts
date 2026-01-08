@@ -219,9 +219,12 @@ export function deepDisposeObject(
  * Disposes a WebGL renderer and its context
  * Exported for direct use in useEffect cleanup functions
  * 
- * IMPORTANT: Does NOT call forceContextLoss() during navigation.
- * Only disposes resources to allow new renderers to initialize properly.
- * forceContextLoss() should only be called when the entire app is unmounting.
+ * IMPORTANT: For project pages, forceContextLoss should be true to release GPU
+ * so the static homepage can render without interference.
+ * 
+ * @param renderer - The WebGL renderer to dispose
+ * @param verbose - Enable verbose logging
+ * @param forceContextLoss - If true, forcefully kills WebGL context (required for project pages)
  */
 export function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean = false, forceContextLoss: boolean = false): void {
   if (!renderer) return;
@@ -239,12 +242,12 @@ export function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: b
         }
       }
       
-      // Only force context loss if explicitly requested (e.g., app unmounting)
-      // During navigation, we want to allow new renderers to initialize
+      // ✅ NUCLEAR CLEANUP: Force context loss on project pages
+      // This releases the GPU entirely so the static homepage can render
       if (forceContextLoss && typeof renderer.forceContextLoss === 'function') {
         renderer.forceContextLoss();
         if (verbose && process.env.NODE_ENV === 'development') {
-          console.log('Forced WebGL context loss');
+          console.log('[useDeepDispose] Forced WebGL context loss - GPU released');
         }
       }
     } else if (gl && gl.isContextLost()) {
@@ -333,10 +336,13 @@ export function useDeepDispose({
         // Dispose the object/scene recursively
         deepDisposeObject(object, verbose);
         
-        // Dispose renderer (without forcing context loss during navigation)
-        // This allows new renderers to initialize properly when navigating back
+        // ✅ NUCLEAR CLEANUP: Force context loss on project pages
+        // This releases the GPU entirely so the static homepage can render
+        // Check if we're on a project page by checking if pathname includes '/projects/'
+        const isProjectPage = typeof window !== 'undefined' && window.location.pathname.includes('/projects/');
         if (renderer) {
-          disposeRenderer(renderer, verbose, false); // false = don't force context loss
+          // Force context loss on project pages to release GPU for static homepage
+          disposeRenderer(renderer, verbose, isProjectPage);
         }
         
         // Clear references

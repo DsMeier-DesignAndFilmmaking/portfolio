@@ -46,8 +46,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
   // ✅ FIX: Use "sync" mode instead of "wait" to prevent black screen
   // "wait" mode can cause content to disappear during transitions
   // "sync" mode keeps both pages visible during transition
+  // ✅ REMOVED initial={false} - static homepage should mount immediately
   return (
-    <AnimatePresence mode="sync" initial={false}>
+    <AnimatePresence mode="sync">
       <motion.div
         key={pathname}
         initial={{ opacity: 0 }}

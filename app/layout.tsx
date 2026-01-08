@@ -5,6 +5,12 @@ import './globals.css';
 import '@/styles/globals.css';
 import StaticNavbar from '@/components/StaticNavbar';
 import StaticFooter from '@/components/StaticFooter';
+import dynamic from 'next/dynamic';
+
+// ✅ Dynamic import for pathname key wrapper (client component)
+const PathnameKeyWrapper = dynamic(() => import('@/components/PathnameKeyWrapper'), {
+  ssr: false,
+});
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
 // ✅ REMOVED - Footer (client component - replaced with StaticFooter)
@@ -86,7 +92,10 @@ export default function RootLayout({
           )} */}
           
           {/* ✅ Pure static main - no animations, no transitions */}
-          <main>{children}</main>
+          {/* ✅ Pathname key ensures clean DOM sweep when navigating from 3D pages to static homepage */}
+          <PathnameKeyWrapper>
+            <main>{children}</main>
+          </PathnameKeyWrapper>
           
           {/* ✅ Static Footer - No hooks, no JS behavior */}
           <StaticFooter />
