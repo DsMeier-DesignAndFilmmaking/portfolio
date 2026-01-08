@@ -5,7 +5,6 @@ import VideoProjectsSection from '@/components/VideoProjectsSection';
 import PhotographyGridSection from '@/components/PhotographyGridSection';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import FadeInSection from '@/components/FadeInSection';
-import SafeCanvas from '@/components/SafeCanvas';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -14,19 +13,7 @@ import HashNavigationHandler from '@/components/HashNavigationHandler';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// Dynamically import heavy components with Suspense boundaries
-const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'), {
-  loading: () => (
-    <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center" style={{ maxWidth: '576px', margin: '0 auto' }}>
-          <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
-        </div>
-      </div>
-    </div>
-  ),
-  ssr: false,
-});
+// ParallaxSection is now managed by WebGLSceneManager in root layout
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -197,37 +184,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Optimized Parallax Sections - Dynamically loaded */}
-        {/* Disable heavy motion on project routes to avoid race conditions during navigation */}
-        {/* Using SafeCanvas to prevent hydration errors and WebGL memory leaks */}
-        {/* Strict Sequential Mounting: Only render after client is fully ready */}
-        {!isProjectPage && isClientReady && (
-          <>
-            {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
-            <SafeCanvas
-              key={`ai-travel-${pathname}-0`}
-              mountDelay={500}
-              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
-              suspenseFallback={
-                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
-                  </div>
-                </div>
-              }
-            >
-              <div className="-mt-16 md:-mt-20">
-                <ParallaxSection
-                  title="Always Curious."
-                  description=""
-                  modelPath="ai-travel"
-                  className="bg-transparent"
-                />
-              </div>
-            </SafeCanvas>
-
-          </>
-        )}
+        {/* Parallax Sections are now managed by WebGLSceneManager in root layout */}
 
         {/* Hero Image Section */}
         <section className="pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16 lg:pb-20 bg-white">
@@ -248,29 +205,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {!isProjectPage && isClientReady && (
-          <SafeCanvas
-            key={`torus-${pathname}-1`}
-            mountDelay={1000}
-            fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
-            suspenseFallback={
-              <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
-                </div>
-              </div>
-            }
-          >
-            <ParallaxSection
-              title="I'm a designer and builder, but traveling the world is what really shaped my perspective. It taught me to build digital experiences that don't just work, but actually care for our global family and the planet we call home."
-              description=""
-              modelPath="torus"
-              className="bg-transparent"
-              hideGradient={true}
-              textColor="black"
-            />
-          </SafeCanvas>
-        )}
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
         <div id="about" className="anchor-offset" aria-hidden="true"></div>

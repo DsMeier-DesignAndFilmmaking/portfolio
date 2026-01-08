@@ -323,8 +323,17 @@ function Scene() {
   );
 }
 
-export default function AITravelScene() {
-  const pathname = usePathname();
+interface AITravelSceneProps {
+  enabled?: boolean;
+}
+
+export default function AITravelScene({ enabled = true }: AITravelSceneProps = {}) {
+  // ✅ Update scene visibility instead of unmounting
+  // Canvas key removed - component stays mounted, visibility controlled by enabled prop
+  
+  if (!enabled) {
+    return null; // Return null when disabled instead of unmounting
+  }
   
   return (
     <motion.div
@@ -336,8 +345,7 @@ export default function AITravelScene() {
         ease: "easeOut"
       }}
     >
-      <Canvas 
-        key={pathname}
+      <Canvas
         camera={{ position: [0, 0, 3], fov: 45 }}
         dpr={[1, 1]}
         performance={{ min: 0.3, max: 0.8 }}

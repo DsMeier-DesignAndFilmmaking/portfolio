@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import NavigationWrapper from '@/components/NavigationWrapper';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import WebGLSceneManager from '@/components/WebGLSceneManager';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -63,6 +64,8 @@ export default function RootLayout({
           <PageTransition>
             <main>{children}</main>
           </PageTransition>
+          {/* WebGL Scene Manager - Root level only, always mounted */}
+          <WebGLSceneManager />
           <Footer />
         </div>
       </body>

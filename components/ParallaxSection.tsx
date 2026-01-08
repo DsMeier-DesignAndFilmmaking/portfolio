@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 import ParallaxBackground from './ParallaxBackground';
 import SpecklesScene from './SpecklesScene';
 import AITravelScene from './AITravelScene';
@@ -14,6 +13,7 @@ interface ParallaxSectionProps {
   modelPath?: string;
   hideGradient?: boolean;
   textColor?: 'black' | 'white';
+  enabled?: boolean; // Control scene visibility without unmounting
 }
 
 export default function ParallaxSection({
@@ -23,10 +23,9 @@ export default function ParallaxSection({
   modelPath,
   hideGradient = false,
   textColor,
+  enabled = true, // Default to enabled
 }: ParallaxSectionProps) {
-  const pathname = usePathname();
-  // Disable parallax transforms and scroll-driven motion on project routes to avoid race conditions
-  const isProjectPage = pathname?.includes('/projects/') ?? false;
+  // enabled prop controls scene visibility, not route-based logic
   const ref = useRef(null);
   const [isClient, setIsClient] = useState(false);
   
@@ -34,18 +33,17 @@ export default function ParallaxSection({
     setIsClient(true);
   }, []);
 
-  // Disable scroll-driven motion on project routes to avoid race conditions
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
 
-  // Disable parallax transforms on project routes - use static values instead
+  // Disable parallax transforms when disabled - use static values instead
   // This prevents scroll-driven animations without breaking the hook
   // Optimize transforms with better performance settings
-  const y = isProjectPage ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = isProjectPage ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = !enabled ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = !enabled ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   if (!isClient) {
     return (
@@ -81,13 +79,16 @@ export default function ParallaxSection({
         style={{ y, opacity }}
         className="absolute inset-0"
       >
-        {modelPath === 'speckles' ? (
-          <SpecklesScene />
-        ) : modelPath === 'ai-travel' ? (
-          <AITravelScene />
-        ) : (
-          <ParallaxBackground modelPath={modelPath} />
-        )}
+        {/* ✅ Update scene via props, don't unmount */}
+        {enabled && modelPath ? (
+          modelPath === 'speckles' ? (
+            <SpecklesScene enabled={enabled} />
+          ) : modelPath === 'ai-travel' ? (
+            <AITravelScene enabled={enabled} />
+          ) : (
+            <ParallaxBackground modelPath={modelPath} enabled={enabled} />
+          )
+        ) : null}
       </motion.div>
       {modelPath === 'torus' && !hideGradient && (
         <div 

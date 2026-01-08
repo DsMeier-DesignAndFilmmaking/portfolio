@@ -3,7 +3,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { deepDisposeObject, disposeRenderer } from '@/hooks/useDeepDispose';
+// ⛔ Removed renderer disposal imports - renderers persist across route changes
 
 export default function CinematographyScene() {
   const pathname = usePathname();
@@ -175,50 +175,24 @@ export default function CinematographyScene() {
 
     window.addEventListener('resize', handleResize);
 
-    // Consolidated cleanup: ALL cleanup happens here in the unmount phase
+    // ⛔ NO RENDERER DISPOSAL - Renderer persists across route changes
+    // Only cleanup animations and event listeners
     return () => {
-      console.log('[CinematographyScene] unmounted', { pathname, isProjectPage });
+      console.log('[CinematographyScene] cleanup (renderer persists)', { pathname, isProjectPage });
       
       // 1. Remove resize listener
       window.removeEventListener('resize', handleResize);
       
-      // 2. Cancel animation frame FIRST to stop rendering
+      // 2. Cancel animation frame to stop rendering
       if (frameIdRef.current !== null) {
         cancelAnimationFrame(frameIdRef.current);
         frameIdRef.current = null;
       }
       
-      // 3. Remove canvas from DOM before disposal
-      if (rendererRef.current?.domElement && containerRef.current) {
-        try {
-          if (containerRef.current.contains(rendererRef.current.domElement)) {
-            containerRef.current.removeChild(rendererRef.current.domElement);
-          }
-        } catch (error) {
-          // Canvas may already be removed
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('Error removing canvas from DOM:', error);
-          }
-        }
-      }
-      
-      // 4. Dispose scene and all its resources (geometries, materials, textures)
-      if (sceneRef.current) {
-        const verbose = process.env.NODE_ENV === 'development';
-        deepDisposeObject(sceneRef.current, verbose);
-        sceneRef.current = null;
-      }
-      
-      // 5. Dispose renderer (with forceContextLoss: false for internal navigation)
-      if (rendererRef.current) {
-        const verbose = process.env.NODE_ENV === 'development';
-        disposeRenderer(rendererRef.current, verbose, false);
-        rendererRef.current = null;
-      }
-      
-      // 6. Clear remaining refs
-      cameraRef.current = null;
-      modelRef.current = null;
+      // ⛔ DO NOT dispose renderer - it persists across route changes
+      // ⛔ DO NOT dispose scene - it persists across route changes
+      // ⛔ DO NOT remove canvas from DOM - it persists across route changes
+      // ⛔ renderer.dispose() and renderer.forceContextLoss() are FATAL in SPA navigation
     };
   }, [isProjectPage, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Only re-init when isProjectPage changes, not on every route change
 
