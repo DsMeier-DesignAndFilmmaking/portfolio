@@ -21,7 +21,10 @@ export default function HomePageBodyReset() {
 
     // ✅ Use requestAnimationFrame to ensure DOM is ready
     // This prevents blocking the initial render
-    const rafId = requestAnimationFrame(() => {
+    let timerId: NodeJS.Timeout | null = null;
+    let rafId: number | null = null;
+    
+    rafId = requestAnimationFrame(() => {
       if (typeof document !== 'undefined') {
         // ✅ CRITICAL: Reset all styles that project pages might set
         // These are the "Z-Index" or "Opacity" traps that cause blank screens
@@ -50,60 +53,73 @@ export default function HomePageBodyReset() {
         document.body.style.pointerEvents = '';
         document.documentElement.style.pointerEvents = '';
         
-        // ✅ NAVBAR CLEAN SLATE: Reset navbar styles that project pages might set
-        // Find navbar - check both header and nav elements
+        // ✅ AGGRESSIVE NAVBAR RESET: Reset navbar styles that project pages might set
+        // Find navbar - check both header and nav elements, including by ID
         const header = document.querySelector('header');
-        const navbar = document.querySelector('header nav') || 
-                      document.querySelector('nav') || 
-                      header ||
-                      document.querySelector('.navbar');
+        const nav = document.querySelector('header nav') || 
+                    document.querySelector('nav') ||
+                    document.getElementById('site-navbar');
         
-        // ✅ CRITICAL: Reset header first (it's the parent container)
-        if (header) {
-          const headerElement = header as HTMLElement;
-          // Force reset ALL background and filter properties that cause "tint"
-          headerElement.style.backgroundColor = '';
-          headerElement.style.background = '';
-          headerElement.style.backdropFilter = '';
-          // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
-          headerElement.style.webkitBackdropFilter = '';
-          headerElement.style.opacity = '1';
-          headerElement.style.boxShadow = '';
-          headerElement.style.filter = '';
-          headerElement.style.transform = '';
-          headerElement.style.color = '';
+        // ✅ JANITOR RESET: Aggressive reset function
+        const resetNavbar = () => {
+          // ✅ CRITICAL: Reset header first (it's the parent container)
+          if (header) {
+            const headerElement = header as HTMLElement;
+            
+            // ✅ Step 1: Aggressively reset ALL inline styles that could cause tint
+            // Set to explicit values to override any project page styles
+            headerElement.style.backgroundColor = '';
+            headerElement.style.background = '';
+            headerElement.style.backdropFilter = '';
+            // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
+            headerElement.style.webkitBackdropFilter = '';
+            headerElement.style.opacity = '1';
+            headerElement.style.boxShadow = '';
+            headerElement.style.filter = '';
+            headerElement.style.transform = '';
+            headerElement.style.color = '';
+            headerElement.style.borderColor = '';
+          }
           
-          // ✅ Force reapply CSS classes by removing and re-adding
-          // This ensures bg-white/80 backdrop-blur-sm is applied
-          const originalClasses = headerElement.className;
-          headerElement.className = '';
-          // Use requestAnimationFrame to ensure DOM is ready
-          requestAnimationFrame(() => {
-            headerElement.className = originalClasses;
-          });
-        }
+          // ✅ AGGRESSIVE: Reset nav element specifically (including by ID)
+          if (nav) {
+            const navElement = nav as HTMLElement;
+            // Remove any lingering inline styles or forced tints
+            navElement.style.backgroundColor = '';
+            navElement.style.background = '';
+            navElement.style.backdropFilter = '';
+            // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
+            navElement.style.webkitBackdropFilter = 'none';
+            navElement.style.opacity = '1';
+            navElement.style.boxShadow = '';
+            navElement.style.filter = '';
+            navElement.style.transform = '';
+            navElement.style.color = '';
+            navElement.style.borderColor = '';
+          }
+        };
         
-        // Also reset nav element if it exists separately
-        if (navbar && navbar !== header) {
-          const navElement = navbar as HTMLElement;
-          // Force reset the background and filters that cause "tint"
-          navElement.style.backgroundColor = '';
-          navElement.style.background = '';
-          navElement.style.backdropFilter = '';
-          // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
-          navElement.style.webkitBackdropFilter = '';
-          navElement.style.opacity = '1';
-          navElement.style.boxShadow = '';
-          navElement.style.filter = '';
-          navElement.style.transform = '';
-          navElement.style.color = '';
-        }
+        // ✅ Run reset immediately
+        resetNavbar();
+        
+        // ✅ Catch late renders with a timer
+        timerId = setTimeout(resetNavbar, 100);
+        
+        // ✅ Also use requestAnimationFrame for better timing
+        requestAnimationFrame(() => {
+          resetNavbar();
+        });
       }
     });
 
     // Cleanup on unmount (when navigating away from homepage)
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      if (timerId) {
+        clearTimeout(timerId);
+      }
       if (typeof document !== 'undefined') {
         // Reset to empty string to let CSS classes take over
         document.body.style.backgroundColor = '';

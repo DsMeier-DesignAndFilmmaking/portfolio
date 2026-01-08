@@ -12,17 +12,16 @@ export default function StaticNavbar() {
         {/* Left: Logo */}
         <Link 
           href="/" 
-          className="flex items-center hover:opacity-80 transition-opacity h-10"
+          className="flex items-center hover:opacity-80 transition-opacity h-12"
           aria-label="Dan Meier - Home"
         >
           <Image
             src={`${basePath}/images/signature-25.png`}
             alt="Dan Meier logo"
-            width={72}
-            height={24}
+            width={86}
+            height={29}
             priority
-            className="h-8 w-auto"
-            style={{ width: 'auto', height: 'auto' }}
+            className="h-7 w-auto max-h-full object-contain"
           />
         </Link>
 

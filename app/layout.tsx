@@ -5,7 +5,6 @@ import './globals.css';
 import '@/styles/globals.css';
 import StaticNavbar from '@/components/StaticNavbar';
 import StaticFooter from '@/components/StaticFooter';
-import PathnameKeyWrapper from '@/components/PathnameKeyWrapper';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
@@ -71,6 +70,7 @@ export default function RootLayout({
         {/* ✅ PURE SERVER COMPONENT LAYOUT - No client components, no hooks, no animations */}
         {/* Isolation div to protect from browser extension DOM injection */}
         {/* ✅ BodyKeyWrapper with pathname key forces complete DOM reset on route change */}
+        {/* ✅ DO NOT put key on <html> or <body> - only on content wrapper inside body */}
         <BodyKeyWrapper>
           <div id="__next" suppressHydrationWarning>
             {/* ✅ Static Navbar - No hooks, no JS behavior */}
@@ -90,11 +90,7 @@ export default function RootLayout({
             )} */}
             
             {/* ✅ Pure static main - no animations, no transitions */}
-            {/* ✅ Pathname key ensures clean DOM sweep when navigating from 3D pages to static homepage */}
-            {/* ✅ The key forces a complete re-mount of the page content on every route change */}
-            <PathnameKeyWrapper>
-              <main className="min-h-screen">{children}</main>
-            </PathnameKeyWrapper>
+            <main className="min-h-screen">{children}</main>
             
             {/* ✅ Static Footer - No hooks, no JS behavior */}
             <StaticFooter />

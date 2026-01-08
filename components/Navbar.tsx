@@ -25,7 +25,19 @@ const Navbar = () => {
       isMountedRef.current = false;
     };
   }, []);
-  
+
+  // ✅ NAVBAR STALE STATE FIX: Force reset navbar states on every route change
+  // This ensures that when you land on the Home Page, the Navbar starts at its "top of page" white/transparent state
+  useEffect(() => {
+    if (isMountedRef.current) {
+      setIsOverBlackSection(false);
+      setIsInDesignSection(false);
+      setHasEnteredDesignSection(false);
+      setIsMobileMenuOpen(false);
+      setIsScrollingToAnchor(false);
+    }
+  }, [pathname]);
+
   // Determine if we're on a project page (calculate before early return)
   const isOnPurduePage = pathname?.includes('/projects/purdue');
 
