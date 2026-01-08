@@ -209,45 +209,6 @@ export default function HomePage() {
               </div>
             </SafeCanvas>
 
-            <SafeCanvas
-              key={`design-build-${pathname}`}
-              mountDelay={400}
-              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
-              suspenseFallback={
-                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
-                  </div>
-                </div>
-              }
-            >
-              <ParallaxSection
-                title="I tinker, I design, and I build."
-                description=""
-                modelPath="design-build"
-                className="bg-transparent"
-              />
-            </SafeCanvas>
-
-            <SafeCanvas
-              key={`cinematography-${pathname}`}
-              mountDelay={800}
-              fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
-              suspenseFallback={
-                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"></div>
-                  </div>
-                </div>
-              }
-            >
-              <ParallaxSection
-                title="I shape narrative through the art of cinematic imagery."
-                description=""
-                modelPath="cinematography"
-                className="bg-transparent"
-              />
-            </SafeCanvas>
           </>
         )}
 

@@ -4,8 +4,6 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import ParallaxBackground from './ParallaxBackground';
-import DesignBuildScene from './DesignBuildScene';
-import CinematographyScene from './CinematographyScene';
 import SpecklesScene from './SpecklesScene';
 import AITravelScene from './AITravelScene';
 
@@ -83,11 +81,7 @@ export default function ParallaxSection({
         style={{ y, opacity }}
         className="absolute inset-0"
       >
-        {modelPath === 'design-build' ? (
-          <DesignBuildScene />
-        ) : modelPath === 'cinematography' ? (
-          <CinematographyScene />
-        ) : modelPath === 'speckles' ? (
+        {modelPath === 'speckles' ? (
           <SpecklesScene />
         ) : modelPath === 'ai-travel' ? (
           <AITravelScene />
