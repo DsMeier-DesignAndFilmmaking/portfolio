@@ -312,7 +312,8 @@ export function useDeepDispose({
       // Early return if already cleaned up
       if (!object) {
         if (renderer) {
-          disposeRenderer(renderer, verbose);
+          // Explicitly pass forceContextLoss: false to allow new renderers to initialize
+          disposeRenderer(renderer, verbose, false);
         }
         return;
       }
