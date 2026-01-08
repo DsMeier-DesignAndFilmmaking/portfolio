@@ -21,46 +21,51 @@ export default function CinematographyScene() {
     setIsClient(true);
   }, []);
 
-  // Memoize geometries and materials to ensure fresh instances on remount
-  // This prevents using disposed objects when navigating back
-  const reelGeometry = useMemo(() => new THREE.TorusGeometry(1, 0.2, 16, 32), [pathname]);
+  // Memoize geometries and materials - these are static and don't need to change on route
+  // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
+  const reelGeometry = useMemo(() => new THREE.TorusGeometry(1, 0.2, 16, 32), []);
   const reelMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0x4a90e2,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
-  const stripGeometry = useMemo(() => new THREE.BoxGeometry(3, 0.1, 0.1), [pathname]);
+  const stripGeometry = useMemo(() => new THREE.BoxGeometry(3, 0.1, 0.1), []);
   const stripMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0x4a90e2,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
-  const frameGeometry = useMemo(() => new THREE.BoxGeometry(0.3, 0.2, 0.05), [pathname]);
+  const frameGeometry = useMemo(() => new THREE.BoxGeometry(0.3, 0.2, 0.05), []);
   const frameMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0x4a90e2,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
-  const lensGeometry = useMemo(() => new THREE.CylinderGeometry(0.5, 0.5, 0.2, 32), [pathname]);
+  const lensGeometry = useMemo(() => new THREE.CylinderGeometry(0.5, 0.5, 0.2, 32), []);
   const lensMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0x4a90e2,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
     if (typeof window === 'undefined') return;
     
     // Skip initialization on project routes to avoid race conditions
-    if (isProjectPage) return;
+    if (isProjectPage) {
+      console.log('[CinematographyScene] skipped (project page)', { pathname, isProjectPage });
+      return;
+    }
+    
+    console.log('[CinematographyScene] mounted', { pathname, isProjectPage });
     if (!containerRef.current) return;
 
     // Reset refs before creating new objects (prevents stale references)
@@ -172,6 +177,8 @@ export default function CinematographyScene() {
 
     // Consolidated cleanup: ALL cleanup happens here in the unmount phase
     return () => {
+      console.log('[CinematographyScene] unmounted', { pathname, isProjectPage });
+      
       // 1. Remove resize listener
       window.removeEventListener('resize', handleResize);
       
@@ -213,7 +220,7 @@ export default function CinematographyScene() {
       cameraRef.current = null;
       modelRef.current = null;
     };
-  }, [pathname, isProjectPage, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Include pathname and memoized objects to recreate on route change
+  }, [isProjectPage, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Only re-init when isProjectPage changes, not on every route change
 
   if (!isClient) {
     return (

@@ -38,9 +38,11 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
   const frameCountRef = useRef(0);
   const lastTimeRef = useRef(performance.now());
   const startTimeRef = useRef(performance.now());
+  const fpsRafRef = useRef<number | null>(null);
 
   // Measure load time
   const measureLoadTime = useCallback(() => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined') return;
     const loadTime = performance.now() - startTimeRef.current;
     setMetrics(prev => ({ ...prev, loadTime }));
     
@@ -64,6 +66,7 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
 
   // Monitor FPS
   const measureFPS = useCallback(() => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined' || typeof requestAnimationFrame === 'undefined') return;
     frameCountRef.current++;
     const currentTime = performance.now();
     
@@ -79,11 +82,12 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
       lastTimeRef.current = currentTime;
     }
     
-    requestAnimationFrame(measureFPS);
+    fpsRafRef.current = requestAnimationFrame(measureFPS);
   }, [mergedConfig.enableMonitoring]);
 
   // Monitor memory usage
   const measureMemoryUsage = useCallback(() => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined') return;
     if ('memory' in performance) {
       const memory = (performance as any).memory;
       const memoryUsage = memory.usedJSHeapSize / (1024 * 1024); // MB
@@ -119,6 +123,7 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
 
   // Check connection speed
   const checkConnectionSpeed = useCallback(() => {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
     if ('connection' in navigator) {
       const connection = (navigator as any).connection;
       const isSlowConnection = connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
@@ -128,6 +133,7 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
 
   // Start monitoring
   const startMonitoring = useCallback(() => {
+    if (typeof window === 'undefined') return;
     if (!mergedConfig.enableMonitoring) return;
     
     setIsMonitoring(true);
@@ -148,6 +154,11 @@ export function usePerformanceMonitor(config: Partial<PerformanceConfig> = {}) {
     
     return () => {
       clearInterval(interval);
+      // Cancel FPS monitoring RAF loop
+      if (fpsRafRef.current) {
+        cancelAnimationFrame(fpsRafRef.current);
+        fpsRafRef.current = null;
+      }
       setIsMonitoring(false);
     };
   }, [

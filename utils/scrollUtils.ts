@@ -26,6 +26,11 @@ let isAnchorScrolling = false;
  * Custom smooth scroll function with easing
  */
 export const smoothScrollTo = (targetY: number, duration: number = 600): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof requestAnimationFrame === 'undefined') {
+    return Promise.resolve();
+  }
+
   return new Promise((resolve) => {
     // Cancel any existing scroll animation
     if (activeScrollAnimation) {
@@ -64,6 +69,9 @@ export const smoothScrollTo = (targetY: number, duration: number = 600): Promise
 // utils/scrollUtils.ts
 
 export function smoothScrollToId(id: string, offset = 0) {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  
   const el = document.getElementById(id);
   if (!el) return;
 
@@ -109,6 +117,11 @@ export function smoothScrollToId(id: string, offset = 0) {
  * This ensures accurate scroll positioning on first click
  */
 export const waitForContentLoad = (): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return Promise.resolve();
+  }
+
   // Return cached promise if already resolved
   if (isContentFullyLoaded) {
     return Promise.resolve();
@@ -178,6 +191,11 @@ export const waitForContentLoad = (): Promise<void> => {
  * Wait for all images to load (including lazy-loaded ones)
  */
 const waitForImages = (): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return Promise.resolve();
+  }
+
   return new Promise<void>((resolve) => {
     const images = Array.from(document.images);
     const pendingImages = images.filter(img => !img.complete);
@@ -219,6 +237,11 @@ const waitForImages = (): Promise<void> => {
  * Wait for layout to stabilize (no size changes for a period)
  */
 const waitForLayoutStable = (timeout = 500): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return Promise.resolve();
+  }
+
   return new Promise<void>((resolve) => {
     let lastHeight = document.documentElement.scrollHeight;
     let lastWidth = document.documentElement.scrollWidth;
@@ -258,6 +281,9 @@ const waitForLayoutStable = (timeout = 500): Promise<void> => {
  * Enhanced to be more stable and less affected by other sections
  */
 export const calculateTargetPosition = (targetElement: HTMLElement, navbarElement?: HTMLElement | null): number => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined') return 0;
+
   // Force a reflow to ensure accurate measurements
   targetElement.offsetHeight;
   
@@ -343,6 +369,9 @@ export const scrollToElement = async (
  * Enhanced to avoid interference from other sections
  */
 const waitForLazyContentInSection = async (sectionElement: HTMLElement): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined') return Promise.resolve();
+
   return new Promise<void>((resolve) => {
     // Check if section has lazy-loaded content
     const lazyImages = sectionElement.querySelectorAll('img[loading="lazy"]');
@@ -405,6 +434,9 @@ export const scrollToAnchor = async (
     onProgress?: (progress: number) => void;
   } = {}
 ): Promise<void> => {
+  // Guard: Ensure we're on the client side
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
   const {
     duration = 700,
     waitForLazyContent = true,
@@ -530,6 +562,7 @@ export const scrollToAnchor = async (
  * Check if we're currently performing an anchor scroll
  */
 export const isCurrentlyAnchorScrolling = (): boolean => {
+  if (typeof window === 'undefined') return false;
   return isAnchorScrolling;
 };
 

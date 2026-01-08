@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 interface StickyProgressNavProps {
@@ -14,6 +14,7 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const [isVisible, setIsVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const scrollAnimationRef = useRef<number | null>(null);
 
   // Throttled scroll handler for better performance
   const handleScroll = useCallback(() => {
@@ -55,6 +56,9 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
   }, [sections]);
 
   useEffect(() => {
+    // Guard: Ensure we're on the client side
+    if (typeof window === 'undefined') return;
+
     // Throttle scroll events for better performance
     let ticking = false;
     
@@ -75,12 +79,23 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
 
     return () => {
       window.removeEventListener('scroll', throttledScroll);
+      // Cancel any ongoing scroll animation
+      if (scrollAnimationRef.current) {
+        cancelAnimationFrame(scrollAnimationRef.current);
+        scrollAnimationRef.current = null;
+      }
     };
   }, [handleScroll]);
 
   const scrollToSection = (sectionId: string) => {
     // Prevent multiple scroll animations
     if (isScrolling) return;
+    
+    // Cancel any existing scroll animation
+    if (scrollAnimationRef.current) {
+      cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
+    }
     
     const element = document.getElementById(sectionId);
     if (element) {
@@ -115,9 +130,10 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
         window.scrollTo(0, startPosition + distance * easedProgress);
         
         if (progress < 1) {
-          requestAnimationFrame(animateScroll);
+          scrollAnimationRef.current = requestAnimationFrame(animateScroll);
         } else {
           // Animation complete
+          scrollAnimationRef.current = null;
           setIsScrolling(false);
           
           // Focus the target element for accessibility
@@ -126,7 +142,7 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
       };
 
       // Use requestAnimationFrame for consistent performance
-      requestAnimationFrame(animateScroll);
+      scrollAnimationRef.current = requestAnimationFrame(animateScroll);
     }
   };
 

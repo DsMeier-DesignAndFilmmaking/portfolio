@@ -22,6 +22,8 @@ const StatCard = ({
   const controls = useAnimation();
   const valueRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<anime.AnimeTimelineInstance | null>(null);
+  const progressAnimationRef = useRef<anime.AnimeInstance | null>(null);
 
   useEffect(() => {
     if (isInView) {
@@ -36,13 +38,13 @@ const StatCard = ({
         valueRef.current.innerHTML = '0';
         
         // Create timeline for smoother animation
-        const timeline = anime.timeline({
+        timelineRef.current = anime.timeline({
           easing: 'easeOutExpo',
           duration: 2000
         });
 
         // Add number counting animation
-        timeline.add({
+        timelineRef.current.add({
           targets: valueRef.current,
           innerHTML: [0, targetValue],
           round: 1,
@@ -52,7 +54,7 @@ const StatCard = ({
 
         // Add plus sign after counting
         if (hasPlus) {
-          timeline.add({
+          timelineRef.current.add({
             targets: valueRef.current,
             innerHTML: targetValue + '+',
             duration: 0
@@ -61,7 +63,7 @@ const StatCard = ({
 
         // Animate progress bar
         if (progressRef.current) {
-          anime({
+          progressAnimationRef.current = anime({
             targets: progressRef.current,
             width: ['0%', '100%'],
             duration: 2000,
@@ -70,6 +72,18 @@ const StatCard = ({
         }
       }
     }
+
+    // Cleanup: pause and remove animations on unmount
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.pause();
+        timelineRef.current = null;
+      }
+      if (progressAnimationRef.current) {
+        progressAnimationRef.current.pause();
+        progressAnimationRef.current = null;
+      }
+    };
   }, [isInView, controls, value]);
 
   return (
@@ -120,6 +134,7 @@ interface StatsSectionProps {
 
 export default function StatsSection({ className = '', containerClassName = '', hideThirdBlock = false, variant = 'design' }: StatsSectionProps) {
   const statsRef = useRef<HTMLDivElement>(null);
+  const animationsRef = useRef<anime.AnimeInstance[]>([]);
 
   useEffect(() => {
     // Guard DOM mutation - ensure ref exists and is mounted
@@ -134,7 +149,7 @@ export default function StatsSection({ className = '', containerClassName = '', 
 
       const currentValue = { value: 0 };
       
-      anime({
+      const animation = anime({
         targets: currentValue,
         value: parseInt(value),
         duration: 2000,
@@ -144,17 +159,29 @@ export default function StatsSection({ className = '', containerClassName = '', 
           stat.textContent = currentValue.value.toLocaleString() + (stat.getAttribute('data-suffix') || '');
         }
       });
+      animationsRef.current.push(animation);
     });
 
     progressBars.forEach((bar) => {
-      anime({
+      const animation = anime({
         targets: bar,
         width: '100%',
         duration: 2000,
         easing: 'easeOutExpo',
         delay: 200
       });
+      animationsRef.current.push(animation);
     });
+
+    // Cleanup: pause and remove all animations on unmount
+    return () => {
+      animationsRef.current.forEach((animation) => {
+        if (animation) {
+          animation.pause();
+        }
+      });
+      animationsRef.current = [];
+    };
   }, []);
 
   return (

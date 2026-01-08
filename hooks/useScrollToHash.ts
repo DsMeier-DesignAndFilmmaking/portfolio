@@ -23,6 +23,9 @@ export function useScrollToHash(options: UseScrollToHashOptions = {}) {
   const hasScrolledRef = useRef(false);
 
   useEffect(() => {
+    // Guard: Ensure we're on the client side
+    if (typeof window === 'undefined') return;
+
     const handleHashScroll = () => {
       const hash = window.location.hash;
       

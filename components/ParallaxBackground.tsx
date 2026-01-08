@@ -31,29 +31,34 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     setIsClient(true);
   }, []);
 
-  // Memoize geometries and materials to ensure fresh instances on remount
-  // This prevents using disposed objects when navigating back
+  // Memoize geometries and materials - these are static and don't need to change on route
+  // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
   const particlesMaterial = useMemo(() => new THREE.PointsMaterial({
     size: 0.02,
     color: 0xffffff,
     transparent: true,
     opacity: 0.5,
-  }), [pathname]);
+  }), []);
 
-  const torusGeometry = useMemo(() => new THREE.TorusKnotGeometry(1, 0.3, 64, 16), [pathname]);
+  const torusGeometry = useMemo(() => new THREE.TorusKnotGeometry(1, 0.3, 64, 16), []);
   const torusMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0x4a90e2,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
     if (typeof window === 'undefined') return;
     
     // Skip initialization on project routes to avoid race conditions
-    if (isProjectPage) return;
+    if (isProjectPage) {
+      console.log('[ParallaxBackground] skipped (project page)', { pathname, isProjectPage, modelPath });
+      return;
+    }
+    
+    console.log('[ParallaxBackground] mounted', { pathname, isProjectPage, modelPath });
     if (!containerRef.current) return;
 
     // Reset refs before creating new objects (prevents stale references)
@@ -206,10 +211,11 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
     // Cleanup resize listener only (Three.js cleanup handled by hook)
     return () => {
+      console.log('[ParallaxBackground] unmounted', { pathname, isProjectPage, modelPath });
       isMounted = false;
       window.removeEventListener('resize', handleResize);
     };
-  }, [modelPath, isProjectPage, pathname, particlesMaterial, torusGeometry, torusMaterial]); // Include pathname and memoized objects to recreate on route change
+  }, [modelPath, isProjectPage, particlesMaterial, torusGeometry, torusMaterial]); // Only re-init when modelPath or isProjectPage changes, not on every route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
@@ -251,7 +257,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       modelRef.current = null;
       cameraRef.current = null;
     },
-    deps: [modelPath, isProjectPage, pathname], // Re-run cleanup when route or model changes
+    deps: [modelPath, isProjectPage], // Re-run cleanup when model or project page status changes, not on every route change
     verbose: process.env.NODE_ENV === 'development', // Enable verbose logging in dev
   });
 

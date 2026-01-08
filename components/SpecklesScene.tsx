@@ -22,22 +22,27 @@ export default function SpecklesScene() {
     setIsClient(true);
   }, []);
 
-  // Memoize material to ensure fresh instance on remount
-  // This prevents using disposed objects when navigating back
+  // Memoize material - this is static and doesn't need to change on route
+  // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
   const material = useMemo(() => new THREE.PointsMaterial({
     size: 0.05,
     vertexColors: true,
     transparent: true,
     opacity: 0.6,
     color: 0xffffff
-  }), [pathname]);
+  }), []);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
     if (typeof window === 'undefined') return;
     
     // Skip initialization on project routes to avoid race conditions
-    if (isProjectPage) return;
+    if (isProjectPage) {
+      console.log('[SpecklesScene] skipped (project page)', { pathname, isProjectPage });
+      return;
+    }
+    
+    console.log('[SpecklesScene] mounted', { pathname, isProjectPage });
     if (!containerRef.current) return;
 
     // Reset refs before creating new objects (prevents stale references)
@@ -139,9 +144,10 @@ export default function SpecklesScene() {
 
     // Cleanup resize listener only (Three.js cleanup handled by hook)
     return () => {
+      console.log('[SpecklesScene] unmounted', { pathname, isProjectPage });
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProjectPage, pathname, material]); // Include pathname and memoized objects to recreate on route change
+  }, [isProjectPage, material]); // Only re-init when isProjectPage changes, not on every route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({

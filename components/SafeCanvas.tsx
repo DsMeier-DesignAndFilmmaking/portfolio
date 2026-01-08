@@ -93,6 +93,8 @@ export default function SafeCanvas({
   const disposalCallbackRef = useRef<(() => void) | null>(null);
   const isReadyRef = useRef(false);
   const isCancelledRef = useRef(false);
+  const handoffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const readyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // GPU "Clear Zone" delay - gives the GPU time to release resources from previous page
   const GPU_HANDOFF_DELAY = 300;
@@ -100,6 +102,8 @@ export default function SafeCanvas({
   useEffect(() => {
     // Guard: Ensure we're on the client side
     if (typeof window === 'undefined') return;
+    
+    console.log('[SafeCanvas] mounted', { pathname });
     
     // Reset cancelled flag on mount
     isCancelledRef.current = false;
@@ -133,7 +137,7 @@ export default function SafeCanvas({
 
     // STEP 1: GPU "Handoff" delay - creates a "Clear Zone" for GPU to breathe
     // This prevents WebGL context conflicts when navigating back from project pages
-    const handoffTimer = setTimeout(() => {
+    handoffTimerRef.current = setTimeout(() => {
       // Check if component was unmounted during handoff delay
       if (isCancelledRef.current) return;
       
@@ -142,7 +146,7 @@ export default function SafeCanvas({
       
       // STEP 2: Additional delay before marking as "ready" for WebGL initialization
       // This staggered approach prevents multiple contexts being created simultaneously
-      const readyTimer = setTimeout(() => {
+      readyTimerRef.current = setTimeout(() => {
         // Check if component was unmounted during ready delay
         if (isCancelledRef.current) return;
         
@@ -160,13 +164,12 @@ export default function SafeCanvas({
           }
         }
       }, mountDelay);
-      
-      // Store ready timer for cleanup
-      (handoffTimer as any)._readyTimer = readyTimer;
     }, GPU_HANDOFF_DELAY);
 
     // Cleanup function to prevent memory leaks
     return () => {
+      console.log('[SafeCanvas] unmounted', { pathname });
+      
       // Mark as cancelled to prevent stale state updates
       isCancelledRef.current = true;
       
@@ -176,10 +179,14 @@ export default function SafeCanvas({
       setIsMounted(false);
       setIsReady(false);
       
-      // Clear both timers
-      clearTimeout(handoffTimer);
-      if ((handoffTimer as any)._readyTimer) {
-        clearTimeout((handoffTimer as any)._readyTimer);
+      // Clear both timers using refs
+      if (handoffTimerRef.current) {
+        clearTimeout(handoffTimerRef.current);
+        handoffTimerRef.current = null;
+      }
+      if (readyTimerRef.current) {
+        clearTimeout(readyTimerRef.current);
+        readyTimerRef.current = null;
       }
       
       // Unregister disposal callback

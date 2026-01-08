@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface HashNavigationHandlerProps {
   /** Delay before attempting to scroll to hash */
@@ -16,6 +16,9 @@ export default function HashNavigationHandler({
   smooth = true,
   offset = 120
 }: HashNavigationHandlerProps) {
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
     // Step 1: Prevent browser from auto-scrolling on load
     // Reset to top immediately if there's a hash, so browser doesn't jump
@@ -37,14 +40,22 @@ export default function HashNavigationHandler({
       // Stop native jump
       e.preventDefault();
 
-      requestAnimationFrame(() => {
+      // Cancel any pending RAF
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
         // Let lazy content settle
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
         }, delay);
+        timersRef.current.push(timer);
       });
     };
 
@@ -61,12 +72,13 @@ export default function HashNavigationHandler({
       const el = document.querySelector(window.location.hash);
       if (!el) return;
 
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         el.scrollIntoView({ 
           behavior: 'smooth', 
           block: 'start' 
         });
       }, delay);
+      timersRef.current.push(timer);
     };
 
     // Wait for load event before handling initial hash
@@ -83,6 +95,16 @@ export default function HashNavigationHandler({
         link.removeEventListener('click', handleAnchorClick);
       });
       window.removeEventListener('load', handlePageLoad);
+      
+      // Clear all timers
+      timersRef.current.forEach(timer => clearTimeout(timer));
+      timersRef.current = [];
+      
+      // Cancel any pending RAF
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
   }, [delay]);
 

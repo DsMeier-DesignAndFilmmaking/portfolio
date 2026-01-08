@@ -21,40 +21,45 @@ export default function DesignBuildScene() {
     setIsClient(true);
   }, []);
 
-  // Memoize geometries and materials to ensure fresh instances on remount
-  // This prevents using disposed objects when navigating back
-  const cubeGeometry = useMemo(() => new THREE.BoxGeometry(1, 1, 1), [pathname]);
+  // Memoize geometries and materials - these are static and don't need to change on route
+  // Only recreate if component unmounts/remounts (empty deps = create once per component instance)
+  const cubeGeometry = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
   const cubeMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0xffffff,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
-  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(0.5, 32, 32), [pathname]);
+  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(0.5, 32, 32), []);
   const sphereMaterial = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0xffffff,
     wireframe: true,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
   const lineGeometry = useMemo(() => new THREE.BufferGeometry().setFromPoints([
     new THREE.Vector3(-1, 0, 0),
     new THREE.Vector3(1, 0, 0)
-  ]), [pathname]);
+  ]), []);
   const lineMaterial = useMemo(() => new THREE.LineBasicMaterial({
     color: 0xffffff,
     transparent: true,
     opacity: 0.3,
-  }), [pathname]);
+  }), []);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
     if (typeof window === 'undefined') return;
     
     // Skip initialization on project routes to avoid race conditions
-    if (isProjectPage) return;
+    if (isProjectPage) {
+      console.log('[DesignBuildScene] skipped (project page)', { pathname, isProjectPage });
+      return;
+    }
+    
+    console.log('[DesignBuildScene] mounted', { pathname, isProjectPage });
     if (!containerRef.current) return;
 
     // Reset refs before creating new objects (prevents stale references)
@@ -160,6 +165,8 @@ export default function DesignBuildScene() {
 
     // Consolidated cleanup: ALL cleanup happens here in the unmount phase
     return () => {
+      console.log('[DesignBuildScene] unmounted', { pathname, isProjectPage });
+      
       // 1. Remove resize listener
       window.removeEventListener('resize', handleResize);
       
@@ -201,7 +208,7 @@ export default function DesignBuildScene() {
       cameraRef.current = null;
       modelRef.current = null;
     };
-  }, [pathname, isProjectPage, cubeGeometry, cubeMaterial, sphereGeometry, sphereMaterial, lineGeometry, lineMaterial]); // Include pathname and memoized objects to recreate on route change
+  }, [isProjectPage, cubeGeometry, cubeMaterial, sphereGeometry, sphereMaterial, lineGeometry, lineMaterial]); // Only re-init when isProjectPage changes, not on every route change
 
   if (!isClient) {
     return (

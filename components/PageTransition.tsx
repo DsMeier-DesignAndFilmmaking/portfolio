@@ -42,6 +42,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
     // Trigger disposal callbacks immediately when route changes (before exit animation)
     // This ensures Three.js cleanup happens before new scenes try to mount
     if (prevPathname !== null && prevPathname !== pathname) {
+      console.log('[PageTransition] route changed', { from: prevPathname, to: pathname });
       if (process.env.NODE_ENV === 'development') {
         console.log('Route changed, triggering disposal callbacks...');
       }
