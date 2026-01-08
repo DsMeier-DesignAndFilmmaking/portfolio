@@ -27,25 +27,41 @@ export default function ParallaxBackground({ modelPath }: { modelPath: string })
       const mesh = objectRef.current
       const cleanupScene = getScene()
       
-      if (mesh && cleanupScene) {
-        cleanupScene.remove(mesh)
-        
-        // Dispose geometry
-        if ('geometry' in mesh && mesh.geometry) {
-          mesh.geometry.dispose()
-        }
-        
-        // Dispose material
-        if ('material' in mesh && mesh.material) {
-          if (Array.isArray(mesh.material)) {
-            mesh.material.forEach(m => m.dispose())
-          } else {
-            mesh.material.dispose()
-          }
-        }
-        
+      if (!cleanupScene) {
         objectRef.current = null
+        return
       }
+      
+      // ✅ Guard: Ensure mesh is valid and is an Object3D before removing
+      if (!mesh) {
+        objectRef.current = null
+        return
+      }
+      if (!(mesh instanceof THREE.Object3D)) {
+        objectRef.current = null
+        return
+      }
+      
+      // Remove from scene (idempotent - safe to call multiple times)
+      if (cleanupScene.children.includes(mesh)) {
+        cleanupScene.remove(mesh)
+      }
+      
+      // Dispose geometry
+      if ('geometry' in mesh && mesh.geometry) {
+        mesh.geometry.dispose()
+      }
+      
+      // Dispose material
+      if ('material' in mesh && mesh.material) {
+        if (Array.isArray(mesh.material)) {
+          mesh.material.forEach(m => m.dispose())
+        } else {
+          mesh.material.dispose()
+        }
+      }
+      
+      objectRef.current = null
     }
   }, [modelPath])
 

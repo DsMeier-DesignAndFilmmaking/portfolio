@@ -33,22 +33,30 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
     if (!enabled) {
       console.log('[SpecklesScene] disabled, clearing scene', { enabled });
       // Clear scene contents but keep renderer alive
-      if (specklesRef.current) {
-        scene.remove(specklesRef.current);
-        // Dispose geometry and material
-        if (specklesRef.current.geometry) {
-          specklesRef.current.geometry.dispose();
-        }
-        if (specklesRef.current.material) {
-          const mat = specklesRef.current.material;
-          if (Array.isArray(mat)) {
-            mat.forEach(m => m.dispose());
-          } else {
-            mat.dispose();
-          }
-        }
+      if (!specklesRef.current) return;
+      if (!(specklesRef.current instanceof THREE.Object3D)) {
         specklesRef.current = null;
+        return;
       }
+      
+      // Remove from scene (idempotent - safe to call multiple times)
+      if (scene.children.includes(specklesRef.current)) {
+        scene.remove(specklesRef.current);
+      }
+      
+      // Dispose geometry and material
+      if (specklesRef.current.geometry) {
+        specklesRef.current.geometry.dispose();
+      }
+      if (specklesRef.current.material) {
+        const mat = specklesRef.current.material;
+        if (Array.isArray(mat)) {
+          mat.forEach(m => m.dispose());
+        } else {
+          mat.dispose();
+        }
+      }
+      specklesRef.current = null;
       // Stop animations but keep renderer
       if (frameIdRef.current) {
         cancelAnimationFrame(frameIdRef.current);
@@ -88,12 +96,17 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
     // ✅ Animation loop - SafeCanvas handles rendering, we just update object rotation
     // 🚨 Never call renderer.render() manually - SafeCanvas owns the render loop
     const animate = () => {
+      // ✅ Guard: Ensure specklesRef is valid and is an Object3D before mutating
       if (!specklesRef.current) return;
+      if (!(specklesRef.current instanceof THREE.Object3D)) return;
       
       frameIdRef.current = requestAnimationFrame(animate);
 
-      specklesRef.current.rotation.y += 0.001;
-      specklesRef.current.rotation.x += 0.0005;
+      // ✅ Guard: Ensure rotation exists before mutating
+      if (specklesRef.current.rotation) {
+        specklesRef.current.rotation.y += 0.001;
+        specklesRef.current.rotation.x += 0.0005;
+      }
     };
 
     animate();
@@ -111,22 +124,33 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
       
       // Remove objects from singleton scene
       const cleanupScene = getScene();
-      if (cleanupScene && specklesRef.current) {
-        cleanupScene.remove(specklesRef.current);
-        // Dispose geometry and material
-        if (specklesRef.current.geometry) {
-          specklesRef.current.geometry.dispose();
-        }
-        if (specklesRef.current.material) {
-          const mat = specklesRef.current.material;
-          if (Array.isArray(mat)) {
-            mat.forEach(m => m.dispose());
-          } else {
-            mat.dispose();
-          }
-        }
+      if (!cleanupScene) return;
+      
+      // ✅ Guard: Ensure specklesRef is valid and is an Object3D before removing
+      if (!specklesRef.current) return;
+      if (!(specklesRef.current instanceof THREE.Object3D)) {
         specklesRef.current = null;
+        return;
       }
+      
+      // Remove from scene (idempotent - safe to call multiple times)
+      if (cleanupScene.children.includes(specklesRef.current)) {
+        cleanupScene.remove(specklesRef.current);
+      }
+      
+      // Dispose geometry and material
+      if (specklesRef.current.geometry) {
+        specklesRef.current.geometry.dispose();
+      }
+      if (specklesRef.current.material) {
+        const mat = specklesRef.current.material;
+        if (Array.isArray(mat)) {
+          mat.forEach(m => m.dispose());
+        } else {
+          mat.dispose();
+        }
+      }
+      specklesRef.current = null;
       
       // ⛔ DO NOT dispose renderer - it persists across route changes
       // ⛔ DO NOT dispose scene - it persists across route changes

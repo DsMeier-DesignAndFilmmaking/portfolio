@@ -73,12 +73,18 @@ export default function DesignBuildScene() {
 
     // Create a cube using memoized geometry and material
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    cube.position.set(-1, 0, 0);
+    // ✅ Guard: Ensure cube is valid before setting position
+    if (cube && cube.position) {
+      cube.position.set(-1, 0, 0);
+    }
     designGroup.add(cube);
 
     // Create a sphere using memoized geometry and material
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    sphere.position.set(1, 0, 0);
+    // ✅ Guard: Ensure sphere is valid before setting position
+    if (sphere && sphere.position) {
+      sphere.position.set(1, 0, 0);
+    }
     designGroup.add(sphere);
 
     // Create connecting lines using memoized geometry and material
@@ -89,25 +95,30 @@ export default function DesignBuildScene() {
     modelRef.current = designGroup;
 
     // Add lights (only if not already added)
+    // ⚠️ Note: Lights are shared across scenes - they will persist unless explicitly removed
     const hasLights = scene.children.some(child => child instanceof THREE.AmbientLight);
     if (!hasLights) {
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
 
       const pointLight = new THREE.PointLight(0xffffff, 1);
-      pointLight.position.set(5, 5, 5);
+      // ✅ Guard: Ensure pointLight is valid before setting position
+      if (pointLight && pointLight.position) {
+        pointLight.position.set(5, 5, 5);
+      }
       scene.add(pointLight);
     }
 
     // ✅ Animation loop - SafeCanvas handles rendering, we just update object rotation
     const animate = () => {
-      if (!modelRef.current) {
-        return;
-      }
+      // ✅ Guard: Ensure modelRef is valid and is an Object3D before mutating
+      if (!modelRef.current) return;
+      if (!(modelRef.current instanceof THREE.Object3D)) return;
       
       frameIdRef.current = requestAnimationFrame(animate);
 
-      if (modelRef.current) {
+      // ✅ Guard: Ensure rotation exists before mutating
+      if (modelRef.current.rotation) {
         modelRef.current.rotation.y += 0.003;
         modelRef.current.rotation.x += 0.002;
       }
@@ -128,28 +139,39 @@ export default function DesignBuildScene() {
       
       // Remove objects from singleton scene
       const cleanupScene = getScene();
-      if (cleanupScene && modelRef.current) {
-        cleanupScene.remove(modelRef.current);
-        // Dispose geometry and materials recursively
-        modelRef.current.traverse((child) => {
-          const mesh = child as THREE.Mesh;
-          if ('geometry' in mesh && mesh.geometry) {
-            const geometry = mesh.geometry as THREE.BufferGeometry;
-            if (geometry && typeof geometry.dispose === 'function') {
-              geometry.dispose();
-            }
-          }
-          if ('material' in mesh && mesh.material) {
-            const mat = mesh.material as THREE.Material | THREE.Material[];
-            if (Array.isArray(mat)) {
-              mat.forEach(m => m.dispose());
-            } else if (mat && typeof mat.dispose === 'function') {
-              mat.dispose();
-            }
-          }
-        });
+      if (!cleanupScene) return;
+      
+      // ✅ Guard: Ensure modelRef is valid and is an Object3D before removing
+      if (!modelRef.current) return;
+      if (!(modelRef.current instanceof THREE.Object3D)) {
         modelRef.current = null;
+        return;
       }
+      
+      // Remove from scene (idempotent - safe to call multiple times)
+      if (cleanupScene.children.includes(modelRef.current)) {
+        cleanupScene.remove(modelRef.current);
+      }
+      
+      // Dispose geometry and materials recursively
+      modelRef.current.traverse((child) => {
+        const mesh = child as THREE.Mesh;
+        if ('geometry' in mesh && mesh.geometry) {
+          const geometry = mesh.geometry as THREE.BufferGeometry;
+          if (geometry && typeof geometry.dispose === 'function') {
+            geometry.dispose();
+          }
+        }
+        if ('material' in mesh && mesh.material) {
+          const mat = mesh.material as THREE.Material | THREE.Material[];
+          if (Array.isArray(mat)) {
+            mat.forEach(m => m.dispose());
+          } else if (mat && typeof mat.dispose === 'function') {
+            mat.dispose();
+          }
+        }
+      });
+      modelRef.current = null;
       
       // ⛔ DO NOT dispose renderer - it persists across route changes
       // ⛔ DO NOT dispose scene - it persists across route changes
