@@ -4,9 +4,10 @@ import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
 import StaticNavbar from '@/components/StaticNavbar';
+import StaticFooter from '@/components/StaticFooter';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
-// ✅ REMOVED - Footer (client component - can be re-added as static version later)
+// ✅ REMOVED - Footer (client component - replaced with StaticFooter)
 // import Footer from '@/components/Footer';
 // ✅ REMOVED - PageTransition (client component with animations)
 // import PageTransition from '@/components/PageTransition';
@@ -87,8 +88,8 @@ export default function RootLayout({
           {/* ✅ Pure static main - no animations, no transitions */}
           <main>{children}</main>
           
-          {/* ✅ REMOVED - Footer (client component - can be re-added as static version later) */}
-          {/* <Footer /> */}
+          {/* ✅ Static Footer - No hooks, no JS behavior */}
+          <StaticFooter />
         </div>
       </body>
     </html>

@@ -1,6 +1,7 @@
 // ✅ PURE SERVER COMPONENT - No 'use client', no hooks, no client component imports
 import Link from 'next/link';
 import Image from 'next/image';
+import DesignWork from '@/components/DesignWork';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -311,6 +312,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Design Work Section */}
+        <DesignWork />
 
         {/* Projects Section */}
         {/* ✅ COMMENTED OUT - ProjectsSection (client component with animations) */}
