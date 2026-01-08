@@ -66,8 +66,8 @@ export default function HomePage() {
         {/* Unified Hero & Introduction Section */}
         <section className="intro-section bg-white relative z-10 section-padding" aria-label="Introduction">
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
-          <div className="relative flex items-start justify-center">
-            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-[40vh] pb-0">
+          <div className="relative flex items-start md:items-center justify-center min-h-[60vh] md:min-h-[80vh]">
+            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-0 pb-0">
               {/* ✅ REMOVED - Suspense and motion.div (animations) */}
               <div 
                   className="w-full text-left"

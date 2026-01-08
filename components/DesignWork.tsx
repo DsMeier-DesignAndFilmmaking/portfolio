@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function DesignWork() {
   return (
-    <section id="work" className="bg-black" style={{ paddingTop: 'clamp(5rem, 10vh, 10rem)', paddingBottom: 'clamp(5rem, 10vh, 10rem)' }} aria-label="Design Work">
+    <section id="work" className="bg-white" style={{ paddingTop: 'clamp(5rem, 10vh, 10rem)', paddingBottom: 'clamp(5rem, 10vh, 10rem)' }} aria-label="Design Work">
       <div className="max-w-4xl mx-auto px-6">
         <div className="w-full">
           {/* Heading */}
@@ -13,7 +13,7 @@ export default function DesignWork() {
               className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
               style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
             >
-              <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Design Work</span>
+              <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Design Work</span>
             </h1>
             
             {/* Desktop Version - Original */}
@@ -26,16 +26,16 @@ export default function DesignWork() {
                 marginBottom: 'calc(1.32 * 1.5rem)'
               }}
             >
-              <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Design Work</span>
+              <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Design Work</span>
             </h1>
           </div>
 
           {/* Description Paragraphs */}
           <div className="section-header-spacing max-w-2xl">
-            <p className="text-xl text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            <p className="text-xl text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
             </p>
-            <p className="text-xl text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            <p className="text-xl text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               Alongside client work, I explore and build AI-driven product concepts centered on discovery, spontaneity, and experience-based use cases, with a particular interest in location-aware and travel-adjacent contexts.
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function DesignWork() {
           <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase tracking-wider">
             Work and Projects
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl font-sans" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+          <p className="text-xl text-gray-700 max-w-2xl font-sans" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             A curated collection of work and projects showcasing UX, UI, Web, Graphic and Product Design.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function DesignWork() {
               {/* Travel & AI Card */}
               <Link
                 href="/projects/travel-and-ai"
-                className="group block rounded-lg border border-gray-700 bg-white p-6 hover:border-gray-500 transition-colors h-[220px] flex flex-col"
+                className="group block rounded-lg border border-gray-300 bg-white p-6 hover:border-gray-400 transition-colors h-[220px] flex flex-col"
               >
                 <h3 className="text-xl font-bold mb-2 text-gray-900">
                   Travel & AI
@@ -99,7 +99,7 @@ export default function DesignWork() {
               {/* The Archive Card */}
               <Link
                 href="/projects/previous"
-                className="group block rounded-lg border border-gray-700 bg-white p-6 hover:border-gray-500 transition-colors h-[220px] flex flex-col"
+                className="group block rounded-lg border border-gray-300 bg-white p-6 hover:border-gray-400 transition-colors h-[220px] flex flex-col"
               >
                 <h3 className="text-xl font-bold mb-2 text-gray-900">
                   The Archive
