@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
+import StaticNavbar from '@/components/StaticNavbar';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
 // ✅ REMOVED - Footer (client component - can be re-added as static version later)
@@ -67,6 +68,9 @@ export default function RootLayout({
         {/* ✅ PURE SERVER COMPONENT LAYOUT - No client components, no hooks, no animations */}
         {/* Isolation div to protect from browser extension DOM injection */}
         <div id="__next" suppressHydrationWarning>
+          {/* ✅ Static Navbar - No hooks, no JS behavior */}
+          <StaticNavbar />
+          
           {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
           {/* <RouteChangeCleanup /> */}
           
