@@ -9,7 +9,7 @@
  * - Defensive guards for WebGL initialization failures
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import * as THREE from 'three';
 import { WebGLProvider } from './WebGLContext';
@@ -25,6 +25,7 @@ export default function HomePageWebGL() {
   const pathname = usePathname();
   const prevPathnameRef = useRef<string | null>(null);
   const isMountedRef = useRef(false);
+  const isCleaningUpRef = useRef(false); // Prevent multiple cleanup calls
   const [webglError, setWebglError] = useState<string | null>(null);
   // State for WebGL objects passed to provider (triggers re-render when ready)
   const [webglReady, setWebglReady] = useState(false);
@@ -44,7 +45,15 @@ export default function HomePageWebGL() {
   }, [pathname]);
 
   // ✅ Cleanup function - GUARANTEED cleanup
-  const cleanupWebGL = () => {
+  // Use useCallback to prevent recreation and ensure stable reference
+  const cleanupWebGL = useCallback(() => {
+    // ✅ Guard: Prevent multiple cleanup calls
+    if (isCleaningUpRef.current) {
+      console.log('[HomePageWebGL] cleanup already in progress, skipping');
+      return;
+    }
+    isCleaningUpRef.current = true;
+    
     console.log('[HomePageWebGL] cleanup - disposing WebGL');
 
     // Cancel animation frame FIRST
@@ -81,12 +90,35 @@ export default function HomePageWebGL() {
     // Dispose renderer
     if (rendererRef.current) {
       try {
+        // ✅ Get DOM element reference BEFORE disposing renderer
+        const domElement = rendererRef.current.domElement;
+        const container = containerRef.current;
+        
+        // ✅ Dispose renderer first (this doesn't remove DOM element)
         rendererRef.current.dispose();
         rendererRef.current.forceContextLoss();
         
-        // Remove canvas from DOM
-        if (rendererRef.current.domElement.parentNode) {
-          rendererRef.current.domElement.parentNode.removeChild(rendererRef.current.domElement);
+        // ✅ Defer DOM removal to avoid React reconciliation conflicts (React errors #418, #423)
+        // This prevents "removeChild: node is not a child" errors during fast route transitions
+        if (container && domElement) {
+          // Guard: Verify element is actually a child before removing
+          if (domElement.parentNode === container && container.contains(domElement)) {
+            // Defer to next tick to avoid React reconciliation conflicts
+            setTimeout(() => {
+              try {
+                // Double-check element is still a child before removing
+                if (domElement.parentNode === container && container.contains(domElement)) {
+                  container.removeChild(domElement);
+                }
+              } catch (error) {
+                // Element may have already been removed by React/Framer Motion/PageTransition
+                // Silently ignore - this is expected during fast route transitions
+                if (process.env.NODE_ENV === 'development') {
+                  console.debug('[HomePageWebGL] canvas already removed by React', error);
+                }
+              }
+            }, 0);
+          }
         }
       } catch (error) {
         console.warn('[HomePageWebGL] error during renderer disposal:', error);
@@ -97,9 +129,15 @@ export default function HomePageWebGL() {
     // Clear refs
     cameraRef.current = null;
     isMountedRef.current = false;
-    setWebglError(null);
-    setWebglReady(false);
-  };
+    
+    // ✅ Defer state updates to avoid React error #418 (updates during render)
+    // Use setTimeout to ensure state updates happen outside of render phase
+    setTimeout(() => {
+      setWebglError(null);
+      setWebglReady(false);
+      isCleaningUpRef.current = false; // Reset cleanup flag
+    }, 0);
+  }, []); // Empty deps - cleanup function doesn't depend on props/state
 
   // ✅ PHASE 2: Main WebGL initialization - page-specific, no singletons
   useEffect(() => {
@@ -120,6 +158,9 @@ export default function HomePageWebGL() {
     }
 
     console.log('[HomePageWebGL] initializing WebGL', { pathname });
+    
+    // ✅ Reset cleanup flag when initializing
+    isCleaningUpRef.current = false;
     
     try {
       isMountedRef.current = true;
