@@ -82,7 +82,7 @@ export default function SafeCanvas({
       </div>
     </div>
   ),
-  mountDelay = 0,
+  mountDelay = 50,
   className = '',
   onMount,
   onUnmount,
@@ -126,7 +126,8 @@ export default function SafeCanvas({
     const unregister = registerDisposalCallback(handleDisposal);
     disposalCallbackRef.current = unregister;
 
-    // Optional delay to ensure DOM is fully stable
+    // Delay to ensure browser has finished disposing of previous page's GPU resources
+    // This "breathing room" prevents WebGL context conflicts during navigation
     const mountTimer = setTimeout(() => {
       isReadyRef.current = true;
       setIsReady(true);
@@ -145,6 +146,12 @@ export default function SafeCanvas({
 
     // Cleanup function to prevent memory leaks
     return () => {
+      // IMMEDIATELY set mounted to false to free up the WebGL context slot
+      // This must happen first to prevent hitting browser context limit
+      isReadyRef.current = false;
+      setIsMounted(false);
+      setIsReady(false);
+      
       clearTimeout(mountTimer);
       
       // Unregister disposal callback
@@ -152,10 +159,6 @@ export default function SafeCanvas({
         disposalCallbackRef.current();
         disposalCallbackRef.current = null;
       }
-      
-      isReadyRef.current = false;
-      setIsMounted(false);
-      setIsReady(false);
       
       // Call onUnmount callback if provided
       if (onUnmount) {

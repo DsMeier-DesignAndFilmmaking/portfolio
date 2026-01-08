@@ -189,6 +189,7 @@ export default function HomePage() {
             {/* First Parallax Section with Motion Bleed - pulled up to reveal under hero */}
             <SafeCanvas
               key={`ai-travel-${pathname}`}
+              mountDelay={100}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -197,7 +198,6 @@ export default function HomePage() {
                   </div>
                 </div>
               }
-              mountDelay={0}
             >
               <div className="-mt-16 md:-mt-20">
                 <ParallaxSection
@@ -211,6 +211,7 @@ export default function HomePage() {
 
             <SafeCanvas
               key={`design-build-${pathname}`}
+              mountDelay={300}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -230,6 +231,7 @@ export default function HomePage() {
 
             <SafeCanvas
               key={`cinematography-${pathname}`}
+              mountDelay={500}
               fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
               suspenseFallback={
                 <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>
@@ -271,6 +273,7 @@ export default function HomePage() {
         {!isProjectPage && (
           <SafeCanvas
             key={`torus-${pathname}`}
+            mountDelay={700}
             fallback={<div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }} />}
             suspenseFallback={
               <div className="relative bg-gradient-to-br from-gray-100 to-gray-200" style={{ height: '100vh' }}>

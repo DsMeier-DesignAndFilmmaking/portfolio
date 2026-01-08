@@ -60,13 +60,17 @@ export default function PageTransition({ children }: { children: React.ReactNode
   }, [pathname]);
 
   // Handle exit animation completion
+  // This ensures the old WebGL context is fully nullified before the new page renders its canvas
   const handleExitComplete = useCallback(() => {
     exitStartTimeRef.current = null;
     
     // Additional cleanup after exit animation completes
-    // This ensures any lingering resources are cleaned up
+    // This ensures any lingering resources are cleaned up and the browser
+    // has finished disposing of the previous page's GPU resources
+    // The 50ms delay in SafeCanvas ensures the browser has "breathing room"
+    // to fully release the WebGL context before new scenes mount
     if (process.env.NODE_ENV === 'development') {
-      console.log('Exit animation complete');
+      console.log('Exit animation complete - old scene fully unmounted');
     }
   }, []);
 
@@ -98,7 +102,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
         initial={shouldAnimate ? { opacity: 0 } : undefined}
         animate={{ opacity: 1 }}
         exit={shouldAnimate ? { opacity: 0 } : undefined}
-        transition={{ duration: 0.2, ease: 'easeInOut' }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         onAnimationStart={(definition) => {
           // Detect if this is an exit animation starting
           if (definition === 'exit' || (typeof definition === 'object' && 'opacity' in definition && (definition as any).opacity === 0)) {
