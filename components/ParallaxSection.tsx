@@ -39,31 +39,23 @@ export default function ParallaxSection({
   textColor,
   enabled = true, // Default to enabled
 }: ParallaxSectionProps) {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const pathname = usePathname();
+  const isHome = pathname === '/';
   const [mounted, setMounted] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [isNavigationStable, setIsNavigationStable] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   
   // ✅ Mounting guard: Prevent hydration crashes
   useEffect(() => {
     setMounted(true);
   }, []);
   
-  // ✅ Route guard: Only render on homepage
-  if (pathname !== '/') {
-    return null;
-  }
-  
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
-
-  // ✅ React-safe ref with proper typing
-  const ref = useRef<HTMLDivElement>(null);
-  
   // ✅ Client-side check
   useEffect(() => {
+    if (!isHome) return undefined; // ✅ Gate logic safely, explicitly return undefined
+    
     setIsClient(true);
     
     // ✅ Navigation stability check - disable animations during route changes
@@ -76,9 +68,10 @@ export default function ParallaxSection({
       clearTimeout(stabilityTimer);
       setIsNavigationStable(false);
     };
-  }, [pathname]);
+  }, [isHome, pathname]);
 
   // ✅ Framer Motion hooks - React-safe, automatically clean up scroll listeners
+  // Must be called even if we return early - React Rules of Hooks
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -91,6 +84,16 @@ export default function ParallaxSection({
   const shouldAnimate = enabled && isNavigationStable;
   const y = !shouldAnimate ? useTransform(() => '0%') : useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = !shouldAnimate ? useTransform(() => 1) : useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  // ✅ Route guard: Only render on homepage (AFTER all hooks)
+  if (!isHome) {
+    return null;
+  }
+  
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   // ✅ Loading state - restore layout first, disable animation temporarily
   if (!isClient || !isNavigationStable) {

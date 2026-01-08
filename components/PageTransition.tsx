@@ -22,11 +22,6 @@ export default function PageTransition({ children }: { children: React.ReactNode
     setMounted(true);
   }, []);
 
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
-
   // Log route changes for debugging
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -42,6 +37,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
     }
     prevPathnameRef.current = pathname
   }, [pathname])
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   // ✅ FIX: Use "sync" mode instead of "wait" to prevent black screen
   // "wait" mode can cause content to disappear during transitions

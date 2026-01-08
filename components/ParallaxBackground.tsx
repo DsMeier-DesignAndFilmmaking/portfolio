@@ -14,11 +14,6 @@ export default function ParallaxBackground({ modelPath }: { modelPath: string })
     setMounted(true);
   }, []);
 
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
-
   useEffect(() => {
     if (!scene) return
 
@@ -75,6 +70,11 @@ export default function ParallaxBackground({ modelPath }: { modelPath: string })
       objectRef.current = null
     }
   }, [modelPath, scene])
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   return null
 }

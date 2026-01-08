@@ -11,7 +11,9 @@ interface AnchorScrollLoaderProps {
 }
 
 export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete }: AnchorScrollLoaderProps) {
+  // ✅ ALL HOOKS MUST BE CALLED FIRST - React Rules of Hooks
   const pathname = usePathname();
+  const isHome = pathname === '/';
   const [mounted, setMounted] = useState(false);
   const [internalProgress, setInternalProgress] = useState(0);
   const [showStabilizationOverlay, setShowStabilizationOverlay] = useState(false);
@@ -22,16 +24,6 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // ✅ Route guard: Only render on homepage
-  if (pathname !== '/') {
-    return null;
-  }
-  
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
 
   useEffect(() => {
     // ✅ Cleanup on unmount or route change
@@ -46,6 +38,8 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
   }, [pathname]);
 
   useEffect(() => {
+    if (!isHome) return undefined; // ✅ Gate logic safely, explicitly return undefined
+    
     if (isVisible) {
       // Reset progress when loader becomes visible
       setInternalProgress(0);
@@ -87,7 +81,7 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
       setInternalProgress(0);
       setShowStabilizationOverlay(false);
     }
-  }, [isVisible, progress]);
+  }, [isVisible, progress, isHome]);
 
   // Use external progress if provided, otherwise use internal
   const displayProgress = progress > 0 ? progress : internalProgress;
@@ -106,6 +100,16 @@ export default function AnchorScrollLoader({ isVisible, progress = 0, onComplete
       return () => clearTimeout(timer);
     }
   }, [displayProgress, onComplete]);
+
+  // ✅ Route guard: Only render on homepage (AFTER all hooks)
+  if (!isHome) {
+    return null;
+  }
+  
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

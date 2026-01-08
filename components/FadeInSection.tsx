@@ -36,11 +36,6 @@ export default function FadeInSection({
     setMounted(true);
   }, []);
 
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
-
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
@@ -106,6 +101,11 @@ export default function FadeInSection({
       window.removeEventListener('scrollComplete', handleScrollComplete);
     };
   }, [threshold, rootMargin, triggerOnce]);
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   // Animation variants based on direction
   const getVariants = () => {

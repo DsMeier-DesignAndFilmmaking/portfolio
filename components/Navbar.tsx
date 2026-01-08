@@ -26,26 +26,10 @@ const Navbar = () => {
     };
   }, []);
   
-  // Safety check: Don't render Navbar on project pages or My Pulse (they have their own navbars)
-  // This is a defensive measure in case NavigationWrapper doesn't catch it
-  // Must check after hooks are called (React rules of hooks)
-  const normalizedPath = pathname && pathname.endsWith('/') && pathname !== '/' 
-    ? pathname.slice(0, -1) 
-    : pathname;
-  
-  const shouldHideNavbar = normalizedPath 
-    ? (normalizedPath.startsWith('/projects/') || normalizedPath.startsWith('/my-pulse'))
-    : false;
-  
-  if (shouldHideNavbar) {
-    return null;
-  }
-
-
-
-  // Determine if we're on a project page
+  // Determine if we're on a project page (calculate before early return)
   const isOnPurduePage = pathname?.includes('/projects/purdue');
 
+  // ✅ ALL HOOKS MUST BE CALLED BEFORE EARLY RETURNS - React Rules of Hooks
   useEffect(() => {
     // Safety check: ensure we're on a page that should have the navbar
     // and that the DOM is ready
@@ -260,6 +244,21 @@ const Navbar = () => {
       isMountedRef.current = false;
     };
   }, [isOnPurduePage, hasEnteredDesignSection, pathname]);
+
+  // Safety check: Don't render Navbar on project pages or My Pulse (they have their own navbars)
+  // This is a defensive measure in case NavigationWrapper doesn't catch it
+  // Must check AFTER all hooks are called (React rules of hooks)
+  const normalizedPath = pathname && pathname.endsWith('/') && pathname !== '/' 
+    ? pathname.slice(0, -1) 
+    : pathname;
+  
+  const shouldHideNavbar = normalizedPath 
+    ? (normalizedPath.startsWith('/projects/') || normalizedPath.startsWith('/my-pulse'))
+    : false;
+  
+  if (shouldHideNavbar) {
+    return null;
+  }
 
   const scrollToTop = () => {
     window.scrollTo({

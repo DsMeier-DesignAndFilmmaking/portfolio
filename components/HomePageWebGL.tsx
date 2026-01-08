@@ -23,6 +23,7 @@ export default function HomePageWebGL() {
   const frameIdRef = useRef<number | null>(null);
   const resizeHandlerRef = useRef<(() => void) | null>(null);
   const pathname = usePathname();
+  const isHome = pathname === '/';
   const prevPathnameRef = useRef<string | null>(null);
   const isMountedRef = useRef(false);
   const isCleaningUpRef = useRef(false); // Prevent multiple cleanup calls
@@ -117,20 +118,16 @@ export default function HomePageWebGL() {
 
   // ✅ PHASE 2: Main WebGL initialization - page-specific, no singletons
   useEffect(() => {
+    if (!isHome) return undefined; // ✅ Gate logic safely, explicitly return undefined
+    
     // Skip on server-side
-    if (typeof window === 'undefined') return;
-    if (!containerRef.current) return;
-
-    // Only render on homepage
-    if (pathname !== '/') {
-      console.log('[HomePageWebGL] skipped - not on homepage', { pathname });
-      return;
-    }
+    if (typeof window === 'undefined') return undefined;
+    if (!containerRef.current) return undefined;
 
     // Prevent double initialization
     if (isMountedRef.current) {
       console.log('[HomePageWebGL] already mounted, skipping');
-      return;
+      return undefined;
     }
 
     console.log('[HomePageWebGL] initializing WebGL', { pathname });
@@ -281,10 +278,10 @@ export default function HomePageWebGL() {
       setWebglError('WebGL initialization failed');
       isMountedRef.current = false;
     }
-  }, [pathname]); // Re-run on pathname change
+  }, [isHome, pathname]); // Re-run on pathname change
 
-  // ✅ PHASE 4: Only render on homepage
-  if (pathname !== '/') {
+  // ✅ PHASE 4: Only render on homepage (AFTER all hooks)
+  if (!isHome) {
     return null;
   }
 

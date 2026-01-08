@@ -34,11 +34,6 @@ export default function MicroInteraction({
     setMounted(true);
   }, []);
 
-  // ✅ Mounting guard: Return null until mounted
-  if (!mounted) {
-    return null;
-  }
-
   const animationDuration = duration || getAnimationDuration(300);
 
   const animations = {
@@ -69,6 +64,11 @@ export default function MicroInteraction({
       controls.start("visible");
     }
   }, [isInView, controls, shouldAnimate]);
+
+  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
+  if (!mounted) {
+    return null;
+  }
 
   if (!shouldAnimate) {
     return <div className={className}>{children}</div>;
