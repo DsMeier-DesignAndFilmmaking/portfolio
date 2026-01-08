@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * ParallaxSection
+ * - Layout
+ * - Scroll logic
+ * - State
+ * - Conditional rendering
+ * 
+ * ✅ May render: <ParallaxBackground />
+ * ❌ Must NEVER: touch Three.js renderer, manage canvas, manage RAF
+ */
+
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import ParallaxBackground from './ParallaxBackground';
@@ -86,7 +97,7 @@ export default function ParallaxSection({
           ) : modelPath === 'ai-travel' ? (
             <AITravelScene enabled={enabled} />
           ) : (
-            <ParallaxBackground modelPath={modelPath} enabled={enabled} />
+            <ParallaxBackground modelPath={modelPath} />
           )
         ) : null}
       </motion.div>

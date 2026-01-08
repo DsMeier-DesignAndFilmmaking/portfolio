@@ -3,16 +3,13 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-// ⛔ Removed renderer disposal imports - renderers persist across route changes
+import { getScene, getCamera, getRenderer } from './SafeCanvas';
 
 export default function DesignBuildScene() {
   const pathname = usePathname();
   // Disable Three.js initialization on project routes to avoid race conditions
   const isProjectPage = pathname?.includes('/projects/') ?? false;
   const containerRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const modelRef = useRef<THREE.Object3D | null>(null);
   const frameIdRef = useRef<number | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -60,45 +57,16 @@ export default function DesignBuildScene() {
     }
     
     console.log('[DesignBuildScene] mounted', { pathname, isProjectPage });
-    if (!containerRef.current) return;
-
-    // Reset refs before creating new objects (prevents stale references)
-    sceneRef.current = null;
-    cameraRef.current = null;
-    rendererRef.current = null;
-    modelRef.current = null;
-    frameIdRef.current = null;
-
-    // Scene setup
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
-
-    // Camera setup
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 5;
-    cameraRef.current = camera;
-
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: false, 
-      alpha: true,
-      powerPreference: 'high-performance',
-      stencil: false,
-      depth: true
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     
-    // Guard DOM mutation - prevent insertion if container unmounted
-    if (!containerRef.current || !containerRef.current.parentNode) return;
-    containerRef.current.appendChild(renderer.domElement);
-    rendererRef.current = renderer;
-    const domElement = renderer.domElement;
+    // ✅ Use singleton renderer/scene/camera from SafeCanvas
+    const scene = getScene();
+    const camera = getCamera();
+    const renderer = getRenderer();
+    
+    if (!scene || !camera || !renderer) {
+      console.warn('[DesignBuildScene] singleton renderer/scene/camera not initialized yet');
+      return;
+    }
 
     // Create design-build elements
     const designGroup = new THREE.Group();
@@ -120,23 +88,20 @@ export default function DesignBuildScene() {
     scene.add(designGroup);
     modelRef.current = designGroup;
 
-    // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
+    // Add lights (only if not already added)
+    const hasLights = scene.children.some(child => child instanceof THREE.AmbientLight);
+    if (!hasLights) {
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
+      const pointLight = new THREE.PointLight(0xffffff, 1);
+      pointLight.position.set(5, 5, 5);
+      scene.add(pointLight);
+    }
 
-    // Animation
-    // Guard: ensure renderer exists before rendering
+    // ✅ Animation loop - SafeCanvas handles rendering, we just update object rotation
     const animate = () => {
-      // Race condition check: ensure renderer still exists before first frame
-      const currentRenderer = rendererRef.current;
-      const currentScene = sceneRef.current;
-      const currentCamera = cameraRef.current;
-      
-      if (!currentRenderer || !currentScene || !currentCamera) {
+      if (!modelRef.current) {
         return;
       }
       
@@ -146,41 +111,44 @@ export default function DesignBuildScene() {
         modelRef.current.rotation.y += 0.003;
         modelRef.current.rotation.x += 0.002;
       }
-
-      currentRenderer.render(currentScene, currentCamera);
     };
 
     animate();
 
-    // Handle resize
-    const handleResize = () => {
-      if (!cameraRef.current || !rendererRef.current) return;
-
-      cameraRef.current.aspect = window.innerWidth / window.innerHeight;
-      cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
     // ⛔ NO RENDERER DISPOSAL - Renderer persists across route changes
-    // Only cleanup animations and event listeners
+    // Only cleanup animations and remove objects from scene
     return () => {
       console.log('[DesignBuildScene] cleanup (renderer persists)', { pathname, isProjectPage });
       
-      // 1. Remove resize listener
-      window.removeEventListener('resize', handleResize);
-      
-      // 2. Cancel animation frame to stop rendering
+      // Cancel animation frame
       if (frameIdRef.current !== null) {
         cancelAnimationFrame(frameIdRef.current);
         frameIdRef.current = null;
       }
       
+      // Remove objects from singleton scene
+      const cleanupScene = getScene();
+      if (cleanupScene && modelRef.current) {
+        cleanupScene.remove(modelRef.current);
+        // Dispose geometry and materials recursively
+        modelRef.current.traverse((child) => {
+          if ('geometry' in child && child.geometry) {
+            child.geometry.dispose();
+          }
+          if ('material' in child && child.material) {
+            const mat = child.material as THREE.Material | THREE.Material[];
+            if (Array.isArray(mat)) {
+              mat.forEach(m => m.dispose());
+            } else {
+              mat.dispose();
+            }
+          }
+        });
+        modelRef.current = null;
+      }
+      
       // ⛔ DO NOT dispose renderer - it persists across route changes
       // ⛔ DO NOT dispose scene - it persists across route changes
-      // ⛔ DO NOT remove canvas from DOM - it persists across route changes
-      // ⛔ renderer.dispose() and renderer.forceContextLoss() are FATAL in SPA navigation
     };
   }, [isProjectPage, cubeGeometry, cubeMaterial, sphereGeometry, sphereMaterial, lineGeometry, lineMaterial]); // Only re-init when isProjectPage changes, not on every route change
 

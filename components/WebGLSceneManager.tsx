@@ -1,18 +1,12 @@
 'use client';
 
 /**
- * WebGLSceneManager - Root-level WebGL scene coordinator
+ * WebGLSceneManager
+ * - Add / remove objects from the shared scene
+ * - Update object state only
  * 
- * This component manages all WebGL/Three.js scenes from the root layout.
- * It ensures proper lifecycle management and prevents navigation crashes.
- * 
- * DO NOT place SafeCanvas in:
- * - Pages
- * - Project layouts  
- * - Transitions
- * - Conditional renders
- * 
- * This is the ONLY place SafeCanvas should be used.
+ * SafeCanvas owns the renderer, render loop, and resize handling.
+ * This component only manages scene objects.
  */
 
 import { usePathname } from 'next/navigation';
@@ -37,10 +31,9 @@ export default function WebGLSceneManager() {
 
   return (
     <>
-      {/* ✅ Only ONE SafeCanvas - singleton renderer/scene/camera */}
       <SafeCanvas />
       
-      {/* Parallax sections - they add objects to the singleton scene */}
+      {/* Parallax sections add objects to the singleton scene */}
       <div className="-mt-16 md:-mt-20">
         <ParallaxSection
           title="Always Curious."
