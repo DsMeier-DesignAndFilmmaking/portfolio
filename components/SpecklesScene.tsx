@@ -40,7 +40,12 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
           specklesRef.current.geometry.dispose();
         }
         if (specklesRef.current.material) {
-          specklesRef.current.material.dispose();
+          const mat = specklesRef.current.material;
+          if (Array.isArray(mat)) {
+            mat.forEach(m => m.dispose());
+          } else {
+            mat.dispose();
+          }
         }
         specklesRef.current = null;
       }
@@ -113,7 +118,12 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
           specklesRef.current.geometry.dispose();
         }
         if (specklesRef.current.material) {
-          specklesRef.current.material.dispose();
+          const mat = specklesRef.current.material;
+          if (Array.isArray(mat)) {
+            mat.forEach(m => m.dispose());
+          } else {
+            mat.dispose();
+          }
         }
         specklesRef.current = null;
       }
