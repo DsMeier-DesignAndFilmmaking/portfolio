@@ -18,10 +18,10 @@ export default function StaticNavbar() {
           <Image
             src={`${basePath}/images/signature-25.png`}
             alt="Dan Meier logo"
-            width={72}
-            height={24}
+            width={86}
+            height={29}
             priority
-            className="h-6 w-auto"
+            className="h-7 w-auto"
           />
         </Link>
 
