@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
-import StaticNavbar from '@/components/StaticNavbar';
+import ConditionalNavbar from '@/components/ConditionalNavbar';
 import StaticFooter from '@/components/StaticFooter';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
@@ -73,8 +73,8 @@ export default function RootLayout({
         {/* ✅ DO NOT put key on <html> or <body> - only on content wrapper inside body */}
         <BodyKeyWrapper>
           <div id="__next" suppressHydrationWarning>
-            {/* ✅ Static Navbar - No hooks, no JS behavior */}
-            <StaticNavbar />
+            {/* ✅ Conditional Navbar - Hidden on homepage only, shown on all other pages */}
+            <ConditionalNavbar />
             
             {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
             {/* <RouteChangeCleanup /> */}

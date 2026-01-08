@@ -1,15 +1,10 @@
-import Navbar from '@/components/Navbar';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
+  // ✅ Nested layouts should NOT have <html> or <body> tags
+  // Only the root layout should have those. This allows proper inheritance.
   return (
-    <html lang="en">
-      <body className="bg-white">
-        {/* Top nav bar */}
-        <Navbar />
-
-        {/* Page content */}
-        {children}
-      </body>
-    </html>
+    <>
+      {/* ✅ Navbar removed - starting clean to rebuild */}
+      {children}
+    </>
   );
 }

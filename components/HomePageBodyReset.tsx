@@ -15,27 +15,18 @@ export default function HomePageBodyReset() {
   const pathname = usePathname();
   const isHome = pathname === '/';
 
-  // ✅ STRENGTHENED JANITOR: Ultimate safety net for navbar reset
-  // This runs specifically on pathname changes to override any stale CSS classes
+  // ✅ JANITOR: Ensure the top of the page is always a clean white slate
   useEffect(() => {
-    if (pathname !== '/') return undefined;
-
-    const resetNavbarStyles = () => {
-      const nav = document.getElementById('site-navbar');
-      if (nav) {
-        // Force Tailwind/CSS resets with 'important' flag to override any stale classes
-        nav.style.setProperty('background-color', 'transparent', 'important');
-        nav.style.setProperty('backdrop-filter', 'none', 'important');
-        nav.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+    if (pathname === '/') {
+      if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+        // Kill any lingering styles on the body and html
+        document.body.style.backgroundColor = 'white';
+        document.documentElement.style.backgroundColor = 'white';
+        
+        // Force the scroll to top to prevent the "scrolled" state on mount
+        window.scrollTo(0, 0);
       }
-    };
-
-    resetNavbarStyles();
-    // Run again after 150ms to ensure React's render cycle hasn't 
-    // re-applied the "tint" classes from a stale state.
-    const timer = setTimeout(resetNavbarStyles, 150);
-    
-    return () => clearTimeout(timer);
+    }
   }, [pathname]);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function DesignWork() {
   return (
-    <section id="work" className="pt-32 md:pt-48 pb-24 md:pb-32 bg-black" aria-label="Design Work">
+    <section id="work" className="pt-[240px] md:pt-[360px] pb-[180px] md:pb-[240px] bg-black" aria-label="Design Work">
       <div className="max-w-4xl mx-auto px-6">
         <div className="w-full">
           {/* Heading */}
