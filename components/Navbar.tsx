@@ -17,6 +17,8 @@ const Navbar = () => {
   const [isOverBlackSection, setIsOverBlackSection] = useState(false);
   const [isInDesignSection, setIsInDesignSection] = useState(false);
   const [hasEnteredDesignSection, setHasEnteredDesignSection] = useState(false);
+  // ✅ ATOMIC STATE RESET: Lock to prevent scroll listener from updating colors during route change
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Track mount state to prevent state updates after unmount
   useEffect(() => {
@@ -26,25 +28,31 @@ const Navbar = () => {
     };
   }, []);
 
-  // ✅ RESET NAVBAR STATE ON NAVIGATION
-  // This kills the "gray tint" by resetting states before the next scroll event
+  // ✅ ATOMIC STATE RESET: Lock the navbar from updating colors during route change
   useEffect(() => {
-    if (isMountedRef.current) {
-      setIsOverBlackSection(false);
-      setIsInDesignSection(false);
-      setHasEnteredDesignSection(false);
-      setIsMobileMenuOpen(false);
-      setIsScrollingToAnchor(false);
-      
-      // Explicitly clean up the DOM element in case classes are stuck
-      const navbar = document.getElementById('site-navbar');
-      if (navbar) {
-        navbar.style.backgroundColor = '';
-        navbar.style.backdropFilter = '';
-        // @ts-ignore - webkitBackdropFilter is a valid CSS property but not in TypeScript types
-        navbar.style.webkitBackdropFilter = '';
-      }
+    // Lock the navbar from updating colors during the route change
+    setIsTransitioning(true);
+    
+    // Wipe all states
+    setIsOverBlackSection(false);
+    setIsInDesignSection(false);
+    setHasEnteredDesignSection(false);
+    setIsMobileMenuOpen(false);
+    setIsScrollingToAnchor(false);
+    
+    // Force the scroll position to the top of the browser internally
+    if (typeof window !== 'undefined' && window.scrollY > 0 && pathname === '/') {
+      window.scrollTo(0, 0);
     }
+
+    // Release the lock after the home page has settled
+    const timer = setTimeout(() => {
+      if (isMountedRef.current) {
+        setIsTransitioning(false);
+      }
+    }, 300); 
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   // Determine if we're on a project page (calculate before early return)
@@ -61,8 +69,8 @@ const Navbar = () => {
     let ticking = false;
 
     const updateNavbarColor = () => {
-      // Check if component is still mounted
-      if (!isMountedRef.current) {
+      // ✅ GUARD: Prevent scroll logic from running during route transition
+      if (!isMountedRef.current || isTransitioning) {
         ticking = false;
         rafIdRef.current = null;
         return;
@@ -648,8 +656,12 @@ const Navbar = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
         className={`navbar-container ${
-          isOverBlackSection ? 'bg-black-90' : 'bg-white-90'
-        }`}
+          isOverBlackSection ? 'bg-black-90' : 'bg-transparent'
+        } ${!isOverBlackSection && !isInDesignSection ? 'no-tint' : ''}`}
+        style={{ 
+          backgroundColor: isOverBlackSection ? undefined : 'transparent',
+          backdropFilter: isOverBlackSection ? undefined : 'none'
+        }}
       >
         <div className="navbar-inner">
           <div 
