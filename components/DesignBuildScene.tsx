@@ -132,14 +132,18 @@ export default function DesignBuildScene() {
         cleanupScene.remove(modelRef.current);
         // Dispose geometry and materials recursively
         modelRef.current.traverse((child) => {
-          if ('geometry' in child && child.geometry) {
-            child.geometry.dispose();
+          const mesh = child as THREE.Mesh;
+          if ('geometry' in mesh && mesh.geometry) {
+            const geometry = mesh.geometry as THREE.BufferGeometry;
+            if (geometry && typeof geometry.dispose === 'function') {
+              geometry.dispose();
+            }
           }
-          if ('material' in child && child.material) {
-            const mat = child.material as THREE.Material | THREE.Material[];
+          if ('material' in mesh && mesh.material) {
+            const mat = mesh.material as THREE.Material | THREE.Material[];
             if (Array.isArray(mat)) {
               mat.forEach(m => m.dispose());
-            } else {
+            } else if (mat && typeof mat.dispose === 'function') {
               mat.dispose();
             }
           }
