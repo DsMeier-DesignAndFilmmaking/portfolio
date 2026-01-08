@@ -1,5 +1,12 @@
 'use client'
 
+/**
+ * PageTransition
+ * - Handles route transitions with proper cleanup
+ * - Prevents black screen on navigation
+ * - Ensures content is visible during transitions
+ */
+
 import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
@@ -7,23 +14,45 @@ import { useEffect, useRef } from 'react'
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const prevPathnameRef = useRef<string | null>(null)
+  const isInitialMountRef = useRef(true)
 
-  // Log route changes for verification (not initial mount)
+  // Log route changes for debugging
   useEffect(() => {
-    if (typeof window !== 'undefined' && prevPathnameRef.current !== null) {
-      console.log('[PageTransition] route changed', { from: prevPathnameRef.current, to: pathname })
+    if (typeof window !== 'undefined') {
+      if (isInitialMountRef.current) {
+        isInitialMountRef.current = false
+        console.log('[PageTransition] initial mount', { pathname })
+      } else if (prevPathnameRef.current !== pathname) {
+        console.log('[PageTransition] route changed', { 
+          from: prevPathnameRef.current, 
+          to: pathname 
+        })
+      }
     }
     prevPathnameRef.current = pathname
   }, [pathname])
 
+  // ✅ FIX: Use "sync" mode instead of "wait" to prevent black screen
+  // "wait" mode can cause content to disappear during transitions
+  // "sync" mode keeps both pages visible during transition
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="sync" initial={false}>
       <motion.div
         key={pathname}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.25, ease: 'easeInOut' }}
+        transition={{ 
+          duration: 0.2, // Reduced from 0.25 for faster transitions
+          ease: 'easeInOut' 
+        }}
+        // ✅ CRITICAL: Ensure content is always visible
+        style={{ 
+          minHeight: '100vh',
+          position: 'relative',
+          // Prevent black screen by ensuring background is set
+          backgroundColor: 'transparent'
+        }}
       >
         {children}
       </motion.div>

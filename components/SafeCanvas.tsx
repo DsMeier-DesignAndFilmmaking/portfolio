@@ -1,130 +1,37 @@
 'use client'
 
+/**
+ * SafeCanvas - DEPRECATED
+ * 
+ * This component used module-level singletons which caused navigation bugs.
+ * It has been replaced by page-specific WebGL implementations.
+ * 
+ * ⚠️ DO NOT USE - This file is kept for reference only.
+ * All WebGL should be managed within page components with proper cleanup.
+ */
+
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-let renderer: THREE.WebGLRenderer | null = null
-let scene: THREE.Scene | null = null
-let camera: THREE.PerspectiveCamera | null = null
-let rafId: number | null = null
+// ⛔ REMOVED: Module-level singletons that persisted across routes
+// This was the root cause of navigation bugs
 
 export function getScene() {
-  return scene
+  console.warn('[SafeCanvas] getScene() is deprecated - use page-specific WebGL instead')
+  return null
 }
 
 export function getCamera() {
-  return camera
+  console.warn('[SafeCanvas] getCamera() is deprecated - use page-specific WebGL instead')
+  return null
 }
 
 export function getRenderer() {
-  return renderer
+  console.warn('[SafeCanvas] getRenderer() is deprecated - use page-specific WebGL instead')
+  return null
 }
 
 export default function SafeCanvas() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    // ⛔ HARD GUARD — renderer already exists
-    if (renderer) {
-      // ✅ EXPECTED: Renderer already exists, component is reusing singleton
-      console.log('[SafeCanvas] component mounted - reusing existing singleton renderer', {
-        canvasCount: document.querySelectorAll('canvas').length,
-        rendererContextLost: renderer.getContext()?.isContextLost() ?? 'N/A'
-      })
-      // Ensure canvas is attached (HMR safety)
-      if (!containerRef.current.contains(renderer.domElement)) {
-        containerRef.current.appendChild(renderer.domElement)
-      }
-      return
-    }
-
-    // ✅ EXPECTED: First mount - this should only happen ONCE per session
-    console.log('[SafeCanvas] FIRST MOUNT - initializing singleton renderer', {
-      canvasCount: document.querySelectorAll('canvas').length
-    })
-
-    // ✅ INIT ONCE
-    renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance',
-    })
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setClearColor(0x000000, 0)
-
-    scene = new THREE.Scene()
-    camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    )
-    // ✅ Soft update: Use .set() for position instead of direct assignment
-    if (camera && camera.position && typeof camera.position.set === 'function') {
-      camera.position.set(0, 0, 5)
-    }
-
-    // ✅ Add shared lights to scene (persist for entire session)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-    scene.add(ambientLight)
-
-    const pointLight = new THREE.PointLight(0xffffff, 1)
-    if (pointLight && pointLight.position && typeof pointLight.position.set === 'function') {
-      pointLight.position.set(5, 5, 5)
-    }
-    scene.add(pointLight)
-
-    containerRef.current.appendChild(renderer.domElement)
-
-    console.log('[SafeCanvas] ✅ singleton renderer initialized (should only see this ONCE per session)', {
-      canvasCount: document.querySelectorAll('canvas').length,
-      rendererContextLost: renderer.getContext()?.isContextLost() ?? 'N/A'
-    })
-
-    const renderLoop = () => {
-      rafId = requestAnimationFrame(renderLoop)
-      renderer!.render(scene!, camera!)
-    }
-
-    renderLoop()
-
-    const handleResize = () => {
-      // ✅ Guard: Ensure camera and renderer are valid
-      if (!renderer || !camera) return
-      if (!(camera instanceof THREE.PerspectiveCamera)) return
-      
-      // ✅ Soft update: Guard camera.aspect assignment (it's a number, not Vector3, so can't use .set())
-      // But we guard to ensure camera is valid
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      
-      // ✅ Guard: Ensure renderer.setSize exists
-      if (renderer && typeof renderer.setSize === 'function') {
-        renderer.setSize(window.innerWidth, window.innerHeight)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    // ❌ DO NOT CLEAN UP ON UNMOUNT - renderer persists as singleton
-    return () => {
-      console.log('[SafeCanvas] component unmounted (renderer persists as singleton)', {
-        canvasCount: document.querySelectorAll('canvas').length,
-        rendererContextLost: renderer?.getContext()?.isContextLost() ?? 'N/A'
-      })
-      window.removeEventListener('resize', handleResize)
-      // ⛔ DO NOT dispose renderer - it persists across route changes
-    }
-  }, [])
-
-  return (
-    <div
-      ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0"
-    />
-  )
+  console.warn('[SafeCanvas] SafeCanvas component is deprecated and should not be used')
+  return null
 }
