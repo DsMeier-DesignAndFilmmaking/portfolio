@@ -23,7 +23,10 @@ export default function SpecklesScene({ enabled = true }: SpecklesSceneProps = {
   }), []);
 
   useEffect(() => {
-    if (!scene || !camera || !renderer) return;
+    if (!scene || !camera || !renderer) {
+      console.log('[SpecklesScene] WebGL context not ready yet', { enabled });
+      return;
+    }
     
     // ✅ Update scene visibility instead of unmounting
     if (!enabled) {

@@ -14,9 +14,10 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 // Dynamically import WebGL components to avoid SSR issues
-const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
-  ssr: false,
-});
+// TEMPORARILY COMMENTED OUT - WebGL disabled
+// const HomePageWebGL = dynamic(() => import('@/components/HomePageWebGL'), {
+//   ssr: false,
+// });
 
 // Temporarily disable AITravelScene to fix error
 const AITravelScene = () => (
@@ -600,7 +601,8 @@ export default function HomePage() {
         </div>
               </div>
       </main>
-      <HomePageWebGL />
+      {/* TEMPORARILY COMMENTED OUT - WebGL disabled */}
+      {/* <HomePageWebGL /> */}
     </ErrorBoundary>
   );
 }
