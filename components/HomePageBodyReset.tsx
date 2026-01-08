@@ -5,6 +5,7 @@
  * - Minimal client component to reset body styles on homepage mount
  * - Fixes black screen issue when navigating from project pages (which set body.backgroundColor = 'black')
  * - Only runs on client-side, safe for server components
+ * - Never blocks rendering - always returns null immediately
  */
 
 import { useEffect } from 'react';
@@ -18,19 +19,42 @@ export default function HomePageBodyReset() {
     // Only run on homepage
     if (!isHome) return undefined;
 
-    // Reset body and html styles that might persist from other pages
-    if (typeof document !== 'undefined') {
-      // Reset background colors (project pages set these to black)
-      // Let CSS classes handle the background (body has bg-white class from layout)
-      document.body.style.backgroundColor = '';
-      document.documentElement.style.backgroundColor = '';
-      
-      // Reset overflow (in case it was locked)
-      document.body.style.overflow = '';
-    }
+    // ✅ Use requestAnimationFrame to ensure DOM is ready
+    // This prevents blocking the initial render
+    const rafId = requestAnimationFrame(() => {
+      if (typeof document !== 'undefined') {
+        // ✅ CRITICAL: Reset all styles that project pages might set
+        // These are the "Z-Index" or "Opacity" traps that cause blank screens
+        
+        // Reset opacity (project pages might set opacity: 0 for transitions)
+        document.documentElement.style.opacity = '1';
+        document.body.style.opacity = '1';
+        
+        // Reset overflow (project pages might set overflow: hidden)
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.overflow = '';
+        
+        // Reset background colors (project pages set these to black)
+        document.body.style.backgroundColor = '';
+        document.documentElement.style.backgroundColor = '';
+        
+        // Reset z-index (project pages might set high z-index on body/html)
+        document.body.style.zIndex = '';
+        document.documentElement.style.zIndex = '';
+        
+        // Reset visibility (project pages might set visibility: hidden)
+        document.body.style.visibility = '';
+        document.documentElement.style.visibility = '';
+        
+        // Reset pointer-events (project pages might disable interactions)
+        document.body.style.pointerEvents = '';
+        document.documentElement.style.pointerEvents = '';
+      }
+    });
 
     // Cleanup on unmount (when navigating away from homepage)
     return () => {
+      cancelAnimationFrame(rafId);
       if (typeof document !== 'undefined') {
         // Reset to empty string to let CSS classes take over
         document.body.style.backgroundColor = '';
@@ -39,6 +63,7 @@ export default function HomePageBodyReset() {
     };
   }, [isHome]);
 
-  // This component doesn't render anything
+  // ✅ Always return null immediately - never block rendering
+  // This component only runs side effects, never renders content
   return null;
 }

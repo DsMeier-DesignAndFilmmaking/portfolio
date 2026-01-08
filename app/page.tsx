@@ -2,12 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import DesignWork from '@/components/DesignWork';
-import dynamic from 'next/dynamic';
-
-// ✅ Dynamic import for client component (body style reset)
-const HomePageBodyReset = dynamic(() => import('@/components/HomePageBodyReset'), {
-  ssr: false,
-});
+import HomePageBodyReset from '@/components/HomePageBodyReset';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -64,7 +59,8 @@ export default function HomePage() {
       {/* ✅ HomePageBodyReset - Resets body styles that persist from project pages */}
       <HomePageBodyReset />
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
-      <main className="min-h-screen relative bg-white">
+      {/* ✅ CRITICAL: Explicit opacity and display to override any styles from project pages */}
+      <main className="min-h-screen relative bg-white" style={{ opacity: 1, display: 'block' }}>
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}

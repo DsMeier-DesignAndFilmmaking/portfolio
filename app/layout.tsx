@@ -5,12 +5,8 @@ import './globals.css';
 import '@/styles/globals.css';
 import StaticNavbar from '@/components/StaticNavbar';
 import StaticFooter from '@/components/StaticFooter';
-import dynamic from 'next/dynamic';
-
-// ✅ Dynamic import for pathname key wrapper (client component)
-const PathnameKeyWrapper = dynamic(() => import('@/components/PathnameKeyWrapper'), {
-  ssr: false,
-});
+import PathnameKeyWrapper from '@/components/PathnameKeyWrapper';
+import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
 // ✅ REMOVED - Footer (client component - replaced with StaticFooter)
@@ -74,32 +70,36 @@ export default function RootLayout({
       <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`} suppressHydrationWarning>
         {/* ✅ PURE SERVER COMPONENT LAYOUT - No client components, no hooks, no animations */}
         {/* Isolation div to protect from browser extension DOM injection */}
-        <div id="__next" suppressHydrationWarning>
-          {/* ✅ Static Navbar - No hooks, no JS behavior */}
-          <StaticNavbar />
-          
-          {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
-          {/* <RouteChangeCleanup /> */}
-          
-          {/* ✅ REMOVED - NavigationWrapper (client component with hooks) */}
-          {/* <NavigationWrapper /> */}
-          
-          {/* ✅ REMOVED - PageTransition (client component with animations) */}
-          {/* {process.env.NODE_ENV === 'development' && (
-            <PageTransition>
-              <main>{children}</main>
-            </PageTransition>
-          )} */}
-          
-          {/* ✅ Pure static main - no animations, no transitions */}
-          {/* ✅ Pathname key ensures clean DOM sweep when navigating from 3D pages to static homepage */}
-          <PathnameKeyWrapper>
-            <main>{children}</main>
-          </PathnameKeyWrapper>
-          
-          {/* ✅ Static Footer - No hooks, no JS behavior */}
-          <StaticFooter />
-        </div>
+        {/* ✅ BodyKeyWrapper with pathname key forces complete DOM reset on route change */}
+        <BodyKeyWrapper>
+          <div id="__next" suppressHydrationWarning>
+            {/* ✅ Static Navbar - No hooks, no JS behavior */}
+            <StaticNavbar />
+            
+            {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
+            {/* <RouteChangeCleanup /> */}
+            
+            {/* ✅ REMOVED - NavigationWrapper (client component with hooks) */}
+            {/* <NavigationWrapper /> */}
+            
+            {/* ✅ REMOVED - PageTransition (client component with animations) */}
+            {/* {process.env.NODE_ENV === 'development' && (
+              <PageTransition>
+                <main>{children}</main>
+              </PageTransition>
+            )} */}
+            
+            {/* ✅ Pure static main - no animations, no transitions */}
+            {/* ✅ Pathname key ensures clean DOM sweep when navigating from 3D pages to static homepage */}
+            {/* ✅ The key forces a complete re-mount of the page content on every route change */}
+            <PathnameKeyWrapper>
+              <main className="min-h-screen">{children}</main>
+            </PathnameKeyWrapper>
+            
+            {/* ✅ Static Footer - No hooks, no JS behavior */}
+            <StaticFooter />
+          </div>
+        </BodyKeyWrapper>
       </body>
     </html>
   );
