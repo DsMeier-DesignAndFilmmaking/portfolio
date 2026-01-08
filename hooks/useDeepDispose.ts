@@ -37,8 +37,9 @@ interface UseDeepDisposeOptions {
 
 /**
  * Recursively disposes all geometries in a Three.js object
+ * Uses BufferGeometry API (legacy Geometry is deprecated and removed in Three.js r125+)
  */
-function disposeGeometry(geometry: THREE.BufferGeometry | THREE.Geometry | undefined, verbose: boolean = false): void {
+function disposeGeometry(geometry: THREE.BufferGeometry | undefined, verbose: boolean = false): void {
   if (!geometry) return;
   
   try {
@@ -259,7 +260,7 @@ function disposeRenderer(renderer: THREE.WebGLRenderer | null, verbose: boolean 
  * useDeepDispose - Comprehensive Three.js Resource Disposal Hook
  * 
  * This hook provides deep, recursive disposal of all Three.js resources including:
- * - Geometries (BufferGeometry and legacy Geometry)
+ * - Geometries (BufferGeometry only - legacy Geometry deprecated in r125+)
  * - Materials (single and arrays)
  * - Textures (map, normalMap, roughnessMap, etc.)
  * - Renderers and WebGL contexts
