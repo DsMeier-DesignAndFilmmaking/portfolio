@@ -5,6 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, Float, useTexture, Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 
 // Extend JSX.IntrinsicElements for Three.js elements
@@ -323,6 +324,8 @@ function Scene() {
 }
 
 export default function AITravelScene() {
+  const pathname = usePathname();
+  
   return (
     <motion.div
       className="w-full h-full"
@@ -334,6 +337,7 @@ export default function AITravelScene() {
       }}
     >
       <Canvas 
+        key={pathname}
         camera={{ position: [0, 0, 3], fov: 45 }}
         dpr={[1, 1]}
         performance={{ min: 0.3, max: 0.8 }}

@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -21,6 +21,40 @@ export default function CinematographyScene() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Memoize geometries and materials to ensure fresh instances on remount
+  // This prevents using disposed objects when navigating back
+  const reelGeometry = useMemo(() => new THREE.TorusGeometry(1, 0.2, 16, 32), [pathname]);
+  const reelMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0x4a90e2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
+
+  const stripGeometry = useMemo(() => new THREE.BoxGeometry(3, 0.1, 0.1), [pathname]);
+  const stripMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0x4a90e2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
+
+  const frameGeometry = useMemo(() => new THREE.BoxGeometry(0.3, 0.2, 0.05), [pathname]);
+  const frameMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0x4a90e2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
+
+  const lensGeometry = useMemo(() => new THREE.CylinderGeometry(0.5, 0.5, 0.2, 32), [pathname]);
+  const lensMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0x4a90e2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -69,51 +103,23 @@ export default function CinematographyScene() {
     // Create cinematography elements
     const filmGroup = new THREE.Group();
 
-    // Create film reel
-    const reelGeometry = new THREE.TorusGeometry(1, 0.2, 16, 32);
-    const reelMaterial = new THREE.MeshPhongMaterial({
-      color: 0x4a90e2,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create film reel using memoized geometry and material
     const reel = new THREE.Mesh(reelGeometry, reelMaterial);
     filmGroup.add(reel);
 
-    // Create film strip
-    const stripGeometry = new THREE.BoxGeometry(3, 0.1, 0.1);
-    const stripMaterial = new THREE.MeshPhongMaterial({
-      color: 0x4a90e2,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create film strip using memoized geometry and material
     const strip = new THREE.Mesh(stripGeometry, stripMaterial);
     strip.position.set(0, 0, 0);
     filmGroup.add(strip);
 
-    // Create film frames
+    // Create film frames using memoized geometry and material
     for (let i = -1; i <= 1; i++) {
-      const frameGeometry = new THREE.BoxGeometry(0.3, 0.2, 0.05);
-      const frameMaterial = new THREE.MeshPhongMaterial({
-        color: 0x4a90e2,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.3,
-      });
       const frame = new THREE.Mesh(frameGeometry, frameMaterial);
       frame.position.set(i * 1, 0, 0);
       filmGroup.add(frame);
     }
 
-    // Create camera lens
-    const lensGeometry = new THREE.CylinderGeometry(0.5, 0.5, 0.2, 32);
-    const lensMaterial = new THREE.MeshPhongMaterial({
-      color: 0x4a90e2,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create camera lens using memoized geometry and material
     const lens = new THREE.Mesh(lensGeometry, lensMaterial);
     lens.rotation.x = Math.PI / 2;
     lens.position.set(0, 0, -1);
@@ -169,7 +175,7 @@ export default function CinematographyScene() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProjectPage, pathname]); // Include pathname to recreate objects on route change
+  }, [isProjectPage, pathname, reelGeometry, reelMaterial, stripGeometry, stripMaterial, frameGeometry, frameMaterial, lensGeometry, lensMaterial]); // Include pathname and memoized objects to recreate on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
@@ -215,6 +221,7 @@ export default function CinematographyScene() {
 
   return (
     <motion.div
+      key={pathname}
       ref={containerRef}
       className="absolute inset-0"
       initial={{ opacity: 0 }}

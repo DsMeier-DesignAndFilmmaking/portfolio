@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import anime from 'animejs';
@@ -30,6 +30,23 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Memoize geometries and materials to ensure fresh instances on remount
+  // This prevents using disposed objects when navigating back
+  const particlesMaterial = useMemo(() => new THREE.PointsMaterial({
+    size: 0.02,
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.5,
+  }), [pathname]);
+
+  const torusGeometry = useMemo(() => new THREE.TorusKnotGeometry(1, 0.3, 64, 16), [pathname]);
+  const torusMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0x4a90e2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -80,7 +97,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Create particles (optimized for performance)
+    // Create particles (optimized for performance) using memoized material
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCount = 800; // Reduced from 3000 for better performance
     const posArray = new Float32Array(particlesCount * 3);
@@ -94,13 +111,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       new THREE.BufferAttribute(posArray, 3)
     );
 
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02, // Slightly smaller for better performance
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.5, // Slightly reduced opacity
-    });
-
+    // Use memoized material instead of creating new one
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
     particlesRef.current = particles;
@@ -129,13 +140,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       );
     } else {
       // Create default torus knot if no model provided or if modelPath is 'torus'
-      const torusGeometry = new THREE.TorusKnotGeometry(1, 0.3, 64, 16); // Reduced complexity for better performance
-      const torusMaterial = new THREE.MeshPhongMaterial({
-        color: 0x4a90e2,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.3,
-      });
+      // Use memoized geometry and material instead of creating new ones
       const torus = new THREE.Mesh(torusGeometry, torusMaterial);
       scene.add(torus);
       modelRef.current = torus;
@@ -204,7 +209,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
       isMounted = false;
       window.removeEventListener('resize', handleResize);
     };
-  }, [modelPath, isProjectPage, pathname]); // Include pathname to recreate objects on route change
+  }, [modelPath, isProjectPage, pathname, particlesMaterial, torusGeometry, torusMaterial]); // Include pathname and memoized objects to recreate on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
@@ -262,6 +267,7 @@ export default function ParallaxBackground({ className = '', modelPath }: Parall
 
   return (
     <div 
+      key={pathname}
       ref={containerRef} 
       className={`absolute inset-0 ${className}`}
     />

@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -21,6 +21,34 @@ export default function DesignBuildScene() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Memoize geometries and materials to ensure fresh instances on remount
+  // This prevents using disposed objects when navigating back
+  const cubeGeometry = useMemo(() => new THREE.BoxGeometry(1, 1, 1), [pathname]);
+  const cubeMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
+
+  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(0.5, 32, 32), [pathname]);
+  const sphereMaterial = useMemo(() => new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
+
+  const lineGeometry = useMemo(() => new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-1, 0, 0),
+    new THREE.Vector3(1, 0, 0)
+  ]), [pathname]);
+  const lineMaterial = useMemo(() => new THREE.LineBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.3,
+  }), [pathname]);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -71,40 +99,17 @@ export default function DesignBuildScene() {
     // Create design-build elements
     const designGroup = new THREE.Group();
 
-    // Create a cube
-    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshPhongMaterial({
-      color: 0xffffff,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create a cube using memoized geometry and material
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.position.set(-1, 0, 0);
     designGroup.add(cube);
 
-    // Create a sphere
-    const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-    const sphereMaterial = new THREE.MeshPhongMaterial({
-      color: 0xffffff,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create a sphere using memoized geometry and material
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere.position.set(1, 0, 0);
     designGroup.add(sphere);
 
-    // Create connecting lines
-    const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-1, 0, 0),
-      new THREE.Vector3(1, 0, 0)
-    ]);
-    const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.3,
-    });
+    // Create connecting lines using memoized geometry and material
     const line = new THREE.Line(lineGeometry, lineMaterial);
     designGroup.add(line);
 
@@ -158,7 +163,7 @@ export default function DesignBuildScene() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProjectPage, pathname]); // Include pathname to recreate objects on route change
+  }, [isProjectPage, pathname, cubeGeometry, cubeMaterial, sphereGeometry, sphereMaterial, lineGeometry, lineMaterial]); // Include pathname and memoized objects to recreate on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
@@ -191,6 +196,7 @@ export default function DesignBuildScene() {
 
   return (
     <motion.div
+      key={pathname}
       ref={containerRef}
       className="absolute inset-0"
       initial={{ opacity: 0 }}

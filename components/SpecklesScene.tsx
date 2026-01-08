@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -21,6 +21,16 @@ export default function SpecklesScene() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Memoize material to ensure fresh instance on remount
+  // This prevents using disposed objects when navigating back
+  const material = useMemo(() => new THREE.PointsMaterial({
+    size: 0.05,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.6,
+    color: 0xffffff
+  }), [pathname]);
 
   useEffect(() => {
     // Ensure DOM exists and skip on server-side
@@ -87,14 +97,7 @@ export default function SpecklesScene() {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-    const material = new THREE.PointsMaterial({
-      size: 0.05,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.6,
-      color: 0xffffff
-    });
-
+    // Use memoized material instead of creating new one
     const speckles = new THREE.Points(geometry, material);
     scene.add(speckles);
     specklesRef.current = speckles;
@@ -138,7 +141,7 @@ export default function SpecklesScene() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProjectPage, pathname]); // Include pathname to recreate objects on route change
+  }, [isProjectPage, pathname, material]); // Include pathname and memoized objects to recreate on route change
 
   // Use reusable cleanup hook for Three.js resources (handles canvas removal, etc.)
   useThreeCleanup({
@@ -184,6 +187,7 @@ export default function SpecklesScene() {
 
   return (
     <motion.div
+      key={pathname}
       ref={containerRef}
       className="absolute inset-0"
       initial={{ opacity: 0 }}

@@ -384,6 +384,30 @@ export default function HomePage() {
                     </div>
                   </div>
 
+                  {/* Travel Discovery Section - Mobile Only (below Design Journey, above 3rd and 4th images) */}
+                  <div className="md:hidden w-full">
+                    <div className="space-y-8">
+                      {/* Travel Discovery Divider */}
+                      <div className="flex items-center justify-center py-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                          <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                          </svg>
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        </div>
+                      </div>
+                      
+                      <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                        Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Third Image (Portrait - Duplicate) */}
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -447,8 +471,8 @@ export default function HomePage() {
                     My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
                   </p>
                   
-                  {/* Travel Discovery Divider */}
-                  <div className="flex items-center justify-center py-4">
+                  {/* Travel Discovery Divider - Desktop Only */}
+                  <div className="hidden md:flex items-center justify-center py-4">
                     <div className="flex items-center gap-2">
                       <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                       <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
@@ -462,7 +486,8 @@ export default function HomePage() {
                     </div>
                   </div>
                   
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    {/* Travel Discovery Paragraph - Desktop Only */}
+                    <p className="hidden md:block text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
                   </div>
