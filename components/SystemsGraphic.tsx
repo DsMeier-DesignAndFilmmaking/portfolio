@@ -261,22 +261,18 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             right: '25%',
             top: '45%',
           }}
-          variants={{
-            animate: {
-              y: prefersReducedMotion ? 0 : [0, -12, 0],
-              x: prefersReducedMotion ? 0 : [0, -6, 0],
-              opacity: [0.9, 1, 0.9],
-              scale: [1, 1.02, 1],
-            },
-            transition: {
-              duration: prefersReducedMotion ? 0 : 14,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2,
-            },
+          animate={{
+            y: prefersReducedMotion ? 0 : [0, -12, 0],
+            x: prefersReducedMotion ? 0 : [0, -6, 0],
+            opacity: [0.9, 1, 0.9],
+            scale: [1, 1.02, 1],
           }}
-          initial="animate"
-          animate="animate"
+          transition={{
+            duration: prefersReducedMotion ? 0 : 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
         >
           <motion.div
             className="relative"
