@@ -155,13 +155,13 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             transition={{ duration: 0.3 }}
           >
             {/* Core orb - structural, load-bearing feel */}
-            <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-indigo-200/70 via-indigo-300/60 to-violet-200/70 backdrop-blur-xl border-2 border-indigo-300/50 shadow-xl">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-indigo-200/75 via-indigo-300/65 to-violet-200/75 backdrop-blur-xl border-2 border-indigo-300/60 shadow-2xl">
               {/* Inner processing core */}
               <div className="absolute inset-2 rounded-full bg-gradient-to-br from-indigo-400/40 to-violet-400/30" />
               {/* System name */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="text-center px-2">
-                  <div className="text-[8px] md:text-[10px] font-semibold text-indigo-900/90 uppercase tracking-tight leading-tight" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                  <div className="text-[9px] md:text-[11px] font-semibold text-indigo-900/90 uppercase tracking-tight leading-tight" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                     Spontaneity Engine
                   </div>
                 </div>
@@ -172,9 +172,9 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(6)].map((_, i) => {
                     const angle = (i * 360) / 6;
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 14;
-                    const x = 18 + Math.cos(rad) * radius;
-                    const y = 18 + Math.sin(rad) * radius;
+                    const radius = 18;
+                    const x = 20 + Math.cos(rad) * radius;
+                    const y = 20 + Math.sin(rad) * radius;
                     return (
                       <motion.div
                         key={`core-1-${i}`}
@@ -218,39 +218,6 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                 ease: "easeInOut",
               }}
             />
-            
-            {/* Data streams flowing from core */}
-            {!prefersReducedMotion && (
-              <>
-                {[...Array(4)].map((_, i) => {
-                  const angle = (i * 90) + 45;
-                  const rad = (angle * Math.PI) / 180;
-                  const distance = 25;
-                  return (
-                    <motion.div
-                      key={`stream-1-${i}`}
-                      className="absolute w-1 h-8 bg-gradient-to-b from-indigo-400/50 to-transparent rounded-full"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transformOrigin: '50% 0%',
-                        transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${distance}px)`,
-                      }}
-                      animate={{
-                        opacity: [0.3, 0.8, 0.3],
-                        scaleY: [0.5, 1.2, 0.5],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.5,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  );
-                })}
-              </>
-            )}
           </motion.div>
         </motion.div>
 
@@ -280,13 +247,13 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             transition={{ duration: 0.3 }}
           >
             {/* Core orb */}
-            <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-violet-200/70 via-violet-300/60 to-purple-200/70 backdrop-blur-xl border-2 border-violet-300/50 shadow-xl">
+            <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-teal-200/70 via-teal-300/60 to-cyan-200/70 backdrop-blur-xl border-2 border-teal-300/50 shadow-xl">
               {/* Inner processing core */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-br from-violet-400/40 to-purple-400/30" />
+              <div className="absolute inset-2 rounded-full bg-gradient-to-br from-teal-400/40 to-cyan-400/30" />
               {/* System name */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="text-center px-2">
-                  <div className="text-[8px] md:text-[10px] font-semibold text-violet-900/90 uppercase tracking-tight leading-tight" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                  <div className="text-[8px] md:text-[10px] font-semibold text-teal-900/90 uppercase tracking-tight leading-tight" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                     Trust & Authenticity
                   </div>
                 </div>
@@ -303,7 +270,7 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                     return (
                       <motion.div
                         key={`core-2-${i}`}
-                        className="absolute w-1.5 h-1.5 rounded-full bg-violet-500/60"
+                        className="absolute w-1.5 h-1.5 rounded-full bg-teal-500/60"
                         style={{
                           left: `${x}px`,
                           top: `${y}px`,
@@ -331,7 +298,7 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             
             {/* Outer ring - processing field */}
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-violet-200/40"
+              className="absolute inset-0 rounded-full border-2 border-teal-200/40"
               style={{ transform: 'scale(1.3)' }}
               animate={{
                 scale: prefersReducedMotion ? 1.3 : [1.3, 1.5, 1.3],
@@ -344,39 +311,6 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                 delay: 1,
               }}
             />
-            
-            {/* Data streams flowing from core */}
-            {!prefersReducedMotion && (
-              <>
-                {[...Array(4)].map((_, i) => {
-                  const angle = (i * 90) + 45;
-                  const rad = (angle * Math.PI) / 180;
-                  const distance = 25;
-                  return (
-                    <motion.div
-                      key={`stream-2-${i}`}
-                      className="absolute w-1 h-8 bg-gradient-to-b from-violet-400/50 to-transparent rounded-full"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transformOrigin: '50% 0%',
-                        transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${distance}px)`,
-                      }}
-                      animate={{
-                        opacity: [0.3, 0.8, 0.3],
-                        scaleY: [0.5, 1.2, 0.5],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.5 + 0.3,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  );
-                })}
-              </>
-            )}
           </motion.div>
         </motion.div>
       </div>

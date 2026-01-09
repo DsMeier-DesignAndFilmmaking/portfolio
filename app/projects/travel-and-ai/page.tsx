@@ -280,7 +280,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            I design context-aware AI systems for high-mobility travel, replacing rigid planning with real-time experiences that prioritize trust, social context, and the present moment.
+            I design and build context-aware AI systems for travel that prioritizes the present moment, replacing rigid logistics with personalized experiences shaped by social, cultural, and environmental context.
             </p>
           </motion.div>
         </div>
@@ -302,7 +302,7 @@ export default function AISandboxPage() {
 
 
       {/* Foundational Systems Section */}
-      <section className="pt-16 md:pt-24 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Foundational Systems">
+      <section className="pt-16 md:pt-12 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Foundational Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -443,7 +443,7 @@ export default function AISandboxPage() {
             className="mb-12 md:mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-              Applied Systems
+              Applied Intelligence Modules
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               Practical applications built on the foundational infrastructure.
@@ -454,22 +454,22 @@ export default function AISandboxPage() {
             {[
               {
                 icon: MapPin,
-                title: "Context-Aware Travel Decision System",
-                description: "Dynamic filtering based on location, time, social battery, and environmental constraints.",
+                title: "Context-Aware Decision Engine",
+                description: "A modular intelligence layer that embeds real-time travel decision logic into existing applications.",
                 gradient: "from-blue-500 to-cyan-600",
                 link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
               },
               {
                 icon: Users,
-                title: "Social Graph-Driven Travel Network",
-                description: "Utilizing social connections and trust hierarchies to filter and rank travel recommendations.",
+                title: "Social Opportunity Matching Module",
+                description: "A lightweight system that detects and surfaces spontaneous, low-friction social moments.",
                 gradient: "from-purple-500 to-pink-600",
                 link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
               {
                 icon: BookOpen,
-                title: "Narrative Travel Generator",
-                description: "Transforming raw telemetry and location data into shareable, human-centric travel stories.",
+                title: "Narrative Context Engine",
+                description: "A storytelling layer that transforms raw context into human-understandable meaning.",
                 gradient: "from-amber-500 to-orange-600",
                 link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
               }
