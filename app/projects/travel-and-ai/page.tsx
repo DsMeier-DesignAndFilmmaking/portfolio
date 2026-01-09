@@ -8,7 +8,7 @@ import { Sparkles, Shield, MapPin, Users, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
-import SystemsMapDiagram from "@/components/SystemsMapDiagram";
+import SystemsGraphic from "@/components/SystemsGraphic";
 
 
 
@@ -285,16 +285,16 @@ export default function AISandboxPage() {
           </motion.div>
         </div>
 
-        {/* Right: Systems Diagram */}
+        {/* Right: Systems Graphic */}
         <div className="hidden lg:flex justify-center items-center">
-          <SystemsMapDiagram showTitle={false} />
+          <SystemsGraphic />
         </div>
 
       </div>
       
-      {/* Mobile: Systems Diagram below hero copy */}
+      {/* Mobile: Systems Graphic below hero copy */}
       <div className="lg:hidden mt-12">
-        <SystemsMapDiagram showTitle={true} />
+        <SystemsGraphic />
       </div>
     </div>
   </div>
