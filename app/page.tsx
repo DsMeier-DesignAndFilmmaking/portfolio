@@ -94,24 +94,22 @@ export default function HomePage() {
                       <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
                     </h1>
                   </div>
-                  <div className="space-y-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    I’m Dan Meier, a systems-minded product designer and creative technologist designing adaptive digital experiences. Shaped by a decade of building products and insights from traveling across 41 countries.
+                  <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    I’m Dan Meier, a systems-minded product designer and creative technologist. <br></br><br></br>
+                    I design adaptive digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that resonate on a universal scale.
                     </p>
-                    <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-7 md:leading-8 tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left"
+                    <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left font-light"
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      Exploring how systems design, AI, and real-world context create better human experiences.
+                      Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
                   </div>
                 </div>
             </div>
           </div>
-        </section>
-
-
-        {/* Hero Image Section */}
-        <section className="section-padding bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          
+          {/* Hero Image - Moved inside hero section */}
+          <div className="max-w-4xl mx-auto px-6 mt-6 md:mt-8">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div className="w-full relative" style={{ aspectRatio: '4/3' }}>
                 <Image 
@@ -137,7 +135,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-6">
             <div className="w-full">
               {/* Heading */}
-              <div className="section-header-spacing">
+              <div className="section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
                 {/* Mobile Version - Simplified */}
                 <h1 
                   className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -160,156 +158,113 @@ export default function HomePage() {
                 </h1>
               </div>
 
-              {/* 50/50 Grid Layout: Images Left, Text Right */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-                {/* Left Side: Images Stacked Vertically */}
-                <div className="w-full space-y-8">
-                  {/* First Image */}
-                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                  <div className="w-full">
-                    <div className="w-full relative">
-                      <Image 
-                        id="me_heroImage-1_1.1.1-about"
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
-                        alt="Dan Meier"
-                        width={576}
-                        height={768}
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Second Image (Portrait) */}
-                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                  <div className="w-full">
-                    <div className="w-full relative">
-                      <Image 
-                        id="me_heroImage-1_1.1.1-about-2"
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
-                        alt="Dan Meier"
-                        width={576}
-                        height={768}
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Design Journey Section - Mobile Only (between 2nd and 3rd images) */}
-                  <div className="md:hidden w-full">
-                    <div className="space-y-8">
-                      {/* Design Journey Path Marker */}
-                      <div className="flex items-center gap-3 mb-6 opacity-60 mt-8">
-                        <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                        <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
-                      </div>
-                      
-                      <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                        My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Travel Discovery Section - Mobile Only (below Design Journey, above 3rd and 4th images) */}
-                  <div className="md:hidden w-full">
-                    <div className="space-y-8">
-                      {/* Travel Discovery Divider */}
-                      <div className="flex items-center justify-center py-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                          <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                          </svg>
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                          <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        </div>
-                      </div>
-                      
-                      <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                        Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Third Image (Portrait - Duplicate) */}
-                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                  <div className="w-full">
-                    <div className="w-full relative">
-                      <Image 
-                        id="me_heroImage-1_1.1.1-about-3"
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
-                        alt="Dan Meier"
-                        width={576}
-                        height={768}
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Fourth Image (Portrait) */}
-                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                  <div className="w-full">
-                    <div className="w-full relative">
-                      <Image 
-                        id="me_heroImage-1_1.1.1-about-4"
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
-                        alt="Dan Meier"
-                        width={576}
-                        height={768}
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 576px"
-                        loading="lazy"
-                      />
-                    </div>
+              {/* Single Column Layout: Images and Text Stacked Vertically */}
+              <div className="w-full space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                {/* First Image */}
+                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                <div className="w-full">
+                  <div className="w-full relative">
+                    <Image 
+                      id="me_heroImage-1_1.1.1-about"
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
+                      alt="Dan Meier"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
 
-                {/* Right Side: Text Content */}
+                {/* Second Image (Portrait) */}
+                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                  <div className="w-full text-left">
-                    <div className="space-y-8">
-                  {/* Design Journey Path Marker - Desktop Only */}
-                  <div className="hidden md:flex items-center gap-3 mb-6 opacity-60 mt-8">
-                    <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
+                  <div className="w-full relative">
+                    <Image 
+                      id="me_heroImage-1_1.1.1-about-2"
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
+                      alt="Dan Meier"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                      loading="lazy"
+                    />
                   </div>
-                  
-                  {/* Design Journey Paragraph - Desktop Only */}
-                  <p className="hidden md:block text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
-                  </p>
-                  
-                  {/* Travel Discovery Divider - Desktop Only */}
-                  <div className="hidden md:flex items-center justify-center py-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                      </svg>
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                      <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                </div>
+
+                {/* Design Journey Section */}
+                <div className="w-full" style={{ marginTop: '3.45rem' }}>
+                  <div className="space-y-8">
+                    {/* Design Journey Path Marker */}
+                    <div className="flex items-center gap-3 mb-6 opacity-60">
+                      <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
                     </div>
+                    
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
+                    </p>
                   </div>
-                  
-                    {/* Travel Discovery Paragraph - Desktop Only */}
-                    <p className="hidden md:block text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                </div>
+
+                {/* Travel Discovery Section */}
+                <div className="w-full">
+                  <div className="space-y-8">
+                    {/* Travel Discovery Divider */}
+                    <div className="flex items-center justify-center py-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
-                    </div>
+                  </div>
+                </div>
+
+                {/* Third Image (Portrait - Duplicate) */}
+                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                <div className="w-full">
+                  <div className="w-full relative">
+                    <Image 
+                      id="me_heroImage-1_1.1.1-about-3"
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
+                      alt="Dan Meier"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                {/* Fourth Image (Portrait) */}
+                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                <div className="w-full">
+                  <div className="w-full relative">
+                    <Image 
+                      id="me_heroImage-1_1.1.1-about-4"
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
+                      alt="Dan Meier"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 576px"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>

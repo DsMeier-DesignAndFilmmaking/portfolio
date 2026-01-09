@@ -47,7 +47,7 @@ const Navbar = () => {
       id="site-navbar"
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBg}`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="relative h-9 w-32">
           <Image 
