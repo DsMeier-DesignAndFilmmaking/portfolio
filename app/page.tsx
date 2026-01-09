@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import DesignWork from '@/components/DesignWork';
 import HomePageBodyReset from '@/components/HomePageBodyReset';
+import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -59,8 +60,8 @@ export default function HomePage() {
       {/* ✅ HomePageBodyReset - Resets body styles that persist from project pages */}
       <HomePageBodyReset />
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
-      {/* ✅ CRITICAL: Explicit opacity and display to override any styles from project pages */}
-      <main className="min-h-screen relative bg-white" style={{ opacity: 1, display: 'block' }}>
+      {/* ✅ Animated Homepage Content - Fade-in and slide-up animation */}
+      <AnimatedHomePageContent>
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
@@ -96,13 +97,23 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>
                     <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    I’m Dan Meier, a systems-minded product designer and creative technologist. <br></br><br></br>
-                    I design adaptive digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that resonate on a universal scale.
+                    I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br></br><br></br>
+                    I design digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value and resonate on a universal scale.
                     </p>
                     <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left font-light"
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
+                    <div className="mt-4">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
+                        alt="Dan Meier signature"
+                        width={208}
+                        height={70}
+                        className="h-10 w-auto"
+                        style={{ maxWidth: '311px' }}
+                      />
+                    </div>
                   </div>
                 </div>
             </div>
@@ -231,6 +242,9 @@ export default function HomePage() {
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
+                    <p className="text-sm text-gray-500 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      *All visuals captured through my lens, no AI generated photos or video.
+                    </p>
                   </div>
                 </div>
 
@@ -323,6 +337,12 @@ export default function HomePage() {
                 color: '#9899ab'
               }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
+              </p>
+              <p className="text-sm max-w-4xl mx-auto mb-8 italic leading-relaxed" style={{ 
+                fontFamily: "'Roboto', Helvetica, sans-serif",
+                color: '#9899ab'
+              }}>
+                *All visuals captured through my lens, no AI generated photos or video.
               </p>
             </div>
             
@@ -432,9 +452,9 @@ export default function HomePage() {
               Previous Projects
             </Link>
           </div>
+          </div>
         </div>
-        </div>
-      </main>
+      </AnimatedHomePageContent>
       {/* ✅ COMMENTED OUT - HomePageWebGL (WebGL/Three.js client component) */}
       {/* {process.env.NODE_ENV === 'development' && (
         <HomePageWebGL />

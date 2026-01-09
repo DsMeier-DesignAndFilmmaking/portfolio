@@ -62,7 +62,7 @@ export default function DesignWork() {
               {/* Travel & AI Card */}
               <Link
                 href="/projects/travel-and-ai"
-                className="group block rounded-lg border border-gray-300 bg-white pt-6 px-6 pb-6 hover:border-gray-400 transition-colors h-[240px] flex flex-col justify-between"
+                className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
               >
                 <div className="flex flex-col">
                   <h3 className="text-xl font-bold text-gray-900">
@@ -101,7 +101,7 @@ export default function DesignWork() {
               {/* The Archive Card */}
               <Link
                 href="/projects/previous"
-                className="group block rounded-lg border border-gray-300 bg-white pt-6 px-6 pb-6 hover:border-gray-400 transition-colors h-[240px] flex flex-col justify-between"
+                className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
               >
                 <div className="flex flex-col">
                   <h3 className="text-xl font-bold text-gray-900">

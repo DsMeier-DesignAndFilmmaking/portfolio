@@ -26,8 +26,7 @@ export default function StaticFooter() {
               />
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Curious about systems, code, and how people experience the world. 
-              I design products that connect logic with real life.
+              Curious about systems, code, and how people experience the world.
             </p>
           </div>
 
@@ -44,34 +43,16 @@ export default function StaticFooter() {
                 Home
               </Link>
               <Link 
-                href="#about" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                About
-              </Link>
-              <Link 
-                href="#work" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                Work
-              </Link>
-              <Link 
-                href="#travelogue" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                Travelogue
-              </Link>
-              <Link 
                 href="/projects/travel-and-ai" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
                 Travel & AI
               </Link>
               <Link 
-                href="/projects/previous" 
+                href="#work" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
-                Previous Work
+                Client Work
               </Link>
             </nav>
           </div>
@@ -136,9 +117,6 @@ export default function StaticFooter() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-xs text-gray-500">
               © {currentYear} Dan Meier. All rights reserved.
-            </p>
-            <p className="text-xs text-gray-500">
-              Designed and built with Next.js
             </p>
           </div>
         </div>

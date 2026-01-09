@@ -52,8 +52,8 @@ export default function TravelAISystemsDiagram() {
   // Block dimensions (Foundational larger, Applied smaller for hierarchy)
   const foundationalBlockWidth = 260;
   const foundationalBlockHeight = 130;
-  const appliedBlockWidth = 150;
-  const appliedBlockHeight = 90;
+  const appliedBlockWidth = 170; // Increased for longer labels
+  const appliedBlockHeight = 110; // Increased for better text fit
   
   // Foundational Row (Bottom): Side-by-side blocks
   const foundationalRowY = diagramHeight - 80; // Near bottom
@@ -123,6 +123,22 @@ export default function TravelAISystemsDiagram() {
           
           {/* === SVG FILTERS FOR HIGH-END ARCHITECTURAL SCHEMATIC === */}
           <defs>
+            {/* Arrowhead marker for directional flow (pointing from Foundation to Applied) - high contrast */}
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="10"
+              refX="9"
+              refY="3"
+              orient="auto"
+              markerUnits="strokeWidth"
+            >
+              <path
+                d="M 0,0 L 0,6 L 9,3 z"
+                fill="#0f172a"
+              />
+            </marker>
+            
             {/* Glass effect filter */}
             <filter id="glassEffect" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
@@ -235,20 +251,6 @@ export default function TravelAISystemsDiagram() {
             delay={1.0} 
           />
           
-          {/* Visual Legend */}
-          <g>
-            <text 
-              x="20" 
-              y="500" 
-              fontSize="8" 
-              fill="#64748b" 
-              fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
-              letterSpacing="0.1em"
-            >
-              <tspan x="20" dy="0">[●] FOUNDATION</tspan>
-              <tspan x="20" dy="12">[○] APPLICATION</tspan>
-            </text>
-          </g>
         </svg>
       </div>
     </div>
@@ -323,11 +325,11 @@ function DataFlowCircle({ pathData, delay, colors }: any) {
   );
 }
 
-/* BENTO CONNECTOR: 90-degree orthogonal routing with junction node - aligned to node borders */
+/* BENTO CONNECTOR: 90-degree orthogonal routing with arrowheads - Foundation feeds Application flow */
 function BentoConnector({ foundationCenterX, foundationTopY, appliedNodes, delay, colors, lineTransition }: any) {
   // Calculate connection points at node borders
   // Applied blocks: connect to top edge (y - h/2)
-  const appliedTopY = appliedNodes[0].y - 45; // appliedBlockHeight / 2 = 90 / 2 = 45
+  const appliedTopY = appliedNodes[0].y - 55; // appliedBlockHeight / 2 = 110 / 2 = 55
   
   // Branching point (midway between foundation top and applied blocks top)
   const branchY = (foundationTopY + appliedTopY) / 2;
@@ -337,50 +339,107 @@ function BentoConnector({ foundationCenterX, foundationTopY, appliedNodes, delay
   
   // Branch paths: horizontal then vertical (90-degree routing) - connect to top edge of applied blocks
   const branchPaths = appliedNodes.map((node: any) => {
-    const nodeTopY = node.y - 45; // appliedBlockHeight / 2 = 90 / 2 = 45
+    const nodeTopY = node.y - 55; // appliedBlockHeight / 2 = 110 / 2 = 55
     // Horizontal segment from junction to node x, then vertical to node top
     return `M ${foundationCenterX} ${branchY} L ${node.x} ${branchY} L ${node.x} ${nodeTopY}`;
   });
   
+  // Calculate annotation position (midpoint of vertical segment)
+  const annotationX = foundationCenterX + 8;
+  const annotationY = (foundationTopY + branchY) / 2;
+  
   return (
     <g>
-      {/* Main vertical line (1.5px slate-500 stroke) */}
+      {/* Main vertical line (2px slate-900 stroke with arrowhead at top) - high contrast ADA compliant */}
       <motion.path
         d={verticalPath}
         fill="none"
-        stroke="#64748b"
-        strokeWidth="1.5"
+        stroke="#0f172a"
+        strokeWidth="2"
         strokeLinecap="round"
+        markerEnd="url(#arrowhead)"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
         transition={{ ...lineTransition, delay }}
       />
       
-      {/* Junction node (4px solid circle) at branching point */}
+      {/* Visual annotation: FEED_LOGIC label - high contrast */}
+      <motion.text
+        x={annotationX}
+        y={annotationY}
+        fontSize="8"
+        fill="#0f172a"
+        opacity="1"
+        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+        letterSpacing="0.1em"
+        textAnchor="start"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: delay + lineTransition.duration }}
+      >
+        FEED_LOGIC
+      </motion.text>
+      
+      {/* Junction node (4px solid circle) at branching point - high contrast */}
       <motion.circle
         cx={foundationCenterX}
         cy={branchY}
         r="4"
-        fill="#64748b"
+        fill="#0f172a"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, delay: delay + lineTransition.duration }}
       />
       
-      {/* Branch lines to applied blocks (1.5px slate-500 stroke, 90-degree routing) */}
-      {branchPaths.map((path: string, i: number) => (
-        <motion.path
-          key={i}
-          d={path}
-          fill="none"
-          stroke="#64748b"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ ...lineTransition, delay: delay + 0.2 + (i * 0.1) }}
-        />
-      ))}
+      {/* Branch lines to applied blocks (1.5px slate-500 stroke, 90-degree routing, with arrowheads) */}
+      {branchPaths.map((path: string, i: number) => {
+        // Calculate annotation position for each branch (midpoint of horizontal segment)
+        const node = appliedNodes[i];
+        const branchMidX = (foundationCenterX + node.x) / 2;
+        const branchMidY = branchY - 8; // Above the horizontal line
+        
+        return (
+          <g key={i}>
+            <motion.path
+              d={path}
+              fill="none"
+              stroke="#0f172a"
+              strokeWidth="2"
+              strokeLinecap="round"
+              markerEnd="url(#arrowhead)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ ...lineTransition, delay: delay + 0.2 + (i * 0.1) }}
+            />
+            
+            {/* Animated pulse traveling from foundation to applied (dash-array animation) - high contrast */}
+            <motion.path
+              d={path}
+              fill="none"
+              stroke="#0f172a"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeDasharray="8 12"
+              strokeOpacity="0.8"
+              initial={{ pathLength: 0, strokeDashoffset: 0 }}
+              animate={{ 
+                pathLength: 1,
+                strokeDashoffset: [0, -20]
+              }}
+              transition={{ 
+                pathLength: { ...lineTransition, delay: delay + 0.2 + (i * 0.1) },
+                strokeDashoffset: {
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  ease: "linear",
+                  delay: delay + lineTransition.duration + 0.5 + (i * 0.1)
+                }
+              }}
+            />
+          </g>
+        );
+      })}
     </g>
   );
 }
@@ -561,8 +620,9 @@ function BentoFoundationalBlock({ x, y, w, h, label, delay, techId }: any) {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.6, delay }}
       className="bento-foundational-node"
+      style={{ opacity: 1 }}
     >
-      {/* Solid dark block (bg-slate-950 equivalent) with border-2 border-slate-900 */}
+      {/* Solid dark block (bg-slate-950) with border-slate-800 - high contrast ADA compliant */}
       <rect 
         x={x - w / 2} 
         y={y - h / 2} 
@@ -570,7 +630,7 @@ function BentoFoundationalBlock({ x, y, w, h, label, delay, techId }: any) {
         height={h} 
         rx="4" 
         fill="#020617" 
-        stroke="#0f172a"
+        stroke="#1e293b"
         strokeWidth="2"
         className="bento-foundational-bg"
       />
@@ -583,23 +643,24 @@ function BentoFoundationalBlock({ x, y, w, h, label, delay, techId }: any) {
         fill="#22c55e" 
       />
       
-      {/* Technical ID label (top-left corner, 7px gray) */}
+      {/* Technical ID label (top-left corner, 8px white for ADA compliance) */}
       {techId && (
         <text 
           x={x - w / 2 + 6} 
           y={y - h / 2 + 10} 
           textAnchor="start" 
-          fill="#64748b" 
-          fontSize="7" 
+          fill="#FFFFFF" 
+          fontSize="8" 
           fontWeight="400"
           fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
           letterSpacing="0.1em"
+          opacity="1"
         >
           {techId}
         </text>
       )}
       
-      {/* White text - forced high contrast, no opacity inheritance */}
+      {/* White text - ADA compliant high contrast (7:1+ ratio) */}
       <text 
         x={x} 
         y={y} 
@@ -642,19 +703,20 @@ function BentoAppliedBlock({ x, y, w, h, label, delay }: any) {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.6, delay }}
       className="bento-applied-node"
+      style={{ opacity: 1 }}
     >
-      {/* Background (bg-slate-50 equivalent) */}
+      {/* Background (bg-white) - high contrast ADA compliant */}
       <rect 
         x={x - w / 2} 
         y={y - h / 2} 
         width={w} 
         height={h} 
         rx="4" 
-        fill="#f8fafc" 
+        fill="#FFFFFF" 
         className="bento-applied-bg"
       />
       
-      {/* Border (border-slate-300 equivalent) */}
+      {/* Border (border-2 border-slate-950) - high contrast ADA compliant */}
       <rect 
         x={x - w / 2} 
         y={y - h / 2} 
@@ -662,35 +724,38 @@ function BentoAppliedBlock({ x, y, w, h, label, delay }: any) {
         height={h} 
         rx="4" 
         fill="none" 
-        stroke="#cbd5e1" 
-        strokeWidth="1"
+        stroke="#020617" 
+        strokeWidth="2"
         className="bento-applied-border"
       />
       
-      {/* Dark text - forced high contrast, no opacity inheritance */}
+      {/* Dark text (text-slate-950) - ADA compliant high contrast (7:1+ ratio) */}
       <text 
         x={x} 
         y={y} 
         textAnchor="middle" 
         dominantBaseline="middle" 
-        fill="#000000" 
+        fill="#020617" 
         fontSize="14" 
-        fontWeight="500"
+        fontWeight="600"
         fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
         letterSpacing="0.05em"
         style={{ 
           textRendering: 'optimizeLegibility', 
           WebkitFontSmoothing: 'antialiased',
           opacity: 1,
-          color: '#000000'
+          color: '#020617'
         }}
         opacity="1"
       >
         {words.map((word: string, i: number) => {
-          const offset = (words.length - 1) * 0.3;
-          const dyValue = i === 0 ? `-${offset}em` : "1.2em";
+          // Better vertical centering: calculate offset based on total word count
+          const totalWords = words.length;
+          const lineHeight = 1.15; // Tighter line spacing
+          const firstLineOffset = totalWords > 1 ? ((totalWords - 1) * lineHeight) / 2 : 0;
+          const dyValue = i === 0 ? `-${firstLineOffset}em` : `${lineHeight}em`;
           return (
-            <tspan key={i} x={x} dy={dyValue} opacity="1" fill="#000000">
+            <tspan key={i} x={x} dy={dyValue} opacity="1" fill="#020617">
               {word}
             </tspan>
           );
