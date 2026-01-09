@@ -107,7 +107,7 @@ export default function HomePage() {
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
-                    <div className="mt-4">
+                    <div className="mt-4 mb-4">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
                         alt="Dan Meier signature"
@@ -125,7 +125,13 @@ export default function HomePage() {
           {/* Hero Image - Moved inside hero section */}
           <div className="max-w-4xl mx-auto px-6 mt-6 md:-mt-16 md:relative md:z-10">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <div className="w-full relative" style={{ aspectRatio: '4/3' }}>
+              <div 
+                className="w-full relative" 
+                style={{ 
+                  aspectRatio: '4/3',
+                  background: '#f0f0f0' /* Skeleton state background */
+                }}
+              >
                 <Image 
                   id="me_heroImage-1_1.1.1"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
@@ -177,14 +183,19 @@ export default function HomePage() {
                 {/* First Image */}
                 {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  <div className="w-full relative">
+                  <div 
+                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                    style={{
+                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
+                      background: '#f0f0f0' /* Skeleton state background */
+                    }}
+                  >
                     <Image 
                       id="me_heroImage-1_1.1.1-about"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
                       alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg shadow-lg"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -194,14 +205,19 @@ export default function HomePage() {
                 {/* Second Image (Portrait) */}
                 {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  <div className="w-full relative">
+                  <div 
+                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                    style={{
+                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
+                      background: '#f0f0f0' /* Skeleton state background */
+                    }}
+                  >
                     <Image 
                       id="me_heroImage-1_1.1.1-about-2"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
                       alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg shadow-lg"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -254,14 +270,19 @@ export default function HomePage() {
                 {/* Third Image (Portrait - Duplicate) */}
                 {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  <div className="w-full relative">
+                  <div 
+                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                    style={{
+                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
+                      background: '#f0f0f0' /* Skeleton state background */
+                    }}
+                  >
                     <Image 
                       id="me_heroImage-1_1.1.1-about-3"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
                       alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg shadow-lg"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -271,14 +292,19 @@ export default function HomePage() {
                 {/* Fourth Image (Portrait) */}
                 {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  <div className="w-full relative">
+                  <div 
+                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                    style={{
+                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
+                      background: '#f0f0f0' /* Skeleton state background */
+                    }}
+                  >
                     <Image 
                       id="me_heroImage-1_1.1.1-about-4"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
                       alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg shadow-lg"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -353,12 +379,15 @@ export default function HomePage() {
             <div className="mt-8">
               <div className="relative">
                 <div className="relative">
+                  {/* Strategy A: Aspect Ratio Box - Reserve space with transparent background */}
                   <div 
-                    className="relative w-full rounded-3xl overflow-hidden"
+                    className="travelogue-media-container relative w-full rounded-3xl overflow-hidden"
                     style={{ 
-                      aspectRatio: '16 / 9',
                       position: 'relative',
-                      width: '100%'
+                      width: '100%',
+                      paddingBottom: '56.25%', /* 16:9 aspect ratio (9/16 = 0.5625) */
+                      height: 0,
+                      background: 'transparent' /* Transparent background */
                     }}
                   >
                     <iframe
@@ -410,7 +439,12 @@ export default function HomePage() {
               <div className="relative">
                 <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                   {/* Background Image */}
-                  <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                  <div 
+                    className="absolute inset-0 rounded-3xl overflow-hidden"
+                    style={{
+                      background: '#f0f0f0' /* Skeleton state background */
+                    }}
+                  >
                     <Image
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morocco_girlsBike_Natgeo.webp`}
                       alt="Morocco Travel"

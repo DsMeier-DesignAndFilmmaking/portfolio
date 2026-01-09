@@ -46,6 +46,29 @@ footer#footer {
   position: relative;
 }
 
+/* Flexbox Spacer Workaround: Ensure main content area stretches */
+/* The #__next container is now a flex container with min-h-screen */
+/* Main uses flex-grow to fill available space */
+
+/* Flexbox Spacer: Contact anchor pushes footer to absolute bottom */
+#contact {
+  /* Pushes the footer to the absolute bottom of the flex container */
+  margin-top: auto;
+}
+
+/* CSS Solve: Aspect Ratio Placeholders with Skeleton Screens */
+.travelogue-media-container,
+.work-item-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* This reserves the space immediately */
+  background: #f0f0f0; /* A light grey skeleton state */
+}
+
+/* Ensure all image containers with aspect ratios have skeleton backgrounds */
+[style*="aspect-ratio"] {
+  background: #f0f0f0;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: white;

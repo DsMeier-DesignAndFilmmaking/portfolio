@@ -6,6 +6,7 @@ import '@/styles/globals.css';
 import ConditionalNavbar from '@/components/ConditionalNavbar';
 import StaticFooter from '@/components/StaticFooter';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
+import ScrollCorrection from '@/components/ScrollCorrection';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
 // ✅ REMOVED - Footer (client component - replaced with StaticFooter)
@@ -72,7 +73,7 @@ export default function RootLayout({
         {/* ✅ BodyKeyWrapper with pathname key forces complete DOM reset on route change */}
         {/* ✅ DO NOT put key on <html> or <body> - only on content wrapper inside body */}
         <BodyKeyWrapper>
-          <div id="__next" suppressHydrationWarning>
+          <div id="__next" suppressHydrationWarning className="flex flex-col min-h-screen">
             {/* ✅ Conditional Navbar - Hidden on homepage only, shown on all other pages */}
             <ConditionalNavbar />
             
@@ -90,10 +91,14 @@ export default function RootLayout({
             )} */}
             
             {/* ✅ Pure static main - no animations, no transitions */}
-            <main className="min-h-screen">{children}</main>
+            {/* Flexbox Spacer Workaround: Main content with flex-grow to fill space */}
+            <main className="flex-grow">{children}</main>
             
             {/* ✅ Static Footer - No hooks, no JS behavior */}
             <StaticFooter />
+            
+            {/* ✅ Scroll Correction - Re-triggers scroll when content loads */}
+            <ScrollCorrection />
           </div>
         </BodyKeyWrapper>
       </body>

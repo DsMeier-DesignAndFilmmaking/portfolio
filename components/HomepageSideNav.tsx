@@ -55,7 +55,7 @@ export default function HomepageSideNav() {
         </a>
         
         <a 
-          href="#footer" 
+          href="#contact" 
           className="group flex items-center gap-2"
           aria-label="Go to Contact section"
         >
@@ -111,7 +111,7 @@ export default function HomepageSideNav() {
             </li>
             <li role="listitem">
               <a
-                href="#footer"
+                href="#contact"
                 className="group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 aria-label="Go to Contact section"
               >
