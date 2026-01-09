@@ -8,7 +8,7 @@ import { Sparkles, Shield, MapPin, Users, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
-import TravelAISystemsDiagram from "@/components/TravelAISystemsDiagram";
+import SystemsMapDiagram from "@/components/SystemsMapDiagram";
 
 
 
@@ -287,9 +287,14 @@ export default function AISandboxPage() {
 
         {/* Right: Systems Diagram */}
         <div className="hidden lg:flex justify-center items-center">
-          <TravelAISystemsDiagram />
+          <SystemsMapDiagram showTitle={false} />
         </div>
 
+      </div>
+      
+      {/* Mobile: Systems Diagram below hero copy */}
+      <div className="lg:hidden mt-12">
+        <SystemsMapDiagram showTitle={true} />
       </div>
     </div>
   </div>
