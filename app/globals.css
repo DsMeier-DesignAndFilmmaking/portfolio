@@ -27,8 +27,8 @@
 }
 
 html {
-  /* Disable native smooth scrolling to prevent conflicts with custom JavaScript scrolling */
-  scroll-behavior: auto !important;
+  /* Enable smooth scrolling for native anchor navigation */
+  scroll-behavior: smooth;
   overscroll-behavior-y: none;
   /* Remove scroll-padding-top to let custom scroll calculations handle positioning */
   background-color: white;
@@ -36,6 +36,14 @@ html {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  /* Ensure footer scrolls to absolute bottom */
+  scroll-padding-bottom: 0;
+}
+
+/* Ensure footer is always at the bottom and scrolls correctly */
+footer#footer {
+  scroll-margin-bottom: 0;
+  position: relative;
 }
 
 body {
@@ -114,8 +122,9 @@ body {
   /* Mobile scroll optimizations */
   @media (max-width: 768px) {
     html {
-      scroll-behavior: auto !important; /* Disable native smooth scroll - use JS instead */
-      scroll-padding-top: 80px; /* Account for mobile navigation */
+      scroll-behavior: smooth; /* Enable smooth scrolling for anchor navigation */
+      scroll-padding-top: 144px; /* Account for mobile navigation (80px top + 48px nav height + 16px spacing) */
+      scroll-padding-bottom: 0; /* Ensure footer scrolls to absolute bottom */
       overscroll-behavior-y: none;
     }
     

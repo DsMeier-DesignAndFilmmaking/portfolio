@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export default function DesignWork() {
   return (
-    <section id="work" className="bg-white" style={{ paddingBottom: 'clamp(5rem, 10vh, 10rem)' }} aria-label="Design Work">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="work" className="bg-white relative pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" aria-label="Design Work">
+      <div className="max-w-4xl mx-auto px-6 relative">
         <div className="w-full">
           {/* Heading */}
           <div className="mb-12" style={{ maxWidth: '576px', margin: '0 auto' }}>

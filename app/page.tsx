@@ -4,6 +4,7 @@ import Image from 'next/image';
 import DesignWork from '@/components/DesignWork';
 import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
+import HomepageSideNav from '@/components/HomepageSideNav';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -59,16 +60,18 @@ export default function HomePage() {
     <>
       {/* ✅ HomePageBodyReset - Resets body styles that persist from project pages */}
       <HomePageBodyReset />
+      {/* ✅ Side Navigation - Fixed left side, desktop only */}
+      <HomepageSideNav />
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
       {/* ✅ Animated Homepage Content - Fade-in and slide-up animation */}
       <AnimatedHomePageContent>
         <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section className="intro-section bg-white relative z-10" aria-label="Introduction">
+        <section id="hero" className="intro-section bg-white relative z-10 pt-[96px] pb-[96px] md:pt-0 md:pb-[140px]" aria-label="Introduction">
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
-          <div className="relative flex items-start md:items-center justify-center min-h-[60vh] md:min-h-[80vh]">
-            <div className="max-w-4xl mx-auto px-6 w-full pt-32 md:pt-0 pb-0">
+          <div className="relative flex items-center justify-center min-h-[85vh] md:min-h-[90vh] pt-36 md:pt-0">
+            <div className="max-w-4xl mx-auto px-6 w-full py-0">
               {/* ✅ REMOVED - Suspense and motion.div (animations) */}
               <div 
                   className="w-full text-left"
@@ -120,7 +123,7 @@ export default function HomePage() {
           </div>
           
           {/* Hero Image - Moved inside hero section */}
-          <div className="max-w-4xl mx-auto px-6 mt-6 md:mt-8">
+          <div className="max-w-4xl mx-auto px-6 mt-6 md:-mt-16 md:relative md:z-10">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div className="w-full relative" style={{ aspectRatio: '4/3' }}>
                 <Image 
@@ -142,8 +145,8 @@ export default function HomePage() {
         <div className="anchor-offset" aria-hidden="true"></div>
         
         {/* About Me Section */}
-        <section id="about" className="bg-white" aria-label="About Me">
-          <div className="max-w-4xl mx-auto px-6">
+        <section id="about" className="bg-white relative pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" aria-label="About Me">
+          <div className="max-w-4xl mx-auto px-6 relative">
             <div className="w-full">
               {/* Heading */}
               <div className="section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
@@ -302,7 +305,7 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="relative overflow-hidden" style={{ backgroundColor: '#1d1f26' }}>
+        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#1d1f26' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
@@ -364,7 +367,6 @@ export default function HomePage() {
                       frameBorder="0"
                       allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
                       allowFullScreen
-                      loading="lazy"
                       style={{ 
                         position: 'absolute',
                         top: 0,

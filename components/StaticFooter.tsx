@@ -10,7 +10,7 @@ export default function StaticFooter() {
     <>
       {/* Stable anchor target for Contact section - zero height, positioned before footer */}
       <div id="contact" className="anchor-offset" aria-hidden="true"></div>
-      <footer className="w-full bg-white border-t border-gray-200 mt-20">
+      <footer id="footer" className="w-full bg-white border-t border-gray-200 pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           
@@ -118,6 +118,12 @@ export default function StaticFooter() {
             <p className="text-xs text-gray-500">
               © {currentYear} Dan Meier. All rights reserved.
             </p>
+            <a
+              href="#hero"
+              className="text-sm text-neutral-400 hover:text-neutral-700 transition-colors"
+            >
+              ↑ Back to top
+            </a>
           </div>
         </div>
       </div>
