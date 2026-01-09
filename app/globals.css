@@ -263,4 +263,52 @@ body {
   .spacing-sm { margin: 1rem; } /* 16px */
   .spacing-md { margin: 1.5rem; } /* 24px */
   .spacing-lg { margin: 2rem; } /* 32px */
+}
+
+/* Bento-System Diagram Hover Effects & Text Contrast Fixes */
+.bento-foundational-node {
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.bento-foundational-node:hover .bento-foundational-bg {
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* Force high contrast text for foundational blocks - override all opacity */
+.bento-foundational-node text {
+  fill: #FFFFFF !important;
+  opacity: 1 !important;
+  color: #FFFFFF !important;
+}
+
+.bento-foundational-node tspan {
+  fill: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+.bento-applied-node {
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.bento-applied-node:hover .bento-applied-border {
+  stroke: #3b82f6; /* blue-500 */
+  stroke-width: 2;
+}
+
+.bento-applied-node:hover .bento-applied-bg {
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+}
+
+/* Force high contrast text for applied blocks - override all opacity */
+.bento-applied-node text {
+  fill: #000000 !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+}
+
+.bento-applied-node tspan {
+  fill: #000000 !important;
+  opacity: 1 !important;
 } 

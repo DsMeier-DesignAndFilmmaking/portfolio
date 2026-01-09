@@ -44,37 +44,69 @@ export default function TravelAISystemsDiagram() {
     );
   }
 
-  // Vertical Spine Architecture: Foundational systems stacked vertically in center
-  const spineX = 180; // Left-center position for the vertical spine
-  const spineCenterY = 260; // Vertical center of the diagram
+  // Bento-System Map Architecture: Foundational row at bottom, Applied row at top
+  const centerX = 300; // Center of diagram
+  const diagramHeight = 520;
+  const diagramWidth = 600;
   
-  // Foundational Systems: Stacked vertically (Power Column)
-  // Trust Layer (top of spine)
-  const trustNode = { x: spineX, y: spineCenterY - 100 };
-  // Spontaneity Engine (bottom of spine)
-  const spontaneityNode = { x: spineX, y: spineCenterY + 100 };
+  // Block dimensions (Foundational larger, Applied smaller for hierarchy)
+  const foundationalBlockWidth = 260;
+  const foundationalBlockHeight = 130;
+  const appliedBlockWidth = 150;
+  const appliedBlockHeight = 90;
   
-  // Vertical spacing between foundational blocks
-  const verticalSpacing = spontaneityNode.y - trustNode.y; // 200px
+  // Foundational Row (Bottom): Side-by-side blocks
+  const foundationalRowY = diagramHeight - 80; // Near bottom
+  const foundationalGap = 48; // Consistent gap-12 spacing (48px)
+  const foundationalTotalWidth = (foundationalBlockWidth * 2) + foundationalGap;
+  const foundationalStartX = centerX - (foundationalTotalWidth / 2);
   
-  // Applied Systems: Branch out horizontally to the right
-  // Horizontal spacing equals vertical spacing for geometric balance
-  const horizontalSpacing = verticalSpacing; // 200px
-  const branchStartX = spineX + 120; // Start of branching (right of spine)
+  const spontaneityNode = { 
+    x: foundationalStartX + foundationalBlockWidth / 2, 
+    y: foundationalRowY,
+    w: foundationalBlockWidth,
+    h: foundationalBlockHeight
+  };
+  const trustNode = { 
+    x: foundationalStartX + foundationalBlockWidth + foundationalGap + foundationalBlockWidth / 2, 
+    y: foundationalRowY,
+    w: foundationalBlockWidth,
+    h: foundationalBlockHeight
+  };
   
-  // Position applied systems vertically distributed, branching to the right
+  // Applied Row (Top): Horizontal row of 3 blocks
+  const appliedRowY = 100; // Near top
+  const appliedGap = 32; // Consistent gap-8 spacing (32px)
+  const appliedTotalWidth = (appliedBlockWidth * 3) + (appliedGap * 2);
+  const appliedStartX = centerX - (appliedTotalWidth / 2);
+  
+  // Ensure perfect centering: align foundational center with applied center
+  const foundationalCenterX = centerX;
+  const appliedCenterX = centerX;
+  
   const appliedNode1 = { 
-    x: branchStartX + horizontalSpacing, 
-    y: trustNode.y // Top applied system aligns with Trust Layer
+    x: appliedStartX + appliedBlockWidth / 2, 
+    y: appliedRowY,
+    w: appliedBlockWidth,
+    h: appliedBlockHeight
   };
   const appliedNode2 = { 
-    x: branchStartX + horizontalSpacing, 
-    y: spineCenterY // Middle applied system at center
+    x: appliedStartX + appliedBlockWidth + appliedGap + appliedBlockWidth / 2, 
+    y: appliedRowY,
+    w: appliedBlockWidth,
+    h: appliedBlockHeight
   };
   const appliedNode3 = { 
-    x: branchStartX + horizontalSpacing, 
-    y: spontaneityNode.y // Bottom applied system aligns with Spontaneity Engine
+    x: appliedStartX + (appliedBlockWidth * 2) + (appliedGap * 2) + appliedBlockWidth / 2, 
+    y: appliedRowY,
+    w: appliedBlockWidth,
+    h: appliedBlockHeight
   };
+  
+  // Connector: Vertical line from center of Foundation row branching to Applied blocks
+  const foundationCenterX = centerX; // Perfectly centered
+  const foundationCenterY = foundationalRowY; // Center Y of foundational row
+  const foundationTopY = foundationalRowY - foundationalBlockHeight / 2; // Top edge of foundational blocks
 
   return (
     <div className="flex items-start justify-center lg:justify-end w-full h-full min-h-[600px] pt-16 lg:pt-24">
@@ -142,88 +174,66 @@ export default function TravelAISystemsDiagram() {
             </filter>
           </defs>
           
-          {/* === TECHNICAL SCHEMATIC CONNECTORS === */}
+          {/* === BENTO-SYSTEM CONNECTORS === */}
           
-          {/* Vertical Spine Connection: Spontaneity Engine <-> Trust Layer (vertical line) */}
-          <VerticalSpineConnector
-            startX={spontaneityNode.x}
-            startY={spontaneityNode.y - 55}
-            endX={trustNode.x}
-            endY={trustNode.y + 74}
+          {/* Single vertical line from Foundation top edge branching to 3 Applied blocks */}
+          <BentoConnector
+            foundationCenterX={foundationCenterX}
+            foundationTopY={foundationTopY}
+            appliedNodes={[appliedNode1, appliedNode2, appliedNode3]}
             delay={0.4}
             colors={colors}
             lineTransition={lineTransition}
-            annotation="CORE_SYNC"
-          />
-
-          {/* Spine -> Applied System 1 (90-degree circuit trace: horizontal then vertical) */}
-          <CircuitTraceConnector
-            startX={spontaneityNode.x + 162} // Right edge of Spontaneity Engine (w/2 = 324/2)
-            startY={trustNode.y} // Align with Trust Layer
-            endX={appliedNode1.x}
-            endY={appliedNode1.y}
-            nodeRadius={66}
-            delay={0.8}
-            colors={colors}
-            lineTransition={lineTransition}
-            pathId="path1"
-            annotation="DATA_FLOW_01"
-          />
-
-          {/* Spine -> Applied System 2 (90-degree circuit trace) */}
-          <CircuitTraceConnector
-            startX={spontaneityNode.x + 162} // Right edge of Spontaneity Engine (w/2 = 324/2)
-            startY={spineCenterY} // Center of spine
-            endX={appliedNode2.x}
-            endY={appliedNode2.y}
-            nodeRadius={66}
-            delay={0.8}
-            colors={colors}
-            lineTransition={lineTransition}
-            pathId="path2"
-            annotation="AUTH_LATENCY"
-          />
-
-          {/* Spine -> Applied System 3 (90-degree circuit trace) */}
-          <CircuitTraceConnector
-            startX={spontaneityNode.x + 162} // Right edge of Spontaneity Engine (w/2 = 324/2)
-            startY={spontaneityNode.y} // Align with Spontaneity Engine
-            endX={appliedNode3.x}
-            endY={appliedNode3.y}
-            nodeRadius={66}
-            delay={0.8}
-            colors={colors}
-            lineTransition={lineTransition}
-            pathId="path3"
-            annotation="NARRATIVE_GEN"
           />
 
           {/* === NODES === */}
           
-          {/* DUAL CORE: Foundational Systems */}
-          {/* Spontaneity Engine (Foundational) */}
-          <NodeRectFoundational 
+          {/* FOUNDATIONAL ROW (Bottom): Solid dark blocks with white text */}
+          <BentoFoundationalBlock 
             x={spontaneityNode.x} 
             y={spontaneityNode.y} 
-            w={324} 
-            h={110} 
+            w={spontaneityNode.w} 
+            h={spontaneityNode.h} 
             label="SPONTANEITY CORE ENGINE" 
-            delay={0.2} 
+            delay={0.2}
+            techId="01_CORE"
           />
           
-          {/* Trust Layer (Foundational) */}
-          <NodeCircleFoundational 
+          <BentoFoundationalBlock 
             x={trustNode.x} 
             y={trustNode.y} 
-            r={74} 
+            w={trustNode.w} 
+            h={trustNode.h} 
             label="TRUST & AUTHENTICITY LAYER" 
-            delay={0.5} 
+            delay={0.3}
+            techId="02_TRUST"
           />
           
-          {/* APPLIED SYSTEMS: Orbit around dual core */}
-          <NodeCircleApplied x={appliedNode1.x} y={appliedNode1.y} r={66} label="CONTEXT-AWARE TRAVEL DECISION SYSTEM" delay={1.2} idTag="C3D5" />
-          <NodeCircleApplied x={appliedNode2.x} y={appliedNode2.y} r={66} label="SOCIAL MICRO-EVENTS" delay={1.2} idTag="D4E6" />
-          <NodeCircleApplied x={appliedNode3.x} y={appliedNode3.y} r={66} label="NARRATIVE TRAVEL GENERATOR" delay={1.2} idTag="E5F7" />
+          {/* APPLIED ROW (Top): Outline blocks with dark text */}
+          <BentoAppliedBlock 
+            x={appliedNode1.x} 
+            y={appliedNode1.y} 
+            w={appliedNode1.w} 
+            h={appliedNode1.h} 
+            label="CONTEXT-AWARE TRAVEL DECISION SYSTEM" 
+            delay={0.8} 
+          />
+          <BentoAppliedBlock 
+            x={appliedNode2.x} 
+            y={appliedNode2.y} 
+            w={appliedNode2.w} 
+            h={appliedNode2.h} 
+            label="SOCIAL MICRO-EVENTS" 
+            delay={0.9} 
+          />
+          <BentoAppliedBlock 
+            x={appliedNode3.x} 
+            y={appliedNode3.y} 
+            w={appliedNode3.w} 
+            h={appliedNode3.h} 
+            label="NARRATIVE TRAVEL GENERATOR" 
+            delay={1.0} 
+          />
           
           {/* Visual Legend */}
           <g>
@@ -313,7 +323,69 @@ function DataFlowCircle({ pathData, delay, colors }: any) {
   );
 }
 
-/* VERTICAL SPINE CONNECTOR: Vertical line connecting foundational blocks */
+/* BENTO CONNECTOR: 90-degree orthogonal routing with junction node - aligned to node borders */
+function BentoConnector({ foundationCenterX, foundationTopY, appliedNodes, delay, colors, lineTransition }: any) {
+  // Calculate connection points at node borders
+  // Applied blocks: connect to top edge (y - h/2)
+  const appliedTopY = appliedNodes[0].y - 45; // appliedBlockHeight / 2 = 90 / 2 = 45
+  
+  // Branching point (midway between foundation top and applied blocks top)
+  const branchY = (foundationTopY + appliedTopY) / 2;
+  
+  // Create 90-degree orthogonal paths: vertical line from foundation top to branch point
+  const verticalPath = `M ${foundationCenterX} ${foundationTopY} L ${foundationCenterX} ${branchY}`;
+  
+  // Branch paths: horizontal then vertical (90-degree routing) - connect to top edge of applied blocks
+  const branchPaths = appliedNodes.map((node: any) => {
+    const nodeTopY = node.y - 45; // appliedBlockHeight / 2 = 90 / 2 = 45
+    // Horizontal segment from junction to node x, then vertical to node top
+    return `M ${foundationCenterX} ${branchY} L ${node.x} ${branchY} L ${node.x} ${nodeTopY}`;
+  });
+  
+  return (
+    <g>
+      {/* Main vertical line (1.5px slate-500 stroke) */}
+      <motion.path
+        d={verticalPath}
+        fill="none"
+        stroke="#64748b"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ ...lineTransition, delay }}
+      />
+      
+      {/* Junction node (4px solid circle) at branching point */}
+      <motion.circle
+        cx={foundationCenterX}
+        cy={branchY}
+        r="4"
+        fill="#64748b"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, delay: delay + lineTransition.duration }}
+      />
+      
+      {/* Branch lines to applied blocks (1.5px slate-500 stroke, 90-degree routing) */}
+      {branchPaths.map((path: string, i: number) => (
+        <motion.path
+          key={i}
+          d={path}
+          fill="none"
+          stroke="#64748b"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ ...lineTransition, delay: delay + 0.2 + (i * 0.1) }}
+        />
+      ))}
+    </g>
+  );
+}
+
+/* VERTICAL SPINE CONNECTOR: Vertical line connecting foundational blocks (deprecated) */
 function VerticalSpineConnector({ startX, startY, endX, endY, delay, colors, lineTransition, annotation }: any) {
   // Vertical path (straight line)
   const pathData = `M ${startX} ${startY} L ${endX} ${endY}`;
@@ -477,9 +549,158 @@ function CircuitTraceConnector({ startX, startY, endX, endY, nodeRadius, delay, 
   );
 }
 
-/* ---------------- NODE COMPONENTS ------------------------ */
+/* ---------------- BENTO-SYSTEM NODE COMPONENTS ------------------------ */
 
-/* FOUNDATIONAL SYSTEMS: Heavy blueprint style - 1.5px solid border, inner glow, bold text */
+/* FOUNDATIONAL BLOCK: Solid dark block (bg-slate-950) with white text and technical ID */
+function BentoFoundationalBlock({ x, y, w, h, label, delay, techId }: any) {
+  const words = label.split(" ");
+  
+  return (
+    <motion.g 
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.6, delay }}
+      className="bento-foundational-node"
+    >
+      {/* Solid dark block (bg-slate-950 equivalent) with border-2 border-slate-900 */}
+      <rect 
+        x={x - w / 2} 
+        y={y - h / 2} 
+        width={w} 
+        height={h} 
+        rx="4" 
+        fill="#020617" 
+        stroke="#0f172a"
+        strokeWidth="2"
+        className="bento-foundational-bg"
+      />
+      
+      {/* Green system status dot (top-right corner) */}
+      <circle 
+        cx={x + w / 2 - 8} 
+        cy={y - h / 2 + 8} 
+        r="4" 
+        fill="#22c55e" 
+      />
+      
+      {/* Technical ID label (top-left corner, 7px gray) */}
+      {techId && (
+        <text 
+          x={x - w / 2 + 6} 
+          y={y - h / 2 + 10} 
+          textAnchor="start" 
+          fill="#64748b" 
+          fontSize="7" 
+          fontWeight="400"
+          fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+          letterSpacing="0.1em"
+        >
+          {techId}
+        </text>
+      )}
+      
+      {/* White text - forced high contrast, no opacity inheritance */}
+      <text 
+        x={x} 
+        y={y} 
+        textAnchor="middle" 
+        dominantBaseline="middle" 
+        fill="#FFFFFF" 
+        fontSize="14" 
+        fontWeight="700"
+        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+        letterSpacing="0.05em"
+        style={{ 
+          textRendering: 'optimizeLegibility', 
+          WebkitFontSmoothing: 'antialiased',
+          opacity: 1,
+          color: '#FFFFFF'
+        }}
+        opacity="1"
+      >
+        {words.map((word: string, i: number) => {
+          const offset = (words.length - 1) * 0.3;
+          const dyValue = i === 0 ? `-${offset}em` : "1.2em";
+          return (
+            <tspan key={i} x={x} dy={dyValue} opacity="1" fill="#FFFFFF">
+              {word}
+            </tspan>
+          );
+        })}
+      </text>
+    </motion.g>
+  );
+}
+
+/* APPLIED BLOCK: Glass look (bg-white/10, border-slate-300) with dark text */
+function BentoAppliedBlock({ x, y, w, h, label, delay }: any) {
+  const words = label.split(" ");
+  
+  return (
+    <motion.g 
+      initial={{ opacity: 0, y: -20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.6, delay }}
+      className="bento-applied-node"
+    >
+      {/* Background (bg-slate-50 equivalent) */}
+      <rect 
+        x={x - w / 2} 
+        y={y - h / 2} 
+        width={w} 
+        height={h} 
+        rx="4" 
+        fill="#f8fafc" 
+        className="bento-applied-bg"
+      />
+      
+      {/* Border (border-slate-300 equivalent) */}
+      <rect 
+        x={x - w / 2} 
+        y={y - h / 2} 
+        width={w} 
+        height={h} 
+        rx="4" 
+        fill="none" 
+        stroke="#cbd5e1" 
+        strokeWidth="1"
+        className="bento-applied-border"
+      />
+      
+      {/* Dark text - forced high contrast, no opacity inheritance */}
+      <text 
+        x={x} 
+        y={y} 
+        textAnchor="middle" 
+        dominantBaseline="middle" 
+        fill="#000000" 
+        fontSize="14" 
+        fontWeight="500"
+        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+        letterSpacing="0.05em"
+        style={{ 
+          textRendering: 'optimizeLegibility', 
+          WebkitFontSmoothing: 'antialiased',
+          opacity: 1,
+          color: '#000000'
+        }}
+        opacity="1"
+      >
+        {words.map((word: string, i: number) => {
+          const offset = (words.length - 1) * 0.3;
+          const dyValue = i === 0 ? `-${offset}em` : "1.2em";
+          return (
+            <tspan key={i} x={x} dy={dyValue} opacity="1" fill="#000000">
+              {word}
+            </tspan>
+          );
+        })}
+      </text>
+    </motion.g>
+  );
+}
+
+/* FOUNDATIONAL SYSTEMS: Heavy blueprint style - 1.5px solid border, inner glow, bold text (deprecated) */
 function NodeRectFoundational({ x, y, w, h, label, delay }: any) {
   const idTag = "A1F3"; // 4-digit hex code ID tag
   
@@ -488,42 +709,48 @@ function NodeRectFoundational({ x, y, w, h, label, delay }: any) {
       initial={{ opacity: 0, y: 15 }} 
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.6, delay }}
-      filter="url(#foundationalGlow)"
     >
-      {/* Background with slate-50/50 tint */}
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="rgba(248, 250, 252, 0.5)" />
-      {/* Radial gradient overlay for inner glow */}
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="url(#foundationalGradient)" />
-      {/* Main rect with 1.5px solid border (heavy look) */}
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#1e293b" strokeWidth="1.5" strokeOpacity="0.4" filter="url(#innerGlow)" />
-      {/* Monospaced uppercase text - bold blueprint style (high contrast) */}
-      <text 
-        x={x} 
-        y={y} 
-        textAnchor="middle" 
-        dominantBaseline="middle" 
-        fill="#000000" 
-        fontSize="10" 
-        fontWeight="700"
-        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
-        letterSpacing="0.2em"
-        style={{ textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased' }}
-      >
-        {label}
-      </text>
-      {/* ID tag in corner */}
-      <text 
-        x={x - w / 2 + 6} 
-        y={y - h / 2 + 10} 
-        textAnchor="start" 
-        fill="#0f172a" 
-        fontSize="8" 
-        fontWeight="400"
-        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
-        letterSpacing="0.1em"
-      >
-        {idTag}
-      </text>
+      {/* Visual elements with filters */}
+      <g filter="url(#foundationalGlow)">
+        {/* Background with slate-50/50 tint */}
+        <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="rgba(248, 250, 252, 0.5)" />
+        {/* Radial gradient overlay for inner glow */}
+        <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="url(#foundationalGradient)" />
+        {/* Main rect with 1.5px solid border (heavy look) */}
+        <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#1e293b" strokeWidth="1.5" strokeOpacity="0.4" filter="url(#innerGlow)" />
+      </g>
+      
+      {/* Text elements at full opacity - pure black, no filters */}
+      <g opacity="1">
+        {/* Monospaced uppercase text - bold blueprint style (high contrast) */}
+        <text 
+          x={x} 
+          y={y} 
+          textAnchor="middle" 
+          dominantBaseline="middle" 
+          fill="#000000" 
+          fontSize="10" 
+          fontWeight="700"
+          fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+          letterSpacing="0.2em"
+          style={{ textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased' }}
+        >
+          {label}
+        </text>
+        {/* ID tag in corner */}
+        <text 
+          x={x - w / 2 + 6} 
+          y={y - h / 2 + 10} 
+          textAnchor="start" 
+          fill="#000000" 
+          fontSize="8" 
+          fontWeight="400"
+          fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+          letterSpacing="0.1em"
+        >
+          {idTag}
+        </text>
+      </g>
     </motion.g>
   );
 }
@@ -537,46 +764,52 @@ function NodeCircleFoundational({ x, y, r, label, delay }: any) {
       initial={{ opacity: 0, scale: 0.85 }} 
       animate={{ opacity: 1, scale: 1 }} 
       transition={{ duration: 0.6, delay }}
-      filter="url(#foundationalGlow)"
     >
-      {/* Background with slate-50/50 tint */}
-      <circle cx={x} cy={y} r={r} fill="rgba(248, 250, 252, 0.5)" />
-      {/* Radial gradient overlay for inner glow */}
-      <circle cx={x} cy={y} r={r} fill="url(#foundationalGradient)" />
-      {/* Main circle with 1.5px solid border (heavy look) */}
-      <circle cx={x} cy={y} r={r} fill="rgba(255, 255, 255, 0.9)" stroke="#1e293b" strokeWidth="1.5" strokeOpacity="0.4" filter="url(#innerGlow)" />
-      {/* Monospaced uppercase text - bold blueprint style (high contrast) */}
-      <text 
-        x={x} 
-        y={y} 
-        textAnchor="middle" 
-        dominantBaseline="middle" 
-        fill="#000000" 
-        fontSize="10" 
-        fontWeight="700"
-        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
-        letterSpacing="0.2em"
-        style={{ textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased' }}
-      >
-        {words.map((word: string, i: number) => (
-          <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.5}em` : "1.1em"}>
-            {word}
-          </tspan>
-        ))}
-      </text>
-      {/* ID tag in corner */}
-      <text 
-        x={x - r + 6} 
-        y={y - r + 10} 
-        textAnchor="start" 
-        fill="#0f172a" 
-        fontSize="8" 
-        fontWeight="400"
-        fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
-        letterSpacing="0.1em"
-      >
-        {idTag}
-      </text>
+      {/* Visual elements with filters */}
+      <g filter="url(#foundationalGlow)">
+        {/* Background with slate-50/50 tint */}
+        <circle cx={x} cy={y} r={r} fill="rgba(248, 250, 252, 0.5)" />
+        {/* Radial gradient overlay for inner glow */}
+        <circle cx={x} cy={y} r={r} fill="url(#foundationalGradient)" />
+        {/* Main circle with 1.5px solid border (heavy look) */}
+        <circle cx={x} cy={y} r={r} fill="rgba(255, 255, 255, 0.9)" stroke="#1e293b" strokeWidth="1.5" strokeOpacity="0.4" filter="url(#innerGlow)" />
+      </g>
+      
+      {/* Text elements at full opacity - pure black, no filters */}
+      <g opacity="1">
+        {/* Monospaced uppercase text - bold blueprint style (high contrast) */}
+        <text 
+          x={x} 
+          y={y} 
+          textAnchor="middle" 
+          dominantBaseline="middle" 
+          fill="#000000" 
+          fontSize="10" 
+          fontWeight="700"
+          fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+          letterSpacing="0.2em"
+          style={{ textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased' }}
+        >
+          {words.map((word: string, i: number) => (
+            <tspan key={i} x={x} dy={i === 0 ? `-${(words.length - 1) * 0.5}em` : "1.1em"}>
+              {word}
+            </tspan>
+          ))}
+        </text>
+        {/* ID tag in corner */}
+        <text 
+          x={x - r + 6} 
+          y={y - r + 10} 
+          textAnchor="start" 
+          fill="#000000" 
+          fontSize="8" 
+          fontWeight="400"
+          fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+          letterSpacing="0.1em"
+        >
+          {idTag}
+        </text>
+      </g>
     </motion.g>
   );
 }
@@ -626,7 +859,7 @@ function NodeCircleApplied({ x, y, r, label, delay, idTag = "C3D5" }: any) {
           x={x - r + 6} 
           y={y - r + 10} 
           textAnchor="start" 
-          fill="#0f172a" 
+          fill="#000000" 
           fontSize="8" 
           fontWeight="400"
           fontFamily="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
