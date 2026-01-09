@@ -347,7 +347,7 @@ export default function HomePage() {
             </div>
             
             {/* Video Container */}
-            <div className="mb-4 mt-8">
+            <div className="mt-8">
               <div className="relative">
                 <div className="relative">
                   <div 
@@ -381,12 +381,12 @@ export default function HomePage() {
             </div>
             
             {/* YouTube and Vimeo Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start mt-2">
               <a
                 href="https://www.youtube.com/@dsmeier"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex items-center justify-center px-6 py-3 text-white border border-white/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 My YouTube
@@ -395,7 +395,7 @@ export default function HomePage() {
                 href="https://vimeo.com/user94578264"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex items-center justify-center px-6 py-3 text-white border border-white/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 My Vimeo
@@ -404,7 +404,7 @@ export default function HomePage() {
             
             {/* Modern Coming Soon Card */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="relative">
+            <div className="relative" style={{ marginTop: '80px' }}>
               <div className="relative">
                 <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                   {/* Background Image */}
