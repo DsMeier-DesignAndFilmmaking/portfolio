@@ -346,6 +346,62 @@ export default function HomePage() {
               </p>
             </div>
             
+            {/* Video Container */}
+            <div className="mb-4 mt-8">
+              <div className="relative">
+                <div className="relative">
+                  <div 
+                    className="relative w-full rounded-3xl overflow-hidden"
+                    style={{ 
+                      aspectRatio: '16 / 9',
+                      position: 'relative',
+                      width: '100%'
+                    }}
+                  >
+                    <iframe
+                      src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
+                      title="Travel video"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                      allowFullScreen
+                      loading="lazy"
+                      style={{ 
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        display: 'block',
+                        border: 'none'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* YouTube and Vimeo Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start">
+              <a
+                href="https://www.youtube.com/@dsmeier"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                My YouTube
+              </a>
+              <a
+                href="https://vimeo.com/user94578264"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                My Vimeo
+              </a>
+            </div>
+            
             {/* Modern Coming Soon Card */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="relative">
