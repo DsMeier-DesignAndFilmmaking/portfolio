@@ -452,12 +452,12 @@ export default function AISandboxPage() {
                 title: "Context-Aware Travel Decision System",
                 description: "Dynamic filtering based on location, time, social battery, and environmental constraints.",
                 gradient: "from-blue-500 to-cyan-600",
-                link: "/projects/travel-and-ai/projects/travel-planning-assistant"
+                link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
               },
               {
                 icon: Users,
-                title: "Social Micro-Events",
-                description: "Facilitating low-friction, high-intent social interactions for solo travelers.",
+                title: "Social Graph-Driven Travel Network",
+                description: "Utilizing social connections and trust hierarchies to filter and rank travel recommendations.",
                 gradient: "from-purple-500 to-pink-600",
                 link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
@@ -466,7 +466,7 @@ export default function AISandboxPage() {
                 title: "Narrative Travel Generator",
                 description: "Transforming raw telemetry and location data into shareable, human-centric travel stories.",
                 gradient: "from-amber-500 to-orange-600",
-                link: null // No specific project page for this yet
+                link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
               }
             ].map((system, index) => (
               <motion.div

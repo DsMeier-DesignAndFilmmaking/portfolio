@@ -38,6 +38,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../../../components/PageTransitionOverlay';
 import StickyProgressNav from '../../../../../components/StickyProgressNav';
+import SystemStack from '../../../../../components/SystemStack';
+import NarrativeDiagram from '../../../../../components/NarrativeDiagram';
+import EmotionalArcGraph from '../../../../../components/EmotionalArcGraph';
+import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndicator';
+import PivotAnimation from '../../../../../components/PivotAnimation';
 import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils } from 'lucide-react';
 
 interface TravelProjectDetailClientProps {
@@ -439,20 +444,29 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
   const isCulturalContextEngine = projectId === 'trust-framework-ai-travel';
-  const isTravelPlanningAssistant = projectId === 'travel-planning-assistant';
+  const isTravelPlanningAssistant = projectId === 'context-aware-travel-decision-system';
   const isLocalExperienceFinder = projectId === 'social-graph-driven-travel-network';
+  const isNarrativeTravelGenerator = projectId === 'narrative-driven-travel-experience-generator';
   const isOtherProject = false; // All projects now have full implementations
 
-  // Define sections for the sticky progress nav (only for spontaneous-travel-companion)
-  const sections = [
-    { id: 'design-exploration', label: 'Observed Travel Frictions' },
-    { id: 'research-audience', label: 'Audience & Research' },
-    { id: 'designs-strategy', label: 'Concept & Strategy' },
-    { id: 'wireframes-ui', label: 'Design Evolution' },
-    { id: 'prototyping-ai', label: 'Build & Iteration' },
-    { id: 'outcomes-launch', label: 'Launch & Testing' },
-    { id: 'learnings-next', label: 'Learnings & Reflections' }
-  ];
+  // Define sections for the sticky progress nav
+  const sections = isNarrativeTravelGenerator
+    ? [
+        { id: 'narrative-architecture', label: 'Narrative Architecture' },
+        { id: 'system-constraints', label: 'System Constraints' },
+        { id: 'scenarios-failure', label: 'Scenarios & Failure Cases' },
+        { id: 'success-case', label: 'Success Case' },
+        { id: 'business-use', label: 'Business Use' }
+      ]
+    : [
+        { id: 'design-exploration', label: 'Observed Travel Frictions' },
+        { id: 'research-audience', label: 'Audience & Research' },
+        { id: 'designs-strategy', label: 'Concept & Strategy' },
+        { id: 'wireframes-ui', label: 'Design Evolution' },
+        { id: 'prototyping-ai', label: 'Build & Iteration' },
+        { id: 'outcomes-launch', label: 'Launch & Testing' },
+        { id: 'learnings-next', label: 'Learnings & Reflections' }
+      ];
 
   useEffect(() => {
     // Handle scroll for navbar
@@ -572,7 +586,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       </motion.nav>
 
     {/* Sticky Progress Navigation */}
-    {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant) && (
+    {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant || isNarrativeTravelGenerator) && (
       <StickyProgressNav sections={sections} />
     )}
 
@@ -741,7 +755,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         )}
         {isTravelPlanningAssistant && (
           <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -749,44 +763,57 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    Travel Planning Assistant
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Context-Aware Travel Decision System
                   </h1>
-                  <div className="mb-4">
+                  <div className="mb-6 md:mb-7">
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
                       Research & Development
                     </span>
                   </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
                     Adaptive Planning · AI · Systems Design
                   </p>
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#research-audience"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#research-audience');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                  </nav>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      Demonstrates how the Spontaneity Engine + Trust Layer work together. This exists to show composition of systems, not a standalone product.
+                    </p>
+                  </div>
+
+                  {/* System Stack Component */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <SystemStack stack={['Spontaneity Engine', 'Trust Layer', 'Context Interpreter']} />
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          90m free, unfamiliar city, low energy, high crowd.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          One decision at a time.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
                   <PlanningAssistantVisual />
                 </motion.div>
@@ -796,7 +823,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         )}
         {isLocalExperienceFinder && (
           <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -804,17 +831,52 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    A Social Graph–Driven Travel Network
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Social Graph-Driven Travel Network
                   </h1>
-                  <div className="mb-4">
+                  <div className="mb-6 md:mb-7">
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
                       Research & Development
                     </span>
                   </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
                     Social Networks · AI · Systems Design
                   </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      To utilize existing social connections and trust hierarchies to filter and rank travel recommendations. This exists to demonstrate how the Trust Layer handles complex social data in a travel context.
+                    </p>
+                  </div>
+
+                  {/* System Stack Component */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <SystemStack stack={['Social Graph API', 'Trust Layer', 'Influence Scorer']} />
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Planning a group trip where "friend-of-a-friend" validation is more valuable than anonymous reviews.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Privacy-first data ingestion (zero-knowledge proof).
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
                     <a
                       href="#research-audience"
@@ -861,7 +923,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
                 >
                   <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
                   <div className="relative flex-shrink-0">
@@ -901,7 +963,75 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isOtherProject)) && (
+        {isNarrativeTravelGenerator && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Narrative-Driven Travel Experience Generator
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                      Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    AI · Narrative Design · Experience Systems
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      An AI system that generates emotional travel arcs instead of itineraries—designing for how a place feels over time rather than what to check off.
+                    </p>
+                  </div>
+
+                  {/* System Stack Component */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <SystemStack stack={['Traveler Intent', 'Spontaneity Engine', 'Trust & Authenticity Layer', 'Narrative Engine', 'Experience Phases']} />
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Designing for emotional arcs & belonging over coverage.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Key Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          No maps or schedules in the initial experience.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <NarrativeDiagram />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isNarrativeTravelGenerator && !isOtherProject)) && (
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -7022,7 +7152,720 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </>
       )}
 
-      {!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isOtherProject && (
+      {isNarrativeTravelGenerator && (
+        <>
+          {/* Section 1: Narrative Architecture */}
+          <section id="narrative-architecture" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Narrative Architecture
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    How the system transitions from high novelty to familiarity, designing for emotional arcs over efficiency
+                  </p>
+                </div>
+
+                {/* Transition Logic Explanation */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Transition Logic
+                  </h3>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-8">
+                    <p className="text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      The system moves through three distinct phases, each defined by the relationship between novelty and comfort:
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-6 rounded-lg border border-blue-500/30">
+                        <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-3">Phase 1: Arrival</div>
+                        <div className="text-white font-semibold mb-2">High Novelty / High Anxiety</div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Initial exposure to new environment. System provides orientation cues and establishes safe anchors.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-lg border border-purple-500/30">
+                        <div className="text-xs font-mono text-purple-400 uppercase tracking-wider mb-3">Phase 2: Exploration</div>
+                        <div className="text-white font-semibold mb-2">Variable Novelty / Adaptive Comfort</div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Active engagement with environment. System adapts narrative beats based on real-time emotional tone feedback.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-lg border border-amber-500/30">
+                        <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Phase 3: Familiarity</div>
+                        <div className="text-white font-semibold mb-2">Low Novelty / High Comfort</div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Established sense of belonging. System emphasizes depth over breadth, allowing for meaningful return visits.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Process Flow */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Process Flow: Emotional Tone → Experience Output
+                  </h3>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center">
+                          <span className="text-blue-400 text-sm font-mono font-bold">1</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Input: Emotional Tone</div>
+                          <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                            System receives real-time emotional state signals (anxiety, excitement, overwhelm, comfort) from traveler feedback or inferred behavioral patterns.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-center py-2">
+                        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-500/20 border border-purple-400/40 flex items-center justify-center">
+                          <span className="text-purple-400 text-sm font-mono font-bold">2</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Processing: Narrative Engine</div>
+                          <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                            Engine maps emotional tone to narrative phase. If tone indicates overwhelm, system can loop back to Familiarity anchors. If tone indicates readiness, system advances to Exploration.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-center py-2">
+                        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center">
+                          <span className="text-amber-400 text-sm font-mono font-bold">3</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Output: Experience Phases</div>
+                          <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                            System generates narrative beats (not schedules) that match the current phase. Each beat emphasizes emotional resonance over checklist completion.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Emotional Arc Graph */}
+                <div className="mt-12">
+                  <EmotionalArcGraph />
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 2: Core Constraints */}
+          <section id="system-constraints" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    System Constraints
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Architectural limitations that force presence and prevent checklist-driven behavior
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {/* Constraint A */}
+                  <div className="bg-gradient-to-br from-red-50 to-orange-50 p-8 rounded-2xl border-2 border-red-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs font-mono text-red-600 uppercase tracking-wider mb-1">Constraint A</div>
+                        <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                          Information Scarcity
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      The system deliberately withholds "check-off" lists and comprehensive location databases to force presence. Travelers receive narrative beats, not itineraries.
+                    </p>
+                    <div className="mt-4 pt-4 border-t border-red-200">
+                      <div className="text-xs font-mono text-gray-600">
+                        <span className="font-semibold">Implementation:</span> No maps or schedules in initial experience. Only emotional anchors and narrative prompts.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Constraint B */}
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs font-mono text-blue-600 uppercase tracking-wider mb-1">Constraint B</div>
+                        <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                          Temporal Elasticity
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      Narrative beats stretch or shrink based on the traveler's comfort level. A single beat can expand into hours if the emotional tone indicates deep engagement.
+                    </p>
+                    <div className="mt-4 pt-4 border-t border-blue-200">
+                      <div className="text-xs font-mono text-gray-600">
+                        <span className="font-semibold">Implementation:</span> Time-based constraints are secondary to emotional state. System adapts pacing in real-time.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Constraint C */}
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border-2 border-purple-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs font-mono text-purple-600 uppercase tracking-wider mb-1">Constraint C</div>
+                        <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                          Non-Linearity
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      The system must allow for "loops"—returning to a place of comfort if the emotional tone dips. Progression is not unidirectional.
+                    </p>
+                    <div className="mt-4 pt-4 border-t border-purple-200">
+                      <div className="text-xs font-mono text-gray-600">
+                        <span className="font-semibold">Implementation:</span> Familiarity anchors remain accessible. System can reverse phase transitions based on emotional feedback.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 3: Scenarios & Failure Cases */}
+          <section id="scenarios-failure" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Scenarios & Failure Cases
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Stress testing the system: how it handles edge cases and when safety overrides narrative
+                  </p>
+                </div>
+
+                {/* Scenario: Overwhelmed Traveler */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Scenario: Overwhelmed in High-Density City
+                  </h3>
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Initial State</div>
+                        <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          Traveler is in "Exploration" phase, navigating a high-density urban environment. Emotional tone signals: <span className="font-mono text-red-400">overwhelm</span>, <span className="font-mono text-red-400">anxiety</span>, <span className="font-mono text-red-400">sensory overload</span>.
+                        </p>
+                        <div className="bg-red-500/10 border border-red-500/30 p-4 rounded-lg">
+                          <div className="text-xs font-mono text-red-400 mb-2">Emotional Tone Input:</div>
+                          <div className="text-sm font-mono text-gray-300">
+                            anxiety_level: 0.85<br />
+                            comfort_level: 0.25<br />
+                            phase: "exploration"
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-xs font-mono text-green-400 uppercase tracking-wider mb-3">System Response</div>
+                        <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          Narrative Engine detects emotional tone threshold breach. System immediately loops back to "Familiarity" phase, providing anchor points:
+                        </p>
+                        <div className="bg-green-500/10 border border-green-500/30 p-4 rounded-lg">
+                          <div className="text-xs font-mono text-green-400 mb-2">Narrative Output:</div>
+                          <div className="text-sm font-mono text-gray-300">
+                            phase_transition: "exploration → familiarity"<br />
+                            anchor_type: "quiet_space"<br />
+                            suggestions: ["library", "known_cafe", "park_bench"]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                      <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">System Logic</div>
+                      <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        The system prioritizes emotional safety over narrative progression. When comfort drops below threshold (0.3), the engine automatically reverts to Familiarity anchors, allowing the traveler to recalibrate before re-engaging with Exploration.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Failure Modes & System Recovery */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Failure Modes & System Recovery
+                  </h3>
+                  
+                  {/* Failure State Definition */}
+                  <div className="bg-gradient-to-br from-amber-500/10 to-red-500/10 p-8 rounded-xl border border-amber-500/20 mb-8">
+                    <div className="mb-6">
+                      <div className="text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Failure State: Semantic Over-Abstraction</div>
+                      <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        <span className="font-semibold text-amber-400">Definition:</span> When the Narrative Engine prioritizes "mood" over "orientation" to the point where the user feels lost rather than immersed.
+                      </p>
+                      <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
+                        <div className="text-xs font-mono text-amber-400/80 mb-2">Example Failure Output:</div>
+                        <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          "Find the rhythm of the city's heartbeat in the spaces between buildings..."
+                        </div>
+                        <div className="text-xs font-mono text-red-400/80">
+                          Result: Too abstract. No actionable anchor points. Traveler is lost.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Trigger Conditions */}
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-8">
+                    <div className="mb-6">
+                      <div className="text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Trigger Conditions</div>
+                      <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        The system detects failure state through behavioral and temporal signals:
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
+                          <div className="text-xs font-mono text-amber-400/80 mb-2">Temporal Signal:</div>
+                          <div className="text-sm font-mono text-gray-300">
+                            User dwell time in non-destination zone &gt; 20 minutes
+                          </div>
+                        </div>
+                        <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
+                          <div className="text-xs font-mono text-amber-400/80 mb-2">Physiological Signal:</div>
+                          <div className="text-sm font-mono text-gray-300">
+                            Elevated heart rate + erratic movement patterns
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* The Intervention */}
+                  <div className="bg-gradient-to-br from-red-500/10 to-orange-500/10 p-8 rounded-xl border border-red-500/20 mb-8">
+                    <div className="mb-6">
+                      <div className="text-xs font-mono text-red-400/80 uppercase tracking-wider mb-3">The Intervention: The "Safety Valve"</div>
+                      <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        The Trust Layer forces a <span className="font-semibold text-red-400">"Hard Anchor"</span>. It breaks the narrative arc to provide literal, high-legibility guidance.
+                      </p>
+                      
+                      <div className="bg-black/30 p-6 rounded-lg border border-red-500/20 mb-4">
+                        <div className="text-xs font-mono text-red-400/80 mb-3">Hard Anchor Output:</div>
+                        <div className="text-base font-mono text-gray-200 mb-2">
+                          Map Coordinate: 48.8566° N, 2.3522° E
+                        </div>
+                        <div className="text-base text-gray-300" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          "Walk 200m North to the Metro"
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Recovery Logic */}
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-8">
+                    <div className="mb-6">
+                      <div className="text-xs font-mono text-green-400/80 uppercase tracking-wider mb-3">Recovery Logic</div>
+                      <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        Once the user reaches a <span className="font-semibold text-green-400">"Safety Node"</span>, the system recalibrates:
+                      </p>
+                      <div className="bg-black/30 p-4 rounded-lg border border-green-500/20">
+                        <div className="text-xs font-mono text-green-400/80 mb-2">Recovery Protocol:</div>
+                        <div className="text-sm font-mono text-gray-300 space-y-1">
+                          <div>1. User reaches Safety Node (cafe, library, hotel)</div>
+                          <div>2. System reduces narrative complexity for next 4 hours</div>
+                          <div>3. Trust Layer gradually reintroduces narrative elements</div>
+                          <div>4. System rebuilds user trust before returning to full narrative mode</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Recovery State Indicator Visual */}
+                  <div className="mb-8">
+                    <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
+                      System State Transition Visualization
+                    </div>
+                    <RecoveryStateIndicator autoTransition={true} transitionDelay={3000} />
+                  </div>
+
+                  {/* Threshold Visualization: Atmosphere vs Utility */}
+                  <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                    <div className="mb-6">
+                      <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-3">System Threshold: Atmosphere vs Utility</div>
+                      <p className="text-gray-300 leading-relaxed mb-6 text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        The system maintains a dynamic balance between immersive narrative ("Atmosphere") and actionable guidance ("Utility"). When the threshold is breached, the system automatically shifts to utility-first mode.
+                      </p>
+                      
+                      {/* Threshold Bar */}
+                      <div className="relative h-16 bg-black/30 rounded-lg border border-white/10 overflow-hidden mb-4">
+                        {/* Atmosphere Zone (Left) */}
+                        <div className="absolute left-0 top-0 bottom-0 w-[70%] bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-r border-white/20">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-xs font-mono text-blue-400">Atmosphere Zone</span>
+                          </div>
+                        </div>
+                        
+                        {/* Threshold Line */}
+                        <div className="absolute left-[70%] top-0 bottom-0 w-px bg-amber-500/80">
+                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-amber-500 rounded-full border-2 border-gray-900"></div>
+                        </div>
+                        
+                        {/* Utility Zone (Right) */}
+                        <div className="absolute right-0 top-0 bottom-0 w-[30%] bg-gradient-to-r from-amber-500/20 to-red-500/20">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-xs font-mono text-amber-500">Utility Zone</span>
+                          </div>
+                        </div>
+                        
+                        {/* Current State Indicator */}
+                        <motion.div
+                          initial={{ x: '10%' }}
+                          animate={{ x: ['10%', '75%', '10%'] }}
+                          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                          className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-lg"
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4 text-xs">
+                        <div className="text-center">
+                          <div className="font-mono text-blue-400 mb-1">Normal Operation</div>
+                          <div className="text-gray-400">70% Atmosphere / 30% Utility</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="font-mono text-amber-500 mb-1">Failure Recovery</div>
+                          <div className="text-gray-400">20% Atmosphere / 80% Utility</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Success Case: Adaptive Re-Anchoring */}
+          <section id="success-case" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Success Case: Adaptive Re-Anchoring
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    The system acts as an Invisible Navigator—using a "Soft Pivot" to steer toward comfort without breaking immersion
+                  </p>
+                </div>
+
+                {/* Context */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Context: High-Anxiety State Detection
+                  </h3>
+                  <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 p-8 rounded-xl border border-amber-500/20">
+                    <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      User enters a <span className="font-semibold text-amber-400">"High-Anxiety" state</span>, detected via:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
+                        <div className="text-xs font-mono text-amber-400/80 mb-2">Behavioral Signal:</div>
+                        <div className="text-sm text-gray-300">Rapid movement in high-density crowds</div>
+                      </div>
+                      <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
+                        <div className="text-xs font-mono text-amber-400/80 mb-2">Interaction Signal:</div>
+                        <div className="text-sm text-gray-300">Repeated app checks (seeking orientation)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* The Logic */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    The Logic: Soft Pivot Without Breaking Narrative
+                  </h3>
+                  <div className="bg-white/5 p-8 rounded-xl border border-emerald-500/20">
+                    <p className="text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      Rather than breaking the narrative to show a map, the system identifies a <span className="font-semibold text-emerald-400">"Familiarity Node"</span> (e.g., a bookstore or a quiet park) that aligns with the current "Emotional Arc."
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20">
+                        <div className="text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">Before: Exploration Phase</div>
+                        <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          "Discover the hidden alleys"
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          High novelty, high stimulation
+                        </div>
+                      </div>
+                      
+                      <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20">
+                        <div className="text-xs font-mono text-teal-400/80 uppercase tracking-wider mb-3">After: Refuge Phase</div>
+                        <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                          "Find the silence in the stacks"
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          Lower entropy, maintained immersion
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Success Pivot Logic Component */}
+                <div className="mb-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs border border-emerald-500/20 bg-emerald-500/5 p-6 rounded-lg">
+                    <div className="space-y-3">
+                      <p className="text-emerald-400 uppercase font-bold tracking-tighter">Detection: Sensory Overload</p>
+                      <p className="text-white/60 leading-relaxed">Metric: Crowd density &gt; 80% + Pace velocity increase.</p>
+                      <div className="text-xs text-emerald-300/80 mt-2">
+                        System identifies: High-anxiety threshold breached
+                      </div>
+                    </div>
+                    <div className="space-y-3 md:border-l md:border-emerald-500/20 md:pl-6">
+                      <p className="text-blue-400 uppercase font-bold tracking-tighter">Pivot: Adaptive Narrative</p>
+                      <p className="text-white/60 leading-relaxed">Action: Prioritize "Enclosure" nodes. Recalculate arc for "Refuge" phase.</p>
+                      <div className="text-xs text-blue-300/80 mt-2">
+                        System maintains: Narrative coherence while reducing stress
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* The Narrative Shift */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    The Narrative Shift
+                  </h3>
+                  <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 p-8 rounded-xl border border-emerald-500/20">
+                    <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      The AI shifts the prompt from <span className="font-semibold text-amber-400">Exploration</span> to <span className="font-semibold text-teal-400">Refuge</span>, maintaining the narrative thread while guiding toward comfort.
+                    </p>
+                    
+                    <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20 mt-4">
+                      <div className="text-xs font-mono text-emerald-400/80 mb-3">Narrative Continuity:</div>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="text-emerald-400 mt-1">→</div>
+                          <div className="flex-1">
+                            <div className="text-sm text-gray-300 mb-1">Exploration Theme:</div>
+                            <div className="text-sm text-gray-400 italic">"Discover the hidden alleys"</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="text-teal-400 mt-1">→</div>
+                          <div className="flex-1">
+                            <div className="text-sm text-gray-300 mb-1">Refuge Theme:</div>
+                            <div className="text-sm text-gray-400 italic">"Find the silence in the stacks"</div>
+                          </div>
+                        </div>
+                        <div className="pt-3 border-t border-emerald-500/20">
+                          <div className="text-xs text-emerald-300/80">
+                            Both prompts maintain the "discovery" narrative while shifting from high-stimulation to low-entropy environments.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Result */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-semibold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Result: Immersion Maintained, Stress Reduced
+                  </h3>
+                  <div className="bg-white/5 p-8 rounded-xl border border-emerald-500/20">
+                    <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      The user is guided toward a lower-entropy environment using environmental cues, maintaining the <span className="font-semibold text-emerald-400">"immersion"</span> while lowering physiological stress.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                      <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
+                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 1:</div>
+                        <div className="text-sm text-gray-300">Narrative coherence preserved</div>
+                      </div>
+                      <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
+                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 2:</div>
+                        <div className="text-sm text-gray-300">Physiological stress reduced</div>
+                      </div>
+                      <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
+                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 3:</div>
+                        <div className="text-sm text-gray-300">User trust in system maintained</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pivot Animation Visual */}
+                <div className="mb-8">
+                  <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
+                    Path Transition Visualization
+                  </div>
+                  <PivotAnimation autoPlay={true} transitionDelay={2000} />
+                </div>
+
+                {/* Logic Visualization: Balancing Novelty vs Comfort */}
+                <div className="bg-white/5 p-8 rounded-xl border border-emerald-500/20">
+                  <div className="mb-6">
+                    <div className="text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">System Logic: Balancing Novelty vs Comfort</div>
+                    <p className="text-gray-300 leading-relaxed text-sm mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      The Soft Pivot demonstrates the system's ability to balance "Novelty" against "Comfort" without breaking the narrative arc. Instead of a jarring "GPS Recalculating" alert, the AI uses environmental cues to guide the user toward familiarity.
+                    </p>
+                    
+                    {/* Balance Visualization */}
+                    <div className="relative h-16 bg-black/30 rounded-lg border border-emerald-500/20 overflow-hidden mb-4">
+                      {/* Novelty Zone (Left) */}
+                      <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-amber-500/20 to-orange-500/20 border-r border-white/20">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-xs font-mono text-amber-400">Novelty Zone</span>
+                        </div>
+                      </div>
+                      
+                      {/* Comfort Zone (Right) */}
+                      <div className="absolute right-0 top-0 bottom-0 w-[40%] bg-gradient-to-r from-teal-500/20 to-emerald-500/20">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-xs font-mono text-teal-400">Comfort Zone</span>
+                        </div>
+                      </div>
+                      
+                      {/* Soft Pivot Indicator */}
+                      <motion.div
+                        initial={{ x: '30%' }}
+                        animate={{ x: ['30%', '70%', '30%'] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-lg border-2 border-gray-900"
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 text-xs">
+                      <div className="text-center">
+                        <div className="font-mono text-amber-400 mb-1">Exploration State</div>
+                        <div className="text-gray-400">60% Novelty / 40% Comfort</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-mono text-teal-400 mb-1">Soft Pivot State</div>
+                        <div className="text-gray-400">30% Novelty / 70% Comfort</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Section 4: Business Use & Applications */}
+          <section id="business-use" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Business Use & Applications
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Organizations that prioritize emotional experience over transactional travel planning
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 1</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                      High-End Travel Planners
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      Luxury travel agencies can offer narrative-driven experiences that emphasize emotional connection and belonging, differentiating from checklist-based itineraries.
+                    </p>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 2</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                      Creative Studios
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      Design and creative agencies can use narrative systems to craft immersive brand experiences, retreats, and creative journeys that prioritize emotional resonance.
+                    </p>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 3</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                      Cultural Tourism Organizations
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      Cultural institutions and tourism boards can deploy narrative systems to create deeper, more meaningful visitor experiences that emphasize belonging over coverage.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isNarrativeTravelGenerator && !isOtherProject && (
         <>
           {/* Overview / Project Summary Section */}
           <section className="py-20 bg-white">
