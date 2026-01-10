@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/fa';
-import { Sparkles, Shield, MapPin, Users, BookOpen } from 'lucide-react';
+import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
@@ -24,6 +24,7 @@ export default function AISandboxPage() {
   const router = useRouter();
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   
   // Use refs to avoid recreating the event listener
   const lastScrollYRef = useRef(0);
@@ -63,6 +64,9 @@ export default function AISandboxPage() {
 
         // Track if at top
         setAtTop(scrollPosition === 0);
+        
+        // Hide scroll indicator after scrolling past 100px
+        setShowScrollIndicator(scrollPosition < 100);
 
         // Handle navbar hide/show on mobile based on scroll direction
         const currentScrollY = window.scrollY;
@@ -277,11 +281,60 @@ export default function AISandboxPage() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
             <strong>Prototyping the future of travel:</strong> I design and build context-aware AI that replaces rigid logistics with spontaneous experiences deeply rooted in local culture, social connection, and the present moment.
             </p>
+
+            {/* Explore The System with Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              className="flex flex-col items-start gap-3 cursor-pointer group"
+              onClick={() => {
+                const nextSection = document.querySelector('[aria-label="Foundational Systems"]');
+                if (nextSection) {
+                  nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  const nextSection = document.querySelector('[aria-label="Foundational Systems"]');
+                  if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }
+              }}
+              aria-label="Scroll to explore the system"
+            >
+              <span 
+                className="text-sm font-medium text-gray-600 tracking-wide group-hover:text-gray-800 transition-colors duration-200"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                Explore The System
+              </span>
+              <motion.div
+                animate={{ 
+                  y: [0, 8, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="flex flex-col items-center"
+              >
+                <ChevronDown 
+                  className="w-5 h-5 text-gray-500 group-hover:text-gray-700 transition-colors duration-200"
+                  strokeWidth={2}
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -336,7 +389,7 @@ export default function AISandboxPage() {
                 }}
               >
                 {/* Inner content with white background */}
-                <div className="relative bg-white rounded-[14px] p-8 md:p-10 h-full bg-gradient-to-br from-white to-blue-50/20">
+                <div className="relative bg-white rounded-[14px] p-8 md:p-10 h-full bg-gradient-to-br from-white to-blue-50/20 flex flex-col">
                   {/* Subtle glow effect on hover */}
                   <div className="absolute inset-0 rounded-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
@@ -345,7 +398,7 @@ export default function AISandboxPage() {
                     }}
                   />
                   
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
                         <Sparkles className="w-6 h-6 text-white" />
@@ -354,12 +407,12 @@ export default function AISandboxPage() {
                       Spontaneity Engine
                     </h3>
                   </div>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                   The system’s central nervous system: Synthesizing real-time environmental context to unlock spontaneous travel experiences tailored to the present moment.                  </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-blue-600 font-medium">
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center gap-2 text-gray-600 font-medium">
                       <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
-                      <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                      <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
                     </div>
                     <Link 
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
@@ -393,39 +446,41 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg">
-                  <Shield className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg flex-shrink-0">
+                  <Shield className="w-6 h-6 text-white flex-shrink-0" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Trust & Authenticity Layer
                 </h3>
               </div>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                 Verification systems for social proof and algorithmic transparency in high-stakes travel decisions.
               </p>
-              <Link 
-                href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
-                className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
-                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-              >
-                View Project
-                <svg
-                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex items-center justify-end mt-auto">
+                <Link 
+                  href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </Link>
+                  View Project
+                  <svg
+                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </motion.div>
           </div>
         </div>

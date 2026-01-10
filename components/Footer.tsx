@@ -38,12 +38,6 @@ export default function Footer() {
               <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
                 Connect
               </h3>
-              <a 
-                href="mailto:danielstevenmeier@gmail.com" 
-                className="text-sm text-gray-600 hover:text-black transition-colors block mb-4"
-              >
-                Email Me
-              </a>
             </div>
 
             <div className="flex space-x-5 text-gray-400">

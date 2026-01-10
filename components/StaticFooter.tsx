@@ -12,8 +12,9 @@ export default function StaticFooter() {
       {/* Stable anchor target for Contact section - zero height, positioned before footer */}
       {/* Flexbox Spacer: margin-top: auto pushes footer to bottom */}
       <div id="contact" className="anchor-offset" style={{ marginTop: 'auto' }} aria-hidden="true"></div>
-      <footer id="footer" className="w-full bg-white border-t border-gray-200 pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]">
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-16">
+      <footer id="footer" className="w-full bg-white border-t border-gray-200 pt-12 pb-12 md:pt-[70px] md:pb-[70px]">
+      <div className="max-w-4xl mx-auto px-6 py-9 md:py-12">
+        <div className="border-t border-gray-200 pt-6 mb-9"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           
           {/* Brand Section */}
@@ -65,13 +66,7 @@ export default function StaticFooter() {
               Contact
             </h3>
             <div className="flex flex-col space-y-3">
-              <a 
-                href="mailto:danielstevenmeier@gmail.com" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                danielstevenmeier@gmail.com
-              </a>
-              <div className="flex items-center space-x-5 mt-2">
+              <div className="flex items-center space-x-5">
                 <a 
                   href="https://github.com/DsMeier-DesignAndFilmmaking" 
                   target="_blank" 
@@ -115,7 +110,7 @@ export default function StaticFooter() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-9 pt-6 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-xs text-gray-500">
               © {currentYear} Dan Meier. All rights reserved.
