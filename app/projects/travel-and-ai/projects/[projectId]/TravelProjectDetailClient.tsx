@@ -771,7 +771,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
-                    Context-Aware Travel Decision System
+                    Context-Aware Travel Decision System (CATDS)
                   </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
@@ -779,13 +779,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    Adaptive Planning · AI · Systems Design
+                    AI Orchestration · Semantic Context Mapping · System Middleware
                   </p>
                   
                   {/* Overview Block */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      Demonstrates how the Spontaneity Engine + Trust Layer work together. This exists to show composition of systems, not a standalone product.
+                      An architectural framework for adaptive orchestration in travel planning. A sophisticated AI middleware layer that bridges the gap between static travel data and real-world contextual intelligence.
                     </p>
                   </div>
 
@@ -4085,33 +4085,33 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 {/* Market & Competitive Analysis */}
                 <div className="mt-12">
-                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Architectural Archetypes</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Rigid Planning Tools</h4>
-                      <p className="text-gray-300 text-sm mb-4">Tools like Wanderlog and TripIt require extensive pre-planning and don't adapt well to spontaneous changes or real-time constraints.</p>
+                      <h4 className="text-lg font-bold text-white mb-4">Archetype A: Deterministic Systems</h4>
+                      <p className="text-gray-300 text-sm mb-4">High structure, zero adaptability. Systems like Wanderlog and TripIt enforce rigid planning models with no capacity for real-time context integration.</p>
                       <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Spontaneous Discovery Apps</h4>
-                      <p className="text-gray-300 text-sm mb-4">Apps like Spontaneity focus on real-time discovery but lack the structure needed for complex trip planning and logistics management.</p>
-                      <div className="text-xs text-gray-400">Examples: Spontaneity, Foursquare, Google Maps</div>
+                      <h4 className="text-lg font-bold text-white mb-4">Archetype B: Discovery Engines</h4>
+                      <p className="text-gray-300 text-sm mb-4">High entropy, zero structural logic. Systems like Google Maps and Yelp provide real-time discovery but lack the orchestration layer needed to bridge logistics with spontaneity.</p>
+                      <div className="text-xs text-gray-400">Examples: Google Maps, Yelp, Foursquare</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb excel at transactions but don't provide integrated planning that bridges pre-trip organization with on-the-ground flexibility.</p>
-                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
+                      <h4 className="text-lg font-bold text-white mb-4">The CATDS Value</h4>
+                      <p className="text-gray-300 text-sm mb-4">Contextual Orchestration: Bridging high-structure logistics with high-entropy real-time discovery through an AI middleware layer that interprets context and maintains trust boundaries.</p>
+                      <div className="text-xs text-gray-400">Middleware Architecture</div>
                     </div>
                   </div>
                   
                   {/* Our Approach */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Adaptive Planning</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Contextual Orchestration</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
-                      The Travel Planning Assistant differentiates itself by providing adaptive planning that balances structure with spontaneity. Rather than forcing rigid itineraries or pure discovery, it enables flexible planning that adapts to real-time constraints, preferences, and opportunities.
+                      CATDS operates as a middleware layer that sits between existing travel platforms (Expedia, Airbnb, etc.) and the Spontaneity Engine. The Context Interpreter ingests unstructured data (weather, LLM-parsed sentiment, sensor data) and converts it into Decision Vectors. The Trust Layer provides human-in-the-loop verification, suggesting changes without overriding user agency—avoiding AI hallucinations in logistics.
                     </p>
                   </div>
                 </div>
@@ -4131,10 +4131,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    The Challenge: Fragmentation Between Planning and Spontaneity
+                    The Challenge: Systemic Rigidity and Data Latency
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Current travel tools force travelers to choose between rigid planning and pure spontaneity, creating a fundamental disconnect
+                    The gap between static API responses and real-world context creates systemic rigidity in travel systems
                   </p>
                 </div>
                 
@@ -4147,11 +4147,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        The Problem
+                        The Problem: Data Latency
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      Travel planning tools require extensive pre-planning and don't adapt to real-time changes, while spontaneous discovery apps lack the structure needed for complex trips. This creates a <span className="font-semibold text-red-700">fragmentation that forces travelers to switch between disconnected tools</span>.
+                      The fundamental gap between a static API response ("Flight is Booked") and real-world context ("User is tired, it's raining, and the flight is delayed"). Current systems are <span className="font-semibold text-red-700">transactional (Booking) or static (Itinerary)</span>, but travel requires fluid, contextual intelligence that adapts to moment-to-moment reality.
                     </p>
                   </div>
                   
@@ -4163,11 +4163,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        The Solution
+                        The Solution: Contextual Orchestration
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      A system that provides <span className="font-semibold text-blue-700">adaptive planning algorithms that maintain flexibility while providing structure when needed</span>, enabling travelers to plan and explore seamlessly.
+                      CATDS is a <span className="font-semibold text-blue-700">sophisticated AI middleware layer</span> that bridges high-structure logistics with high-entropy real-time discovery. A Context Interpreter and Trust Layer orchestrate data between a Spontaneity Engine and existing travel platforms, enabling fluid, contextual decision-making.
                     </p>
                   </div>
                 </div>
@@ -4336,7 +4336,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'philosophy'}
                       aria-controls="philosophy-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Adaptive Planning Mean In Travel?</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Contextual Orchestration Mean In Travel?</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -4359,7 +4359,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         >
                           <div className="px-6 pb-6 pt-6">
                             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              Adaptive planning doesn't mean no planning—it means planning that flexes with reality, providing structure when needed and freedom when desired.
+                              Contextual orchestration means a middleware layer that interprets real-world context and orchestrates data between structured logistics and spontaneous discovery. The system provides structure when needed and freedom when desired, bridging the gap between static APIs and fluid reality.
                             </p>
                             <div className="space-y-4">
                               <div className="flex items-start gap-3">
@@ -4372,8 +4372,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               <div className="flex items-start gap-3">
                                 <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Real-time adaptation</h5>
-                                  <p className="text-gray-700">Adjust plans automatically when constraints change—delays, closures, weather, preferences.</p>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Latency-Aware Constraint Processing</h5>
+                                  <p className="text-gray-700">Process constraints with awareness of data latency—adjusting plans when real-world conditions change, accounting for the gap between API responses and actual state.</p>
                                 </div>
                               </div>
                               <div className="flex items-start gap-3">
@@ -4415,11 +4415,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                    System Overview: How the Travel Planning Assistant Works
+                    System Architecture: Context Interpreter & Trust Layer Orchestration
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
-                    Architectural system for adaptive planning and real-time constraint management
+                  <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-6">
+                    A sophisticated AI middleware layer that orchestrates data between the Spontaneity Engine and existing travel platforms
                   </p>
+                  <div className="max-w-4xl mx-auto space-y-4 text-left mt-8">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">Context Interpreter: Decision Vector Generation</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        The Context Interpreter ingests unstructured data streams (weather APIs, LLM-parsed sentiment from user messages, sensor data from devices) and converts them into structured 'Decision Vectors.' These vectors encode contextual signals—energy levels, environmental conditions, temporal constraints—into a format that the Spontaneity Engine can process. The interpreter operates as a real-time ETL pipeline, normalizing heterogeneous data sources into a unified context model.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">Trust Layer: Human-in-the-Loop Verification</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        The Trust Layer implements 'Human-in-the-Loop' verification—the system suggests changes without overriding user agency. This prevents AI hallucinations in logistics by requiring explicit user confirmation for critical decisions (flight changes, hotel cancellations). The layer maintains an audit trail of all suggestions and user responses, enabling transparency and learning. It acts as a safety net, ensuring that automated recommendations never compromise user control or safety.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Dynamic Feedback Loop Diagram */}
@@ -4799,7 +4813,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Why Adaptive Planning Matters
+                    Dynamic Re-Optimization Engine
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                     The impact extends beyond individual travelers—it requires systemic solutions that balance structure with flexibility
@@ -4844,27 +4858,750 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </section>
 
           {/* Design Evolution Section */}
-          <section id="wireframes-ui" className="py-20 bg-black">
+          <section id="wireframes-ui" className="py-20 bg-slate-900">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
+                className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Design Evolution
+                    Design Evolution: System Intelligence in Action
                   </h2>
-                  <p className="text-gray-300 text-lg">
-                    Designing for adaptability and flexibility—prioritizing real-time constraint management and adaptive planning in the user experience.
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    Visualizing the Intelligence Layer—how CATDS orchestrates context, trust, and semantic mapping to enable adaptive travel decisions.
                   </p>
                 </div>
                 
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Design iterations and wireframes will be added as the project evolves.
-                  </p>
+                {/* Component Grid */}
+                <div className="space-y-16">
+                  
+                  {/* Component A: Contextual Pivot Overlay */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
+                  >
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">A. Contextual Pivot Overlay</h3>
+                      <p className="text-gray-400 text-sm">Visualizing the Delta between planned state and contextual reality</p>
+                    </div>
+                    
+                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
+                      {/* Static Itinerary Card */}
+                      <div className="mb-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Static Itinerary</h4>
+                          <span className="text-xs text-gray-500">14:00 - 16:00</span>
+                        </div>
+                        <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center">
+                              <FaMapMarkerAlt className="w-5 h-5 text-gray-400" />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-white font-medium">Outdoor Market Tour</p>
+                              <p className="text-gray-400 text-sm">Walking tour through local markets</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Context Event Interception */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="relative mb-6"
+                      >
+                        <div className="absolute inset-0 bg-amber-400/10 rounded-lg blur-xl"></div>
+                        <div className="relative bg-gradient-to-r from-amber-500/20 to-amber-400/10 rounded-lg p-4 border-2 border-amber-400/50">
+                          <div className="flex items-center gap-3">
+                            <motion.div
+                              animate={{ rotate: [0, 10, -10, 0] }}
+                              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                              className="w-10 h-10 bg-amber-400/20 rounded-lg flex items-center justify-center border border-amber-400/30"
+                            >
+                              <FaCloudSun className="w-5 h-5 text-amber-400" />
+                            </motion.div>
+                            <div className="flex-1">
+                              <p className="text-amber-400 font-semibold">Context Event Detected</p>
+                              <p className="text-gray-300 text-sm">Weather: Heavy Rain • Intensity: High</p>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                      
+                      {/* System Calculation */}
+                      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 mb-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs font-medium text-gray-400 uppercase">System Processing</span>
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: "100%" }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, delay: 0.5 }}
+                            className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full"
+                          ></motion.div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-400">Calculating re-route...</span>
+                          <motion.span
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 1.5 }}
+                            className="text-lg font-bold text-emerald-400"
+                          >
+                            94%
+                          </motion.span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2">Probability of Satisfaction</p>
+                      </div>
+                      
+                      {/* Adaptive Suggestion */}
+                      <div className="bg-emerald-500/10 rounded-lg p-4 border border-emerald-400/30">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-emerald-400/20 rounded-lg flex items-center justify-center">
+                            <FaMapMarkerAlt className="w-5 h-5 text-emerald-400" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-emerald-400 font-medium">Indoor Market Hall</p>
+                            <p className="text-gray-300 text-sm">Covered alternative with similar experience</p>
+                            <p className="text-xs text-gray-400 mt-1">Constraint Delta: -6% satisfaction, +85% weather compatibility</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Technical Insight */}
+                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
+                      <p className="text-xs text-gray-400 leading-relaxed">
+                        <strong className="text-amber-400">System Logic:</strong> The Context Interpreter detects high-entropy signals (weather API) and calculates a Constraint Delta—the gap between planned satisfaction and contextual feasibility. The system presents the re-route with explainability metrics, showing why the pivot maintains experience quality while adapting to reality.
+                      </p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Component B: Trust Layer Component */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
+                  >
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">B. Trust Layer: Human-in-the-Loop</h3>
+                      <p className="text-gray-400 text-sm">Orchestration Layer presenting decision paths with explainability</p>
+                    </div>
+                    
+                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
+                      {/* Modal Header */}
+                      <div className="mb-6 pb-4 border-b border-slate-700">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="w-8 h-8 bg-emerald-400/20 rounded-lg flex items-center justify-center">
+                            <FaShieldAlt className="w-4 h-4 text-emerald-400" />
+                          </div>
+                          <h4 className="text-lg font-semibold text-white">Context Change Detected</h4>
+                        </div>
+                        <p className="text-sm text-gray-400">Flight delay detected. System suggests adaptive pivot.</p>
+                      </div>
+                      
+                      {/* Decision Paths */}
+                      <div className="grid md:grid-cols-2 gap-4 mb-6">
+                        {/* Path 1: Maintain Original */}
+                        <div className="bg-slate-800/50 rounded-lg p-5 border border-slate-700">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-sm font-semibold text-gray-300">Maintain Original</span>
+                            <span className="text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded">High Friction</span>
+                          </div>
+                          <p className="text-xs text-gray-400 mb-4">Keep original itinerary despite 2h delay</p>
+                          
+                          {/* Mini Sparkline - Energy Levels */}
+                          <div className="mb-3">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs text-gray-500">Energy Impact</span>
+                              <span className="text-xs text-red-400">-42%</span>
+                            </div>
+                            <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
+                              {[65, 58, 52, 45, 38, 32, 28].map((val, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ height: 0 }}
+                                  whileInView={{ height: `${val}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.5 + i * 0.1 }}
+                                  className="flex-1 bg-red-400/60 rounded-sm"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="text-xs text-gray-500">
+                            <div className="flex justify-between mb-1">
+                              <span>Time Loss:</span>
+                              <span className="text-red-400">2h 15m</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Satisfaction Risk:</span>
+                              <span className="text-red-400">High</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Path 2: Adaptive Suggestion */}
+                        <div className="bg-emerald-500/10 rounded-lg p-5 border-2 border-emerald-400/50">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-sm font-semibold text-emerald-400">Adaptive Suggestion</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded">Optimized</span>
+                          </div>
+                          <p className="text-xs text-gray-300 mb-4">Re-route to nearby attractions, maintain experience quality</p>
+                          
+                          {/* Mini Sparkline - Energy Levels */}
+                          <div className="mb-3">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs text-gray-400">Energy Impact</span>
+                              <span className="text-xs text-emerald-400">+18%</span>
+                            </div>
+                            <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
+                              {[45, 52, 58, 63, 68, 72, 75].map((val, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ height: 0 }}
+                                  whileInView={{ height: `${val}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.5 + i * 0.1 }}
+                                  className="flex-1 bg-emerald-400/60 rounded-sm"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="text-xs text-gray-400">
+                            <div className="flex justify-between mb-1">
+                              <span>Time Savings:</span>
+                              <span className="text-emerald-400">45m</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Satisfaction Score:</span>
+                              <span className="text-emerald-400">94%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        <button className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors">
+                          Keep Original
+                        </button>
+                        <button className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors">
+                          Accept Suggestion
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Technical Insight */}
+                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-emerald-400">
+                      <p className="text-xs text-gray-400 leading-relaxed">
+                        <strong className="text-emerald-400">System Logic:</strong> The Trust Layer implements Human-in-the-Loop verification—the system curates the pivot but never overrides user agency. Data visualizations (sparklines) provide explainability, showing energy/time trade-offs. This prevents AI hallucinations in logistics by requiring explicit confirmation for critical decisions.
+                      </p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Component C: Semantic Data Mapping */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
+                  >
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">C. Semantic Data Mapping</h3>
+                      <p className="text-gray-400 text-sm">Context Interpreter converting unstructured signals into Decision Vectors</p>
+                    </div>
+                    
+                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
+                      {/* Input: Unstructured Data */}
+                      <div className="mb-8">
+                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Unstructured Input Signals</h4>
+                        <div className="space-y-3">
+                          {[
+                            { source: 'User Message', data: "I'm feeling tired", icon: FaUser },
+                            { source: 'Weather API', data: 'Temperature: 32°C, Humidity: 85%', icon: FaCloudSun },
+                            { source: 'Sensor Data', data: 'Steps: 12,847 | Battery: 23%', icon: FaHeartbeat },
+                          ].map((item, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.1 * idx }}
+                              className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 bg-amber-400/20 rounded-lg flex items-center justify-center">
+                                  <item.icon className="w-4 h-4 text-amber-400" />
+                                </div>
+                                <div className="flex-1">
+                                  <p className="text-xs text-gray-500 mb-1">{item.source}</p>
+                                  <p className="text-sm text-gray-300">{item.data}</p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Processing Arrow */}
+                      <div className="flex items-center justify-center my-6">
+                        <motion.div
+                          animate={{ opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="flex items-center gap-2"
+                        >
+                          <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400 to-amber-400"></div>
+                          <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                          <div className="h-px w-16 bg-gradient-to-l from-transparent via-amber-400 to-amber-400"></div>
+                        </motion.div>
+                      </div>
+                      
+                      {/* Output: Decision Vectors */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Structured Decision Vectors</h4>
+                        <div className="grid md:grid-cols-3 gap-3">
+                          {[
+                            { constraint: 'Activity Intensity', value: 'Low', confidence: 92, colorClass: 'emerald', bgClass: 'bg-emerald-500/20', textClass: 'text-emerald-400', barClass: 'bg-emerald-400' },
+                            { constraint: 'Energy Level', value: 'Depleted', confidence: 88, colorClass: 'amber', bgClass: 'bg-amber-500/20', textClass: 'text-amber-400', barClass: 'bg-amber-400' },
+                            { constraint: 'Time Window', value: 'Reduced', confidence: 85, colorClass: 'blue', bgClass: 'bg-blue-500/20', textClass: 'text-blue-400', barClass: 'bg-blue-400' },
+                          ].map((vector, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.3 + 0.1 * idx }}
+                              className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-xs text-gray-400">{vector.constraint}</span>
+                                <span className={`text-xs px-2 py-1 ${vector.bgClass} ${vector.textClass} rounded`}>
+                                  {vector.confidence}%
+                                </span>
+                              </div>
+                              <p className="text-sm font-semibold text-white mb-2">{vector.value}</p>
+                              <div className="h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${vector.confidence}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 1, delay: 0.5 + 0.1 * idx }}
+                                  className={`h-full ${vector.barClass}`}
+                                />
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Node Diagram Visualization */}
+                      <div className="mt-8 pt-6 border-t border-slate-700">
+                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Semantic Mapping Flow</h4>
+                        <div className="relative h-32 bg-slate-800/30 rounded-lg p-4 overflow-hidden">
+                          {/* Nodes */}
+                          <div className="absolute inset-0 flex items-center justify-around p-4">
+                            {['Input', 'Parse', 'Enrich', 'Vector'].map((label, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6 + idx * 0.2 }}
+                                className="relative"
+                              >
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xs font-semibold ${
+                                  idx === 0 ? 'bg-amber-400/20 text-amber-400 border-2 border-amber-400/50' :
+                                  idx === 3 ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50' :
+                                  'bg-slate-700 text-gray-300 border-2 border-slate-600'
+                                }`}>
+                                  {label[0]}
+                                </div>
+                                <p className="text-xs text-gray-500 mt-1 text-center">{label}</p>
+                                {idx < 3 && (
+                                  <motion.div
+                                    initial={{ scaleX: 0 }}
+                                    whileInView={{ scaleX: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.8 + idx * 0.2 }}
+                                    className="absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-amber-400 to-emerald-400"
+                                  />
+                                )}
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Technical Insight */}
+                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
+                      <p className="text-xs text-gray-400 leading-relaxed">
+                        <strong className="text-amber-400">System Logic:</strong> The Context Interpreter operates as a real-time ETL pipeline, normalizing heterogeneous data sources (LLM-parsed sentiment, sensor data, weather APIs) into unified Decision Vectors. Each vector encodes contextual signals with confidence scores, enabling the Spontaneity Engine to process high-entropy signals into actionable constraints. This semantic mapping bridges the gap between unstructured reality and structured system logic.
+                      </p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Mobile Implementation Gallery */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="mt-16 pt-12 border-t border-slate-700/50"
+                  >
+                    <div className="mb-8">
+                      <h3 className="text-2xl font-bold text-white mb-2">Mobile Implementation: System Logic in User Experience</h3>
+                      <p className="text-gray-400 text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
+                    </div>
+                    
+                    {/* Mobile Frames Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
+                      
+                      {/* Mobile Screen A: The Adaptive Intervention */}
+                      <div className="flex flex-col items-center">
+                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                          {/* Device Frame */}
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                            {/* Status Bar */}
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <div className="flex items-center gap-1">
+                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* App Content */}
+                            <div className="h-[calc(100%-3rem)] bg-gray-50 overflow-y-auto">
+                              {/* Header */}
+                              <div className="bg-white px-6 py-4 border-b border-gray-100">
+                                <h2 className="text-xl font-bold text-gray-900">Kyoto Day 2</h2>
+                                <p className="text-sm text-gray-500 mt-1">March 15, 2024</p>
+                              </div>
+                              
+                              {/* Blurred Itinerary (Background) */}
+                              <div className="px-6 py-4 space-y-4 blur-sm opacity-40">
+                                <div className="bg-white rounded-xl p-4 shadow-sm">
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-blue-100 rounded-lg"></div>
+                                    <div className="flex-1">
+                                      <p className="font-semibold text-gray-900">Fushimi Inari Shrine</p>
+                                      <p className="text-xs text-gray-500">14:00 - 16:00</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm">
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-purple-100 rounded-lg"></div>
+                                    <div className="flex-1">
+                                      <p className="font-semibold text-gray-900">Tea Ceremony</p>
+                                      <p className="text-xs text-gray-500">17:00 - 18:30</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* System Intervention Toast (Foreground) */}
+                              <motion.div
+                                initial={{ y: 100, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                                className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 z-10"
+                              >
+                                <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-5 shadow-xl border border-amber-400/30">
+                                  <div className="flex items-start gap-3 mb-3">
+                                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                      <FaCloudSun className="w-5 h-5 text-white" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <h4 className="text-white font-bold text-sm mb-1">Context Change Detected</h4>
+                                      <p className="text-white/90 text-xs leading-relaxed">
+                                        Heavy Rain Detected. High crowd density at Fushimi Inari. Suggesting indoor alternative.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <button className="w-full bg-white text-amber-600 font-semibold py-3 rounded-xl text-sm shadow-lg hover:bg-amber-50 transition-colors">
+                                    View Re-Optimized Plan
+                                  </button>
+                                </div>
+                              </motion.div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Designer Note */}
+                        <div className="mt-4 max-w-[280px]">
+                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                            <strong className="text-amber-400 not-italic">System Logic:</strong> The Orchestration Layer surfaces contextual pivots through non-intrusive interventions. The toast pattern maintains user agency while providing explainability—showing why the system suggests a change (Constraint Delta visible in the message).
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Mobile Screen B: The Trust-Layer Comparison */}
+                      <div className="flex flex-col items-center">
+                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                          {/* Device Frame */}
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                            {/* Status Bar */}
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <div className="flex items-center gap-1">
+                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* App Content */}
+                            <div className="h-[calc(100%-3rem)] bg-gray-50 p-6 overflow-y-auto">
+                              {/* Header */}
+                              <div className="mb-6">
+                                <h2 className="text-xl font-bold text-gray-900 mb-1">Route Comparison</h2>
+                                <p className="text-sm text-gray-500">Choose your preferred option</p>
+                              </div>
+                              
+                              {/* Top Card: Original Plan */}
+                              <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="bg-white rounded-2xl p-5 shadow-lg border-2 border-red-100 mb-4"
+                              >
+                                <div className="flex items-center justify-between mb-3">
+                                  <h3 className="font-bold text-gray-900">Original Plan</h3>
+                                  <span className="text-xs px-2 py-1 bg-red-100 text-red-600 rounded-full font-semibold">High Friction</span>
+                                </div>
+                                <div className="space-y-2 mb-4">
+                                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                                    <FaClock className="w-4 h-4 text-red-500" />
+                                    <span>1hr commute</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                                    <FaMapMarkerAlt className="w-4 h-4 text-red-500" />
+                                    <span>3 transfers required</span>
+                                  </div>
+                                </div>
+                                <div className="pt-3 border-t border-gray-100">
+                                  <div className="flex items-center justify-between mb-1">
+                                    <span className="text-xs text-gray-500">Match Score</span>
+                                    <span className="text-sm font-semibold text-gray-700">67%</span>
+                                  </div>
+                                  <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <motion.div
+                                      initial={{ width: 0 }}
+                                      whileInView={{ width: "67%" }}
+                                      viewport={{ once: true }}
+                                      transition={{ delay: 0.4, duration: 0.8 }}
+                                      className="h-full bg-red-400 rounded-full"
+                                    />
+                                  </div>
+                                </div>
+                              </motion.div>
+                              
+                              {/* Bottom Card: Smart Pivot */}
+                              <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="bg-white rounded-2xl p-5 shadow-lg border-2 border-emerald-400 mb-6"
+                              >
+                                <div className="flex items-center justify-between mb-3">
+                                  <h3 className="font-bold text-gray-900">Smart Pivot</h3>
+                                  <span className="text-xs px-2 py-1 bg-emerald-100 text-emerald-600 rounded-full font-semibold">Optimized</span>
+                                </div>
+                                <div className="space-y-2 mb-4">
+                                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                                    <FaClock className="w-4 h-4 text-emerald-500" />
+                                    <span>15min walk</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                                    <FaMapMarkerAlt className="w-4 h-4 text-emerald-500" />
+                                    <span>No transfers needed</span>
+                                  </div>
+                                </div>
+                                <div className="pt-3 border-t border-gray-100">
+                                  <div className="flex items-center justify-between mb-1">
+                                    <span className="text-xs text-gray-500">Match Score</span>
+                                    <span className="text-sm font-semibold text-emerald-600">92%</span>
+                                  </div>
+                                  <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <motion.div
+                                      initial={{ width: 0 }}
+                                      whileInView={{ width: "92%" }}
+                                      viewport={{ once: true }}
+                                      transition={{ delay: 0.5, duration: 0.8 }}
+                                      className="h-full bg-emerald-400 rounded-full"
+                                    />
+                                  </div>
+                                </div>
+                              </motion.div>
+                              
+                              {/* Action Button */}
+                              <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-colors">
+                                Accept & Update Itinerary
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Designer Note */}
+                        <div className="mt-4 max-w-[280px]">
+                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                            <strong className="text-emerald-400 not-italic">System Logic:</strong> The Trust Layer presents decision paths with explainability metrics. Visual data (satisfaction percentages, progress bars) shows the trade-offs transparently. Human-in-the-Loop verification requires explicit confirmation, maintaining user agency while leveraging system intelligence.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Mobile Screen C: Semantic Preference Tuning */}
+                      <div className="flex flex-col items-center">
+                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                          {/* Device Frame */}
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                            {/* Status Bar */}
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <div className="flex items-center gap-1">
+                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* App Content */}
+                            <div className="h-[calc(100%-3rem)] bg-gray-50 overflow-y-auto">
+                              {/* Header */}
+                              <div className="bg-white px-6 py-4 border-b border-gray-100 sticky top-0 z-10">
+                                <h2 className="text-xl font-bold text-gray-900">System Preferences</h2>
+                                <p className="text-sm text-gray-500 mt-1">Customize AI behavior</p>
+                              </div>
+                              
+                              <div className="p-6 space-y-6">
+                                {/* Preference 1: Spontaneity vs Structure */}
+                                <div className="bg-white rounded-xl p-5 shadow-sm">
+                                  <div className="flex items-center justify-between mb-4">
+                                    <div>
+                                      <h3 className="font-semibold text-gray-900 mb-1">Spontaneity vs Structure</h3>
+                                      <p className="text-xs text-gray-500">Balance between flexibility and planning</p>
+                                    </div>
+                                  </div>
+                                  <div className="relative">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <span className="text-xs text-gray-500">Structured</span>
+                                      <span className="text-xs text-gray-500">Spontaneous</span>
+                                    </div>
+                                    <div className="relative h-2 bg-gray-200 rounded-full">
+                                      <motion.div
+                                        initial={{ width: "35%" }}
+                                        whileInView={{ width: "65%" }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2, duration: 0.8 }}
+                                        className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                                      />
+                                      <motion.div
+                                        initial={{ left: "35%" }}
+                                        whileInView={{ left: "65%" }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
+                                        className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg border-2 border-purple-500"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                {/* Preference 2: Energy Conservation Mode */}
+                                <div className="bg-white rounded-xl p-5 shadow-sm">
+                                  <div className="flex items-center justify-between mb-4">
+                                    <div className="flex-1">
+                                      <h3 className="font-semibold text-gray-900 mb-1">Energy Conservation Mode</h3>
+                                      <p className="text-xs text-gray-500">Prioritize low-intensity activities</p>
+                                    </div>
+                                    <motion.button
+                                      whileTap={{ scale: 0.95 }}
+                                      className={`relative w-12 h-6 rounded-full transition-colors ${
+                                        true ? 'bg-emerald-500' : 'bg-gray-300'
+                                      }`}
+                                    >
+                                      <motion.div
+                                        animate={{ x: true ? 24 : 0 }}
+                                        className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
+                                      />
+                                    </motion.button>
+                                  </div>
+                                  <p className="text-xs text-gray-400 mt-2">
+                                    {true ? 'Active' : 'Inactive'} • System will filter high-energy activities
+                                  </p>
+                                </div>
+                                
+                                {/* Preference 3: Indoor Preference */}
+                                <div className="bg-white rounded-xl p-5 shadow-sm">
+                                  <div className="flex items-center justify-between mb-4">
+                                    <div className="flex-1">
+                                      <h3 className="font-semibold text-gray-900 mb-1">Indoor Preference</h3>
+                                      <p className="text-xs text-gray-500">Weather-triggered auto-adjustment</p>
+                                    </div>
+                                    <motion.button
+                                      whileTap={{ scale: 0.95 }}
+                                      className={`relative w-12 h-6 rounded-full transition-colors ${
+                                        true ? 'bg-amber-500' : 'bg-gray-300'
+                                      }`}
+                                    >
+                                      <motion.div
+                                        animate={{ x: true ? 24 : 0 }}
+                                        className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
+                                      />
+                                    </motion.button>
+                                  </div>
+                                  <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <FaCloudSun className="w-4 h-4 text-amber-600" />
+                                      <span className="text-xs font-semibold text-amber-900">Weather Trigger Active</span>
+                                    </div>
+                                    <p className="text-xs text-amber-700">
+                                      System will automatically suggest indoor alternatives when rain is in the forecast
+                                    </p>
+                                  </div>
+                                </div>
+                                
+                                {/* Save Button */}
+                                <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                                  Save Preferences
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Designer Note */}
+                        <div className="mt-4 max-w-[280px]">
+                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                            <strong className="text-amber-400 not-italic">System Logic:</strong> Semantic Preference Tuning allows users to configure how the Context Interpreter weights different signals. These preferences generate Decision Vector parameters, enabling personalized orchestration. The system maintains explainability by showing active triggers and their effects in real-time.
+                          </p>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </motion.div>
+                  
                 </div>
               </motion.div>
             </div>
@@ -4900,33 +5637,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="bg-white/5 p-8 rounded-xl border border-white/10">
                   <p className="text-gray-300 text-center">
                     Development workflow and technical architecture details will be documented as the system is built.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Mobile Build Iterations Section */}
-          <section className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-white">
-                    Mobile Build Iterations
-                  </h2>
-                  <p className="text-gray-400 text-sm">
-                    Mobile app development and iteration process
-                  </p>
-                </div>
-                
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Mobile build screenshots and iterations will be added as development progresses.
                   </p>
                 </div>
               </motion.div>
@@ -5086,16 +5796,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Technical Surprises & Insights</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
+                        <strong className="text-gray-900">Surprise 1: The API Impedance Mismatch.</strong> Most travel APIs (Amadeus, Sabre) are built for ACID transactions, not event-driven streaming. CATDS had to bridge this fundamental architectural gap. These APIs return "Flight is Booked" as a static state, but the system needs to process "Flight is Delayed" as a streaming event. This required building an abstraction layer that translates transactional responses into event streams, introducing latency but enabling real-time adaptation.
+                      </p>
+                      <p>
+                        <strong className="text-gray-900">Surprise 2: The Paradox of Choice in Automation.</strong> Users don't want the AI to *decide*; they want the AI to *curate the pivot.* The system learned that automation works best when it narrows options rather than making final decisions. When a flight is delayed, users don't want the system to automatically rebook—they want it to present 2-3 viable alternatives with clear trade-offs. This human-in-the-loop pattern became central to the Trust Layer's design.
+                      </p>
+                      <p>
                         The depth of user frustration with tool fragmentation was more pronounced than expected. Users don't just want better planning tools—they want tools that work together seamlessly. This requires building integration capabilities from the ground up, not just improving individual features.
-                      </p>
-                      <p>
-                        The technical challenge of real-time constraint processing revealed that most existing travel APIs aren't built for adaptive planning. They're optimized for static booking and search, not dynamic constraint monitoring. Adapting these systems required building abstraction layers that translate booking-focused data into constraint-rich signals.
-                      </p>
-                      <p>
-                        User preferences around planning flexibility emerged as highly individual. Some travelers want minimal structure, others want detailed plans that adapt. The system needed to learn and adapt to individual preferences, not assume a one-size-fits-all approach.
                       </p>
                     </div>
                   </div>
@@ -5121,10 +5831,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Predictive constraint detection remains underexplored. The system currently processes constraints reactively, but travel planning could benefit from predictive models that anticipate delays, closures, or availability issues before they occur. This moves beyond adaptive planning to predictive planning.
+                    <strong className="text-gray-900">Modular API Integration:</strong> CATDS is designed as a modular system that can be integrated via API into existing platforms (Expedia, Airbnb, etc.) to make their static itineraries "Context-Aware." The middleware layer exposes decision vectors and trust signals through a well-defined API, allowing travel platforms to enhance their existing systems without rebuilding from scratch.
                   </p>
                   <p>
-                    Group travel adaptation could shift the system from individual to collaborative. Instead of processing constraints for a single traveler, the system could adapt plans for groups, balancing individual preferences with group dynamics and shared constraints. This moves beyond solo travel planning to group travel coordination.
+                    Predictive constraint detection remains underexplored. The system currently processes constraints reactively, but travel planning could benefit from predictive models that anticipate delays, closures, or availability issues before they occur. This moves beyond adaptive planning to predictive planning.
                   </p>
                   <p>
                     Integration with booking platforms represents a significant opportunity. The system knows about constraints and preferences, but doesn't yet integrate deeply with booking systems to automatically adjust reservations. Partnerships with booking platforms could close this gap, creating a more seamless adaptive planning experience.
@@ -6028,33 +6738,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="bg-white/5 p-8 rounded-xl border border-white/10">
                   <p className="text-gray-300 text-center">
                     Development workflow and technical architecture details will be documented as the system is built.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Mobile Build Iterations Section */}
-          <section className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-white">
-                    Mobile Build Iterations
-                  </h2>
-                  <p className="text-gray-400 text-sm">
-                    Mobile app development and iteration process
-                  </p>
-                </div>
-                
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Mobile build screenshots and iterations will be added as development progresses.
                   </p>
                 </div>
               </motion.div>
