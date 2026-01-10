@@ -261,7 +261,7 @@ export default function HomePage() {
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                       Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
                     </p>
-                    <p className="text-sm text-gray-500 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI generated photos or video.
                     </p>
                   </div>
@@ -331,11 +331,11 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#1d1f26' }}>
+        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#2a2d35' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
-          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-10">
+          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-100">
             <Image 
               src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.webp`}
               alt="World Map Background"
@@ -346,30 +346,32 @@ export default function HomePage() {
               // ✅ REMOVED - onError handler (not allowed in server components)
             />
           </div>
+          {/* White Overlay */}
+          <div className="absolute inset-0 bg-white/80"></div>
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="text-center section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-300 text-black-800 rounded-full text-sm font-medium mb-6">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 In Development
               </div>
               <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
                 fontFamily: "'tiempos-headline-regular', serif",
-                color: '#FFD700'
+                color: '#000000'
               }}>
                 World Travel Diaries
               </h2>
               <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: '1.1rem',
-                color: '#9899ab'
+                color: '#374151'
               }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
               <p className="text-sm max-w-4xl mx-auto mb-8 italic leading-relaxed" style={{ 
                 fontFamily: "'Roboto', Helvetica, sans-serif",
-                color: '#9899ab'
+                color: '#374151'
               }}>
                 *All visuals captured through my lens, no AI generated photos or video.
               </p>
@@ -398,13 +400,48 @@ export default function HomePage() {
               </div>
             </div>
             
+            {/* Video Frames Grid */}
+            <div className="max-w-4xl mx-auto mt-12 mb-8">
+              <div className="grid grid-cols-1 gap-8">
+                {[
+                  { src: 'Istanbul-frames-2.jpg', alt: 'Istanbul Video Frames' },
+                  { src: 'japan-frames.jpg', alt: 'Japan Video Frames' },
+                  { src: 'Terratorium-stillFrames.jpg', alt: 'Terratorium Video Frames' },
+                  { src: 'Teleportal-frames.jpg', alt: 'Teleportal Video Frames' },
+                  { src: 'Morrocco-frames.jpg', alt: 'Morocco Video Frames' },
+                  { src: 'Indonesia-frames.jpg', alt: 'Indonesia Video Frames' }
+                ].map((frame, index) => (
+                  <div key={index} className="relative">
+                    <div className="relative w-full flex items-center justify-center">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/${frame.src}`}
+                        alt={frame.alt}
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
+                        priority={index <= 2}
+                        loading={index <= 2 ? "eager" : "lazy"}
+                        style={{ 
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                        className="shadow-lg rounded-lg"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
             {/* YouTube and Vimeo Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start mt-2">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start mt-4">
               <a
                 href="https://www.youtube.com/@dsmeier"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-white border border-white/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/10 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 My YouTube
@@ -413,7 +450,7 @@ export default function HomePage() {
                 href="https://vimeo.com/user94578264"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-white border border-white/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 My Vimeo

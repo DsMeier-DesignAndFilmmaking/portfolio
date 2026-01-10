@@ -1530,9 +1530,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     src={normalizeImagePath("/portfolio/images/ai-travel-hero.svg")}
                     alt="AI Sandbox - Creative technology playground with abstract digital elements and neural network patterns representing AI innovation and travel technology"
                     fill
-                    className="object-cover"
+                    className="object-cover opacity-50"
                     priority
-                    quality={90}
+                    quality={10}
                   />
                 </motion.div>
 

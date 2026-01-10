@@ -69,7 +69,7 @@ footer#footer {
 
 /* Ensure all image containers with aspect ratios have skeleton backgrounds */
 [style*="aspect-ratio"] {
-  background: #f0f0f0;
+  background: #000000;
 }
 
 body {
