@@ -30,8 +30,8 @@ html {
   /* Enable smooth scrolling for native anchor navigation */
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
-  /* Account for sticky navbar (h-16 = 4rem = 64px, using 4.5rem for extra spacing) */
-  scroll-padding-top: 4.5rem;
+  /* Account for sticky navbar (h-16 = 4rem = 64px) */
+  scroll-padding-top: 4rem;
   background-color: white;
   background: white;
   min-height: 100vh;

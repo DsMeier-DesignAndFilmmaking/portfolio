@@ -377,27 +377,24 @@ export default function HomePage() {
             
             {/* Video Container */}
             <div className="mt-8">
-              <div className="relative">
-                {/* Wrapper with aspect-ratio to prevent layout shift */}
-                <div 
-                  className="relative w-full rounded-3xl overflow-hidden"
+              {/* Container with aspect-ratio to prevent layout shift */}
+              <div 
+                className="relative w-full rounded-3xl overflow-hidden"
+                style={{ 
+                  aspectRatio: '16 / 9',
+                  minHeight: '400px' /* Fallback for older browsers */
+                }}
+              >
+                <iframe
+                  src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
+                  title="Travel video"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                  className="absolute inset-0 w-full h-full"
                   style={{ 
-                    aspectRatio: '16/9',
-                    minHeight: '400px' /* Fallback for older browsers */
+                    border: 'none'
                   }}
-                >
-                  <iframe
-                    src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
-                    title="Travel video"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    style={{ 
-                      border: 'none'
-                    }}
-                  />
-                </div>
+                />
               </div>
             </div>
             
