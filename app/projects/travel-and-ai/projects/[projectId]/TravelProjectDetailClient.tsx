@@ -459,8 +459,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         { id: 'business-use', label: 'Business Use' }
       ]
     : [
-        { id: 'design-exploration', label: 'Observed Travel Frictions' },
-        { id: 'research-audience', label: 'Audience & Research' },
+        { id: 'design-exploration', label: 'Systemic Travel Discovery Failures' },
+        { id: 'research-audience', label: 'Behavioral & Environmental Constraints' },
         { id: 'designs-strategy', label: 'Concept & Strategy' },
         { id: 'wireframes-ui', label: 'Design Evolution' },
         { id: 'prototyping-ai', label: 'Build & Iteration' },
@@ -605,17 +605,22 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
             >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    Spontaneous Travel Engine
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Spontaneity Engine
               </h1>
-                  <div className="mb-4">
+                  <div className="mb-6 md:mb-7">
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200">
                       In Development
                     </span>
                   </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    Self-initiated product exploration · Travel · AI
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    Foundational AI System · Real-Time Decision Intelligence
                   </p>
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      A foundational AI system designed to enable real-time, context-aware travel decisions — prioritizing action over planning.
+                    </p>
+                  </div>
                   <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
                     <a
                       href="#design-exploration"
@@ -653,7 +658,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                       aria-label="Explore Working Prototype (Experimental)"
                     >
-                      Explore Working Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
+                      Explore Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
                     </a>
                   </nav>
             </motion.div>
@@ -1058,7 +1063,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion && (
         <>
-          {/* Observed Travel Frictions Section */}
+          {/* Systemic Travel Discovery Failures Section */}
           <section id="design-exploration" className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
               <motion.div
@@ -1069,106 +1074,71 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Observed Travel Frictions
+                    Systemic Travel Discovery Failures
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Real user feedback reveals pattern-level insights about the gaps in current travel discovery tools
+                    Pattern-level breakdowns in how discovery platforms operate
                     </p>
                   </div>
                   
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                    {/* Fake Spontaneity */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
-                      <div className="absolute top-4 right-4">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center gap-3 mb-6">
-                       
-                        <h4 className="text-xl font-bold text-gray-900">Fake Spontaneity</h4>
-                      </div>
-                      <div className="space-y-5">
-                        <div className="relative pl-4 border-l-2 border-red-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Hostels advertise these wild spontaneous parties or group hikes, but they're basically <span className="font-semibold text-red-700">staged photo-ops for Instagram</span>."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                            </svg>
-                            <span>Reddit, r/solotravel</span>
-                          </div>
-                        </div>
-                        <div className="relative pl-4 border-l-2 border-red-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I joined a 'spontaneous' pub crawl that turned out to be a <span className="font-semibold text-red-700">weekly commercial thing</span>. It felt forced and salesy."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                            </svg>
-                            <span>Reddit, r/travel</span>
-                          </div>
-                        </div>
+                <div className="space-y-8 md:space-y-10">
+                    {/* Failure 1: Simulated Spontaneity */}
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300">
+                      <div className="mb-4">
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 1: Simulated Spontaneity</h4>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                          Recommendation systems exhibit popularity bias, systematically favoring frequently-booked experiences and repeatable formats over situationally relevant alternatives, creating the appearance of discovery while reinforcing predictable patterns.
+                        </p>
+                        <p className="text-sm text-gray-500 italic">
+                          Source: Frontiers in Big Data, Popularity Bias and Filter Bubbles in Recommender Systems, 2023
+                        </p>
                       </div>
                     </div>
 
-                    {/* Tourist Echo Chambers */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
-                      <div className="absolute top-4 right-4">
-                        <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                  </div>
-                      <div className="flex items-center gap-3 mb-6">
-                      
-                        <h4 className="text-xl font-bold text-gray-900">Tourist Echo Chambers</h4>
-            </div>
-                      <div className="space-y-5">
-                        <div className="relative pl-4 border-l-2 border-orange-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I was hoping to meet locals or go off the beaten path, but it was just the <span className="font-semibold text-orange-700">same backpacker scene recycled across countries</span>."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                            </svg>
-                            <span>Reddit, r/backpacking</span>
-          </div>
-                        </div>
-                        <div className="relative pl-4 border-l-2 border-orange-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Met great people, but we all ended up doing the <span className="font-semibold text-orange-700">same top 5 things from TripAdvisor</span>. No real cultural immersion."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                            </svg>
-                            <span>Blog Comment on Nomadic Matt</span>
-                          </div>
-                        </div>
+                    {/* Failure 2: Homogenized Cultural Discovery */}
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300">
+                      <div className="mb-4">
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 2: Homogenized Cultural Discovery</h4>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                          Recommender systems create filter bubbles and echo chambers by overemphasizing content aligned with users' previous interactions, limiting exposure to diverse destinations and experiences while amplifying homogenization effects across user populations.
+                        </p>
+                        <p className="text-sm text-gray-500 italic">
+                          Source: Microsoft Research, Revisiting Popularity and Demographic Biases in Recommender Evaluation and Effectiveness, 2021
+                        </p>
                       </div>
                     </div>
                     
-                    {/* Last-Minute Friction */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
-                      <div className="absolute top-4 right-4">
-                        <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center gap-3 mb-6">
-                       
-                        <h4 className="text-xl font-bold text-gray-900">Last-Minute Friction</h4>
-                      </div>
-                      <div className="space-y-5">
-                        <div className="relative pl-4 border-l-2 border-purple-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"Tried being spontaneous with my itinerary, but <span className="font-semibold text-purple-700">trains were booked, hostels full, and tours sold out</span>."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                            </svg>
-                            <span>Reddit, r/onebag</span>
-                          </div>
-                        </div>
-                        <div className="relative pl-4 border-l-2 border-purple-200">
-                          <p className="text-gray-700 italic mb-3 leading-relaxed">"I just want a quick, honest suggestion of where to eat or hang out nearby without <span className="font-semibold text-purple-700">scrolling through 400 generic reviews</span>."</p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                            </svg>
-                            <span>Reddit, r/travelhacks</span>
-                          </div>
-                        </div>
+                    {/* Failure 3: Static Recommendations in Dynamic Environments */}
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300">
+                      <div className="mb-4">
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 3: Static Recommendations in Dynamic Environments</h4>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                          Traditional travel recommendation systems rely on static data and predefined user profiles, limiting their effectiveness in dynamic environments where real-time contextual factors such as weather, availability, and situational constraints significantly impact relevance.
+                        </p>
+                        <p className="text-sm text-gray-500 italic">
+                          Source: MDPI Sensors, R2Tour Real-Time Context-Aware Tourism Recommendation System, 2023
+                        </p>
                       </div>
                     </div>
+
+                    {/* Failure 4: Overchoice Without Context */}
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300">
+                      <div className="mb-4">
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 4: Overchoice Without Context</h4>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                          Discovery platforms present excessive options without sufficient contextual filtering, contributing to the paradox of choice where abundant options lead to decision fatigue, decreased satisfaction, and increased cognitive load during time-sensitive decision moments.
+                        </p>
+                        <p className="text-sm text-gray-500 italic">
+                          Source: Annals of Tourism Research, Choice Overload and Decision Quality in Tourism, 2016
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-10 md:mt-12 text-center">
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                      These failures emerge from static, popularity-driven systems operating in dynamic, time-sensitive environments.
+                    </p>
                   </div>
               </motion.div>
             </div>
@@ -1246,7 +1216,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
                     System Overview: How the Spontaneity Engine Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
@@ -1682,7 +1652,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </section>
           )}
 
-          {/* Audience & Research Section */}
+          {/* Behavioral & Environmental Constraints Section */}
           <section id="research-audience" className="py-20 bg-black">
             <div className="container mx-auto px-6">
               <motion.div
@@ -1693,66 +1663,44 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Audience & Research
+                    Behavioral & Environmental Constraints
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Grounding the solution in behavioral insights, constraints, and user context
+                    The system is designed around real-world constraints that limit planning, attention, and risk tolerance in live travel contexts.
                   </p>
                 </div>
                 
-                {/* Key Statistics Grid - Reduced to 2-3 figures */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
-                    <div className="text-3xl font-bold text-amber-400 mb-2">73%</div>
-                    <div className="text-gray-300 text-sm">of travelers prefer spontaneous experiences over rigid itineraries</div>
-                    <div className="text-gray-500 text-xs mt-2">— Booking.com Travel Trends 2024</div>
+                {/* Constraint Blocks Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  {/* Constraint 1: Time-Constrained Decision Windows */}
+                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h4 className="text-lg font-bold text-white mb-4">Time-Constrained Decision Windows</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Decisions often occur within minutes, not hours. Availability changes in real time for venues, transport, and events. Delayed decisions increase friction and reduce viable options. This constraint requires the system to provide low-latency, actionable output that enables immediate action.
+                    </p>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
-                    <div className="text-3xl font-bold text-cyan-400 mb-2">68%</div>
-                    <div className="text-gray-300 text-sm">struggle with last-minute planning and logistics</div>
-                    <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
+                  {/* Constraint 2: Cognitive Load in Unfamiliar Environments */}
+                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h4 className="text-lg font-bold text-white mb-4">Cognitive Load in Unfamiliar Environments</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Travelers operate under information overload in unfamiliar settings. Comparing options across multiple platforms increases decision fatigue. Excess choice reduces decision confidence and increases abandonment. This constraint limits the acceptable information density and response complexity the system can present.
+                    </p>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
-                    <div className="text-3xl font-bold text-emerald-400 mb-2">$1.2T</div>
-                    <div className="text-gray-300 text-sm">global travel app market value by 2027</div>
-                    <div className="text-gray-500 text-xs mt-2">— Statista Market Research</div>
+                  {/* Constraint 3: Social & Reputational Risk */}
+                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h4 className="text-lg font-bold text-white mb-4">Social & Reputational Risk</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Acting on recommendations often involves public or interpersonal exposure. Poor suggestions carry social cost, not just inconvenience. Actions that feel awkward, unsafe, or misaligned are avoided regardless of objective quality. This constraint requires the system to incorporate social context awareness in recommendation generation.
+                    </p>
                   </div>
-                </div>
-                
-                {/* Market & Competitive Analysis */}
-                <div className="mt-12">
-                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                    {/* Competitor 1 */}
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Planning Tools</h4>
-                      <p className="text-gray-300 text-sm mb-4">Tools like Wanderlog and TripIt focus on structured itinerary planning, requiring users to plan ahead and maintain rigid schedules.</p>
-                      <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
-                        </div>
-                        
-                    {/* Competitor 2 */}
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb excel at inventory management and transactions, but their interfaces prioritize availability over context and spontaneity.</p>
-                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
-                    </div>
-                    
-                    {/* Competitor 3 */}
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Review Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and Yelp rely heavily on user-generated reviews, creating information overload without real-time context or personalized recommendations.</p>
-                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
-                          </div>
-                        </div>
-                        
-                  {/* Our Approach */}
-                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Context-First</h4>
-                    <p className="text-gray-200 text-base leading-relaxed">
-                      The Spontaneity Engine differentiates itself by responding to real-world context—location, time, and behavior—in real-time. Rather than requiring pre-planning or overwhelming users with static reviews, it enables spontaneous, human-centered exploration through intelligent, context-aware suggestions.
+                  {/* Constraint 4: Trust, Safety, and Legitimacy Signals */}
+                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h4 className="text-lg font-bold text-white mb-4">Trust, Safety, and Legitimacy Signals</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Unknown recommendations must signal credibility quickly under time pressure. Users rely on implicit trust markers when explicit verification is impractical. Safety concerns override novelty in unfamiliar settings. This constraint shapes how recommendations are framed and validated within the system interface.
                     </p>
                   </div>
                 </div>
@@ -3719,7 +3667,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
                     System Overview: How the Trust Framework Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
@@ -4800,7 +4748,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
                     System Overview: How the Travel Planning Assistant Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
@@ -5910,7 +5858,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
                   System Overview: How the Social Graph Driven Travel Network Works
                 </h2>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
@@ -6804,7 +6752,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-5xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white mx-auto">
                     System Overview
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">

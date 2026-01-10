@@ -126,9 +126,8 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-6 mt-6 md:-mt-16 md:relative md:z-10">
             <div style={{ maxWidth: '576px', margin: '0 auto' }}>
               <div 
-                className="w-full relative" 
+                className="w-full relative rounded-lg shadow-lg overflow-hidden" 
                 style={{ 
-                  aspectRatio: '4/3',
                   background: '#f0f0f0' /* Skeleton state background */
                 }}
               >
@@ -136,10 +135,11 @@ export default function HomePage() {
                   id="me_heroImage-1_1.1.1"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
                   alt="Dan Meier"
-                  fill
+                  width={576}
+                  height={432}
                   priority
                   sizes="(max-width: 768px) 100vw, 576px"
-                  className="object-cover rounded-lg shadow-lg transition-all duration-300"
+                  className="w-full h-auto rounded-lg transition-all duration-300"
                 />
               </div>
             </div>
@@ -186,7 +186,6 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
                       background: '#f0f0f0' /* Skeleton state background */
                     }}
                   >
@@ -194,8 +193,9 @@ export default function HomePage() {
                       id="me_heroImage-1_1.1.1-about"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
                       alt="Dan Meier"
-                      fill
-                      className="object-cover"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -208,7 +208,6 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
                       background: '#f0f0f0' /* Skeleton state background */
                     }}
                   >
@@ -216,8 +215,9 @@ export default function HomePage() {
                       id="me_heroImage-1_1.1.1-about-2"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
                       alt="Dan Meier"
-                      fill
-                      className="object-cover"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -273,7 +273,6 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
                       background: '#f0f0f0' /* Skeleton state background */
                     }}
                   >
@@ -281,8 +280,9 @@ export default function HomePage() {
                       id="me_heroImage-1_1.1.1-about-3"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
                       alt="Dan Meier"
-                      fill
-                      className="object-cover"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -295,7 +295,6 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      aspectRatio: '3/4', /* Portrait ratio (576/768) */
                       background: '#f0f0f0' /* Skeleton state background */
                     }}
                   >
@@ -303,8 +302,9 @@ export default function HomePage() {
                       id="me_heroImage-1_1.1.1-about-4"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
                       alt="Dan Meier"
-                      fill
-                      className="object-cover"
+                      width={576}
+                      height={768}
+                      className="w-full h-auto rounded-lg"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
                     />
@@ -378,35 +378,25 @@ export default function HomePage() {
             {/* Video Container */}
             <div className="mt-8">
               <div className="relative">
-                <div className="relative">
-                  {/* Strategy A: Aspect Ratio Box - Reserve space with transparent background */}
-                  <div 
-                    className="travelogue-media-container relative w-full rounded-3xl overflow-hidden"
+                {/* Wrapper with aspect-ratio to prevent layout shift */}
+                <div 
+                  className="relative w-full rounded-3xl overflow-hidden"
+                  style={{ 
+                    aspectRatio: '16/9',
+                    minHeight: '400px' /* Fallback for older browsers */
+                  }}
+                >
+                  <iframe
+                    src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
+                    title="Travel video"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
                     style={{ 
-                      position: 'relative',
-                      width: '100%',
-                      paddingBottom: '56.25%', /* 16:9 aspect ratio (9/16 = 0.5625) */
-                      height: 0,
-                      background: 'transparent' /* Transparent background */
+                      border: 'none'
                     }}
-                  >
-                    <iframe
-                      src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
-                      title="Travel video"
-                      frameBorder="0"
-                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-                      allowFullScreen
-                      style={{ 
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        display: 'block',
-                        border: 'none'
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
               </div>
             </div>

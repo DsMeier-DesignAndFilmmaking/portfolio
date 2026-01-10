@@ -1,6 +1,7 @@
 // ✅ STATIC FOOTER - No 'use client', no hooks, no JS behavior
 import Link from 'next/link';
 import Image from 'next/image';
+import BackToTopButton from './BackToTopButton';
 
 export default function StaticFooter() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -119,12 +120,7 @@ export default function StaticFooter() {
             <p className="text-xs text-gray-500">
               © {currentYear} Dan Meier. All rights reserved.
             </p>
-            <a
-              href="#hero"
-              className="text-sm text-neutral-400 hover:text-neutral-700 transition-colors"
-            >
-              ↑ Back to top
-            </a>
+            <BackToTopButton />
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import ConditionalNavbar from '@/components/ConditionalNavbar';
 import StaticFooter from '@/components/StaticFooter';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 import ScrollCorrection from '@/components/ScrollCorrection';
+import PageLoader from '@/components/PageLoader';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
 // ✅ REMOVED - Footer (client component - replaced with StaticFooter)
@@ -68,6 +69,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.cdnfonts.com" crossOrigin="" />
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${inter.className} bg-white`} suppressHydrationWarning>
+        {/* ✅ Page Loader - Full-screen overlay until all assets are loaded */}
+        <PageLoader />
         {/* ✅ PURE SERVER COMPONENT LAYOUT - No client components, no hooks, no animations */}
         {/* Isolation div to protect from browser extension DOM injection */}
         {/* ✅ BodyKeyWrapper with pathname key forces complete DOM reset on route change */}

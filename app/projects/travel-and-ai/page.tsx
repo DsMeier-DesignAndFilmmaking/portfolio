@@ -280,7 +280,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            I design and build context-aware AI systems for travel that prioritizes the present moment, replacing rigid logistics with personalized experiences shaped by social, cultural, and environmental context.
+            <strong>Prototyping the future of travel:</strong> I design and build context-aware AI that replaces rigid logistics with spontaneous experiences deeply rooted in local culture, social connection, and the present moment.
             </p>
           </motion.div>
         </div>
@@ -355,8 +355,7 @@ export default function AISandboxPage() {
                     </h3>
                   </div>
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                    Real-time context processing that converts environmental signals into serendipitous travel opportunities.
-                  </p>
+                  The system’s central nervous system: Synthesizing real-time environmental context to unlock spontaneous travel experiences tailored to the present moment.                  </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-blue-600 font-medium">
                       <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
@@ -446,7 +445,7 @@ export default function AISandboxPage() {
               Applied Intelligence Modules
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              Practical applications built on the foundational infrastructure.
+            Translating core architecture into tangible experiences.            
             </p>
           </motion.div>
 
@@ -454,7 +453,7 @@ export default function AISandboxPage() {
             {[
               {
                 icon: MapPin,
-                title: "Context-Aware Decision Engine",
+                title: "Context-Aware Decision Making",
                 description: "A modular intelligence layer that embeds real-time travel decision logic into existing applications.",
                 gradient: "from-blue-500 to-cyan-600",
                 link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
@@ -468,7 +467,7 @@ export default function AISandboxPage() {
               },
               {
                 icon: BookOpen,
-                title: "Narrative Context Engine",
+                title: "Narrative Context Generation",
                 description: "A storytelling layer that transforms raw context into human-understandable meaning.",
                 gradient: "from-amber-500 to-orange-600",
                 link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
