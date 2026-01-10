@@ -130,10 +130,16 @@ export default function PageLoader() {
                     const navbar = document.querySelector('header');
                     const navbarHeight = navbar ? navbar.offsetHeight : 64; // Fallback to 64px (h-16)
                     
+                    // Check if mobile (viewport width <= 768px)
+                    const isMobile = window.innerWidth <= 768;
+                    
+                    // Add extra offset for #work section on mobile to prevent navbar covering headline
+                    const extraOffset = (isMobile && hash === '#work') ? 96 : 0; // 96px extra on mobile for work section
+                    
                     // Use getBoundingClientRect for accurate position calculation
                     const rect = targetElement.getBoundingClientRect();
                     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const offsetPosition = rect.top + scrollTop - navbarHeight;
+                    const offsetPosition = rect.top + scrollTop - navbarHeight - extraOffset;
                     
                     // Smooth scroll to element with navbar offset
                     window.scrollTo({

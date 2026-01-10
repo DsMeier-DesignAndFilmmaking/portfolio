@@ -19,11 +19,17 @@ export default function ScrollCorrection() {
       const navbar = document.querySelector('header');
       const navbarHeight = navbar ? navbar.offsetHeight : 64;
 
+      // Check if mobile (viewport width <= 768px)
+      const isMobile = window.innerWidth <= 768;
+      
+      // Add extra offset for #work section on mobile to prevent navbar covering headline
+      const extraOffset = (isMobile && targetSelector === '#work') ? 96 : 0; // 96px extra on mobile for work section
+
       // Use getBoundingClientRect for accurate position calculation
       // This accounts for any layout shifts that may have occurred
       const rect = target.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const offsetPosition = rect.top + scrollTop - navbarHeight;
+      const offsetPosition = rect.top + scrollTop - navbarHeight - extraOffset;
 
       // 1. Initial Scroll with navbar offset
       window.scrollTo({
@@ -36,7 +42,7 @@ export default function ScrollCorrection() {
         // Recalculate position after layout changes
         const updatedRect = target.getBoundingClientRect();
         const updatedScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const updatedOffsetPosition = updatedRect.top + updatedScrollTop - navbarHeight;
+        const updatedOffsetPosition = updatedRect.top + updatedScrollTop - navbarHeight - extraOffset;
         
         window.scrollTo({
           top: updatedOffsetPosition,

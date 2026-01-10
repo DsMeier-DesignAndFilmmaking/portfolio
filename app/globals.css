@@ -154,6 +154,11 @@ body {
       overscroll-behavior-y: none;
     }
     
+    /* Extra offset for Design Work section on mobile to prevent navbar covering headline */
+    #work {
+      scroll-margin-top: 10rem; /* 64px navbar + 96px extra = 160px (10rem) */
+    }
+    
     body {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: none;
