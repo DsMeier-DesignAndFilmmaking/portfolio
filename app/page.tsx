@@ -441,7 +441,7 @@ export default function HomePage() {
                 href="https://www.youtube.com/@dsmeier"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/10 transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 My YouTube

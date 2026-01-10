@@ -284,7 +284,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            <strong>Prototyping the future of travel:</strong> I design and build context-aware AI that replaces rigid logistics with spontaneous experiences deeply rooted in local culture, social connection, and the present moment.
+            <strong>The Spontaneity Engine: A Modular AI Platform</strong> One core architecture orchestrating multiple intelligence layers to power the future of travel. From mobile apps to APIs, the system aims to transform real-time context into spontaneous experiences rooted in local culture and social trust.
             </p>
 
             {/* Explore The System with Scroll Indicator */}
@@ -294,7 +294,7 @@ export default function AISandboxPage() {
               transition={{ duration: 0.5, delay: 1.2 }}
               className="flex flex-col items-start gap-3 cursor-pointer group"
               onClick={() => {
-                const nextSection = document.querySelector('[aria-label="Foundational Systems"]');
+                const nextSection = document.querySelector('[aria-label="Core Platform & Embedded Intelligence"]');
                 if (nextSection) {
                   nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
@@ -304,7 +304,7 @@ export default function AISandboxPage() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  const nextSection = document.querySelector('[aria-label="Foundational Systems"]');
+                  const nextSection = document.querySelector('[aria-label="Core Platform & Embedded Intelligence"]');
                   if (nextSection) {
                     nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
@@ -354,8 +354,8 @@ export default function AISandboxPage() {
 </section>
 
 
-      {/* Foundational Systems Section */}
-      <section className="pt-16 md:pt-12 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Foundational Systems">
+      {/* Core Platform & Embedded Intelligence Section */}
+      <section className="pt-16 md:pt-12 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -365,10 +365,10 @@ export default function AISandboxPage() {
             className="mb-12 md:mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-              Foundational Systems
+              Core Platform & Embedded Intelligence
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              Core infrastructure that enables intelligent, context-aware travel experiences.
+              A single core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
             </p>
           </motion.div>
 
@@ -408,7 +408,8 @@ export default function AISandboxPage() {
                     </h3>
                   </div>
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  The system’s central nervous system: Synthesizing real-time environmental context to unlock spontaneous travel experiences tailored to the present moment.                  </p>
+                  The engine behind the experience: A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it powers everything from apps to APIs, ensuring the best travel moments are always within reach.
+                  </p>
                   <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center gap-2 text-gray-600 font-medium">
                       <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
@@ -457,7 +458,7 @@ export default function AISandboxPage() {
                 </h3>
               </div>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                Verification systems for social proof and algorithmic transparency in high-stakes travel decisions.
+              To make spontaneity work, you need trust. This embedded layer handles the heavy lifting—verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
               </p>
               <div className="flex items-center justify-end mt-auto">
                 <Link 
@@ -500,7 +501,7 @@ export default function AISandboxPage() {
               Applied Intelligence Modules
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            Translating core architecture into tangible experiences.            
+            Reusable intelligence modules that translate core system capabilities into deployable product surfaces.            
             </p>
           </motion.div>
 
@@ -509,21 +510,21 @@ export default function AISandboxPage() {
               {
                 icon: MapPin,
                 title: "Context-Aware Decision Making",
-                description: "A modular intelligence layer that embeds real-time travel decision logic into existing applications.",
+                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms. Focuses on decision signals and outputs rather than UI-first interfaces, enabling integration through APIs and SDKs.",
                 gradient: "from-blue-500 to-cyan-600",
                 link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
               },
               {
                 icon: Users,
                 title: "Social Opportunity Matching Module",
-                description: "A lightweight system that detects and surfaces spontaneous, low-friction social moments.",
+                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through the core platform.",
                 gradient: "from-purple-500 to-pink-600",
                 link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
               {
                 icon: BookOpen,
                 title: "Narrative Context Generation",
-                description: "A storytelling layer that transforms raw context into human-understandable meaning.",
+                description: "An intelligence module that transforms raw context into human-understandable meaning. Provides narrative outputs that can be consumed by any product surface, from mobile apps to embedded widgets.",
                 gradient: "from-amber-500 to-orange-600",
                 link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
               }
@@ -570,6 +571,25 @@ export default function AISandboxPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Product Surfaces Clarifier */}
+      <section className="pt-8 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Product Surfaces">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-gray-200/50">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed text-center" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                The same core intelligence surfaces across different interfaces: <strong>mobile apps</strong>, <strong>embedded widgets</strong>, and <strong>APIs/SDKs</strong>. Each product surface leverages the same platform capabilities, orchestrated by the Spontaneity Engine and enhanced by embedded intelligence layers.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 

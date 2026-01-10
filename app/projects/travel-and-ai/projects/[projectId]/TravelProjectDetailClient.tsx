@@ -1721,24 +1721,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h2 className="text-3xl font-bold mb-6 text-black">
                     Concept & Strategy
                   </h2>
+                  <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+                    This system is designed around real-world constraints, not idealized travel behavior. Each design decision reflects trade-offs required to enable spontaneity without increasing cognitive load, social risk, or dependency on constant connectivity.
+                  </p>
                 </div>
                 
                 <div className="space-y-4">
-                  {/* Unique Value Proposition - Standalone */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
-                  >
-                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
-                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                      An AI-powered travel companion that responds to real-world context, enabling spontaneous, human-centered exploration.
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      This system processes location, time, and behavior through AI logic and context weighting to deliver suggestions, prompts, and social triggers that support authentic travel experiences.
-                    </p>
-                  </motion.div>
 
                   {/* Core Philosophy */}
                   <motion.div
@@ -1753,7 +1741,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'philosophy'}
                       aria-controls="philosophy-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Spontaneity Actually Mean In Travel?</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">What intelligence is required?</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -1775,37 +1763,34 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              Spontaneous doesn't mean chaotic — it means flexible, serendipitous, lightweight, and valuable in the moment.
-                            </p>
                             <div className="space-y-4">
                               <div className="space-y-4">
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Less screen, more world</h5>
-                                    <p className="text-gray-700">Minimize phone time.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Distinguishing high-value moments from background noise</h5>
+                                    <p className="text-gray-700">Filtering location, time, and movement signals to identify decision-relevant opportunities.</p>
                                   </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Right place, right time</h5>
-                                    <p className="text-gray-700">Context-aware suggestions (location, time of day, mood).</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Interpreting place, time, and user state as decision signals</h5>
+                                    <p className="text-gray-700">Context interpretation that maps environmental cues to actionable suggestions without requiring user input.</p>
                                   </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Trust without overload</h5>
-                                    <p className="text-gray-700">Curated, not crowded; smart defaults, not infinite choices.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Timing sensitivity for moment-based relevance</h5>
+                                    <p className="text-gray-700">Recognizing when proximity, time of day, weather, or movement patterns indicate a decision window.</p>
                                   </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Works offline</h5>
-                                    <p className="text-gray-700">Truly useful without signal or roaming data.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Producing suggestions that require minimal evaluation</h5>
+                                    <p className="text-gray-700">Curating options to reduce cognitive load, prioritizing relevance over breadth.</p>
                                   </div>
                                 </div>
                               </div>
@@ -1829,7 +1814,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'ux'}
                       aria-controls="ux-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">📱 User Experience (UX) Considerations</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">What constraints shape the system?</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'ux' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -1856,22 +1841,29 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Smart nudges</h5>
-                                    <p className="text-gray-700">"You're 5 min from a hidden sunset view" (not constant pings).</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Limited attention in unfamiliar environments</h5>
+                                    <p className="text-gray-700">Must operate with minimal screen time and cognitive load. Cannot require extended evaluation or comparison.</p>
                                   </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Map-light mode</h5>
-                                    <p className="text-gray-700">Minimal UI with contextual pins for spontaneous stops.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Intermittent connectivity</h5>
+                                    <p className="text-gray-700">Designed to operate under unreliable or absent network conditions. Cannot depend on real-time data synchronization.</p>
                                   </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                   <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Offline-first UI</h5>
-                                    <p className="text-gray-700">Design assuming no signal — prioritize cached content, intuitive error states.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Physical movement and safety</h5>
+                                    <p className="text-gray-700">Must not distract from navigation or situational awareness. Cannot require sustained interaction while in motion.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Battery and device resource limits</h5>
+                                    <p className="text-gray-700">Must minimize background processing and data usage. Cannot assume continuous location tracking or cloud API access.</p>
                                   </div>
                                 </div>
                               </div>
@@ -1895,7 +1887,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'functionality'}
                       aria-controls="functionality-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">⚙️ Functionality (offline-first architecture)</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">Implementation approach</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'functionality' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -1917,93 +1909,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-6">
-                              <div>
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Frontend (Mobile App):</h4>
-                                <div className="space-y-4">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">React Native (with Expo) or native (Swift/Kotlin)</h5>
-                                      <p className="text-gray-700">For best performance.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Offline storage</h5>
-                                      <p className="text-gray-700">SQLite / MMKV / Realm</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Maps</h5>
-                                      <p className="text-gray-700">MapLibre GL or Mapbox GL (downloadable tiles support)</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Media</h5>
-                                      <p className="text-gray-700">Compressed local assets (audio, images, mini videos)</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">App state and content updates</h5>
-                                      <p className="text-gray-700">redux-persist, react-query with cache</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div>
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Backend (for sync and content):</h4>
-                                <div className="space-y-4">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Headless CMS</h5>
-                                      <p className="text-gray-700">Strapi, Sanity, or Contentful</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Serverless API</h5>
-                                      <p className="text-gray-700">Firebase, Supabase, or your own</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Analytics (when online)</h5>
-                                      <p className="text-gray-700">Mixpanel or PostHog</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div className="mt-8 pt-6 border-t border-gray-200">
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Strategies:</h4>
-                                <div className="space-y-3">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <p className="text-gray-700">Allow users to select regions or "spontaneity packs" to download.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <p className="text-gray-700">Use background sync when back online to update content.</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <p className="text-gray-700 leading-relaxed">
+                              Content is preloaded as region-specific packs before travel. Local storage handles all runtime data access. Sync occurs opportunistically when connectivity is available, not as a blocking operation. This architecture supports the offline-first constraint while enabling periodic content updates.
+                            </p>
                           </div>
                         </motion.div>
                       )}
@@ -2023,7 +1931,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'ai'}
                       aria-controls="ai-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">🧠 AI + Context Layer</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">What trade-offs were intentionally made?</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'ai' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -2045,56 +1953,41 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              The app should feel "smartly" reactive.
-                            </p>
                             <div className="space-y-4">
-                              <div>
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Use contextual triggers like:</h4>
-                                <div className="space-y-4">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Location (geo-fencing)</h5>
-                                      <p className="text-gray-700">Trigger suggestions based on proximity to points of interest.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Time of day (e.g., morning = cafés, sunset = view spots)</h5>
-                                      <p className="text-gray-700">Context-aware recommendations based on current time.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Weather (suggest indoors if raining)</h5>
-                                      <p className="text-gray-700">Adapt suggestions based on current weather conditions.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Movement (stationary vs walking vs transit)</h5>
-                                      <p className="text-gray-700">Adjust recommendations based on user's current activity.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Recent interactions (what they skipped or saved)</h5>
-                                      <p className="text-gray-700">Learn from user behavior to improve future suggestions.</p>
-                                    </div>
+                              <div className="space-y-4">
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">On-device inference over cloud intelligence</h5>
+                                    <p className="text-gray-700">Favors lightweight, local processing (Core ML, TensorFlow Lite) to enable offline operation. Accepts reduced model complexity and accuracy in exchange for independence from network connectivity.</p>
                                   </div>
                                 </div>
-                              </div>
-                              
-                              <div className="mt-8 pt-6 border-t border-gray-200">
                                 <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
                                   <div>
-                                    <p className="text-gray-700">Leverage on-device ML (Core ML or TensorFlow Lite) for lightweight processing offline.</p>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Timely relevance over exhaustive coverage</h5>
+                                    <p className="text-gray-700">Prioritizes context-weighted suggestions (location, time, weather, movement) that are actionable in the moment. Does not attempt to provide comprehensive destination research or long-term planning.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Reactivity over prediction</h5>
+                                    <p className="text-gray-700">Responds to immediate context signals rather than attempting to predict future behavior or preferences. Context signals are weighted to avoid over-personalization that could reduce serendipity.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Offline-first architecture over real-time sync</h5>
+                                    <p className="text-gray-700">Preloaded content packs and local storage (SQLite, MMKV) take precedence over live data. Sync occurs opportunistically when connectivity is available, not as a blocking requirement.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Breadth of content over depth of personalization</h5>
+                                    <p className="text-gray-700">Uses lightweight context weighting rather than deep learning from historical behavior. Accepts less personalized results to maintain simplicity and reduce dependency on user data collection.</p>
                                   </div>
                                 </div>
                               </div>
@@ -2118,7 +2011,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'considerations'}
                       aria-controls="considerations-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">🔍 Key Considerations</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">What the system deliberately avoids doing</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'considerations' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -2140,27 +2033,43 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              A spontaneous travel app should actually be spontaneous—so it shouldn't have you glued to your screen like it's mission control; it should nudge you just enough to spark an adventure, then get out of the way before you walk into a fountain.
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              <div>
-                                <h4 className="text-lg font-medium mb-3 text-gray-900">Technical Challenges</h4>
-                                <ul className="space-y-2 text-gray-700">
-                                  <li>• Real-time AI processing with limited connectivity</li>
-                                  <li>• Offline data synchronization</li>
-                                  <li>• Multi-language support and cultural nuances</li>
-                                  <li>• Battery optimization for extended travel use</li>
-                                </ul>
-                              </div>
-                              <div>
-                                <h4 className="text-lg font-medium mb-3 text-gray-900">User Experience</h4>
-                                <ul className="space-y-2 text-gray-700">
-                                  <li>• Balancing automation with user control</li>
-                                  <li>• Managing expectations in unpredictable environments</li>
-                                  <li>• Ensuring cultural sensitivity and appropriateness</li>
-                                  <li>• Creating trust in AI recommendations</li>
-                                </ul>
+                            <div className="space-y-4">
+                              <div className="space-y-4">
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Not a trip planner</h5>
+                                    <p className="text-gray-700">Does not generate itineraries, book accommodations, or manage reservations. Focuses on moment-to-moment decisions, not pre-travel planning.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Not a social network</h5>
+                                    <p className="text-gray-700">Does not maintain user profiles, friend connections, or persistent social graphs. Avoids features that require network effects or community building.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Not a recommendation feed</h5>
+                                    <p className="text-gray-700">Does not provide scrolling lists of options, ratings, or reviews. Avoids content browsing patterns that encourage extended screen engagement.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Not a dashboard or content browser</h5>
+                                    <p className="text-gray-700">Does not aggregate information for later review or provide comprehensive destination guides. Avoids interfaces that require navigation, filtering, or comparison.</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div>
+                                    <h5 className="font-semibold text-gray-900 mb-1">Not a predictive system</h5>
+                                    <p className="text-gray-700">Does not attempt to learn long-term preferences or build user models over time. Avoids personalization that could reduce discovery of unexpected experiences.</p>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -2182,7 +2091,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       aria-expanded={activeAccordion === 'architecture'}
                       aria-controls="architecture-content"
                     >
-                      <h3 className="text-xl font-semibold text-gray-900">🏗️ Architecture and Tech Stack</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">Technical foundation</h3>
                       <motion.div
                         animate={{ rotate: activeAccordion === 'architecture' ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
@@ -2204,226 +2113,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-6">
-                              <div>
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Frontend (Mobile App):</h4>
-                                <div className="space-y-4">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">React Native (with Expo) or native (Swift/Kotlin)</h5>
-                                      <p className="text-gray-700">For best performance.</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Offline storage</h5>
-                                      <p className="text-gray-700">SQLite / MMKV / Realm</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Maps</h5>
-                                      <p className="text-gray-700">MapLibre GL or Mapbox GL (downloadable tiles support)</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Media</h5>
-                                      <p className="text-gray-700">Compressed local assets (audio, images, mini videos)</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">App state and content updates</h5>
-                                      <p className="text-gray-700">redux-persist, react-query with cache</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div>
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Backend (for sync and content):</h4>
-                                <div className="space-y-4">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Headless CMS</h5>
-                                      <p className="text-gray-700">Strapi, Sanity, or Contentful</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Serverless API</h5>
-                                      <p className="text-gray-700">Firebase, Supabase, or your own</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                      <h5 className="font-semibold text-gray-900 mb-1">Analytics (when online)</h5>
-                                      <p className="text-gray-700">Mixpanel or PostHog</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div className="mt-8 pt-6 border-t border-gray-200">
-                                <h4 className="text-lg font-medium mb-4 text-gray-900">Sync model:</h4>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <p className="text-gray-700">Preloaded packs &gt; Offline-first data access &gt; Sync & refresh on connect</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* Bonus Features */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'bonus' ? null : 'bonus')}
-                      aria-expanded={activeAccordion === 'bonus'}
-                      aria-controls="bonus-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">🎁 Bonus Features for a Spontaneous + Social Travel App</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'bonus' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'bonus' && (
-                        <motion.div
-                          id="bonus-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-6">
-                              <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Micro-Adventure Generator</h5>
-                                    <p className="text-gray-700 mb-2">Tap a button to get a spontaneous prompt like:</p>
-                                    <p className="text-gray-600 italic mb-2">"Find the nearest rooftop you can legally access,"</p>
-                                    <p className="text-gray-600 italic mb-2">"Buy the weirdest local snack," or</p>
-                                    <p className="text-gray-600 italic mb-2">"Follow someone interesting (discreetly) for 5 minutes."</p>
-                                    <p className="text-gray-700">Encourages IRL exploration and play.</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Mystery Meetups</h5>
-                                    <p className="text-gray-700">Opt-in to spontaneous gatherings (e.g., 5–10 nearby travelers matched by vibe or interest).</p>
-                                    <p className="text-gray-700">Reveal location just 30 minutes before.</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Offline Drop Notes</h5>
-                                    <p className="text-gray-700">Leave digital "notes" at specific GPS locations that others can only see when they're nearby.</p>
-                                    <p className="text-gray-600 italic">(Think geocaching meets PostSecret.)</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Pack Swap / Lost & Found</h5>
-                                    <p className="text-gray-700">Community-driven space to trade gear, books, or even lost chargers, ideally offline-first.</p>
-                                    <p className="text-gray-700">Helps solo travelers and builds micro-trust.</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Spontaneity Dice</h5>
-                                    <p className="text-gray-700">Shake or tap to roll digital "dice" that suggest:</p>
-                                    <ul className="text-gray-700 space-y-1 mt-2">
-                                      <li>• A random nearby activity</li>
-                                      <li>• A mood-based playlist</li>
-                                      <li>• A local to talk to (via opt-in ping)</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Vibe Tags & Mood Filters</h5>
-                                    <p className="text-gray-700">Filter experiences or people nearby by mood (chill, wild, introspective) rather than category.</p>
-                                    <p className="text-gray-700">Good for avoiding the "same old recommendations."</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Hyperlocal Pulse</h5>
-                                    <p className="text-gray-700">A live feed of spontaneous activity near you — e.g., pop-up concerts, jam sessions, gallery openings.</p>
-                                    <p className="text-gray-700">Community-verified, not algorithmically pushed.</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">"Shadow Mode"</h5>
-                                    <p className="text-gray-700">For introverts: follow along with local suggestions without being social.</p>
-                                    <p className="text-gray-700">Lets you stay spontaneous without needing to engage if you're not feeling it.</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Traveler Tarot / Oracle Cards</h5>
-                                    <p className="text-gray-700">Fun card-based prompts that guide your next move. Example: "The Stranger: Talk to someone wearing red" or "The Hidden Door: Find a building with no signage."</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">No-Plan Planner</h5>
-                                    <p className="text-gray-700">Visualize flexible days with "suggested windows" instead of fixed slots.</p>
-                                    <p className="text-gray-600 italic">Example: Morning: open vibe → forest or coffee culture</p>
-                                    <p className="text-gray-600 italic">Afternoon: chance encounter or rooftop</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <p className="text-gray-700 leading-relaxed">
+                              Mobile-native implementation with local storage for offline data persistence. On-device ML models enable context processing without network dependency. Content management and sync services operate asynchronously, supporting the offline-first constraint while allowing periodic updates when connectivity is available.
+                            </p>
                           </div>
                         </motion.div>
                       )}
@@ -2445,14 +2137,56 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Design Evolution
+                    Designing for Activation, Not Planning
                   </h2>
-                  <p className="text-gray-300 text-lg">
-                    I design to support spontaneity—prioritizing action over planning, with UX that's targeted, valuable, and ready to go.
-                  </p>
+                  <div className="max-w-3xl mx-auto space-y-4">
+                    <p className="text-gray-300 text-lg leading-relaxed">
+                      The interface is designed to collapse decision-making into moments of action, using AI to narrow options rather than expand them. This requires reducing the cognitive cost of each choice while maintaining contextual relevance in high-mobility environments.
+                    </p>
+                    <p className="text-gray-300 text-lg leading-relaxed">
+                      Design decisions prioritize immediate activation over contemplation. The system must operate under constraints of limited attention, intermittent connectivity, and physical movement—conditions that make traditional planning interfaces ineffective.
+                    </p>
+                  </div>
                 </div>
+
+                {/* Design Constraints */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="mb-16"
+                >
+                  <div className="max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+                        <h4 className="text-white font-semibold mb-3">Decision cost reduction</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          Each interaction must require minimal evaluation. Options are pre-filtered by context signals, eliminating comparison overhead.
+                        </p>
+                      </div>
+                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+                        <h4 className="text-white font-semibold mb-3">Timing sensitivity</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          Suggestions are weighted by temporal relevance. Proximity, time of day, and movement state determine when information surfaces.
+                        </p>
+                      </div>
+                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+                        <h4 className="text-white font-semibold mb-3">Choice reduction through intelligence</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          AI narrows the option space before presentation. The system filters rather than aggregates, reducing selection burden.
+                        </p>
+                      </div>
+                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+                        <h4 className="text-white font-semibold mb-3">Contextual relevance over breadth</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          Information is constrained to what is actionable in the current moment. Historical data and future planning are excluded from the primary interface.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
                 
-                {/* Travel App Figma UX Pilot */}
+                {/* Iteration Evidence */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2460,30 +2194,19 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="mt-16"
                 >
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-semibold mb-4 text-white">
-                      Iterating with AI
-                    </h3>
-                    <p className="text-gray-300 max-w-2xl mx-auto">
-                      Design exploration and wireframing in Figma & UX Pilot
+                    <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+                      Iteration explored activation thresholds and constraint testing using Figma and UX Pilot for rapid pattern exploration.
                     </p>
                   </div>
-                </motion.div>
                 
-                {/* Mobile Design Mockups */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="mt-16"
-                >
-                  {/* Wireframes Row */}
+                  {/* Wireframes Row - Evidence of Constraint Testing */}
                   <div className="mb-12">
-                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 md:justify-center">
                       <div className="flex-shrink-0 w-48">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
                             src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png")}
-                            alt="Travel App wireframe - homescreen design exploration"
+                            alt="Iteration exploring decision cost reduction patterns"
                             fill
                             className="object-cover"
                             sizes="192px"
@@ -2496,7 +2219,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
                             src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png")}
-                            alt="Travel App wireframe - homescreen layout iteration"
+                            alt="Iteration testing choice reduction approaches"
                             fill
                             className="object-cover"
                             sizes="192px"
@@ -2509,7 +2232,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
                             src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png")}
-                            alt="Travel App wireframe - homescreen user flow"
+                            alt="Iteration examining activation threshold variations"
                             fill
                             className="object-cover"
                             sizes="192px"
@@ -2522,7 +2245,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
                             src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png")}
-                            alt="Travel App wireframe - homescreen interaction design"
+                            alt="Iteration exploring contextual relevance patterns"
                             fill
                             className="object-cover"
                             sizes="192px"
@@ -2535,7 +2258,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
                           <Image
                             src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png")}
-                            alt="Travel App wireframe - homescreen final concept"
+                            alt="Iteration testing narrowed option space"
                             fill
                             className="object-cover"
                             sizes="192px"
@@ -2547,14 +2270,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                   </div>
                   
-                  {/* High-Fidelity Mockups Row */}
+                  {/* High-Fidelity Iterations - Activation Pattern Exploration */}
                   <div>
                     <div className="flex justify-center gap-8 flex-wrap">
                       <div className="w-64 md:w-72">
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
                           <Image
                             src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png")}
-                            alt="Travel App high-fidelity mockup - recommendation screen design"
+                            alt="Iteration exploring AI-narrowed suggestion presentation"
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 256px, 288px"
@@ -2567,7 +2290,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
                           <Image
                             src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco.png")}
-                            alt="Travel App high-fidelity mockup - homescreen recommendation interface"
+                            alt="Iteration testing immediate action affordances"
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 256px, 288px"
@@ -2600,7 +2323,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     transition={{ duration: 0.6 }}
                   >
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-                      Build & Iteration
+                      Builds & Iterations
                   </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
@@ -2610,8 +2333,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                   </motion.div>
                 </div>
-                
-                {/* Enhanced AI Workflow Process Diagram */}
+
+                {/* System Build Approach */}
+                <div className="mb-16">
+                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
+                    System Build Approach
+                  </h3>
+                  
+                  {/* Enhanced AI Workflow Process Diagram */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2620,7 +2349,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 >
                   <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-8">
-                      <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">Development Workflow</p>
+                      <p className="text-gray-400 text-sm max-w-3xl mx-auto leading-relaxed">
+                        The workflow diagram below shows how responsibilities are separated: AI assists with prompt refinement and code generation, while engineering decisions determine architecture, integration points, and system boundaries.
+                      </p>
                     </div>
                     
                     <div className="flex flex-col items-center justify-center gap-6">
@@ -2739,42 +2470,24 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                 </motion.div>
                 
-                {/* Enhanced Three Column Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                {/* System Ownership and Integration */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h3 className="text-xl font-bold text-white">Tech Stack</h3>
-                      </div>
-                    <div className="space-y-4">
+                    <h3 className="text-xl font-bold text-white mb-6">System Ownership</h3>
+                    <div className="space-y-4 text-gray-300">
                       <div>
-                        <span className="text-gray-400 text-sm block mb-1">Frontend</span>
-                        <span className="text-amber-400 font-medium text-sm leading-relaxed">Xcode SwiftUI (iOS), React/Next.js (Widget & API Dashboard)</span>
+                        <p className="text-sm mb-2"><span className="text-emerald-400 font-medium">Currently being implemented:</span> iOS SwiftUI app with offline-first local storage (Realm). Core context processing logic runs on-device.</p>
                       </div>
                       <div>
-                        <span className="text-gray-400 text-sm block mb-1">Backend</span>
-                        <span className="text-emerald-400 font-medium text-sm leading-relaxed">Firebase, MongoDB Atlas, Supabase, Couchbase Lite + Sync Gateway</span>
+                        <p className="text-sm mb-2"><span className="text-amber-400 font-medium">Partially operational:</span> Sync gateway for content updates. Background sync occurs opportunistically when connectivity is available.</p>
                       </div>
                       <div>
-                        <span className="text-gray-400 text-sm block mb-1">Database</span>
-                        <span className="text-emerald-400 font-medium text-sm leading-relaxed">Firestore, Realm, PostgreSQL</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-400 text-sm block mb-1">AI/ML</span>
-                        <span className="text-orange-400 font-medium text-sm leading-relaxed">OpenAI / LangChain</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-400 text-sm block mb-1">API & Plugin</span>
-                        <span className="text-cyan-400 font-medium text-sm leading-relaxed">REST / GraphQL endpoints, SDK for integration</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-400 text-sm block mb-1">Widget</span>
-                        <span className="text-teal-400 font-medium text-sm leading-relaxed">Embeddable HTML/JS component for travel clients</span>
+                        <p className="text-sm mb-2"><span className="text-gray-400 font-medium">Simulated under controlled conditions:</span> AI recommendation engine uses lightweight on-device models. Cloud-based inference is stubbed for testing.</p>
                       </div>
                     </div>
                   </motion.div>
@@ -2785,175 +2498,91 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h3 className="text-xl font-bold text-white">Architecture</h3>
-                    </div>
-                    <ul className="space-y-3 text-gray-300">
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>Microservices architecture</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>Offline-first with sync</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>Real-time notifications</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>Multi-language support</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>Scalable cloud deployment</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span>API Plugin & Widget modular design</span>
-                      </li>
-                    </ul>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h3 className="text-xl font-bold text-white">Key Features to Build</h3>
-                    </div>
-                    <ul className="space-y-3 text-gray-300">
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>Offline map functionality</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>AI recommendation engine</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>Real-time translation</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>Social sharing system</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>Push notifications</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>API Plugin for client integration</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>Embeddable Widget for travel platforms</span>
-                      </li>
-                    </ul>
-                  </motion.div>
-                </div>
-                
-                {/* Enhanced Challenge/Solution Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="bg-gradient-to-r from-amber-500/10 via-cyan-500/10 to-purple-500/10 p-8 md:p-10 rounded-2xl border border-amber-500/20 backdrop-blur-sm"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                          </svg>
-                    </div>
-                        <h4 className="text-xl font-bold text-white">Challenge</h4>
-                    </div>
-                      <p className="text-gray-300 leading-relaxed">Implementing offline functionality while maintaining data consistency and extending the system for API & Widget client integrations</p>
-                  </div>
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                </div>
-                        <h4 className="text-xl font-bold text-white">Solution</h4>
+                    <h3 className="text-xl font-bold text-white mb-6">Integration Points</h3>
+                    <div className="space-y-4 text-gray-300">
+                      <div>
+                        <p className="text-sm mb-2">Third-party services (Firebase, Supabase) handle data persistence and sync orchestration. The system owns the sync logic and conflict resolution.</p>
                       </div>
-                      <p className="text-gray-300 leading-relaxed">Built a robust sync system with conflict resolution and queue management, alongside modular API & Widget design for external clients</p>
+                      <div>
+                        <p className="text-sm mb-2">AI services (OpenAI, LangChain) provide inference capabilities. The system owns prompt engineering, context weighting, and response filtering.</p>
+                      </div>
+                      <div>
+                        <p className="text-sm mb-2">Widget and API plugin architectures are designed for external integration, but client implementations are not yet deployed.</p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
                 
-                {/* Xcode Screenshot Image */}
+                {/* Build Evidence Screenshots */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
                   className="mt-16"
                 >
-                  <div className="relative max-w-4xl mx-auto">
+                  <div className="relative max-w-4xl mx-auto mb-8">
                     <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <Image
                         src={normalizeImagePath("/portfolio/images/xcode-screenshot.jpg")}
-                        alt="Xcode Development Screenshot"
+                        alt="Evidence of real iOS build iteration under constraint"
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                         priority={false}
                       />
-                      
-                      {/* Image overlay for better UX */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </div>
-                </motion.div>
-                
-                {/* N8N Travel Agent Image */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                  className="mt-16"
-                >
+                  
                   <div className="relative max-w-4xl mx-auto">
                     <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <Image
                         src={normalizeImagePath("/portfolio/images/n8n_travelAgent-1.png")}
-                        alt="N8N Travel Agent Workflow"
+                        alt="Validation artifact showing workflow iteration"
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 896px"
                       />
-                      
-                      {/* Image overlay for better UX */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </div>
                 </motion.div>
+                </div>
+
+                {/* Iteration Loop */}
+                <div className="mb-16 mt-20">
+                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
+                    Iteration Loop
+                  </h3>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="max-w-4xl mx-auto mb-12"
+                  >
+                    <p className="text-gray-300 leading-relaxed mb-6">
+                      Ideas move from prompt → logic → code → device through tight feedback cycles. Design constraints inform AI logic requirements, which shape code structure, which reveals failures on real devices. Each iteration validates assumptions about activation thresholds, context sensitivity, and offline behavior.
+                    </p>
+                    <p className="text-gray-300 leading-relaxed mb-6">
+                      Failures are discovered through real-device testing, not simulation. Rapid validation occurs by deploying to iOS simulators and physical devices, observing how context signals behave under actual network conditions and battery constraints. Design, AI logic, and engineering inform each other: a design constraint reveals a logic gap, which requires an architectural adjustment, which surfaces a new design question.
+                    </p>
+                    <p className="text-gray-300 leading-relaxed">
+                      This cadence prioritizes working code over perfect architecture. The system evolves through constraint-driven iteration, not upfront planning.
+                    </p>
+                  </motion.div>
 
                 {/* Mobile Build Iterations - Part of Build & Iteration */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mt-20"
+                  className="mt-12"
                 >
                   <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold mb-3 text-white">
-                        Build Iterations
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        Rapid prototyping using ChatGPT, Cursor and Xcode
+                      <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+                        Screenshots document real builds across iteration cycles, showing how failures were discovered and corrected through device testing.
                       </p>
                     </div>
                     
@@ -2969,7 +2598,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp")}
-                            alt="iPhone Simulator - October 1, 2025"
+                            alt="Build iteration evidence - October 1, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -2989,7 +2618,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp")}
-                            alt="iPhone Simulator - October 3, 2025"
+                            alt="Build iteration evidence - October 3, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -3009,7 +2638,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp")}
-                            alt="iPhone Simulator - October 4, 2025"
+                            alt="Build iteration evidence - October 4, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -3029,7 +2658,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp")}
-                            alt="iPhone Simulator - October 5, 2025"
+                            alt="Build iteration evidence - October 5, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -3049,7 +2678,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp")}
-                            alt="iPhone Simulator - October 7, 2025"
+                            alt="Build iteration evidence - October 7, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -3069,7 +2698,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                           <Image
                             src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp")}
-                            alt="iPhone Simulator - September 29, 2025"
+                            alt="Build iteration evidence - September 29, 2025"
                             fill
                             className="object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -3081,6 +2710,56 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                   </div>
                 </motion.div>
+                </div>
+
+                {/* Current System Limitations */}
+                <div className="mt-20 mb-12">
+                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
+                    Current System Limitations
+                  </h3>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
+                      <ul className="space-y-4 text-gray-300">
+                        <li className="flex items-start gap-3">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="leading-relaxed">
+                            <strong className="text-white">Offline sync conflicts:</strong> Rapid context switching under intermittent connectivity can produce sync conflicts. Conflict resolution logic handles common cases but edge conditions remain unhandled.
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="leading-relaxed">
+                            <strong className="text-white">Limited social graph depth:</strong> Early builds operate with shallow user interaction data. Social triggers and recommendations are constrained by the current data model's limited depth.
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="leading-relaxed">
+                            <strong className="text-white">AI decision confidence thresholds:</strong> On-device ML models produce confidence scores that are still being tuned. Some suggestions may surface with insufficient confidence, requiring manual filtering.
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="leading-relaxed">
+                            <strong className="text-white">Battery optimization trade-offs:</strong> Background context processing is constrained by battery limits. The system prioritizes responsiveness over continuous monitoring, which may miss some context signals.
+                          </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="leading-relaxed">
+                            <strong className="text-white">Widget and API plugin deployment:</strong> Architecture supports external integration, but client-facing implementations are not yet deployed. Integration testing occurs in controlled environments only.
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </motion.div>
+                </div>
               </motion.div>
             </div>
           </section>
@@ -3097,16 +2776,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Live Demo
+                    Live System Prototype
                   </h2>
                   <p className="text-gray-600 text-lg">
-                    This product is actively being built and deployed
+                    This is an active system build, not a concept mock.
                   </p>
                 </div>
                 
                 <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
                   {/* Demo Link */}
-                  <div className="mb-8 text-center">
+                  <div className="text-center">
                     <a
                       href="https://spontaneity-engine.vercel.app/"
                       target="_blank"
@@ -3119,42 +2798,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </a>
-                  </div>
-                  
-                  {/* Status Breakdown */}
-                  <div className="space-y-6">
-                    {/* What Currently Works */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        What Currently Works
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Core UI components, basic navigation, and foundational architecture are functional. The app structure and design system are in place.
-                      </p>
-                    </div>
-                    
-                    {/* What is Experimental */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-                        What is Experimental
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        AI recommendation logic, real-time context processing, and offline functionality are in active development. Performance and accuracy are being refined through ongoing iteration.
-                      </p>
-                    </div>
-                    
-                    {/* What is Planned Next */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        What is Planned Next
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Social features, advanced AI personalization, and expanded destination coverage. Timeline depends on user feedback and technical validation from current builds.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -3180,22 +2823,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
                     <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
                     <p className="text-gray-300 mb-4">
-                      Will start with a closed beta of 50 users across different travel scenarios, followed by a gradual rollout to 500 users before public launch.
+                      Initial testing is conducted through a limited closed beta designed to observe system behavior across varied travel contexts and connectivity conditions.
                     </p>
-                    <div className="flex flex-wrap gap-3">
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                      <h3 className="text-xl font-semibold mb-4 text-white">User Testing Results</h3>
-                      <p className="text-gray-300">TBD</p>
-                    </div>
-                    
-                    <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                      <h3 className="text-xl font-semibold mb-4 text-white">Key Iterations</h3>
-                      <p className="text-gray-300">TBD</p>
-                    </div>
+                    <p className="text-gray-300">
+                      The primary goal is to validate system reliability, context accuracy, and failure handling in live conditions.
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -3215,37 +2847,43 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">
                     Learnings & Reflections
                   </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    These insights reflect ongoing system behavior observed during live prototyping and iteration, not final conclusions.
+                  </p>
                 </div>
                 
                 <div className="space-y-12">
-                  {/* Key Learnings */}
+                  {/* System-Level Insights */}
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">System-Level Insights</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
-                        Building a context-aware system means constantly questioning when and how to surface information. The challenge isn't having enough data—it's knowing when to withhold it. Early prototypes showed that too many suggestions, even relevant ones, can feel like planning in disguise. The system needs restraint, only activating when context genuinely creates value.
+                        Early iterations revealed that the system's activation threshold is critical—too many suggestions, even when contextually relevant, can feel like planning in disguise. The system demonstrated that information suppression is as important as disclosure. Observed behavior indicates restraint is necessary: the system should only activate when context genuinely creates value, not when data is simply available.
                       </p>
                       <p>
-                        Offline-first architecture was non-negotiable for a travel product, but it exposed gaps in how AI recommendations should degrade gracefully. A suggestion that works with full connectivity shouldn't break without it. This forced a redesign of the recommendation engine to be modular, where core logic works independently of real-time data layers.
+                        Offline-first architecture exposed gaps in how AI recommendations degrade gracefully. A suggestion that works with full connectivity shouldn't break without it. The system required modular design where core logic works independently of real-time data layers. Observed behavior indicates that degradation must be predictable and transparent, not silent failure.
                       </p>
                       <p>
-                        Real-world context is messier than prototypes suggest. Location accuracy varies, time zones shift, and behavioral patterns aren't always consistent. The system needed multiple fallback strategies, not just one primary path. This complexity is invisible to users but essential for reliability.
+                        Real-world context signals are messier than prototypes suggest. Location accuracy varies, time zones shift, and behavioral patterns aren't always consistent. The system demonstrated that multiple fallback strategies are essential, not just one primary path. This complexity is invisible to users but essential for reliability under imperfect conditions.
                       </p>
                     </div>
                 </div>
                 
-                  {/* What Surprised Me */}
+                  {/* Behavioral & Intelligence Trade-offs */}
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Behavioral & Intelligence Trade-offs</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
-                        The friction between spontaneity and decision-making emerged more clearly than expected. Users don't want unlimited choices—they want one good suggestion at the right moment. The system's success isn't about providing options, but about reducing cognitive load when someone is already in motion.
+                        The tension between choice reduction and choice abundance remains unresolved. The system must narrow options to reduce cognitive load, but over-narrowing can feel restrictive. Observed behavior indicates users want one good suggestion at the right moment, but the threshold for "good enough" varies by context and user state. This trade-off requires ongoing calibration.
                       </p>
                       <p>
-                        Privacy concerns were more nuanced than anticipated. Users were comfortable sharing location and behavior data if the value exchange was clear and immediate. However, they became uncomfortable when the system seemed to know too much without explanation. Transparency in AI reasoning became a feature requirement, not just a design consideration.
+                        Trust calibration and explainability present an ongoing challenge. Users are comfortable sharing location and behavior data when the value exchange is clear and immediate. However, observed behavior indicates discomfort when the system seems to know too much without explanation. Transparency in AI reasoning is required, but the level of explanation needed varies by situation. This tension between transparency and simplicity is not yet resolved.
                       </p>
                       <p>
-                        The technical challenge of real-time context processing revealed that most existing travel APIs aren't built for moment-to-moment decision support. They're optimized for pre-trip planning. Adapting these systems required building abstraction layers that translate booking-focused data into context-rich signals.
+                        Signal ambiguity in real-world environments creates reliability challenges. Location accuracy, time zone shifts, and behavioral inconsistencies produce conflicting context signals. The system must operate under uncertainty, but current confidence thresholds are still being tuned. Observed behavior indicates that the system needs better handling of ambiguous or conflicting signals.
+                      </p>
+                      <p>
+                        API misalignment with real-time decision support remains a constraint. Most existing travel APIs are optimized for pre-trip planning, not moment-to-moment decision support. The system requires abstraction layers that translate booking-focused data into context-rich signals, but this translation introduces latency and potential information loss. This architectural tension is ongoing.
                       </p>
                   </div>
                   </div>
@@ -3254,7 +2892,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Where the Product Could Evolve Next Section */}
+          {/* Future System Extensions Section */}
           <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
               <motion.div
@@ -3265,19 +2903,22 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Where the Product Could Evolve Next
+                    Future System Extensions
                   </h2>
                   </div>
                 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Social context remains underexplored. The system currently processes individual behavior, but travel decisions are often made in groups or influenced by nearby travelers. Adding social signals—recognizing when others are making similar choices or identifying shared interests—could create more resonant suggestions without requiring explicit social networks.
+                    The core spontaneity engine is designed to support additional intelligence modules through API interfaces. Social signal ingestion modules could be exposed as API-consumable context layers, allowing external systems to push group behavior patterns, shared interest indicators, and proximity-based signals into the engine. These modules are designed to operate independently of the core recommendation logic, consumable by any system that needs to enrich context with social signals.
                   </p>
                   <p>
-                    Long-term pattern recognition could shift the system from reactive to predictive. Instead of responding to immediate context, it could learn travel preferences over months or years, understanding that someone who visits markets in one city might enjoy similar experiences elsewhere. This moves beyond trip-specific context to lifetime travel behavior.
+                    Longitudinal preference models could be implemented as an intelligence service that operates across sessions and destinations. This service would query recommendation confidence scores and subscribe to suggestion triggers, building preference patterns over time without requiring explicit user input. The model would be exposed as a separate service layer, allowing the core engine to remain session-focused while supporting cross-trip learning.
                   </p>
                   <p>
-                    Integration with physical spaces represents a significant opportunity. The system knows where you are, but doesn't yet understand the environment itself—a restaurant's current energy level, a venue's capacity, a trail's current conditions. Partnerships with location-based services could close this gap, creating a richer context layer that informs more accurate suggestions.
+                    Physical environment context APIs could integrate as external data sources that enrich decision confidence. The system could consume real-time venue capacity, environmental conditions, and location energy levels from third-party services, treating these as additional context signals rather than primary decision factors. These APIs would be designed to degrade gracefully—when unavailable, the system continues operating with reduced confidence rather than failing.
+                  </p>
+                  <p>
+                    These extensions align with near-term platform trends: the growth of embedded AI decision systems that operate independently of primary interfaces (Gartner, 2024), the shift from planning tools to real-time intelligence services (McKinsey, 2024), and increased emphasis on explainability and trust calibration in AI systems (MIT Technology Review, 2024). The architecture supports these trends by maintaining modular boundaries and exposing capabilities through well-defined interfaces.
                   </p>
                 </div>
               </motion.div>
