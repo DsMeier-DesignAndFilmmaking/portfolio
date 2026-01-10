@@ -13,8 +13,8 @@ import StaticNavbar from '@/components/StaticNavbar';
 export default function ConditionalNavbar() {
   const pathname = usePathname();
   
-  // Hide navbar on homepage AND project pages
-  if (pathname === '/' || (pathname && pathname.startsWith('/projects/'))) {
+  // Hide navbar on homepage, project pages, and mockups
+  if (pathname === '/' || (pathname && pathname.startsWith('/projects/')) || (pathname && pathname.startsWith('/mockups/'))) {
     return null;
   }
   

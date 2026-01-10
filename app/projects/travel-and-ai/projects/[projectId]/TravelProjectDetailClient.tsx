@@ -43,6 +43,8 @@ import NarrativeDiagram from '../../../../../components/NarrativeDiagram';
 import EmotionalArcGraph from '../../../../../components/EmotionalArcGraph';
 import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndicator';
 import PivotAnimation from '../../../../../components/PivotAnimation';
+import TrustSignalDemo from '../../../../../components/LivePulseDemo';
+import TrustPulseUI from '../../../../../components/TrustPulseUI';
 import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils } from 'lucide-react';
 
 interface TravelProjectDetailClientProps {
@@ -705,7 +707,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         )}
         {isCulturalContextEngine && (
           <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -714,7 +716,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    A Trust Framework for AI-Driven Travel Experiences
+                    The Spontaneity Engine: A Trust Framework for Real-Time Travel AI
                   </h1>
                   <div className="mb-4">
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
@@ -722,7 +724,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    Trust & Authenticity · AI · Systems Design
+                    How architectural provenance and data integrity enable travelers to make bold, spontaneous choices with zero-risk 'hallucination' protection.
                   </p>
                   <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
                     <a
@@ -2995,7 +2997,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
                     <h4 className="text-xl font-semibold text-white mb-4">Approach: Trust Through Transparency</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
-                      This trust framework differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
+                      We moved from a 'binary' trust model (True/False) to a 'probabilistic' one. By exposing the Consensus Logic, we show the user that the AI isn't just hallucinating a 'Yes'—it is actively negotiating between different data providers to ensure the traveler's spontaneity is grounded in reality. The framework implements Explainable Provenance (XAI). When the system detects a data conflict—such as a Google Maps 'Closed' status being contradicted by real-time social activity—it doesn't just pick a side. It documents the resolution logic in an Audit Trail, allowing the user to inspect the 'Source Chain' and understand why a recommendation was deemed trustworthy despite conflicting signals. This trust framework differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
                     </p>
                   </div>
                 </div>
@@ -3045,7 +3047,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      AI-generated travel recommendations often lack source attribution, making it impossible for travelers to verify authenticity or understand where information originates. This creates a <span className="font-semibold text-red-700">trust gap that undermines the value of AI-powered travel tools</span>.
+                      The Spontaneity Tax: Travelers want to be adventurous, but 'Hallucination Risk' forces them back into over-researched, safe patterns. Current AI lacks the real-time veracity needed to support 'on-the-fly' decision making.
                     </p>
                   </div>
                   
@@ -3259,29 +3261,22 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               <div className="flex items-start gap-3">
                                 <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Source verification</h5>
-                                  <p className="text-gray-700">Every recommendation includes clear attribution to its origin.</p>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Dynamic Provenance</h5>
+                                  <p className="text-gray-700">Tracking source-truth in real-time as the traveler moves through a city.</p>
                                 </div>
                               </div>
                               <div className="flex items-start gap-3">
                                 <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Data provenance</h5>
-                                  <p className="text-gray-700">Track the lineage of information from source to recommendation.</p>
+                                  <h5 className="font-semibold text-gray-900 mb-1">The Spontaneity Safety-Net</h5>
+                                  <p className="text-gray-700">Logic layers that filter out 'closed' or 'fake' locations before they reach the UI.</p>
                                 </div>
                               </div>
                               <div className="flex items-start gap-3">
                                 <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Authenticity validation</h5>
-                                  <p className="text-gray-700">Verify credibility through multiple verification layers.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Real-time freshness</h5>
-                                  <p className="text-gray-700">Indicate when information was last verified and updated.</p>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Frictionless Verification</h5>
+                                  <p className="text-gray-700">Providing trust signals (source logos, freshness timestamps) without breaking the flow of discovery.</p>
                                 </div>
                               </div>
                             </div>
@@ -3309,12 +3304,47 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                    System Overview: How the Trust Framework Works
+                    Architecture: Powering Spontaneity through Veracity
                   </h2>
-                  <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
-                    Architectural system for trust and authenticity verification
+                  <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-4">
+                    Every prompt triggers a race: the LLM generates the 'Spontaneous Spark,' while the Consensus Module audits that spark across the Trust Stack. The result is a recommendation with a verifiable integrity score.
                   </p>
+                  <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-8">
+                    A Spontaneity Engine requires high-velocity data. I designed a three-tier architecture to support 'Living' recommendations:
+                  </p>
+                  <div className="max-w-4xl mx-auto space-y-6 text-left">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">1. The Discovery Layer (LLM)</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Generates creative, context-aware 'spontaneous' suggestions based on user mood and local vibes.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">2. The Verification Middleware (The Guardrail)</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        A real-time RAG (Retrieval-Augmented Generation) layer that 'fact-checks' the spontaneous idea against live data (e.g., 'Is that jazz club actually open right now?').
+                      </p>
+                    </div>
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">3. The Authenticity Score</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        A real-time confidence metric that tells the user: 'Go for it—this is verified live,' or 'Proceed with caution—data is 4+ hours old.'
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Consensus Logic Demo */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="mt-12 mb-16 md:mb-20 lg:mb-24 max-w-4xl mx-auto"
+                  style={{ minHeight: '280px' }}
+                >
+                  <TrustSignalDemo />
+                </motion.div>
                 
                 {/* Detailed 3-Stage Flow Diagram */}
                 <div className="relative">
@@ -3710,7 +3740,26 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      When travelers can verify recommendations, the entire travel ecosystem benefits. <span className="font-semibold text-emerald-700">Authentic businesses gain visibility</span>, while fake or misleading information is filtered out, creating a more trustworthy travel marketplace.
+                      For travel professionals and B2B platforms, trust is a matter of liability. I designed the 'Liability Shield'—a feature that converts ephemeral AI reasoning into a permanent, downloadable audit trail. This allows travel agents to provide AI-generated 'spontaneous' recommendations while maintaining a verifiable record of data freshness and source origin, effectively insulating the professional from the risks of AI hallucinations.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Impact for B2B & Agents - New Section */}
+                <div className="mt-8 md:mt-10">
+                  <div className="bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-2xl border-2 border-violet-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for B2B & Agents
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Enables the 'Professional-in-the-Loop' model. Agents can leverage high-velocity AI discovery tools with the security of a technical audit trail, ensuring that every 'spontaneous' suggestion is backed by professional-grade verification standards.
                     </p>
                   </div>
                 </div>
@@ -3731,23 +3780,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <h2 className="text-3xl font-bold mb-6 text-white">
                   Design Evolution
                 </h2>
-                <p className="text-gray-300 text-lg">
-                  Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
+                <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+                  Designing for 'The Pulse': Moving from static lists to a living, breathing UI that reflects the real-time heartbeat of a city, backed by a rigorous verification stack.
                 </p>
               </div>
-
-              {/* Video Container */}
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-white/5">
-                <iframe
-                  src="https://player.vimeo.com/video/1096448281?h=6e0a3fcbf5&badge=0&autopause=0&player_id=0&app_id=58479"
-                  className="absolute top-0 left-0 w-full h-full"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  title="vimeo-player"
-                  allowFullScreen
-                ></iframe>
-              </div>
-             
+              
+              {/* TrustPulseUI Component */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <TrustPulseUI />
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -3782,33 +3828,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="bg-white/5 p-8 rounded-xl border border-white/10">
                   <p className="text-gray-300 text-center">
                     Development workflow and technical architecture details will be documented as the system is built.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Mobile Build Iterations Section */}
-          <section className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-white">
-                    Mobile Build Iterations
-                  </h2>
-                  <p className="text-gray-400 text-sm">
-                    Mobile app development and iteration process
-                  </p>
-                </div>
-                
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Mobile build screenshots and iterations will be added as development progresses.
                   </p>
                 </div>
               </motion.div>
@@ -3956,6 +3975,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
+                        Trust is the fuel for spontaneity. When users see clear data provenance (knowing exactly where a recommendation comes from), their 'cognitive load' drops, allowing them to make faster, more adventurous decisions. The system doesn't just provide data; it provides the *confidence* to act.
+                      </p>
+                      <p>
                         Building a trust system means constantly questioning how to balance transparency with usability. The challenge isn't having enough information—it's presenting verification data in a way that builds confidence without overwhelming users. Early prototypes showed that too much technical detail can feel like bureaucracy, while too little transparency undermines trust.
                       </p>
                       <p>
@@ -4010,6 +4032,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </p>
                   <p>
                     Integration with verification standards represents a significant opportunity. The travel industry lacks universal standards for source attribution and data freshness. Establishing or adopting verification standards could create a foundation for trust that extends beyond this single system, benefiting the entire travel ecosystem.
+                  </p>
+                  <p>
+                    Standardizing the 'Verification PDF' into a travel industry protocol. By creating a cross-platform standard for 'Recommendation Provenance,' we can move toward an ecosystem where AI agents can trade verified data securely, reducing the global 'noise' of outdated travel information.
                   </p>
                 </div>
               </motion.div>

@@ -4,7 +4,7 @@ import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
 import ConditionalNavbar from '@/components/ConditionalNavbar';
-import StaticFooter from '@/components/StaticFooter';
+import ConditionalFooter from '@/components/ConditionalFooter';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 import ScrollCorrection from '@/components/ScrollCorrection';
 import PageLoader from '@/components/PageLoader';
@@ -97,8 +97,8 @@ export default function RootLayout({
             {/* Flexbox Spacer Workaround: Main content with flex-grow to fill space */}
             <main className="flex-grow">{children}</main>
             
-            {/* ✅ Static Footer - No hooks, no JS behavior */}
-            <StaticFooter />
+            {/* ✅ Conditional Footer - Hidden on mockups routes */}
+            <ConditionalFooter />
             
             {/* ✅ Scroll Correction - Re-triggers scroll when content loads */}
             <ScrollCorrection />
