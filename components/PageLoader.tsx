@@ -75,7 +75,8 @@ export default function PageLoader() {
         });
 
         // For iframes, wait for load event (they don't have readyState)
-        iframes.forEach((iframe) => {
+        iframes.forEach((iframeElement) => {
+          const iframe = iframeElement as HTMLIFrameElement;
           let iframeHandled = false;
           
           const markReady = () => {
