@@ -45,7 +45,7 @@ import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndic
 import PivotAnimation from '../../../../../components/PivotAnimation';
 import TrustSignalDemo from '../../../../../components/LivePulseDemo';
 import TrustPulseUI from '../../../../../components/TrustPulseUI';
-import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils } from 'lucide-react';
+import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap } from 'lucide-react';
 
 interface TravelProjectDetailClientProps {
   project: any;
@@ -443,6 +443,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [isMobileVideoError, setIsMobileVideoError] = useState(false);
   const [showFallbackImage, setShowFallbackImage] = useState(false);
   const [isTechnicalModalOpen, setIsTechnicalModalOpen] = useState(false);
+  const [narrativeEvolutionLevel, setNarrativeEvolutionLevel] = useState(1);
+  const [activeIndustrySkin, setActiveIndustrySkin] = useState<'luxury' | 'creative' | 'cultural'>('luxury');
   
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
@@ -457,6 +459,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
     ? [
         { id: 'narrative-architecture', label: 'Narrative Architecture' },
         { id: 'system-constraints', label: 'System Constraints' },
+        { id: 'design-evolution', label: 'Design Evolution' },
         { id: 'scenarios-failure', label: 'Scenarios & Failure Cases' },
         { id: 'success-case', label: 'Success Case' },
         { id: 'business-use', label: 'Business Use' }
@@ -790,9 +793,23 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </p>
                   </div>
 
-                  {/* System Stack Component */}
+                  {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <SystemStack stack={['Spontaneity Engine', 'Trust Layer', 'Context Interpreter']} />
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Human-in-the-loop verification and explainability</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Context Interpreter:</strong> Semantic context mapping and Decision Vector generation</span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* System Specs Grid */}
@@ -1017,9 +1034,31 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </p>
                   </div>
 
-                  {/* System Stack Component */}
+                  {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <SystemStack stack={['Traveler Intent', 'Spontaneity Engine', 'Trust & Authenticity Layer', 'Narrative Engine', 'Experience Phases']} />
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Traveler Intent:</strong> Emotional state and preference analysis</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust & Authenticity Layer:</strong> Verification and safety overrides</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Narrative Engine:</strong> Story generation and emotional arc orchestration</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Experience Phases:</strong> Arrival, Exploration, and Familiarity state management</span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* System Specs Grid */}
@@ -5289,7 +5328,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                     
                     {/* Mobile Frames Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 lg:gap-8">
                       
                       {/* Mobile Screen A: The Adaptive Intervention */}
                       <div className="flex flex-col items-center">
@@ -5613,6 +5652,147 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="mt-4 max-w-[280px]">
                           <p className="text-xs text-gray-400 italic leading-relaxed text-center">
                             <strong className="text-amber-400 not-italic">System Logic:</strong> Semantic Preference Tuning allows users to configure how the Context Interpreter weights different signals. These preferences generate Decision Vector parameters, enabling personalized orchestration. The system maintains explainability by showing active triggers and their effects in real-time.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Mobile Screen D: The Spontaneous Landing (Arrival Portal) */}
+                      <div className="flex flex-col items-center">
+                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                          {/* Device Frame */}
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                            {/* Status Bar */}
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <div className="flex items-center gap-1">
+                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* App Content */}
+                            <div className="h-[calc(100%-3rem)] bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 overflow-y-auto">
+                              {/* Flight Info Header */}
+                              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 border-b border-blue-500/30">
+                                <div className="flex items-center justify-between mb-2">
+                                  <div className="font-mono text-xs tracking-wider">
+                                    FLIGHT BA247 • LANDED • LISBON
+                                  </div>
+                                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                </div>
+                                <div className="text-sm font-semibold mt-1">Adventure Awaits</div>
+                              </div>
+                              
+                              {/* Main Content */}
+                              <div className="p-6 space-y-6">
+                                {/* Narrative Prompt */}
+                                <motion.div
+                                  initial={{ opacity: 0, y: 20 }}
+                                  whileInView={{ opacity: 1, y: 0 }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.2 }}
+                                  className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100"
+                                >
+                                  <div className="text-xs font-mono text-blue-600 uppercase tracking-wider mb-3">The Arrival Portal</div>
+                                  <div className="text-gray-800 leading-relaxed text-sm space-y-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    <p>
+                                      The baggage carousel is a transition, not a destination. While you wait for your luggage, the city is breathing.
+                                    </p>
+                                    <p>
+                                      A vintage tram is departing in <strong className="text-blue-600">40 minutes</strong> from the terminal exit—it's the slow way into the Chiado district, passing the bakeries as they pull the first morning <em>pastéis de nata</em> from the ovens.
+                                    </p>
+                                    <p className="font-semibold text-blue-700">
+                                      Shall we take the scenic route instead of a taxi?
+                                    </p>
+                                  </div>
+                                </motion.div>
+                                
+                                {/* Action Buttons */}
+                                <div className="space-y-3">
+                                  <motion.button
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.4 }}
+                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-cyan-700 transition-all"
+                                  >
+                                    Initiate Scenic Route
+                                  </motion.button>
+                                  <motion.button
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5 }}
+                                    className="w-full bg-white border-2 border-blue-300 text-blue-700 font-semibold py-3 rounded-xl hover:bg-blue-50 transition-all"
+                                  >
+                                    Standard Transit (Logistics Only)
+                                  </motion.button>
+                                </div>
+                                
+                                {/* System Logic Footer - Scanning Animation */}
+                                <motion.div
+                                  initial={{ opacity: 0 }}
+                                  whileInView={{ opacity: 1 }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.6 }}
+                                  className="bg-slate-900/90 backdrop-blur-sm border border-slate-700 rounded-xl p-4 space-y-3"
+                                >
+                                  <div className="text-xs font-mono text-blue-400/80 mb-2">System Logic (The Engine):</div>
+                                  
+                                  {/* Scanning Indicators */}
+                                  <div className="space-y-2">
+                                    <div className="flex items-center gap-2">
+                                      <motion.div
+                                        animate={{ opacity: [0.5, 1, 0.5] }}
+                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                        className="w-2 h-2 bg-blue-400 rounded-full"
+                                      />
+                                      <span className="text-xs font-mono text-gray-300">[Syncing Flight API]</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <motion.div
+                                        animate={{ opacity: [0.5, 1, 0.5] }}
+                                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+                                        className="w-2 h-2 bg-cyan-400 rounded-full"
+                                      />
+                                      <span className="text-xs font-mono text-gray-300">[Local Transit Real-time]</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <motion.div
+                                        animate={{ opacity: [0.5, 1, 0.5] }}
+                                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
+                                        className="w-2 h-2 bg-blue-400 rounded-full"
+                                      />
+                                      <span className="text-xs font-mono text-gray-300">[Hyper-local POI Density]</span>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Data Points */}
+                                  <div className="pt-3 border-t border-slate-700 space-y-1">
+                                    <div className="flex items-center justify-between text-xs font-mono">
+                                      <span className="text-gray-400">GATE:</span>
+                                      <span className="text-blue-400">B12</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-xs font-mono">
+                                      <span className="text-gray-400">ARRIVAL:</span>
+                                      <span className="text-green-400">+4m early</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-xs font-mono">
+                                      <span className="text-gray-400">TAXI QUEUE:</span>
+                                      <span className="text-amber-400">18min wait</span>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Designer Note */}
+                        <div className="mt-4 max-w-[280px]">
+                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                            <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, we prove the system's value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
                           </p>
                         </div>
                       </div>
@@ -6621,12 +6801,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-4xl mx-auto"
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-slate-700/50 p-8 md:p-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Engineering the Social Graph</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">Engineering the Social Graph</h2>
                   
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-200 mb-3">Operational Trade-offs</h3>
-                      <p className="text-gray-300 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-dark-gray-200 mb-3">Operational Trade-offs</h3>
+                      <p className="text--dark-gray-300 leading-relaxed">
                         The decision to move away from a traditional SQL-based architecture was driven by the computational cost of "Multi-Hop" discovery. While a standard database excels at transactional integrity, it fails at the scale required for real-time trust verification.
                       </p>
                     </div>
@@ -7948,6 +8128,310 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
+          {/* Design Evolution Section */}
+          <section id="design-evolution" className="py-20 bg-slate-950">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Design Evolution: From Latent Nodes to Active Story Beats
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Three distinct UI states demonstrating the evolution from raw logistics data (Spontaneity Engine) to full narrative immersion (Narrative Layer)
+                  </p>
+                </div>
+
+                {/* Mobile Device Frame with Interactive Mockups */}
+                <div className="flex flex-col items-center">
+                  {/* Mobile Device Container */}
+                  <div className="relative w-full max-w-[375px]">
+                    {/* Device Frame */}
+                    <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800">
+                      {/* Notch */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-20"></div>
+                      
+                      {/* Screen Container */}
+                      <div className="relative bg-slate-950 rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                        {/* Level 1: Core Spontaneity Engine */}
+                        <AnimatePresence mode="wait">
+                          {narrativeEvolutionLevel === 1 && (
+                            <motion.div
+                              key="level1"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 bg-slate-50"
+                            >
+                              {/* Map View */}
+                              <div className="relative h-full bg-gradient-to-br from-blue-100 to-green-100">
+                                {/* Map Grid Pattern */}
+                                <div className="absolute inset-0 opacity-20" style={{
+                                  backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
+                                  backgroundSize: '40px 40px'
+                                }}></div>
+                                
+                                {/* Map Pins */}
+                                <div className="absolute top-1/4 left-1/3">
+                                  <MapPin className="w-8 h-8 text-red-500 drop-shadow-lg" />
+                                </div>
+                                <div className="absolute top-1/2 right-1/4">
+                                  <MapPin className="w-8 h-8 text-blue-500 drop-shadow-lg" />
+                                </div>
+                                <div className="absolute bottom-1/3 left-1/2">
+                                  <MapPin className="w-8 h-8 text-emerald-500 drop-shadow-lg" />
+                                </div>
+                                
+                                {/* Top Bar */}
+                                <div className="absolute top-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 border-b border-gray-200">
+                                  <div className="flex items-center justify-between">
+                                    <div className="text-sm font-semibold text-gray-900">Current Location</div>
+                                    <Navigation className="w-5 h-5 text-gray-600" />
+                                  </div>
+                                </div>
+                                
+                                {/* Bottom Info Card */}
+                                <motion.div
+                                  initial={{ y: 100 }}
+                                  animate={{ y: 0 }}
+                                  className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl p-6"
+                                >
+                                  <div className="space-y-3">
+                                    <div className="flex items-center justify-between">
+                                      <h3 className="text-lg font-bold text-gray-900">Historic District</h3>
+                                      <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Open</span>
+                                    </div>
+                                    <div className="space-y-2 text-sm text-gray-600">
+                                      <div className="flex items-center gap-2">
+                                        <MapPin className="w-4 h-4" />
+                                        <span>Distance: 0.4 miles</span>
+                                      </div>
+                                      <div className="flex items-center gap-2">
+                                        <Clock className="w-4 h-4" />
+                                        <span>Open until 9 PM</span>
+                                      </div>
+                                    </div>
+                                    <button className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-colors">
+                                      Route Me
+                                    </button>
+                                  </div>
+                                </motion.div>
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {/* Level 2: Narrative Overlay */}
+                          {narrativeEvolutionLevel === 2 && (
+                            <motion.div
+                              key="level2"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0"
+                            >
+                              {/* Base Map (Desaturated) */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100">
+                                <div className="absolute inset-0 opacity-20" style={{
+                                  backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
+                                  backgroundSize: '40px 40px'
+                                }}></div>
+                                <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+                                
+                                {/* Map Pins (Faded) */}
+                                <div className="absolute top-1/4 left-1/3 opacity-30">
+                                  <MapPin className="w-8 h-8 text-red-500" />
+                                </div>
+                                <div className="absolute top-1/2 right-1/4 opacity-30">
+                                  <MapPin className="w-8 h-8 text-blue-500" />
+                                </div>
+                              </div>
+                              
+                              {/* Narrative Prompt Card (Sliding Up) */}
+                              <motion.div
+                                initial={{ y: '100%' }}
+                                animate={{ y: '30%' }}
+                                transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                className="absolute bottom-0 left-0 right-0 bg-gradient-to-br from-amber-900/95 via-violet-900/95 to-indigo-900/95 backdrop-blur-xl rounded-t-3xl border-t border-amber-500/30 shadow-2xl"
+                                style={{ height: '70%' }}
+                              >
+                                <div className="p-6 h-full flex flex-col">
+                                  {/* Narrative Pulse Icon */}
+                                  <div className="flex items-center justify-center mb-4">
+                                    <motion.div
+                                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                                      transition={{ duration: 2, repeat: Infinity }}
+                                      className="relative"
+                                    >
+                                      <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl"></div>
+                                      <Zap className="w-12 h-12 text-amber-400 relative z-10" />
+                                    </motion.div>
+                                  </div>
+                                  
+                                  {/* Story Text */}
+                                  <div className="flex-1 space-y-4">
+                                    <div className="text-xs font-mono text-amber-400/80 uppercase tracking-wider mb-2">
+                                      Narrative Pulse Active
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                                      The cobblestones here hold a secret from 1924.
+                                    </h3>
+                                    <p className="text-amber-100/90 leading-relaxed text-sm">
+                                      Your objective: Find the door with the iron lion. The Latent Nodes have been activated—what you see is not just a street, but a story waiting to unfold.
+                                    </p>
+                                  </div>
+                                  
+                                  {/* Action Button */}
+                                  <button className="mt-4 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 font-semibold py-3 rounded-xl transition-colors">
+                                    Begin Investigation
+                                  </button>
+                                </div>
+                              </motion.div>
+                            </motion.div>
+                          )}
+
+                          {/* Level 3: Full Narrative Immersion */}
+                          {narrativeEvolutionLevel === 3 && (
+                            <motion.div
+                              key="level3"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 bg-gradient-to-br from-slate-900 via-violet-900 to-indigo-900"
+                            >
+                              {/* Chapter Progress Bar */}
+                              <div className="absolute top-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-4 border-b border-white/10">
+                                <div className="flex items-center justify-between mb-2">
+                                  <div className="text-xs font-mono text-amber-400/80 uppercase tracking-wider">Chapter 2: The Hidden Quarter</div>
+                                  <div className="text-xs text-gray-400">3/7 Active Story Beats</div>
+                                </div>
+                                <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: '43%' }}
+                                    transition={{ duration: 1 }}
+                                    className="h-full bg-gradient-to-r from-amber-400 to-violet-400"
+                                  />
+                                </div>
+                              </div>
+                              
+                              {/* Compass (Minimalist) */}
+                              <div className="absolute top-20 right-4">
+                                <div className="bg-black/40 backdrop-blur-sm rounded-full p-3 border border-white/10">
+                                  <Compass className="w-6 h-6 text-amber-400" />
+                                </div>
+                              </div>
+                              
+                              {/* Main Content Area */}
+                              <div className="absolute inset-0 flex items-center justify-center pt-24 pb-32 px-6">
+                                <div className="text-center space-y-6 max-w-sm">
+                                  {/* Atmospheric Image Placeholder */}
+                                  <motion.div
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="relative rounded-2xl overflow-hidden shadow-2xl"
+                                  >
+                                    <div className="aspect-[4/3] bg-gradient-to-br from-amber-900/40 via-violet-900/40 to-indigo-900/40 relative">
+                                      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjkiIG51bU9jdGF2ZXM9IjQiIHJlc3VsdD0ibm9pc2UiLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMWUxZTFlIiBmaWx0ZXI9InVybCgjbm9pc2UpIi8+PC9zdmc+')] opacity-30"></div>
+                                      <div className="absolute inset-0 flex items-center justify-center">
+                                        <BookOpen className="w-16 h-16 text-amber-400/40" />
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                  
+                                  {/* Narrative Text */}
+                                  <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="space-y-3"
+                                  >
+                                    <h3 className="text-2xl font-bold text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                                      The Shadowy Alley
+                                    </h3>
+                                    <p className="text-gray-300 leading-relaxed text-sm">
+                                      Between the old apothecary and the forgotten theater, a narrow passageway catches the evening light. Something moves in the shadows—or is it just your imagination?
+                                    </p>
+                                  </motion.div>
+                                  
+                                  {/* Narrative Action Button */}
+                                  <motion.button
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.6 }}
+                                    className="w-full bg-gradient-to-r from-amber-500/20 to-violet-500/20 hover:from-amber-500/30 hover:to-violet-500/30 border-2 border-amber-400/50 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-amber-500/20"
+                                  >
+                                    Investigate the Shadowy Alley
+                                  </motion.button>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Evolution Switcher */}
+                  <div className="mt-12 w-full max-w-md">
+                    <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">Evolution Level</span>
+                        <span className="text-sm font-mono text-amber-400">
+                          {narrativeEvolutionLevel === 1 && 'Latent Nodes'}
+                          {narrativeEvolutionLevel === 2 && 'Augmentation'}
+                          {narrativeEvolutionLevel === 3 && 'Active Story Beats'}
+                        </span>
+                      </div>
+                      
+                      {/* Step Switcher */}
+                      <div className="flex gap-2">
+                        {[1, 2, 3].map((level) => (
+                          <button
+                            key={level}
+                            onClick={() => setNarrativeEvolutionLevel(level)}
+                            className={`flex-1 py-3 rounded-lg font-semibold text-sm transition-all ${
+                              narrativeEvolutionLevel === level
+                                ? 'bg-gradient-to-r from-amber-500/30 to-violet-500/30 border-2 border-amber-400/50 text-white shadow-lg'
+                                : 'bg-slate-800/50 border border-slate-700 text-gray-400 hover:bg-slate-800 hover:text-gray-300'
+                            }`}
+                          >
+                            {level === 1 && 'Level 1'}
+                            {level === 2 && 'Level 2'}
+                            {level === 3 && 'Level 3'}
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {/* System Logic Label */}
+                      <div className="mt-6 pt-4 border-t border-slate-700">
+                        <p className="text-xs text-gray-400 text-center leading-relaxed">
+                          {narrativeEvolutionLevel === 1 && (
+                            <><strong className="text-amber-400 not-italic">System Logic:</strong> Real-time API Logistics. The Spontaneity Engine processes Latent Nodes (POI data, distance, hours) into actionable routing information.</>
+                          )}
+                          {narrativeEvolutionLevel === 2 && (
+                            <><strong className="text-violet-400 not-italic">Augmentation:</strong> Injecting Intent & Mystery. The Narrative Layer overlays story prompts onto logistics data, transforming waypoints into objectives.</>
+                          )}
+                          {narrativeEvolutionLevel === 3 && (
+                            <><strong className="text-amber-400 not-italic">The Experience:</strong> Story-First Exploration. Active Story Beats replace maps entirely—the system orchestrates meaning, not just directions.</>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* Section 3: Scenarios & Failure Cases */}
           <section id="scenarios-failure" className="py-20 bg-black">
             <div className="container mx-auto px-6">
@@ -8381,54 +8865,404 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Section 4: Business Use & Applications */}
-          <section id="business-use" className="py-20 bg-gray-50">
+          {/* Section 4: Business Use & Applications - Industry Skins */}
+          <section id="business-use" className="py-20 bg-slate-950">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
               >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Business Use & Applications
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Industry Skins: Same Engine, Different Soul
                   </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                    Organizations that prioritize emotional experience over transactional travel planning
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    The Narrative-Driven Travel Experience Generator is a headless system. The core logic remains constant (Spontaneity Engine + Narrative Layer), but the Interface Layer adapts to different business sectors.
+                  </p>
+                  <p className="text-gray-400 text-sm max-w-2xl mx-auto" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Each industry measures success differently—beyond just "getting from A to B."
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 1</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      High-End Travel Planners
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      Luxury travel agencies can offer narrative-driven experiences that emphasize emotional connection and belonging, differentiating from checklist-based itineraries.
-                    </p>
+                {/* Industry Selector Tabs */}
+                <div className="flex justify-center mb-12">
+                  <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-2 border border-slate-700 inline-flex gap-2">
+                    {[
+                      { id: 'luxury', label: 'Luxury', icon: '✨' },
+                      { id: 'creative', label: 'Creative', icon: '🎨' },
+                      { id: 'cultural', label: 'Cultural', icon: '🏛️' }
+                    ].map((skin) => (
+                      <button
+                        key={skin.id}
+                        onClick={() => setActiveIndustrySkin(skin.id as 'luxury' | 'creative' | 'cultural')}
+                        className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all ${
+                          activeIndustrySkin === skin.id
+                            ? 'bg-gradient-to-r from-amber-500/30 to-violet-500/30 border-2 border-amber-400/50 text-white shadow-lg'
+                            : 'bg-transparent border border-transparent text-gray-400 hover:text-gray-300 hover:bg-slate-800/50'
+                        }`}
+                      >
+                        <span className="mr-2">{skin.icon}</span>
+                        {skin.label}
+                      </button>
+                    ))}
                   </div>
+                </div>
 
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 2</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      Creative Studios
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      Design and creative agencies can use narrative systems to craft immersive brand experiences, retreats, and creative journeys that prioritize emotional resonance.
-                    </p>
+                {/* Mobile Device Frame with Industry Skins */}
+                <div className="flex flex-col items-center">
+                  <div className="relative w-full max-w-[375px]">
+                    {/* Device Frame */}
+                    <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800">
+                      {/* Notch */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-20"></div>
+                      
+                      {/* Screen Container */}
+                      <div className="relative bg-slate-950 rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                        <AnimatePresence mode="wait">
+                          {/* Luxury Travel Skin */}
+                          {activeIndustrySkin === 'luxury' && (
+                            <motion.div
+                              key="luxury"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -20 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-amber-50/30"
+                              style={{ fontFamily: "'Playfair Display', 'Cormorant', serif" }}
+                            >
+                              {/* Header */}
+                              <div className="absolute top-0 left-0 right-0 bg-white backdrop-blur-md p-6 border-b border-amber-200/50 z-10">
+                                <div className="text-xs tracking-[0.2em] text-amber-700/80 uppercase mb-1">Personal Invitation</div>
+                                <div className="text-2xl font-bold text-gray-900">Your Journey Awaits</div>
+                              </div>
+                              
+                              {/* Main Content - Letter Style */}
+                              <div className="absolute inset-0 pt-32 pb-32 px-6 overflow-y-auto">
+                                <div className="max-w-sm mx-auto space-y-6">
+                                  <div className="text-amber-700/60 text-sm leading-relaxed">
+                                    Dear Traveler,
+                                  </div>
+                                  
+                                  {/* The Art of Anticipation Narrative */}
+                                  <div className="text-gray-800 leading-relaxed text-base space-y-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    <p>
+                                      The artisans at the atelier in Florence have been briefed on your arrival. They aren't just showing you leather; they are sharing the heritage of the 4th generation.
+                                    </p>
+                                    <p>
+                                      We've carved out ninety minutes of stillness before your dinner—a private terrace overlooking the Arno where the light hits exactly as you described in your 'Serenity' preference. It's not just a view; it's your space in the city.
+                                    </p>
+                                  </div>
+                                  
+                                  {/* Curation Score */}
+                                  <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 space-y-3">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Curation Score</span>
+                                      <span className="text-2xl font-bold text-amber-700">94%</span>
+                                    </div>
+                                    <div className="h-2 bg-amber-200/50 rounded-full overflow-hidden">
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: '94%' }}
+                                        transition={{ duration: 1, delay: 0.3 }}
+                                        className="h-full bg-gradient-to-r from-amber-400 to-amber-600"
+                                      />
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Belonging Index */}
+                                  <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 space-y-3">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Belonging Index</span>
+                                      <span className="text-2xl font-bold text-amber-700">8.7/10</span>
+                                    </div>
+                                    <div className="text-xs text-gray-600 leading-relaxed">
+                                      Based on emotional resonance, cultural depth, and personal alignment with your travel DNA. Focus: Belonging & Stillness.
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Action Buttons */}
+                                  <div className="space-y-3">
+                                    <button className="w-full bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-amber-700 hover:to-amber-800 transition-all">
+                                      Accept Invitation
+                                    </button>
+                                    <button className="w-full bg-white border-2 border-amber-300 text-amber-700 font-semibold py-3 rounded-xl hover:bg-amber-50 transition-all">
+                                      Request Alternative Mood
+                                    </button>
+                                  </div>
+                                  
+                                  {/* Data Overlay - Spontaneity Layer */}
+                                  <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
+                                    <div className="text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                      Syncing with Atelier private calendar... Real-time weather check: 22°C with golden hour at 18:42.
+                                    </div>
+                                  </div>
+                                  
+                                  {/* System Logic Footer */}
+                                  <div className="pt-4 border-t border-amber-200/50 mt-4">
+                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                      <div>GPS: 43.7696°N, 11.2558°E</div>
+                                      <div>Weather API: Active | Calendar API: Synced</div>
+                                      <div>Narrative Engine: "Art of Anticipation" mode</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {/* Creative Studio Skin */}
+                          {activeIndustrySkin === 'creative' && (
+                            <motion.div
+                              key="creative"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -20 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 bg-black"
+                              style={{ fontFamily: "'Inter', 'Grotesk', sans-serif" }}
+                            >
+                              {/* Glitch Overlay */}
+                              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+                                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.1) 2px, rgba(0,255,255,0.1) 4px)'
+                              }}></div>
+                              
+                              {/* Header */}
+                              <div className="absolute top-0 left-0 right-0 bg-black backdrop-blur-md p-6 border-b-2 border-cyan-400/50 z-10">
+                                <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-1">Creative Quest</div>
+                                <div className="text-2xl font-bold text-white">Objective Active</div>
+                              </div>
+                              
+                              {/* Main Content */}
+                              <div className="absolute inset-0 pt-32 pb-32 px-6 overflow-y-auto">
+                                <div className="max-w-sm mx-auto space-y-6">
+                                  {/* The Creative Quest Narrative */}
+                                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border-2 border-cyan-400/50 rounded-xl p-6">
+                                    <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3">Creative Quest</div>
+                                    <div className="text-base font-bold text-white mb-3 leading-relaxed" style={{ fontFamily: "'Inter', monospace" }}>
+                                      Creative Block is a spatial problem, not a mental one.
+                                    </div>
+                                    <div className="text-sm text-gray-300 leading-relaxed space-y-3" style={{ fontFamily: "'Inter', monospace" }}>
+                                      <p>
+                                        Your mission for the next hour is <strong className="text-cyan-400">'The Brutalist Walk.'</strong> Navigate to the concrete monoliths on the East Side.
+                                      </p>
+                                      <p>
+                                        Don't look at the buildings—look at the <strong className="text-cyan-400">negative space between them</strong>. Find the 'Vaporwave' color palette we discussed for the project launch. Capture three frames where the shadow cuts the light at a 45-degree angle.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Mood Spectrum Toggle */}
+                                  <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4 space-y-3">
+                                    <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">Mood Spectrum</div>
+                                    <div className="flex gap-2">
+                                      {['Minimal', 'Bold', 'Experimental'].map((mood, idx) => (
+                                        <button
+                                          key={mood}
+                                          className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+                                            idx === 1
+                                              ? 'bg-cyan-500/30 border-2 border-cyan-400 text-white'
+                                              : 'bg-slate-800 border border-slate-700 text-gray-400'
+                                          }`}
+                                        >
+                                          {mood}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Creative Flow Progress */}
+                                  <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4 space-y-3">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Creative Flow</span>
+                                      <span className="text-xl font-bold text-cyan-400">78%</span>
+                                    </div>
+                                    <div className="h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: '78%' }}
+                                        transition={{ duration: 1, delay: 0.3 }}
+                                        className="h-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                                      />
+                                    </div>
+                                    <div className="text-xs text-gray-400 font-mono">
+                                      Focus: Negative Space & Brand Guidelines
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Action Buttons */}
+                                  <div className="space-y-3">
+                                    <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold py-4 rounded-xl shadow-lg shadow-cyan-500/30 hover:from-cyan-400 hover:to-blue-400 transition-all">
+                                      Begin Mission
+                                    </button>
+                                    <button className="w-full bg-slate-800 border-2 border-cyan-400/30 text-cyan-400 font-bold py-3 rounded-xl hover:bg-slate-700 transition-all">
+                                      Shuffle Inspiration Source
+                                    </button>
+                                  </div>
+                                  
+                                  {/* Data Overlay - Spontaneity Layer */}
+                                  <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
+                                    <div className="text-xs font-mono text-cyan-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                      Mapping high-contrast architectural zones... Filtering by Project Alpha Brand Guidelines.
+                                    </div>
+                                  </div>
+                                  
+                                  {/* System Logic Footer */}
+                                  <div className="pt-4 border-t border-slate-700 mt-4">
+                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                      <div>GPS: 40.7128°N, 74.0060°W</div>
+                                      <div>POI API: Active | Brand Guidelines: Loaded</div>
+                                      <div>Narrative Engine: "Creative Quest" mode</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {/* Cultural Tourism Skin */}
+                          {activeIndustrySkin === 'cultural' && (
+                            <motion.div
+                              key="cultural"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -20 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-green-50"
+                            >
+                              {/* Header */}
+                              <div className="absolute top-0 left-0 right-0 bg-white backdrop-blur-md p-6 border-b border-amber-300/50 z-10">
+                                <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-1">Time-Traveler's Lens</div>
+                                <div className="text-2xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                                  Historical Layers
+                                </div>
+                              </div>
+                              
+                              {/* Main Content */}
+                              <div className="absolute inset-0 pt-32 pb-32 px-6 overflow-y-auto">
+                                <div className="max-w-sm mx-auto space-y-6">
+                                  {/* The Living Archive Narrative */}
+                                  <div className="bg-white border-2 border-amber-200/50 rounded-xl p-6 space-y-4">
+                                    <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-2">The Living Archive</div>
+                                    <div className="text-gray-800 leading-relaxed text-base space-y-3" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                                      <p>
+                                        You are standing where the <strong className="text-amber-700">1921 strike began</strong>. The plaque tells you the date, but the narrative is in the echoes.
+                                      </p>
+                                      <p>
+                                        Move toward the old tannery entrance. If you stand near the rusted gate, the acoustics of the alleyway allow you to hear the bustle of the modern market exactly as it would have sounded to a worker a century ago.
+                                      </p>
+                                      <p className="font-semibold text-amber-700">
+                                        You aren't just visiting history; you are standing in its footprint.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Map View with Historical Overlay */}
+                                  <div className="relative bg-gradient-to-br from-orange-100 to-green-100 rounded-2xl overflow-hidden border-2 border-amber-200/50" style={{ height: '180px' }}>
+                                    {/* Map Pattern */}
+                                    <div className="absolute inset-0 opacity-20" style={{
+                                      backgroundImage: 'linear-gradient(rgba(139,69,19,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139,69,19,0.1) 1px, transparent 1px)',
+                                      backgroundSize: '30px 30px'
+                                    }}></div>
+                                    
+                                    {/* Historical Timeline Overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-900/80 to-transparent p-4">
+                                      <div className="text-xs text-white/90 font-semibold mb-1">1921: The Strike Begins</div>
+                                      <div className="text-xs text-white/70">Workers gathered here to demand fair wages. The echoes remain.</div>
+                                    </div>
+                                    
+                                    {/* AR Layer Indicator */}
+                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 border border-amber-300/50">
+                                      <div className="text-xs font-semibold text-amber-700">History Layer Active</div>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Depth of Connection Meter */}
+                                  <div className="bg-white border-2 border-amber-200/50 rounded-xl p-4 space-y-3">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Depth of Connection</span>
+                                      <span className="text-2xl font-bold text-amber-700">9.2/10</span>
+                                    </div>
+                                    <div className="h-3 bg-amber-100 rounded-full overflow-hidden">
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: '92%' }}
+                                        transition={{ duration: 1, delay: 0.3 }}
+                                        className="h-full bg-gradient-to-r from-orange-400 to-amber-600"
+                                      />
+                                    </div>
+                                    <div className="text-xs text-gray-600 leading-relaxed">
+                                      Focus: Spatial Audio & Historical Footprints. This location connects to 3 major historical narratives and 7 cultural touchpoints.
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Cultural Impact Badges */}
+                                  <div className="space-y-2">
+                                    <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-2">Cultural Impact</div>
+                                    <div className="flex flex-wrap gap-2">
+                                      {['Heritage Site', 'Labor History', 'Acoustic Landmark'].map((badge) => (
+                                        <span
+                                          key={badge}
+                                          className="px-3 py-1.5 bg-amber-100 border border-amber-300/50 text-amber-700 rounded-full text-xs font-semibold"
+                                        >
+                                          {badge}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Action Buttons */}
+                                  <div className="space-y-3">
+                                    <button className="w-full bg-gradient-to-r from-orange-500 to-amber-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-orange-600 hover:to-amber-700 transition-all">
+                                      Listen to the Echo
+                                    </button>
+                                    <button className="w-full bg-white border-2 border-amber-300 text-amber-700 font-semibold py-3 rounded-xl hover:bg-amber-50 transition-all">
+                                      Reveal Hidden Layer
+                                    </button>
+                                  </div>
+                                  
+                                  {/* Data Overlay - Spontaneity Layer */}
+                                  <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
+                                    <div className="text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                      Cross-referencing 1920s city blueprints with GPS coordinates... Triggering spatial audio node.
+                                    </div>
+                                  </div>
+                                  
+                                  {/* System Logic Footer */}
+                                  <div className="pt-4 border-t border-amber-200/50 mt-4">
+                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                      <div>GPS: 40.7589°N, 73.9851°W</div>
+                                      <div>Historical API: Active | Spatial Audio: Triggered</div>
+                                      <div>Narrative Engine: "Living Archive" mode</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Use Case 3</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      Cultural Tourism Organizations
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      Cultural institutions and tourism boards can deploy narrative systems to create deeper, more meaningful visitor experiences that emphasize belonging over coverage.
-                    </p>
+                  
+                  {/* Explanation Text */}
+                  <div className="mt-12 max-w-3xl mx-auto">
+                    <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
+                      <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                        Same Engine, Different Soul
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        The core Narrative-Driven Travel Experience Generator remains constant: the Spontaneity Engine processes real-time logistics, and the Narrative Layer injects story and meaning. What changes is the <strong className="text-amber-400">Interface Layer</strong>—the visual language, metrics, and interaction patterns that translate system logic into business value.
+                      </p>
+                      <p className="text-gray-400 text-sm leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                        Notice how each industry measures success differently: Luxury focuses on <strong className="text-amber-400">Belonging Index</strong>, Creative tracks <strong className="text-cyan-400">Creative Flow</strong>, and Cultural emphasizes <strong className="text-amber-400">Depth of Connection</strong>. The system adapts its metrics to match business objectives, proving that AI isn't just giving directions—it's world-building in real-time, tailored to each sector's definition of value.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
