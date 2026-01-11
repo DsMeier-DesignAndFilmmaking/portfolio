@@ -82,13 +82,13 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
 
   if (!isVisible) {
     return (
-      <div className={`w-full h-[400px] md:h-[500px] relative ${className}`} aria-hidden="true" />
+      <div className={`w-full h-[500px] md:h-[500px] relative ${className}`} aria-hidden="true" />
     );
   }
 
   return (
     <div 
-      className={`w-full h-[400px] md:h-[500px] relative overflow-hidden ${className}`}
+      className={`w-full h-[500px] md:h-[500px] relative overflow-hidden ${className}`}
       aria-label="AI systems infrastructure visualization"
       role="img"
     >
@@ -139,8 +139,9 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
       {/* Foundational Systems Layer (2 anchors) - Slow, heavy, stabilizing */}
       <div className="absolute inset-0 flex items-center justify-center">
         {/* Foundational System 1 - Spontaneity Engine */}
+        {/* Mobile: Repositioned via CSS to prevent overlap; Desktop: Original positioning (25%, 45%) */}
         <motion.div
-          className="absolute"
+          className="absolute foundational-1-position"
           style={{
             left: '25%',
             top: '45%',
@@ -155,7 +156,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             transition={{ duration: 0.3 }}
           >
             {/* Core orb - structural, load-bearing feel */}
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-indigo-200/75 via-indigo-300/65 to-violet-200/75 backdrop-blur-xl border-2 border-indigo-300/60 shadow-2xl">
+            {/* Mobile: Increased scale (w-40 h-40) for better visual impact; Desktop: Original size (md:w-40 md:h-40) */}
+            <div className="w-40 h-40 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-indigo-200/75 via-indigo-300/65 to-violet-200/75 backdrop-blur-xl border-2 border-indigo-300/60 shadow-2xl">
               {/* Inner processing core */}
               <div className="absolute inset-2 rounded-full bg-gradient-to-br from-indigo-400/40 to-violet-400/30" />
               {/* System name */}
@@ -172,7 +174,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(6)].map((_, i) => {
                     const angle = (i * 360) / 6;
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 18;
+                    // Mobile: Increased radius (22px) to match larger circle; Desktop: Original (18px)
+                    const radius = 22; // Scaled from 18px for w-40 circle (was 18px for w-32)
                     const x = 20 + Math.cos(rad) * radius;
                     const y = 20 + Math.sin(rad) * radius;
                     return (
@@ -222,8 +225,9 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
         </motion.div>
 
         {/* Foundational System 2 - Trust & Authenticity Layer */}
+        {/* Mobile: Repositioned via CSS to prevent overlap; Desktop: Original positioning (25%, 45%) */}
         <motion.div
-          className="absolute"
+          className="absolute foundational-2-position"
           style={{
             right: '25%',
             top: '45%',
@@ -247,7 +251,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             transition={{ duration: 0.3 }}
           >
             {/* Core orb */}
-            <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-teal-200/70 via-teal-300/60 to-cyan-200/70 backdrop-blur-xl border-2 border-teal-300/50 shadow-xl">
+            {/* Mobile: Increased scale (w-36 h-36) for better visual impact; Desktop: Original size (md:w-36 md:h-36) */}
+            <div className="w-36 h-36 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-teal-200/70 via-teal-300/60 to-cyan-200/70 backdrop-blur-xl border-2 border-teal-300/50 shadow-xl">
               {/* Inner processing core */}
               <div className="absolute inset-2 rounded-full bg-gradient-to-br from-teal-400/40 to-cyan-400/30" />
               {/* System name */}
@@ -264,7 +269,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(6)].map((_, i) => {
                     const angle = (i * 360) / 6;
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 14;
+                    // Mobile: Increased radius (18px) to match larger circle; Desktop: Original (14px)
+                    const radius = 18; // Scaled from 14px for w-36 circle (was 14px for w-28)
                     const x = 18 + Math.cos(rad) * radius;
                     const y = 18 + Math.sin(rad) * radius;
                     return (
@@ -333,7 +339,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             whileHover={prefersReducedMotion ? {} : { scale: 1.15, opacity: 0.95 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-200/60 via-cyan-200/50 to-blue-300/60 backdrop-blur-lg border-2 border-blue-300/40 shadow-lg">
+            {/* Mobile: Increased scale (w-28 h-28) for better visual impact; Desktop: Original size (md:w-28 md:h-28) */}
+            <div className="w-28 h-28 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-200/60 via-cyan-200/50 to-blue-300/60 backdrop-blur-lg border-2 border-blue-300/40 shadow-lg">
               {/* Inner core */}
               <div className="absolute inset-1.5 rounded-full bg-gradient-to-br from-blue-400/30 to-cyan-400/20" />
               {/* System name */}
@@ -350,9 +357,10 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(4)].map((_, i) => {
                     const angle = (i * 90);
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 8;
-                    const x = 12 + Math.cos(rad) * radius;
-                    const y = 12 + Math.sin(rad) * radius;
+                    // Mobile: Increased radius (10px) to match larger circle; Desktop: Original (8px)
+                    const radius = 10; // Scaled from 8px for w-28 circle (was 8px for w-24)
+                    const x = 14 + Math.cos(rad) * radius; // Updated center from 12 to 14 for w-28
+                    const y = 14 + Math.sin(rad) * radius;
                     return (
                       <motion.div
                         key={`applied-1-${i}`}
@@ -397,7 +405,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             whileHover={prefersReducedMotion ? {} : { scale: 1.15, opacity: 0.95 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-purple-200/60 via-pink-200/50 to-purple-300/60 backdrop-blur-lg border-2 border-purple-300/40 shadow-lg">
+            {/* Mobile: Increased scale (w-28 h-28) for better visual impact; Desktop: Original size (md:w-28 md:h-28) */}
+            <div className="w-28 h-28 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-purple-200/60 via-pink-200/50 to-purple-300/60 backdrop-blur-lg border-2 border-purple-300/40 shadow-lg">
               {/* Inner core */}
               <div className="absolute inset-1.5 rounded-full bg-gradient-to-br from-purple-400/30 to-pink-400/20" />
               {/* System name */}
@@ -414,9 +423,10 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(4)].map((_, i) => {
                     const angle = (i * 90);
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 8;
-                    const x = 12 + Math.cos(rad) * radius;
-                    const y = 12 + Math.sin(rad) * radius;
+                    // Mobile: Increased radius (10px) to match larger circle; Desktop: Original (8px)
+                    const radius = 10; // Scaled from 8px for w-28 circle (was 8px for w-24)
+                    const x = 14 + Math.cos(rad) * radius; // Updated center from 12 to 14 for w-28
+                    const y = 14 + Math.sin(rad) * radius;
                     return (
                       <motion.div
                         key={`applied-2-${i}`}
@@ -462,7 +472,8 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             whileHover={prefersReducedMotion ? {} : { scale: 1.15, opacity: 0.95 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-amber-200/60 via-orange-200/50 to-amber-300/60 backdrop-blur-lg border-2 border-amber-300/40 shadow-lg">
+            {/* Mobile: Increased scale (w-28 h-28) for better visual impact; Desktop: Original size (md:w-28 md:h-28) */}
+            <div className="w-28 h-28 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-amber-200/60 via-orange-200/50 to-amber-300/60 backdrop-blur-lg border-2 border-amber-300/40 shadow-lg">
               {/* Inner core */}
               <div className="absolute inset-1.5 rounded-full bg-gradient-to-br from-amber-400/30 to-orange-400/20" />
               {/* System name */}
@@ -479,9 +490,10 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
                   {[...Array(4)].map((_, i) => {
                     const angle = (i * 90);
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 8;
-                    const x = 12 + Math.cos(rad) * radius;
-                    const y = 12 + Math.sin(rad) * radius;
+                    // Mobile: Increased radius (10px) to match larger circle; Desktop: Original (8px)
+                    const radius = 10; // Scaled from 8px for w-28 circle (was 8px for w-24)
+                    const x = 14 + Math.cos(rad) * radius; // Updated center from 12 to 14 for w-28
+                    const y = 14 + Math.sin(rad) * radius;
                     return (
                       <motion.div
                         key={`applied-3-${i}`}

@@ -45,7 +45,7 @@ import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndic
 import PivotAnimation from '../../../../../components/PivotAnimation';
 import TrustSignalDemo from '../../../../../components/LivePulseDemo';
 import TrustPulseUI from '../../../../../components/TrustPulseUI';
-import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap } from 'lucide-react';
+import { Shield, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, ArrowRight } from 'lucide-react';
 
 interface TravelProjectDetailClientProps {
   project: any;
@@ -273,156 +273,336 @@ const TrustFrameworkVisual = () => {
   );
 };
 
-// Planning Assistant Visual Component - "The Intelligent Orchestrator"
+// CATDS Architecture Diagram - Hierarchical Stack (Engine → CATDS)
 const PlanningAssistantVisual = () => {
-  const constraints = [
-    { label: '$200/day', icon: Sparkles },
-    { label: 'Vegetarian', icon: Utensils },
-    { label: 'Hidden Gems', icon: MapPin },
-    { label: 'Tokyo', icon: MapPin },
+  // Context signals for input
+  const contextSignals = [
+    { label: 'Time', icon: Clock },
+    { label: 'Place', icon: MapPin },
+    { label: 'Energy', icon: Activity },
+    { label: 'Crowd', icon: Users },
   ];
 
-  const activities = [
-    { time: 'Morning', title: 'Tsukiji Market', icon: MapPin },
-    { time: 'Afternoon', title: 'TeamLab Borderless', icon: Sparkles },
-    { time: 'Evening', title: 'Shibuya Sky', icon: Clock },
+  // CATDS orchestration modules
+  const catdsModules = [
+    { name: 'Context Interpreter', icon: Brain },
+    { name: 'Trust Layer', icon: Shield },
+    { name: 'Decision Vector Composer', icon: TrendingUp },
   ];
 
   return (
-    <div className="relative w-full max-w-md aspect-[4/3] mx-auto">
-      <div className="relative w-full h-full flex items-center justify-between px-2 md:px-4">
-        {/* Left: Constraint Chips */}
-        <div className="flex flex-col gap-3 w-1/4 items-start">
-          {(Array.isArray(constraints) ? constraints : []).map((constraint, i) => {
-            const Icon = constraint.icon;
-            return (
-              <motion.div
-                key={constraint.label}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: [0, 15, 0],
-                }}
-                transition={{ 
-                  opacity: {
-                    duration: 0.6, 
-                    delay: i * 0.15,
-                  },
-                  x: {
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.5 + 0.6,
-                    ease: 'easeInOut',
-                  }
-                }}
-                className="relative"
-              >
-                <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-br from-violet-100/80 to-blue-100/80 dark:from-violet-900/40 dark:to-blue-900/40 backdrop-blur-sm rounded-lg border border-violet-200/50 dark:border-violet-700/50 shadow-sm">
-                  <Icon className="w-3 h-3 text-violet-600 dark:text-violet-400" />
-                  <span className="text-xs font-medium text-violet-700 dark:text-violet-300 whitespace-nowrap">
-                    {constraint.label}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
+    <div className="relative w-full max-w-7xl lg:max-w-5xl mx-auto -mx-6 lg:mx-auto px-0 lg:px-6">
+      {/* Main Architecture Container */}
+      <div className="relative bg-gradient-to-br from-slate-950/98 via-slate-900/98 to-slate-950/98 rounded-xl border border-slate-800/50 shadow-2xl overflow-hidden backdrop-blur-xl">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="grid grid-cols-10 grid-rows-8 h-full w-full">
+            {[...Array(80)].map((_, i) => (
+              <div key={i} className="border border-cyan-500/20" />
+            ))}
+          </div>
         </div>
 
-        {/* Center: Processing Unit */}
-        <div className="relative w-1/3 h-full flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative w-full h-[80%] bg-gradient-to-br from-violet-200/40 via-blue-200/30 to-violet-200/40 dark:from-violet-900/30 dark:via-blue-900/20 dark:to-violet-900/30 backdrop-blur-xl rounded-2xl border border-violet-300/40 dark:border-violet-700/40 shadow-lg overflow-hidden"
-          >
-            {/* Scanning Light Bar */}
-            <motion.div
-              animate={{
-                y: ['0%', '100%'],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
-              style={{ top: '-2px' }}
-            />
+        {/* Content Container */}
+        <div className="relative z-10 p-6 md:p-8 lg:p-10">
+          {/* Vertical Stack Layout */}
+          <div className="flex flex-col items-center gap-6 md:gap-8">
             
-            {/* Processing Indicator */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Top: Live Context Vector Input */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full flex flex-col items-center"
+            >
+              <div className="mb-4 text-center">
+                <p className="text-sm md:text-base font-medium text-cyan-500 uppercase tracking-[0.2em] mb-4">
+                  Live Context Vector
+                </p>
+                <div className="grid grid-cols-2 md:flex md:flex-row items-center justify-center gap-4 md:gap-6">
+                  {contextSignals.map((signal, i) => {
+                    const Icon = signal.icon;
+                    return (
+                      <motion.div
+                        key={signal.label}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: i * 0.08 }}
+                        className="flex flex-col items-center gap-2"
+                      >
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-800/70 border border-cyan-500/25 flex items-center justify-center backdrop-blur-sm">
+                          <Icon className="w-5 h-5 md:w-6 md:h-6 text-cyan-500" />
+                        </div>
+                        <span className="text-sm md:text-base font-medium text-slate-400 uppercase tracking-wider">
+                          {signal.label}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {/* Scenario Chip */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="mt-4"
+              >
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/60 backdrop-blur-sm rounded-full border border-slate-700/40">
+                  <span className="text-sm md:text-base font-medium text-slate-200">90m</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-sm md:text-base font-medium text-slate-200">New City</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-sm md:text-base font-medium text-slate-200">Low Energy</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-sm md:text-base font-medium text-slate-200">High Crowd</span>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Flow Arrow from Input */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="relative w-full flex items-center justify-center"
+            >
               <motion.div
                 animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.6, 1, 0.6],
+                  y: [0, 4, 0],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
-                className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-400/40 to-blue-400/40 backdrop-blur-sm border border-violet-300/50 dark:border-violet-600/50 flex items-center justify-center"
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{ willChange: 'transform' }}
               >
-                <Sparkles className="w-8 h-8 text-violet-600 dark:text-violet-400" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-slate-700 rotate-90" />
               </motion.div>
-            </div>
+            </motion.div>
 
-            {/* Processing Label */}
-            <div className="absolute bottom-3 left-0 right-0 text-center">
-              <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider">
-                Processing
-              </p>
-            </div>
-          </motion.div>
-        </div>
+            {/* Center: 2-Tier Stack Architecture */}
+            <div className="w-full flex flex-col gap-4 max-w-2xl mx-auto">
 
-        {/* Right: Activity Cards with Timeline */}
-        <div className="flex flex-col gap-3 w-1/3 items-end relative">
-          {/* Timeline Line */}
-          <div className="absolute right-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-300/50 via-blue-300/50 to-violet-300/50 dark:from-violet-600/50 dark:via-blue-600/50 dark:to-violet-600/50" />
-          
-          {(Array.isArray(activities) ? activities : []).map((activity, i) => {
-            const Icon = activity.icon;
-            return (
+              {/* Top Layer - CATDS Orchestration */}
               <motion.div
-                key={activity.title}
-                initial={{ opacity: 0, x: 30, scale: 0.9 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: 0, 
-                  scale: 1,
-                }}
-                transition={{ 
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 20,
-                  delay: 0.6 + i * 0.2,
-                }}
-                className="relative w-full pr-2"
+                initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="relative"
               >
-                {/* Timeline Dot */}
-                <div className="absolute right-5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-violet-400 dark:bg-violet-500 border-2 border-white dark:border-gray-900 shadow-sm z-10" />
-                
-                {/* Activity Card */}
-                <div className="bg-gradient-to-br from-white/90 to-violet-50/90 dark:from-gray-800/90 dark:to-violet-900/30 backdrop-blur-sm rounded-lg p-3 border border-violet-200/50 dark:border-violet-700/50 shadow-md">
-                  <div className="flex items-start gap-2 mb-1.5">
-                    <Icon className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-semibold text-violet-700 dark:text-violet-300 uppercase tracking-wide">
-                          {activity.time}
-                        </span>
-                      </div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">
-                        {activity.title}
-                      </h4>
-                    </div>
+                {/* CATDS Container - Lighter, Glowing */}
+                <div className="relative bg-gradient-to-br from-slate-800/60 via-slate-700/50 to-slate-800/60 rounded-lg border border-cyan-500/40 shadow-xl shadow-cyan-500/15 p-5 md:p-6 backdrop-blur-sm">
+                  {/* Pulsing Intelligence Glow */}
+                  <motion.div
+                    animate={{
+                      opacity: [0.2, 0.35, 0.2],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute inset-0 bg-gradient-to-br from-cyan-500/15 to-blue-500/15 rounded-lg"
+                  />
+
+                  {/* CATDS Label */}
+                  <div className="relative z-10 mb-4 text-center">
+                    <h3 className="text-base md:text-lg font-semibold text-white tracking-tight mb-1">
+                      Context-Aware Travel Decision System
+                    </h3>
+                    <p className="text-sm md:text-base font-medium text-cyan-300 uppercase tracking-[0.15em] mb-2">
+                      AI Orchestration · Semantic Context · Trust Mediation
+                    </p>
+                    <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+                  </div>
+
+                  {/* CATDS Sub-modules */}
+                  <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-3 lg:gap-4">
+                    {catdsModules.map((module, i) => {
+                      const Icon = module.icon;
+                      return (
+                        <React.Fragment key={module.name}>
+                          <motion.div
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                            className="flex flex-col items-center gap-1.5"
+                          >
+                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-slate-900/80 border border-cyan-500/30 flex items-center justify-center backdrop-blur-sm">
+                              <Icon className="w-6 h-6 md:w-7 md:h-7 text-cyan-300" />
+                            </div>
+                            <p className="text-sm md:text-base font-medium text-slate-200 text-center leading-tight max-w-[120px] md:max-w-[110px]">
+                              {module.name}
+                            </p>
+                          </motion.div>
+                          
+                          {/* Internal flow - horizontal on desktop only */}
+                          {i < catdsModules.length - 1 && (
+                            <motion.div
+                              initial={{ opacity: 0, scaleX: 0 }}
+                              animate={{ opacity: 1, scaleX: 1 }}
+                              transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+                              className="hidden md:block"
+                            >
+                              <motion.div
+                                animate={{
+                                  opacity: [0.3, 0.5, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: i * 0.25,
+                                  ease: 'easeInOut',
+                                }}
+                                className="w-6 h-[1px] bg-gradient-to-r from-cyan-400/40 via-cyan-400/60 to-cyan-400/40"
+                              />
+                            </motion.div>
+                          )}
+                          {/* Vertical flow connector on mobile */}
+                          {i < catdsModules.length - 1 && (
+                            <motion.div
+                              initial={{ opacity: 0, scaleY: 0 }}
+                              animate={{ opacity: 1, scaleY: 1 }}
+                              transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+                              className="md:hidden"
+                            >
+                              <motion.div
+                                animate={{
+                                  opacity: [0.3, 0.5, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: i * 0.25,
+                                  ease: 'easeInOut',
+                                }}
+                                className="w-[1px] h-4 bg-gradient-to-b from-cyan-400/40 via-cyan-400/60 to-cyan-400/40"
+                              />
+                            </motion.div>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Dependency Lines - Downward from CATDS to Engine */}
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-8">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scaleY: 0 }}
+                      animate={{ opacity: 1, scaleY: 1 }}
+                      transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+                      className="relative"
+                    >
+                      <motion.div
+                        animate={{
+                          opacity: [0.2, 0.4, 0.2],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          delay: i * 0.2,
+                          ease: 'easeInOut',
+                        }}
+                        className="w-[1px] h-4 bg-gradient-to-b from-cyan-400/50 to-slate-600/50"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Bottom Layer - Spontaneity Engine Foundation */}
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="relative"
+              >
+                {/* Engine Container - Darker, Heavier, Grounded */}
+                <div className="relative bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/90 rounded-lg border-2 border-slate-700/60 shadow-2xl p-5 md:p-6 backdrop-blur-sm">
+                  {/* Dense Infrastructure Feel */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-950/30 to-transparent rounded-lg" />
+
+                  {/* Engine Label */}
+                  <div className="relative z-10 text-center">
+                    <h3 className="text-lg md:text-xl font-bold text-slate-100 tracking-tight mb-1.5">
+                      Spontaneity Engine
+                    </h3>
+                    <p className="text-sm md:text-base font-medium text-slate-300 uppercase tracking-[0.15em]">
+                      Real-Time Logistics · POI Streams · Availability · Mobility
+                    </p>
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
+            </div>
+
+            {/* Flow Arrow to Output */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="relative w-full flex items-center justify-center"
+            >
+              <motion.div
+                animate={{
+                  y: [0, 4, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0.3,
+                  ease: 'easeInOut',
+                }}
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{ willChange: 'transform' }}
+              >
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-slate-700 rotate-90" />
+              </motion.div>
+            </motion.div>
+
+            {/* Bottom: Adaptive Decision Output */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full flex flex-col items-center justify-center"
+            >
+              <div className="flex flex-col items-center justify-center text-center">
+                <p className="text-sm md:text-base font-medium text-cyan-300 uppercase tracking-[0.2em] mb-3">
+                  Adaptive Decision
+                </p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/40 flex items-center justify-center backdrop-blur-sm mx-auto"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.6, 1, 0.6],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                  >
+                    <Navigation className="w-8 h-8 md:w-10 md:h-10 text-cyan-300" />
+                  </motion.div>
+                </motion.div>
+                <p className="text-sm md:text-base font-medium text-slate-600 mt-2 text-center">
+                  Next best action
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
@@ -445,6 +625,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [isTechnicalModalOpen, setIsTechnicalModalOpen] = useState(false);
   const [narrativeEvolutionLevel, setNarrativeEvolutionLevel] = useState(1);
   const [activeIndustrySkin, setActiveIndustrySkin] = useState<'luxury' | 'creative' | 'cultural'>('luxury');
+  // Mobile accordion state for Learnings & Reflections section
+  const [learningsAccordion, setLearningsAccordion] = useState<Set<string>>(new Set());
   
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
@@ -464,7 +646,30 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         { id: 'success-case', label: 'Success Case' },
         { id: 'business-use', label: 'Business Use' }
       ]
+    : isCulturalContextEngine
+    ? [
+        // Trust Framework page sections - order matches actual page structure
+        { id: 'research-audience', label: 'Trust Signals & System Constraints' },
+        { id: 'design-exploration', label: 'Observed Travel Frictions' },
+        { id: 'designs-strategy', label: 'Concept & Strategy' },
+        { id: 'wireframes-ui', label: 'Design Evolution' },
+        { id: 'prototyping-ai', label: 'Development & Build' },
+        { id: 'outcomes-launch', label: 'Launch & Testing' },
+        { id: 'learnings-next', label: 'Learnings & Reflections' }
+      ]
+    : isTravelPlanningAssistant
+    ? [
+        // Context-Aware Travel Decision System page sections
+        { id: 'research-audience', label: 'Audience & Research' },
+        { id: 'design-exploration', label: 'Observed Travel Frictions' },
+        { id: 'designs-strategy', label: 'Concept & Strategy' },
+        { id: 'wireframes-ui', label: 'Design Evolution' },
+        { id: 'prototyping-ai', label: 'System Evolution & Deployment' },
+        { id: 'outcomes-launch', label: 'Launch & Testing' },
+        { id: 'learnings-next', label: 'Learnings & Reflections' }
+      ]
     : [
+        // Default sections for other projects (Spontaneity Engine, etc.)
         { id: 'design-exploration', label: 'Systemic Travel Discovery Failures' },
         { id: 'research-audience', label: 'Behavioral & Environmental Constraints' },
         { id: 'designs-strategy', label: 'Concept & Strategy' },
@@ -720,10 +925,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    The Spontaneity Engine: A Trust Framework for Real-Time Travel AI
+                    A Trust Framework for Real-Time Travel AI
                   </h1>
                   <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -778,7 +983,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Context-Aware Travel Decision System (CATDS)
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -860,7 +1065,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Social Graph-Driven Travel Network
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -1019,7 +1224,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Narrative-Driven Travel Experience Generator
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -1276,7 +1481,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                    System Overview: How the Spontaneity Engine Works
+                    System Overview: <br></br>How the Spontaneity Engine Works
                   </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     Conceptual system diagram
@@ -2913,9 +3118,55 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="space-y-12">
                   {/* System-Level Insights */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">System-Level Insights</h3>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                  {/* Mobile: Accordion item; Desktop: Always expanded */}
+                  <div
+                    className="learnings-accordion-item"
+                    aria-expanded={learningsAccordion.has('system-insights') || !isMobile}
+                    role="region"
+                  >
+                    <h3 
+                      id="system-insights-heading"
+                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
+                      onClick={() => {
+                        if (isMobile) {
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('system-insights')) {
+                              next.delete('system-insights');
+                            } else {
+                              next.add('system-insights');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                      role={isMobile ? "button" : "heading"}
+                      tabIndex={isMobile ? 0 : undefined}
+                      aria-controls="system-insights-content"
+                      aria-expanded={learningsAccordion.has('system-insights') || !isMobile}
+                      onKeyDown={(e) => {
+                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
+                          e.preventDefault();
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('system-insights')) {
+                              next.delete('system-insights');
+                            } else {
+                              next.add('system-insights');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                    >
+                      System-Level Insights
+                    </h3>
+                    <div 
+                      id="system-insights-content"
+                      className="space-y-4 text-gray-700 leading-relaxed"
+                      role="region"
+                      aria-labelledby="system-insights-heading"
+                    >
                       <p>
                         Early iterations revealed that the system's activation threshold is critical—too many suggestions, even when contextually relevant, can feel like planning in disguise. The system demonstrated that information suppression is as important as disclosure. Observed behavior indicates restraint is necessary: the system should only activate when context genuinely creates value, not when data is simply available.
                       </p>
@@ -2929,9 +3180,55 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                   {/* Behavioral & Intelligence Trade-offs */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Behavioral & Intelligence Trade-offs</h3>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                  {/* Mobile: Accordion item; Desktop: Always expanded */}
+                  <div
+                    className="learnings-accordion-item"
+                    aria-expanded={learningsAccordion.has('behavioral-tradeoffs') || !isMobile}
+                    role="region"
+                  >
+                    <h3 
+                      id="behavioral-tradeoffs-heading"
+                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
+                      onClick={() => {
+                        if (isMobile) {
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('behavioral-tradeoffs')) {
+                              next.delete('behavioral-tradeoffs');
+                            } else {
+                              next.add('behavioral-tradeoffs');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                      role={isMobile ? "button" : "heading"}
+                      tabIndex={isMobile ? 0 : undefined}
+                      aria-controls="behavioral-tradeoffs-content"
+                      aria-expanded={learningsAccordion.has('behavioral-tradeoffs') || !isMobile}
+                      onKeyDown={(e) => {
+                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
+                          e.preventDefault();
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('behavioral-tradeoffs')) {
+                              next.delete('behavioral-tradeoffs');
+                            } else {
+                              next.add('behavioral-tradeoffs');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                    >
+                      Behavioral & Intelligence Trade-offs
+                    </h3>
+                    <div 
+                      id="behavioral-tradeoffs-content"
+                      className="space-y-4 text-gray-700 leading-relaxed"
+                      role="region"
+                      aria-labelledby="behavioral-tradeoffs-heading"
+                    >
                       <p>
                         The tension between choice reduction and choice abundance remains unresolved. The system must narrow options to reduce cognitive load, but over-narrowing can feel restrictive. Observed behavior indicates users want one good suggestion at the right moment, but the threshold for "good enough" varies by context and user state. This trade-off requires ongoing calibration.
                       </p>
@@ -2987,7 +3284,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
       )}
       {isCulturalContextEngine && (
         <>
-          {/* Audience & Research Section */}
+          {/* Trust Signals & System Constraints Section */}
+          {/* REFRAME: Positioned as system-level inputs that directly shaped the trust architecture, not traditional UX research */}
           <section id="research-audience" className="py-20 bg-black">
             <div className="container mx-auto px-6">
               <motion.div
@@ -2998,64 +3296,81 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Audience & Research
+                    Trust Signals & System Constraints
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Understanding the trust crisis in AI-powered travel recommendations
+                    Research findings that define non-negotiable system requirements. Trust is treated as an architectural problem, not a UI preference.
                   </p>
                 </div>
                 
-                {/* Key Statistics Grid */}
+                {/* System Constraints Grid */}
+                {/* REFRAME: Statistics reframed as system constraints mapping directly to architectural requirements */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                   <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
                     <div className="text-3xl font-bold text-amber-400 mb-2">62%</div>
-                    <div className="text-gray-300 text-sm">of travelers distrust AI-generated recommendations without source verification</div>
+                    <div className="text-gray-300 text-sm mb-2">Distrust AI recommendations without source verification</div>
+                    <div className="text-gray-400 text-xs italic">System requirement: Explainability and attribution become mandatory system outputs. Every recommendation must expose its source chain.</div>
                     <div className="text-gray-500 text-xs mt-2">— Travel Industry Trust Survey 2024</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
                     <div className="text-3xl font-bold text-cyan-400 mb-2">78%</div>
-                    <div className="text-gray-300 text-sm">want to know the origin and credibility of travel suggestions</div>
+                    <div className="text-gray-300 text-sm mb-2">Require origin and credibility visibility</div>
+                    <div className="text-gray-400 text-xs italic">System requirement: Provenance visibility is non-negotiable. The system must surface data origin, freshness indicators, and credibility signals at the architectural level.</div>
                     <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
                     <div className="text-3xl font-bold text-emerald-400 mb-2">45%</div>
-                    <div className="text-gray-300 text-sm">have been misled by fake or outdated travel recommendations</div>
+                    <div className="text-gray-300 text-sm mb-2">Have been misled by fake or outdated information</div>
+                    <div className="text-gray-400 text-xs italic">System requirement: Conflict resolution logic must operate before recommendations reach users. The system must detect and resolve data conflicts, not defer to single sources.</div>
                     <div className="text-gray-500 text-xs mt-2">— Trust & Authenticity Research</div>
                   </div>
                 </div>
                 
-                {/* Market & Competitive Analysis */}
+                {/* System Failure Modes */}
+                {/* REFRAME: Competitive analysis reframed as system failure modes and trust anti-patterns */}
                 <div className="mt-12">
-                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
+                  <h3 className="text-xl font-semibold mb-8 text-white text-center">System Failure Modes</h3>
+                  <p className="text-gray-400 text-sm text-center mb-8 max-w-3xl mx-auto">
+                    Current approaches fail because they treat trust as a presentation problem rather than an architectural constraint. These patterns illustrate systemic failures that must be avoided.
+                  </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Review Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and Yelp rely on user-generated content without verification, leading to fake reviews and outdated information that misleads travelers.</p>
-                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
+                      <h4 className="text-lg font-bold text-white mb-4">Single-Source Trust</h4>
+                      <p className="text-gray-300 text-sm mb-4">Review platforms (TripAdvisor, Yelp, Google Reviews) rely on unverified user-generated content, creating a single-source dependency. This architecture fails when the source is compromised or outdated, leaving no fallback mechanism.</p>
+                      <div className="text-xs text-gray-400 italic">Failure pattern: No verification layer, no conflict detection, no audit trail</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">AI Travel Assistants</h4>
-                      <p className="text-gray-300 text-sm mb-4">ChatGPT and similar tools generate recommendations without source attribution or data provenance, making it impossible to verify authenticity.</p>
-                      <div className="text-xs text-gray-400">Examples: ChatGPT, Claude, Perplexity</div>
+                      <h4 className="text-lg font-bold text-white mb-4">Opaque Generation</h4>
+                      <p className="text-gray-300 text-sm mb-4">AI assistants (ChatGPT, Claude, Perplexity) generate recommendations without exposing source attribution or data provenance. The system architecture treats trust as an output, not an input—making verification impossible by design.</p>
+                      <div className="text-xs text-gray-400 italic">Failure pattern: No provenance tracking, no explainability layer, no source chain</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Booking Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">Booking.com and Airbnb prioritize availability over authenticity, often featuring promoted listings without clear source verification.</p>
-                      <div className="text-xs text-gray-400">Examples: Booking.com, Airbnb, Expedia</div>
+                      <h4 className="text-lg font-bold text-white mb-4">Commercial Bias Override</h4>
+                      <p className="text-gray-300 text-sm mb-4">Booking platforms (Booking.com, Airbnb, Expedia) prioritize availability and promotion over authenticity verification. The system architecture allows commercial signals to override trust signals, creating a fundamental conflict of interest.</p>
+                      <div className="text-xs text-gray-400 italic">Failure pattern: Trust signals subordinated to business logic, no separation of concerns</div>
                     </div>
                   </div>
                   
-                  {/* Our Approach */}
+                  {/* Trust Through Transparency: The Architectural Response */}
+                  {/* REFRAME: Elevated as the core architectural response with tighter language and explicit system flow */}
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Trust Through Transparency</h4>
-                    <p className="text-gray-200 text-base leading-relaxed">
-                      We moved from a 'binary' trust model (True/False) to a 'probabilistic' one. By exposing the Consensus Logic, we show the user that the AI isn't just hallucinating a 'Yes'—it is actively negotiating between different data providers to ensure the traveler's spontaneity is grounded in reality. The framework implements Explainable Provenance (XAI). When the system detects a data conflict—such as a Google Maps 'Closed' status being contradicted by real-time social activity—it doesn't just pick a side. It documents the resolution logic in an Audit Trail, allowing the user to inspect the 'Source Chain' and understand why a recommendation was deemed trustworthy despite conflicting signals. This trust framework differentiates itself by providing source verification, data provenance, and authenticity validation at the architectural level. Every recommendation includes clear attribution, allowing travelers to understand where information comes from and make informed decisions.
+                    <h4 className="text-xl font-semibold text-white mb-4">Trust Through Transparency: The Architectural Response</h4>
+                    <p className="text-gray-200 text-base leading-relaxed mb-4">
+                      These constraints force a fundamental architectural shift: trust must be computed, not assumed. The system moves from a binary trust model (True/False) to a probabilistic one, where Consensus Logic arbitrates between data sources rather than averaging them. When the system detects a conflict—a Google Maps 'Closed' status contradicted by real-time social activity—it doesn't pick a side. It documents the resolution logic in an Audit Trail, exposing the Source Chain so users can inspect why a recommendation was deemed trustworthy despite conflicting signals.
                     </p>
+                    <div className="mt-4 pt-4 border-t border-cyan-500/30">
+                      <p className="text-gray-300 text-sm font-medium mb-2">System Flow:</p>
+                      <div className="text-gray-400 text-sm font-mono space-y-1">
+                        <div>Inputs (Multiple Sources) → Consensus Logic (Arbitration)</div>
+                        <div>→ Conflict Detection → Audit Trail (Resolution Documentation)</div>
+                        <div>→ User Attribution (Source Chain Exposure)</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -4168,7 +4483,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
                     <h4 className="text-xl font-semibold text-white mb-4">Approach: Contextual Orchestration</h4>
                     <p className="text-gray-200 text-base leading-relaxed">
-                      CATDS operates as a middleware layer that sits between existing travel platforms (Expedia, Airbnb, etc.) and the Spontaneity Engine. The Context Interpreter ingests unstructured data (weather, LLM-parsed sentiment, sensor data) and converts it into Decision Vectors. The Trust Layer provides human-in-the-loop verification, suggesting changes without overriding user agency—avoiding AI hallucinations in logistics.
+                      The CATDS concept is intended to operate as a middleware layer that sits between existing travel platforms (Expedia, Airbnb, etc.) and the Spontaneity Engine. The Context Interpreter ingests unstructured data (weather, LLM-parsed sentiment, sensor data) and converts it into Decision Vectors. The Trust Layer provides human-in-the-loop verification, suggesting changes without overriding user agency—avoiding AI hallucinations in logistics.
                     </p>
                   </div>
                 </div>
@@ -5805,8 +6120,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Development & Build Section */}
-          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+          {/* System Evolution & Deployment Section */}
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-white via-gray-50 to-black">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -5814,55 +6129,135 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 transition={{ duration: 0.6 }}
                 className="max-w-6xl mx-auto"
               >
-                <div className="text-center mb-20">
+                {/* Section Header */}
+                <div className="text-center mb-16">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-                      Development & Build
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                      System Evolution & Deployment
                     </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <p className="text-amber-300 text-sm font-medium">
+                      <p className="text-amber-700 text-sm font-medium">
                         Work In Progress
                       </p>
                     </div>
                   </motion.div>
                 </div>
-                
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                  <p className="text-gray-300 text-center">
-                    Development workflow and technical architecture details will be documented as the system is built.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
 
-          {/* Solution Section */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Solution
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    A comprehensive system for adaptive planning that bridges structure with spontaneity
+                {/* The Core Solution */}
+                <div className="bg-white rounded-xl p-8 md:p-10 border border-gray-200 shadow-lg mb-12">
+                  <div className="mb-6">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
+                      The Core Solution
+                    </h3>
+                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium">
+                      A comprehensive system for adaptive planning that bridges structure with spontaneity.
+                    </p>
+                  </div>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                    The Travel Planning Assistant utilizes adaptive planning algorithms to maintain fluidity without sacrificing structure. By processing real-time constraints (weather, transit delays, crowd density) alongside user preferences, the system delivers a unified itinerary that evolves as the trip unfolds.
                   </p>
                 </div>
-                
-                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    The Travel Planning Assistant provides adaptive planning algorithms that maintain flexibility while providing structure when needed. The system processes real-time constraints, preferences, and context to deliver unified planning that adapts to changing conditions, enabling travelers to plan and explore seamlessly.
-                  </p>
+
+                {/* Horizontal Rule Separator */}
+                <div className="my-12 border-t border-gray-300"></div>
+
+                {/* Build Status: Active Development */}
+                <div className="bg-black rounded-xl p-8 md:p-10 border border-gray-800 mb-12">
+                  <div className="mb-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full mb-4">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <p className="text-amber-300 text-sm font-medium" style={{ fontFamily: 'monospace' }}>
+                        Work In Progress
+                      </p>
+                    </div>
+                    <div className="mb-4">
+                      <p className="text-sm text-gray-400 mb-2" style={{ fontFamily: 'monospace' }}>
+                        Status:
+                      </p>
+                      <p className="text-lg font-semibold text-white" style={{ fontFamily: 'monospace' }}>
+                        Phase 2 - Constraint Engine Integration
+                      </p>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed">
+                      Development is focused on the bridge between static itinerary data and real-time environmental APIs.
+                    </p>
+                  </div>
+
+                  {/* Bento-box Layout: Current Capabilities vs Future Intent */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    {/* What Currently Works */}
+                    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                      <h4 className="text-lg font-semibold mb-4 text-white flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        1. What Currently Works
+                        <span className="text-sm font-normal text-gray-400 ml-auto">(The Foundation)</span>
+                      </h4>
+                      <ul className="space-y-3 text-gray-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Architectural Framework:</strong> Core system design for context-aware state management.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Flexible Itinerary Schema:</strong> Data structures built to support non-linear planning.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Initial Constraint Detection:</strong> Logic gates for basic temporal and geographical constraints.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* What is Experimental */}
+                    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                      <h4 className="text-lg font-semibold mb-4 text-white flex items-center gap-2">
+                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                        2. What is Experimental
+                        <span className="text-sm font-normal text-gray-400 ml-auto">(The AI Edge)</span>
+                      </h4>
+                      <ul className="space-y-3 text-gray-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Adaptive Re-routing Algorithms:</strong> Testing how the system handles sudden "Plan B" triggers.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Contextual Sentiment Analysis:</strong> Experimenting with how user mood/energy levels influence adaptive suggestions.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-gray-500 mt-1">•</span>
+                          <span><strong className="text-white">Real-Time Constraint Fusion:</strong> Processing multiple live data streams simultaneously.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Live Demo & Future Roadmap */}
+                <div className="bg-white rounded-xl p-8 md:p-10 border border-gray-200">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900">
+                    Live Demo & Future Roadmap
+                  </h3>
+                  <div className="space-y-6">
+                    <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                      <p className="text-gray-700 italic mb-4">
+                        A live demo will be available once the adaptive planning system completes Phase 3 validation.
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-gray-700 mb-3">
+                        <strong className="text-gray-900">Planned Next:</strong> Advanced predictive algorithms for anticipatory planning (solving friction before the user notices it).
+                      </p>
+                      <p className="text-gray-700">
+                        <strong className="text-gray-900">Integration:</strong> Deep-linking with localized transit and event APIs for hyper-local context.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -5895,66 +6290,37 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Constraint Detection</span>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
 
-          {/* Live Demo Section */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Live Demo
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    This product is actively being built and deployed
-                  </p>
-                </div>
-                
-                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
-                  <div className="mb-8 text-center">
-                    <p className="text-gray-600 mb-4">
-                      A live demo will be available once the adaptive planning system is fully implemented.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        What Currently Works
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        System architecture and adaptive planning framework are being developed. Core components for constraint detection and flexible itinerary management are in progress.
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-                        What is Experimental
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Adaptive planning algorithms, real-time constraint detection, and flexible itinerary adjustment logic are in active development and testing.
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        What is Planned Next
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Expanded constraint detection, advanced adaptive algorithms, and user-facing flexibility features. Timeline depends on adaptive system validation and user feedback.
-                      </p>
+                  <div className="bg-gray-900 rounded-xl p-8 md:p-10 border border-gray-800">
+                    <h3 className="text-2xl font-bold mb-6 text-white">
+                      Launch & Testing Strategy
+                    </h3>
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-gray-300 mb-3">
+                          <strong className="text-white">Closed Beta:</strong> Focusing on "Adaptive Accuracy"—how often the system's re-routing matches human intent.
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 mb-3">
+                          <strong className="text-white">Performance Metrics:</strong> Success is measured by the "Flexibility Score"—the system's ability to resolve schedule conflicts with zero manual input.
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 mb-2">
+                          <strong className="text-white">Beta Tracks:</strong>
+                        </p>
+                        <ul className="space-y-2 ml-4">
+                          <li className="text-gray-300 flex items-start gap-2">
+                            <span className="text-gray-500 mt-1">•</span>
+                            <span><strong className="text-white">Track A:</strong> Adaptive Algorithmic Stress Testing</span>
+                          </li>
+                          <li className="text-gray-300 flex items-start gap-2">
+                            <span className="text-gray-500 mt-1">•</span>
+                            <span><strong className="text-white">Track B:</strong> Real-time Constraint Ingestion Performance</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -7792,9 +8158,55 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 <div className="space-y-12">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                  {/* Key Learnings - Mobile: Accordion item; Desktop: Always expanded */}
+                  <div
+                    className="learnings-accordion-item"
+                    aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
+                    role="region"
+                  >
+                    <h3 
+                      id="key-learnings-heading"
+                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
+                      onClick={() => {
+                        if (isMobile) {
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('key-learnings')) {
+                              next.delete('key-learnings');
+                            } else {
+                              next.add('key-learnings');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                      role={isMobile ? "button" : "heading"}
+                      tabIndex={isMobile ? 0 : undefined}
+                      aria-controls="key-learnings-content"
+                      aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
+                      onKeyDown={(e) => {
+                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
+                          e.preventDefault();
+                          setLearningsAccordion(prev => {
+                            const next = new Set(prev);
+                            if (next.has('key-learnings')) {
+                              next.delete('key-learnings');
+                            } else {
+                              next.add('key-learnings');
+                            }
+                            return next;
+                          });
+                        }
+                      }}
+                    >
+                      Key Learnings
+                    </h3>
+                    <div 
+                      id="key-learnings-content"
+                      className="space-y-4 text-gray-700 leading-relaxed"
+                      role="region"
+                      aria-labelledby="key-learnings-heading"
+                    >
                       <p>
                         {isCulturalContextEngine && 'Trust cannot be designed into a system after the fact—it must be architected from the ground up. Verification and provenance tracking require data-layer solutions, not just UI indicators.'}
                         {isTravelPlanningAssistant && 'Flexible planning requires balancing structure with spontaneity. The challenge is providing enough guidance to reduce stress while maintaining freedom for unplanned exploration.'}

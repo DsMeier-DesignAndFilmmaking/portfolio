@@ -149,14 +149,32 @@ body {
   @media (max-width: 768px) {
     html {
       scroll-behavior: smooth; /* Enable smooth scrolling for anchor navigation */
-      scroll-padding-top: 144px; /* Account for mobile navigation (80px top + 48px nav height + 16px spacing) */
+      /* Mobile navbar: ~64px height + ~16px spacing = 80px total offset */
+      scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 96px); /* Safe area + navbar height + spacing */
       scroll-padding-bottom: 0; /* Ensure footer scrolls to absolute bottom */
       overscroll-behavior-y: none;
     }
     
-    /* Extra offset for Design Work section on mobile to prevent navbar covering headline */
-    #work {
-      scroll-margin-top: 10rem; /* 64px navbar + 96px extra = 160px (10rem) */
+    /* Consistent scroll-margin-top for all homepage sections on mobile */
+    /* Accounts for fixed mobile navbar (~64px) + safe area + spacing */
+    #hero,
+    #about,
+    #work,
+    #travelogue,
+    #contact {
+      scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 96px);
+    }
+    
+    /* Trust Framework page sections - account for main nav (80px) + mobile sticky nav (60px) + spacing */
+    /* Mobile sticky nav is positioned at 80px + safe-area, so total offset is: safe-area + 80px main nav + 60px sticky nav + 20px spacing */
+    #research-audience,
+    #design-exploration,
+    #designs-strategy,
+    #wireframes-ui,
+    #prototyping-ai,
+    #outcomes-launch,
+    #learnings-next {
+      scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 160px); /* safe-area + 80px main nav + 60px sticky nav + 20px spacing */
     }
     
     body {
@@ -186,6 +204,505 @@ body {
       margin-top: 0 !important;
       padding-top: 0 !important;
     }
+
+    /* ===== TRAVEL & AI PAGE MOBILE FIXES ===== */
+    
+    /* Prevent card flicker on scroll - stabilize GPU compositing */
+    /* Target cards with whileInView animations in Core Platform and Applied Systems sections */
+    [aria-label="Core Platform & Embedded Intelligence"] .group,
+    [aria-label="Applied Systems"] .group {
+      /* Ensure stable rendering layer - prevent re-triggered animations */
+      transform: translateZ(0); /* Force GPU layer for smooth compositing */
+      backface-visibility: hidden; /* Prevent flicker from backface rendering */
+      will-change: auto; /* Let browser optimize, don't force will-change */
+      isolation: isolate; /* Create stable rendering context */
+    }
+
+    /* Card group containers - prevent layout shifts */
+    [aria-label="Core Platform & Embedded Intelligence"] .grid,
+    [aria-label="Applied Systems"] .grid {
+      /* Prevent grid layout shifts that cause flicker */
+      contain: layout;
+    }
+
+    /* Reduce excessive vertical spacing after Product Surfaces section */
+    /* The section has pb-12 (48px) on mobile, which is appropriate */
+    /* But the Applied Systems section above has pb-20 (80px) which is excessive */
+    [aria-label="Applied Systems"] {
+      padding-bottom: 3rem !important; /* 48px instead of 80px (pb-20) */
+    }
+
+    /* Ensure Product Surfaces section has appropriate spacing */
+    [aria-label="Product Surfaces"] {
+      padding-top: 2rem !important; /* 32px (pt-8) is fine, but ensure consistency */
+      padding-bottom: 3rem !important; /* 48px instead of 48px (pb-12) - keep consistent */
+    }
+
+    /* Hero SystemsGraphic - Mobile positioning for foundational circles */
+    /* Prevent overlap on mobile with increased circle sizes */
+    .foundational-1-position {
+      left: 15% !important;
+      top: 38% !important;
+    }
+
+    .foundational-2-position {
+      right: 15% !important;
+      top: 52% !important;
+    }
+
+    /* ===== SPONTANEITY ENGINE PAGE MOBILE FIXES ===== */
+    
+    /* 1. MOBILE TYPOGRAPHY ACCESSIBILITY FIXES */
+    /* Ensure WCAG 2.1 AA compliance: body text ≥16px, small text ≥14px, proper line-height */
+    
+    /* Body text - ensure minimum 16px on mobile */
+    /* Override text-sm (14px) to be at least 16px for body content */
+    #learnings-next p,
+    #learnings-next li,
+    section p.text-sm:not(.uppercase):not(.opacity-70),
+    section span.text-sm:not(.uppercase):not(.opacity-70),
+    .text-gray-700.text-sm,
+    .text-gray-500.text-sm {
+      font-size: 1rem !important; /* 16px minimum for body text */
+      line-height: 1.5 !important; /* 1.5 = 24px line-height for 16px text */
+    }
+    
+    /* Small UI/meta text - allow 14px only if contrast is strong (labels, badges) */
+    /* Keep text-xs for uppercase labels and badges with strong contrast */
+    .text-xs.uppercase,
+    .text-xs.font-semibold,
+    .text-xs.font-medium {
+      font-size: 0.875rem !important; /* 14px for small UI text with strong contrast */
+      line-height: 1.4 !important; /* 1.4 line-height for small text */
+    }
+    
+    /* Headings - ensure proper line-height */
+    h1, h2, h3, h4 {
+      line-height: 1.2 !important; /* Minimum 1.2 for headings */
+    }
+    
+    /* Section headings - ensure readable size */
+    h2.text-3xl {
+      font-size: clamp(1.5rem, 4vw, 1.875rem) !important; /* Responsive but minimum 24px */
+    }
+    
+    h3.text-xl {
+      font-size: clamp(1.25rem, 3.5vw, 1.5rem) !important; /* Responsive but minimum 20px */
+    }
+    
+    /* 2. ICON SIZE CONSISTENCY - Impact for Local Communities */
+    /* Normalize icon sizes to match other card sections (w-12 h-12 container, w-6 h-6 icon) */
+    /* Target Impact section cards - use more specific selector */
+    section .bg-gradient-to-br.from-emerald-50 .w-14.h-14,
+    section .bg-gradient-to-br.from-cyan-50 .w-14.h-14 {
+      width: 3rem !important; /* 48px = w-12 to match Applied Systems section */
+      height: 3rem !important; /* 48px = h-12 */
+    }
+    
+    section .bg-gradient-to-br.from-emerald-50 .w-14.h-14 svg,
+    section .bg-gradient-to-br.from-cyan-50 .w-14.h-14 svg {
+      width: 1.5rem !important; /* 24px = w-6 to match Applied Systems section */
+      height: 1.5rem !important; /* 24px = h-6 */
+    }
+    
+    /* 3. LEARNINGS & REFLECTIONS - Mobile Accordion */
+    /* Convert to accordion pattern on mobile only, preserve desktop layout */
+    .learnings-accordion-item {
+      /* Accordion container styling - mobile only */
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Accordion button/trigger - mobile only */
+    .learnings-accordion-trigger {
+      position: relative;
+      padding-right: 2.5rem !important; /* Space for chevron */
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation; /* Improve touch response */
+    }
+    
+    /* Chevron indicator - mobile only */
+    .learnings-accordion-trigger::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.25rem;
+      height: 1.25rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: transform 0.3s ease;
+      pointer-events: none; /* Don't interfere with click */
+    }
+    
+    /* Expanded state - rotate chevron */
+    .learnings-accordion-item[aria-expanded='true'] .learnings-accordion-trigger::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    
+    /* Accordion content - hidden by default on mobile, visible on desktop */
+    .learnings-accordion-item > div[role='region'] {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.2s ease-out;
+      opacity: 0;
+      margin-top: 0;
+    }
+    
+    /* Expanded content - visible */
+    .learnings-accordion-item[aria-expanded='true'] > div[role='region'] {
+      max-height: 2000px; /* Large enough for content */
+      opacity: 1;
+      margin-top: 1rem;
+    }
+    
+    /* Desktop: Always show content (override mobile styles) */
+    @media (min-width: 769px) {
+      .learnings-accordion-item > div[role='region'] {
+        max-height: none !important;
+        opacity: 1 !important;
+        margin-top: 0 !important;
+      }
+      
+      .learnings-accordion-trigger {
+        cursor: default !important;
+        padding-right: 0 !important;
+      }
+      
+      .learnings-accordion-trigger::after {
+        display: none !important;
+      }
+    }
+
+    /* ===== PREVENT HORIZONTAL SCROLLING ON MOBILE ===== */
+    /* Fix horizontal overflow issues on trust-framework-ai-travel page */
+    
+    /* Root-level overflow prevention */
+    html {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      position: relative;
+    }
+    
+    body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      position: relative;
+      width: 100%;
+    }
+    
+    /* Main container - prevent overflow */
+    main {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100%;
+    }
+    
+    /* Ensure all sections respect viewport width */
+    section {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      width: 100%;
+    }
+    
+    /* Container classes - ensure they don't exceed viewport */
+    .container,
+    [class*="container"] {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      width: 100%;
+      padding-left: 1.5rem; /* px-6 = 24px */
+      padding-right: 1.5rem;
+      box-sizing: border-box;
+    }
+    
+    /* Max-width utilities - constrain on mobile */
+    [class*="max-w-"] {
+      max-width: 100% !important;
+      box-sizing: border-box;
+    }
+    
+    /* Fix whitespace-nowrap elements that might overflow */
+    .whitespace-nowrap {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    /* Fix absolute positioned elements - ensure they don't extend beyond viewport */
+    /* Only constrain width, don't override positioning */
+    [class*="absolute"] {
+      max-width: 100vw;
+    }
+    
+    /* Fix elements with percentage-based positioning that might overflow */
+    /* Only apply to elements that might actually overflow */
+    [style*="left"][style*="%"]:not([style*="left: 0"]):not([style*="left: 50"]),
+    [style*="right"][style*="%"]:not([style*="right: 0"]):not([style*="right: 50"]) {
+      /* Ensure percentage-based positioning doesn't cause overflow */
+      max-width: 100vw;
+    }
+    
+    /* Fix transforms - ensure they don't push content outside viewport */
+    [style*="transform"] {
+      /* Contain transforms within viewport */
+      transform-origin: center;
+    }
+    
+    /* Fix wide images and media - ensure they respect container width */
+    img,
+    video,
+    iframe,
+    svg {
+      max-width: 100% !important;
+      height: auto;
+      display: block;
+    }
+    
+    /* Fix grid and flex containers */
+    .grid,
+    .flex,
+    [class*="grid"],
+    [class*="flex"] {
+      max-width: 100%;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    
+    /* Fix padding that might cause overflow when combined with width */
+    /* Ensure box-sizing is border-box for containers with padding */
+    .container,
+    [class*="container"],
+    section,
+    [class*="px-"] {
+      box-sizing: border-box;
+    }
+    
+    /* Specific fix for Trust Framework Visual component */
+    /* Ensure 3D transforms and perspective don't cause overflow */
+    [style*="perspective"],
+    [style*="transformStyle"],
+    [style*="translateZ"] {
+      overflow: hidden !important;
+      max-width: 100% !important;
+      contain: layout style paint;
+    }
+    
+    /* Fix motion.div elements that might overflow */
+    [class*="motion"] {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    
+    /* Fix any elements with negative margins */
+    [class*="-m"],
+    [style*="margin"][style*="-"] {
+      /* Ensure negative margins don't cause horizontal scroll */
+      max-width: calc(100vw + 2rem); /* Reasonable limit */
+    }
+    
+    /* Fix wide percentage widths that might exceed viewport */
+    [class*="w-["],
+    [style*="width"][style*="%"] {
+      max-width: 100%;
+    }
+    
+    /* Fix viewport width units that might cause overflow */
+    [class*="max-w-["][class*="vw"],
+    [style*="max-width"][style*="vw"] {
+      max-width: 100% !important;
+    }
+    
+    /* Fix TrustFrameworkVisual component - ensure 3D transforms are contained */
+    /* Target the component wrapper */
+    .relative.w-full.max-w-md {
+      max-width: 100% !important;
+      overflow: hidden;
+    }
+    
+    /* Fix elements with percentage widths inside absolute positioned parents */
+    [class*="absolute"] [class*="w-["],
+    [class*="absolute"] [style*="width"][style*="%"] {
+      max-width: 100%;
+    }
+    
+    /* Fix any table or pre elements that might overflow */
+    table,
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+      display: block;
+    }
+
+    /* ===== TRUST FRAMEWORK PAGE - MOBILE TYPOGRAPHY ACCESSIBILITY ===== */
+    /* Ensure all font sizes meet WCAG 2.1 AA standards on trust-framework-ai-travel page */
+    
+    /* Audience & Research Section (#research-audience) */
+    #research-audience p.text-sm:not(.uppercase):not(.font-semibold),
+    #research-audience .text-gray-300.text-sm,
+    #research-audience .text-gray-500.text-xs:not(.uppercase),
+    #research-audience .text-gray-400.text-xs:not(.uppercase) {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    #research-audience .text-xs.uppercase,
+    #research-audience .text-xs.font-semibold {
+      font-size: 0.875rem !important; /* 14px for labels */
+      line-height: 1.4 !important;
+    }
+    
+    /* Observed Travel Frictions Section (#design-exploration) */
+    #design-exploration p.text-sm:not(.uppercase),
+    #design-exploration .text-gray-700.text-sm,
+    #design-exploration .text-gray-500.text-xs:not(.uppercase),
+    #design-exploration p.italic {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    #design-exploration .text-xs.text-gray-500:not(.uppercase) {
+      font-size: 0.875rem !important; /* 14px for citations */
+      line-height: 1.4 !important;
+    }
+    
+    /* Concept & Strategy Section (#designs-strategy) */
+    #designs-strategy p.text-sm:not(.uppercase),
+    #designs-strategy p.text-base,
+    #designs-strategy p.text-lg,
+    #designs-strategy .text-gray-600,
+    #designs-strategy .text-gray-700 {
+      font-size: 1rem !important; /* 16px minimum */
+      line-height: 1.5 !important;
+    }
+    
+    /* System Overview Section (Architecture) - bg-zinc-950 */
+    section.bg-zinc-950 p.text-sm:not(.uppercase),
+    section.bg-zinc-950 .text-gray-300.text-sm,
+    section.bg-zinc-950 .text-gray-400.text-sm,
+    section.bg-zinc-950 .text-gray-400.text-xs:not(.uppercase),
+    section.bg-zinc-950 .text-white.text-sm {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    section.bg-zinc-950 .text-xs.uppercase,
+    section.bg-zinc-950 .text-xs.font-semibold,
+    section.bg-zinc-950 .text-xs.font-medium {
+      font-size: 0.875rem !important; /* 14px for labels */
+      line-height: 1.4 !important;
+    }
+    
+    section.bg-zinc-950 .font-mono.text-sm {
+      font-size: 0.875rem !important; /* 14px for code */
+      line-height: 1.5 !important;
+    }
+    
+    /* Value Proposition Section - bg-gray-50 with specific heading */
+    section.bg-gray-50 p.text-lg,
+    section.bg-gray-50 .text-gray-700.text-lg {
+      font-size: 1rem !important; /* 16px minimum */
+      line-height: 1.5 !important;
+    }
+    
+    /* Design Evolution Section (#wireframes-ui) */
+    #wireframes-ui p.text-sm:not(.uppercase),
+    #wireframes-ui .text-gray-300.text-sm {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    /* Development & Build Section (#prototyping-ai) */
+    #prototyping-ai p.text-sm:not(.uppercase),
+    #prototyping-ai .text-gray-300.text-sm,
+    #prototyping-ai .text-amber-300.text-sm {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    #prototyping-ai .rounded-full.text-sm {
+      font-size: 0.875rem !important; /* 14px for badges */
+      line-height: 1.4 !important;
+      padding: 0.375rem 0.75rem !important;
+    }
+    
+    /* Launch & Testing Section (#outcomes-launch) */
+    #outcomes-launch p.text-sm:not(.uppercase),
+    #outcomes-launch .text-gray-300.text-sm {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    #outcomes-launch .rounded-full.text-sm {
+      font-size: 0.875rem !important; /* 14px for badges */
+      line-height: 1.4 !important;
+      padding: 0.375rem 0.75rem !important;
+    }
+    
+    /* Solution Section - bg-white */
+    section.bg-white p.text-lg,
+    section.bg-white .text-gray-700.text-lg {
+      font-size: 1rem !important; /* 16px minimum */
+      line-height: 1.5 !important;
+    }
+    
+    /* Live Demo Section - bg-white */
+    section.bg-white p.text-sm:not(.uppercase),
+    section.bg-white .text-gray-600.text-sm {
+      font-size: 1rem !important; /* 16px for body text */
+      line-height: 1.5 !important;
+    }
+    
+    /* Challenge Section - bg-white */
+    section.bg-white .text-gray-700.text-lg {
+      font-size: 1rem !important; /* 16px minimum */
+      line-height: 1.5 !important;
+    }
+    
+    /* Headings - ensure proper sizing across trust-framework sections */
+    #research-audience h2.text-3xl,
+    #design-exploration h2.text-3xl,
+    #designs-strategy h2.text-3xl,
+    #wireframes-ui h2.text-3xl,
+    #prototyping-ai h2.text-4xl,
+    #outcomes-launch h2.text-3xl {
+      font-size: clamp(1.5rem, 4vw, 1.875rem) !important;
+      line-height: 1.2 !important;
+    }
+    
+    #research-audience h3.text-xl,
+    #design-exploration h4.text-xl,
+    #designs-strategy h3.text-xl,
+    section.bg-zinc-950 h3.text-xl {
+      font-size: clamp(1.25rem, 3.5vw, 1.5rem) !important;
+      line-height: 1.3 !important;
+    }
+    
+    #research-audience h4.text-lg,
+    #design-exploration h4.text-lg,
+    section.bg-zinc-950 h4.text-lg {
+      font-size: clamp(1.125rem, 3vw, 1.25rem) !important;
+      line-height: 1.3 !important;
+    }
+    
+    /* Statistics numbers */
+    #research-audience .text-3xl.font-bold {
+      font-size: clamp(1.75rem, 5vw, 1.875rem) !important;
+      line-height: 1.2 !important;
+    }
+    
+    /* General body text fixes for trust-framework page sections */
+    #research-audience p:not(.text-xs):not(.text-sm):not(.text-xl):not(.text-2xl):not(.text-3xl),
+    #design-exploration p:not(.text-xs):not(.text-sm):not(.text-xl):not(.text-2xl):not(.text-3xl),
+    #designs-strategy p:not(.text-xs):not(.text-sm):not(.text-xl):not(.text-2xl):not(.text-3xl) {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+    }
   }
 
   /* Video frame container with stable aspect ratio - prevents layout shift */
@@ -194,6 +711,7 @@ body {
     aspect-ratio: 16 / 9; /* adjust to match actual video ratio */
     background: #000;
     overflow: hidden;
+    /* Remove min-height fallback - aspect-ratio handles sizing */
   }
 
   /* Travelogue section - scoped video and image styling */
@@ -255,6 +773,29 @@ body {
     height: 0;
     pointer-events: none;
     visibility: hidden;
+  }
+
+  /* Prevent card flicker on mobile - stabilize layout and GPU compositing */
+  @media (max-width: 768px) {
+    /* Design Work section cards - prevent flicker from layout shifts */
+    #work .group {
+      /* Ensure stable layout - prevent re-triggered animations */
+      transform: translateZ(0); /* Force GPU layer for smooth compositing */
+      backface-visibility: hidden; /* Prevent flicker from backface rendering */
+      will-change: auto; /* Let browser optimize, don't force will-change */
+    }
+
+    /* Prevent opacity/transform animation conflicts that cause flicker */
+    #work a.group {
+      /* Stable rendering layer */
+      isolation: isolate;
+    }
+
+    /* Ensure cards render consistently without layout shifts */
+    #work .grid {
+      /* Prevent grid layout shifts */
+      contain: layout;
+    }
   }
   
 

@@ -412,8 +412,8 @@ export default function AISandboxPage() {
                   </p>
                   <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center gap-2 text-gray-600 font-medium">
+                    <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
                       <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
-                      <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
                     </div>
                     <Link 
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
@@ -488,7 +488,8 @@ export default function AISandboxPage() {
       </section>
 
       {/* Applied Systems Section */}
-      <section className="pt-12 md:pt-16 pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+      {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
+      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -380,11 +380,11 @@ export default function HomePage() {
             {/* Video Container */}
             <div className="mt-8">
               {/* Container with aspect-ratio to prevent layout shift */}
+              {/* Remove minHeight - aspect-ratio handles sizing properly on all modern browsers */}
               <div 
                 className="relative w-full rounded-3xl overflow-hidden"
                 style={{ 
-                  aspectRatio: '16 / 9',
-                  minHeight: '400px' /* Fallback for older browsers */
+                  aspectRatio: '16 / 9'
                 }}
               >
                 <iframe

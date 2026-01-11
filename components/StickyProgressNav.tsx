@@ -34,12 +34,17 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
 
     // Find which section is currently in view
     let currentSection = '';
-    const scrollOffset = windowHeight * 0.3; // Offset for better UX
+    // Account for fixed navbars: main nav (80px) + mobile sticky nav (60px on mobile) + buffer
+    const isMobile = window.innerWidth < 768;
+    const navbarOffset = isMobile ? 160 : 100; // Match scroll-margin-top values
+    const scrollOffset = navbarOffset + 50; // Additional buffer for better detection
 
     for (let i = sectionElements.length - 1; i >= 0; i--) {
       const element = sectionElements[i].element;
       if (element) {
         const rect = element.getBoundingClientRect();
+        // Check if section top is at or above the offset threshold
+        // This accounts for the navbar heights
         if (rect.top <= scrollOffset) {
           currentSection = sectionElements[i].id;
           break;
@@ -117,48 +122,51 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
     if (element) {
       setIsScrolling(true);
       
-      // Calculate proper offset based on screen size
+      // Calculate proper offset accounting for fixed navbars
+      // Main nav (80px) + sticky nav (60px on mobile) + buffer
       const isMobile = window.innerWidth < 768;
-      const mainNavHeight = 80; // Main navbar height
-      const stickyNavHeight = isMobile ? 60 : 0; // Sticky progress nav height on mobile
-      const totalOffset = mainNavHeight + stickyNavHeight + 20; // Extra 20px for breathing room
+      const offset = isMobile ? 160 : 120; // Match the offset used in handleScroll detection
       
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - totalOffset;
-
-      // Enhanced smooth scroll with better performance and accessibility
-      const startPosition = window.scrollY;
-      const distance = offsetPosition - startPosition;
-      const duration = Math.min(Math.abs(distance) / 1.5, 1000); // Max 1000ms, faster scroll
-      let startTime: number | null = null;
-
-      // Improved easing function for smoother animation
-      const easeInOutCubic = (t: number): number => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-
-      const animateScroll = (currentTime: number) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const easedProgress = easeInOutCubic(progress);
+      // Manually calculate scroll position with offset
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - offset;
+      
+      // Smooth scroll to calculated position
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Track scroll completion more reliably
+      let lastScrollPosition = window.pageYOffset;
+      let scrollCheckCount = 0;
+      const maxScrollChecks = 20; // Check for up to 2 seconds (20 * 100ms)
+      
+      const checkScrollComplete = () => {
+        const currentScrollPosition = window.pageYOffset;
+        scrollCheckCount++;
         
-        window.scrollTo(0, startPosition + distance * easedProgress);
-        
-        if (progress < 1) {
-          scrollAnimationRef.current = requestAnimationFrame(animateScroll);
-        } else {
-          // Animation complete
-          scrollAnimationRef.current = null;
+        // If scroll position hasn't changed significantly, consider scroll complete
+        if (Math.abs(currentScrollPosition - lastScrollPosition) < 1 || scrollCheckCount >= maxScrollChecks) {
           setIsScrolling(false);
+          
+          // Manually set the active section to ensure it updates
+          setActiveSection(sectionId);
+          
+          // Also trigger scroll handler and event to ensure consistency
+          handleScroll();
+          window.dispatchEvent(new Event('scroll'));
           
           // Focus the target element for accessibility
           element.focus({ preventScroll: true });
+        } else {
+          lastScrollPosition = currentScrollPosition;
+          // Check again in 100ms
+          setTimeout(checkScrollComplete, 100);
         }
       };
-
-      // Use requestAnimationFrame for consistent performance
-      scrollAnimationRef.current = requestAnimationFrame(animateScroll);
+      
+      // Start checking after initial scroll delay
+      setTimeout(checkScrollComplete, 300);
     }
   };
 
@@ -227,7 +235,10 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
           y: isVisible ? 0 : -20
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="md:hidden fixed top-20 left-0 right-0 z-40 px-6"
+        className="md:hidden fixed left-0 right-0 z-40 px-6"
+        style={{
+          top: 'calc(80px + env(safe-area-inset-top, 0px))' // Main nav (80px) + safe area
+        }}
         role="navigation"
         aria-label="Page sections navigation"
       >

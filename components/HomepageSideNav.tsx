@@ -166,49 +166,31 @@ export default function HomepageSideNav() {
     return `${baseClasses} text-neutral-500 opacity-0 group-hover:opacity-100`;
   };
 
-  // Custom scroll handler for Work section that adds extra offset on initial load
-  const handleWorkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  // Generic mobile anchor scroll handler - uses CSS scroll-margin-top for offset
+  // CSS scroll-margin-top handles the navbar overlap automatically
+  const handleAnchorClick = (sectionId: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     
-    const target = document.getElementById('work');
+    const target = document.getElementById(sectionId);
     if (!target) {
-      window.location.href = '#work';
+      window.location.href = `#${sectionId}`;
       return;
     }
 
     // Update URL hash
-    window.history.pushState(null, '', '#work');
+    window.history.pushState(null, '', `#${sectionId}`);
 
-    const scrollToWork = () => {
-      // Force reflow for accurate measurements
-      target.offsetHeight;
-      document.body.offsetHeight;
-
-      const rect = target.getBoundingClientRect();
-      const scrollPosition = window.scrollY;
-      const absoluteTop = rect.top + scrollPosition;
-      
-      // Base offset
-      let offset = 100;
-      
-      // Add extra offset on initial page load (before page is fully loaded)
-      if (isInitialLoadRef.current && !pageLoadedRef.current) {
-        offset += 1400; // Extra 1400px on initial load to account for content not yet rendered
-      }
-      
-      const finalPosition = Math.max(absoluteTop - offset, 0);
-      
-      window.scrollTo({
-        top: finalPosition,
-        behavior: 'smooth'
+    const scrollToSection = () => {
+      // Use scrollIntoView which respects CSS scroll-margin-top
+      // This is more reliable than manual calculations
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
-
-      // Mark that we've scrolled at least once (no longer initial load)
-      isInitialLoadRef.current = false;
 
       // Update active section after scroll
       setTimeout(() => {
-        setActiveSection('work');
+        setActiveSection(sectionId);
         window.dispatchEvent(new Event('scroll'));
       }, 100);
     };
@@ -216,10 +198,13 @@ export default function HomepageSideNav() {
     // Small delay to ensure DOM is ready
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        scrollToWork();
+        scrollToSection();
       });
     });
   };
+
+  // Backward compatibility - keep handleWorkClick as alias
+  const handleWorkClick = handleAnchorClick('work');
 
   return (
     <>
@@ -292,8 +277,12 @@ export default function HomepageSideNav() {
       </nav>
 
       {/* Mobile Navigation - Floating Top Nav (matches project pages design) */}
+      {/* Raised position: top-16 (64px) + safe-area-inset-top for better thumb reach */}
       <nav 
-        className="lg:hidden fixed top-20 left-0 right-0 z-40 px-6"
+        className="lg:hidden fixed left-0 right-0 z-40 px-6"
+        style={{
+          top: 'calc(env(safe-area-inset-top, 0px) + 64px)' /* 64px base + safe area */
+        }}
         aria-label="Page sections navigation"
       >
         <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50">
