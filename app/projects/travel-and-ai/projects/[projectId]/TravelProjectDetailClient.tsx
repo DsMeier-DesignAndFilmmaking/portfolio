@@ -110,7 +110,7 @@ const TrustFrameworkVisual = () => {
                   <div className="w-12 h-12 mx-auto mb-2 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center backdrop-blur-sm">
                     <Sparkles className="w-6 h-6 text-cyan-400" />
                   </div>
-                  <p className="text-xs text-cyan-300/70 font-medium">{label}</p>
+                  <p className="text-sm md:text-xs text-cyan-300/70 font-medium">{label}</p>
                 </motion.div>
               ))}
             </div>
@@ -201,7 +201,7 @@ const TrustFrameworkVisual = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}
-                className="text-xs font-semibold text-cyan-300 uppercase tracking-wider"
+                className="text-sm md:text-xs font-semibold text-cyan-300 uppercase tracking-wider"
               >
                 Trust & Authenticity Framework
               </motion.p>
@@ -239,7 +239,7 @@ const TrustFrameworkVisual = () => {
                 className="flex items-center gap-2 px-2.5 py-1 bg-cyan-500/20 border border-cyan-400/40 rounded-lg"
               >
                 <Shield className="w-3.5 h-3.5 text-cyan-400" />
-                <span className="text-xs font-semibold text-cyan-300">AI Verified</span>
+                <span className="text-sm md:text-xs font-semibold text-cyan-300">AI Verified</span>
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
@@ -251,23 +251,305 @@ const TrustFrameworkVisual = () => {
             
             {/* Destination */}
             <div className="mb-2">
-              <h3 className="text-sm font-bold text-white mb-1">Santorini Retreat</h3>
-              <p className="text-xs text-gray-400">Cultural & Historical Experience</p>
+              <h3 className="text-base md:text-sm font-bold text-white mb-1">Santorini Retreat</h3>
+              <p className="text-sm md:text-xs text-gray-400">Cultural & Historical Experience</p>
             </div>
             
             {/* Verification Details */}
             <div className="space-y-1.5 pt-2 border-t border-gray-700/50">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-3 h-3 text-cyan-400 flex-shrink-0" />
-                <span className="text-xs text-gray-300">3 Verified Sources</span>
+                <span className="text-sm md:text-xs text-gray-300">3 Verified Sources</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-3 h-3 text-cyan-400 flex-shrink-0" />
-                <span className="text-xs text-gray-300">Updated 2 days ago</span>
+                <span className="text-sm md:text-xs text-gray-300">Updated 2 days ago</span>
               </div>
             </div>
           </div>
         </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// Social Opportunity Matching Module - System Diagram
+const SocialOpportunityMatchingVisual = () => {
+  // Matching signals for input
+  const matchingSignals = [
+    { label: 'Proximity', icon: MapPin },
+    { label: 'Shared Interests', icon: Sparkles },
+    { label: 'Schedule Gaps', icon: Clock },
+  ];
+
+  // Matching modules
+  const matchingModules = [
+    { name: 'Proximity Detector', icon: MapPin },
+    { name: 'Interest Matcher', icon: Sparkles },
+    { name: 'Schedule Analyzer', icon: Clock },
+  ];
+
+  return (
+    <div className="relative w-full max-w-7xl lg:max-w-5xl mx-auto -mx-6 lg:mx-auto px-0 lg:px-6">
+      {/* Main Architecture Container */}
+      <div className="relative bg-gradient-to-br from-purple-950/98 via-pink-900/98 to-purple-950/98 rounded-xl border border-purple-800/50 shadow-2xl overflow-hidden backdrop-blur-xl">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="grid grid-cols-10 grid-rows-8 h-full w-full">
+            {[...Array(80)].map((_, i) => (
+              <div key={i} className="border border-pink-500/20" />
+            ))}
+          </div>
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 p-6 md:p-8 lg:p-10">
+          {/* Vertical Stack Layout */}
+          <div className="flex flex-col items-center gap-6 md:gap-8">
+            
+            {/* Top: Matching Signals Input */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full flex flex-col items-center"
+            >
+              <div className="mb-4 text-center">
+                <p className="text-sm md:text-base font-medium text-pink-500 uppercase tracking-[0.2em] mb-4">
+                  Matching Signals
+                </p>
+                <div className="grid grid-cols-2 md:flex md:flex-row items-center justify-center gap-4 md:gap-6">
+                  {matchingSignals.map((signal, i) => {
+                    const Icon = signal.icon;
+                    return (
+                      <motion.div
+                        key={signal.label}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: i * 0.08 }}
+                        className="flex flex-col items-center gap-2"
+                      >
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-purple-800/70 border border-pink-500/25 flex items-center justify-center backdrop-blur-sm">
+                          <Icon className="w-5 h-5 md:w-6 md:h-6 text-pink-500" />
+                        </div>
+                        <span className="text-sm md:text-base font-medium text-purple-400 uppercase tracking-wider">
+                          {signal.label}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {/* Scenario Chip */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="mt-4"
+              >
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-800/60 backdrop-blur-sm rounded-full border border-purple-700/40">
+                  <span className="text-sm md:text-base font-medium text-purple-200">15min</span>
+                  <span className="text-purple-400">·</span>
+                  <span className="text-sm md:text-base font-medium text-purple-200">Low Friction</span>
+                  <span className="text-purple-400">·</span>
+                  <span className="text-sm md:text-base font-medium text-purple-200">Spontaneous</span>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Flow Arrow from Input */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="relative w-full flex items-center justify-center"
+            >
+              <motion.div
+                animate={{
+                  y: [0, 4, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{ willChange: 'transform' }}
+              >
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-purple-700 rotate-90" />
+              </motion.div>
+            </motion.div>
+
+            {/* Center: Matching Engine */}
+            <div className="w-full flex flex-col gap-4 max-w-2xl mx-auto">
+              {/* Matching Engine Container */}
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="relative"
+              >
+                {/* Matching Engine Container - Lighter, Glowing */}
+                <div className="relative bg-gradient-to-br from-purple-800/60 via-pink-700/50 to-purple-800/60 rounded-lg border border-pink-500/40 shadow-xl shadow-pink-500/15 p-5 md:p-6 backdrop-blur-sm">
+                  {/* Pulsing Intelligence Glow */}
+                  <motion.div
+                    animate={{
+                      opacity: [0.2, 0.35, 0.2],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute inset-0 bg-gradient-to-br from-pink-500/15 to-purple-500/15 rounded-lg"
+                  />
+
+                  {/* Matching Engine Label */}
+                  <div className="relative z-10 mb-4 text-center">
+                    <h3 className="text-base md:text-lg font-semibold text-white tracking-tight mb-1">
+                      Social Opportunity Matching Module
+                    </h3>
+                    <p className="text-sm md:text-base font-medium text-pink-300 uppercase tracking-[0.15em] mb-2">
+                      Lightweight Intelligence · Spontaneous Connection · Low Friction
+                    </p>
+                    <div className="h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent" />
+                  </div>
+
+                  {/* Matching Sub-modules */}
+                  <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-3 lg:gap-4">
+                    {matchingModules.map((module, i) => {
+                      const Icon = module.icon;
+                      return (
+                        <React.Fragment key={module.name}>
+                          <motion.div
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                            className="flex flex-col items-center gap-1.5"
+                          >
+                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-purple-900/80 border border-pink-500/30 flex items-center justify-center backdrop-blur-sm">
+                              <Icon className="w-6 h-6 md:w-7 md:h-7 text-pink-300" />
+                            </div>
+                            <p className="text-sm md:text-base font-medium text-purple-200 text-center leading-tight max-w-[120px] md:max-w-[110px]">
+                              {module.name}
+                            </p>
+                          </motion.div>
+                          
+                          {/* Internal flow - horizontal on desktop only */}
+                          {i < matchingModules.length - 1 && (
+                            <motion.div
+                              initial={{ opacity: 0, scaleX: 0 }}
+                              animate={{ opacity: 1, scaleX: 1 }}
+                              transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+                              className="hidden md:block"
+                            >
+                              <motion.div
+                                animate={{
+                                  opacity: [0.3, 0.5, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: i * 0.25,
+                                  ease: 'easeInOut',
+                                }}
+                                className="w-6 h-[1px] bg-gradient-to-r from-pink-400/40 via-pink-400/60 to-pink-400/40"
+                              />
+                            </motion.div>
+                          )}
+                          {/* Vertical flow connector on mobile */}
+                          {i < matchingModules.length - 1 && (
+                            <motion.div
+                              initial={{ opacity: 0, scaleY: 0 }}
+                              animate={{ opacity: 1, scaleY: 1 }}
+                              transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+                              className="md:hidden"
+                            >
+                              <motion.div
+                                animate={{
+                                  opacity: [0.3, 0.5, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: i * 0.25,
+                                  ease: 'easeInOut',
+                                }}
+                                className="w-[1px] h-4 bg-gradient-to-b from-pink-400/40 via-pink-400/60 to-pink-400/40"
+                              />
+                            </motion.div>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Flow Arrow to Output */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="relative w-full flex items-center justify-center"
+            >
+              <motion.div
+                animate={{
+                  y: [0, 4, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0.3,
+                  ease: 'easeInOut',
+                }}
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{ willChange: 'transform' }}
+              >
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-purple-700 rotate-90" />
+              </motion.div>
+            </motion.div>
+
+            {/* Bottom: Social Match Output */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full flex flex-col items-center justify-center"
+            >
+              <div className="flex flex-col items-center justify-center text-center">
+                <p className="text-sm md:text-base font-medium text-pink-300 uppercase tracking-[0.2em] mb-3">
+                  Social Opportunity
+                </p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/40 flex items-center justify-center backdrop-blur-sm mx-auto"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.6, 1, 0.6],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                  >
+                    <Users className="w-8 h-8 md:w-10 md:h-10 text-pink-300" />
+                  </motion.div>
+                </motion.div>
+                <p className="text-sm md:text-base font-medium text-purple-600 mt-2 text-center">
+                  15-minute interaction
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -627,12 +909,24 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [activeIndustrySkin, setActiveIndustrySkin] = useState<'luxury' | 'creative' | 'cultural'>('luxury');
   // Mobile accordion state for Learnings & Reflections section
   const [learningsAccordion, setLearningsAccordion] = useState<Set<string>>(new Set());
+  // Demo state for Living Graph interactive demo
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [demoStage, setDemoStage] = useState<'idle' | 'activating' | 'matching' | 'complete'>('idle');
+  const [activeTravelersCount, setActiveTravelersCount] = useState(13042);
+  const [reciprocalMatchesCount, setReciprocalMatchesCount] = useState(8);
+  const [demoLogs, setDemoLogs] = useState<string[]>([]);
+  const [selectedMatch, setSelectedMatch] = useState<{ name: string; location: string; match: number } | null>(null);
+  // Mobile demo state
+  const [mobileDemoStage, setMobileDemoStage] = useState<'encrypted' | 'scanning' | 'connected'>('encrypted');
+  const [mobileDemoLogs, setMobileDemoLogs] = useState<string[]>([]);
+  const [showConnectionCard, setShowConnectionCard] = useState(false);
   
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
   const isCulturalContextEngine = projectId === 'trust-framework-ai-travel';
   const isTravelPlanningAssistant = projectId === 'context-aware-travel-decision-system';
   const isLocalExperienceFinder = projectId === 'social-graph-driven-travel-network';
+  const isSocialOpportunityMatching = projectId === 'social-opportunity-matching-module';
   const isNarrativeTravelGenerator = projectId === 'narrative-driven-travel-experience-generator';
   const isOtherProject = false; // All projects now have full implementations
 
@@ -645,6 +939,28 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         { id: 'scenarios-failure', label: 'Scenarios & Failure Cases' },
         { id: 'success-case', label: 'Success Case' },
         { id: 'business-use', label: 'Business Use' }
+      ]
+    : isLocalExperienceFinder
+    ? [
+        // Social Graph-Driven Travel Network page sections - order matches actual page structure
+        { id: 'research-audience', label: 'Market Friction' },
+        { id: 'design-exploration', label: 'Observed Travel Frictions' },
+        { id: 'designs-strategy', label: 'The Living Graph' },
+        { id: 'spontaneity-core', label: 'The Spontaneity Core' },
+        { id: 'wireframes-ui', label: 'Design Evolution' },
+        { id: 'prototyping-ai', label: 'System Architecture' },
+        { id: 'outcomes-launch', label: 'Launch & Testing' },
+        { id: 'learnings-next', label: 'Learnings & Reflections' }
+      ]
+    : isSocialOpportunityMatching
+    ? [
+        // Social Opportunity Matching Module page sections
+        { id: 'research-audience', label: 'The Problem' },
+        { id: 'design-exploration', label: 'Market Friction' },
+        { id: 'designs-strategy', label: 'The Solution' },
+        { id: 'wireframes-ui', label: 'Technical Architecture' },
+        { id: 'prototyping-ai', label: 'Design Impact' },
+        { id: 'learnings-next', label: 'Learnings & Reflections' }
       ]
     : isCulturalContextEngine
     ? [
@@ -750,6 +1066,101 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
     return undefined;
   }, [isMobile, isMobileVideoLoaded]);
 
+  // Animate counters for demo section
+  useEffect(() => {
+    if (isLocalExperienceFinder) {
+      // Animate active travelers counter
+      const targetActive = 13056;
+      const interval = setInterval(() => {
+        setActiveTravelersCount(prev => {
+          if (prev >= targetActive) {
+            clearInterval(interval);
+            return targetActive;
+          }
+          return prev + Math.floor(Math.random() * 5) + 1;
+        });
+      }, 100);
+
+      // Animate reciprocal matches counter
+      const targetReciprocal = 11;
+      const reciprocalInterval = setInterval(() => {
+        setReciprocalMatchesCount(prev => {
+          if (prev >= targetReciprocal) {
+            clearInterval(reciprocalInterval);
+            return targetReciprocal;
+          }
+          return prev + 1;
+        });
+      }, 300);
+
+      return () => {
+        clearInterval(interval);
+        clearInterval(reciprocalInterval);
+      };
+    }
+    return undefined;
+  }, [isLocalExperienceFinder]);
+
+  // Demo simulation logic
+  useEffect(() => {
+    if (!isDemoOpen) {
+      setDemoStage('idle');
+      setDemoLogs([]);
+      setSelectedMatch(null);
+      return;
+    }
+
+    if (demoStage === 'idle') {
+      return;
+    }
+
+    if (demoStage === 'activating') {
+      const logs = [
+        '[LOG]: Running Proximity Gate (L1)...',
+        '[LOG]: Scanning network for 1st & 2nd degree connections...',
+        '[LOG]: Found 23 potential matches within trust radius'
+      ];
+      
+      let logIndex = 0;
+      const logInterval = setInterval(() => {
+        if (logIndex < logs.length) {
+          setDemoLogs(prev => [...prev, logs[logIndex]]);
+          logIndex++;
+        } else {
+          clearInterval(logInterval);
+          setTimeout(() => setDemoStage('matching'), 500);
+        }
+      }, 800);
+
+      return () => clearInterval(logInterval);
+    }
+
+    if (demoStage === 'matching') {
+      const matchingLogs = [
+        '[LOG]: Verifying Travel DNA (L3)...',
+        '[LOG]: Cross-referencing past trips with network future plans...',
+        '[LOG]: Match Found: User "James B." in Cape Town (89% Vibe Match)'
+      ];
+      
+      let logIndex = 0;
+      const logInterval = setInterval(() => {
+        if (logIndex < matchingLogs.length) {
+          setDemoLogs(prev => [...prev, matchingLogs[logIndex]]);
+          logIndex++;
+          if (logIndex === matchingLogs.length) {
+            setSelectedMatch({ name: 'James B.', location: 'Cape Town', match: 89 });
+            setTimeout(() => setDemoStage('complete'), 500);
+          }
+        } else {
+          clearInterval(logInterval);
+        }
+      }, 1000);
+
+      return () => clearInterval(logInterval);
+    }
+    return undefined;
+  }, [isDemoOpen, demoStage]);
+
   // Handle mobile video loading
   useEffect(() => {
     if (isMobile) {
@@ -790,14 +1201,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               aria-label="Back to projects"
             >
               <FaArrowLeft className="w-5 h-5" />
-              <span className="text-sm font-medium">Back to Travel & AI</span>
+              <span className="text-base md:text-sm font-medium">Back to Travel & AI</span>
             </button>
           </div>
         </div>
       </motion.nav>
 
     {/* Sticky Progress Navigation */}
-    {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant || isNarrativeTravelGenerator) && (
+    {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant || isSocialOpportunityMatching || isNarrativeTravelGenerator) && (
       <StickyProgressNav sections={sections} />
     )}
 
@@ -820,7 +1231,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Spontaneity Engine
               </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200">
                       In Development
                     </span>
                   </div>
@@ -869,7 +1280,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                       aria-label="Explore Working Prototype (Experimental)"
                     >
-                      Explore Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Experimental)</span>
+                      Explore Prototype <span className="ml-2 text-sm md:text-xs opacity-70 font-normal">(Experimental)</span>
                     </a>
                   </nav>
             </motion.div>
@@ -928,7 +1339,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     A Trust Framework for Real-Time Travel AI
                   </h1>
                   <div className="mb-4">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -983,7 +1394,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Context-Aware Travel Decision System (CATDS)
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -1000,19 +1411,19 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                   {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Human-in-the-loop verification and explainability</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Human-in-the-loop verification and explainability</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Context Interpreter:</strong> Semantic context mapping and Decision Vector generation</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Context Interpreter:</strong> Semantic context mapping and Decision Vector generation</span>
                       </div>
                     </div>
                   </div>
@@ -1021,7 +1432,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mb-8 md:mb-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Scenario
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
@@ -1029,7 +1440,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </div>
                       </div>
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Constraint
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
@@ -1051,7 +1462,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {isLocalExperienceFinder && (
+        {isSocialOpportunityMatching && (
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto pt-12 md:pt-16">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
@@ -1062,10 +1473,114 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-1 lg:order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Social Opportunity Matching Module
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                      Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    Lightweight Intelligence for Spontaneous Connection
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through core platform APIs rather than a standalone app.
+                    </p>
+                  </div>
+
+                  {/* Technical Stack */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Proximity Detection:</strong> Real-time location-based matching</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Interest Matching:</strong> Shared preferences and activity detection</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Schedule Gap Analysis:</strong> Identifying 15-minute interaction windows</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Two travelers near each other with shared interests and a 15-minute schedule gap.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Key Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Low-friction, spontaneous interactions only.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <SocialOpportunityMatchingVisual />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isLocalExperienceFinder && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center items-center lg:items-start">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
                     Social Graph-Driven Travel Network
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -1076,28 +1591,28 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Overview Block */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
-                      <strong className="font-semibold">Architecting Trust Hierarchies for Autonomous Social Discovery</strong>
+                      <strong className="font-semibold">Real-Time Network Effects for Spontaneous Global Discovery</strong>
                     </p>
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      To utilize multi-degree social connections and trust hierarchies to filter and rank travel recommendations, demonstrating how an AI Trust Layer handles complex PII (Personally Identifiable Information) in a decentralized context.
+                      Transitioning social capital from passive data to active intelligence. This system leverages ZK-proofs and multi-degree graph analysis to autonomously surface high-trust, low-friction social opportunities without compromising user sovereignty.
                     </p>
                   </div>
                   
                   {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <p className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack: Spatial & Tabular Logic</p>
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Social Graph API:</strong> Data ingestion engine</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Social Graph API:</strong> Serves as the backend for both views, feeding real-time 'Intent' data into the Map (for heat-mapping Trust Clusters) and the Table (for filtered sorting). Continuously mapping 2nd and 3rd-degree trust nodes.</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Logic gate for verification</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Trust Layer:</strong> The 'Validator' — utilizing Zero-Knowledge proofs to verify "Friend-of-a-Friend" status without exposing PII (Personally Identifiable Information)</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Influence Scorer:</strong> Ranking algorithm for "Friend-of-a-Friend" (FofF) validation</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Influence Scorer:</strong> Weights the 'Trust Clusters' on the map, highlighting regions where the user has the highest concentration of verified connections. The prioritization engine weights matches based on shared context, current intent, and historical trust-density.</span>
                       </div>
                     </div>
                   </div>
@@ -1106,15 +1621,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mb-8 md:mb-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Scenario
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          Planning a group trip where "friend-of-a-friend" validation is more valuable than anonymous reviews.
+                          A user opens the <strong>Global Map View</strong> and notices a significant 'Trust Cluster' forming in Tokyo—several 2nd-degree connections are planning trips for the same window. Switching to the <strong>Intent Table</strong>, the user filters by 'Tokyo' to see the specific profiles of those who 'want to visit.' This dual-view allows the traveler to move from a bird's-eye discovery of trends to a granular, verified list of potential social matches.
                         </div>
                       </div>
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Constraint
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
@@ -1162,7 +1677,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                       aria-label="View Design Evolution Video Demo"
                     >
-                      View Figma Prototype <span className="ml-2 text-xs opacity-70 font-normal">(Video Demo)</span>
+                      View Figma Prototype <span className="ml-2 text-sm md:text-sm opacity-70 font-normal">(Video Demo)</span>
                     </a>
                   </nav>
                 </motion.div>
@@ -1170,10 +1685,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
                 >
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                  <div className="relative flex-shrink-0">
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center md:justify-start w-full md:w-auto mx-auto md:mx-0">
+                  <div className="relative flex-shrink-0 flex items-center justify-center">
                       {/* Removed bg-gray-100 and rounded-xl (optional) to ensure no background container is visible */}
                       <div className="overflow-visible"> 
                         <Image
@@ -1189,7 +1704,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         />
                       </div>
                     </div>
-                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12 flex items-center justify-center">
                       {/* Removed rounded-xl, overflow-hidden, shadow-lg, and bg-gray-100 */}
                       <div className="relative">
                         <Image
@@ -1224,7 +1739,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Narrative-Driven Travel Experience Generator
                   </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
                       Research & Development
                     </span>
                   </div>
@@ -1241,27 +1756,27 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                   {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Traveler Intent:</strong> Emotional state and preference analysis</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Traveler Intent:</strong> Emotional state and preference analysis</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust & Authenticity Layer:</strong> Verification and safety overrides</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust & Authenticity Layer:</strong> Verification and safety overrides</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Narrative Engine:</strong> Story generation and emotional arc orchestration</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Narrative Engine:</strong> Story generation and emotional arc orchestration</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-sm text-gray-700"><strong className="font-semibold">Experience Phases:</strong> Arrival, Exploration, and Familiarity state management</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Experience Phases:</strong> Arrival, Exploration, and Familiarity state management</span>
                       </div>
                     </div>
                   </div>
@@ -1270,7 +1785,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mb-8 md:mb-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Scenario
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
@@ -1278,7 +1793,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </div>
                       </div>
                       <div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
                           Key Constraint
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
@@ -1300,7 +1815,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </div>
         )}
-        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isNarrativeTravelGenerator && !isOtherProject)) && (
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isSocialOpportunityMatching && !isNarrativeTravelGenerator && !isOtherProject)) && (
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -1353,7 +1868,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
                           Recommendation systems exhibit popularity bias, systematically favoring frequently-booked experiences and repeatable formats over situationally relevant alternatives, creating the appearance of discovery while reinforcing predictable patterns.
                         </p>
-                        <p className="text-sm text-gray-500 italic">
+                        <p className="text-base md:text-sm text-gray-500 italic">
                           Source: Frontiers in Big Data, Popularity Bias and Filter Bubbles in Recommender Systems, 2023
                         </p>
                       </div>
@@ -1366,7 +1881,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
                           Recommender systems create filter bubbles and echo chambers by overemphasizing content aligned with users' previous interactions, limiting exposure to diverse destinations and experiences while amplifying homogenization effects across user populations.
                         </p>
-                        <p className="text-sm text-gray-500 italic">
+                        <p className="text-base md:text-sm text-gray-500 italic">
                           Source: Microsoft Research, Revisiting Popularity and Demographic Biases in Recommender Evaluation and Effectiveness, 2021
                         </p>
                       </div>
@@ -1379,7 +1894,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
                           Traditional travel recommendation systems rely on static data and predefined user profiles, limiting their effectiveness in dynamic environments where real-time contextual factors such as weather, availability, and situational constraints significantly impact relevance.
                         </p>
-                        <p className="text-sm text-gray-500 italic">
+                        <p className="text-base md:text-sm text-gray-500 italic">
                           Source: MDPI Sensors, R2Tour Real-Time Context-Aware Tourism Recommendation System, 2023
                         </p>
                       </div>
@@ -1392,7 +1907,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
                           Discovery platforms present excessive options without sufficient contextual filtering, contributing to the paradox of choice where abundant options lead to decision fatigue, decreased satisfaction, and increased cognitive load during time-sensitive decision moments.
                         </p>
-                        <p className="text-sm text-gray-500 italic">
+                        <p className="text-base md:text-sm text-gray-500 italic">
                           Source: Annals of Tourism Research, Choice Overload and Decision Quality in Tourism, 2016
                         </p>
                       </div>
@@ -1527,7 +2042,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                               <h4 className="text-white font-semibold text-base">{input.label}</h4>
                             </div>
-                            <p className="text-gray-400 text-sm">{input.desc}</p>
+                            <p className="text-gray-400 text-base md:text-sm">{input.desc}</p>
                             
                             {/* Energy particles */}
                             <motion.div
@@ -1671,26 +2186,26 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           {/* Center Label */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
-                              <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
+                              <div className="text-sm md:text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
                                 The
                               </div>
                               <div className="text-xl md:text-2xl font-bold text-white">
                                 SPONTANEITY AI
                               </div>
-                              <div className="text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
+                              <div className="text-sm md:text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
                                 Engine
                               </div>
                       </div>
                     </div>
                     
                           {/* Ring Labels */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Rules & Constraints
                       </div>
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Context Weighting
                     </div>
-                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
+                          <div className="absolute text-sm md:text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             AI Logic
                   </div>
                         </div>
@@ -1731,7 +2246,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                               <h4 className="text-white font-semibold text-base lg:text-right">{output.label}</h4>
                     </div>
-                            <p className="text-gray-400 text-sm lg:text-right">{output.desc}</p>
+                            <p className="text-gray-400 text-base md:text-sm lg:text-right">{output.desc}</p>
                             
                             {/* Energy particles */}
                             <motion.div
@@ -1761,11 +2276,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Spontaneity Engine Logic</p>
+                      <p className="text-gray-400 text-base md:text-sm mb-2">The Spontaneity Engine Logic</p>
                       <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
                         <div className="text-white font-mono text-sm md:text-base">
                           <div className="mb-2">S<sub>score</sub> = w<sub>1</sub>(L) + w<sub>2</sub>(T) + w<sub>3</sub>(B) - ΣC</div>
-                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                          <div className="text-sm md:text-sm text-gray-400 space-y-1">
                             <div>L, T, B: Location, Time, and Behavior variables</div>
                             <div>w: Dynamic weights based on AI learning</div>
                             <div>C: Constraints (e.g., closing times, budget, travel distance)</div>
@@ -1816,7 +2331,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         className="text-center"
                       >
                         <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4 mx-auto"></div>
-                        <p className="text-white/70 text-sm">Loading video...</p>
+                        <p className="text-white/70 text-base md:text-sm">Loading video...</p>
                       </motion.div>
                     </motion.div>
                   ) : null}
@@ -1939,7 +2454,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Constraint 1: Time-Constrained Decision Windows */}
                   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4">Time-Constrained Decision Windows</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                       Decisions often occur within minutes, not hours. Availability changes in real time for venues, transport, and events. Delayed decisions increase friction and reduce viable options. This constraint requires the system to provide low-latency, actionable output that enables immediate action.
                     </p>
                   </div>
@@ -1947,7 +2462,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Constraint 2: Cognitive Load in Unfamiliar Environments */}
                   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4">Cognitive Load in Unfamiliar Environments</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                       Travelers operate under information overload in unfamiliar settings. Comparing options across multiple platforms increases decision fatigue. Excess choice reduces decision confidence and increases abandonment. This constraint limits the acceptable information density and response complexity the system can present.
                     </p>
                   </div>
@@ -1955,7 +2470,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Constraint 3: Social & Reputational Risk */}
                   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4">Social & Reputational Risk</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                       Acting on recommendations often involves public or interpersonal exposure. Poor suggestions carry social cost, not just inconvenience. Actions that feel awkward, unsafe, or misaligned are avoided regardless of objective quality. This constraint requires the system to incorporate social context awareness in recommendation generation.
                     </p>
                   </div>
@@ -1963,7 +2478,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Constraint 4: Trust, Safety, and Legitimacy Signals */}
                   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4">Trust, Safety, and Legitimacy Signals</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                       Unknown recommendations must signal credibility quickly under time pressure. Users rely on implicit trust markers when explicit verification is impractical. Safety concerns override novelty in unfamiliar settings. This constraint shapes how recommendations are framed and validated within the system interface.
                     </p>
                   </div>
@@ -2424,25 +2939,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="bg-white/5 p-6 rounded-lg border border-white/10">
                         <h4 className="text-white font-semibold mb-3">Decision cost reduction</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
                           Each interaction must require minimal evaluation. Options are pre-filtered by context signals, eliminating comparison overhead.
                         </p>
                       </div>
                       <div className="bg-white/5 p-6 rounded-lg border border-white/10">
                         <h4 className="text-white font-semibold mb-3">Timing sensitivity</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
                           Suggestions are weighted by temporal relevance. Proximity, time of day, and movement state determine when information surfaces.
                         </p>
                       </div>
                       <div className="bg-white/5 p-6 rounded-lg border border-white/10">
                         <h4 className="text-white font-semibold mb-3">Choice reduction through intelligence</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
                           AI narrows the option space before presentation. The system filters rather than aggregates, reducing selection burden.
                         </p>
                       </div>
                       <div className="bg-white/5 p-6 rounded-lg border border-white/10">
                         <h4 className="text-white font-semibold mb-3">Contextual relevance over breadth</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
                           Information is constrained to what is actionable in the current moment. Historical data and future planning are excluded from the primary interface.
                         </p>
                       </div>
@@ -2458,7 +2973,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="mt-16"
                 >
                   <div className="text-center mb-8">
-                    <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+                    <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
                       Iteration explored activation thresholds and constraint testing using Figma and UX Pilot for rapid pattern exploration.
                     </p>
                   </div>
@@ -2591,7 +3106,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <p className="text-amber-300 text-sm font-medium">
+                      <p className="text-amber-300 text-base md:text-sm font-medium">
                     Work In Progress
                   </p>
                     </div>
@@ -2613,7 +3128,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 >
                   <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-8">
-                      <p className="text-gray-400 text-sm max-w-3xl mx-auto leading-relaxed">
+                      <p className="text-gray-400 text-base md:text-sm max-w-3xl mx-auto leading-relaxed">
                         The workflow diagram below shows how responsibilities are separated: AI assists with prompt refinement and code generation, while engineering decisions determine architecture, integration points, and system boundaries.
                       </p>
                     </div>
@@ -2632,7 +3147,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-1 group-hover:text-green-300 transition-colors">ChatGPT</h3>
-                              <p className="text-sm text-gray-400">Writing Prompts</p>
+                              <p className="text-base md:text-sm text-gray-400">Writing Prompts</p>
                             </div>
                           </div>
                         </div>
@@ -2648,7 +3163,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-1 group-hover:text-indigo-300 transition-colors">Gemini</h3>
-                              <p className="text-sm text-gray-400">Logic & Analysis</p>
+                              <p className="text-base md:text-sm text-gray-400">Logic & Analysis</p>
                             </div>
                           </div>
                         </div>
@@ -2695,7 +3210,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
-                              <p className="text-sm text-gray-400">Real iOS Build</p>
+                              <p className="text-base md:text-sm text-gray-400">Real iOS Build</p>
                             </div>
                           </div>
                         </div>
@@ -2710,7 +3225,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
-                              <p className="text-sm text-gray-400">Industry Integration</p>
+                              <p className="text-base md:text-sm text-gray-400">Industry Integration</p>
                             </div>
                           </div>
                         </div>
@@ -2725,7 +3240,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
-                              <p className="text-sm text-gray-400">Client-facing</p>
+                              <p className="text-base md:text-sm text-gray-400">Client-facing</p>
                             </div>
                           </div>
                         </div>
@@ -2745,13 +3260,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <h3 className="text-xl font-bold text-white mb-6">System Ownership</h3>
                     <div className="space-y-4 text-gray-300">
                       <div>
-                        <p className="text-sm mb-2"><span className="text-emerald-400 font-medium">Currently being implemented:</span> iOS SwiftUI app with offline-first local storage (Realm). Core context processing logic runs on-device.</p>
+                        <p className="text-base md:text-sm mb-2"><span className="text-emerald-400 font-medium">Currently being implemented:</span> iOS SwiftUI app with offline-first local storage (Realm). Core context processing logic runs on-device.</p>
                       </div>
                       <div>
-                        <p className="text-sm mb-2"><span className="text-amber-400 font-medium">Partially operational:</span> Sync gateway for content updates. Background sync occurs opportunistically when connectivity is available.</p>
+                        <p className="text-base md:text-sm mb-2"><span className="text-amber-400 font-medium">Partially operational:</span> Sync gateway for content updates. Background sync occurs opportunistically when connectivity is available.</p>
                       </div>
                       <div>
-                        <p className="text-sm mb-2"><span className="text-gray-400 font-medium">Simulated under controlled conditions:</span> AI recommendation engine uses lightweight on-device models. Cloud-based inference is stubbed for testing.</p>
+                        <p className="text-base md:text-sm mb-2"><span className="text-gray-400 font-medium">Simulated under controlled conditions:</span> AI recommendation engine uses lightweight on-device models. Cloud-based inference is stubbed for testing.</p>
                       </div>
                     </div>
                   </motion.div>
@@ -2765,13 +3280,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <h3 className="text-xl font-bold text-white mb-6">Integration Points</h3>
                     <div className="space-y-4 text-gray-300">
                       <div>
-                        <p className="text-sm mb-2">Third-party services (Firebase, Supabase) handle data persistence and sync orchestration. The system owns the sync logic and conflict resolution.</p>
+                        <p className="text-base md:text-sm mb-2">Third-party services (Firebase, Supabase) handle data persistence and sync orchestration. The system owns the sync logic and conflict resolution.</p>
                       </div>
                       <div>
-                        <p className="text-sm mb-2">AI services (OpenAI, LangChain) provide inference capabilities. The system owns prompt engineering, context weighting, and response filtering.</p>
+                        <p className="text-base md:text-sm mb-2">AI services (OpenAI, LangChain) provide inference capabilities. The system owns prompt engineering, context weighting, and response filtering.</p>
                       </div>
                       <div>
-                        <p className="text-sm mb-2">Widget and API plugin architectures are designed for external integration, but client implementations are not yet deployed.</p>
+                        <p className="text-base md:text-sm mb-2">Widget and API plugin architectures are designed for external integration, but client implementations are not yet deployed.</p>
                       </div>
                     </div>
                   </motion.div>
@@ -2845,7 +3360,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 >
                   <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-8">
-                      <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+                      <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
                         Screenshots document real builds across iteration cycles, showing how failures were discovered and corrected through device testing.
                       </p>
                     </div>
@@ -3308,23 +3823,23 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                   <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
                     <div className="text-3xl font-bold text-amber-400 mb-2">62%</div>
-                    <div className="text-gray-300 text-sm mb-2">Distrust AI recommendations without source verification</div>
-                    <div className="text-gray-400 text-xs italic">System requirement: Explainability and attribution become mandatory system outputs. Every recommendation must expose its source chain.</div>
-                    <div className="text-gray-500 text-xs mt-2">— Travel Industry Trust Survey 2024</div>
+                    <div className="text-gray-300 text-base md:text-sm mb-2">Distrust AI recommendations without source verification</div>
+                    <div className="text-gray-400 text-sm md:text-xs italic">System requirement: Explainability and attribution become mandatory system outputs. Every recommendation must expose its source chain.</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Industry Trust Survey 2024</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
                     <div className="text-3xl font-bold text-cyan-400 mb-2">78%</div>
-                    <div className="text-gray-300 text-sm mb-2">Require origin and credibility visibility</div>
-                    <div className="text-gray-400 text-xs italic">System requirement: Provenance visibility is non-negotiable. The system must surface data origin, freshness indicators, and credibility signals at the architectural level.</div>
-                    <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
+                    <div className="text-gray-300 text-base md:text-sm mb-2">Require origin and credibility visibility</div>
+                    <div className="text-gray-400 text-sm md:text-xs italic">System requirement: Provenance visibility is non-negotiable. The system must surface data origin, freshness indicators, and credibility signals at the architectural level.</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Phocuswright Consumer Survey</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
                     <div className="text-3xl font-bold text-emerald-400 mb-2">45%</div>
-                    <div className="text-gray-300 text-sm mb-2">Have been misled by fake or outdated information</div>
-                    <div className="text-gray-400 text-xs italic">System requirement: Conflict resolution logic must operate before recommendations reach users. The system must detect and resolve data conflicts, not defer to single sources.</div>
-                    <div className="text-gray-500 text-xs mt-2">— Trust & Authenticity Research</div>
+                    <div className="text-gray-300 text-base md:text-sm mb-2">Have been misled by fake or outdated information</div>
+                    <div className="text-gray-400 text-sm md:text-xs italic">System requirement: Conflict resolution logic must operate before recommendations reach users. The system must detect and resolve data conflicts, not defer to single sources.</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Trust & Authenticity Research</div>
                   </div>
                 </div>
                 
@@ -3332,27 +3847,27 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 {/* REFRAME: Competitive analysis reframed as system failure modes and trust anti-patterns */}
                 <div className="mt-12">
                   <h3 className="text-xl font-semibold mb-8 text-white text-center">System Failure Modes</h3>
-                  <p className="text-gray-400 text-sm text-center mb-8 max-w-3xl mx-auto">
+                  <p className="text-gray-400 text-base md:text-sm text-center mb-8 max-w-3xl mx-auto">
                     Current approaches fail because they treat trust as a presentation problem rather than an architectural constraint. These patterns illustrate systemic failures that must be avoided.
                   </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Single-Source Trust</h4>
-                      <p className="text-gray-300 text-sm mb-4">Review platforms (TripAdvisor, Yelp, Google Reviews) rely on unverified user-generated content, creating a single-source dependency. This architecture fails when the source is compromised or outdated, leaving no fallback mechanism.</p>
-                      <div className="text-xs text-gray-400 italic">Failure pattern: No verification layer, no conflict detection, no audit trail</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">Review platforms (TripAdvisor, Yelp, Google Reviews) rely on unverified user-generated content, creating a single-source dependency. This architecture fails when the source is compromised or outdated, leaving no fallback mechanism.</p>
+                      <div className="text-sm md:text-xs text-gray-400 italic">Failure pattern: No verification layer, no conflict detection, no audit trail</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Opaque Generation</h4>
-                      <p className="text-gray-300 text-sm mb-4">AI assistants (ChatGPT, Claude, Perplexity) generate recommendations without exposing source attribution or data provenance. The system architecture treats trust as an output, not an input—making verification impossible by design.</p>
-                      <div className="text-xs text-gray-400 italic">Failure pattern: No provenance tracking, no explainability layer, no source chain</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">AI assistants (ChatGPT, Claude, Perplexity) generate recommendations without exposing source attribution or data provenance. The system architecture treats trust as an output, not an input—making verification impossible by design.</p>
+                      <div className="text-sm md:text-xs text-gray-400 italic">Failure pattern: No provenance tracking, no explainability layer, no source chain</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Commercial Bias Override</h4>
-                      <p className="text-gray-300 text-sm mb-4">Booking platforms (Booking.com, Airbnb, Expedia) prioritize availability and promotion over authenticity verification. The system architecture allows commercial signals to override trust signals, creating a fundamental conflict of interest.</p>
-                      <div className="text-xs text-gray-400 italic">Failure pattern: Trust signals subordinated to business logic, no separation of concerns</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">Booking platforms (Booking.com, Airbnb, Expedia) prioritize availability and promotion over authenticity verification. The system architecture allows commercial signals to override trust signals, creating a fundamental conflict of interest.</p>
+                      <div className="text-sm md:text-xs text-gray-400 italic">Failure pattern: Trust signals subordinated to business logic, no separation of concerns</div>
                     </div>
                   </div>
                   
@@ -3364,8 +3879,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       These constraints force a fundamental architectural shift: trust must be computed, not assumed. The system moves from a binary trust model (True/False) to a probabilistic one, where Consensus Logic arbitrates between data sources rather than averaging them. When the system detects a conflict—a Google Maps 'Closed' status contradicted by real-time social activity—it doesn't pick a side. It documents the resolution logic in an Audit Trail, exposing the Source Chain so users can inspect why a recommendation was deemed trustworthy despite conflicting signals.
                     </p>
                     <div className="mt-4 pt-4 border-t border-cyan-500/30">
-                      <p className="text-gray-300 text-sm font-medium mb-2">System Flow:</p>
-                      <div className="text-gray-400 text-sm font-mono space-y-1">
+                      <p className="text-gray-300 text-base md:text-sm font-medium mb-2">System Flow:</p>
+                      <div className="text-gray-400 text-base md:text-sm font-mono space-y-1">
                         <div>Inputs (Multiple Sources) → Consensus Logic (Arbitration)</div>
                         <div>→ Conflict Detection → Audit Trail (Resolution Documentation)</div>
                         <div>→ User Attribution (Source Chain Exposure)</div>
@@ -3474,7 +3989,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-red-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I followed an AI recommendation for a restaurant that turned out to be <span className="font-semibold text-red-700">closed for months</span>. The AI had no way to verify if the information was current or accurate."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -3483,7 +3998,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-red-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"ChatGPT recommended a 'hidden gem' that was actually a <span className="font-semibold text-red-700">tourist trap with fake reviews</span>. I had no way to verify the source of the recommendation."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -3505,7 +4020,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-orange-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to know where the AI got its information from. Is it from <span className="font-semibold text-orange-700">reliable sources or just aggregated from random websites</span>?"</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -3514,7 +4029,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-orange-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"Without knowing the source, I can't judge if a recommendation is <span className="font-semibold text-orange-700">credible or just marketing</span>. This makes me skeptical of all AI suggestions."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                           </svg>
@@ -3536,7 +4051,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-purple-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"The AI recommended a museum that <span className="font-semibold text-purple-700">closed two years ago</span>. There's no timestamp or way to verify when the information was last updated."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -3545,7 +4060,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-purple-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I need recommendations with <span className="font-semibold text-purple-700">real-time verification and data freshness indicators</span> to trust the information."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -3757,7 +4272,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               </div>
                               <h4 className="text-white font-semibold text-base">{source.label}</h4>
                             </div>
-                            <p className="text-gray-400 text-sm">{source.desc}</p>
+                            <p className="text-gray-400 text-base md:text-sm">{source.desc}</p>
                             
                             {/* Data flow particles */}
                             <motion.div
@@ -3933,26 +4448,26 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           {/* Center Label */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
-                              <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
+                              <div className="text-sm md:text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
                                 Multi-Mechanism
                               </div>
                               <div className="text-xl md:text-2xl font-bold text-white">
                                 VALIDATION
                               </div>
-                              <div className="text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
+                              <div className="text-sm md:text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
                                 Prism
                               </div>
                             </div>
                           </div>
                           
                           {/* Ring Labels */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Source Verification
                           </div>
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Cross-Reference
                           </div>
-                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
+                          <div className="absolute text-sm md:text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             Validation Core
                           </div>
                         </div>
@@ -3990,14 +4505,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             <h4 className="text-white font-semibold text-base mb-2">
                               Cultural Context Recommendation
                             </h4>
-                            <p className="text-gray-300 text-sm leading-relaxed">
+                            <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                               This recommendation has been verified through multiple sources and cross-referenced for authenticity.
                             </p>
                           </div>
                           
                           {/* Source Links */}
                           <div className="pt-4 border-t border-white/10">
-                            <p className="text-gray-400 text-xs mb-2 uppercase tracking-wider">Sources</p>
+                            <p className="text-gray-400 text-base md:text-sm md:text-xs mb-2 uppercase tracking-wider">Sources</p>
                             <div className="flex flex-wrap gap-2">
                               {['Museum Archive', 'Local Historian', 'Verified Record'].map((source, idx) => (
                                 <motion.div
@@ -4006,14 +4521,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   className="inline-flex items-center gap-1 px-2 py-1 bg-white/5 rounded-md border border-white/10 hover:border-violet-400/50 transition-colors"
                                 >
                                   <FaLink className="w-3 h-3 text-violet-400" />
-                                  <span className="text-violet-300 text-xs">{source}</span>
+                                  <span className="text-violet-300 text-sm md:text-xs">{source}</span>
                                 </motion.div>
                               ))}
                             </div>
                           </div>
                           
                           {/* Freshness Indicator */}
-                          <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
+                          <div className="mt-4 flex items-center gap-2 text-sm md:text-xs text-gray-400">
                             <FaClock className="w-3 h-3" />
                             <span>Last verified: 2 days ago</span>
                           </div>
@@ -4045,11 +4560,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Trust Framework Information Lineage</p>
+                      <p className="text-gray-400 text-base md:text-sm mb-2">The Trust Framework Information Lineage</p>
                       <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
                         <div className="text-white font-mono text-sm md:text-base">
                           <div className="mb-2">R<sub>trust</sub> = V(S<sub>1</sub>, S<sub>2</sub>, ..., S<sub>n</sub>) × C<sub>fresh</sub> × A<sub>trans</sub></div>
-                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                          <div className="text-sm md:text-sm text-gray-400 space-y-1">
                             <div>S: Verified sources (museums, archives, historians)</div>
                             <div>V: Multi-mechanism validation function</div>
                             <div>C: Freshness coefficient (temporal relevance)</div>
@@ -4190,7 +4705,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <p className="text-amber-300 text-sm font-medium">
+                      <p className="text-amber-300 text-base md:text-sm font-medium">
                         Work In Progress
                       </p>
                     </div>
@@ -4438,20 +4953,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                   <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
                     <div className="text-3xl font-bold text-amber-400 mb-2">71%</div>
-                    <div className="text-gray-300 text-sm">of travelers struggle with balancing structured planning and spontaneous exploration</div>
-                    <div className="text-gray-500 text-xs mt-2">— Travel Planning Behavior Study 2024</div>
+                    <div className="text-gray-300 text-base md:text-sm">of travelers struggle with balancing structured planning and spontaneous exploration</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Planning Behavior Study 2024</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
                     <div className="text-3xl font-bold text-cyan-400 mb-2">64%</div>
-                    <div className="text-gray-300 text-sm">feel overwhelmed by fragmented planning tools that don't work together</div>
-                    <div className="text-gray-500 text-xs mt-2">— Phocuswright Consumer Survey</div>
+                    <div className="text-gray-300 text-base md:text-sm">feel overwhelmed by fragmented planning tools that don't work together</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Phocuswright Consumer Survey</div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
                     <div className="text-3xl font-bold text-emerald-400 mb-2">58%</div>
-                    <div className="text-gray-300 text-sm">want planning tools that adapt to real-time changes and constraints</div>
-                    <div className="text-gray-500 text-xs mt-2">— Travel Technology Research</div>
+                    <div className="text-gray-300 text-base md:text-sm">want planning tools that adapt to real-time changes and constraints</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Technology Research</div>
                   </div>
                 </div>
                 
@@ -4462,20 +4977,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Archetype A: Deterministic Systems</h4>
-                      <p className="text-gray-300 text-sm mb-4">High structure, zero adaptability. Systems like Wanderlog and TripIt enforce rigid planning models with no capacity for real-time context integration.</p>
-                      <div className="text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">High structure, zero adaptability. Systems like Wanderlog and TripIt enforce rigid planning models with no capacity for real-time context integration.</p>
+                      <div className="text-sm md:text-xs text-gray-400">Examples: Wanderlog, TripIt, Google Trips</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">Archetype B: Discovery Engines</h4>
-                      <p className="text-gray-300 text-sm mb-4">High entropy, zero structural logic. Systems like Google Maps and Yelp provide real-time discovery but lack the orchestration layer needed to bridge logistics with spontaneity.</p>
-                      <div className="text-xs text-gray-400">Examples: Google Maps, Yelp, Foursquare</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">High entropy, zero structural logic. Systems like Google Maps and Yelp provide real-time discovery but lack the orchestration layer needed to bridge logistics with spontaneity.</p>
+                      <div className="text-sm md:text-xs text-gray-400">Examples: Google Maps, Yelp, Foursquare</div>
                     </div>
                     
                     <div className="bg-white/5 p-6 rounded-xl border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">The CATDS Value</h4>
-                      <p className="text-gray-300 text-sm mb-4">Contextual Orchestration: Bridging high-structure logistics with high-entropy real-time discovery through an AI middleware layer that interprets context and maintains trust boundaries.</p>
-                      <div className="text-xs text-gray-400">Middleware Architecture</div>
+                      <p className="text-gray-300 text-base md:text-sm mb-4">Contextual Orchestration: Bridging high-structure logistics with high-entropy real-time discovery through an AI middleware layer that interprets context and maintains trust boundaries.</p>
+                      <div className="text-sm md:text-xs text-gray-400">Middleware Architecture</div>
                     </div>
                   </div>
                   
@@ -4512,32 +5027,18 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        The Problem: Data Latency
-                      </h3>
-                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                      The Problem: Data Latency
+                    </h3>
                     <p className="text-gray-700 leading-relaxed text-lg">
                       The fundamental gap between a static API response ("Flight is Booked") and real-world context ("User is tired, it's raining, and the flight is delayed"). Current systems are <span className="font-semibold text-red-700">transactional (Booking) or static (Itinerary)</span>, but travel requires fluid, contextual intelligence that adapts to moment-to-moment reality.
                     </p>
                   </div>
                   
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        The Solution: Contextual Orchestration
-                      </h3>
-                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                      The Solution: Contextual Orchestration
+                    </h3>
                     <p className="text-gray-700 leading-relaxed text-lg">
                       CATDS is a <span className="font-semibold text-blue-700">sophisticated AI middleware layer</span> that bridges high-structure logistics with high-entropy real-time discovery. A Context Interpreter and Trust Layer orchestrate data between a Spontaneity Engine and existing travel platforms, enabling fluid, contextual decision-making.
                     </p>
@@ -4578,7 +5079,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-red-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I use TripIt for flights, Google Sheets for itinerary, Booking.com for hotels, and Google Maps for discovery. <span className="font-semibold text-red-700">Nothing talks to each other</span>."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -4587,7 +5088,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-red-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"Planning a trip means juggling <span className="font-semibold text-red-700">five different apps that don't sync</span>. There has to be a better way."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -4609,7 +5110,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-orange-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I planned everything in advance, but when I got there, <span className="font-semibold text-orange-700">the weather changed and half my plans were useless</span>. The app didn't help me adapt."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -4618,7 +5119,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-orange-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"My itinerary was set in stone, but I wanted to <span className="font-semibold text-orange-700">extend my stay somewhere</span>. Reorganizing everything was a nightmare."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                           </svg>
@@ -4640,7 +5141,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <div className="space-y-5">
                       <div className="relative pl-4 border-l-2 border-purple-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"I need a tool that <span className="font-semibold text-purple-700">adapts when trains are delayed or attractions are closed</span>, not one that just shows me a static plan."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -4649,7 +5150,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       <div className="relative pl-4 border-l-2 border-purple-200">
                         <p className="text-gray-700 italic mb-3 leading-relaxed">"Planning tools assume everything goes according to plan. <span className="font-semibold text-purple-700">Real travel is messy and needs flexibility</span>."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
                           </svg>
@@ -4862,7 +5363,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               </div>
                               <h4 className="text-white font-semibold text-base">{sensor.label}</h4>
                             </div>
-                            <p className="text-gray-400 text-sm relative z-10">{sensor.desc}</p>
+                            <p className="text-gray-400 text-base md:text-sm relative z-10">{sensor.desc}</p>
                             
                             {/* Data flow particles to center */}
                             <motion.div
@@ -5014,26 +5515,26 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           {/* Center Label */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
-                              <div className="text-xs font-semibold text-amber-300 uppercase tracking-wider mb-1">
+                              <div className="text-sm md:text-xs font-semibold text-amber-300 uppercase tracking-wider mb-1">
                                 Adaptive
                               </div>
                               <div className="text-xl md:text-2xl font-bold text-white">
                                 PROCESSOR
                               </div>
-                              <div className="text-xs font-medium text-amber-400 uppercase tracking-wider mt-1">
+                              <div className="text-sm md:text-xs font-medium text-amber-400 uppercase tracking-wider mt-1">
                                 Re-calculating
                               </div>
                             </div>
                           </div>
                           
                           {/* Hexagon Labels */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Constraint Input
                           </div>
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
+                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
                             Processing Layer
                           </div>
-                          <div className="absolute text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
+                          <div className="absolute text-sm md:text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
                             Algorithm Core
                           </div>
                         </div>
@@ -5091,14 +5592,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 {/* Time Indicator */}
                                 <div className="flex flex-col items-center min-w-[60px]">
                                   <div className="w-2 h-2 bg-cyan-400 rounded-full mb-1" />
-                                  <span className="text-cyan-300 text-xs font-medium">{item.time}</span>
+                                  <span className="text-cyan-300 text-sm md:text-xs font-medium">{item.time}</span>
                                 </div>
                                 
                                 {/* Activity Content */}
                                 <div className="flex-1">
-                                  <p className="text-white text-sm font-medium mb-1">{item.activity}</p>
+                                  <p className="text-white text-base md:text-sm font-medium mb-1">{item.activity}</p>
                                   <div className="flex items-center gap-2">
-                                    <span className={`text-xs px-2 py-0.5 rounded ${
+                                    <span className={`text-sm md:text-xs px-2 py-0.5 rounded ${
                                       item.status === 'confirmed' ? 'bg-emerald-500/20 text-emerald-300' :
                                       item.status === 'flexible' ? 'bg-amber-500/20 text-amber-300' :
                                       'bg-cyan-500/20 text-cyan-300'
@@ -5112,7 +5613,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           </div>
                           
                           {/* Real-time Update Indicator */}
-                          <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-gray-400">
+                          <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-sm md:text-xs text-gray-400">
                             <motion.div
                               className="w-2 h-2 bg-cyan-400 rounded-full"
                               animate={{
@@ -5154,11 +5655,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Travel Planning Assistant Feedback Loop</p>
+                      <p className="text-gray-400 text-base md:text-sm mb-2">The Travel Planning Assistant Feedback Loop</p>
                       <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
                         <div className="text-white font-mono text-sm md:text-base">
                           <div className="mb-2">P<sub>adaptive</sub> = f(C<sub>t</sub>, P<sub>t-1</sub>, U<sub>pref</sub>) + ΔC</div>
-                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
+                          <div className="text-sm md:text-sm text-gray-400 space-y-1">
                             <div>C<sub>t</sub>: Real-time constraints (weather, delays, closures)</div>
                             <div>P<sub>t-1</sub>: Previous plan state</div>
                             <div>U<sub>pref</sub>: User preferences and constraints</div>
@@ -5260,7 +5761,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   >
                     <div className="mb-6">
                       <h3 className="text-2xl font-bold text-white mb-2">A. Contextual Pivot Overlay</h3>
-                      <p className="text-gray-400 text-sm">Visualizing the Delta between planned state and contextual reality</p>
+                      <p className="text-gray-400 text-base md:text-sm">Visualizing the Delta between planned state and contextual reality</p>
                     </div>
                     
                     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
@@ -5268,7 +5769,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <div className="mb-6">
                         <div className="flex items-center justify-between mb-4">
                           <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Static Itinerary</h4>
-                          <span className="text-xs text-gray-500">14:00 - 16:00</span>
+                          <span className="text-sm md:text-xs text-gray-500">14:00 - 16:00</span>
                         </div>
                         <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
                           <div className="flex items-center gap-3">
@@ -5277,7 +5778,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                             <div className="flex-1">
                               <p className="text-white font-medium">Outdoor Market Tour</p>
-                              <p className="text-gray-400 text-sm">Walking tour through local markets</p>
+                              <p className="text-gray-400 text-base md:text-sm">Walking tour through local markets</p>
                             </div>
                           </div>
                         </div>
@@ -5303,7 +5804,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </motion.div>
                             <div className="flex-1">
                               <p className="text-amber-400 font-semibold">Context Event Detected</p>
-                              <p className="text-gray-300 text-sm">Weather: Heavy Rain • Intensity: High</p>
+                              <p className="text-gray-300 text-base md:text-sm">Weather: Heavy Rain • Intensity: High</p>
                             </div>
                           </div>
                         </div>
@@ -5312,7 +5813,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       {/* System Calculation */}
                       <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 mb-6">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-medium text-gray-400 uppercase">System Processing</span>
+                          <span className="text-sm md:text-xs font-medium text-gray-400 uppercase">System Processing</span>
                           <motion.div
                             initial={{ width: 0 }}
                             whileInView={{ width: "100%" }}
@@ -5333,7 +5834,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             94%
                           </motion.span>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">Probability of Satisfaction</p>
+                        <p className="text-sm md:text-xs text-gray-500 mt-2">Probability of Satisfaction</p>
                       </div>
                       
                       {/* Adaptive Suggestion */}
@@ -5344,8 +5845,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           </div>
                           <div className="flex-1">
                             <p className="text-emerald-400 font-medium">Indoor Market Hall</p>
-                            <p className="text-gray-300 text-sm">Covered alternative with similar experience</p>
-                            <p className="text-xs text-gray-400 mt-1">Constraint Delta: -6% satisfaction, +85% weather compatibility</p>
+                            <p className="text-gray-300 text-base md:text-sm">Covered alternative with similar experience</p>
+                            <p className="text-sm md:text-xs text-gray-400 mt-1">Constraint Delta: -6% satisfaction, +85% weather compatibility</p>
                           </div>
                         </div>
                       </div>
@@ -5353,7 +5854,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     {/* Technical Insight */}
                     <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
-                      <p className="text-xs text-gray-400 leading-relaxed">
+                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
                         <strong className="text-amber-400">System Logic:</strong> The Context Interpreter detects high-entropy signals (weather API) and calculates a Constraint Delta—the gap between planned satisfaction and contextual feasibility. The system presents the re-route with explainability metrics, showing why the pivot maintains experience quality while adapting to reality.
                       </p>
                     </div>
@@ -5369,7 +5870,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   >
                     <div className="mb-6">
                       <h3 className="text-2xl font-bold text-white mb-2">B. Trust Layer: Human-in-the-Loop</h3>
-                      <p className="text-gray-400 text-sm">Orchestration Layer presenting decision paths with explainability</p>
+                      <p className="text-gray-400 text-base md:text-sm">Orchestration Layer presenting decision paths with explainability</p>
                     </div>
                     
                     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
@@ -5390,15 +5891,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="bg-slate-800/50 rounded-lg p-5 border border-slate-700">
                           <div className="flex items-center justify-between mb-3">
                             <span className="text-sm font-semibold text-gray-300">Maintain Original</span>
-                            <span className="text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded">High Friction</span>
+                            <span className="text-sm md:text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded">High Friction</span>
                           </div>
-                          <p className="text-xs text-gray-400 mb-4">Keep original itinerary despite 2h delay</p>
+                          <p className="text-sm md:text-xs text-gray-400 mb-4">Keep original itinerary despite 2h delay</p>
                           
                           {/* Mini Sparkline - Energy Levels */}
                           <div className="mb-3">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs text-gray-500">Energy Impact</span>
-                              <span className="text-xs text-red-400">-42%</span>
+                              <span className="text-sm md:text-xs text-gray-500">Energy Impact</span>
+                              <span className="text-sm md:text-xs text-red-400">-42%</span>
                             </div>
                             <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
                               {[65, 58, 52, 45, 38, 32, 28].map((val, i) => (
@@ -5414,7 +5915,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                           </div>
                           
-                          <div className="text-xs text-gray-500">
+                          <div className="text-sm md:text-xs text-gray-500">
                             <div className="flex justify-between mb-1">
                               <span>Time Loss:</span>
                               <span className="text-red-400">2h 15m</span>
@@ -5430,15 +5931,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <div className="bg-emerald-500/10 rounded-lg p-5 border-2 border-emerald-400/50">
                           <div className="flex items-center justify-between mb-3">
                             <span className="text-sm font-semibold text-emerald-400">Adaptive Suggestion</span>
-                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded">Optimized</span>
+                            <span className="text-sm md:text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded">Optimized</span>
                           </div>
-                          <p className="text-xs text-gray-300 mb-4">Re-route to nearby attractions, maintain experience quality</p>
+                          <p className="text-sm md:text-xs text-gray-300 mb-4">Re-route to nearby attractions, maintain experience quality</p>
                           
                           {/* Mini Sparkline - Energy Levels */}
                           <div className="mb-3">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs text-gray-400">Energy Impact</span>
-                              <span className="text-xs text-emerald-400">+18%</span>
+                              <span className="text-sm md:text-xs text-gray-400">Energy Impact</span>
+                              <span className="text-sm md:text-xs text-emerald-400">+18%</span>
                             </div>
                             <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
                               {[45, 52, 58, 63, 68, 72, 75].map((val, i) => (
@@ -5454,7 +5955,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </div>
                           </div>
                           
-                          <div className="text-xs text-gray-400">
+                          <div className="text-sm md:text-xs text-gray-400">
                             <div className="flex justify-between mb-1">
                               <span>Time Savings:</span>
                               <span className="text-emerald-400">45m</span>
@@ -5480,7 +5981,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     {/* Technical Insight */}
                     <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-emerald-400">
-                      <p className="text-xs text-gray-400 leading-relaxed">
+                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
                         <strong className="text-emerald-400">System Logic:</strong> The Trust Layer implements Human-in-the-Loop verification—the system curates the pivot but never overrides user agency. Data visualizations (sparklines) provide explainability, showing energy/time trade-offs. This prevents AI hallucinations in logistics by requiring explicit confirmation for critical decisions.
                       </p>
                     </div>
@@ -5496,7 +5997,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   >
                     <div className="mb-6">
                       <h3 className="text-2xl font-bold text-white mb-2">C. Semantic Data Mapping</h3>
-                      <p className="text-gray-400 text-sm">Context Interpreter converting unstructured signals into Decision Vectors</p>
+                      <p className="text-gray-400 text-base md:text-sm">Context Interpreter converting unstructured signals into Decision Vectors</p>
                     </div>
                     
                     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
@@ -5522,7 +6023,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <item.icon className="w-4 h-4 text-amber-400" />
                                 </div>
                                 <div className="flex-1">
-                                  <p className="text-xs text-gray-500 mb-1">{item.source}</p>
+                                  <p className="text-sm md:text-xs text-gray-500 mb-1">{item.source}</p>
                                   <p className="text-sm text-gray-300">{item.data}</p>
                                 </div>
                               </div>
@@ -5562,8 +6063,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
                             >
                               <div className="flex items-center justify-between mb-2">
-                                <span className="text-xs text-gray-400">{vector.constraint}</span>
-                                <span className={`text-xs px-2 py-1 ${vector.bgClass} ${vector.textClass} rounded`}>
+                                <span className="text-sm md:text-xs text-gray-400">{vector.constraint}</span>
+                                <span className={`text-sm md:text-xs px-2 py-1 ${vector.bgClass} ${vector.textClass} rounded`}>
                                   {vector.confidence}%
                                 </span>
                               </div>
@@ -5597,14 +6098,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 transition={{ delay: 0.6 + idx * 0.2 }}
                                 className="relative"
                               >
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xs font-semibold ${
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm md:text-xs font-semibold ${
                                   idx === 0 ? 'bg-amber-400/20 text-amber-400 border-2 border-amber-400/50' :
                                   idx === 3 ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50' :
                                   'bg-slate-700 text-gray-300 border-2 border-slate-600'
                                 }`}>
                                   {label[0]}
                                 </div>
-                                <p className="text-xs text-gray-500 mt-1 text-center">{label}</p>
+                                <p className="text-sm md:text-xs text-gray-500 mt-1 text-center">{label}</p>
                                 {idx < 3 && (
                                   <motion.div
                                     initial={{ scaleX: 0 }}
@@ -5623,7 +6124,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     {/* Technical Insight */}
                     <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
-                      <p className="text-xs text-gray-400 leading-relaxed">
+                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
                         <strong className="text-amber-400">System Logic:</strong> The Context Interpreter operates as a real-time ETL pipeline, normalizing heterogeneous data sources (LLM-parsed sentiment, sensor data, weather APIs) into unified Decision Vectors. Each vector encodes contextual signals with confidence scores, enabling the Spontaneity Engine to process high-entropy signals into actionable constraints. This semantic mapping bridges the gap between unstructured reality and structured system logic.
                       </p>
                     </div>
@@ -5639,7 +6140,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   >
                     <div className="mb-8">
                       <h3 className="text-2xl font-bold text-white mb-2">Mobile Implementation: System Logic in User Experience</h3>
-                      <p className="text-gray-400 text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
+                      <p className="text-gray-400 text-base md:text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
                     </div>
                     
                     {/* Mobile Frames Grid */}
@@ -5652,7 +6153,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                             {/* Status Bar */}
                             <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
                                   <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
@@ -5675,7 +6176,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                     <div className="w-12 h-12 bg-blue-100 rounded-lg"></div>
                                     <div className="flex-1">
                                       <p className="font-semibold text-gray-900">Fushimi Inari Shrine</p>
-                                      <p className="text-xs text-gray-500">14:00 - 16:00</p>
+                                      <p className="text-sm md:text-xs text-gray-500">14:00 - 16:00</p>
                                     </div>
                                   </div>
                                 </div>
@@ -5684,7 +6185,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                     <div className="w-12 h-12 bg-purple-100 rounded-lg"></div>
                                     <div className="flex-1">
                                       <p className="font-semibold text-gray-900">Tea Ceremony</p>
-                                      <p className="text-xs text-gray-500">17:00 - 18:30</p>
+                                      <p className="text-sm md:text-xs text-gray-500">17:00 - 18:30</p>
                                     </div>
                                   </div>
                                 </div>
@@ -5705,7 +6206,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                     </div>
                                     <div className="flex-1">
                                       <h4 className="text-white font-bold text-sm mb-1">Context Change Detected</h4>
-                                      <p className="text-white/90 text-xs leading-relaxed">
+                                      <p className="text-white/90 text-sm md:text-xs leading-relaxed">
                                         Heavy Rain Detected. High crowd density at Fushimi Inari. Suggesting indoor alternative.
                                       </p>
                                     </div>
@@ -5721,7 +6222,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         
                         {/* Designer Note */}
                         <div className="mt-4 max-w-[280px]">
-                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
                             <strong className="text-amber-400 not-italic">System Logic:</strong> The Orchestration Layer surfaces contextual pivots through non-intrusive interventions. The toast pattern maintains user agency while providing explainability—showing why the system suggests a change (Constraint Delta visible in the message).
                           </p>
                         </div>
@@ -5734,7 +6235,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                             {/* Status Bar */}
                             <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
                                   <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
@@ -5760,7 +6261,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               >
                                 <div className="flex items-center justify-between mb-3">
                                   <h3 className="font-bold text-gray-900">Original Plan</h3>
-                                  <span className="text-xs px-2 py-1 bg-red-100 text-red-600 rounded-full font-semibold">High Friction</span>
+                                  <span className="text-sm md:text-xs px-2 py-1 bg-red-100 text-red-600 rounded-full font-semibold">High Friction</span>
                                 </div>
                                 <div className="space-y-2 mb-4">
                                   <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -5774,7 +6275,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 </div>
                                 <div className="pt-3 border-t border-gray-100">
                                   <div className="flex items-center justify-between mb-1">
-                                    <span className="text-xs text-gray-500">Match Score</span>
+                                    <span className="text-sm md:text-xs text-gray-500">Match Score</span>
                                     <span className="text-sm font-semibold text-gray-700">67%</span>
                                   </div>
                                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -5799,7 +6300,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               >
                                 <div className="flex items-center justify-between mb-3">
                                   <h3 className="font-bold text-gray-900">Smart Pivot</h3>
-                                  <span className="text-xs px-2 py-1 bg-emerald-100 text-emerald-600 rounded-full font-semibold">Optimized</span>
+                                  <span className="text-sm md:text-xs px-2 py-1 bg-emerald-100 text-emerald-600 rounded-full font-semibold">Optimized</span>
                                 </div>
                                 <div className="space-y-2 mb-4">
                                   <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -5813,7 +6314,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 </div>
                                 <div className="pt-3 border-t border-gray-100">
                                   <div className="flex items-center justify-between mb-1">
-                                    <span className="text-xs text-gray-500">Match Score</span>
+                                    <span className="text-sm md:text-xs text-gray-500">Match Score</span>
                                     <span className="text-sm font-semibold text-emerald-600">92%</span>
                                   </div>
                                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -5838,7 +6339,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         
                         {/* Designer Note */}
                         <div className="mt-4 max-w-[280px]">
-                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
                             <strong className="text-emerald-400 not-italic">System Logic:</strong> The Trust Layer presents decision paths with explainability metrics. Visual data (satisfaction percentages, progress bars) shows the trade-offs transparently. Human-in-the-Loop verification requires explicit confirmation, maintaining user agency while leveraging system intelligence.
                           </p>
                         </div>
@@ -5851,7 +6352,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                             {/* Status Bar */}
                             <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
                                   <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
@@ -5873,13 +6374,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <div className="flex items-center justify-between mb-4">
                                     <div>
                                       <h3 className="font-semibold text-gray-900 mb-1">Spontaneity vs Structure</h3>
-                                      <p className="text-xs text-gray-500">Balance between flexibility and planning</p>
+                                      <p className="text-sm md:text-xs text-gray-500">Balance between flexibility and planning</p>
                                     </div>
                                   </div>
                                   <div className="relative">
                                     <div className="flex items-center justify-between mb-2">
-                                      <span className="text-xs text-gray-500">Structured</span>
-                                      <span className="text-xs text-gray-500">Spontaneous</span>
+                                      <span className="text-sm md:text-xs text-gray-500">Structured</span>
+                                      <span className="text-sm md:text-xs text-gray-500">Spontaneous</span>
                                     </div>
                                     <div className="relative h-2 bg-gray-200 rounded-full">
                                       <motion.div
@@ -5905,7 +6406,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <div className="flex items-center justify-between mb-4">
                                     <div className="flex-1">
                                       <h3 className="font-semibold text-gray-900 mb-1">Energy Conservation Mode</h3>
-                                      <p className="text-xs text-gray-500">Prioritize low-intensity activities</p>
+                                      <p className="text-sm md:text-xs text-gray-500">Prioritize low-intensity activities</p>
                                     </div>
                                     <motion.button
                                       whileTap={{ scale: 0.95 }}
@@ -5919,7 +6420,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                       />
                                     </motion.button>
                                   </div>
-                                  <p className="text-xs text-gray-400 mt-2">
+                                  <p className="text-sm md:text-xs text-gray-400 mt-2">
                                     {true ? 'Active' : 'Inactive'} • System will filter high-energy activities
                                   </p>
                                 </div>
@@ -5929,7 +6430,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <div className="flex items-center justify-between mb-4">
                                     <div className="flex-1">
                                       <h3 className="font-semibold text-gray-900 mb-1">Indoor Preference</h3>
-                                      <p className="text-xs text-gray-500">Weather-triggered auto-adjustment</p>
+                                      <p className="text-sm md:text-xs text-gray-500">Weather-triggered auto-adjustment</p>
                                     </div>
                                     <motion.button
                                       whileTap={{ scale: 0.95 }}
@@ -5946,9 +6447,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
                                     <div className="flex items-center gap-2 mb-1">
                                       <FaCloudSun className="w-4 h-4 text-amber-600" />
-                                      <span className="text-xs font-semibold text-amber-900">Weather Trigger Active</span>
+                                      <span className="text-sm md:text-xs font-semibold text-amber-900">Weather Trigger Active</span>
                                     </div>
-                                    <p className="text-xs text-amber-700">
+                                    <p className="text-sm md:text-xs text-amber-700">
                                       System will automatically suggest indoor alternatives when rain is in the forecast
                                     </p>
                                   </div>
@@ -5965,7 +6466,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         
                         {/* Designer Note */}
                         <div className="mt-4 max-w-[280px]">
-                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
                             <strong className="text-amber-400 not-italic">System Logic:</strong> Semantic Preference Tuning allows users to configure how the Context Interpreter weights different signals. These preferences generate Decision Vector parameters, enabling personalized orchestration. The system maintains explainability by showing active triggers and their effects in real-time.
                           </p>
                         </div>
@@ -5978,7 +6479,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
                             {/* Status Bar */}
                             <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-xs font-semibold text-gray-900">9:41</span>
+                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
                                   <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
@@ -5991,7 +6492,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               {/* Flight Info Header */}
                               <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 border-b border-blue-500/30">
                                 <div className="flex items-center justify-between mb-2">
-                                  <div className="font-mono text-xs tracking-wider">
+                                  <div className="font-mono text-sm md:text-xs tracking-wider">
                                     FLIGHT BA247 • LANDED • LISBON
                                   </div>
                                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -6009,7 +6510,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   transition={{ delay: 0.2 }}
                                   className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100"
                                 >
-                                  <div className="text-xs font-mono text-blue-600 uppercase tracking-wider mb-3">The Arrival Portal</div>
+                                  <div className="text-sm md:text-xs font-mono text-blue-600 uppercase tracking-wider mb-3">The Arrival Portal</div>
                                   <div className="text-gray-800 leading-relaxed text-sm space-y-3" style={{ fontFamily: "'Playfair Display', serif" }}>
                                     <p>
                                       The baggage carousel is a transition, not a destination. While you wait for your luggage, the city is breathing.
@@ -6053,7 +6554,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   transition={{ delay: 0.6 }}
                                   className="bg-slate-900/90 backdrop-blur-sm border border-slate-700 rounded-xl p-4 space-y-3"
                                 >
-                                  <div className="text-xs font-mono text-blue-400/80 mb-2">System Logic (The Engine):</div>
+                                  <div className="text-sm md:text-xs font-mono text-blue-400/80 mb-2">System Logic (The Engine):</div>
                                   
                                   {/* Scanning Indicators */}
                                   <div className="space-y-2">
@@ -6063,7 +6564,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                         transition={{ duration: 1.5, repeat: Infinity }}
                                         className="w-2 h-2 bg-blue-400 rounded-full"
                                       />
-                                      <span className="text-xs font-mono text-gray-300">[Syncing Flight API]</span>
+                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Syncing Flight API]</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                       <motion.div
@@ -6071,7 +6572,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                         transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
                                         className="w-2 h-2 bg-cyan-400 rounded-full"
                                       />
-                                      <span className="text-xs font-mono text-gray-300">[Local Transit Real-time]</span>
+                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Local Transit Real-time]</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                       <motion.div
@@ -6079,21 +6580,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                         transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
                                         className="w-2 h-2 bg-blue-400 rounded-full"
                                       />
-                                      <span className="text-xs font-mono text-gray-300">[Hyper-local POI Density]</span>
+                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Hyper-local POI Density]</span>
                                     </div>
                                   </div>
                                   
                                   {/* Data Points */}
                                   <div className="pt-3 border-t border-slate-700 space-y-1">
-                                    <div className="flex items-center justify-between text-xs font-mono">
+                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
                                       <span className="text-gray-400">GATE:</span>
                                       <span className="text-blue-400">B12</span>
                                     </div>
-                                    <div className="flex items-center justify-between text-xs font-mono">
+                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
                                       <span className="text-gray-400">ARRIVAL:</span>
                                       <span className="text-green-400">+4m early</span>
                                     </div>
-                                    <div className="flex items-center justify-between text-xs font-mono">
+                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
                                       <span className="text-gray-400">TAXI QUEUE:</span>
                                       <span className="text-amber-400">18min wait</span>
                                     </div>
@@ -6106,7 +6607,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         
                         {/* Designer Note */}
                         <div className="mt-4 max-w-[280px]">
-                          <p className="text-xs text-gray-400 italic leading-relaxed text-center">
+                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
                             <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, we prove the system's value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
                           </p>
                         </div>
@@ -6409,6 +6910,385 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </section>
         </>
       )}
+      {isSocialOpportunityMatching && (
+        <>
+          {/* The Problem Section */}
+          <section id="research-audience" className="py-20 bg-black">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-6xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-white">
+                    The Problem: The Loneliness Epidemic vs. High Friction
+                  </h2>
+                  <p className="text-gray-300 text-lg">
+                    Understanding the gap between the need for social connection and the friction of planning formal meetups
+                  </p>
+                </div>
+                
+                {/* Key Statistics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 p-6 rounded-xl border border-pink-500/30">
+                    <div className="text-3xl font-bold text-pink-400 mb-2">73%</div>
+                    <div className="text-gray-300 text-base md:text-sm">of travelers report feeling lonely while traveling solo</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Loneliness Study 2024</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-500/30">
+                    <div className="text-3xl font-bold text-purple-400 mb-2">67%</div>
+                    <div className="text-gray-300 text-base md:text-sm">cite "too much planning required" as barrier to spontaneous social connection</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Social Connection Research</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-fuchsia-500/20 to-pink-500/20 p-6 rounded-xl border border-fuchsia-500/30">
+                    <div className="text-3xl font-bold text-fuchsia-400 mb-2">15min</div>
+                    <div className="text-gray-300 text-base md:text-sm">average time people are willing to commit for low-friction social interactions</div>
+                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Behavioral Research</div>
+                  </div>
+                </div>
+
+                {/* Problem Explanation */}
+                <div className="mt-12">
+                  <div className="bg-white/5 p-6 md:p-8 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4">The Loneliness Epidemic</h3>
+                    <p className="text-gray-200 text-base leading-relaxed mb-4">
+                      Travel inherently creates moments of isolation—solo travelers in new cities, business travelers with empty evenings, and even groups seeking authentic local connections. While the desire for spontaneous social interaction is universal, traditional meetup platforms require extensive planning, mutual availability alignment, and social commitment that creates high friction.
+                    </p>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      The gap between wanting connection and actually achieving it is often a function of <span className="font-semibold text-pink-400">cognitive load and planning overhead</span> rather than lack of interest. People want lightweight, spontaneous interactions—not formal meetups that require scheduling days in advance.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Market Friction Section */}
+          <section id="design-exploration" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Market Friction: The High Cost of Low-Friction Connection
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Existing platforms create barriers through planning overhead and formal commitment requirements
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* Friction 1: Planning Overhead */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-pink-100 hover:border-pink-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <h4 className="text-xl font-bold text-gray-900">Planning Overhead</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-pink-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I'd love to grab coffee with someone, but setting it up takes too much back-and-forth messaging. <span className="font-semibold text-pink-700">By the time we coordinate, I'm already somewhere else</span>."</p>
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/solotravel</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Friction 2: Formal Commitment */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <h4 className="text-xl font-bold text-gray-900">Formal Commitment</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-purple-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Meetup apps feel too formal. <span className="font-semibold text-purple-700">I don't want to commit to a 2-hour event</span>—just a quick chat if we're both free."</p>
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Twitter, Travel Community</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Friction 3: Missing Context */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-fuchsia-100 hover:border-fuchsia-200 transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-fuchsia-400 rounded-full"></div>
+                    </div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <h4 className="text-xl font-bold text-gray-900">Missing Context</h4>
+                    </div>
+                    <div className="space-y-5">
+                      <div className="relative pl-4 border-l-2 border-fuchsia-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I wish I could just know if someone nearby wants to grab a quick coffee <span className="font-semibold text-fuchsia-700">right now</span>, not plan it for tomorrow."</p>
+                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                          </svg>
+                          <span>Reddit, r/travelhacks</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* The Solution Section */}
+          <section id="designs-strategy" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold mb-6 text-black">
+                    The Solution: Lightweight Intelligence for Spontaneous Connection
+                  </h2>
+                  <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+                    A background module that monitors ambient data to trigger low-friction social matches—designed for integration into existing applications rather than a standalone app.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Core Value Proposition */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
+                  >
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">How It Works</h3>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      The Social Opportunity Matching Module operates as a <span className="font-semibold">background intelligence layer</span> that continuously monitors three key signals: <strong>Proximity</strong> (users near each other), <strong>Shared Interests</strong> (common preferences or activities), and <strong>Schedule Gaps</strong> (15-minute windows of availability).
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      When all three signals align, the module surfaces a low-friction opportunity: "Coffee nearby? 15 minutes free?" The interaction is designed to be spontaneous, requiring minimal commitment and zero planning overhead.
+                    </p>
+                  </motion.div>
+
+                  {/* Integration Approach */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
+                  >
+                    <motion.button
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/30 focus:ring-inset"
+                      onClick={() => setActiveAccordion(activeAccordion === 'integration' ? null : 'integration')}
+                      aria-expanded={activeAccordion === 'integration'}
+                      aria-controls="integration-content"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-900">Integration Architecture</h3>
+                      <motion.div
+                        animate={{ rotate: activeAccordion === 'integration' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-500"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </motion.div>
+                    </motion.button>
+                    <AnimatePresence>
+                      {activeAccordion === 'integration' && (
+                        <motion.div
+                          id="integration-content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-6">
+                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                              The module is designed for integration into existing applications rather than operating as a standalone app. It exposes matching logic through <span className="font-semibold">core platform APIs</span>, allowing travel apps, social platforms, or location-based services to embed spontaneous connection capabilities.
+                            </p>
+                            <div className="space-y-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">API-First Design</h5>
+                                  <p className="text-gray-700">Matching logic exposed through REST APIs and webhooks, enabling integration without UI dependencies.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Background Processing</h5>
+                                  <p className="text-gray-700">Continuous monitoring of proximity, interests, and schedule gaps operates in the background without user intervention.</p>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-fuchsia-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                  <h5 className="font-semibold text-gray-900 mb-1">Low-Friction Notifications</h5>
+                                  <p className="text-gray-700">Opportunities surface as lightweight notifications or in-app prompts, requiring minimal interaction to accept or decline.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Technical Architecture Section */}
+          <section id="wireframes-ui" className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-zinc-950 to-pink-950/20 pointer-events-none" />
+            
+            <div className="container mx-auto px-6 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto"
+              >
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
+                    Technical Architecture: Matching Logic
+                  </h2>
+                  <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-6">
+                    Proximity + Context + Intent = Low-Friction Social Opportunity
+                  </p>
+                  <div className="max-w-4xl mx-auto space-y-4 text-left mt-8">
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">Proximity Detection</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Real-time location monitoring identifies when users are within a configurable proximity threshold (e.g., 500m). Privacy-first implementation uses encrypted location data and only surfaces matches when both parties are available.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">Interest Matching</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Shared interests are detected through user preferences, activity history, and profile data. The system uses lightweight similarity scoring rather than deep learning to maintain low computational overhead and fast response times.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                      <h3 className="text-xl font-semibold text-white mb-3">Schedule Gap Analysis</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Calendar integration and movement pattern analysis identify 15-minute "schedule gaps" when users have availability. The system prioritizes matches where both parties have overlapping gaps, ensuring interactions are genuinely low-friction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Design Impact Section */}
+          <section id="prototyping-ai" className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    Design Impact: Reducing Cognitive Load
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The system is designed to reduce the cognitive overhead of social planning
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-8 rounded-2xl border-2 border-pink-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <Users className="w-7 h-7 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Users
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Spontaneous social connection leads to <span className="font-semibold text-pink-700">reduced loneliness and increased travel satisfaction</span>. By eliminating planning overhead, users can engage in <span className="font-semibold text-pink-700">genuinely spontaneous interactions</span> without the cognitive burden of coordination.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 p-8 rounded-2xl border-2 border-purple-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <Sparkles className="w-7 h-7 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Platforms
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      When platforms integrate this module, they unlock new engagement opportunities without building from scratch. <span className="font-semibold text-purple-700">Users spend more time in-app</span>, and platforms can differentiate through unique social connection capabilities.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Learnings & Reflections Section */}
+          <section id="learnings-next" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    Learnings & Reflections
+                  </h2>
+                </div>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    <strong className="text-gray-900">Low-friction requires system-level design:</strong> Spontaneous social connection cannot be achieved through UI improvements alone—it requires architectural decisions that minimize cognitive load at the data processing layer. The matching logic must operate in the background, surfacing opportunities only when all conditions align.
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Integration over standalone:</strong> The module's value is maximized when integrated into existing platforms rather than operating as a standalone app. Users don't want another app to manage—they want social connection capabilities embedded in the tools they already use.
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">15-minute commitment window:</strong> Research indicates that 15 minutes represents the optimal commitment threshold for truly low-friction interactions. Anything longer requires planning, and anything shorter feels too fleeting to be meaningful.
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Privacy-first matching:</strong> The module must balance discovery with privacy. Users need granular control over who can discover them and when, with encrypted location data and opt-in matching rather than default-on behavior.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
       {isLocalExperienceFinder && (
         <>
           {/* Audience & Research Section */}
@@ -6422,7 +7302,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Market Friction Dashboard
+                    Market Friction
                   </h2>
                   <p className="text-gray-300 text-lg">
                     Systemic gaps in social discovery for travelers
@@ -6435,42 +7315,32 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <table className="w-full">
                       <thead className="bg-white/5 border-b border-white/10">
                         <tr>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Metric</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Insight</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Systemic Gap</th>
+                          <th className="px-6 py-4 text-left text-sm md:text-sm font-semibold text-gray-300 uppercase tracking-wider">Insight</th>
+                          <th className="px-6 py-4 text-left text-sm md:text-sm font-semibold text-gray-300 uppercase tracking-wider">Systemic Gap</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-white/10">
                         <tr className="hover:bg-white/5 transition-colors">
-                          <td className="px-6 py-4">
-                            <div className="text-2xl font-bold text-amber-400">69%</div>
-                          </td>
-                          <td className="px-6 py-4 text-gray-300 text-sm">
+                          <td className="px-6 py-4 text-gray-300 text-base md:text-base">
                             Struggle to find authentic connections
                           </td>
-                          <td className="px-6 py-4 text-gray-400 text-sm">
+                          <td className="px-6 py-4 text-gray-400 text-base md:text-base">
                             Existing apps prioritize "matches" over "identity"
                           </td>
                         </tr>
                         <tr className="hover:bg-white/5 transition-colors">
-                          <td className="px-6 py-4">
-                            <div className="text-2xl font-bold text-cyan-400">54%</div>
-                          </td>
-                          <td className="px-6 py-4 text-gray-300 text-sm">
+                          <td className="px-6 py-4 text-gray-300 text-base md:text-base">
                             Traditional networks feel superficial for travel
                           </td>
-                          <td className="px-6 py-4 text-gray-400 text-sm">
+                          <td className="px-6 py-4 text-gray-400 text-base md:text-base">
                             Lack of intent-based discovery signals
                           </td>
                         </tr>
                         <tr className="hover:bg-white/5 transition-colors">
-                          <td className="px-6 py-4">
-                            <div className="text-2xl font-bold text-emerald-400">62%</div>
-                          </td>
-                          <td className="px-6 py-4 text-gray-300 text-sm">
+                          <td className="px-6 py-4 text-gray-300 text-base md:text-base">
                             Demand high-granularity privacy controls
                           </td>
-                          <td className="px-6 py-4 text-gray-400 text-sm">
+                          <td className="px-6 py-4 text-gray-400 text-base md:text-base">
                             Current UX is binary (Public vs. Private)
                           </td>
                         </tr>
@@ -6504,12 +7374,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 min-w-[1.75rem] min-h-[1.75rem] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
+                    <div className="mb-6">
                       <h3 className="text-2xl font-bold text-gray-900">
                         The Problem: Privacy-Discovery Paradox
                       </h3>
@@ -6520,18 +7385,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                   
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 min-w-[1.75rem] min-h-[1.75rem] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
+                    <div className="mb-6">
                       <h3 className="text-2xl font-bold text-gray-900">
                         The Solution: Discovery Through Network Effects
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      An AI-orchestrated system that enables <span className="font-semibold text-blue-700">discovery through network effects</span>. Instead of browsing "listings," users navigate a graph of <strong>People → Places → Intent</strong>, where the AI acts as a privacy-preserving concierge. The system enables discovery without requiring full data exposure.
+                      An AI-orchestrated system that enables <span className="font-semibold text-blue-700">autonomous discovery through network effects</span>. Instead of browsing "listings," the system autonomously surfaces opportunities from a graph of <strong>People → Places → Intent</strong>, where the AI acts as a proactive, privacy-preserving concierge. The system surfaces high-trust social opportunities without requiring search or full data exposure.
                     </p>
                   </div>
                 </div>
@@ -6566,10 +7426,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 italic leading-relaxed mb-2">
                           "I want to meet people who share my travel style, but most apps are just for hookups... there's no way to find like-minded travelers."
                         </p>
-                        <cite className="text-xs text-gray-500 not-italic">— r/solotravel</cite>
+                        <cite className="text-sm md:text-sm text-gray-500 not-italic">— r/solotravel</cite>
                       </blockquote>
                       <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-                        <p className="text-sm text-gray-700">
+                        <p className="text-base md:text-base text-gray-700">
                           <strong className="text-red-700">Systemic Analysis:</strong> Current systems lack "Style-Identity" metadata. Matching algorithms operate on location, age, and generic interests, but fail to encode travel-specific identity signals (exploration style, cultural engagement depth, spontaneity preferences).
                         </p>
                       </div>
@@ -6584,10 +7444,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         <p className="text-gray-700 italic leading-relaxed mb-2">
                           "Social travel apps require full profile visibility. I want to control who sees what about me."
                         </p>
-                        <cite className="text-xs text-gray-500 not-italic">— Blog Comment</cite>
+                        <cite className="text-sm md:text-sm text-gray-500 not-italic">— Blog Comment</cite>
                       </blockquote>
                       <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                        <p className="text-sm text-gray-700">
+                        <p className="text-base md:text-base text-gray-700">
                           <strong className="text-orange-700">Systemic Analysis:</strong> Architectural failure to implement "Graded Visibility." Privacy controls are binary (Public/Private) rather than context-aware. The system cannot support zero-knowledge proof concepts where users share *proof* of travel style without sharing specific itinerary data.
                         </p>
                       </div>
@@ -6621,38 +7481,127 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="bg-gray-50 p-8 rounded-xl border border-gray-200"
                   >
-                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Design Concept: Identity-Focused Discovery</h3>
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Macro-Mapping & Micro-Intent: The Dual-Interface Strategy</h3>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                      Moving from "Profiles" to "Signals": An AI system that enables discovery through network effects while preserving privacy through zero-knowledge proof concepts.
+                      The system provides two complementary views: a high-density <strong>Intent Table</strong> for precise node analysis and a <strong>Global Map View</strong> for spatial pattern recognition. Users can toggle between these views to move seamlessly from macro-trend discovery to micro-intent matching.
                     </p>
                     <p className="text-gray-600 leading-relaxed mb-6">
-                      This system processes travel identity, shared interests, and experiences through discovery algorithms to deliver meaningful connections while maintaining full user control over privacy and visibility.
+                      This dual-interface design ensures both analytical and exploratory UI needs are met—enabling users to see 'Trust Clusters' forming globally while providing granular access to specific "who wants to visit where" metadata.
                     </p>
                     
                     <div className="space-y-4 mt-6">
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <h5 className="font-semibold text-gray-900 mb-1">Identity-Based Matching</h5>
-                          <p className="text-gray-700 text-sm">Not location-based, but "Vibe-based" alignment using past trip telemetry. The system matches travelers based on shared travel style, exploration depth, and cultural engagement patterns rather than geographic proximity.</p>
+                          <h5 className="font-semibold text-gray-900 mb-1">The Intent Table (Micro-Analysis)</h5>
+                          <p className="text-gray-700 text-base md:text-base">Designed for high-density scanning of specific nodes. It surfaces the raw metadata of "who" and "where" (e.g., "[User] wants to visit [City]") to minimize the "coordination tax" of travel planning. The table format allows for quick comparison of temporal and geographic data that maps often obscure.</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <h5 className="font-semibold text-gray-900 mb-1">Granular Privacy (ZK-Proof Concepts)</h5>
-                          <p className="text-gray-700 text-sm">Users share *proof* of a travel style without sharing the *data* of their specific itinerary. The system enables discovery through identity signals while maintaining zero-knowledge privacy architecture.</p>
+                          <h5 className="font-semibold text-gray-900 mb-1">The Global Map (Macro-Discovery)</h5>
+                          <p className="text-gray-700 text-base md:text-base">A spatial visualization of the social graph's gravity. It allows users to see "Trust Clusters" forming globally, identifying where their network is trending before they even decide on a destination. The map visualizes the 'Reach' of the user's influence and the density of the Trust Layer across different territories.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Design Decisions: Density vs. Context */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-50 p-8 rounded-xl border border-gray-200 mt-6"
+                  >
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Design Decisions: Density vs. Context</h3>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                      The dual-interface design addresses two distinct analytical needs: precision for comparison (table) and pattern recognition for discovery (map).
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1">Table as Source of Truth</h5>
+                          <p className="text-gray-700 text-base md:text-base">Why a table? Because social data requires precision. The "Wants to Visit" schema allows for quick comparison of temporal and geographic data that maps often obscure. The tabular format minimizes the "coordination tax" by presenting "who" and "where" metadata in a scannable, filterable format.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1">Map as Pattern Recognition</h5>
+                          <p className="text-gray-700 text-base md:text-base">Why a map? To visualize the 'Reach' of the user's influence and the density of the Trust Layer across different territories. The Global Map View enables macro-discovery—identifying where Trust Clusters are forming before the user commits to a destination, revealing network trends that tables cannot easily communicate.</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <h5 className="font-semibold text-gray-900 mb-1">Opt-in Discovery</h5>
-                          <p className="text-gray-700 text-sm">A state-managed system where "Visibility" is a dynamic variable, not a fixed setting. Travelers choose when and how to be discoverable, maintaining agency over their social connections while enabling network effects.</p>
+                          <h5 className="font-semibold text-gray-900 mb-1">Privacy as UX</h5>
+                          <p className="text-gray-700 text-base md:text-base">Using ZK-proofs as a design feature that builds user confidence. Users can verify connections without exposing personal data, creating trust through cryptographic validation rather than data transparency.</p>
                         </div>
                       </div>
                     </div>
                   </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* The Spontaneity Core Section */}
+          <section id="spontaneity-core" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                    The Spontaneity Core: Reducing Social Friction
+                  </h2>
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    To facilitate authentic connection, the system automates the 'Coordination Tax' through three AI-driven lenses
+                  </p>
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">The Identity Filter</h3>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                          Matches users based on 'Travel DNA' (Vibe-based alignment) instead of raw proximity.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">Zero-Knowledge Discovery</h3>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                          Allows users to be 'discoverable' in the graph without leaking precise GPS data until a mutual match is confirmed.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div className="flex items-start gap-4">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">Presence Intelligence</h3>
+                        <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                          Prioritizes connections currently where you are, or where you intend to be, enabling real-time spontaneous coordination.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -6680,7 +7629,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 {/* Trust Layer Logic Gates */}
-                <div className="max-w-5xl mx-auto space-y-8 mb-16">
+                <div className="max-w-5xl mx-auto flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-6 mb-16">
                   {/* Gate 01: Proximity Gate */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -6693,20 +7642,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <div className="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center border border-indigo-400/30">
                         <span className="text-2xl font-bold text-indigo-400">L1</span>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white">Gate 01: The Proximity Gate</h3>
-                        <p className="text-sm text-gray-400">Degrees of Separation Filter</p>
+                      <div className="text-left">
+                        <h3 className="text-xl font-bold text-white text-left">Gate 01: The Proximity Gate</h3>
+                        <p className="text-sm text-gray-400 text-left">Degrees of Separation Filter</p>
                       </div>
                     </div>
-                    <div className="ml-16 space-y-3">
+                    <div className="ml-0 space-y-3 text-left">
                       <div>
-                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> Degrees of Separation (d)</p>
+                        <p className="text-sm text-gray-400 mb-1 text-left"><strong className="text-white">Metric:</strong> Degrees of Separation (d)</p>
                       </div>
-                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 font-mono text-sm">
-                        <div className="text-emerald-400 mb-1">Score = 1/d²</div>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 font-mono text-sm text-left">
+                        <div className="text-emerald-400 mb-1 text-left">Score = 1/d²</div>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-base leading-relaxed text-left">
                           <strong className="text-white">System Action:</strong> Prioritizes 1st and 2nd-degree connections. 3rd-degree nodes are held in a "Probationary State" until a secondary "Vouch" signal is detected.
                         </p>
                       </div>
@@ -6725,21 +7674,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center border border-emerald-400/30">
                         <span className="text-2xl font-bold text-emerald-400">L2</span>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white">Gate 02: The Verification Gate</h3>
-                        <p className="text-sm text-gray-400">ZK-Proof Travel Validation</p>
+                      <div className="text-left">
+                        <h3 className="text-xl font-bold text-white text-left">Gate 02: The Verification Gate</h3>
+                        <p className="text-sm text-gray-400 text-left">ZK-Proof Travel Validation</p>
                       </div>
                     </div>
-                    <div className="ml-16 space-y-3">
+                    <div className="ml-0 space-y-3 text-left">
                       <div>
-                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> ZK-Proof Travel Validation</p>
+                        <p className="text-sm text-gray-400 mb-1 text-left"><strong className="text-white">Metric:</strong> ZK-Proof Travel Validation</p>
                       </div>
-                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
-                        <p className="text-emerald-400 text-sm font-mono mb-2">Cryptographic verification of location history</p>
-                        <p className="text-gray-400 text-xs">Without data exfiltration</p>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 text-left">
+                        <p className="text-emerald-400 text-sm font-mono mb-2 text-left">Cryptographic verification of location history</p>
+                        <p className="text-gray-400 text-base md:text-base text-left">Without data exfiltration</p>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-base leading-relaxed text-left">
                           <strong className="text-white">System Action:</strong> If a user claims expertise in "Kyoto," the gate verifies the timestamped proof. Verified nodes receive a +40% weighting in the discovery feed.
                         </p>
                       </div>
@@ -6758,21 +7707,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-400/30">
                         <span className="text-2xl font-bold text-purple-400">L3</span>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white">Gate 03: The Contextual Gate</h3>
-                        <p className="text-sm text-gray-400">Persona Alignment (NLP)</p>
+                      <div className="text-left">
+                        <h3 className="text-xl font-bold text-white text-left">Gate 03: The Contextual Gate</h3>
+                        <p className="text-sm text-gray-400 text-left">Persona Alignment (NLP)</p>
                       </div>
                     </div>
-                    <div className="ml-16 space-y-3">
+                    <div className="ml-0 space-y-3 text-left">
                       <div>
-                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> Persona Alignment (NLP)</p>
+                        <p className="text-sm text-gray-400 mb-1 text-left"><strong className="text-white">Metric:</strong> Persona Alignment (NLP)</p>
                       </div>
-                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
-                        <p className="text-purple-400 text-sm font-mono">Vector similarity between requester's "Travel DNA"</p>
-                        <p className="text-gray-400 text-xs mt-1">and source's historical behavior</p>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 text-left">
+                        <p className="text-purple-400 text-sm font-mono text-left">Vector similarity between requester's "Travel DNA"</p>
+                        <p className="text-gray-400 text-base md:text-base mt-1 text-left">and source's historical behavior</p>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-base leading-relaxed text-left">
                           <strong className="text-white">System Action:</strong> Downgrades high-trust connections if travel styles are mismatched (e.g., a Luxury traveler recommending a hostel to a Backpacker).
                         </p>
                       </div>
@@ -6780,356 +7729,307 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </motion.div>
                 </div>
                 
-                {/* Privacy-Gated Matching Diagram */}
+                {/* Privacy-Gated Network Effects: Logic-to-Interface Schematic */}
                 <div className="relative mt-16 pt-12 border-t border-white/10">
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-white mb-2">System Architecture: Data Privacy Layer</h3>
-                    <p className="text-gray-400 text-sm max-w-2xl mx-auto">Architectural pillars enabling privacy-preserving discovery</p>
+                  <div className="text-center mb-12">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "'Inter', sans-serif" }}>From Black Box to Transparent Trust</h3>
+                    <p className="text-gray-400 text-base max-w-3xl mx-auto" style={{ fontFamily: "'Inter', sans-serif" }}>Evidence-Based UI: How the Trust Layer manifests as real-time feedback in the user interface</p>
                   </div>
                   
-                  {/* Architectural Pillars */}
-                  <div className="grid md:grid-cols-3 gap-6 mb-12">
-                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                      <h4 className="text-lg font-semibold text-white mb-3">Decentralized Identifiers (DIDs)</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        Social connections are anchored to user-owned DIDs, preventing platform lock-in and central data harvesting.
-                      </p>
+                  {/* Schematic Container with Grid Background */}
+                  <div className="relative max-w-7xl mx-auto">
+                    {/* Technical Grid Pattern */}
+                    <div className="absolute inset-0 opacity-5">
+                      <div className="grid grid-cols-20 grid-rows-12 h-full w-full">
+                        {[...Array(240)].map((_, i) => (
+                          <div key={i} className="border border-indigo-500/20" />
+                        ))}
+                      </div>
                     </div>
-                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                      <h4 className="text-lg font-semibold text-white mb-3">Ephemeral Node Activation</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        A user's "Social Signal" only enters the active graph during a "Planning Window," automatically deactivating post-trip to ensure long-term privacy.
-                      </p>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                      <h4 className="text-lg font-semibold text-white mb-3">Data Minimization</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        The AI processing engine only ingests "Identity Metadata" (hashed interests) rather than PII (Personally Identifiable Information).
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Main Grid Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
                     
-                    {/* Stage 1 - Social Graph Processing (Left) */}
-                    <div className="space-y-8">
-                      <h3 className="text-lg font-semibold text-indigo-400 text-center lg:text-left mb-6">
-                        Social Graph Processing
-                      </h3>
+                    {/* Main Flow: User Terminal → Trust Intersection → Trust Card */}
+                    <div className="relative z-10">
+                      {/* Connection Lines - Desktop Only */}
+                      <div className="hidden lg:block absolute inset-0 pointer-events-none">
+                        {/* Line 1: Input → Processing */}
+                        <div className="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                          <motion.div
+                            animate={{
+                              x: [0, 20, 0],
+                              opacity: [0.5, 1, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="flex items-center gap-2"
+                          >
+                            <div className="h-0.5 w-32 bg-gradient-to-r from-indigo-400/50 to-emerald-400/50"></div>
+                            <ArrowRight className="w-5 h-5 text-emerald-400" />
+                            <span className="text-xs text-gray-400 font-mono absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                              [DATA MINIMIZED]
+                            </span>
+                          </motion.div>
+                        </div>
+                        
+                        {/* Line 2: Processing → Output */}
+                        <div className="absolute right-1/3 top-1/2 translate-x-1/2 -translate-y-1/2">
+                          <motion.div
+                            animate={{
+                              x: [0, 20, 0],
+                              opacity: [0.5, 1, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 0.3,
+                            }}
+                            className="flex items-center gap-2"
+                          >
+                            <div className="h-0.5 w-32 bg-gradient-to-r from-emerald-400/50 to-cyan-400/50"></div>
+                            <ArrowRight className="w-5 h-5 text-cyan-400" />
+                            <span className="text-xs text-gray-400 font-mono absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                              [TRUST VERIFIED]
+                            </span>
+                          </motion.div>
+                        </div>
+                      </div>
                       
-                      {/* Two Identity Clusters */}
-                      {[
-                        {
-                          user: 'User A',
-                          interests: ['Architecture', 'Street Food', 'Photography'],
-                          color: 'indigo',
-                        },
-                        {
-                          user: 'User B',
-                          interests: ['Street Food', 'Art', 'Local Culture'],
-                          color: 'violet',
-                        },
-                      ].map((identity, clusterIndex) => (
+                      <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-start mb-12 relative">
+                        
+                        {/* Stage 1: User Terminal (Input State) */}
                         <motion.div
-                          key={clusterIndex}
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: clusterIndex * 0.2 }}
-                          className="group relative"
+                          transition={{ duration: 0.6 }}
+                          className="lg:col-span-1"
                         >
-                          {/* Identity Cluster Card */}
-                          <div className={`relative backdrop-blur-xl bg-white/5 border ${clusterIndex === 0 ? 'border-indigo-500/30 hover:border-indigo-400/60' : 'border-violet-500/30 hover:border-violet-400/60'} rounded-xl p-6 shadow-lg transition-all duration-300`}>
-                            {/* User Profile Icon */}
-                            <div className="flex items-center gap-3 mb-4">
-                              <div className="relative">
-                                <div className={`absolute inset-0 ${clusterIndex === 0 ? 'bg-indigo-500/30' : 'bg-violet-500/30'} blur-xl rounded-full`} />
-                                <FaUserCircle className={`w-8 h-8 ${clusterIndex === 0 ? 'text-indigo-400' : 'text-violet-400'} relative z-10`} />
+                          <div className="relative">
+                            {/* Annotated Label */}
+                            <div className="absolute -top-6 left-0 text-xs text-gray-400 font-mono uppercase tracking-wider">
+                              <span className="text-indigo-400">[INPUT STATE]</span>
+                            </div>
+                            
+                            {/* Mobile UI Frame - Privacy Dashboard */}
+                            <div className="bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-900/90 backdrop-blur-xl border-2 border-indigo-500/40 rounded-3xl p-6 shadow-2xl" style={{ maxWidth: '320px', margin: '0 auto' }}>
+                              {/* Mobile Frame Header */}
+                              <div className="flex items-center justify-between mb-6">
+                                <div className="text-white font-semibold text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>Privacy Dashboard</div>
+                                <Shield className="w-5 h-5 text-indigo-400" />
                               </div>
-                              <h4 className="text-white font-semibold text-base">{identity.user}</h4>
+                              
+                              {/* Toggle State */}
+                              <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-4 mb-4">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-gray-300 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>Active Discovery</span>
+                                  <div className="relative inline-block w-12 h-6 bg-emerald-500/30 rounded-full">
+                                    <div className="absolute right-1 top-1 w-4 h-4 bg-emerald-400 rounded-full shadow-lg"></div>
+                                  </div>
+                                </div>
+                                <div className="text-gray-400 text-xs font-mono">Next 14 Days</div>
+                              </div>
+                              
+                              {/* Identity Chip */}
+                              <div className="bg-indigo-500/10 backdrop-blur-sm rounded-xl border border-indigo-400/30 p-4">
+                                <div className="text-gray-400 text-xs uppercase tracking-wider mb-2">Identity Chip</div>
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <span className="px-3 py-1.5 bg-indigo-500/20 border border-indigo-400/40 rounded-lg text-indigo-300 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    Slow Travel
+                                  </span>
+                                  <span className="px-3 py-1.5 bg-indigo-500/20 border border-indigo-400/40 rounded-lg text-indigo-300 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    Street Photography
+                                  </span>
+                                </div>
+                              </div>
+                              
+                              {/* Micro-copy Label */}
+                              <div className="mt-4 text-center">
+                                <span className="text-xs text-gray-500 font-mono px-2 py-1 bg-slate-800/50 rounded border border-slate-700/50">
+                                  [EPHEMERAL NODE ACTIVE]
+                                </span>
+                              </div>
                             </div>
-                            
-                            {/* Floating Interest Tags */}
-                            <div className="space-y-2">
-                              {(Array.isArray(identity.interests) ? identity.interests : []).map((interest, tagIndex) => (
-                                <motion.div
-                                  key={tagIndex}
-                                  initial={{ opacity: 0, y: 10 }}
-                                  whileInView={{ opacity: 1, y: 0 }}
-                                  viewport={{ once: true }}
-                                  animate={{
-                                    y: [0, -3, 0],
-                                  }}
-                                  transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    delay: clusterIndex * 0.2 + tagIndex * 0.2,
-                                    ease: "easeInOut",
-                                  }}
-                                  className={`inline-flex items-center gap-2 px-3 py-1.5 ${clusterIndex === 0 ? 'bg-indigo-500/20 border-indigo-400/30' : 'bg-violet-500/20 border-violet-400/30'} border rounded-lg mr-2 mb-2`}
-                                >
-                                  <FaTags className={`w-3 h-3 ${clusterIndex === 0 ? 'text-indigo-300' : 'text-violet-300'}`} />
-                                  <span className={`${clusterIndex === 0 ? 'text-indigo-300' : 'text-violet-300'} text-xs font-medium`}>{interest}</span>
-                                </motion.div>
-                              ))}
-                            </div>
-                            
-                            {/* Data signal to privacy layer */}
-                            <motion.div
-                              className={`absolute -right-2 top-1/2 w-2 h-2 ${clusterIndex === 0 ? 'bg-indigo-400' : 'bg-violet-400'} rounded-full opacity-0 group-hover:opacity-100`}
-                              animate={{
-                                x: [0, 200, 200],
-                                opacity: [0, 1, 0],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: clusterIndex * 0.3,
-                              }}
-                            />
                           </div>
                         </motion.div>
-                      ))}
-                    </div>
-                    
-                    {/* Stage 2 - Privacy Gateway (Center) */}
-                    <div className="flex justify-center my-12 lg:my-0">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="relative"
-                      >
-                        {/* Privacy Shield Gateway */}
-                        <div className="relative w-48 h-96 md:w-56 md:h-[500px] flex flex-col items-center justify-center">
-                          {/* Translucent Vertical Gateway Bar */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <motion.div
-                              className="w-1 h-full bg-gradient-to-b from-emerald-500/20 via-emerald-400/40 to-emerald-500/20 rounded-full backdrop-blur-sm border border-emerald-400/30"
-                              animate={{
-                                opacity: [0.6, 1, 0.6],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                            />
-                          </div>
-                          
-                          {/* Shield Icon - Centered */}
-                          <div className="relative z-10">
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.1, 1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                              className="w-24 h-24 md:w-32 md:h-32 bg-emerald-500/20 backdrop-blur-xl rounded-full border-2 border-emerald-400/50 flex items-center justify-center"
-                            >
-                              <FaShieldAlt className="w-12 h-12 md:w-16 md:h-16 text-emerald-400" />
-                            </motion.div>
-                          </div>
-                          
-                          {/* Data Signals Attempting to Pass Through */}
-                          {/* Blocked Signal (from left) */}
-                          <motion.div
-                            className="absolute left-0 top-1/4 w-3 h-3 bg-red-400 rounded-full"
-                            animate={{
-                              x: [0, 100, 100],
-                              opacity: [1, 0.5, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 0.5,
-                              ease: "easeIn",
-                            }}
-                          />
-                          <motion.div
-                            className="absolute left-0 top-1/4 w-1 h-12 bg-red-400/50 rounded-full"
-                            animate={{
-                              x: [0, 100, 100],
-                              opacity: [0.5, 0, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 0.5,
-                              ease: "easeIn",
-                            }}
-                          />
-                          
-                          {/* Allowed Signal (from left - Opt-in) */}
-                          <motion.div
-                            className="absolute left-0 top-1/2 w-3 h-3 bg-emerald-400 rounded-full"
-                            animate={{
-                              x: [0, 120, 120],
-                              opacity: [1, 1, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 1.5,
-                              ease: "easeInOut",
-                            }}
-                          />
-                          <motion.div
-                            className="absolute left-0 top-1/2 w-1 h-12 bg-emerald-400/50 rounded-full"
-                            animate={{
-                              x: [0, 120, 120],
-                              opacity: [0.5, 0.5, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 1.5,
-                              ease: "easeInOut",
-                            }}
-                          />
-                          
-                          {/* Blocked Signal (from right) */}
-                          <motion.div
-                            className="absolute right-0 top-3/4 w-3 h-3 bg-red-400 rounded-full"
-                            animate={{
-                              x: [0, -100, -100],
-                              opacity: [1, 0.5, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 2.5,
-                              ease: "easeIn",
-                            }}
-                          />
-                          <motion.div
-                            className="absolute right-0 top-3/4 w-1 h-12 bg-red-400/50 rounded-full"
-                            animate={{
-                              x: [0, -100, -100],
-                              opacity: [0.5, 0, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: 2.5,
-                              ease: "easeIn",
-                            }}
-                          />
-                          
-                          {/* Labels */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium whitespace-nowrap">
-                            Privacy Gateway
-                          </div>
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-medium">
-                            Opt-in Only
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                    
-                    {/* Stage 3 - Network Effects (Right) */}
-                    <div className="space-y-6">
-                      <h3 className="text-lg font-semibold text-emerald-400 text-center lg:text-right mb-6">
-                        Network Effects
-                      </h3>
-                      
-                      {/* Match Notification */}
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        whileHover={{ scale: 1.02, x: -5 }}
-                        className="group relative"
-                      >
-                        {/* Connection Signal Pulse */}
-                        <motion.div
-                          className="absolute -left-4 top-1/2 w-16 h-16 border-2 border-emerald-400/50 rounded-full"
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.6, 0, 0.6],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeOut",
-                          }}
-                        />
-                        <motion.div
-                          className="absolute -left-4 top-1/2 w-12 h-12 border-2 border-emerald-400/70 rounded-full"
-                          animate={{
-                            scale: [1, 1.3, 1],
-                            opacity: [0.8, 0, 0.8],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: 0.2,
-                            ease: "easeOut",
-                          }}
-                        />
                         
-                        {/* Match Card */}
-                        <div className="relative backdrop-blur-xl bg-white/5 border border-emerald-500/30 rounded-xl p-6 shadow-lg hover:border-emerald-400/60 transition-all duration-300">
-                          {/* Match Header */}
-                          <div className="flex items-center gap-3 mb-4">
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.2, 1],
-                              }}
-                              transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                            >
-                              <FaCheckCircle className="w-6 h-6 text-emerald-400" />
-                            </motion.div>
-                            <h4 className="text-white font-semibold text-base">Match Found</h4>
-                          </div>
-                          
-                          {/* Connection Details */}
-                          <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-sm text-gray-300">
-                              <span className="text-indigo-400 font-medium">User A</span>
-                              <span className="text-gray-500">↔</span>
-                              <span className="text-violet-400 font-medium">User B</span>
+                        {/* Stage 2: Trust Intersection (Processing State) */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                          className="lg:col-span-1"
+                        >
+                          <div className="relative">
+                            {/* Annotated Label */}
+                            <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-mono uppercase tracking-wider whitespace-nowrap">
+                              <span className="text-emerald-400">[PROCESSING STATE]</span>
                             </div>
                             
-                            {/* Shared Interests */}
-                            <div className="pt-3 border-t border-white/10">
-                              <p className="text-gray-400 text-xs mb-2 uppercase tracking-wider">Shared Interests</p>
-                              <div className="flex flex-wrap gap-2">
-                                {['Street Food'].map((interest, idx) => (
+                            {/* Processing Hub */}
+                            <div className="bg-gradient-to-br from-emerald-900/30 via-slate-900/90 to-cyan-900/30 backdrop-blur-xl border-2 border-emerald-500/50 rounded-3xl p-6 shadow-2xl">
+                              <div className="text-center mb-6">
+                                <div className="relative inline-block">
                                   <motion.div
-                                    key={idx}
-                                    whileHover={{ scale: 1.05 }}
-                                    className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/20 rounded-md border border-emerald-400/30"
-                                  >
-                                    <FaTags className="w-3 h-3 text-emerald-300" />
-                                    <span className="text-emerald-300 text-xs">{interest}</span>
-                                  </motion.div>
-                                ))}
+                                    animate={{
+                                      scale: [1, 1.1, 1],
+                                      opacity: [0.6, 1, 0.6],
+                                    }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      ease: "easeInOut",
+                                    }}
+                                    className="absolute inset-0 bg-emerald-400/20 blur-xl rounded-full"
+                                  />
+                                  <Network className="w-12 h-12 text-emerald-400 relative z-10" />
+                                </div>
+                                <h5 className="text-white font-semibold mt-3 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>Processing Hub</h5>
+                              </div>
+                              
+                              {/* Logic Gates (Visualized) */}
+                              <div className="space-y-4">
+                                {/* Scan 01: Connection Strength */}
+                                <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-gray-300 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>Connection Strength</span>
+                                    <span className="text-emerald-400 text-xs font-mono">75%</span>
+                                  </div>
+                                  {/* Signal Strength Bar */}
+                                  <div className="w-full h-2 bg-slate-800/50 rounded-full overflow-hidden">
+                                    <motion.div
+                                      initial={{ width: 0 }}
+                                      whileInView={{ width: '75%' }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 1, delay: 0.5 }}
+                                      className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
+                                    />
+                                  </div>
+                                  <div className="text-gray-400 text-xs mt-1 font-mono">Mutual Friends</div>
+                                </div>
+                                
+                                {/* Scan 02: Verification Proof */}
+                                <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-gray-300 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>Verification Proof</span>
+                                    <motion.div
+                                      animate={{
+                                        scale: [1, 1.2, 1],
+                                      }}
+                                      transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                      }}
+                                    >
+                                      <CheckCircle className="w-5 h-5 text-emerald-400" />
+                                    </motion.div>
+                                  </div>
+                                  <div className="text-gray-400 text-xs font-mono">ZK-Proof Validated</div>
+                                </div>
+                                
+                                {/* Scan 03: Interest Overlap (Venn Diagram) */}
+                                <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3">
+                                  <div className="text-gray-300 text-xs mb-3" style={{ fontFamily: "'Inter', sans-serif" }}>Interest Overlap</div>
+                                  {/* Simple Venn Diagram Representation */}
+                                  <div className="relative h-20 flex items-center justify-center">
+                                    <div className="absolute left-4 w-12 h-12 bg-indigo-500/30 rounded-full border border-indigo-400/50"></div>
+                                    <div className="absolute right-4 w-12 h-12 bg-violet-500/30 rounded-full border border-violet-400/50"></div>
+                                    <div className="absolute w-10 h-10 bg-emerald-500/40 rounded-full border-2 border-emerald-400 z-10 flex items-center justify-center">
+                                      <span className="text-xs text-white font-semibold">Ramen</span>
+                                    </div>
+                                  </div>
+                                  <div className="flex justify-center gap-2 mt-2">
+                                    <span className="px-2 py-0.5 bg-emerald-500/20 border border-emerald-400/30 rounded text-emerald-300 text-xs font-mono">Architecture</span>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Micro-copy Label */}
+                              <div className="mt-4 text-center">
+                                <span className="text-xs text-gray-500 font-mono px-2 py-1 bg-slate-800/50 rounded border border-slate-700/50">
+                                  [IDENTITY MATCHED]
+                                </span>
                               </div>
                             </div>
+                          </div>
+                        </motion.div>
+                        
+                        {/* Stage 3: Trust Card (Output State) */}
+                        <motion.div
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.4 }}
+                          className="lg:col-span-1"
+                        >
+                          <div className="relative">
+                            {/* Annotated Label */}
+                            <div className="absolute -top-6 right-0 text-xs text-gray-400 font-mono uppercase tracking-wider">
+                              <span className="text-cyan-400">[OUTPUT STATE]</span>
+                            </div>
                             
-                            {/* Privacy Status */}
-                            <div className="pt-3 border-t border-white/10 flex items-center gap-2 text-xs text-gray-400">
-                              <FaLock className="w-3 h-3 text-emerald-400" />
-                              <span>Both users opted in</span>
+                            {/* Trust Card UI */}
+                            <div className="bg-gradient-to-br from-cyan-900/30 via-slate-900/90 to-emerald-900/30 backdrop-blur-xl border-2 border-cyan-500/50 rounded-3xl p-6 shadow-2xl" style={{ maxWidth: '320px', margin: '0 auto' }}>
+                              {/* Card Header */}
+                              <div className="flex items-center gap-2 mb-4">
+                                <CheckCircle className="w-5 h-5 text-cyan-400" />
+                                <h5 className="text-white font-semibold text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>Verified Recommendation</h5>
+                              </div>
+                              
+                              {/* Recommendation Content */}
+                              <div className="space-y-4">
+                                {/* Place/Experience Info */}
+                                <div>
+                                  <h6 className="text-white font-semibold mb-1" style={{ fontFamily: "'Inter', sans-serif" }}>Tokyo Ramen District</h6>
+                                  <p className="text-gray-400 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>Local street food experience</p>
+                                </div>
+                                
+                                {/* Vouched By Badge */}
+                                <div className="bg-emerald-500/10 backdrop-blur-sm rounded-lg border border-emerald-400/30 p-3">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <Users className="w-4 h-4 text-emerald-400" />
+                                    <span className="text-emerald-300 text-xs font-semibold" style={{ fontFamily: "'Inter', sans-serif" }}>Vouched By</span>
+                                  </div>
+                                  <p className="text-gray-300 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>3 Mutual Friends have stayed here</p>
+                                </div>
+                                
+                                {/* Proximity Indicator */}
+                                <div className="bg-indigo-500/10 backdrop-blur-sm rounded-lg border border-indigo-400/30 p-3">
+                                  <div className="flex items-center gap-2">
+                                    <Network className="w-4 h-4 text-indigo-400" />
+                                    <span className="text-indigo-300 text-xs font-mono">Friend-of-a-Friend (FofF) Match</span>
+                                  </div>
+                                </div>
+                                
+                                {/* Privacy Guardrail */}
+                                <div className="bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 p-3">
+                                  <div className="flex items-start gap-2">
+                                    <Shield className="w-4 h-4 text-slate-400 mt-0.5" />
+                                    <p className="text-gray-400 text-xs leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                      Location shared only because you both opted-in for Tokyo
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Micro-copy Label */}
+                              <div className="mt-4 text-center">
+                                <span className="text-xs text-gray-500 font-mono px-2 py-1 bg-slate-800/50 rounded border border-slate-700/50">
+                                  [RECOMMENDATION VERIFIED]
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </motion.div>
+                        </motion.div>
+                      </div>
                     </div>
                   </div>
                   
-                  {/* Privacy-Gated Matching Formula - Bottom */}
+                  {/* System Log - Mathematical Model */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -7138,15 +8038,17 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="text-center">
-                      <p className="text-gray-400 text-sm mb-2">The Social Graph–Driven Travel Network: Privacy-Gated Network Effects</p>
-                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
-                        <div className="text-white font-mono text-sm md:text-base">
-                          <div className="mb-2">M<sub>connection</sub> = I<sub>A</sub> ∩ I<sub>B</sub> × P<sub>A</sub> × P<sub>B</sub></div>
-                          <div className="text-xs md:text-sm text-gray-400 space-y-1">
-                            <div>I<sub>A</sub>, I<sub>B</sub>: Social graph nodes (people, places, trips, intent)</div>
-                            <div>P<sub>A</sub>, P<sub>B</sub>: Privacy gates (1 = opt-in, 0 = blocked)</div>
-                            <div>Network connection occurs when: I<sub>A</sub> ∩ I<sub>B</sub> ≠ ∅ AND P<sub>A</sub> = P<sub>B</sub> = 1</div>
-                          </div>
+                      <p className="text-gray-400 text-xs mb-3 font-mono uppercase tracking-wider">System Log</p>
+                      <div className="inline-block backdrop-blur-xl bg-slate-900/90 border border-slate-700/50 rounded-lg p-4 md:p-6 shadow-xl max-w-3xl font-mono text-left">
+                        <div className="text-gray-500 text-xs mb-2">[INFO] Connection calculation executed</div>
+                        <div className="text-cyan-300 text-sm md:text-base mb-2">
+                          M<sub>connection</sub> = (I<sub>A</sub> ∩ I<sub>B</sub>) × (P<sub>A</sub> · P<sub>B</sub>) × vouch(n)
+                        </div>
+                        <div className="text-gray-400 text-xs space-y-1 border-t border-slate-700/50 pt-2 mt-2">
+                          <div><span className="text-cyan-400">→</span> I: Multi-modal graph nodes (Intent, Interest, Provenance)</div>
+                          <div><span className="text-emerald-400">→</span> P: Privacy Gate Status (Binary)</div>
+                          <div><span className="text-indigo-400">→</span> vouch(n): Trust Coefficient based on degrees of separation</div>
+                          <div className="text-gray-500 mt-2">[SUCCESS] High-trust connection established: Score 0.92</div>
                         </div>
                       </div>
                     </div>
@@ -7167,12 +8069,57 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 className="max-w-4xl mx-auto"
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-slate-700/50 p-8 md:p-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">Engineering the Social Graph</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">System Architecture: Technical Deep-Dive</h2>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-dark-gray-200 mb-3">Operational Trade-offs</h3>
-                      <p className="text--dark-gray-300 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-white mb-3">Data Privacy Layer</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-emerald-100 mb-2">DIDs</h4>
+                          <p className="text-white leading-relaxed">
+                            Identity is anchored to user-owned DIDs to prevent central harvesting. This architecture ensures that user identity remains portable across platforms and cannot be controlled by a single entity.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-emerald-100 mb-2">Ephemeral Activation</h4>
+                          <p className="text-white leading-relaxed">
+                            Users appear on the "Living Map" only during active transit or planning states. Nodes only enter the active graph during a defined 'Planning Window' and auto-deactivate post-trip. This temporal activation model minimizes exposure windows and ensures that user data is only discoverable during relevant travel periods.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-emerald-100 mb-2">Data Minimization</h4>
+                          <p className="text-white leading-relaxed">
+                            The engine ingests only 'Identity Metadata' (hashed interests) rather than raw PII. By operating on cryptographically hashed identity signals rather than personally identifiable data, the system enables matching while maintaining zero-knowledge privacy.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-3">Influence Scorer (I)</h3>
+                      <p className="text-white leading-relaxed mb-4">
+                        Calculates connection weights based on Travel DNA similarity and network proximity. The Influence Scorer processes Friend-of-a-Friend (FofF) validation by analyzing:
+                      </p>
+                      <div className="space-y-3 ml-4">
+                        <div className="flex items-start gap-2">
+                          <span className="text-emerald-100 mt-1">•</span>
+                          <p className="text-white leading-relaxed"><strong className="text-emerald-100">Travel DNA Similarity:</strong> Vector comparison of exploration style, cultural engagement depth, and spontaneity preferences</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-emerald-100 mt-1">•</span>
+                          <p className="text-white leading-relaxed"><strong className="text-emerald-100">Network Proximity:</strong> Degrees of separation weighted by trust signals and mutual connections</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-emerald-100 mt-1">•</span>
+                          <p className="text-white leading-relaxed"><strong className="text-emerald-100">Presence Intelligence:</strong> Real-time location overlap and intent matching for spontaneous coordination</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-3">Operational Trade-offs</h3>
+                      <p className="text-white leading-relaxed">
                         The decision to move away from a traditional SQL-based architecture was driven by the computational cost of "Multi-Hop" discovery. While a standard database excels at transactional integrity, it fails at the scale required for real-time trust verification.
                       </p>
                     </div>
@@ -7331,6 +8278,208 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             )}
           </AnimatePresence>
 
+          {/* Living Graph Interactive Demo Modal */}
+          <AnimatePresence>
+            {isDemoOpen && isLocalExperienceFinder && (
+              <>
+                {/* Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsDemoOpen(false)}
+                  className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60]"
+                />
+
+                {/* Demo Modal */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none"
+                >
+                  <div
+                    className="bg-slate-950 rounded-2xl border border-slate-700 max-w-7xl w-full h-[90vh] flex flex-col pointer-events-auto shadow-2xl overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Modal Header */}
+                    <div className="flex items-center justify-between p-6 border-b border-slate-700 bg-slate-900/50">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white mb-1 font-mono">The Living Graph: Interactive Demo</h3>
+                        <p className="text-sm text-gray-400 font-mono">Real-time Trust Layer simulation</p>
+                      </div>
+                      <button
+                        onClick={() => setIsDemoOpen(false)}
+                        className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-lg"
+                        aria-label="Close demo"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Demo Content */}
+                    <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+                      {/* Left: Node Visualization Canvas */}
+                      <div className="flex-1 p-6 bg-slate-950 relative overflow-hidden">
+                        <div className="h-full w-full relative">
+                          {/* Node Canvas Area */}
+                          <svg className="w-full h-full" viewBox="0 0 800 600">
+                            {/* Background Grid */}
+                            <defs>
+                              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.1)" strokeWidth="1"/>
+                              </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+
+                            {/* Connection Lines */}
+                            {demoStage !== 'idle' && (
+                              <>
+                                <line x1="400" y1="300" x2="300" y2="200" stroke="rgba(34, 197, 94, 0.4)" strokeWidth="2" />
+                                <line x1="400" y1="300" x2="500" y2="200" stroke="rgba(34, 197, 94, 0.4)" strokeWidth="2" />
+                                <line x1="400" y1="300" x2="450" y2="450" stroke="rgba(34, 197, 94, 0.4)" strokeWidth="2" />
+                                <line x1="400" y1="300" x2="200" y2="350" stroke="rgba(34, 197, 94, 0.4)" strokeWidth="2" />
+                                <line x1="400" y1="300" x2="600" y2="380" stroke="rgba(34, 197, 94, 0.4)" strokeWidth="2" />
+                              </>
+                            )}
+
+                            {/* Network Nodes */}
+                            {[
+                              { x: 300, y: 200, active: demoStage !== 'idle' },
+                              { x: 500, y: 200, active: demoStage !== 'idle' },
+                              { x: 450, y: 450, active: demoStage !== 'idle' },
+                              { x: 200, y: 350, active: demoStage !== 'idle' },
+                              { x: 600, y: 380, active: demoStage !== 'idle' && selectedMatch }
+                            ].map((node, i) => (
+                              <circle
+                                key={i}
+                                cx={node.x}
+                                cy={node.y}
+                                r={node.active ? 12 : 6}
+                                fill={node.active ? (selectedMatch && i === 4 ? '#22c55e' : 'rgba(34, 197, 94, 0.6)') : 'rgba(148, 163, 184, 0.3)'}
+                                stroke={node.active ? '#22c55e' : 'rgba(148, 163, 184, 0.5)'}
+                                strokeWidth={node.active ? 2 : 1}
+                                className="transition-all duration-500"
+                              />
+                            ))}
+
+                            {/* User Node (Center) */}
+                            <circle
+                              cx="400"
+                              cy="300"
+                              r={demoStage !== 'idle' ? 20 : 12}
+                              fill={demoStage !== 'idle' ? '#22c55e' : 'rgba(148, 163, 184, 0.5)'}
+                              stroke="#22c55e"
+                              strokeWidth={3}
+                              className="transition-all duration-500"
+                            />
+                            <circle
+                              cx="400"
+                              cy="300"
+                              r={demoStage !== 'idle' ? 20 : 12}
+                              fill="none"
+                              stroke="#22c55e"
+                              strokeWidth={2}
+                              opacity={demoStage !== 'idle' ? 0.5 : 0}
+                              className="animate-ping"
+                            />
+                          </svg>
+
+                          {/* Activation Button (if idle) */}
+                          {demoStage === 'idle' && (
+                            <motion.button
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              onClick={() => setDemoStage('activating')}
+                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-lg font-mono uppercase tracking-wider shadow-lg"
+                            >
+                              Activate My DID
+                            </motion.button>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right: Processing Log & Results */}
+                      <div className="w-full lg:w-96 p-6 bg-slate-900/50 border-t lg:border-t-0 lg:border-l border-slate-700 flex flex-col">
+                        <h4 className="text-lg font-bold text-white mb-4 font-mono">AI Processing...</h4>
+                        
+                        {/* Log Output */}
+                        <div className="flex-1 bg-slate-950 rounded-lg border border-slate-700 p-4 font-mono text-sm overflow-y-auto mb-4">
+                          {demoLogs.length === 0 ? (
+                            <div className="text-gray-500">Waiting for activation...</div>
+                          ) : (
+                            <div className="space-y-2">
+                              {demoLogs.map((log, i) => (
+                                <div key={i} className="text-emerald-400">
+                                  {log}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Match Result Card */}
+                        {selectedMatch && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-xl border border-emerald-500/30 p-6"
+                          >
+                            <div className="flex items-center gap-3 mb-3">
+                              <CheckCircle className="w-6 h-6 text-emerald-400" />
+                              <h5 className="text-lg font-bold text-white">Match Found</h5>
+                            </div>
+                            <div className="space-y-2 text-white">
+                              <div><strong>User:</strong> {selectedMatch.name}</div>
+                              <div><strong>Location:</strong> {selectedMatch.location}</div>
+                              <div className="flex items-center gap-2 mt-3">
+                                <span className="text-sm text-gray-300">Vibe Match:</span>
+                                <span className="text-2xl font-bold text-emerald-400">{selectedMatch.match}%</span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="p-4 border-t border-slate-700 bg-slate-900/50 flex justify-between items-center">
+                      <button
+                        onClick={() => setIsDemoOpen(false)}
+                        className="px-4 py-2 text-gray-400 hover:text-white text-sm font-mono"
+                      >
+                        ← Return to Case Study
+                      </button>
+                      {demoStage === 'idle' && (
+                        <button
+                          onClick={() => setDemoStage('activating')}
+                          className="px-6 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-400 font-medium rounded-lg transition-colors font-mono"
+                        >
+                          Start Simulation
+                        </button>
+                      )}
+                      {demoStage === 'complete' && (
+                        <button
+                          onClick={() => {
+                            setDemoStage('idle');
+                            setDemoLogs([]);
+                            setSelectedMatch(null);
+                          }}
+                          className="px-6 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/50 text-cyan-400 font-medium rounded-lg transition-colors font-mono"
+                        >
+                          Reset Demo
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+
           {/* Influence Scorer Algorithm Section */}
           <section className="py-20 bg-slate-900">
             <div className="container mx-auto px-6">
@@ -7365,17 +8514,17 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                         <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">T</div>
                         <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Trust Strength:</strong></div>
-                        <div className="text-xs text-gray-500">Density of mutual "High-Trust" nodes</div>
+                        <div className="text-sm md:text-xs text-gray-500">Density of mutual "High-Trust" nodes</div>
                       </div>
                       <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                         <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">R</div>
                         <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Recency:</strong></div>
-                        <div className="text-xs text-gray-500">Temporal decay function ensuring tips are &lt;18 months old</div>
+                        <div className="text-sm md:text-xs text-gray-500">Temporal decay function ensuring tips are &lt;18 months old</div>
                       </div>
                       <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                         <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">S</div>
                         <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Sentiment Alignment:</strong></div>
-                        <div className="text-xs text-gray-500">LLM-based analysis of source's descriptive style vs. user's preferences</div>
+                        <div className="text-sm md:text-xs text-gray-500">LLM-based analysis of source's descriptive style vs. user's preferences</div>
                       </div>
                     </div>
                   </div>
@@ -7454,9 +8603,54 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     Design Evolution
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Designing for transparency and trust—prioritizing source verification and data provenance in the user experience.
+                    Users can toggle between a high-density tabular view for intent-matching and a global map for spatial trend discovery, ensuring both analytical and exploratory UI needs are met.
                   </p>
                 </div>
+
+              {/* User Journey Map - Only for social-graph-driven-travel-network */}
+              {isLocalExperienceFinder && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8 md:p-10"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Journey: Autonomous Discovery Flow</h3>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                    The system proactively surfaces opportunities—moving from passive privacy to active intelligence without requiring search or manual filtering.
+                  </p>
+                  <div className="space-y-6 max-w-4xl mx-auto">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center border border-indigo-400/30 flex-shrink-0 mt-1">
+                        <span className="text-indigo-400 font-bold text-sm">1</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Input: Ambient Signals</h4>
+                        <p className="text-gray-300 leading-relaxed">System continuously monitors proximity, schedule gaps, and trust graph signals. No user action required—the Sensor layer maps 2nd and 3rd-degree connections in the background.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center border border-emerald-400/30 flex-shrink-0 mt-1">
+                        <span className="text-emerald-400 font-bold text-sm">2</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Logic: Proactive Matching</h4>
+                        <p className="text-gray-300 leading-relaxed">The Validator (Trust Layer) and Prioritization Engine (Influence Scorer) autonomously detect High-Trust Clusters. When all conditions align—proximity, shared interests, and schedule gaps—the system prepares an opportunity notification.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-400/30 flex-shrink-0 mt-1">
+                        <span className="text-purple-400 font-bold text-sm">3</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Proactive Output: Opportunity Notification</h4>
+                        <p className="text-gray-300 leading-relaxed">System surfaces a low-friction notification: "High-Trust Cluster detected: 2 verified connections nearby with a 15-minute Window of Opportunity." No search required—the system transforms cold proximity into a warm, validated social graph in real-time.</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
               {/* Figma Travel App Design Screenshot - Full Width Background - Only for social-graph-driven-travel-network */}
               {isLocalExperienceFinder && (
@@ -7477,6 +8671,51 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </section>
               )}
               <br /><br />
+
+              {/* Profile Screen & Travel DNA Section - Only for social-graph-driven-travel-network */}
+              {isLocalExperienceFinder && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8 md:p-10"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Generating Travel DNA: Beyond the Itinerary</h3>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6 text-center max-w-3xl mx-auto">
+                    The Profile Screen is more than a list of pins; it is the ingestion point for the <strong className="text-purple-400">Contextual Gate (L3)</strong>.
+                  </p>
+                  <div className="space-y-6 max-w-4xl mx-auto">
+                    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                      <h4 className="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-indigo-400 rounded-full"></span>
+                        Signal Extraction
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        AI analyzes past trip telemetry (duration, pace, location type) to extract "Identity Signals"—transforming raw data into a "Travel DNA" vector (e.g., 'Off-the-beaten-path Explorer' vs. 'Urban Luxury Seeker').
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                      <h4 className="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                        Reciprocal Intent Matching
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        The system cross-references your "Past Trips" with your network's "Future Plans." If 11 connections want to go where you have been, the AI triggers a mentorship signal, facilitating spontaneous knowledge sharing.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                      <h4 className="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                        Dynamic Vibe Alignment
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Travel DNA is not static; it evolves as users add new experiences, ensuring that spontaneity is always matched to the user's <em className="text-purple-300">current</em> exploration style.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
                 {/* Video Container */}
                 <div className="relative max-w-4xl mx-auto">
@@ -7521,18 +8760,294 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </h2>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <p className="text-amber-300 text-sm font-medium">
+                      <p className="text-amber-300 text-base md:text-sm font-medium">
                         Work In Progress
                       </p>
                     </div>
                   </motion.div>
                 </div>
                 
-                <div className="bg-white/5 p-8 rounded-xl border border-white/10">
+                <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-12">
                   <p className="text-gray-300 text-center">
                     Development workflow and technical architecture details will be documented as the system is built.
                   </p>
                 </div>
+
+                {/* The System in Motion: Mobile Demo */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="max-w-5xl mx-auto"
+                >
+                  <div className="text-center mb-12">
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                      The System in Motion: Mobile Demo
+                    </h3>
+                    <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+                      Experience the Trust Layer in action. This mobile simulation demonstrates how raw traveler telemetry is converted into verified social signals using the Influence Scorer and Privacy Gates.
+                    </p>
+                  </div>
+
+                  {/* Mobile Sandbox Container */}
+                  <div className="flex justify-center mb-8">
+                    <div className="relative" style={{ maxWidth: '375px', width: '100%' }}>
+                      {/* Mobile Frame */}
+                      <div 
+                        className="relative bg-slate-900 rounded-[2.5rem] p-2 shadow-2xl border-4 border-slate-700"
+                        style={{ aspectRatio: '9/19' }}
+                      >
+                        {/* Mobile Screen */}
+                        <div className="relative w-full h-full bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950 rounded-[2rem] overflow-hidden">
+                          {/* Map Background */}
+                          <div className="absolute inset-0 opacity-20">
+                            <div className="w-full h-full bg-gradient-to-br from-emerald-900/30 via-slate-900 to-cyan-900/30"></div>
+                            {/* Grid pattern for map feel */}
+                            <div className="absolute inset-0" style={{
+                              backgroundImage: 'linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)',
+                              backgroundSize: '40px 40px'
+                            }}></div>
+                          </div>
+
+                          {/* Content Area */}
+                          <div className="relative z-10 h-full flex flex-col p-6">
+                            {/* Status Bar */}
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="text-white text-xs font-mono">
+                                {mobileDemoStage === 'encrypted' && 'State: Stealth Mode (DID Encrypted)'}
+                                {mobileDemoStage === 'scanning' && 'State: Network Scanning...'}
+                                {mobileDemoStage === 'connected' && 'State: Connection Active'}
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                              </div>
+                            </div>
+
+                            {/* Map Area with Nodes */}
+                            <div className="flex-1 relative mb-4">
+                              {/* User Location (Center) */}
+                              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                <motion.div
+                                  animate={mobileDemoStage === 'scanning' ? {
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.8, 1, 0.8]
+                                  } : {}}
+                                  transition={{ duration: 2, repeat: mobileDemoStage === 'scanning' ? Infinity : 0 }}
+                                  className="w-4 h-4 bg-emerald-400 rounded-full shadow-lg shadow-emerald-400/50"
+                                />
+                                {mobileDemoStage === 'scanning' && (
+                                  <>
+                                    {/* Scanning Ring 1 */}
+                                    <motion.div
+                                      initial={{ scale: 0, opacity: 0.8 }}
+                                      animate={{ scale: 4, opacity: 0 }}
+                                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 border-2 border-emerald-400 rounded-full"
+                                    />
+                                    {/* Scanning Ring 2 */}
+                                    <motion.div
+                                      initial={{ scale: 0, opacity: 0.6 }}
+                                      animate={{ scale: 6, opacity: 0 }}
+                                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 border-2 border-cyan-400 rounded-full"
+                                    />
+                                  </>
+                                )}
+                              </div>
+
+                              {/* Anonymous Nodes (Blurred when encrypted) */}
+                              {[
+                                { x: '20%', y: '30%' },
+                                { x: '80%', y: '25%' },
+                                { x: '15%', y: '70%' },
+                                { x: '75%', y: '75%' },
+                                { x: '50%', y: '20%' }
+                              ].map((pos, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ opacity: 0.3, scale: 0.8 }}
+                                  animate={{
+                                    opacity: mobileDemoStage === 'connected' && i < 2 ? 1 : 0.3,
+                                    scale: mobileDemoStage === 'connected' && i < 2 ? 1.2 : 0.8,
+                                    filter: mobileDemoStage === 'encrypted' ? 'blur(4px)' : 'blur(0px)'
+                                  }}
+                                  transition={{ duration: 0.5 }}
+                                  className="absolute"
+                                  style={{ left: pos.x, top: pos.y, transform: 'translate(-50%, -50%)' }}
+                                >
+                                  <div className={`w-8 h-8 rounded-full ${mobileDemoStage === 'connected' && i < 2 ? 'bg-emerald-400 ring-2 ring-emerald-300' : 'bg-slate-600'}`}></div>
+                                </motion.div>
+                              ))}
+                            </div>
+
+                            {/* AI Log Overlay (Glass-morphism) */}
+                            {mobileDemoStage === 'scanning' && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-4 mb-4"
+                              >
+                                <div className="text-xs font-mono text-emerald-300 space-y-1">
+                                  {mobileDemoLogs.map((log, i) => (
+                                    <div key={i}>{log}</div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Connection Card */}
+                            {mobileDemoStage === 'connected' && showConnectionCard && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 backdrop-blur-md rounded-xl border border-emerald-400/30 p-4 mb-4"
+                              >
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className="w-12 h-12 bg-emerald-400 rounded-full flex items-center justify-center text-white font-bold">
+                                    JB
+                                  </div>
+                                  <div>
+                                    <div className="text-white font-semibold">James B.</div>
+                                    <div className="text-emerald-300 text-xs">Cape Town</div>
+                                  </div>
+                                </div>
+                                <div className="bg-white/10 rounded-lg p-3 mb-3">
+                                  <div className="text-emerald-300 text-xs font-mono mb-1">Reciprocal Intent</div>
+                                  <div className="text-white text-sm">Wants to visit your hometown. Share a tip?</div>
+                                </div>
+                                <div className="flex gap-2">
+                                  <button
+                                    onClick={() => {
+                                      setMobileDemoStage('encrypted');
+                                      setShowConnectionCard(false);
+                                      setMobileDemoLogs([]);
+                                    }}
+                                    className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+                                    aria-label="Share tip with James B."
+                                    tabIndex={0}
+                                  >
+                                    Share Tip
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      setMobileDemoStage('encrypted');
+                                      setShowConnectionCard(false);
+                                      setMobileDemoLogs([]);
+                                    }}
+                                    className="flex-1 bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+                                    aria-label="Dismiss connection card"
+                                    tabIndex={0}
+                                  >
+                                    Later
+                                  </button>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Pulse Button */}
+                            <button
+                              onClick={() => {
+                                if (mobileDemoStage === 'encrypted') {
+                                  setMobileDemoStage('scanning');
+                                  setMobileDemoLogs([]);
+                                  // Simulate AI processing logs
+                                  setTimeout(() => {
+                                    setMobileDemoLogs(['[L1 Gate]: Scanning 2nd-Degree Network...']);
+                                  }, 500);
+                                  setTimeout(() => {
+                                    setMobileDemoLogs(prev => [...prev, '[L2 Gate]: Verifying ZK-Location Proofs...']);
+                                  }, 1500);
+                                  setTimeout(() => {
+                                    setMobileDemoLogs(prev => [...prev, '[L3 Gate]: Matching Travel DNA (Vibe: \'Art & Espresso\')...']);
+                                  }, 2500);
+                                  setTimeout(() => {
+                                    setMobileDemoStage('connected');
+                                    setTimeout(() => setShowConnectionCard(true), 500);
+                                  }, 3500);
+                                } else {
+                                  setMobileDemoStage('encrypted');
+                                  setShowConnectionCard(false);
+                                  setMobileDemoLogs([]);
+                                }
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  if (mobileDemoStage === 'encrypted') {
+                                    setMobileDemoStage('scanning');
+                                    setMobileDemoLogs([]);
+                                    setTimeout(() => {
+                                      setMobileDemoLogs(['[L1 Gate]: Scanning 2nd-Degree Network...']);
+                                    }, 500);
+                                    setTimeout(() => {
+                                      setMobileDemoLogs(prev => [...prev, '[L2 Gate]: Verifying ZK-Location Proofs...']);
+                                    }, 1500);
+                                    setTimeout(() => {
+                                      setMobileDemoLogs(prev => [...prev, '[L3 Gate]: Matching Travel DNA (Vibe: \'Art & Espresso\')...']);
+                                    }, 2500);
+                                    setTimeout(() => {
+                                      setMobileDemoStage('connected');
+                                      setTimeout(() => setShowConnectionCard(true), 500);
+                                    }, 3500);
+                                  } else {
+                                    setMobileDemoStage('encrypted');
+                                    setShowConnectionCard(false);
+                                    setMobileDemoLogs([]);
+                                  }
+                                }
+                              }}
+                              className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-3 rounded-xl shadow-lg transition-all duration-200 font-mono text-sm uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+                              aria-label={mobileDemoStage === 'encrypted' ? 'Activate discovery and scan network' : 'Reset demo to encrypted state'}
+                              tabIndex={0}
+                            >
+                              {mobileDemoStage === 'encrypted' ? 'Pulse' : 'Reset'}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Status Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-slate-900/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl p-6 md:p-8 relative overflow-hidden"
+                  >
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-6">
+                        <div>
+                          <h4 className="text-xl font-bold text-white mb-2 font-mono">System Status: Global Pulse</h4>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                            <span className="text-emerald-400 text-sm font-mono">SYSTEM ONLINE</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Live Counters */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 p-4">
+                          <div className="text-emerald-400 text-xs font-mono uppercase tracking-wider mb-1">Active Travelers</div>
+                          <div className="text-2xl font-bold text-white font-mono">
+                            {activeTravelersCount.toLocaleString()}
+                          </div>
+                        </div>
+                        <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 p-4">
+                          <div className="text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">Reciprocal Matches</div>
+                          <div className="text-2xl font-bold text-white font-mono">
+                            {reciprocalMatchesCount}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </section>
@@ -7864,7 +9379,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {(Array.isArray(project?.research?.insights) ? project.research.insights : []).slice(0, 3).map((insight: string, index: number) => (
                       <div key={index} className="bg-white/5 p-6 rounded-xl border border-white/10">
-                        <p className="text-gray-300 text-sm">{insight}</p>
+                        <p className="text-gray-300 text-base md:text-sm">{insight}</p>
                       </div>
                     ))}
                   </div>
@@ -8349,25 +9864,25 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                       <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-6 rounded-lg border border-blue-500/30">
-                        <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-3">Phase 1: Arrival</div>
+                        <div className="text-sm md:text-xs font-mono text-blue-400 uppercase tracking-wider mb-3">Phase 1: Arrival</div>
                         <div className="text-white font-semibold mb-2">High Novelty / High Anxiety</div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                           Initial exposure to new environment. System provides orientation cues and establishes safe anchors.
                         </p>
                       </div>
                       
                       <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-lg border border-purple-500/30">
-                        <div className="text-xs font-mono text-purple-400 uppercase tracking-wider mb-3">Phase 2: Exploration</div>
+                        <div className="text-sm md:text-xs font-mono text-purple-400 uppercase tracking-wider mb-3">Phase 2: Exploration</div>
                         <div className="text-white font-semibold mb-2">Variable Novelty / Adaptive Comfort</div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                           Active engagement with environment. System adapts narrative beats based on real-time emotional tone feedback.
                         </p>
                       </div>
                       
                       <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-lg border border-amber-500/30">
-                        <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Phase 3: Familiarity</div>
+                        <div className="text-sm md:text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Phase 3: Familiarity</div>
                         <div className="text-white font-semibold mb-2">Low Novelty / High Comfort</div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-base md:text-sm leading-relaxed">
                           Established sense of belonging. System emphasizes depth over breadth, allowing for meaningful return visits.
                         </p>
                       </div>
@@ -8387,7 +9902,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <span className="text-blue-400 text-sm font-mono font-bold">1</span>
                         </div>
                         <div className="flex-1">
-                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Input: Emotional Tone</div>
+                          <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Input: Emotional Tone</div>
                           <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                             System receives real-time emotional state signals (anxiety, excitement, overwhelm, comfort) from traveler feedback or inferred behavioral patterns.
                           </p>
@@ -8405,7 +9920,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <span className="text-purple-400 text-sm font-mono font-bold">2</span>
                         </div>
                         <div className="flex-1">
-                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Processing: Narrative Engine</div>
+                          <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Processing: Narrative Engine</div>
                           <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                             Engine maps emotional tone to narrative phase. If tone indicates overwhelm, system can loop back to Familiarity anchors. If tone indicates readiness, system advances to Exploration.
                           </p>
@@ -8423,7 +9938,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           <span className="text-amber-400 text-sm font-mono font-bold">3</span>
                         </div>
                         <div className="flex-1">
-                          <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Output: Experience Phases</div>
+                          <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Output: Experience Phases</div>
                           <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                             System generates narrative beats (not schedules) that match the current phase. Each beat emphasizes emotional resonance over checklist completion.
                           </p>
@@ -8470,7 +9985,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
                       <div>
-                        <div className="text-xs font-mono text-red-600 uppercase tracking-wider mb-1">Constraint A</div>
+                        <div className="text-sm md:text-xs font-mono text-red-600 uppercase tracking-wider mb-1">Constraint A</div>
                         <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                           Information Scarcity
                         </h3>
@@ -8480,7 +9995,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       The system deliberately withholds "check-off" lists and comprehensive location databases to force presence. Travelers receive narrative beats, not itineraries.
                     </p>
                     <div className="mt-4 pt-4 border-t border-red-200">
-                      <div className="text-xs font-mono text-gray-600">
+                      <div className="text-sm md:text-xs font-mono text-gray-600">
                         <span className="font-semibold">Implementation:</span> No maps or schedules in initial experience. Only emotional anchors and narrative prompts.
                       </div>
                     </div>
@@ -8495,7 +10010,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
                       <div>
-                        <div className="text-xs font-mono text-blue-600 uppercase tracking-wider mb-1">Constraint B</div>
+                        <div className="text-sm md:text-xs font-mono text-blue-600 uppercase tracking-wider mb-1">Constraint B</div>
                         <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                           Temporal Elasticity
                         </h3>
@@ -8505,7 +10020,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       Narrative beats stretch or shrink based on the traveler's comfort level. A single beat can expand into hours if the emotional tone indicates deep engagement.
                     </p>
                     <div className="mt-4 pt-4 border-t border-blue-200">
-                      <div className="text-xs font-mono text-gray-600">
+                      <div className="text-sm md:text-xs font-mono text-gray-600">
                         <span className="font-semibold">Implementation:</span> Time-based constraints are secondary to emotional state. System adapts pacing in real-time.
                       </div>
                     </div>
@@ -8520,7 +10035,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         </svg>
                       </div>
                       <div>
-                        <div className="text-xs font-mono text-purple-600 uppercase tracking-wider mb-1">Constraint C</div>
+                        <div className="text-sm md:text-xs font-mono text-purple-600 uppercase tracking-wider mb-1">Constraint C</div>
                         <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                           Non-Linearity
                         </h3>
@@ -8530,7 +10045,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       The system must allow for "loops"—returning to a place of comfort if the emotional tone dips. Progression is not unidirectional.
                     </p>
                     <div className="mt-4 pt-4 border-t border-purple-200">
-                      <div className="text-xs font-mono text-gray-600">
+                      <div className="text-sm md:text-xs font-mono text-gray-600">
                         <span className="font-semibold">Implementation:</span> Familiarity anchors remain accessible. System can reverse phase transitions based on emotional feedback.
                       </div>
                     </div>
@@ -8617,7 +10132,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   <div className="space-y-3">
                                     <div className="flex items-center justify-between">
                                       <h3 className="text-lg font-bold text-gray-900">Historic District</h3>
-                                      <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Open</span>
+                                      <span className="text-sm md:text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Open</span>
                                     </div>
                                     <div className="space-y-2 text-sm text-gray-600">
                                       <div className="flex items-center gap-2">
@@ -8688,7 +10203,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   
                                   {/* Story Text */}
                                   <div className="flex-1 space-y-4">
-                                    <div className="text-xs font-mono text-amber-400/80 uppercase tracking-wider mb-2">
+                                    <div className="text-sm md:text-xs font-mono text-amber-400/80 uppercase tracking-wider mb-2">
                                       Narrative Pulse Active
                                     </div>
                                     <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
@@ -8721,8 +10236,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               {/* Chapter Progress Bar */}
                               <div className="absolute top-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-4 border-b border-white/10">
                                 <div className="flex items-center justify-between mb-2">
-                                  <div className="text-xs font-mono text-amber-400/80 uppercase tracking-wider">Chapter 2: The Hidden Quarter</div>
-                                  <div className="text-xs text-gray-400">3/7 Active Story Beats</div>
+                                  <div className="text-sm md:text-xs font-mono text-amber-400/80 uppercase tracking-wider">Chapter 2: The Hidden Quarter</div>
+                                  <div className="text-sm md:text-xs text-gray-400">3/7 Active Story Beats</div>
                                 </div>
                                 <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                                   <motion.div
@@ -8796,7 +10311,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="mt-12 w-full max-w-md">
                     <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">Evolution Level</span>
+                        <span className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider">Evolution Level</span>
                         <span className="text-sm font-mono text-amber-400">
                           {narrativeEvolutionLevel === 1 && 'Latent Nodes'}
                           {narrativeEvolutionLevel === 2 && 'Augmentation'}
@@ -8825,7 +10340,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       
                       {/* System Logic Label */}
                       <div className="mt-6 pt-4 border-t border-slate-700">
-                        <p className="text-xs text-gray-400 text-center leading-relaxed">
+                        <p className="text-sm md:text-xs text-gray-400 text-center leading-relaxed">
                           {narrativeEvolutionLevel === 1 && (
                             <><strong className="text-amber-400 not-italic">System Logic:</strong> Real-time API Logistics. The Spontaneity Engine processes Latent Nodes (POI data, distance, hours) into actionable routing information.</>
                           )}
@@ -8871,12 +10386,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="bg-white/5 p-8 rounded-xl border border-white/10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
-                        <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Initial State</div>
+                        <div className="text-sm md:text-xs font-mono text-amber-400 uppercase tracking-wider mb-3">Initial State</div>
                         <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                           Traveler is in "Exploration" phase, navigating a high-density urban environment. Emotional tone signals: <span className="font-mono text-red-400">overwhelm</span>, <span className="font-mono text-red-400">anxiety</span>, <span className="font-mono text-red-400">sensory overload</span>.
                         </p>
                         <div className="bg-red-500/10 border border-red-500/30 p-4 rounded-lg">
-                          <div className="text-xs font-mono text-red-400 mb-2">Emotional Tone Input:</div>
+                          <div className="text-sm md:text-xs font-mono text-red-400 mb-2">Emotional Tone Input:</div>
                           <div className="text-sm font-mono text-gray-300">
                             anxiety_level: 0.85<br />
                             comfort_level: 0.25<br />
@@ -8886,12 +10401,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </div>
                       
                       <div>
-                        <div className="text-xs font-mono text-green-400 uppercase tracking-wider mb-3">System Response</div>
+                        <div className="text-sm md:text-xs font-mono text-green-400 uppercase tracking-wider mb-3">System Response</div>
                         <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                           Narrative Engine detects emotional tone threshold breach. System immediately loops back to "Familiarity" phase, providing anchor points:
                         </p>
                         <div className="bg-green-500/10 border border-green-500/30 p-4 rounded-lg">
-                          <div className="text-xs font-mono text-green-400 mb-2">Narrative Output:</div>
+                          <div className="text-sm md:text-xs font-mono text-green-400 mb-2">Narrative Output:</div>
                           <div className="text-sm font-mono text-gray-300">
                             phase_transition: "exploration → familiarity"<br />
                             anchor_type: "quiet_space"<br />
@@ -8902,7 +10417,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                     
                     <div className="mt-6 pt-6 border-t border-white/10">
-                      <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">System Logic</div>
+                      <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">System Logic</div>
                       <p className="text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         The system prioritizes emotional safety over narrative progression. When comfort drops below threshold (0.3), the engine automatically reverts to Familiarity anchors, allowing the traveler to recalibrate before re-engaging with Exploration.
                       </p>
@@ -8919,16 +10434,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Failure State Definition */}
                   <div className="bg-gradient-to-br from-amber-500/10 to-red-500/10 p-8 rounded-xl border border-amber-500/20 mb-8">
                     <div className="mb-6">
-                      <div className="text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Failure State: Semantic Over-Abstraction</div>
+                      <div className="text-sm md:text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Failure State: Semantic Over-Abstraction</div>
                       <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         <span className="font-semibold text-amber-400">Definition:</span> When the Narrative Engine prioritizes "mood" over "orientation" to the point where the user feels lost rather than immersed.
                       </p>
                       <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
-                        <div className="text-xs font-mono text-amber-400/80 mb-2">Example Failure Output:</div>
+                        <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-2">Example Failure Output:</div>
                         <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                           "Find the rhythm of the city's heartbeat in the spaces between buildings..."
                         </div>
-                        <div className="text-xs font-mono text-red-400/80">
+                        <div className="text-sm md:text-xs font-mono text-red-400/80">
                           Result: Too abstract. No actionable anchor points. Traveler is lost.
                         </div>
                       </div>
@@ -8938,19 +10453,19 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Trigger Conditions */}
                   <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-8">
                     <div className="mb-6">
-                      <div className="text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Trigger Conditions</div>
+                      <div className="text-sm md:text-xs font-mono text-amber-500/80 uppercase tracking-wider mb-3">Trigger Conditions</div>
                       <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         The system detects failure state through behavioral and temporal signals:
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
-                          <div className="text-xs font-mono text-amber-400/80 mb-2">Temporal Signal:</div>
+                          <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-2">Temporal Signal:</div>
                           <div className="text-sm font-mono text-gray-300">
                             User dwell time in non-destination zone &gt; 20 minutes
                           </div>
                         </div>
                         <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
-                          <div className="text-xs font-mono text-amber-400/80 mb-2">Physiological Signal:</div>
+                          <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-2">Physiological Signal:</div>
                           <div className="text-sm font-mono text-gray-300">
                             Elevated heart rate + erratic movement patterns
                           </div>
@@ -8962,13 +10477,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* The Intervention */}
                   <div className="bg-gradient-to-br from-red-500/10 to-orange-500/10 p-8 rounded-xl border border-red-500/20 mb-8">
                     <div className="mb-6">
-                      <div className="text-xs font-mono text-red-400/80 uppercase tracking-wider mb-3">The Intervention: The "Safety Valve"</div>
+                      <div className="text-sm md:text-xs font-mono text-red-400/80 uppercase tracking-wider mb-3">The Intervention: The "Safety Valve"</div>
                       <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         The Trust Layer forces a <span className="font-semibold text-red-400">"Hard Anchor"</span>. It breaks the narrative arc to provide literal, high-legibility guidance.
                       </p>
                       
                       <div className="bg-black/30 p-6 rounded-lg border border-red-500/20 mb-4">
-                        <div className="text-xs font-mono text-red-400/80 mb-3">Hard Anchor Output:</div>
+                        <div className="text-sm md:text-xs font-mono text-red-400/80 mb-3">Hard Anchor Output:</div>
                         <div className="text-base font-mono text-gray-200 mb-2">
                           Map Coordinate: 48.8566° N, 2.3522° E
                         </div>
@@ -8982,12 +10497,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Recovery Logic */}
                   <div className="bg-white/5 p-8 rounded-xl border border-white/10 mb-8">
                     <div className="mb-6">
-                      <div className="text-xs font-mono text-green-400/80 uppercase tracking-wider mb-3">Recovery Logic</div>
+                      <div className="text-sm md:text-xs font-mono text-green-400/80 uppercase tracking-wider mb-3">Recovery Logic</div>
                       <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         Once the user reaches a <span className="font-semibold text-green-400">"Safety Node"</span>, the system recalibrates:
                       </p>
                       <div className="bg-black/30 p-4 rounded-lg border border-green-500/20">
-                        <div className="text-xs font-mono text-green-400/80 mb-2">Recovery Protocol:</div>
+                        <div className="text-sm md:text-xs font-mono text-green-400/80 mb-2">Recovery Protocol:</div>
                         <div className="text-sm font-mono text-gray-300 space-y-1">
                           <div>1. User reaches Safety Node (cafe, library, hotel)</div>
                           <div>2. System reduces narrative complexity for next 4 hours</div>
@@ -9000,7 +10515,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                   {/* Recovery State Indicator Visual */}
                   <div className="mb-8">
-                    <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
+                    <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
                       System State Transition Visualization
                     </div>
                     <RecoveryStateIndicator autoTransition={true} transitionDelay={3000} />
@@ -9009,7 +10524,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Threshold Visualization: Atmosphere vs Utility */}
                   <div className="bg-white/5 p-8 rounded-xl border border-white/10">
                     <div className="mb-6">
-                      <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-3">System Threshold: Atmosphere vs Utility</div>
+                      <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-3">System Threshold: Atmosphere vs Utility</div>
                       <p className="text-gray-300 leading-relaxed mb-6 text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                         The system maintains a dynamic balance between immersive narrative ("Atmosphere") and actionable guidance ("Utility"). When the threshold is breached, the system automatically shifts to utility-first mode.
                       </p>
@@ -9019,7 +10534,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         {/* Atmosphere Zone (Left) */}
                         <div className="absolute left-0 top-0 bottom-0 w-[70%] bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-r border-white/20">
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-xs font-mono text-blue-400">Atmosphere Zone</span>
+                            <span className="text-sm md:text-xs font-mono text-blue-400">Atmosphere Zone</span>
                           </div>
                         </div>
                         
@@ -9031,7 +10546,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         {/* Utility Zone (Right) */}
                         <div className="absolute right-0 top-0 bottom-0 w-[30%] bg-gradient-to-r from-amber-500/20 to-red-500/20">
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-xs font-mono text-amber-500">Utility Zone</span>
+                            <span className="text-sm md:text-xs font-mono text-amber-500">Utility Zone</span>
                           </div>
                         </div>
                         
@@ -9044,7 +10559,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                         />
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4 text-xs">
+                      <div className="grid grid-cols-2 gap-4 text-sm md:text-xs">
                         <div className="text-center">
                           <div className="font-mono text-blue-400 mb-1">Normal Operation</div>
                           <div className="text-gray-400">70% Atmosphere / 30% Utility</div>
@@ -9091,11 +10606,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                       <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
-                        <div className="text-xs font-mono text-amber-400/80 mb-2">Behavioral Signal:</div>
+                        <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-2">Behavioral Signal:</div>
                         <div className="text-sm text-gray-300">Rapid movement in high-density crowds</div>
                       </div>
                       <div className="bg-black/30 p-4 rounded-lg border border-amber-500/20">
-                        <div className="text-xs font-mono text-amber-400/80 mb-2">Interaction Signal:</div>
+                        <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-2">Interaction Signal:</div>
                         <div className="text-sm text-gray-300">Repeated app checks (seeking orientation)</div>
                       </div>
                     </div>
@@ -9114,21 +10629,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                       <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20">
-                        <div className="text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">Before: Exploration Phase</div>
+                        <div className="text-sm md:text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">Before: Exploration Phase</div>
                         <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                           "Discover the hidden alleys"
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-sm md:text-xs text-gray-500">
                           High novelty, high stimulation
                         </div>
                       </div>
                       
                       <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20">
-                        <div className="text-xs font-mono text-teal-400/80 uppercase tracking-wider mb-3">After: Refuge Phase</div>
+                        <div className="text-sm md:text-xs font-mono text-teal-400/80 uppercase tracking-wider mb-3">After: Refuge Phase</div>
                         <div className="text-sm text-gray-300 italic mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                           "Find the silence in the stacks"
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-sm md:text-xs text-gray-500">
                           Lower entropy, maintained immersion
                         </div>
                       </div>
@@ -9138,18 +10653,18 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                 {/* Success Pivot Logic Component */}
                 <div className="mb-12">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs border border-emerald-500/20 bg-emerald-500/5 p-6 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm md:text-xs border border-emerald-500/20 bg-emerald-500/5 p-6 rounded-lg">
                     <div className="space-y-3">
                       <p className="text-emerald-400 uppercase font-bold tracking-tighter">Detection: Sensory Overload</p>
                       <p className="text-white/60 leading-relaxed">Metric: Crowd density &gt; 80% + Pace velocity increase.</p>
-                      <div className="text-xs text-emerald-300/80 mt-2">
+                      <div className="text-sm md:text-xs text-emerald-300/80 mt-2">
                         System identifies: High-anxiety threshold breached
                       </div>
                     </div>
                     <div className="space-y-3 md:border-l md:border-emerald-500/20 md:pl-6">
                       <p className="text-blue-400 uppercase font-bold tracking-tighter">Pivot: Adaptive Narrative</p>
                       <p className="text-white/60 leading-relaxed">Action: Prioritize "Enclosure" nodes. Recalculate arc for "Refuge" phase.</p>
-                      <div className="text-xs text-blue-300/80 mt-2">
+                      <div className="text-sm md:text-xs text-blue-300/80 mt-2">
                         System maintains: Narrative coherence while reducing stress
                       </div>
                     </div>
@@ -9167,7 +10682,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </p>
                     
                     <div className="bg-black/30 p-6 rounded-lg border border-emerald-500/20 mt-4">
-                      <div className="text-xs font-mono text-emerald-400/80 mb-3">Narrative Continuity:</div>
+                      <div className="text-sm md:text-xs font-mono text-emerald-400/80 mb-3">Narrative Continuity:</div>
                       <div className="space-y-3">
                         <div className="flex items-start gap-3">
                           <div className="text-emerald-400 mt-1">→</div>
@@ -9184,7 +10699,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           </div>
                         </div>
                         <div className="pt-3 border-t border-emerald-500/20">
-                          <div className="text-xs text-emerald-300/80">
+                          <div className="text-sm md:text-xs text-emerald-300/80">
                             Both prompts maintain the "discovery" narrative while shifting from high-stimulation to low-entropy environments.
                           </div>
                         </div>
@@ -9205,15 +10720,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                       <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
-                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 1:</div>
+                        <div className="text-sm md:text-xs font-mono text-emerald-400/80 mb-2">Outcome 1:</div>
                         <div className="text-sm text-gray-300">Narrative coherence preserved</div>
                       </div>
                       <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
-                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 2:</div>
+                        <div className="text-sm md:text-xs font-mono text-emerald-400/80 mb-2">Outcome 2:</div>
                         <div className="text-sm text-gray-300">Physiological stress reduced</div>
                       </div>
                       <div className="bg-black/30 p-4 rounded-lg border border-emerald-500/20">
-                        <div className="text-xs font-mono text-emerald-400/80 mb-2">Outcome 3:</div>
+                        <div className="text-sm md:text-xs font-mono text-emerald-400/80 mb-2">Outcome 3:</div>
                         <div className="text-sm text-gray-300">User trust in system maintained</div>
                       </div>
                     </div>
@@ -9222,7 +10737,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                 {/* Pivot Animation Visual */}
                 <div className="mb-8">
-                  <div className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
+                  <div className="text-sm md:text-xs font-mono text-gray-400 uppercase tracking-wider mb-4 text-center">
                     Path Transition Visualization
                   </div>
                   <PivotAnimation autoPlay={true} transitionDelay={2000} />
@@ -9231,7 +10746,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 {/* Logic Visualization: Balancing Novelty vs Comfort */}
                 <div className="bg-white/5 p-8 rounded-xl border border-emerald-500/20">
                   <div className="mb-6">
-                    <div className="text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">System Logic: Balancing Novelty vs Comfort</div>
+                    <div className="text-sm md:text-xs font-mono text-emerald-400/80 uppercase tracking-wider mb-3">System Logic: Balancing Novelty vs Comfort</div>
                     <p className="text-gray-300 leading-relaxed text-sm mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       The Soft Pivot demonstrates the system's ability to balance "Novelty" against "Comfort" without breaking the narrative arc. Instead of a jarring "GPS Recalculating" alert, the AI uses environmental cues to guide the user toward familiarity.
                     </p>
@@ -9241,14 +10756,14 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       {/* Novelty Zone (Left) */}
                       <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-amber-500/20 to-orange-500/20 border-r border-white/20">
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-xs font-mono text-amber-400">Novelty Zone</span>
+                          <span className="text-sm md:text-xs font-mono text-amber-400">Novelty Zone</span>
                         </div>
                       </div>
                       
                       {/* Comfort Zone (Right) */}
                       <div className="absolute right-0 top-0 bottom-0 w-[40%] bg-gradient-to-r from-teal-500/20 to-emerald-500/20">
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-xs font-mono text-teal-400">Comfort Zone</span>
+                          <span className="text-sm md:text-xs font-mono text-teal-400">Comfort Zone</span>
                         </div>
                       </div>
                       
@@ -9261,7 +10776,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       />
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4 text-xs">
+                    <div className="grid grid-cols-2 gap-4 text-sm md:text-xs">
                       <div className="text-center">
                         <div className="font-mono text-amber-400 mb-1">Exploration State</div>
                         <div className="text-gray-400">60% Novelty / 40% Comfort</div>
@@ -9347,7 +10862,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             >
                               {/* Header */}
                               <div className="absolute top-0 left-0 right-0 bg-white backdrop-blur-md p-6 border-b border-amber-200/50 z-10">
-                                <div className="text-xs tracking-[0.2em] text-amber-700/80 uppercase mb-1">Personal Invitation</div>
+                                <div className="text-sm md:text-xs tracking-[0.2em] text-amber-700/80 uppercase mb-1">Personal Invitation</div>
                                 <div className="text-2xl font-bold text-gray-900">Your Journey Awaits</div>
                               </div>
                               
@@ -9371,7 +10886,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   {/* Curation Score */}
                                   <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 space-y-3">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Curation Score</span>
+                                      <span className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider">Curation Score</span>
                                       <span className="text-2xl font-bold text-amber-700">94%</span>
                                     </div>
                                     <div className="h-2 bg-amber-200/50 rounded-full overflow-hidden">
@@ -9387,10 +10902,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   {/* Belonging Index */}
                                   <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 space-y-3">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Belonging Index</span>
+                                      <span className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider">Belonging Index</span>
                                       <span className="text-2xl font-bold text-amber-700">8.7/10</span>
                                     </div>
-                                    <div className="text-xs text-gray-600 leading-relaxed">
+                                    <div className="text-sm md:text-xs text-gray-600 leading-relaxed">
                                       Based on emotional resonance, cultural depth, and personal alignment with your travel DNA. Focus: Belonging & Stillness.
                                     </div>
                                   </div>
@@ -9407,15 +10922,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   
                                   {/* Data Overlay - Spontaneity Layer */}
                                   <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
-                                    <div className="text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
-                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                    <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-sm md:text-xs font-mono text-gray-300 leading-relaxed">
                                       Syncing with Atelier private calendar... Real-time weather check: 22°C with golden hour at 18:42.
                                     </div>
                                   </div>
                                   
                                   {/* System Logic Footer */}
                                   <div className="pt-4 border-t border-amber-200/50 mt-4">
-                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                    <div className="text-sm md:text-xs font-mono text-gray-500 space-y-1">
                                       <div>GPS: 43.7696°N, 11.2558°E</div>
                                       <div>Weather API: Active | Calendar API: Synced</div>
                                       <div>Narrative Engine: "Art of Anticipation" mode</div>
@@ -9444,7 +10959,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                               
                               {/* Header */}
                               <div className="absolute top-0 left-0 right-0 bg-black backdrop-blur-md p-6 border-b-2 border-cyan-400/50 z-10">
-                                <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-1">Creative Quest</div>
+                                <div className="text-sm md:text-xs font-mono text-cyan-400 uppercase tracking-wider mb-1">Creative Quest</div>
                                 <div className="text-2xl font-bold text-white">Objective Active</div>
                               </div>
                               
@@ -9453,7 +10968,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 <div className="max-w-sm mx-auto space-y-6">
                                   {/* The Creative Quest Narrative */}
                                   <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border-2 border-cyan-400/50 rounded-xl p-6">
-                                    <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3">Creative Quest</div>
+                                    <div className="text-sm md:text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3">Creative Quest</div>
                                     <div className="text-base font-bold text-white mb-3 leading-relaxed" style={{ fontFamily: "'Inter', monospace" }}>
                                       Creative Block is a spatial problem, not a mental one.
                                     </div>
@@ -9469,12 +10984,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   
                                   {/* Mood Spectrum Toggle */}
                                   <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4 space-y-3">
-                                    <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">Mood Spectrum</div>
+                                    <div className="text-sm md:text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">Mood Spectrum</div>
                                     <div className="flex gap-2">
                                       {['Minimal', 'Bold', 'Experimental'].map((mood, idx) => (
                                         <button
                                           key={mood}
-                                          className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+                                          className={`flex-1 py-2 rounded-lg text-sm md:text-xs font-semibold transition-all ${
                                             idx === 1
                                               ? 'bg-cyan-500/30 border-2 border-cyan-400 text-white'
                                               : 'bg-slate-800 border border-slate-700 text-gray-400'
@@ -9489,7 +11004,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   {/* Creative Flow Progress */}
                                   <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4 space-y-3">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Creative Flow</span>
+                                      <span className="text-sm md:text-xs font-mono text-cyan-400 uppercase tracking-wider">Creative Flow</span>
                                       <span className="text-xl font-bold text-cyan-400">78%</span>
                                     </div>
                                     <div className="h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
@@ -9500,7 +11015,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                         className="h-full bg-gradient-to-r from-cyan-400 to-blue-500"
                                       />
                                     </div>
-                                    <div className="text-xs text-gray-400 font-mono">
+                                    <div className="text-sm md:text-xs text-gray-400 font-mono">
                                       Focus: Negative Space & Brand Guidelines
                                     </div>
                                   </div>
@@ -9517,15 +11032,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   
                                   {/* Data Overlay - Spontaneity Layer */}
                                   <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
-                                    <div className="text-xs font-mono text-cyan-400/80 mb-1">System Note (Spontaneity Layer):</div>
-                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                    <div className="text-sm md:text-xs font-mono text-cyan-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-sm md:text-xs font-mono text-gray-300 leading-relaxed">
                                       Mapping high-contrast architectural zones... Filtering by Project Alpha Brand Guidelines.
                                     </div>
                                   </div>
                                   
                                   {/* System Logic Footer */}
                                   <div className="pt-4 border-t border-slate-700 mt-4">
-                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                    <div className="text-sm md:text-xs font-mono text-gray-500 space-y-1">
                                       <div>GPS: 40.7128°N, 74.0060°W</div>
                                       <div>POI API: Active | Brand Guidelines: Loaded</div>
                                       <div>Narrative Engine: "Creative Quest" mode</div>
@@ -9548,7 +11063,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             >
                               {/* Header */}
                               <div className="absolute top-0 left-0 right-0 bg-white backdrop-blur-md p-6 border-b border-amber-300/50 z-10">
-                                <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-1">Time-Traveler's Lens</div>
+                                <div className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider mb-1">Time-Traveler's Lens</div>
                                 <div className="text-2xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                                   Historical Layers
                                 </div>
@@ -9559,7 +11074,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                 <div className="max-w-sm mx-auto space-y-6">
                                   {/* The Living Archive Narrative */}
                                   <div className="bg-white border-2 border-amber-200/50 rounded-xl p-6 space-y-4">
-                                    <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-2">The Living Archive</div>
+                                    <div className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider mb-2">The Living Archive</div>
                                     <div className="text-gray-800 leading-relaxed text-base space-y-3" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                                       <p>
                                         You are standing where the <strong className="text-amber-700">1921 strike began</strong>. The plaque tells you the date, but the narrative is in the echoes.
@@ -9583,20 +11098,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                     
                                     {/* Historical Timeline Overlay */}
                                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-900/80 to-transparent p-4">
-                                      <div className="text-xs text-white/90 font-semibold mb-1">1921: The Strike Begins</div>
-                                      <div className="text-xs text-white/70">Workers gathered here to demand fair wages. The echoes remain.</div>
+                                      <div className="text-sm md:text-xs text-white/90 font-semibold mb-1">1921: The Strike Begins</div>
+                                      <div className="text-sm md:text-xs text-white/70">Workers gathered here to demand fair wages. The echoes remain.</div>
                                     </div>
                                     
                                     {/* AR Layer Indicator */}
                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 border border-amber-300/50">
-                                      <div className="text-xs font-semibold text-amber-700">History Layer Active</div>
+                                      <div className="text-sm md:text-xs font-semibold text-amber-700">History Layer Active</div>
                                     </div>
                                   </div>
                                   
                                   {/* Depth of Connection Meter */}
                                   <div className="bg-white border-2 border-amber-200/50 rounded-xl p-4 space-y-3">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-xs text-amber-700/80 uppercase tracking-wider">Depth of Connection</span>
+                                      <span className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider">Depth of Connection</span>
                                       <span className="text-2xl font-bold text-amber-700">9.2/10</span>
                                     </div>
                                     <div className="h-3 bg-amber-100 rounded-full overflow-hidden">
@@ -9607,19 +11122,19 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                         className="h-full bg-gradient-to-r from-orange-400 to-amber-600"
                                       />
                                     </div>
-                                    <div className="text-xs text-gray-600 leading-relaxed">
+                                    <div className="text-sm md:text-xs text-gray-600 leading-relaxed">
                                       Focus: Spatial Audio & Historical Footprints. This location connects to 3 major historical narratives and 7 cultural touchpoints.
                                     </div>
                                   </div>
                                   
                                   {/* Cultural Impact Badges */}
                                   <div className="space-y-2">
-                                    <div className="text-xs text-amber-700/80 uppercase tracking-wider mb-2">Cultural Impact</div>
+                                    <div className="text-sm md:text-xs text-amber-700/80 uppercase tracking-wider mb-2">Cultural Impact</div>
                                     <div className="flex flex-wrap gap-2">
                                       {['Heritage Site', 'Labor History', 'Acoustic Landmark'].map((badge) => (
                                         <span
                                           key={badge}
-                                          className="px-3 py-1.5 bg-amber-100 border border-amber-300/50 text-amber-700 rounded-full text-xs font-semibold"
+                                          className="px-3 py-1.5 bg-amber-100 border border-amber-300/50 text-amber-700 rounded-full text-sm md:text-xs font-semibold"
                                         >
                                           {badge}
                                         </span>
@@ -9639,15 +11154,15 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                                   
                                   {/* Data Overlay - Spontaneity Layer */}
                                   <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-3 mt-4">
-                                    <div className="text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
-                                    <div className="text-xs font-mono text-gray-300 leading-relaxed">
+                                    <div className="text-sm md:text-xs font-mono text-amber-400/80 mb-1">System Note (Spontaneity Layer):</div>
+                                    <div className="text-sm md:text-xs font-mono text-gray-300 leading-relaxed">
                                       Cross-referencing 1920s city blueprints with GPS coordinates... Triggering spatial audio node.
                                     </div>
                                   </div>
                                   
                                   {/* System Logic Footer */}
                                   <div className="pt-4 border-t border-amber-200/50 mt-4">
-                                    <div className="text-xs font-mono text-gray-500 space-y-1">
+                                    <div className="text-sm md:text-xs font-mono text-gray-500 space-y-1">
                                       <div>GPS: 40.7589°N, 73.9851°W</div>
                                       <div>Historical API: Active | Spatial Audio: Triggered</div>
                                       <div>Narrative Engine: "Living Archive" mode</div>
@@ -9763,7 +11278,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {project.metadata.skills?.map((skill: string, index: number) => (
-                      <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                      <span key={index} className="text-sm md:text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
                         {skill}
                       </span>
                     ))}
@@ -9776,7 +11291,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {project.metadata.tools?.map((tool: string, index: number) => (
-                      <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                      <span key={index} className="text-sm md:text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
                         {tool}
                       </span>
                     ))}

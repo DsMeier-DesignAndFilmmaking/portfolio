@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/fa';
-import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown } from 'lucide-react';
+import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown, Network } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
@@ -506,7 +506,7 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: MapPin,
@@ -520,6 +520,13 @@ export default function AISandboxPage() {
                 title: "Social Opportunity Matching Module",
                 description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through the core platform.",
                 gradient: "from-purple-500 to-pink-600",
+                link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
+              },
+              {
+                icon: Network,
+                title: "Social Graph-Driven Travel Network",
+                description: "A privacy-first AI system that transforms static trust hierarchies into real-time, spontaneous travel opportunities. Utilizes multi-degree social connections and ZK-proof validation for spontaneous discovery.",
+                gradient: "from-indigo-500 to-violet-600",
                 link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
               {

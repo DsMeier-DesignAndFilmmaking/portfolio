@@ -8,6 +8,7 @@ export function generateStaticParams() {
     { projectId: 'trust-framework-ai-travel' },
     { projectId: 'context-aware-travel-decision-system' },
     { projectId: 'social-graph-driven-travel-network' },
+    { projectId: 'social-opportunity-matching-module' },
     { projectId: 'narrative-driven-travel-experience-generator' }
   ];
 }
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: { params: { projectId: string
     'trust-framework-ai-travel': 'A Trust Framework for AI-Driven Travel Experiences - Daniel Meier',
     'context-aware-travel-decision-system': 'Context-Aware Travel Decision System - Daniel Meier',
     'social-graph-driven-travel-network': 'Social Graph-Driven Travel Network - Daniel Meier',
+    'social-opportunity-matching-module': 'Social Opportunity Matching Module - Daniel Meier',
     'narrative-driven-travel-experience-generator': 'Narrative-Driven Travel Experience Generator - Daniel Meier'
   };
 
