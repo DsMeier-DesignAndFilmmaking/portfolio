@@ -442,6 +442,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
   const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
   const [isMobileVideoError, setIsMobileVideoError] = useState(false);
   const [showFallbackImage, setShowFallbackImage] = useState(false);
+  const [isTechnicalModalOpen, setIsTechnicalModalOpen] = useState(false);
   
   // Check which project this is
   const isSpontaneousTravelCompanion = projectId === 'spontaneous-travel-companion';
@@ -847,19 +848,36 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    Social Networks · AI · Systems Design
+                    AI Systems · Social Graph Theory · Zero-Knowledge Privacy · Network Effects
                   </p>
                   
                   {/* Overview Block */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
+                      <strong className="font-semibold">Architecting Trust Hierarchies for Autonomous Social Discovery</strong>
+                    </p>
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      To utilize existing social connections and trust hierarchies to filter and rank travel recommendations. This exists to demonstrate how the Trust Layer handles complex social data in a travel context.
+                      To utilize multi-degree social connections and trust hierarchies to filter and rank travel recommendations, demonstrating how an AI Trust Layer handles complex PII (Personally Identifiable Information) in a decentralized context.
                     </p>
                   </div>
-
-                  {/* System Stack Component */}
+                  
+                  {/* Technical Stack */}
                   <div className="mb-8 md:mb-10 lg:mb-12">
-                    <SystemStack stack={['Social Graph API', 'Trust Layer', 'Influence Scorer']} />
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Social Graph API:</strong> Data ingestion engine</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Logic gate for verification</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-sm text-gray-700"><strong className="font-semibold">Influence Scorer:</strong> Ranking algorithm for "Friend-of-a-Friend" (FofF) validation</span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* System Specs Grid */}
@@ -5858,83 +5876,63 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                   <h2 className="text-3xl font-bold mb-6 text-white">
-                    Audience & Research
+                    Market Friction Dashboard
                   </h2>
                   <p className="text-gray-300 text-lg">
-                    Understanding the need for meaningful social connections in travel
+                    Systemic gaps in social discovery for travelers
                   </p>
                 </div>
                 
-                {/* Key Statistics Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-6 rounded-xl border border-amber-500/30">
-                    <div className="text-3xl font-bold text-amber-400 mb-2">69%</div>
-                    <div className="text-gray-300 text-sm">of solo travelers want to meet like-minded people but struggle to find authentic connections</div>
-                    <div className="text-gray-500 text-xs mt-2">— Solo Travel Social Connection Study 2024</div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
-                    <div className="text-3xl font-bold text-cyan-400 mb-2">54%</div>
-                    <div className="text-gray-300 text-sm">feel that traditional social networks don't facilitate meaningful travel connections</div>
-                    <div className="text-gray-500 text-xs mt-2">— Travel Social Behavior Research</div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-emerald-500/20 to-green-500/20 p-6 rounded-xl border border-emerald-500/30">
-                    <div className="text-3xl font-bold text-emerald-400 mb-2">62%</div>
-                    <div className="text-gray-300 text-sm">want privacy controls when sharing travel experiences and connecting with others</div>
-                    <div className="text-gray-500 text-xs mt-2">— Privacy & Travel Social Survey</div>
+                {/* Market Friction Table */}
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden mb-12">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-white/5 border-b border-white/10">
+                        <tr>
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Metric</th>
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Insight</th>
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Systemic Gap</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/10">
+                        <tr className="hover:bg-white/5 transition-colors">
+                          <td className="px-6 py-4">
+                            <div className="text-2xl font-bold text-amber-400">69%</div>
+                          </td>
+                          <td className="px-6 py-4 text-gray-300 text-sm">
+                            Struggle to find authentic connections
+                          </td>
+                          <td className="px-6 py-4 text-gray-400 text-sm">
+                            Existing apps prioritize "matches" over "identity"
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-white/5 transition-colors">
+                          <td className="px-6 py-4">
+                            <div className="text-2xl font-bold text-cyan-400">54%</div>
+                          </td>
+                          <td className="px-6 py-4 text-gray-300 text-sm">
+                            Traditional networks feel superficial for travel
+                          </td>
+                          <td className="px-6 py-4 text-gray-400 text-sm">
+                            Lack of intent-based discovery signals
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-white/5 transition-colors">
+                          <td className="px-6 py-4">
+                            <div className="text-2xl font-bold text-emerald-400">62%</div>
+                          </td>
+                          <td className="px-6 py-4 text-gray-300 text-sm">
+                            Demand high-granularity privacy controls
+                          </td>
+                          <td className="px-6 py-4 text-gray-400 text-sm">
+                            Current UX is binary (Public vs. Private)
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 
-                {/* Market & Competitive Analysis */}
-                <div className="mt-12">
-                  <h3 className="text-xl font-semibold mb-8 text-white text-center">Market & Competitive Analysis</h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Social Travel Apps</h4>
-                      <p className="text-gray-300 text-sm mb-4">Apps like Couchsurfing and Meetup focus on meetups but lack identity-focused discovery and granular privacy controls that travelers need.</p>
-                      <div className="text-xs text-gray-400">Examples: Couchsurfing, Meetup, Travel Buddies</div>
-                    </div>
-                    
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">General Social Networks</h4>
-                      <p className="text-gray-300 text-sm mb-4">Facebook and Instagram enable connection but aren't designed for travel-specific discovery or privacy-focused social interaction.</p>
-                      <div className="text-xs text-gray-400">Examples: Facebook Groups, Instagram, Twitter</div>
-                    </div>
-                    
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h4 className="text-lg font-bold text-white mb-4">Travel Review Platforms</h4>
-                      <p className="text-gray-300 text-sm mb-4">TripAdvisor and similar platforms enable reviews but don't facilitate real-time connection or identity-based discovery between travelers.</p>
-                      <div className="text-xs text-gray-400">Examples: TripAdvisor, Yelp, Google Reviews</div>
-                    </div>
-                  </div>
-                  
-                  {/* Our Approach */}
-                  <div className="mt-8 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6 md:p-8 rounded-xl border border-cyan-500/30">
-                    <h4 className="text-xl font-semibold text-white mb-4">Approach: Prototyping a Peer to Peer Travel Graph</h4>
-                    <div className="grid md:grid-cols-3 gap-12 text-left">
-                      <div>
-                        <h3 className="text-white font-semibold mb-3">Verified Experience</h3>
-                        <p className="text-gray-400 leading-relaxed">
-                          I am designing a system that maps the overlap between one person's past trip and another person's future plans.
-                        </p>
-                      </div>
-                      <div>
-                        <h3 className="text-white font-semibold mb-3">Future Intent</h3>
-                        <p className="text-gray-400 leading-relaxed">
-                          I am prototyping ways for travelers to find each other based on where they want to go next.
-                        </p>
-                      </div>
-                      <div>
-                        <h3 className="text-white font-semibold mb-3">Trusted Privacy</h3>
-                        <p className="text-gray-400 leading-relaxed">
-                          I am testing UI patterns that allow for high-level networking while keeping personal data under the user's total control.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             </div>
           </section>
@@ -5951,43 +5949,43 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    The Challenge: Social Connection in Travel
+                    The Challenge: Systemic Social Friction
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Current social platforms don't facilitate meaningful travel connections while respecting privacy and enabling authentic discovery
+                    The Privacy-Discovery Paradox: Travelers face a fundamental tension between meaningful connections and data protection
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50/50 p-8 rounded-2xl border-2 border-amber-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 min-w-[1.75rem] min-h-[1.75rem] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        The Problem
+                        The Problem: Privacy-Discovery Paradox
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      Travelers want to connect with like-minded people but struggle to find authentic connections. Traditional social networks lack <span className="font-semibold text-red-700">travel-specific discovery mechanisms and privacy controls</span>, while travel-focused apps don't facilitate meaningful social interaction.
+                      Travelers face a "Privacy-Discovery Paradox." To find meaningful connections, they must over-expose personal data; to stay private, they sacrifice discovery. Current systems force a binary choice: <span className="font-semibold text-red-700">full visibility for discovery or complete privacy with isolation</span>.
                     </p>
                   </div>
                   
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 min-w-[1.75rem] min-h-[1.75rem] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        The Solution
+                        The Solution: Discovery Through Network Effects
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      A system that provides <span className="font-semibold text-blue-700">social graph–driven discovery through network effects</span>, enabling travelers to discover travel through real people and social connections rather than listings, while maintaining full control over their information and privacy.
+                      An AI-orchestrated system that enables <span className="font-semibold text-blue-700">discovery through network effects</span>. Instead of browsing "listings," users navigate a graph of <strong>People → Places → Intent</strong>, where the AI acts as a privacy-preserving concierge. The system enables discovery without requiring full data exposure.
                     </p>
                   </div>
                 </div>
@@ -6006,103 +6004,46 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Observed Travel Frictions
+                    Observed Travel Frictions: User Signal Analysis
                   </h2>
                   <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Real user feedback reveals pattern-level insights about the gaps in social connection for travelers
+                    Real user feedback reveals pattern-level insights about systemic gaps in social discovery
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  {/* Lack of Authentic Connections */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h4 className="text-xl font-bold text-gray-900">Lack of Authentic Connections</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-red-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to meet people who share my travel style, but <span className="font-semibold text-red-700">most apps are just for hookups or generic meetups</span>. There's no way to find like-minded travelers."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/solotravel</span>
-                        </div>
-                      </div>
-                      <div className="relative pl-4 border-l-2 border-red-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I joined a travel group but it was just <span className="font-semibold text-red-700">tourists doing tourist things</span>. I want to connect with people who explore like I do."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Twitter, Travel Community</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Privacy Concerns */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h4 className="text-xl font-bold text-gray-900">Privacy Concerns</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-orange-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I want to share my travel experiences but <span className="font-semibold text-orange-700">don't want everyone to see where I am in real-time</span>. There's no middle ground."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/solotravel</span>
-                        </div>
-                      </div>
-                      <div className="relative pl-4 border-l-2 border-orange-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Social travel apps require <span className="font-semibold text-orange-700">full profile visibility</span>. I want to control who sees what about me."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                          </svg>
-                          <span>Blog Comment on Nomadic Matt</span>
-                        </div>
+                <div className="space-y-8">
+                  {/* Friction 1: Style-Identity Metadata Gap */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300">
+                    <div className="mb-4">
+                      <h4 className="text-xl font-bold text-gray-900 mb-3">Friction: Lack of Style-Identity Metadata</h4>
+                      <blockquote className="border-l-4 border-red-400 pl-4 mb-4">
+                        <p className="text-gray-700 italic leading-relaxed mb-2">
+                          "I want to meet people who share my travel style, but most apps are just for hookups... there's no way to find like-minded travelers."
+                        </p>
+                        <cite className="text-xs text-gray-500 not-italic">— r/solotravel</cite>
+                      </blockquote>
+                      <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                        <p className="text-sm text-gray-700">
+                          <strong className="text-red-700">Systemic Analysis:</strong> Current systems lack "Style-Identity" metadata. Matching algorithms operate on location, age, and generic interests, but fail to encode travel-specific identity signals (exploration style, cultural engagement depth, spontaneity preferences).
+                        </p>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Generic Discovery Mechanisms */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      
-                      <h4 className="text-xl font-bold text-gray-900">Generic Discovery</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-purple-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I need a way to find people based on <span className="font-semibold text-purple-700">shared interests and travel style</span>, not just location or age."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/travelhacks</span>
-                        </div>
-                      </div>
-                      <div className="relative pl-4 border-l-2 border-purple-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Current apps show me everyone nearby, but I want to <span className="font-semibold text-purple-700">discover people who match my travel identity</span>."</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/onebag</span>
-                        </div>
+                  {/* Friction 2: Graded Visibility Failure */}
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300">
+                    <div className="mb-4">
+                      <h4 className="text-xl font-bold text-gray-900 mb-3">Friction: Architectural Failure in Graded Visibility</h4>
+                      <blockquote className="border-l-4 border-orange-400 pl-4 mb-4">
+                        <p className="text-gray-700 italic leading-relaxed mb-2">
+                          "Social travel apps require full profile visibility. I want to control who sees what about me."
+                        </p>
+                        <cite className="text-xs text-gray-500 not-italic">— Blog Comment</cite>
+                      </blockquote>
+                      <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                        <p className="text-sm text-gray-700">
+                          <strong className="text-orange-700">Systemic Analysis:</strong> Architectural failure to implement "Graded Visibility." Privacy controls are binary (Public/Private) rather than context-aware. The system cannot support zero-knowledge proof concepts where users share *proof* of travel style without sharing specific itinerary data.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -6134,87 +6075,37 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="bg-gray-50 p-8 rounded-xl border border-gray-200"
                   >
-                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Unique Value Proposition</h3>
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">Design Concept: Identity-Focused Discovery</h3>
                     <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                      An AI-powered social discovery platform that connects travelers through identity-focused discovery with granular privacy controls.
+                      Moving from "Profiles" to "Signals": An AI system that enables discovery through network effects while preserving privacy through zero-knowledge proof concepts.
                     </p>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed mb-6">
                       This system processes travel identity, shared interests, and experiences through discovery algorithms to deliver meaningful connections while maintaining full user control over privacy and visibility.
                     </p>
-                  </motion.div>
-
-                  {/* Core Philosophy */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
-                      aria-expanded={activeAccordion === 'philosophy'}
-                      aria-controls="philosophy-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">✨ What Does Identity-Focused Discovery Mean In Travel?</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'philosophy' && (
-                        <motion.div
-                          id="philosophy-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              Identity-focused discovery doesn't mean public profiles—it means connecting based on shared travel identity, interests, and experiences while respecting privacy.
-                            </p>
-                            <div className="space-y-4">
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Identity-based matching</h5>
-                                  <p className="text-gray-700">Connect travelers based on shared travel style, interests, and experiences, not just location.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Granular privacy controls</h5>
-                                  <p className="text-gray-700">Control what information is visible, to whom, and when—full transparency and control.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Opt-in discovery</h5>
-                                  <p className="text-gray-700">Travelers choose when and how to be discoverable, maintaining agency over their social connections.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Authentic connections</h5>
-                                  <p className="text-gray-700">Facilitate meaningful connections based on shared values and travel experiences, not just proximity.</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    
+                    <div className="space-y-4 mt-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1">Identity-Based Matching</h5>
+                          <p className="text-gray-700 text-sm">Not location-based, but "Vibe-based" alignment using past trip telemetry. The system matches travelers based on shared travel style, exploration depth, and cultural engagement patterns rather than geographic proximity.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1">Granular Privacy (ZK-Proof Concepts)</h5>
+                          <p className="text-gray-700 text-sm">Users share *proof* of a travel style without sharing the *data* of their specific itinerary. The system enables discovery through identity signals while maintaining zero-knowledge privacy architecture.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1">Opt-in Discovery</h5>
+                          <p className="text-gray-700 text-sm">A state-managed system where "Visibility" is a dynamic variable, not a fixed setting. Travelers choose when and how to be discoverable, maintaining agency over their social connections while enabling network effects.</p>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
                 </div>
               </motion.div>
@@ -6235,15 +6126,143 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               >
                 <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                  System Overview: How the Social Graph Driven Travel Network Works
+                  The Trust Layer: Logic Gates & Validation Firewall
                 </h2>
-                <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
-                  Architectural system for social graph driven discovery and network effects in travel
+                <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-8">
+                  The Trust Layer acts as the system's validation firewall, processing raw social data through three sequential logic gates before surfacing a recommendation. Security-as-UX: Algorithmic integrity ensures privacy-preserving discovery.
                 </p>
                 </div>
                 
+                {/* Trust Layer Logic Gates */}
+                <div className="max-w-5xl mx-auto space-y-8 mb-16">
+                  {/* Gate 01: Proximity Gate */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-indigo-500/30 p-6 md:p-8"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center border border-indigo-400/30">
+                        <span className="text-2xl font-bold text-indigo-400">L1</span>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Gate 01: The Proximity Gate</h3>
+                        <p className="text-sm text-gray-400">Degrees of Separation Filter</p>
+                      </div>
+                    </div>
+                    <div className="ml-16 space-y-3">
+                      <div>
+                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> Degrees of Separation (d)</p>
+                      </div>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 font-mono text-sm">
+                        <div className="text-emerald-400 mb-1">Score = 1/d²</div>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          <strong className="text-white">System Action:</strong> Prioritizes 1st and 2nd-degree connections. 3rd-degree nodes are held in a "Probationary State" until a secondary "Vouch" signal is detected.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Gate 02: Verification Gate */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-emerald-500/30 p-6 md:p-8"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center border border-emerald-400/30">
+                        <span className="text-2xl font-bold text-emerald-400">L2</span>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Gate 02: The Verification Gate</h3>
+                        <p className="text-sm text-gray-400">ZK-Proof Travel Validation</p>
+                      </div>
+                    </div>
+                    <div className="ml-16 space-y-3">
+                      <div>
+                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> ZK-Proof Travel Validation</p>
+                      </div>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                        <p className="text-emerald-400 text-sm font-mono mb-2">Cryptographic verification of location history</p>
+                        <p className="text-gray-400 text-xs">Without data exfiltration</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          <strong className="text-white">System Action:</strong> If a user claims expertise in "Kyoto," the gate verifies the timestamped proof. Verified nodes receive a +40% weighting in the discovery feed.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Gate 03: Contextual Gate */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 md:p-8"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-400/30">
+                        <span className="text-2xl font-bold text-purple-400">L3</span>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Gate 03: The Contextual Gate</h3>
+                        <p className="text-sm text-gray-400">Persona Alignment (NLP)</p>
+                      </div>
+                    </div>
+                    <div className="ml-16 space-y-3">
+                      <div>
+                        <p className="text-sm text-gray-400 mb-1"><strong className="text-white">Metric:</strong> Persona Alignment (NLP)</p>
+                      </div>
+                      <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                        <p className="text-purple-400 text-sm font-mono">Vector similarity between requester's "Travel DNA"</p>
+                        <p className="text-gray-400 text-xs mt-1">and source's historical behavior</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          <strong className="text-white">System Action:</strong> Downgrades high-trust connections if travel styles are mismatched (e.g., a Luxury traveler recommending a hostel to a Backpacker).
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+                
                 {/* Privacy-Gated Matching Diagram */}
-                <div className="relative">
+                <div className="relative mt-16 pt-12 border-t border-white/10">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">System Architecture: Data Privacy Layer</h3>
+                    <p className="text-gray-400 text-sm max-w-2xl mx-auto">Architectural pillars enabling privacy-preserving discovery</p>
+                  </div>
+                  
+                  {/* Architectural Pillars */}
+                  <div className="grid md:grid-cols-3 gap-6 mb-12">
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                      <h4 className="text-lg font-semibold text-white mb-3">Decentralized Identifiers (DIDs)</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        Social connections are anchored to user-owned DIDs, preventing platform lock-in and central data harvesting.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                      <h4 className="text-lg font-semibold text-white mb-3">Ephemeral Node Activation</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        A user's "Social Signal" only enters the active graph during a "Planning Window," automatically deactivating post-trip to ensure long-term privacy.
+                      </p>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                      <h4 className="text-lg font-semibold text-white mb-3">Data Minimization</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        The AI processing engine only ingests "Identity Metadata" (hashed interests) rather than PII (Personally Identifiable Information).
+                      </p>
+                    </div>
+                  </div>
+                  
                   {/* Main Grid Layout */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
                     
@@ -6591,6 +6610,234 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
+          {/* Technical Constraints Section */}
+          <section className="py-20 bg-slate-800/50">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-slate-700/50 p-8 md:p-10">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Engineering the Social Graph</h2>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-200 mb-3">Operational Trade-offs</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        The decision to move away from a traditional SQL-based architecture was driven by the computational cost of "Multi-Hop" discovery. While a standard database excels at transactional integrity, it fails at the scale required for real-time trust verification.
+                      </p>
+                    </div>
+                    
+                    <button
+                      onClick={() => setIsTechnicalModalOpen(true)}
+                      className="w-full md:w-auto px-6 py-3 bg-slate-900/80 hover:bg-slate-900 border border-slate-600 hover:border-slate-500 text-emerald-400 font-mono text-sm rounded transition-all duration-200 hover:shadow-lg hover:shadow-emerald-400/10"
+                    >
+                      View Technical Deep Dive: Graph Traversal vs. SQL Lookups
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Technical Deep Dive Modal */}
+          <AnimatePresence>
+            {isTechnicalModalOpen && (
+              <>
+                {/* Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsTechnicalModalOpen(false)}
+                  className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+                />
+                
+                {/* Modal */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+                >
+                  <div 
+                    className="bg-slate-900 rounded-xl border border-slate-700 max-w-4xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Modal Header */}
+                    <div className="sticky top-0 bg-slate-900 border-b border-slate-700 px-6 md:px-8 py-5 flex items-center justify-between">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white mb-1">
+                          The Computational Cost of Trust: Graph vs. Relational
+                        </h3>
+                        <p className="text-sm text-gray-400">
+                          Why standard SQL lookups break at 3+ degrees of separation.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setIsTechnicalModalOpen(false)}
+                        className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-lg"
+                        aria-label="Close modal"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    
+                    {/* Modal Content */}
+                    <div className="px-6 md:px-8 py-6 space-y-8">
+                      {/* Section 1: The "Join-Hell" Problem */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center border border-red-500/30">
+                            <span className="text-xl font-bold text-red-400">1</span>
+                          </div>
+                          <h4 className="text-xl font-bold text-white">The "Join-Hell" Problem (Relational/SQL)</h4>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">
+                          In a standard SQL database, finding a "Friend-of-a-Friend" (FofF) who has visited Tokyo requires joining the <code className="bg-slate-800 px-2 py-1 rounded text-emerald-400 font-mono text-sm">Users</code>, <code className="bg-slate-800 px-2 py-1 rounded text-emerald-400 font-mono text-sm">Friendships</code>, and <code className="bg-slate-800 px-2 py-1 rounded text-emerald-400 font-mono text-sm">Trips</code> tables.
+                        </p>
+                        <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 space-y-2">
+                          <div className="flex items-start gap-2">
+                            <span className="text-red-400 font-mono text-sm">•</span>
+                            <div>
+                              <strong className="text-white">Complexity:</strong>
+                              <span className="text-gray-300 ml-2">As degrees of separation increase, the number of JOINs grows exponentially.</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <span className="text-red-400 font-mono text-sm">•</span>
+                            <div>
+                              <strong className="text-white">Latency:</strong>
+                              <span className="text-gray-300 ml-2">A 4-degree search in a table of 1 million users can take several seconds—unacceptable for a real-time discovery feed.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Section 2: Index-Free Adjacency */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center border border-emerald-500/30">
+                            <span className="text-xl font-bold text-emerald-400">2</span>
+                          </div>
+                          <h4 className="text-xl font-bold text-white">Index-Free Adjacency (Graph/AI)</h4>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">
+                          Our Social Graph utilizes <strong className="text-emerald-400">Index-Free Adjacency</strong>. Each node (Traveler) stores a direct physical pointer to its neighbors (Friends/Interests).
+                        </p>
+                        <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 space-y-2">
+                          <div className="flex items-start gap-2">
+                            <span className="text-emerald-400 font-mono text-sm">•</span>
+                            <div>
+                              <strong className="text-white">O(1) Traversal:</strong>
+                              <span className="text-gray-300 ml-2">Moving from one traveler to another is a simple pointer hop, not a complex index search.</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <span className="text-emerald-400 font-mono text-sm">•</span>
+                            <div>
+                              <strong className="text-white">Discovery at Scale:</strong>
+                              <span className="text-gray-300 ml-2">This allows the system to scan thousands of potential "trust-paths" in milliseconds to find the single most relevant connection.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Section 3: The "Supernode" Constraint */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center border border-amber-500/30">
+                            <span className="text-xl font-bold text-amber-400">3</span>
+                          </div>
+                          <h4 className="text-xl font-bold text-white">The "Supernode" Constraint</h4>
+                        </div>
+                        <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 space-y-3">
+                          <div>
+                            <strong className="text-amber-400">The Challenge:</strong>
+                            <p className="text-gray-300 mt-1">High-influence travelers (Power Users) create "Supernodes" with 10k+ connections.</p>
+                          </div>
+                          <div>
+                            <strong className="text-emerald-400">The AI Solution:</strong>
+                            <p className="text-gray-300 mt-1">We implemented <strong className="text-white">Breadth-First Search (BFS) Capping</strong> and <strong className="text-white">Graph Partitioning</strong> to ensure that one "Influencer" doesn't bottleneck the entire network's performance.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Modal Footer */}
+                    <div className="sticky bottom-0 bg-slate-900 border-t border-slate-700 px-6 md:px-8 py-4 flex justify-end">
+                      <button
+                        onClick={() => setIsTechnicalModalOpen(false)}
+                        className="px-6 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-400 font-medium rounded-lg transition-colors"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+
+          {/* Influence Scorer Algorithm Section */}
+          <section className="py-20 bg-slate-900">
+            <div className="container mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-white mb-4">The Influence Scorer Algorithm</h2>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    A dynamic, relative-ranking engine. Unlike static rating systems (Yelp/TripAdvisor), the score is uniquely calculated for the <strong className="text-white">observer</strong>, not the <strong className="text-white">object</strong>.
+                  </p>
+                </div>
+                
+                {/* Scoring Formula */}
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-emerald-500/30 p-8 mb-8">
+                  <h3 className="text-xl font-bold text-white mb-6">The Scoring Formula</h3>
+                  <div className="space-y-4">
+                    <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700 font-mono text-center">
+                      <div className="text-2xl md:text-3xl text-emerald-400 mb-4">
+                        I = (w₁ · T) + (w₂ · R) + (w₃ · S)
+                      </div>
+                      <div className="text-sm text-gray-400 space-y-2 text-left max-w-2xl mx-auto">
+                        <div>Where the Influence Score (<span className="text-emerald-400 font-semibold">I</span>) is determined by:</div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-3 gap-4 mt-6">
+                      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">T</div>
+                        <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Trust Strength:</strong></div>
+                        <div className="text-xs text-gray-500">Density of mutual "High-Trust" nodes</div>
+                      </div>
+                      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">R</div>
+                        <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Recency:</strong></div>
+                        <div className="text-xs text-gray-500">Temporal decay function ensuring tips are &lt;18 months old</div>
+                      </div>
+                      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div className="text-emerald-400 font-mono text-lg mb-2 font-bold">S</div>
+                        <div className="text-sm text-gray-400 mb-1"><strong className="text-white">Sentiment Alignment:</strong></div>
+                        <div className="text-xs text-gray-500">LLM-based analysis of source's descriptive style vs. user's preferences</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* Value Proposition Section */}
           <section className="py-16 md:py-20 bg-gray-50">
             <div className="container mx-auto px-6">
@@ -6744,28 +6991,56 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Solution Section */}
+          {/* Impact Analysis Section */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-5xl mx-auto"
               >
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Solution
+                    Impact Analysis
                   </h2>
-                  <p className="text-gray-600 text-lg">
-                    A comprehensive system for identity-focused discovery that balances connection with privacy
+                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    How the Trust Layer and Privacy-First Social Graphs create value across the travel ecosystem
                   </p>
                 </div>
                 
-                <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    This social graph–driven travel network provides network-based discovery through social graphs connecting people, places, trips, and intent. The system processes travel identity, shared interests, and experiences to deliver meaningful connections through network effects while maintaining full user control over privacy, visibility, and interaction, enabling travelers to discover travel through real people rather than listings.
-                  </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Travelers
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Richer connections via "Vouched" networks, reducing the "Stranger Danger" cognitive load. The Trust Layer enables discovery through multi-degree connections (Friend-of-a-Friend validation), creating <span className="font-semibold text-cyan-700">authentic connections based on shared identity signals rather than proximity alone</span>.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        Impact for Communities
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      Facilitating high-intent cultural exchange rather than mass-market "Tourist Swarming." The system enables <span className="font-semibold text-emerald-700">identity-aligned connections that respect local culture and create meaningful interactions</span>, distributing tourism benefits more equitably across communities.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -6882,31 +7157,31 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="space-y-12">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Learnings</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">The Privacy-Discovery Equilibrium</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
-                        Building an identity-focused discovery system means constantly questioning how to balance connection with privacy. The challenge isn't having enough social features—it's knowing when to enable discovery versus when to protect privacy. Early prototypes showed that too much visibility can feel invasive, while too much privacy can prevent meaningful connections. The system needs to find the right balance for each traveler and situation.
+                        Building this system required questioning the "data-hungry" nature of social AI. The challenge isn't the matching algorithm—it's the <strong className="text-gray-900">Data Layer</strong>. Privacy-by-Design means privacy isn't a toggle; it's a core architectural constraint. The system must enable discovery through network effects while maintaining zero-knowledge proof concepts.
+                      </p>
+                      <p>
+                        <strong className="text-gray-900">The "Authenticity" Signal:</strong> Learned that technical matching ≠ human connection. The AI must account for "Identity Signals" (shared values, travel style, cultural engagement depth) over "Logistical Signals" (same city, similar age). The Influence Scorer processes Friend-of-a-Friend validation to create trust hierarchies that enable discovery without requiring full profile exposure.
                       </p>
                       <p>
                         Privacy controls require architectural decisions that happen at the data layer. The system needs to enforce granular privacy settings—controlling what information is visible, to whom, and when—which means building privacy enforcement into the core architecture, not adding it as an afterthought.
-                      </p>
-                      <p>
-                        Identity-based matching is more complex than simple profile matching. A connection can be technically possible but still feel inauthentic if the identity signals don't align. The system needs multiple matching layers that work together to assess connection quality and authenticity.
                       </p>
                     </div>
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">What Surprised Me</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">The Surprise: Transparency of Logic</h3>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
-                        The depth of user concern about privacy in social travel apps was more pronounced than expected. Users don't just want privacy controls—they want to understand how their data is used and who can see what. This requires explaining privacy mechanisms in accessible language, not just showing technical settings.
+                        Users don't just want privacy; they want <strong className="text-gray-900">Transparency of Logic</strong>. They want to know *why* the AI thinks this person is a "Trusted Connection." The system must explain the social graph path (e.g., "Connected through 2 mutual friends who share your travel style") and the identity signal alignment, not just present a match.
                       </p>
                       <p>
-                        The technical challenge of identity processing revealed that most existing social APIs aren't built for identity-focused discovery. They're optimized for location-based or profile-based matching, not identity-rich connection signals. Adapting these systems required building abstraction layers that translate profile data into identity signals.
+                        The technical challenge of identity processing revealed that most existing social APIs aren't built for identity-focused discovery. They're optimized for location-based or profile-based matching, not identity-rich connection signals. Adapting these systems required building abstraction layers that translate profile data into identity signals while maintaining privacy boundaries.
                       </p>
                       <p>
-                        User preferences around social connection emerged as highly individual. Some travelers want minimal discovery, others want extensive connection opportunities. The system needed to learn and adapt to individual preferences, not assume a one-size-fits-all approach.
+                        The "Graded Visibility" architectural pattern emerged as essential. Users need context-aware privacy—sharing proof of travel style without exposing specific itinerary data. This requires zero-knowledge proof concepts where the system can validate identity alignment without requiring full data disclosure.
                       </p>
                     </div>
                   </div>
@@ -6932,13 +7207,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Real-time meetup facilitation remains underexplored. The system currently processes identity and matches travelers, but doesn't yet facilitate real-time meetups or group formation. Adding real-time coordination could create more immediate connection opportunities without requiring extensive pre-planning.
+                    <strong className="text-gray-900">1. Real-Time Coordination:</strong> Facilitating ephemeral group formation for solo travelers. The system could enable real-time meetup facilitation, allowing travelers to form temporary groups based on shared intent and identity alignment, without requiring extensive pre-planning or long-term commitment.
                   </p>
                   <p>
-                    Long-term traveler networks could shift the system from trip-specific to lifetime connections. Instead of processing connections for a single trip, the system could maintain traveler networks over months or years, understanding that connections made in one location might be valuable in future destinations. This moves beyond single-trip social discovery to lifetime traveler community building.
+                    <strong className="text-gray-900">2. Lifetime Networks:</strong> Moving from "Trip-Specific" to "Journey-Long" social graphs. Instead of processing connections for a single trip, the system could maintain traveler networks over months or years, understanding that connections made in one location might be valuable in future destinations. This moves beyond single-trip social discovery to lifetime traveler community building.
                   </p>
                   <p>
-                    Integration with travel platforms represents a significant opportunity. The system knows about traveler identity and preferences, but doesn't yet integrate deeply with booking or planning platforms to facilitate connections around shared itineraries. Partnerships with travel platforms could close this gap, creating a more seamless social discovery experience.
+                    <strong className="text-gray-900">3. Booking Integration:</strong> Connecting the Trust Layer directly to OTA (Online Travel Agency) APIs for seamless, verified group bookings. The system knows about traveler identity and preferences, and could integrate deeply with booking platforms to facilitate connections around shared itineraries, enabling verified group bookings with trust validation.
                   </p>
                 </div>
               </motion.div>
