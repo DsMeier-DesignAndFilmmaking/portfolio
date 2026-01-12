@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -478,6 +478,410 @@ const SocialOpportunityMatchingVisual = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Social Matching Lab - R&D Sandbox Component
+const SocialMatchingLab = () => {
+  const [trustRadius, setTrustRadius] = useState(500); // meters
+  const [timeGap, setTimeGap] = useState(30); // minutes
+  const [interestTags, setInterestTags] = useState<string[]>(['Art', 'Coffee', 'Architecture']);
+  const [logicFeed, setLogicFeed] = useState<string[]>([]);
+  const [matches, setMatches] = useState<any[]>([]);
+
+  // Mock match data for demonstration
+  const mockMatches = useMemo(() => [
+    {
+      id: 1,
+      name: 'Alex Chen',
+      degree: 1,
+      distance: 120,
+      interests: ['Art', 'Coffee', 'Architecture'],
+      scheduleGap: 45,
+      activityDuration: 30,
+    },
+    {
+      id: 2,
+      name: 'Sarah Martinez',
+      degree: 2,
+      distance: 350,
+      interests: ['Art', 'Coffee'],
+      scheduleGap: 20,
+      activityDuration: 25,
+    },
+    {
+      id: 3,
+      name: 'Jordan Kim',
+      degree: 1,
+      distance: 80,
+      interests: ['Architecture'],
+      scheduleGap: 60,
+      activityDuration: 20,
+    },
+    {
+      id: 4,
+      name: 'Taylor Brown',
+      degree: 3,
+      distance: 600,
+      interests: ['Coffee'],
+      scheduleGap: 15,
+      activityDuration: 15,
+    },
+  ], []);
+
+  // Calculate match score with detailed breakdown
+  const calculateMatchScore = useCallback((match: any) => {
+    const breakdown: { step: string; value: number; description: string }[] = [];
+    let score = 0;
+
+    // Base Score
+    const baseScores: Record<number, number> = { 1: 50, 2: 25, 3: 10 };
+    const baseScore = baseScores[match.degree] || 0;
+    score += baseScore;
+    const degreeOrdinal = match.degree === 1 ? '1st' : match.degree === 2 ? '2nd' : '3rd';
+    breakdown.push({
+      step: 'Base Score',
+      value: baseScore,
+      description: `${degreeOrdinal} Degree Connection`
+    });
+
+    // Interest Alignment
+    const matchingInterests = match.interests.filter((interest: string) =>
+      interestTags.includes(interest)
+    );
+    const interestScore = matchingInterests.length * 20;
+    score += interestScore;
+    if (interestScore > 0) {
+      breakdown.push({
+        step: 'Interest Alignment',
+        value: interestScore,
+        description: `+${interestScore}pts (${matchingInterests.length} matches)`
+      });
+    }
+
+    // Proximity Decay
+    const proximityPenalty = Math.floor(match.distance / 100) * 2;
+    score -= proximityPenalty;
+    if (proximityPenalty > 0) {
+      breakdown.push({
+        step: 'Proximity Decay',
+        value: -proximityPenalty,
+        description: `-${proximityPenalty}pts (${match.distance}m)`
+      });
+    }
+
+    // Temporal Feasibility (Stress Penalty)
+    const timeAvailable = match.scheduleGap - match.activityDuration;
+    if (timeAvailable < 15) {
+      const originalScore = score;
+      score = score * 0.4; // Apply 0.4x penalty
+      const stressPenalty = originalScore - score;
+      breakdown.push({
+        step: 'Stress Penalty',
+        value: -stressPenalty,
+        description: `0.4x multiplier (${timeAvailable}min gap)`
+      });
+    } else {
+      breakdown.push({
+        step: 'Temporal Feasibility',
+        value: 0,
+        description: `✓ ${timeAvailable}min available`
+      });
+    }
+
+    return {
+      finalScore: Math.round(score),
+      breakdown,
+    };
+  }, [interestTags]);
+
+  // Filter and calculate matches
+  const processedMatches = useMemo(() => {
+    const filtered = mockMatches
+      .filter(match => match.distance <= trustRadius)
+      .filter(match => (match.scheduleGap - match.activityDuration) >= timeGap - 15)
+      .map(match => ({
+        ...match,
+        ...calculateMatchScore(match),
+      }))
+      .sort((a, b) => b.finalScore - a.finalScore);
+
+    // Generate logic feed
+    const feed: string[] = [];
+    filtered.forEach(match => {
+      feed.push(`> Processing: ${match.name}`);
+      match.breakdown.forEach(step => {
+        if (step.value !== 0 || step.step === 'Temporal Feasibility') {
+          feed.push(`  ${step.step}: ${step.value > 0 ? '+' : ''}${step.value}pts - ${step.description}`);
+        }
+      });
+      feed.push(`> Final Score: ${match.finalScore}pts`);
+      feed.push('');
+    });
+
+    setLogicFeed(feed);
+    return filtered;
+  }, [trustRadius, timeGap, calculateMatchScore]);
+
+  useEffect(() => {
+    setMatches(processedMatches);
+  }, [processedMatches]);
+
+  const toggleInterestTag = (tag: string) => {
+    setInterestTags(prev =>
+      prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  const availableTags = ['Art', 'Coffee', 'Architecture', 'Music', 'Food', 'Photography'];
+
+  return (
+    <section className="border-t border-white/10 bg-[#050505] relative overflow-hidden">
+      {/* Subtle glowing indigo radial gradient */}
+      <div className="absolute inset-0 bg-gradient-radial from-indigo-500/10 via-transparent to-transparent opacity-50 pointer-events-none" />
+      
+      <div className="container mx-auto px-6 py-16 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                Experimental Middleware Sandbox
+              </h2>
+              <motion.div
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg"
+              >
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-sm font-semibold text-green-400 uppercase tracking-wider">
+                  STATUS: ACTIVE
+                </span>
+              </motion.div>
+            </div>
+            <p className="text-gray-400 text-sm md:text-base">
+              Real-time weighted trust score calculation engine
+            </p>
+          </motion.div>
+
+          {/* Three-Column Dashboard */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left: Interactive Sliders */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+                <h3 className="text-white font-semibold mb-6 flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-indigo-400" />
+                  Control Parameters
+                </h3>
+                
+                {/* Trust Radius Slider */}
+                <div className="mb-6">
+                  <label className="block text-sm text-gray-300 mb-2">
+                    Trust Radius: {trustRadius}m
+                  </label>
+                  <input
+                    type="range"
+                    min="100"
+                    max="1000"
+                    step="50"
+                    value={trustRadius}
+                    onChange={(e) => setTrustRadius(Number(e.target.value))}
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>100m</span>
+                    <span>1000m</span>
+                  </div>
+                </div>
+
+                {/* Time Gap Slider */}
+                <div className="mb-6">
+                  <label className="block text-sm text-gray-300 mb-2">
+                    Time Gap: {timeGap}min
+                  </label>
+                  <input
+                    type="range"
+                    min="10"
+                    max="120"
+                    step="5"
+                    value={timeGap}
+                    onChange={(e) => setTimeGap(Number(e.target.value))}
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>10min</span>
+                    <span>120min</span>
+                  </div>
+                </div>
+
+                {/* Interest Tags */}
+                <div>
+                  <label className="block text-sm text-gray-300 mb-3 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-indigo-400" />
+                    Interest Tags
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {availableTags.map(tag => (
+                      <button
+                        key={tag}
+                        onClick={() => toggleInterestTag(tag)}
+                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                          interestTags.includes(tag)
+                            ? 'bg-indigo-500 text-white border border-indigo-400'
+                            : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10'
+                        }`}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Center: Live Logic Feed */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm"
+            >
+              <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-indigo-400" />
+                Live Logic Feed
+              </h3>
+              <div className="bg-black/50 rounded-md p-4 font-mono text-xs text-green-400 h-[400px] overflow-y-auto">
+                <AnimatePresence>
+                  {logicFeed.map((line, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="mb-1"
+                    >
+                      {line || '\u00A0'}
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+                {logicFeed.length === 0 && (
+                  <div className="text-gray-500">Waiting for calculations...</div>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Right: Match Output Cards */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-4"
+            >
+              <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-indigo-400" />
+                Match Output
+              </h3>
+              <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+                <AnimatePresence>
+                  {matches.map((match, index) => (
+                    <motion.div
+                      key={match.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="group relative bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all cursor-pointer"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <h4 className="text-white font-semibold">{match.name}</h4>
+                          <p className="text-xs text-gray-400">
+                            {match.degree === 1 ? '1st' : match.degree === 2 ? '2nd' : '3rd'} Degree
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-2xl font-bold text-indigo-400">{match.finalScore}</div>
+                          <div className="text-xs text-gray-500">pts</div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
+                        <div className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          {match.distance}m
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {match.scheduleGap}min
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {match.interests.map((interest: string) => (
+                          <span
+                            key={interest}
+                            className={`px-2 py-0.5 rounded text-xs ${
+                              interestTags.includes(interest)
+                                ? 'bg-indigo-500/30 text-indigo-300 border border-indigo-400/50'
+                                : 'bg-white/5 text-gray-500 border border-white/10'
+                            }`}
+                          >
+                            {interest}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Score Breakdown on Hover */}
+                      <div className="absolute inset-0 bg-black/95 border border-indigo-500/50 rounded-lg p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                        <h5 className="text-white font-semibold mb-3 text-sm">Score Breakdown</h5>
+                        <div className="space-y-2">
+                          {match.breakdown.map((step: any, idx: number) => (
+                            <div key={idx} className="flex justify-between items-center text-xs">
+                              <span className="text-gray-400">{step.step}:</span>
+                              <span className={`font-mono ${
+                                step.value > 0 ? 'text-green-400' : step.value < 0 ? 'text-red-400' : 'text-gray-500'
+                              }`}>
+                                {step.value > 0 ? '+' : ''}{step.value}pts
+                              </span>
+                            </div>
+                          ))}
+                          <div className="border-t border-white/10 pt-2 mt-2 flex justify-between items-center">
+                            <span className="text-white font-semibold">Final Score:</span>
+                            <span className="text-indigo-400 font-bold">{match.finalScore}pts</span>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+                {matches.length === 0 && (
+                  <div className="text-center text-gray-500 py-8 text-sm">
+                    No matches found with current parameters
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -7227,39 +7631,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               </motion.div>
             </div>
           </section>
-
-          {/* Learnings & Reflections Section */}
-          <section id="learnings-next" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Learnings & Reflections
-                  </h2>
-                </div>
-                
-                <div className="space-y-4 text-gray-700 leading-relaxed">
-                  <p>
-                    <strong className="text-gray-900">Low-friction requires system-level design:</strong> Spontaneous social connection cannot be achieved through UI improvements alone—it requires architectural decisions that minimize cognitive load at the data processing layer. The matching logic must operate in the background, surfacing opportunities only when all conditions align.
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Integration over standalone:</strong> The module's value is maximized when integrated into existing platforms rather than operating as a standalone app. Users don't want another app to manage—they want social connection capabilities embedded in the tools they already use.
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">15-minute commitment window:</strong> Research indicates that 15 minutes represents the optimal commitment threshold for truly low-friction interactions. Anything longer requires planning, and anything shorter feels too fleeting to be meaningful.
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Privacy-first matching:</strong> The module must balance discovery with privacy. Users need granular control over who can discover them and when, with encrypted location data and opt-in matching rather than default-on behavior.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
         </>
       )}
       {isLocalExperienceFinder && (
@@ -9530,93 +9901,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Section 11: Learnings & Reflections */}
-          <section id="learnings-next" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Learnings & Reflections
-                  </h2>
-                </div>
-                
-                <div className="space-y-12">
-                  {/* Key Learnings - Mobile: Accordion item; Desktop: Always expanded */}
-                  <div
-                    className="learnings-accordion-item"
-                    aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
-                    role="region"
-                  >
-                    <h3 
-                      id="key-learnings-heading"
-                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
-                      onClick={() => {
-                        if (isMobile) {
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('key-learnings')) {
-                              next.delete('key-learnings');
-                            } else {
-                              next.add('key-learnings');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                      role={isMobile ? "button" : "heading"}
-                      tabIndex={isMobile ? 0 : undefined}
-                      aria-controls="key-learnings-content"
-                      aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
-                      onKeyDown={(e) => {
-                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
-                          e.preventDefault();
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('key-learnings')) {
-                              next.delete('key-learnings');
-                            } else {
-                              next.add('key-learnings');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                    >
-                      Key Learnings
-                    </h3>
-                    <div 
-                      id="key-learnings-content"
-                      className="space-y-4 text-gray-700 leading-relaxed"
-                      role="region"
-                      aria-labelledby="key-learnings-heading"
-                    >
-                      <p>
-                        {isCulturalContextEngine && 'Trust cannot be designed into a system after the fact—it must be architected from the ground up. Verification and provenance tracking require data-layer solutions, not just UI indicators.'}
-                        {isTravelPlanningAssistant && 'Flexible planning requires balancing structure with spontaneity. The challenge is providing enough guidance to reduce stress while maintaining freedom for unplanned exploration.'}
-                        {isLocalExperienceFinder && 'Social connections in travel require careful privacy design. Identity-focused discovery works better when travelers control what they share and who can discover them.'}
-                      </p>
-                      {project?.overview?.outcomes && (
-                        <ul className="space-y-2 mt-4">
-                          {(Array.isArray(project?.overview?.outcomes) ? project.overview.outcomes : []).slice(0, 3).map((outcome: string, index: number) => (
-                            <li key={index} className="flex items-start gap-3">
-                              <span className="text-blue-600 mt-1">•</span>
-                              <span>{outcome}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
           {/* Section 12: Where This Could Evolve Next */}
           <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
@@ -11362,6 +11646,112 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
+      )}
+
+      {/* R&D Sandbox Section - Only for Social Opportunity Matching */}
+      {isSocialOpportunityMatching && <SocialMatchingLab />}
+
+      {/* Section 11: Learnings & Reflections - Only for Social Opportunity Matching */}
+      {isSocialOpportunityMatching && (
+        <section id="learnings-next" className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                  Learnings & Reflections
+                </h2>
+              </div>
+              
+              <div className="space-y-12">
+                {/* Key Learnings - Mobile: Accordion item; Desktop: Always expanded */}
+                <div
+                  className="learnings-accordion-item"
+                  aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
+                  role="region"
+                >
+                  <h3 
+                    id="key-learnings-heading"
+                    className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
+                    onClick={() => {
+                      if (isMobile) {
+                        setLearningsAccordion(prev => {
+                          const next = new Set(prev);
+                          if (next.has('key-learnings')) {
+                            next.delete('key-learnings');
+                          } else {
+                            next.add('key-learnings');
+                          }
+                          return next;
+                        });
+                      }
+                    }}
+                    role={isMobile ? "button" : "heading"}
+                    tabIndex={isMobile ? 0 : undefined}
+                    aria-controls="key-learnings-content"
+                    aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
+                    onKeyDown={(e) => {
+                      if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        setLearningsAccordion(prev => {
+                          const next = new Set(prev);
+                          if (next.has('key-learnings')) {
+                            next.delete('key-learnings');
+                          } else {
+                            next.add('key-learnings');
+                          }
+                          return next;
+                        });
+                      }
+                    }}
+                  >
+                    Key Learnings
+                  </h3>
+                  <div 
+                    id="key-learnings-content"
+                    className="space-y-4 text-gray-700 leading-relaxed"
+                    role="region"
+                    aria-labelledby="key-learnings-heading"
+                  >
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Low-friction requires system-level design</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Spontaneous social connection cannot be achieved through UI improvements alone—it requires architectural decisions that minimize cognitive load at the data processing layer. The matching logic must operate in the background, surfacing opportunities only when all conditions align.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Integration over standalone</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          The module's value is maximized when integrated into existing platforms rather than operating as a standalone app. Users don't want another app to manage—they want social connection capabilities embedded in the tools they already use.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">15-minute commitment window</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Research indicates that 15 minutes represents the optimal commitment threshold for truly low-friction interactions. Anything longer requires planning, and anything shorter feels too fleeting to be meaningful.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Privacy-first matching</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          The module must balance discovery with privacy. Users need granular control over who can discover them and when, with encrypted location data and opt-in matching rather than default-on behavior.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       )}
 
       {/* Back to Projects Link */}

@@ -40,15 +40,7 @@ export default function DesignWork() {
             </p>
           </div>
         
-        {/* Section Header */}
-        <div className="mb-12" style={{ maxWidth: '576px', margin: '0 auto' }}>
-          <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase tracking-wider">
-            Work and Projects
-          </h2>
-          <p className="text-xl text-gray-700 font-sans mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            A curated collection of work and projects showcasing UX, UI, Web, Graphic and Product Design.
-          </p>
-        </div>
+       
 
         {/* Work Grid */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-stretch gap-12" style={{ maxWidth: '576px', margin: '0 auto' }}>
@@ -65,7 +57,7 @@ export default function DesignWork() {
                 className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
               >
                 <div className="flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     Travel & AI
                   </h3>
                   <p className="text-gray-600 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
@@ -104,7 +96,7 @@ export default function DesignWork() {
                 className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
               >
                 <div className="flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     The Archive
                   </h3>
                   <p className="text-gray-600 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>

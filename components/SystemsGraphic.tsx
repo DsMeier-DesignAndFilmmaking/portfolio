@@ -15,10 +15,20 @@ interface SystemsGraphicProps {
 export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) {
   const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Motion variants - foundational systems (slow, heavy, stabilizing)
@@ -225,12 +235,13 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
         </motion.div>
 
         {/* Foundational System 2 - Trust & Authenticity Layer */}
-        {/* Mobile: Repositioned via CSS to prevent overlap; Desktop: Original positioning (25%, 45%) */}
+        {/* Mobile: Moved left and further down below Spontaneity Engine to prevent overlap */}
         <motion.div
           className="absolute foundational-2-position"
           style={{
-            right: '25%',
+            right: '30%',
             top: '45%',
+            transform: isMobile ? 'translate(-30px, 80px)' : 'none',
           }}
           animate={{
             y: prefersReducedMotion ? 0 : [0, -12, 0],

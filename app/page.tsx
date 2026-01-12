@@ -99,12 +99,12 @@ export default function HomePage() {
                     </h1>
                   </div>
                   <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
                     I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br></br><br></br>
                     I design digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value and resonate on a universal scale.
                     </p>
                     <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left font-light"
-                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
                       Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
                     <div className="mt-4 mb-4">
@@ -234,7 +234,7 @@ export default function HomePage() {
                       <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
                     </div>
                     
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
                       My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
                     </p>
                   </div>
@@ -258,8 +258,8 @@ export default function HomePage() {
                       </div>
                     </div>
                     
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                      Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. My work today centers on <span className="text-blue-600 font-medium">building purposeful websites and digital experiences</span> that provide real value, informed by both a <span className="italic text-gray-800">systems-thinking mindset</span> and a <span className="font-semibold text-gray-800">global outlook</span>.
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
+                      Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. 
                     </p>
                     <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI generated photos or video.
@@ -364,7 +364,7 @@ export default function HomePage() {
               </h2>
               <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
                 fontFamily: "'Roboto', Helvetica, sans-serif",
-                fontSize: '1.1rem',
+                fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
@@ -496,12 +496,12 @@ export default function HomePage() {
                               <h3 className="text-2xl md:text-3xl font-bold text-white">
                                Travel Photo Journal
                              </h3>
-                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>Interactive Travel Stories</p>
+                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>Interactive Travel Stories</p>
                           </div>
                         </div>
                         
                         <div className="space-y-4 mb-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
                             A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
                           </p>
                           <div className="flex flex-wrap gap-2">
