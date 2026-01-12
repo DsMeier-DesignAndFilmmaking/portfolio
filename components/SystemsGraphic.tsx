@@ -521,6 +521,72 @@ export default function SystemsGraphic({ className = '' }: SystemsGraphicProps) 
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/25 to-transparent pointer-events-none" />
           </motion.div>
         </motion.div>
+
+        {/* Applied System 4 - Social Graph Network */}
+        <motion.div
+          className="absolute"
+          style={{
+            right: '12%',
+            bottom: '20%',
+          }}
+          variants={appliedVariants(3)}
+          initial="animate"
+          animate="animate"
+        >
+          <motion.div
+            className="relative"
+            whileHover={prefersReducedMotion ? {} : { scale: 1.15, opacity: 0.95 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Mobile: Increased scale (w-28 h-28) for better visual impact; Desktop: Original size (md:w-28 md:h-28) */}
+            <div className="w-28 h-28 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-indigo-200/60 via-violet-200/50 to-indigo-300/60 backdrop-blur-lg border-2 border-indigo-300/40 shadow-lg">
+              {/* Inner core */}
+              <div className="absolute inset-1.5 rounded-full bg-gradient-to-br from-indigo-400/30 to-violet-400/20" />
+              {/* System name */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="text-center px-2">
+                  <div className="text-[8px] md:text-[10px] font-semibold text-indigo-900/90 uppercase tracking-tight leading-tight" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    Social Graph Network
+                  </div>
+                </div>
+              </div>
+              {/* Processing dots */}
+              {!prefersReducedMotion && (
+                <>
+                  {[...Array(4)].map((_, i) => {
+                    const angle = (i * 90);
+                    const rad = (angle * Math.PI) / 180;
+                    // Mobile: Increased radius (10px) to match larger circle; Desktop: Original (8px)
+                    const radius = 10; // Scaled from 8px for w-28 circle (was 8px for w-24)
+                    const x = 14 + Math.cos(rad) * radius; // Updated center from 12 to 14 for w-28
+                    const y = 14 + Math.sin(rad) * radius;
+                    return (
+                      <motion.div
+                        key={`applied-4-${i}`}
+                        className="absolute w-1 h-1 rounded-full bg-indigo-500/70"
+                        style={{
+                          left: `${x}px`,
+                          top: `${y}px`,
+                          transform: 'translate(-50%, -50%)',
+                        }}
+                        animate={{
+                          opacity: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          delay: i * 0.2 + 0.3,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/25 to-transparent pointer-events-none" />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Connection Fields - Soft data flow between systems */}

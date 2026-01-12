@@ -292,12 +292,12 @@ const SocialOpportunityMatchingVisual = () => {
   return (
     <div className="relative w-full max-w-7xl lg:max-w-5xl mx-auto -mx-6 lg:mx-auto px-0 lg:px-6">
       {/* Main Architecture Container */}
-      <div className="relative bg-gradient-to-br from-purple-950/98 via-pink-900/98 to-purple-950/98 rounded-xl border border-purple-800/50 shadow-2xl overflow-hidden backdrop-blur-xl">
+      <div className="relative bg-gradient-to-br from-blue-950/98 via-blue-900/98 to-blue-950/98 rounded-xl border border-blue-800/50 shadow-2xl overflow-hidden backdrop-blur-xl">
         {/* Subtle Grid Background */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="grid grid-cols-10 grid-rows-8 h-full w-full">
             {[...Array(80)].map((_, i) => (
-              <div key={i} className="border border-pink-500/20" />
+              <div key={i} className="border border-blue-500/20" />
             ))}
           </div>
         </div>
@@ -307,80 +307,6 @@ const SocialOpportunityMatchingVisual = () => {
           {/* Vertical Stack Layout */}
           <div className="flex flex-col items-center gap-6 md:gap-8">
             
-            {/* Top: Matching Signals Input */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="w-full flex flex-col items-center"
-            >
-              <div className="mb-4 text-center">
-                <p className="text-sm md:text-base font-medium text-pink-500 uppercase tracking-[0.2em] mb-4">
-                  Matching Signals
-                </p>
-                <div className="grid grid-cols-2 md:flex md:flex-row items-center justify-center gap-4 md:gap-6">
-                  {matchingSignals.map((signal, i) => {
-                    const Icon = signal.icon;
-                    return (
-                      <motion.div
-                        key={signal.label}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: i * 0.08 }}
-                        className="flex flex-col items-center gap-2"
-                      >
-                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-purple-800/70 border border-pink-500/25 flex items-center justify-center backdrop-blur-sm">
-                          <Icon className="w-5 h-5 md:w-6 md:h-6 text-pink-500" />
-                        </div>
-                        <span className="text-sm md:text-base font-medium text-purple-400 uppercase tracking-wider">
-                          {signal.label}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-              
-              {/* Scenario Chip */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="mt-4"
-              >
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-800/60 backdrop-blur-sm rounded-full border border-purple-700/40">
-                  <span className="text-sm md:text-base font-medium text-purple-200">15min</span>
-                  <span className="text-purple-400">·</span>
-                  <span className="text-sm md:text-base font-medium text-purple-200">Low Friction</span>
-                  <span className="text-purple-400">·</span>
-                  <span className="text-sm md:text-base font-medium text-purple-200">Spontaneous</span>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Flow Arrow from Input */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative w-full flex items-center justify-center"
-            >
-              <motion.div
-                animate={{
-                  y: [0, 4, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-                className="absolute left-1/2 -translate-x-1/2"
-                style={{ willChange: 'transform' }}
-              >
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-purple-700 rotate-90" />
-              </motion.div>
-            </motion.div>
-
             {/* Center: Matching Engine */}
             <div className="w-full flex flex-col gap-4 max-w-2xl mx-auto">
               {/* Matching Engine Container */}
@@ -391,7 +317,7 @@ const SocialOpportunityMatchingVisual = () => {
                 className="relative"
               >
                 {/* Matching Engine Container - Lighter, Glowing */}
-                <div className="relative bg-gradient-to-br from-purple-800/60 via-pink-700/50 to-purple-800/60 rounded-lg border border-pink-500/40 shadow-xl shadow-pink-500/15 p-5 md:p-6 backdrop-blur-sm">
+                <div className="relative bg-gradient-to-br from-blue-800/60 via-blue-700/50 to-blue-800/60 rounded-lg border border-blue-500/40 shadow-xl shadow-blue-500/15 p-5 md:p-6 backdrop-blur-sm">
                   {/* Pulsing Intelligence Glow */}
                   <motion.div
                     animate={{
@@ -402,18 +328,18 @@ const SocialOpportunityMatchingVisual = () => {
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="absolute inset-0 bg-gradient-to-br from-pink-500/15 to-purple-500/15 rounded-lg"
+                    className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-blue-500/15 rounded-lg"
                   />
 
                   {/* Matching Engine Label */}
                   <div className="relative z-10 mb-4 text-center">
                     <h3 className="text-base md:text-lg font-semibold text-white tracking-tight mb-1">
-                      Social Opportunity Matching Module
+                      Social Opportunity Matching
                     </h3>
-                    <p className="text-sm md:text-base font-medium text-pink-300 uppercase tracking-[0.15em] mb-2">
+                    <p className="text-sm md:text-base font-medium text-blue-800 uppercase tracking-[0.15em] mb-2">
                       Lightweight Intelligence · Spontaneous Connection · Low Friction
                     </p>
-                    <div className="h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent" />
+                    <div className="h-[1px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
                   </div>
 
                   {/* Matching Sub-modules */}
@@ -428,10 +354,10 @@ const SocialOpportunityMatchingVisual = () => {
                             transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
                             className="flex flex-col items-center gap-1.5"
                           >
-                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-purple-900/80 border border-pink-500/30 flex items-center justify-center backdrop-blur-sm">
-                              <Icon className="w-6 h-6 md:w-7 md:h-7 text-pink-300" />
+                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-blue-900/80 border border-blue-500/30 flex items-center justify-center backdrop-blur-sm">
+                              <Icon className="w-6 h-6 md:w-7 md:h-7 text-blue-300" />
                             </div>
-                            <p className="text-sm md:text-base font-medium text-purple-200 text-center leading-tight max-w-[120px] md:max-w-[110px]">
+                            <p className="text-sm md:text-base font-medium text-blue-200 text-center leading-tight max-w-[120px] md:max-w-[110px]">
                               {module.name}
                             </p>
                           </motion.div>
@@ -454,7 +380,7 @@ const SocialOpportunityMatchingVisual = () => {
                                   delay: i * 0.25,
                                   ease: 'easeInOut',
                                 }}
-                                className="w-6 h-[1px] bg-gradient-to-r from-pink-400/40 via-pink-400/60 to-pink-400/40"
+                                className="w-6 h-[1px] bg-gradient-to-r from-blue-400/40 via-blue-400/60 to-blue-400/40"
                               />
                             </motion.div>
                           )}
@@ -476,7 +402,7 @@ const SocialOpportunityMatchingVisual = () => {
                                   delay: i * 0.25,
                                   ease: 'easeInOut',
                                 }}
-                                className="w-[1px] h-4 bg-gradient-to-b from-pink-400/40 via-pink-400/60 to-pink-400/40"
+                                className="w-[1px] h-4 bg-gradient-to-b from-blue-400/40 via-blue-400/60 to-blue-400/40"
                               />
                             </motion.div>
                           )}
@@ -493,7 +419,7 @@ const SocialOpportunityMatchingVisual = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="relative w-full flex items-center justify-center"
+              className="relative w-full flex items-center justify-center max-w-2xl mx-auto"
             >
               <motion.div
                 animate={{
@@ -505,10 +431,10 @@ const SocialOpportunityMatchingVisual = () => {
                   delay: 0.3,
                   ease: 'easeInOut',
                 }}
-                className="absolute left-1/2 -translate-x-1/2"
+                className="flex items-center justify-center"
                 style={{ willChange: 'transform' }}
               >
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-purple-700 rotate-90" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-blue-700 rotate-90" />
               </motion.div>
             </motion.div>
 
@@ -520,14 +446,14 @@ const SocialOpportunityMatchingVisual = () => {
               className="w-full flex flex-col items-center justify-center"
             >
               <div className="flex flex-col items-center justify-center text-center">
-                <p className="text-sm md:text-base font-medium text-pink-300 uppercase tracking-[0.2em] mb-3">
+                <p className="text-sm md:text-base font-medium text-blue-300 uppercase tracking-[0.2em] mb-3">
                   Social Opportunity
                 </p>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/40 flex items-center justify-center backdrop-blur-sm mx-auto"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-500/20 border border-blue-500/40 flex items-center justify-center backdrop-blur-sm mx-auto"
                 >
                   <motion.div
                     animate={{
@@ -540,10 +466,10 @@ const SocialOpportunityMatchingVisual = () => {
                       ease: 'easeInOut',
                     }}
                   >
-                    <Users className="w-8 h-8 md:w-10 md:h-10 text-pink-300" />
+                    <Users className="w-8 h-8 md:w-10 md:h-10 text-blue-300" />
                   </motion.div>
                 </motion.div>
-                <p className="text-sm md:text-base font-medium text-purple-600 mt-2 text-center">
+                <p className="text-sm md:text-base font-medium text-blue-600 mt-2 text-center">
                   15-minute interaction
                 </p>
               </div>
@@ -1227,11 +1153,11 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
               transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
             >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Spontaneity Engine
               </h1>
                   <div className="mb-6 md:mb-7">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 whitespace-nowrap">
                       In Development
                     </span>
                   </div>
@@ -1288,10 +1214,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
+                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
                 >
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                    <div className="relative flex-shrink-0">
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center w-full md:w-auto">
+                  <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                      *Design concept mockups
+                    </p>
+                    <div className="relative flex-shrink-0 flex justify-center md:justify-start">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
@@ -1305,7 +1234,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     />
                   </div>
                 </div>
-                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12">
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12 flex justify-center md:justify-start">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
                           src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
@@ -1335,12 +1264,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     A Trust Framework for Real-Time Travel AI
                   </h1>
                   <div className="mb-4">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      Research & Development
+                      In Research & Development
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
@@ -1390,12 +1319,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Context-Aware Travel Decision System (CATDS)
                   </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      Research & Development
+                      In Research & Development
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
@@ -1472,16 +1401,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
-                    Social Opportunity Matching Module
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Social Opportunity Matching
                   </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      Research & Development
+                      In Research & Development
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    Lightweight Intelligence for Spontaneous Connection
+                  Trust Layer Middleware · Multi-Degree Matching · Real-Time Social Logic
                   </p>
                   
                   {/* Overview Block */}
@@ -1576,12 +1505,12 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Social Graph-Driven Travel Network
                   </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      Research & Development
+                      In Research & Development
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
@@ -1625,7 +1554,8 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                           Scenario
                         </div>
                         <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          A user opens the <strong>Global Map View</strong> and notices a significant 'Trust Cluster' forming in Tokyo—several 2nd-degree connections are planning trips for the same window. Switching to the <strong>Intent Table</strong>, the user filters by 'Tokyo' to see the specific profiles of those who 'want to visit.' This dual-view allows the traveler to move from a bird's-eye discovery of trends to a granular, verified list of potential social matches.
+                        A traveler opens the Global Map View and sees a live "Pulse" in Tokyo—the system indicates a high density of their extended social network is currently active there.
+                         <br></br><br></br>By switching to the Network Table, the traveler sees exactly who is "Roaming the Planet" in that region. They notice some mutual friends or connections are currently in Shibuya and 11 others have "Intent" signals to visit soon. This allows the traveler to move from observing a global trend to initiating a low-friction social moment with a verified connection already on the ground.
                         </div>
                       </div>
                       <div>
@@ -1740,7 +1670,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      Research & Development
+                      In Research & Development
                     </span>
                   </div>
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
@@ -1838,6 +1768,64 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         {/* Subtle Divider */}
         <div className="border-b border-gray-100 mt-16 md:mt-20 lg:mt-24"></div>
       </section>
+
+      {/* Why Social Connection Matters in Travel Section - Only for local-experience-finder */}
+      {isLocalExperienceFinder && (
+        <section className="py-16 md:py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-5xl mx-auto"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                  Why Social Connection Matters in Travel
+                </h2>
+                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                  The impact extends beyond individual travelers—it requires systemic solutions that balance connection with privacy
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      Impact for Travelers
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Meaningful social connections lead to <span className="font-semibold text-cyan-700">richer travel experiences and deeper cultural understanding</span>. Travelers can connect with like-minded people while maintaining <span className="font-semibold text-cyan-700">full control over their privacy and visibility</span>.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      Impact for Communities
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    When travelers connect authentically, local communities benefit from <span className="font-semibold text-emerald-700">more meaningful cultural exchange</span>. Identity-based discovery creates connections that respect both traveler privacy and local community values.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion && (
@@ -1946,7 +1934,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Impact for Travelers */}
                   <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -1963,7 +1951,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   {/* Impact for Local Communities */}
                   <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -1982,7 +1970,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </section>
 
           {/* System Overview Section */}
-          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+          <section className="py-20 md:py-32 bg-zinc-950 relative">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
             
@@ -8533,62 +8521,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </div>
           </section>
 
-          {/* Value Proposition Section */}
-          <section className="py-16 md:py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-5xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Why Social Connection Matters in Travel
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    The impact extends beyond individual travelers—it requires systemic solutions that balance connection with privacy
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Travelers
-                      </h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-lg">
-                      Meaningful social connections lead to <span className="font-semibold text-cyan-700">richer travel experiences and deeper cultural understanding</span>. Travelers can connect with like-minded people while maintaining <span className="font-semibold text-cyan-700">full control over their privacy and visibility</span>.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Communities
-                      </h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-lg">
-                      When travelers connect authentically, local communities benefit from <span className="font-semibold text-emerald-700">more meaningful cultural exchange</span>. Identity-based discovery creates connections that respect both traveler privacy and local community values.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
           {/* Design Evolution Section */}
           <section id="wireframes-ui" className="py-20 bg-black">
             <div className="container mx-auto px-6">
@@ -8786,7 +8718,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       The System in Motion: Mobile Demo
                     </h3>
                     <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-                      Experience the Trust Layer in action. This mobile simulation demonstrates how raw traveler telemetry is converted into verified social signals using the Influence Scorer and Privacy Gates.
+                      This mobile simulation demonstrates how raw traveler telemetry is converted into verified social signals using the Influence Scorer and Privacy Gates.
                     </p>
                   </div>
 
@@ -9048,6 +8980,56 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                   </motion.div>
                 </motion.div>
+
+                {/* Live Demo Content */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mt-12 max-w-4xl mx-auto"
+                >
+                  <div className="bg-white/5 rounded-xl p-8 md:p-10 border border-white/10">
+                    <div className="mb-8 text-center">
+                      <h3 className="text-2xl font-bold mb-4 text-white">Live Demo</h3>
+                      <p className="text-gray-400 mb-4">
+                        A live demo will be available once the identity-focused discovery system is fully implemented.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                          What Currently Works
+                        </h4>
+                        <p className="text-gray-300 leading-relaxed">
+                          System architecture and identity processing framework are being developed. Core components for privacy controls and connection matching are in progress.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          What is Experimental
+                        </h4>
+                        <p className="text-gray-300 leading-relaxed">
+                          Identity-based matching algorithms, privacy control mechanisms, and connection quality scoring are in active development and testing.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                          What is Planned Next
+                        </h4>
+                        <p className="text-gray-300 leading-relaxed">
+                          Expanded identity processing, advanced privacy features, and user-facing connection tools. Timeline depends on identity system validation and user feedback.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </div>
           </section>
@@ -9132,68 +9114,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Beta Testing</span>
                       <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Identity Matching</span>
                       <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Privacy Controls</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Live Demo Section */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Live Demo
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    This product is actively being built and deployed
-                  </p>
-                </div>
-                
-                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
-                  <div className="mb-8 text-center">
-                    <p className="text-gray-600 mb-4">
-                      A live demo will be available once the identity-focused discovery system is fully implemented.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        What Currently Works
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        System architecture and identity processing framework are being developed. Core components for privacy controls and connection matching are in progress.
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-                        What is Experimental
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Identity-based matching algorithms, privacy control mechanisms, and connection quality scoring are in active development and testing.
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        What is Planned Next
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Expanded identity processing, advanced privacy features, and user-facing connection tools. Timeline depends on identity system validation and user feedback.
-                      </p>
                     </div>
                   </div>
                 </div>

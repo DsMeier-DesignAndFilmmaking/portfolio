@@ -380,6 +380,13 @@ export default function AISandboxPage() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="group relative"
+              style={{
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitFontSmoothing: 'antialiased',
+              }}
             >
               {/* Gradient border wrapper */}
               <div 
@@ -399,7 +406,12 @@ export default function AISandboxPage() {
                   />
                   
                   <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center gap-2 text-gray-600 font-medium">
+                    <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
+                      <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
+                    </div><br />
                     <div className="flex items-center gap-4 mb-6">
+                      
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
                         <Sparkles className="w-6 h-6 text-white" />
                       </div>
@@ -408,13 +420,10 @@ export default function AISandboxPage() {
                     </h3>
                   </div>
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  The engine behind the experience: A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it powers everything from apps to APIs, ensuring the best travel moments are always within reach.
+                  The engine behind the experience: A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it's goal is to power everything from apps to APIs, ensuring the best travel moments are always within reach.
                   </p>
                   <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-2 text-gray-600 font-medium">
-                    <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
-                      <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
-                    </div>
+                    
                     <Link 
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
                       className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
@@ -448,6 +457,13 @@ export default function AISandboxPage() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+              style={{
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitFontSmoothing: 'antialiased',
+              }}
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg flex-shrink-0">
@@ -460,7 +476,7 @@ export default function AISandboxPage() {
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               To make spontaneity work, you need trust. This embedded layer handles the heavy lifting—verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
               </p>
-              <div className="flex items-center justify-end mt-auto">
+              <div className="flex items-center justify-end mt-auto w-full text-right">
                 <Link 
                   href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
                   className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
@@ -511,28 +527,28 @@ export default function AISandboxPage() {
               {
                 icon: MapPin,
                 title: "Context-Aware Decision Making",
-                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms. Focuses on decision signals and outputs rather than UI-first interfaces, enabling integration through APIs and SDKs.",
+                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms.",
                 gradient: "from-blue-500 to-cyan-600",
                 link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
               },
               {
                 icon: Users,
-                title: "Social Opportunity Matching Module",
-                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through the core platform.",
-                gradient: "from-purple-500 to-pink-600",
+                title: "Social Opportunity Matching",
+                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments.",
+                gradient: "from-purple-800 to-pink-900",
                 link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
               },
               {
                 icon: Network,
                 title: "Social Graph-Driven Travel Network",
-                description: "A privacy-first AI system that transforms static trust hierarchies into real-time, spontaneous travel opportunities. Utilizes multi-degree social connections and ZK-proof validation for spontaneous discovery.",
+                description: "A privacy-first system that uses ZK-proofs and social connections to turn trusted networks into spontaneous travel discoveries.",
                 gradient: "from-indigo-500 to-violet-600",
                 link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
               },
               {
                 icon: BookOpen,
                 title: "Narrative Context Generation",
-                description: "An intelligence module that transforms raw context into human-understandable meaning. Provides narrative outputs that can be consumed by any product surface, from mobile apps to embedded widgets.",
+                description: "An intelligence module that transforms raw travel data into human stories, delivering meaningful narratives to any app, widget, or interface.",
                 gradient: "from-amber-500 to-orange-600",
                 link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
               }
@@ -544,6 +560,14 @@ export default function AISandboxPage() {
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: 0.1 + (index * 0.1) }}
                 className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+                style={{
+                  WebkitTransform: 'translate3d(0, 0, 0)',
+                  transform: 'translate3d(0, 0, 0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
+                  WebkitFontSmoothing: 'antialiased',
+                  minHeight: '320px',
+                }}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
                   <system.icon className="w-6 h-6 text-white" />
@@ -555,26 +579,28 @@ export default function AISandboxPage() {
                   {system.description}
                 </p>
                 {system.link && (
-                  <Link 
-                    href={system.link}
-                    className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
-                    style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                  >
-                    View Project
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                  <div className="flex justify-end items-center mt-auto w-full text-right">
+                    <Link 
+                      href={system.link}
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </Link>
+                      View Project
+                      <svg
+                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                 )}
               </motion.div>
             ))}
