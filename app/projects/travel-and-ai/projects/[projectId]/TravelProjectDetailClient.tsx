@@ -871,10 +871,10 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         // Social Graph-Driven Travel Network page sections - order matches actual page structure
         { id: 'research-audience', label: 'Market Friction' },
         { id: 'design-exploration', label: 'Observed Travel Frictions' },
-        { id: 'designs-strategy', label: 'The Living Graph' },
+        { id: 'designs-strategy', label: 'Concept & Strategy' },
         { id: 'spontaneity-core', label: 'The Spontaneity Core' },
         { id: 'wireframes-ui', label: 'Design Evolution' },
-        { id: 'prototyping-ai', label: 'System Architecture' },
+        { id: 'prototyping-ai', label: 'Development & Build' },
         { id: 'outcomes-launch', label: 'Launch & Testing' },
         { id: 'learnings-next', label: 'Learnings & Reflections' }
       ]
@@ -6920,20 +6920,20 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 {/* Key Statistics Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 p-6 rounded-xl border border-pink-500/30">
-                    <div className="text-3xl font-bold text-pink-400 mb-2">73%</div>
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
+                    <div className="text-3xl font-bold text-blue-400 mb-2">73%</div>
                     <div className="text-gray-300 text-base md:text-sm">of travelers report feeling lonely while traveling solo</div>
                     <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Loneliness Study 2024</div>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-500/30">
-                    <div className="text-3xl font-bold text-purple-400 mb-2">67%</div>
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
+                    <div className="text-3xl font-bold text-blue-400 mb-2">67%</div>
                     <div className="text-gray-300 text-base md:text-sm">cite "too much planning required" as barrier to spontaneous social connection</div>
                     <div className="text-gray-500 text-sm md:text-xs mt-2">— Social Connection Research</div>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-fuchsia-500/20 to-pink-500/20 p-6 rounded-xl border border-fuchsia-500/30">
-                    <div className="text-3xl font-bold text-fuchsia-400 mb-2">15min</div>
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
+                    <div className="text-3xl font-bold text-blue-400 mb-2">15min</div>
                     <div className="text-gray-300 text-base md:text-sm">average time people are willing to commit for low-friction social interactions</div>
                     <div className="text-gray-500 text-sm md:text-xs mt-2">— Behavioral Research</div>
                   </div>
@@ -6947,7 +6947,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       Travel inherently creates moments of isolation—solo travelers in new cities, business travelers with empty evenings, and even groups seeking authentic local connections. While the desire for spontaneous social interaction is universal, traditional meetup platforms require extensive planning, mutual availability alignment, and social commitment that creates high friction.
                     </p>
                     <p className="text-gray-300 text-base leading-relaxed">
-                      The gap between wanting connection and actually achieving it is often a function of <span className="font-semibold text-pink-400">cognitive load and planning overhead</span> rather than lack of interest. People want lightweight, spontaneous interactions—not formal meetups that require scheduling days in advance.
+                      The gap between wanting connection and actually achieving it is often a function of <span className="font-semibold text-blue-400">cognitive load and planning overhead</span> rather than lack of interest. People want lightweight, spontaneous interactions—not formal meetups that require scheduling days in advance.
                     </p>
                   </div>
                 </div>
@@ -6975,16 +6975,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                   {/* Friction 1: Planning Overhead */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-pink-100 hover:border-pink-200 transition-all duration-300 relative">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
                     <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
                     </div>
                     <div className="flex items-center gap-3 mb-6">
                       <h4 className="text-xl font-bold text-gray-900">Planning Overhead</h4>
                     </div>
                     <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-pink-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I'd love to grab coffee with someone, but setting it up takes too much back-and-forth messaging. <span className="font-semibold text-pink-700">By the time we coordinate, I'm already somewhere else</span>."</p>
+                      <div className="relative pl-4 border-l-2 border-blue-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I'd love to grab coffee with someone, but setting it up takes too much back-and-forth messaging. <span className="font-semibold text-blue-700">By the time we coordinate, I'm already somewhere else</span>."</p>
                         <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
@@ -6996,16 +6996,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
 
                   {/* Friction 2: Formal Commitment */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300 relative">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
                     <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
                     </div>
                     <div className="flex items-center gap-3 mb-6">
                       <h4 className="text-xl font-bold text-gray-900">Formal Commitment</h4>
                     </div>
                     <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-purple-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Meetup apps feel too formal. <span className="font-semibold text-purple-700">I don't want to commit to a 2-hour event</span>—just a quick chat if we're both free."</p>
+                      <div className="relative pl-4 border-l-2 border-blue-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Meetup apps feel too formal. <span className="font-semibold text-blue-700">I don't want to commit to a 2-hour event</span>—just a quick chat if we're both free."</p>
                         <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
@@ -7017,16 +7017,16 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                   
                   {/* Friction 3: Missing Context */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-fuchsia-100 hover:border-fuchsia-200 transition-all duration-300 relative">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
                     <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-fuchsia-400 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
                     </div>
                     <div className="flex items-center gap-3 mb-6">
                       <h4 className="text-xl font-bold text-gray-900">Missing Context</h4>
                     </div>
                     <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-fuchsia-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I wish I could just know if someone nearby wants to grab a quick coffee <span className="font-semibold text-fuchsia-700">right now</span>, not plan it for tomorrow."</p>
+                      <div className="relative pl-4 border-l-2 border-blue-200">
+                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I wish I could just know if someone nearby wants to grab a quick coffee <span className="font-semibold text-blue-700">right now</span>, not plan it for tomorrow."</p>
                         <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
@@ -7084,7 +7084,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
                   >
                     <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/30 focus:ring-inset"
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:ring-inset"
                       onClick={() => setActiveAccordion(activeAccordion === 'integration' ? null : 'integration')}
                       aria-expanded={activeAccordion === 'integration'}
                       aria-controls="integration-content"
@@ -7116,21 +7116,21 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                             </p>
                             <div className="space-y-4">
                               <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                   <h5 className="font-semibold text-gray-900 mb-1">API-First Design</h5>
                                   <p className="text-gray-700">Matching logic exposed through REST APIs and webhooks, enabling integration without UI dependencies.</p>
                                 </div>
                               </div>
                               <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                   <h5 className="font-semibold text-gray-900 mb-1">Background Processing</h5>
                                   <p className="text-gray-700">Continuous monitoring of proximity, interests, and schedule gaps operates in the background without user intervention.</p>
                                 </div>
                               </div>
                               <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-fuchsia-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                   <h5 className="font-semibold text-gray-900 mb-1">Low-Friction Notifications</h5>
                                   <p className="text-gray-700">Opportunities surface as lightweight notifications or in-app prompts, requiring minimal interaction to accept or decline.</p>
@@ -7149,7 +7149,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
           {/* Technical Architecture Section */}
           <section id="wireframes-ui" className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-zinc-950 to-pink-950/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-zinc-950 to-blue-950/20 pointer-events-none" />
             
             <div className="container mx-auto px-6 relative z-10">
               <motion.div
@@ -7211,9 +7211,9 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-8 rounded-2xl border-2 border-pink-100 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                         <Users className="w-7 h-7 text-white" />
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
@@ -7221,13 +7221,13 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      Spontaneous social connection leads to <span className="font-semibold text-pink-700">reduced loneliness and increased travel satisfaction</span>. By eliminating planning overhead, users can engage in <span className="font-semibold text-pink-700">genuinely spontaneous interactions</span> without the cognitive burden of coordination.
+                      Spontaneous social connection leads to <span className="font-semibold text-blue-700">reduced loneliness and increased travel satisfaction</span>. By eliminating planning overhead, users can engage in <span className="font-semibold text-blue-700">genuinely spontaneous interactions</span> without the cognitive burden of coordination.
                     </p>
                   </div>
                   
-                  <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 p-8 rounded-2xl border-2 border-purple-100 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                         <Sparkles className="w-7 h-7 text-white" />
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
@@ -7235,7 +7235,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
-                      When platforms integrate this module, they unlock new engagement opportunities without building from scratch. <span className="font-semibold text-purple-700">Users spend more time in-app</span>, and platforms can differentiate through unique social connection capabilities.
+                      When platforms integrate this module, they unlock new engagement opportunities without building from scratch. <span className="font-semibold text-blue-700">Users spend more time in-app</span>, and platforms can differentiate through unique social connection capabilities.
                     </p>
                   </div>
                 </div>
@@ -8995,38 +8995,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                       <p className="text-gray-400 mb-4">
                         A live demo will be available once the identity-focused discovery system is fully implemented.
                       </p>
-                    </div>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                          What Currently Works
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed">
-                          System architecture and identity processing framework are being developed. Core components for privacy controls and connection matching are in progress.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-                          What is Experimental
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed">
-                          Identity-based matching algorithms, privacy control mechanisms, and connection quality scoring are in active development and testing.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                          What is Planned Next
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed">
-                          Expanded identity processing, advanced privacy features, and user-facing connection tools. Timeline depends on identity system validation and user feedback.
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -11118,60 +11086,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
         </>
       )}
 
-      {!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isNarrativeTravelGenerator && !isOtherProject && (
-        <>
-          {/* Overview / Project Summary Section */}
-          <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Overview</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                {project?.overview?.description || 'Project overview coming soon.'}
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900 flex items-center gap-2">
-                    <FaRocket className="w-5 h-5 text-blue-600" />
-                    Goals & Objectives
-                  </h3>
-                  <ul className="space-y-3">
-                    {project?.overview?.goals?.map((goal: string, index: number) => (
-                      <li key={index} className="flex items-start gap-3 text-gray-700">
-                        <span className="text-blue-600 mt-1">•</span>
-                        <span>{goal}</span>
-                      </li>
-                    )) || <li className="text-gray-500">Goals will be added soon.</li>}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900 flex items-center gap-2">
-                    <FaLightbulb className="w-5 h-5 text-blue-600" />
-                    Key Outcomes
-                  </h3>
-                  <ul className="space-y-3">
-                    {project?.overview?.outcomes?.map((outcome: string, index: number) => (
-                      <li key={index} className="flex items-start gap-3 text-gray-700">
-                        <span className="text-blue-600 mt-1">•</span>
-                        <span>{outcome}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      
-
       {/* Project Metadata Sidebar Section - Only for projects with metadata */}
       {project?.metadata && (
         <section className="py-12 bg-gray-50">
@@ -11463,8 +11377,6 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </div>
         </div>
       </section>
-      )}
-      </>
       )}
 
       {/* Back to Projects Link */}
