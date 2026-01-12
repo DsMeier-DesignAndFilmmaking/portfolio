@@ -72,7 +72,7 @@ export default function DesignWork() {
                     Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.
                   </p>
                 </div>
-                <div className="flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors">
+                <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
                   <span>View Case Studies</span>
                   <svg
                     className="w-4 h-4 ml-2"
@@ -111,7 +111,7 @@ export default function DesignWork() {
                     A collection of projects highlighting expertise in UX, UI, web and product design.
                   </p>
                 </div>
-                <div className="flex items-center font-medium text-gray-900 hover:text-gray-600 transition-colors">
+                <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
                   <span>View Projects</span>
                   <svg
                     className="w-4 h-4 ml-2"
