@@ -561,20 +561,25 @@ export default function AISandboxPage() {
               }
             ].map((system, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.6, delay: 0.1 + (index * 0.1) }}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
-                style={{
-                  WebkitTransform: 'translate3d(0, 0, 0)',
-                  transform: 'translate3d(0, 0, 0)',
-                  WebkitBackfaceVisibility: 'hidden',
-                  backfaceVisibility: 'hidden',
-                  WebkitFontSmoothing: 'antialiased',
-                  minHeight: '320px',
-                }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+              style={{
+                // 1. Force a new stacking context
+                isolation: 'isolate',
+                // 2. Hardware acceleration
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)',
+                // 3. Prevent the "flash" during opacity/transform changes
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitPerspective: 1000,
+                perspective: 1000,
+                // 4. Ensure smooth text rendering
+                WebkitFontSmoothing: 'antialiased',
+              }}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
                   <system.icon className="w-6 h-6 text-white" />
