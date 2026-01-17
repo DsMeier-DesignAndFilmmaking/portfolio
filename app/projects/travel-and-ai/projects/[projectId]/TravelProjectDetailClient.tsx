@@ -1697,9 +1697,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
+                  className="order-2 lg:order-2 mt-16 md:mt-10 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
                 >
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center w-full md:w-auto">
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center w-full md:w-auto">
                   
                     <div className="relative flex-shrink-0 flex justify-center md:justify-start">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
@@ -3226,8 +3226,8 @@ const variables: Record<string, { title: string; desc: string }> = {
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold mb-6 text-white">Designing for Activation, Not Planning</h2>
         <div className="max-w-3xl mx-auto space-y-4">
-          <p className="text-gray-300 text-lg leading-relaxed">The interface is designed to collapse decision-making into moments of action...</p>
-          <p className="text-gray-300 text-lg leading-relaxed">Design decisions prioritize immediate activation over contemplation...</p>
+          <p className="text-gray-300 text-lg leading-relaxed">By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.</p>
+          
         </div>
       </div>
 
@@ -3238,11 +3238,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         viewport={{ once: true }}
         className="mb-16"
       >
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* ... Cards remain the same ... */}
-          </div>
-        </div>
+
       </motion.div>
 
       {/* Iteration Gallery */}
@@ -3475,79 +3471,91 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                   </div>
                 </motion.div>
-                
-{/* System Architecture & Integration */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-  
-  {/* Column 1: System Ownership */}
-  <motion.div 
-   initial={{ opacity: 0, y: 20 }}
-   whileInView={{ opacity: 1, y: 0 }}
-   viewport={{ once: true }}
-   transition={{ duration: 0.5 }}
-   /* We move the content, but the parent box above NEVER moves or animates */
-   className="block"
-   >
-    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-      System Ownership
-    </h3>
-    <div className="space-y-6 text-gray-400">
-      <div className="group">
-        <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 block mb-1">Production Ready</span>
-        <p className="text-sm leading-relaxed text-gray-300">
-          <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure zero-latency responses.
-        </p>
-      </div>
-      <div className="group">
-        <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block mb-1">Operational Beta</span>
-        <p className="text-sm leading-relaxed text-gray-300">
-          <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining state consistency.
-        </p>
-      </div>
-      <div className="group">
-        <span className="text-xs font-mono uppercase tracking-widest text-gray-500 block mb-1">Simulated/Stubbed</span>
-        <p className="text-sm leading-relaxed text-gray-300">
-          <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of recommendation thresholds.
-        </p>
-      </div>
-    </div>
-  </motion.div>
 
-  {/* Column 2: Integration Logic */}
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    /* We move the content, but the parent box above NEVER moves or animates */
-    className="block"
-  >
-    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-      Integration Points
-    </h3>
-    <div className="space-y-6 text-gray-400">
-      <div>
-        <h4 className="text-white font-medium mb-1">Data & Persistence</h4>
-        <p className="text-sm leading-relaxed">
-          Orchestrating Firebase/Supabase for cloud state. The system manages conflict resolution locally to prevent UI "jank" during intermittent connectivity.
-        </p>
-      </div>
-      <div>
-        <h4 className="text-white font-medium mb-1">AI Intelligence Layer</h4>
-        <p className="text-sm leading-relaxed">
-          Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain for heavy lifting, but the system filters responses to ensure contextual safety.
-        </p>
-      </div>
-      <div>
-        <h4 className="text-white font-medium mb-1">Extensibility</h4>
-        <p className="text-sm leading-relaxed">
-          Architected for widget and API plugins. The interface is designed to be "headless," allowing future integrations without breaking the core UX.
-        </p>
-      </div>
+
+{/* System Architecture & Integration Section */}
+<div className="max-w-4xl mx-auto"> 
+  {/* 1. Added 'items-stretch' to force both columns to the same height on desktop.
+      2. Keep gap-8 for the vertical stack on mobile.
+  */}
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16">
+    
+    {/* Column 1: System Ownership */}
+    {/* Added 'h-full' to ensure the background fills the grid cell height */}
+    <div className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="block h-full"
+      >
+        <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+          System Ownership
+        </h3>
+        
+        <div className="space-y-8 text-gray-400">
+          <div className="group">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block mb-2">Production Ready</span>
+            <p className="text-sm leading-relaxed text-gray-300">
+              <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure zero-latency responses.
+            </p>
+          </div>
+          <div className="group">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 block mb-2">Operational Beta</span>
+            <p className="text-sm leading-relaxed text-gray-300">
+              <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining state consistency.
+            </p>
+          </div>
+          <div className="group">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-100 block mb-2">Simulated/Stubbed</span>
+            <p className="text-sm leading-relaxed text-gray-300">
+              <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of recommendation thresholds.
+            </p>
+          </div>
+        </div>
+      </motion.div>
     </div>
-  </motion.div>
+
+    {/* Column 2: Integration Logic */}
+    {/* Added 'h-full' here as well to match the emerald column */}
+    <div className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="block h-full"
+      >
+        <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+          Integration Points
+        </h3>
+        
+        <div className="space-y-8 text-gray-400">
+          <div>
+            <h4 className="text-white font-medium mb-2">Data & Persistence</h4>
+            <p className="text-sm leading-relaxed">
+              Orchestrating Firebase/Supabase for cloud state. The system manages conflict resolution locally to prevent UI "jank" during intermittent connectivity.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-medium mb-2">AI Intelligence Layer</h4>
+            <p className="text-sm leading-relaxed">
+              Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain for heavy lifting, but the system filters responses to ensure contextual safety.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-medium mb-2">Extensibility</h4>
+            <p className="text-sm leading-relaxed">
+              Architected for widget and API plugins. The interface is designed to be "headless," allowing future integrations without breaking the core UX.
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </div>
 </div>
                 
                 {/* Build Evidence Screenshots */}
@@ -3586,51 +3594,58 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
                 </div>
 
- {/* Iteration Loop */}
-<div className="mb-16 mt-20">
-               
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-      {[
-        {
-          step: "01. Define",
-          title: "Prompt → Logic",
-          desc: "Translating behavioral constraints into AI requirements. Design intent directly shapes logic gates and context weighting.",
-          color: "text-amber-400"
-        },
-        {
-          step: "02. Synthesize",
-          title: "Code → Deployment",
-          desc: "Moving from simulation to Swift. Implementing CoreML and SQLite to test how data behaves in an offline-first environment.",
-          color: "text-blue-400"
-        },
-        {
-          step: "03. Validate",
-          title: "Device → Reality",
-          desc: "Testing on physical hardware to observe battery drain, network jitter, and real-world activation thresholds.",
-          color: "text-emerald-400"
-        }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 20 }}
-   whileInView={{ opacity: 1, y: 0 }}
-   viewport={{ once: true }}
-   transition={{ duration: 0.5 }}
-   /* We move the content, but the parent box above NEVER moves or animates */
-   className="block"
-        >
-          <span className={`font-mono text-[10px] uppercase tracking-[0.2em] font-bold ${item.color}`}>
-            {item.step}
-          </span>
-          <h4 className="text-lg font-bold text-white">{item.title}</h4>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            {item.desc}
-          </p>
-        </motion.div>
-      ))}
-    </div>
+      
 
-    
+ {/* Iteration Loop */}
+<div className="max-w-4xl mx-auto mb-16 mt-20">
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+  {[
+    {
+      step: "01. Define",
+      title: "Prompt → Logic",
+      desc: "Translating behavioral constraints into AI requirements. Design intent directly shapes logic gates and context weighting.",
+      color: "text-amber-400"
+    },
+    {
+      step: "02. Synthesize",
+      title: "Code → Deployment",
+      desc: "Moving from simulation to Swift. Implementing CoreML and SQLite to test how data behaves in an offline-first environment.",
+      color: "text-blue-400"
+    },
+    {
+      step: "03. Validate",
+      title: "Device → Reality",
+      desc: "Testing on physical hardware to observe battery drain, network jitter, and real-world activation thresholds.",
+      color: "text-emerald-400"
+    }
+  ].map((item, idx) => (
+    /* 1. STATIC WRAPPER: Matches the working 'System Ownership' block exactly.
+       No animation on this div ensures the grid and borders never 'wiggle'. 
+    */
+    <div 
+      key={idx} 
+      className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none"
+    >
+      {/* 2. INTERNAL ANIMATION: Moves the text independently of the container. */}
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: idx * 0.1 }}
+        className="block h-full"
+      >
+        <span className={`font-mono text-[10px] uppercase tracking-[0.2em] font-bold ${item.color} block mb-2`}>
+          {item.step}
+        </span>
+        <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
+        <p className="text-gray-400 text-sm leading-relaxed">
+          {item.desc}
+        </p>
+      </motion.div>
+    </div>
+  ))}
+</div>
+
 
  {/* Mobile Build Iterations */}
 <motion.div
@@ -3694,83 +3709,78 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 </div>
 
-{/* Constraints Section - ADA Compliant Version with Status Note */}
-  <div className="max-w-4xl mx-auto">
-    
-    {/* Header */}
-    <div className="mb-12 text-center">
-      <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
-        Constraints & Technical Reality
-      </h3>
-      <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-        Designing for AI and hardware requires navigating trade-offs between performance, battery life, and logic confidence. 
-      </p>
-    </div>
 
-    {/* Grid */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-      {[
-        {
-          label: "Data Integrity",
-          title: "Offline Sync Conflicts",
-          desc: "Rapid context switching under intermittent connectivity can produce edge-case conflicts. Current resolution logic handles 80% of common cases; deep-state resolution is in active development.",
-        },
-        {
-          label: "Intelligence",
-          title: "Confidence Thresholds",
-          desc: "On-device ML models are still being tuned. We currently use a high-pass filter to prevent 'hallucinated' suggestions, which can sometimes result in conservative system responsiveness.",
-        },
-        {
-          label: "Hardware",
-          title: "Battery Trade-offs",
-          desc: "Background processing is throttled to preserve device longevity. The system prioritizes reactive responsiveness over continuous monitoring to avoid significant power drain.",
-        },
-        {
-          label: "Scale",
-          title: "Social Graph Depth",
-          desc: "Early builds operate on shallow interaction data. Recommendations are currently weighted toward immediate physical proximity rather than long-term behavioral patterns.",
-        }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-white/[0.05] border border-white/10 p-8 rounded-xl h-auto"
-        >
-          <span className="text-[12px] font-bold uppercase tracking-wider text-indigo-400 block mb-3">
-            {item.label}
-          </span>
-          <h4 className="text-xl font-bold text-white mb-3">
-            {item.title}
-          </h4>
-          <p className="text-gray-300 text-base leading-relaxed">
-            {item.desc}
-          </p>
-        </motion.div>
-      ))}
-
-    </div>
-
-    {/* Architecture Deployment Note - ADA Compliant Version */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="p-6 bg-indigo-500/10 border border-indigo-500/30 rounded-xl"
+<div className="max-w-4xl mx-auto mb-16 mt-20">
+ {/* 2x2 Grid - Tightened Vertical Spacing */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-12">
+  {[
+    {
+      label: "Data Integrity",
+      title: "Offline Sync Conflicts",
+      desc: "Rapid context switching under intermittent connectivity can produce edge-case conflicts. Current resolution logic handles 80% of common cases; deep-state resolution is in active development.",
+    },
+    {
+      label: "Intelligence",
+      title: "Confidence Thresholds",
+      desc: "On-device ML models are still being tuned. We currently use a high-pass filter to prevent 'hallucinated' suggestions, which can sometimes result in conservative system responsiveness.",
+    },
+    {
+      label: "Hardware",
+      title: "Battery Trade-offs",
+      desc: "Background processing is throttled to preserve device longevity. The system prioritizes reactive responsiveness over continuous monitoring to avoid significant power drain.",
+    },
+    {
+      label: "Scale",
+      title: "Social Graph Depth",
+      desc: "Early builds operate on shallow interaction data. Recommendations are currently weighted toward immediate physical proximity rather than long-term behavioral patterns.",
+    }
+  ].map((item, idx) => (
+    /* STATIC WRAPPER: Matches your working wiggle-free blocks exactly */
+    <div 
+      key={idx} 
+      className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none"
     >
-      <p className="text-indigo-200 text-sm md:text-base leading-relaxed text-center font-medium">
-        <span className="uppercase tracking-widest text-[11px] bg-indigo-500/30 px-2 py-0.5 rounded mr-2 border border-indigo-400/20">
-          Architecture Status
+      {/* INTERNAL ANIMATION: Text translates within the static padding */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: idx * 0.1 }}
+        className="block h-full"
+      >
+        <span className="text-[12px] font-bold uppercase tracking-wider text-indigo-400 block mb-3">
+          {item.label}
         </span>
-        Currently stress-testing the system to get it ready for beta. The focus right now is on hardening the API and plugin logic to make sure the experience is stable and responsive for our first round of real-world user testing.
-      </p>
-    </motion.div>
+        <h4 className="text-xl font-bold text-white mb-3">
+          {item.title}
+        </h4>
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+          {item.desc}
+        </p>
+      </motion.div>
+    </div>
+  ))}
   </div>
+
+  {/* Architecture Status Note */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    className="p-6 bg-indigo-500/10 border border-indigo-500/30 rounded-xl"
+  >
+    <p className="text-indigo-200 text-sm md:text-base leading-relaxed text-center font-medium">
+      <span className="uppercase tracking-widest text-[11px] bg-indigo-500/30 px-2 py-0.5 rounded mr-2 border border-indigo-400/20">
+        Architecture Status
+      </span>
+      Currently stress-testing the system to get it ready for beta. The focus right now is on hardening the API and plugin logic.
+    </p>
+  </motion.div>
+</div>
 
   </motion.div>
     </div>
-      </section>
+</section>
 
   {/* Live Demo Section */}
 <section id="live-demo" className="py-20 bg-white scroll-mt-24">
@@ -3842,7 +3852,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             </div>
           </section>
 
-          {/* Learnings & Reflections Section */}
+{/* Learnings & Reflections Section */}
 <section id="learnings-next" className="py-24 bg-white border-t border-gray-100">
   <div className="container mx-auto px-6">
     <motion.div

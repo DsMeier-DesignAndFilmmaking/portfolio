@@ -285,7 +285,7 @@ export default function HomepageSideNav() {
         }}
         aria-label="Page sections navigation"
       >
-        <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50">
+        <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-lg border border-gray-200/50 min-h-[56px] flex items-center justify-center">
           <ul className="flex justify-center space-x-2" role="list">
             <li role="listitem">
               <a
@@ -304,7 +304,7 @@ export default function HomepageSideNav() {
             <li role="listitem">
               <a
                 href="#about"
-                className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 ${
                   isActive('about') 
                     ? 'bg-gray-900 text-white' 
                     : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'

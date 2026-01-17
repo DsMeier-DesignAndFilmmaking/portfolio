@@ -456,12 +456,19 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
               style={{
+                // 1. Force a new stacking context
+                isolation: 'isolate',
+                // 2. Hardware acceleration
                 WebkitTransform: 'translate3d(0, 0, 0)',
                 transform: 'translate3d(0, 0, 0)',
+                // 3. Prevent the "flash" during opacity/transform changes
                 WebkitBackfaceVisibility: 'hidden',
                 backfaceVisibility: 'hidden',
+                WebkitPerspective: 1000,
+                perspective: 1000,
+                // 4. Ensure smooth text rendering
                 WebkitFontSmoothing: 'antialiased',
               }}
             >
