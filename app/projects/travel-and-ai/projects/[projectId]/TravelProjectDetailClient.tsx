@@ -3250,17 +3250,19 @@ const variables: Record<string, { title: string; desc: string }> = {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="max-w-6xl mx-auto"
+      /* FIX: Added relative and touch-pan-y to ensure vertical page 
+         scrolling is preserved while isolating horizontal movements */
+      className="max-w-6xl mx-auto relative touch-pan-y"
     >
       <div className="text-center mb-16">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto leading-[1.1]">
-      Designing for Activation,<br></br>Not Planning
-        </h2>
-        <p className="text-gray-300 text-lg leading-relaxed [text-wrap:balance]">
-        By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.
-        </p>
+        <h2 className="text-3xl font-bold mb-6 text-white ">Designing for Activation,<br></br>Not Planning</h2>
+        <div className="max-w-3xl mx-auto space-y-4">
+          <p className="text-gray-300 text-lg leading-relaxed [text-wrap:balance]">
+            By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.
+          </p>
+        </div>
       </div>
-
+      
       {/* Grid Section */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
