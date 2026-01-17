@@ -27,25 +27,18 @@
 }
 
 html {
-  /* Enable smooth scrolling for native anchor navigation */
   scroll-behavior: smooth;
-  overscroll-behavior-y: none;
-  /* Account for sticky navbar (h-16 = 4rem = 64px) */
+  /* Use 'contain' to stop the bounce without breaking the parent scroll chain */
+  overscroll-behavior-y: contain;
   scroll-padding-top: 4rem;
   background-color: white;
-  background: white;
-  min-height: 100vh;
+  /* Remove fixed height to prevent "ghost" scroll space */
+  height: auto;
   margin: 0;
   padding: 0;
-  /* Ensure footer scrolls to absolute bottom */
-  scroll-padding-bottom: 0;
+  overflow-x: hidden;
 }
 
-/* Ensure footer is always at the bottom and scrolls correctly */
-footer#footer {
-  scroll-margin-bottom: 0;
-  position: relative;
-}
 
 /* Flexbox Spacer Workaround: Ensure main content area stretches */
 /* The #__next container is now a flex container with min-h-screen */
@@ -77,14 +70,51 @@ body {
   background-color: white;
   background: white;
   font-family: 'SF Pro Text', system-ui, -apple-system, sans-serif;
-  /* Optimize for better scroll performance */
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
+  
+  /* Allow the body to be the primary scroll container */
+  overscroll-behavior-y: auto; 
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  
+
 }
 
+/* 5. ADD THIS: This targetted fix kills the specific scrollbars you are seeing */
+section *, .container * {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE 10+ */
+}
+
+section *::-webkit-scrollbar, 
+.container *::-webkit-scrollbar, 
+.grid *::-webkit-scrollbar {
+  display: none !important;
+}
+
+.bg-white\/5, 
+.rounded-2xl {
+  /* Prevent browser from creating a scroll viewport for these boxes */
+  overflow: visible !important;
+  /* Force mobile touch events to only scroll the main page */
+  touch-action: pan-y !important;
+  /* Safari fix: stop 'elastic' internal movement */
+  -webkit-overflow-scrolling: auto !important;
+}
+
+/* Add a specific override to ensure Image containers ALWAYS clip */
+.isolate-clip {
+  overflow: hidden !important;
+  mask-image: -webkit-radial-gradient(white, black); /* Re-enables Safari rounding */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate; /* Creates a new layer for the image to sit in */
+}
+
+/* Re-enable pointer events ONLY for the inner content so links work */
+.rounded-2xl > * {
+  pointer-events: auto !important;
+}
 
 @layer utilities {
   .text-balance {
@@ -450,8 +480,12 @@ body {
     
     /* Fix transforms - ensure they don't push content outside viewport */
     [style*="transform"] {
-      /* Contain transforms within viewport */
-      transform-origin: center;
+ /* Flatten the GPU layer to prevent sub-pixel "wiggle" */
+ -webkit-backface-visibility: hidden;
+ backface-visibility: hidden;
+ transform-style: flat !important;
+ /* Keep your existing origin logic */
+ transform-origin: center;
     }
     
     /* Fix wide images and media - ensure they respect container width */

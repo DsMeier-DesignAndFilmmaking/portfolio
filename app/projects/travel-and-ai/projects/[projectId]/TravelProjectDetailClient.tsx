@@ -1355,7 +1355,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     : [
         // Default sections for other projects (Spontaneity Engine, etc.)
         { id: 'design-exploration', label: 'Systemic Travel Discovery Failures' },
-        { id: 'research-audience', label: 'Behavioral & Environmental Constraints' },
+        { id: 'system-overview', label: 'Systems Overview' },
         { id: 'designs-strategy', label: 'Concept & Strategy' },
         { id: 'wireframes-ui', label: 'Design Evolution' },
         { id: 'prototyping-ai', label: 'Build & Iteration' },
@@ -1581,10 +1581,10 @@ const variables: Record<string, { title: string; desc: string }> = {
     )}
 
       {/* Hero Section */}
-      <section className=" bg-white
+      <section className="bg-white
         min-h-[80vh]
         flex items-center
-        pt-20 pb-20" aria-label="Project Hero">
+        pt-24 pb-20" aria-label="Project Hero">
         {isSpontaneousTravelCompanion && (
         <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
@@ -1595,8 +1595,8 @@ const variables: Record<string, { title: string; desc: string }> = {
               transition={{ duration: 0.8 }}
                   className="order-1 lg:order-1"
             >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Spontaneity Engine
+              <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Spontaneity Engine
               </h1>
                   <div className="mb-6 md:mb-7">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 whitespace-nowrap">
@@ -1690,8 +1690,9 @@ const variables: Record<string, { title: string; desc: string }> = {
     View Case Study
   </a>
 </nav>
-                  
-            </motion.div>
+                 
+</motion.div>
+
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -2440,7 +2441,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* System Overview Section */}
-          <section className="py-20 md:py-32 bg-zinc-950 relative">
+          <section id="system-overview" className="py-20 md:py-32 bg-zinc-950 relative">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
             
@@ -3475,16 +3476,18 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </div>
                 </motion.div>
                 
-               {/* System Architecture & Integration */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 overflow-x-hidden">
+{/* System Architecture & Integration */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
   
   {/* Column 1: System Ownership */}
   <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="bg-white/5 p-8 rounded-2xl border border-white/10 h-auto flex flex-col"
-  >
+   initial={{ opacity: 0, y: 20 }}
+   whileInView={{ opacity: 1, y: 0 }}
+   viewport={{ once: true }}
+   transition={{ duration: 0.5 }}
+   /* We move the content, but the parent box above NEVER moves or animates */
+   className="block"
+   >
     <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
       <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
       System Ownership
@@ -3516,8 +3519,9 @@ const variables: Record<string, { title: string; desc: string }> = {
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ delay: 0.1 }}
-    className="bg-white/5 p-8 rounded-2xl border border-white/10 h-auto flex flex-col"
+    transition={{ duration: 0.5 }}
+    /* We move the content, but the parent box above NEVER moves or animates */
+    className="block"
   >
     <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
       <div className="w-2 h-2 rounded-full bg-blue-500"></div>
@@ -3582,17 +3586,10 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
                 </div>
 
-                {/* Iteration Loop */}
-                <div className="mb-16 mt-20">
-                 {/* Iteration Loop Section */}
+ {/* Iteration Loop */}
 <div className="mb-16 mt-20">
-  <h3 className="text-2xl md:text-3xl font-bold mb-12 text-white text-center">
-    Iteration Loop
-  </h3>
-  
-  <div className="max-w-5xl mx-auto px-4">
-    {/* High-Signal Process Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+               
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
       {[
         {
           step: "01. Define",
@@ -3616,10 +3613,11 @@ const variables: Record<string, { title: string; desc: string }> = {
         <motion.div
           key={idx}
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: idx * 0.1 }}
-          className="flex flex-col space-y-3 bg-white/5 p-6 rounded-2xl border border-white/5 h-auto"
+   whileInView={{ opacity: 1, y: 0 }}
+   viewport={{ once: true }}
+   transition={{ duration: 0.5 }}
+   /* We move the content, but the parent box above NEVER moves or animates */
+   className="block"
         >
           <span className={`font-mono text-[10px] uppercase tracking-[0.2em] font-bold ${item.color}`}>
             {item.step}
@@ -3632,22 +3630,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       ))}
     </div>
 
-    {/* Summary Insight: The "Why" for Hiring Managers */}
     
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-3xl mx-auto text-center border-t border-white/10 pt-10"
-    >
-      <p className="text-gray-300 text-lg leading-relaxed italic">
-        "Failures are discovered through <span className="text-white font-medium">real-device testing</span>, not simulation. This cadence prioritizes working code over perfect architecture—using constraints to surface the next design question."
-      </p>
-    </motion.div>
-  </div>
-</div>
-
 
  {/* Mobile Build Iterations */}
 <motion.div
@@ -3681,7 +3664,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           key={index}
           className="relative min-w-[75vw] sm:min-w-0 sm:w-full snap-start"
         >
-          <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50">
+          <div className="relative aspect-[9/19.5] rounded-2xl isolate-clip overflow-hidden shadow-lg border border-gray-100 bg-gray-50">
             <Image
               src={normalizeImagePath(item.src)}
               alt={`Build iteration - ${item.alt}`}
@@ -3725,7 +3708,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     </div>
 
     {/* Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
       {[
         {
           label: "Data Integrity",
@@ -3766,6 +3749,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </p>
         </motion.div>
       ))}
+
     </div>
 
     {/* Architecture Deployment Note - ADA Compliant Version */}
@@ -3784,11 +3768,11 @@ const variables: Record<string, { title: string; desc: string }> = {
     </motion.div>
   </div>
 
-              </motion.div>
-            </div>
-          </section>
+  </motion.div>
+    </div>
+      </section>
 
-          {/* Live Demo Section */}
+  {/* Live Demo Section */}
 <section id="live-demo" className="py-20 bg-white scroll-mt-24">
   <div className="container mx-auto px-6">
     <motion.div
