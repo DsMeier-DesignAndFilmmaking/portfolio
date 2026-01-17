@@ -1242,19 +1242,42 @@ const handleScroll = () => {
 
 };
 
-// SECTION 2: Wireframe Gallery Logic
+//SECTION 2: Wireframe Gallery Logic
+// SECTION 1: Builds Gallery (The one using w-64)
+const buildsScrollRef = useRef<HTMLDivElement>(null); // New Ref
+const [buildsActiveIndex, setBuildsActiveIndex] = useState(0); // New State
+
+// SECTION 2: Wireframe Gallery (The one using w-48)
 const wireframeScrollRef = useRef<HTMLDivElement>(null);
 const [wireframeActiveIndex, setWireframeActiveIndex] = useState(0);
 
 const handleWireframeScroll = () => {
   if (wireframeScrollRef.current) {
     const { scrollLeft } = wireframeScrollRef.current;
-    // 208 accounts for image width (192px) + gap (16px)
-    const index = Math.round(scrollLeft / 208);
+    
+    // w-48 (192px) + gap-4 (16px) = 208px
+    // Adding an offset of 50px ensures the dot flips 
+    // when the next card is partially visible
+    const itemWidth = 208;
+    const index = Math.round(scrollLeft / itemWidth);
+    
     setWireframeActiveIndex(index);
   }
 }; // close handleWireframeScroll
 
+const handleBuildsScroll = () => {
+  // 1. Ensure it uses buildsScrollRef
+  if (buildsScrollRef.current) {
+    const { scrollLeft } = buildsScrollRef.current;
+    
+    // 272 = 256 (w-64) + 16 (gap-4)
+    const itemWidth = 272;
+    const index = Math.round(scrollLeft / itemWidth);
+    
+    // 2. IMPORTANT: Update buildsActiveIndex, NOT wireframeActiveIndex
+    setBuildsActiveIndex(index);
+  }
+};
 
 const [activeVar, setActiveVar] = useState<string | null>(null);
 
@@ -3265,9 +3288,9 @@ const variables: Record<string, { title: string; desc: string }> = {
           
           {/* Main Scroll Container */}
           <div 
-            ref={wireframeScrollRef}
+            ref={wireframeScrollRef} // Isolated Ref
             onScroll={handleWireframeScroll}
-            className="flex gap-4 overflow-x-auto pb-6 touch-pan-y snap-x no-scrollbar md:justify-center px-4"
+            className="flex gap-4 overflow-x-auto pb-6 touch-pan-x snap-x snap-mandatory no-scrollbar md:justify-center px-4"
           >
             {[
               "/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png",
@@ -3284,13 +3307,13 @@ const variables: Record<string, { title: string; desc: string }> = {
             ))}
           </div>
 
-          {/* New Dot Indicators - Logic linked to wireframeActiveIndex */}
+          {/* Dot Indicators */}
           <div className="flex justify-center items-center gap-2.5 mt-4 md:hidden">
             {[0, 1, 2, 3, 4].map((i) => (
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  wireframeActiveIndex === i 
+                  wireframeActiveIndex === i // Isolated State
                     ? "w-6 bg-blue-600" 
                     : "w-1.5 bg-neutral-700"
                 }`}
@@ -3689,8 +3712,8 @@ const variables: Record<string, { title: string; desc: string }> = {
 
       {/* Main Scroll Container */}
       <div 
-        ref={wireframeScrollRef}
-        onScroll={handleWireframeScroll}
+        ref={buildsScrollRef}
+        onScroll={handleBuildsScroll}
         className="flex gap-4 overflow-x-auto pb-6 touch-pan-x snap-x snap-mandatory no-scrollbar md:justify-center px-4"
       >
         {[
@@ -3717,19 +3740,20 @@ const variables: Record<string, { title: string; desc: string }> = {
         <div className="flex-shrink-0 w-4 md:hidden" aria-hidden="true" />
       </div>
 
-      {/* Dot Indicators using wireframeActiveIndex */}
-      <div className="flex justify-center items-center gap-2.5 mt-4 md:hidden">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              wireframeActiveIndex === i 
-                ? "w-6 bg-blue-600" 
-                : "w-1.5 bg-neutral-700"
-            }`}
-          />
-        ))}
-      </div>
+ {/* Dot Indicators using buildsActiveIndex */}
+<div className="flex justify-center items-center gap-2.5 mt-4 md:hidden">
+  {[0, 1, 2, 3, 4, 5].map((i) => (
+    <div
+      key={i}
+      className={`h-1.5 rounded-full transition-all duration-300 ${
+        /* FIX: Change wireframeActiveIndex to buildsActiveIndex */
+        buildsActiveIndex === i 
+          ? "w-6 bg-blue-600" 
+          : "w-1.5 bg-neutral-700"
+      }`}
+    />
+  ))}
+</div>
 
 </div>
 </motion.div>
