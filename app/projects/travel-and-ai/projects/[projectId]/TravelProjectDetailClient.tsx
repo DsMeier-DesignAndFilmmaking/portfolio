@@ -2334,14 +2334,17 @@ const variables: Record<string, { title: string; desc: string }> = {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Systemic Travel Discovery Failures
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Pattern-level breakdowns in how discovery platforms operate.
-            </p>
-          </div>
+      <div className="text-center mb-12">
+        {/* text-wrap: balance ensures the headline splits into two roughly equal lines */}
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+          Systemic Travel Discovery Failures
+        </h2>
+  
+  {/* text-gray-700 for ADA; \u00A0 to glue the final words together */}
+  <p className="text-gray-700 text-lg max-w-2xl mx-auto [text-wrap:pretty]">
+    Pattern-level breakdowns in how discovery {"platforms\u00A0operate."}
+  </p>
+</div>
 
           {/* New Scannable Systems Table */}
           <div className="overflow-hidden border border-gray-200 rounded-2xl shadow-sm bg-white">
@@ -2401,7 +2404,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 
           <div className="mt-12 text-center border-t border-gray-200 pt-10">
           <p className="text-gray-900 font-semibold text-lg md:text-xl leading-[1.6] max-w-2xl mx-auto italic [text-wrap:pretty]">
-            "These failures emerge from static, popularity-driven systems operating in {"dynamic,\u00A0time-sensitive\u00A0environments."}
+            "These failures emerge from static, popularity-driven systems operating in {"dynamic,\u00A0time-sensitive\u00A0environments."}"
           </p>
           </div>
         </motion.div>
@@ -2420,14 +2423,18 @@ const variables: Record<string, { title: string; desc: string }> = {
                 transition={{ duration: 0.6 }}
                 className="max-w-5xl mx-auto"
               >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Why Spontaneity Is a Systems Problem
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    The impact extends beyond individual travelers—it requires a systemic approach that balances traveler needs with community benefits
-                    </p>
-                  </div>
+               <div className="text-center mb-12">
+  {/* Headline: balanced for visual symmetry */}
+  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+    Why Spontaneity Is a Systems Problem
+  </h2>
+  
+  {/* Body: Darkened to gray-700 for ADA and glued final 3 words */}
+  <p className="text-gray-700 text-lg max-w-2xl mx-auto [text-wrap:pretty]">
+    The impact extends beyond individual travelers—it requires a systemic approach 
+    that balances traveler needs with {"community\u00A0benefits."}
+  </p>
+</div>
                   
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   {/* Impact for Travelers */}
@@ -2961,13 +2968,18 @@ const variables: Record<string, { title: string; desc: string }> = {
       viewport={{ once: true }}
       className="max-w-4xl mx-auto"
     >
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold mb-4 text-gray-900">Systemic Constraints</h2>
-        <p className="text-gray-700 text-lg leading-relaxed [text-wrap:pretty]">
-        The engine’s architecture is a direct response to the friction of live travel. 
-        I translated these behavioral realities into core {"system\u00A0requirements."}
-      </p>
-      </div>
+      <div className="mb-16 text-center max-w-4xl mx-auto">
+  {/* Centered Headline with balanced wrapping logic */}
+  <h2 className="text-3xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+    Systemic Constraints
+  </h2>
+  
+  {/* Centered Paragraph: mx-auto is required here to center the max-width container */}
+  <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
+    The engine’s architecture is a direct response to the friction of live travel. 
+    I translated these behavioral realities into core {"system\u00A0requirements."}
+  </p>
+</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
         {/* Constraint 1 */}
@@ -3025,7 +3037,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
  {/* Concept & Strategy Section */}
-<section id="designs-strategy" className="py-20 bg-white overflow-x-hidden">
+<section id="designs-strategy" className="py-20 bg-gray-50 overflow-x-hidden">
   <div className="container mx-auto px-6">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -3038,7 +3050,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto leading-[1.1]">
             Concept & Strategy
         </h2>
-        <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+        <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto [text-wrap:balance]">
           This system is built for real-world chaos, not idealized travel behavior. I translated behavioral constraints into <span className="text-black font-semibold underline decoration-amber-400/50">core system requirements</span>.
         </p>
       </div>
@@ -3243,25 +3255,30 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
+
 {/* Wireframes Section */}
-<section id="wireframes-ui" className="py-20 bg-[#0a0a0a] overflow-x-hidden">
+<section id="wireframes-ui" className="py-24 bg-white border-t border-gray-100">
   <div className="container mx-auto px-6">
     <motion.div 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      /* FIX: Added relative and touch-pan-y to ensure vertical page 
-         scrolling is preserved while isolating horizontal movements */
-      className="max-w-6xl mx-auto relative touch-pan-y"
+      transition={{ duration: 0.6 }}
+      className="max-w-4xl mx-auto"
     >
-      <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold mb-6 text-white ">Designing for Activation,<br></br>Not Planning</h2>
-        <div className="max-w-3xl mx-auto space-y-4">
-          <p className="text-gray-300 text-lg leading-relaxed [text-wrap:balance]">
-            By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.
-          </p>
-        </div>
-      </div>
+      <div className="mb-16 text-center max-w-4xl mx-auto">
+  {/* Header: text-center + balanced wrap */}
+  <h2 className="text-3xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+    Designing for Activation,<br />Not Planning
+  </h2>
+  
+  {/* Body: mx-auto is required to center the max-width paragraph */}
+  <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
+    By engineering moments of action directly into the logic layer, we ensure 
+    that the interface serves as a direct-drive mechanism for user intent—where 
+    every interaction is an outcome, not an {"item\u00A0on\u00A0a\u00A0list."}
+  </p>
+</div>
       
       {/* Grid Section */}
       <motion.div 
@@ -3280,11 +3297,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         viewport={{ once: true }}
         className="mt-16"
       >
-        <div className="text-center mb-8">
-          <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
-            Iteration explored activation thresholds and constraint testing using Figma and UX Pilot.
-          </p>
-        </div>
+        
 
         <div className="mb-4">
           
@@ -3360,7 +3373,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                       Builds & Iterations
                   </h2>
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full w-fit whitespace-nowrap">
@@ -3998,12 +4011,19 @@ const variables: Record<string, { title: string; desc: string }> = {
       viewport={{ once: true }}
       className="max-w-4xl mx-auto"
     >
-      <div className="mb-12">
-        <h2 className="text-3xl font-bold mb-4 text-gray-900">Future Extensions</h2>
-        <p className="text-gray-600 text-lg">
-          The engine is architected as a modular core, designed to ingest evolving intelligence layers via a decoupled API strategy.
-        </p>
-      </div>
+       <div className="mb-12 text-center max-w-4xl mx-auto">
+      {/* Balanced headline for visual symmetry */}
+      <h2 className="text-3xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+        Future Extensions
+      </h2>
+      
+      {/* mx-auto centers the paragraph box; gray-700 for ADA; glue for the final line */}
+      <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
+        The engine is architected as a modular core, designed to ingest evolving 
+        intelligence layers via a {"decoupled\u00A0API\u00A0strategy."}
+      </p>
+    </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Module 1 */}
