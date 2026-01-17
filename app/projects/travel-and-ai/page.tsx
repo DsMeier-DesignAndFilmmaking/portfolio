@@ -255,7 +255,10 @@ export default function AISandboxPage() {
 {/* Hero Section */}
   <section
     id="intro"
-    className="relative w-full h-[85vh] flex items-center"
+    // 1. lg:h-[85vh] keeps desktop height
+    // 2. h-auto allows mobile to shrink to content
+    // 3. !pb-0 !mb-0 forces padding/margin to zero, overriding global CSS
+    className="relative w-full h-auto lg:h-[85vh] flex items-center !pb-0 !mb-0"
     style={{ backgroundColor: "#E8FBF8" }}
     aria-label="Project Hero"
   >
@@ -284,7 +287,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            <strong>The Spontaneity Engine: A Modular AI Platform</strong> One core architecture orchestrating multiple intelligence layers to power the future of travel. From mobile apps to APIs, the system aims to transform real-time context into spontaneous experiences rooted in local culture and social trust.
+            <strong>The Spontaneity Engine: A Modular AI Platform</strong> with one core architecture orchestrating multiple intelligence layers. From mobile apps to APIs, the system aims to transform real-time context into spontaneous experiences rooted in local culture and social trust.
             </p>
 
             {/* Explore The System with Scroll Indicator */}
@@ -292,7 +295,8 @@ export default function AISandboxPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
               transition={{ duration: 0.5, delay: 1.2 }}
-              className="flex flex-col items-start gap-3 cursor-pointer group"
+              // ADDED: hidden (mobile first) and lg:flex (desktop)
+              className="hidden lg:flex flex-col items-start gap-3 cursor-pointer group" 
               onClick={() => {
                 const nextSection = document.querySelector('[aria-label="Core Platform & Embedded Intelligence"]');
                 if (nextSection) {
@@ -346,7 +350,7 @@ export default function AISandboxPage() {
       </div>
       
       {/* Mobile: Systems Graphic below hero copy */}
-      <div className="lg:hidden mt-12">
+      <div className="lg:hidden mt-0">
         <SystemsGraphic />
       </div>
     </div>
