@@ -98,13 +98,26 @@ export default function HomePage() {
                       <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
                     </h1>
                   </div>
-                  <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>
-                    <p className="font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
-                    I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br></br><br></br>
-                    I design digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value and resonate on a universal scale.
+                  <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>                    
+                  <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
+                      style={{ 
+                        fontFamily: "'Roboto', Helvetica, sans-serif", 
+                        // Additive clamp ensures zoom functionality works perfectly
+                        fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
+                      }}
+                    >
+                      I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br /><br />
+                      I design digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value and resonate on a universal scale.
                     </p>
-                    <p className="italic font-sf-pro-text text-lg sm:text-xl md:text-xl text-gray-900 leading-relaxed tracking-[0.01em] drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] text-left font-light"
-                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
+                    <p 
+                      className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
+                      style={{ 
+                        fontFamily: "'Roboto', Helvetica, sans-serif", 
+                        fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
+                        borderLeft: '2px solid #E5E7EB', // Subtle visual cue for the italic section
+                        paddingLeft: '1rem' 
+                      }}
+                    >
                       Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
                     </p>
                     <div className="mt-4 mb-4">

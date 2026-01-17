@@ -1231,7 +1231,12 @@ const [activeIndex, setActiveIndex] = useState(0);
 const handleScroll = () => {
   if (scrollRef.current) {
     const { scrollLeft, offsetWidth } = scrollRef.current;
-    const index = Math.round(scrollLeft / (offsetWidth * 0.75));
+    
+    // Calculate based on the item width (75% of container) 
+    // plus the gap-5 (which is 20px)
+    const itemWidthPlusGap = (offsetWidth * 0.75) + 20; 
+    
+    const index = Math.round(scrollLeft / itemWidthPlusGap);
     setActiveIndex(index);
   }
 
@@ -1608,8 +1613,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </p>
                   
 
-{/* EXECUTIVE SUMMARY / TL;DR  */}
-        {/* EXECUTIVE SUMMARY / TL;DR - Vertical Stack Version */}
+{/* EXECUTIVE SUMMARY / TL;DR - Vertical Stack Version */}
 <motion.div 
   initial={{ opacity: 0, y: -10 }}
   animate={{ opacity: 1, y: 0 }}
@@ -1622,7 +1626,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       The Challenge
     </span>
     <div className="md:col-span-3">
-      <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
+      <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
         Solving the "Filter Bubble" and decision fatigue in live, spontaneous travel environments.
       </p>
     </div>
@@ -1634,9 +1638,10 @@ const variables: Record<string, { title: string; desc: string }> = {
       The Solution
     </span>
     <div className="md:col-span-3">
-      <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
-        A context-aware AI engine that prioritizes action over traditional pre-trip planning.
-      </p>
+    <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+  Context-driven AI designed for the moment, prioritizing live activation 
+  over {"static\u00A0planning\u00A0logic."}
+</p>
     </div>
   </div>
 
@@ -2372,9 +2377,9 @@ const variables: Record<string, { title: string; desc: string }> = {
           </p>
 
           <div className="mt-12 text-center border-t border-gray-200 pt-10">
-            <p className="text-gray-900 font-medium text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic">
-              "These failures emerge from static, popularity-driven systems operating in dynamic, time-sensitive environments."
-            </p>
+          <p className="text-gray-900 font-semibold text-lg md:text-xl leading-[1.6] max-w-2xl mx-auto italic [text-wrap:pretty]">
+            "These failures emerge from static, popularity-driven systems operating in {"dynamic,\u00A0time-sensitive\u00A0environments."}
+          </p>
           </div>
         </motion.div>
       </div>
@@ -2454,9 +2459,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                 className="max-w-7xl mx-auto"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                    System Overview: <br></br>How the Spontaneity Engine Works
-                  </h2>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1] [text-wrap:balance]">
+                  System Overview: <br className="hidden sm:block" /> How the {"Spontaneity\u00A0Engine\u00A0Works"}
+                </h2>
                   <p className="text-gray-400 text-lg max-w-2xl mx-auto text-balance">
                     Conceptual system diagram
                     </p>
@@ -2672,7 +2677,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                   </div>
                   
-    {/* The Spontaneity Engine Logic */}
+{/* The Spontaneity Engine Logic */}
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -2935,9 +2940,10 @@ const variables: Record<string, { title: string; desc: string }> = {
     >
       <div className="mb-16">
         <h2 className="text-3xl font-bold mb-4 text-gray-900">Systemic Constraints</h2>
-        <p className="text-gray-600 text-lg leading-relaxed">
-          The engine’s architecture is a direct response to the friction of live travel. I translated these behavioral realities into core system requirements.
-        </p>
+        <p className="text-gray-700 text-lg leading-relaxed [text-wrap:pretty]">
+        The engine’s architecture is a direct response to the friction of live travel. 
+        I translated these behavioral realities into core {"system\u00A0requirements."}
+      </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
@@ -3214,7 +3220,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-          {/* Wireframes Section */}
+{/* Wireframes Section */}
 <section id="wireframes-ui" className="py-20 bg-[#0a0a0a] overflow-x-hidden">
   <div className="container mx-auto px-6">
     <motion.div 
@@ -3224,10 +3230,11 @@ const variables: Record<string, { title: string; desc: string }> = {
       className="max-w-6xl mx-auto"
     >
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold mb-6 text-white">Designing for Activation, Not Planning</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white ">Designing for Activation,<br></br>Not Planning</h2>
         <div className="max-w-3xl mx-auto space-y-4">
-          <p className="text-gray-300 text-lg leading-relaxed">By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.</p>
-          
+          <p className="text-gray-300 text-lg leading-relaxed [text-wrap:balance]">By engineering moments of action directly into the logic layer, we ensure that the interface serves as a direct-drive mechanism for user intent—where every interaction is an outcome, not an item on a list.
+            
+          </p>
         </div>
       </div>
 
@@ -3255,6 +3262,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         </div>
 
         <div className="mb-4">
+          
           {/* Main Scroll Container */}
           <div 
             ref={wireframeScrollRef}
@@ -3495,23 +3503,34 @@ const variables: Record<string, { title: string; desc: string }> = {
           System Ownership
         </h3>
         
-        <div className="space-y-8 text-gray-400">
+        <div className="space-y-8 text-gray-300">
           <div className="group">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block mb-2">Production Ready</span>
-            <p className="text-sm leading-relaxed text-gray-300">
-              <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure zero-latency responses.
+            {/* 400-level emerald is excellent for black; it glows without being blurry */}
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-bold block mb-2">
+              Production Ready
+            </span>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure {"zero-latency\u00A0responses."}
             </p>
           </div>
+
           <div className="group">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 block mb-2">Operational Beta</span>
-            <p className="text-sm leading-relaxed text-gray-300">
-              <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining state consistency.
+            {/* Amber-400 provides high visibility and warmth against black */}
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-amber-400 font-bold block mb-2">
+              Operational Beta
+            </span>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining {"state\u00A0consistency."}
             </p>
           </div>
+
           <div className="group">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-100 block mb-2">Simulated/Stubbed</span>
-            <p className="text-sm leading-relaxed text-gray-300">
-              <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of recommendation thresholds.
+            {/* Switched to gray-400 for the label to ensure it doesn't disappear */}
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-400 font-bold block mb-2">
+              Simulated/Stubbed
+            </span>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of {"recommendation\u00A0thresholds."}
             </p>
           </div>
         </div>
@@ -3534,24 +3553,31 @@ const variables: Record<string, { title: string; desc: string }> = {
         </h3>
         
         <div className="space-y-8 text-gray-400">
-          <div>
-            <h4 className="text-white font-medium mb-2">Data & Persistence</h4>
-            <p className="text-sm leading-relaxed">
-              Orchestrating Firebase/Supabase for cloud state. The system manages conflict resolution locally to prevent UI "jank" during intermittent connectivity.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-white font-medium mb-2">AI Intelligence Layer</h4>
-            <p className="text-sm leading-relaxed">
-              Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain for heavy lifting, but the system filters responses to ensure contextual safety.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-white font-medium mb-2">Extensibility</h4>
-            <p className="text-sm leading-relaxed">
-              Architected for widget and API plugins. The interface is designed to be "headless," allowing future integrations without breaking the core UX.
-            </p>
-          </div>
+        <div className="space-y-8">
+  <div>
+    <h4 className="text-white font-semibold mb-2">Data & Persistence</h4>
+    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+      Orchestrating Firebase/Supabase for cloud state. The system manages conflict 
+      resolution locally to prevent UI "jank" during intermittent connectivity logic.
+    </p>
+  </div>
+  
+  <div>
+    <h4 className="text-white font-semibold mb-2">AI Intelligence Layer</h4>
+    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+      Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain 
+      for heavy lifting, but the system filters responses to ensure contextual protocols.
+    </p>
+  </div>
+  
+  <div>
+    <h4 className="text-white font-semibold mb-2">Extensibility</h4>
+    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+      Architected for widget and API plugins. The interface is designed to be "headless," 
+      allowing future integrations without breaking the core architecture.
+    </p>
+  </div>
+</div>
         </div>
       </motion.div>
     </div>
@@ -3661,50 +3687,51 @@ const variables: Record<string, { title: string; desc: string }> = {
       </p>
     </div>
 
-    {/* Scroll Container */}
-    <div 
-      ref={scrollRef}
-      onScroll={handleScroll}
-      className="flex flex-nowrap overflow-x-auto pb-8 px-6 gap-5 snap-x snap-mandatory sm:grid sm:flex-none sm:overflow-visible sm:grid-cols-2 lg:grid-cols-3 sm:px-0 sm:gap-6 no-scrollbar"
-    >
-      {[
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp", alt: "Oct 3" },
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp", alt: "Oct 4" },
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp", alt: "Oct 5" },
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp", alt: "Oct 7" },
-        { src: "/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
-      ].map((item, index) => (
-        <motion.div
-          key={index}
-          className="relative min-w-[75vw] sm:min-w-0 sm:w-full snap-start"
-        >
-          <div className="relative aspect-[9/19.5] rounded-2xl isolate-clip overflow-hidden shadow-lg border border-gray-100 bg-gray-50">
-            <Image
-              src={normalizeImagePath(item.src)}
-              alt={`Build iteration - ${item.alt}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 33vw"
-            />
+      {/* Main Scroll Container */}
+      <div 
+        ref={wireframeScrollRef}
+        onScroll={handleWireframeScroll}
+        className="flex gap-4 overflow-x-auto pb-6 touch-pan-x snap-x snap-mandatory no-scrollbar md:justify-center px-4"
+      >
+        {[
+          { src: "/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
+          { src: "/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp", alt: "Oct 3" },
+          { src: "/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp", alt: "Oct 4" },
+          { src: "/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp", alt: "Oct 5" },
+          { src: "/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp", alt: "Oct 7" },
+          { src: "/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
+        ].map((item, idx) => (
+          /* flex-shrink-0 is the key to preventing image "squishing" */
+          <div key={idx} className="flex-shrink-0 w-64 md:w-48 snap-center">
+            <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-neutral-900">
+              <img 
+                src={item.src} 
+                alt={`Build iteration - ${item.alt}`} 
+                className="object-cover w-full h-full" 
+              />
+            </div>
           </div>
-        </motion.div>
-      ))}
-      <div className="min-w-[20vw] sm:hidden" aria-hidden="true" />
-    </div>
+        ))}
+        
+        {/* Optional: Spacer for better end-of-list padding on mobile */}
+        <div className="flex-shrink-0 w-4 md:hidden" aria-hidden="true" />
+      </div>
 
-    {/* Dot Indicators */}
-    <div className="flex justify-center items-center gap-2.5 mt-4 mb-10 sm:hidden">
-      {[0, 1, 2, 3, 4, 5].map((i) => (
-        <div
-          key={i}
-          className={`h-1.5 rounded-full transition-all duration-300 ${
-            activeIndex === i ? "w-6 bg-blue-600" : "w-1.5 bg-gray-300"
-          }`}
-        />
-      ))}
-    </div>
-  </div>
+      {/* Dot Indicators using wireframeActiveIndex */}
+      <div className="flex justify-center items-center gap-2.5 mt-4 md:hidden">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <div
+            key={i}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              wireframeActiveIndex === i 
+                ? "w-6 bg-blue-600" 
+                : "w-1.5 bg-neutral-700"
+            }`}
+          />
+        ))}
+      </div>
+
+</div>
 </motion.div>
 
 </div>

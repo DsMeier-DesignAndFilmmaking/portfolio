@@ -290,7 +290,7 @@ export default function HomepageSideNav() {
             <li role="listitem">
               <a
                 href="#hero"
-                className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 ${
                   isActive('hero') 
                     ? 'bg-gray-900 text-white' 
                     : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
