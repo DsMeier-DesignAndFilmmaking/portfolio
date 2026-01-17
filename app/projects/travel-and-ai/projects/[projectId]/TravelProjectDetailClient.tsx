@@ -3262,15 +3262,18 @@ const variables: Record<string, { title: string; desc: string }> = {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      viewport={{ once: true, margin: "-50px" }} // FIX 2: Added margin to match Strategy
+      transition={{ duration: 0.6, ease: "easeOut" }} // FIX 3: Matches Strategy ease
       className="max-w-4xl mx-auto"
     >
-      <div className="mb-16 text-center max-w-4xl mx-auto">
+      <div className="mb-16 text-center">
   {/* Header: text-center + balanced wrap */}
   <h2 className="text-3xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
-    Designing for Activation,<br />Not Planning
-  </h2>
+          Designing for Activation,<br />Not Planning
+        </h2>
+        <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
+          By engineering moments of action directly into the logic layer...
+        </p>
   
   {/* Body: mx-auto is required to center the max-width paragraph */}
   <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
@@ -3299,7 +3302,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       >
         
 
-        <div className="mb-4">
+        <div className="mb-4 relative">
           
           {/* Main Scroll Container */}
           <div 
@@ -3911,7 +3914,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </p>
                     <p className="text-gray-300">
                       The primary goal is to validate system reliability, context accuracy, and failure handling in live conditions.
+                      <br></br><br></br>A comprehensive Behavioral Validation & Edge-Case Testing Framework is currently being codified to evaluate system heuristics against high-variance user environments.                    
                     </p>
+                   
                   </div>
                 </div>
               </motion.div>
@@ -3994,8 +3999,9 @@ const variables: Record<string, { title: string; desc: string }> = {
         className="mt-20 p-8 bg-gray-50 rounded-2xl border border-gray-100 text-center"
       >
         <p className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4 text-slate-900">Project Thesis</p>
-        <blockquote className="text-2xl font-light text-gray-900 italic">
-          "The goal is not to help travelers plan better, but to build a system that makes planning unnecessary."
+        <blockquote className="text-2xl font-semibold text-gray-900 italic">
+        The goal isn’t to help travelers plan better. It is to build a system that 
+        provides the confidence to embrace the {"joy\u00A0of\u00A0discovery."}
         </blockquote>
       </motion.div>
     </motion.div>
