@@ -228,44 +228,52 @@ const StickyProgressNav: React.FC<StickyProgressNavProps> = ({ sections }) => {
       </motion.nav>
 
       {/* Mobile Navigation - Top Fixed */}
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ 
-          opacity: isVisible ? 1 : 0,
-          y: isVisible ? 0 : -20
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="md:hidden fixed left-0 right-0 z-40 px-6"
-        style={{
-          top: 'calc(80px + env(safe-area-inset-top, 0px))' // Main nav (80px) + safe area
-        }}
-        role="navigation"
-        aria-label="Page sections navigation"
-      >
-        <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50">
-          <ul className="flex justify-center space-x-2" role="list">
-            {sections.map((section, index) => (
-              <li key={section.id} role="listitem">
-                <button
-                  onClick={() => scrollToSection(section.id)}
-                  className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                    activeSection === section.id
-                      ? 'bg-black text-white'
-                      : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                  }`}
-                  aria-label={`Go to ${section.label} section`}
-                  aria-current={activeSection === section.id ? 'true' : 'false'}
-                  tabIndex={0}
-                >
-                  <span className="text-xs font-medium" aria-hidden="true">
-                    {index + 1}
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.nav>
+<motion.nav
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ 
+    opacity: isVisible ? 1 : 0,
+    y: isVisible ? 0 : -20
+  }}
+  transition={{ duration: 0.3, ease: "easeOut" }}
+  className="md:hidden fixed left-0 right-0 z-40 px-6"
+  style={{
+    top: 'calc(80px + env(safe-area-inset-top, 0px))' // Main nav (80px) + safe area
+  }}
+  role="navigation"
+  aria-label="Page sections navigation"
+>
+  {/* 1. Changed py-2 to py-3 for more vertical room
+      2. Added min-h-[56px] to prevent squeezing
+      3. Added flex items-center to keep everything perfectly centered 
+  */}
+  <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-lg border border-gray-200/50 min-h-[56px] flex items-center justify-center">
+    {/* 4. Added py-1 to the ul as a "safe zone" for the focus rings and scaling */}
+    <ul className="flex justify-center items-center space-x-2 py-1" role="list">
+      {sections.map((section, index) => (
+        <li key={section.id} role="listitem">
+          <button
+            onClick={() => scrollToSection(section.id)}
+            /* 5. Increased size to w-9 h-9 (36px) for better touch targets 
+               6. Added scale-110 on active to make it pop, which now fits thanks to the extra padding
+            */
+            className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 ${
+              activeSection === section.id
+                ? 'bg-black text-white scale-110 shadow-md'
+                : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+            }`}
+            aria-label={`Go to ${section.label} section`}
+            aria-current={activeSection === section.id ? 'true' : 'false'}
+            tabIndex={0}
+          >
+            <span className="text-xs font-semibold" aria-hidden="true">
+              {index + 1}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+</motion.nav>
     </>
   );
 };

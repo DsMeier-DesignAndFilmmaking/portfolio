@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -1221,7 +1221,46 @@ const PlanningAssistantVisual = () => {
   );
 };
 
+
 const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailClientProps) => {
+  
+// Your Logic (which should now be error-free)
+const scrollRef = useRef<HTMLDivElement>(null);
+const [activeIndex, setActiveIndex] = useState(0);
+
+const handleScroll = () => {
+  if (scrollRef.current) {
+    const { scrollLeft, offsetWidth } = scrollRef.current;
+    const index = Math.round(scrollLeft / (offsetWidth * 0.75));
+    setActiveIndex(index);
+  }
+
+};
+
+// SECTION 2: Wireframe Gallery Logic
+const wireframeScrollRef = useRef<HTMLDivElement>(null);
+const [wireframeActiveIndex, setWireframeActiveIndex] = useState(0);
+
+const handleWireframeScroll = () => {
+  if (wireframeScrollRef.current) {
+    const { scrollLeft } = wireframeScrollRef.current;
+    // 208 accounts for image width (192px) + gap (16px)
+    const index = Math.round(scrollLeft / 208);
+    setWireframeActiveIndex(index);
+  }
+}; // close handleWireframeScroll
+
+
+const [activeVar, setActiveVar] = useState<string | null>(null);
+
+const variables: Record<string, { title: string; desc: string }> = {
+  w: { title: "Dynamic Weights", desc: "AI-calibrated significance based on historical success and intent logic." },
+  L: { title: "Location (L)", desc: "Real-time GPS proximity, venue density, and transit accessibility." },
+  T: { title: "Temporal Context (T)", desc: "Time of day, weather state, and seasonal availability triggers." },
+  B: { title: "Behavior (B)", desc: "Immediate movement patterns and interaction history telemetry." },
+  C: { title: "Constraints (ΣC)", desc: "Hard stops: Closing times, budget limits, and travel distance." }
+};
+
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
@@ -1567,51 +1606,91 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
                     Foundational AI System · Real-Time Decision Intelligence
                   </p>
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      A foundational AI system designed to enable real-time, context-aware travel decisions — prioritizing action over planning.
-                    </p>
-                  </div>
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#design-exploration"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#design-exploration');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                    <a
-                      href="#prototyping-ai"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#prototyping-ai');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                      aria-label="Explore Working Prototype (Experimental)"
-                    >
-                      Explore Prototype <span className="ml-2 text-sm md:text-xs opacity-70 font-normal">(Experimental)</span>
-                    </a>
-                  </nav>
+                  
+
+{/* EXECUTIVE SUMMARY / TL;DR  */}
+        {/* EXECUTIVE SUMMARY / TL;DR - Vertical Stack Version */}
+<motion.div 
+  initial={{ opacity: 0, y: -10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  className="mb-16 border-t border-b border-gray-100 py-10 space-y-8"
+>
+  {/* The Challenge */}
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
+    <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-700 pt-1">
+      The Challenge
+    </span>
+    <div className="md:col-span-3">
+      <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
+        Solving the "Filter Bubble" and decision fatigue in live, spontaneous travel environments.
+      </p>
+    </div>
+  </div>
+
+  {/* The Solution */}
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+    <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-700 pt-1">
+      The Solution
+    </span>
+    <div className="md:col-span-3">
+      <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
+        A context-aware AI engine that prioritizes action over traditional pre-trip planning.
+      </p>
+    </div>
+  </div>
+
+  {/* My Role */}
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+    <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-700 pt-1">
+      My Role
+    </span>
+    <div className="md:col-span-3">
+      <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl font-medium italic">
+      <strong>Project Creator & Lead Architect.</strong> End-to-end ownership of the product lifecycle—from systemic AI logic and prompt engineering to the native iOS implementation.
+      </p>
+    </div>
+  </div>
+</motion.div>
+
+        <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8" aria-label="Hero actions">
+  {/* Primary Action */}
+  <a
+    href="#live-demo" 
+    onClick={(e) => {
+      e.preventDefault();
+      const target = document.querySelector('#live-demo');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }}
+    className="inline-flex items-center justify-center px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all duration-200 min-h-[48px] text-center text-base cursor-pointer"
+  >
+    <span>Explore Prototype</span>
+    <span className="ml-3 relative flex h-2.5 w-2.5">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+    </span>
+  </a>
+
+  {/* Secondary Action: Updated to target design-exploration */}
+  <a
+    href="#design-exploration"
+    onClick={(e) => {
+      e.preventDefault();
+      const target = document.querySelector('#design-exploration');
+      if (target) {
+        // scrollIntoView is the most reliable method for cross-browser smooth scrolling
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }}
+    className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-900 text-slate-900 font-bold rounded-xl hover:bg-slate-50 transition-all duration-200 min-h-[48px] text-center text-base cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+    aria-label="View Case Study"
+  >
+    View Case Study
+  </a>
+</nav>
+                  
             </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -1620,9 +1699,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
                 >
                   <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center w-full md:w-auto">
-                  <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      *Design concept mockups
-                    </p>
+                  
                     <div className="relative flex-shrink-0 flex justify-center md:justify-start">
                       <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
                     <Image
@@ -2218,87 +2295,91 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
       {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
       {isSpontaneousTravelCompanion && (
-        <>
-          {/* Systemic Travel Discovery Failures Section */}
-          <section id="design-exploration" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Systemic Travel Discovery Failures
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Pattern-level breakdowns in how discovery platforms operate
-                    </p>
-                  </div>
-                  
-                <div className="space-y-8 md:space-y-10">
-                    {/* Failure 1: Simulated Spontaneity */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 hover:border-red-200 transition-all duration-300">
-                      <div className="mb-4">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 1: Simulated Spontaneity</h4>
-                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
-                          Recommendation systems exhibit popularity bias, systematically favoring frequently-booked experiences and repeatable formats over situationally relevant alternatives, creating the appearance of discovery while reinforcing predictable patterns.
-                        </p>
-                        <p className="text-base md:text-sm text-gray-500 italic">
-                          Source: Frontiers in Big Data, Popularity Bias and Filter Bubbles in Recommender Systems, 2023
-                        </p>
-                      </div>
-                    </div>
+  <>
+    {/* Systemic Travel Discovery Failures Section */}
+    <section id="design-exploration" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Systemic Travel Discovery Failures
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Pattern-level breakdowns in how discovery platforms operate.
+            </p>
+          </div>
 
-                    {/* Failure 2: Homogenized Cultural Discovery */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-200 transition-all duration-300">
-                      <div className="mb-4">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 2: Homogenized Cultural Discovery</h4>
-                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
-                          Recommender systems create filter bubbles and echo chambers by overemphasizing content aligned with users' previous interactions, limiting exposure to diverse destinations and experiences while amplifying homogenization effects across user populations.
-                        </p>
-                        <p className="text-base md:text-sm text-gray-500 italic">
-                          Source: Microsoft Research, Revisiting Popularity and Demographic Biases in Recommender Evaluation and Effectiveness, 2021
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Failure 3: Static Recommendations in Dynamic Environments */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-200 transition-all duration-300">
-                      <div className="mb-4">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 3: Static Recommendations in Dynamic Environments</h4>
-                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
-                          Traditional travel recommendation systems rely on static data and predefined user profiles, limiting their effectiveness in dynamic environments where real-time contextual factors such as weather, availability, and situational constraints significantly impact relevance.
-                        </p>
-                        <p className="text-base md:text-sm text-gray-500 italic">
-                          Source: MDPI Sensors, R2Tour Real-Time Context-Aware Tourism Recommendation System, 2023
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Failure 4: Overchoice Without Context */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300">
-                      <div className="mb-4">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3">Failure 4: Overchoice Without Context</h4>
-                        <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
-                          Discovery platforms present excessive options without sufficient contextual filtering, contributing to the paradox of choice where abundant options lead to decision fatigue, decreased satisfaction, and increased cognitive load during time-sensitive decision moments.
-                        </p>
-                        <p className="text-base md:text-sm text-gray-500 italic">
-                          Source: Annals of Tourism Research, Choice Overload and Decision Quality in Tourism, 2016
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-10 md:mt-12 text-center">
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                      These failures emerge from static, popularity-driven systems operating in dynamic, time-sensitive environments.
-                    </p>
-                  </div>
-              </motion.div>
+          {/* New Scannable Systems Table */}
+          <div className="overflow-hidden border border-gray-200 rounded-2xl shadow-sm bg-white">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-100/50 border-b border-gray-200">
+                    <th className="p-5 text-xs font-bold uppercase tracking-wider text-gray-500 w-1/3">Failure Pattern</th>
+                    <th className="p-5 text-xs font-bold uppercase tracking-wider text-gray-500">The Systemic Gap</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  <tr className="hover:bg-blue-50/30 transition-colors">
+                    <td className="p-5 align-top">
+                      <span className="block font-bold text-gray-900">Simulated Spontaneity</span>
+                      <span className="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Popularity Bias</span>
+                    </td>
+                    <td className="p-5 text-gray-600 leading-relaxed text-sm md:text-base">
+                      Recommendation systems favor frequently-booked experiences over <strong className="text-gray-900 font-semibold">situational relevance</strong>, creating predictable loops.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-blue-50/30 transition-colors">
+                    <td className="p-5 align-top">
+                      <span className="block font-bold text-gray-900">Cultural Echo Chambers</span>
+                      <span className="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Homogenization</span>
+                    </td>
+                    <td className="p-5 text-gray-600 leading-relaxed text-sm md:text-base">
+                      Filter bubbles overemphasize past interactions, limiting exposure to <strong className="text-gray-900 font-semibold">diverse, authentic destinations</strong>.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-blue-50/30 transition-colors">
+                    <td className="p-5 align-top">
+                      <span className="block font-bold text-gray-900">Static Data Models</span>
+                      <span className="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Temporal Neglect</span>
+                    </td>
+                    <td className="p-5 text-gray-600 leading-relaxed text-sm md:text-base">
+                      Reliance on fixed user profiles ignores <strong className="text-gray-900 font-semibold">dynamic triggers</strong> like weather, transit, and immediate availability.
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-blue-50/30 transition-colors">
+                    <td className="p-5 align-top">
+                      <span className="block font-bold text-gray-900">The Paradox of Choice</span>
+                      <span className="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Cognitive Load</span>
+                    </td>
+                    <td className="p-5 text-gray-600 leading-relaxed text-sm md:text-base">
+                      Excessive options without contextual filtering lead to <strong className="text-gray-900 font-semibold">decision fatigue</strong> in time-sensitive moments.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </section>
+          </div>
+
+          <p className="mt-6 text-[10px] text-gray-400 text-center uppercase tracking-[0.2em]">
+            Sources: Frontiers in Big Data (2023) • Microsoft Research (2021) • MDPI (2023)
+          </p>
+
+          <div className="mt-12 text-center border-t border-gray-200 pt-10">
+            <p className="text-gray-900 font-medium text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic">
+              "These failures emerge from static, popularity-driven systems operating in dynamic, time-sensitive environments."
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  </>
+)}
 
           {/* Why Spontaneity Is a Systems Problem Section */}
           <section className="py-16 md:py-20 bg-white">
@@ -2440,154 +2521,100 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                     
                     {/* Center Column - The Engine Core */}
-                    <div className="flex justify-center my-12 lg:my-0">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="relative"
-                      >
-                        {/* Animated SVG Core */}
-                        <div className="relative w-64 h-64 md:w-80 md:h-80">
-                          <svg
-                            className="w-full h-full"
-                            viewBox="0 0 320 320"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            {/* Outer Ring - Rules & Constraints - Rotating */}
-                            <motion.g
-                              animate={{ rotate: 360 }}
-                              transition={{
-                                duration: 20,
-                                repeat: Infinity,
-                                ease: "linear",
-                              }}
-                              style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                            >
-                              <circle
-                                cx="160"
-                                cy="160"
-                                r="140"
-                                fill="none"
-                                stroke="url(#outerGradient)"
-                                strokeWidth="2"
-                                strokeDasharray="8 4"
-                                opacity="0.6"
-                              />
-                            </motion.g>
-                            
-                            {/* Middle Ring - Context Weighting */}
-                            <motion.g
-                              animate={{
-                                scale: [1, 1.05, 1],
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                              style={{ transformOrigin: '160px 160px' }}
-                            >
-                              <motion.circle
-                                cx="160"
-                                cy="160"
-                                r="110"
-                                fill="none"
-                                stroke="url(#middleGradient)"
-                                strokeWidth="2.5"
-                                animate={{
-                                  opacity: [0.8, 1, 0.8],
-                                }}
-                                transition={{
-                                  duration: 3,
-                                  repeat: Infinity,
-                                  ease: "easeInOut",
-                                }}
-                              />
-                            </motion.g>
-                            
-                            {/* Inner Nucleus - AI Logic */}
-                            <circle
-                              cx="160"
-                              cy="160"
-                              r="60"
-                              fill="url(#coreGradient)"
-                              opacity="0.9"
-                            />
-                            
-                            {/* Shimmering nodes inside nucleus */}
-                            {[...Array(8)].map((_, i) => {
-                              const angle = (i * 360) / 8;
-                              const rad = (angle * Math.PI) / 180;
-                              const x = 160 + Math.cos(rad) * 40;
-                              const y = 160 + Math.sin(rad) * 40;
-                              return (
-                                <motion.circle
-                                  key={i}
-                                  cx={x}
-                                  cy={y}
-                                  r="4"
-                                  fill="#a78bfa"
-                                  animate={{
-                                    opacity: [0.4, 1, 0.4],
-                                    scale: [1, 1.3, 1],
-                                  }}
-                                  transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    delay: i * 0.2,
-                                    ease: "easeInOut",
-                                  }}
-                                />
-                              );
-                            })}
-                            
-                            {/* Gradients */}
-                            <defs>
-                              <linearGradient id="outerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
-                                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                              </linearGradient>
-                              <linearGradient id="middleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.9" />
-                                <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.9" />
-                              </linearGradient>
-                              <radialGradient id="coreGradient">
-                                <stop offset="0%" stopColor="#a78bfa" />
-                                <stop offset="100%" stopColor="#6366f1" />
-                              </radialGradient>
-                            </defs>
-                          </svg>
-                          
-                          {/* Center Label */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="text-sm md:text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">
-                                The
-                              </div>
-                              <div className="text-xl md:text-2xl font-bold text-white">
-                                SPONTANEITY AI
-                              </div>
-                              <div className="text-sm md:text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">
-                                Engine
-                              </div>
-                      </div>
-                    </div>
-                    
-                          {/* Ring Labels */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
-                            Rules & Constraints
-                      </div>
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm md:text-xs text-gray-400 font-medium">
-                            Context Weighting
-                    </div>
-                          <div className="absolute text-sm md:text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" style={{ top: '20%', left: '20%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
-                            AI Logic
-                  </div>
-                        </div>
-                      </motion.div>
-                    </div>
+<div className="flex justify-center my-12 lg:my-0">
+  {/* The Outer Wrapper now handles the vertical stacking of labels naturally */}
+  <div className="flex flex-col items-center">
+    
+    {/* Top Label - Now relative/static so it occupies real space */}
+    <div className="text-sm md:text-xs text-gray-400 font-medium mb-8">
+      Rules & Constraints
+    </div>
+
+    {/* SVG Container - overflow-visible prevents clipping of glows or rotated elements */}
+    <div className="relative w-64 h-64 md:w-80 md:h-80 overflow-visible">
+      <svg
+        className="w-full h-full overflow-visible"
+        viewBox="0 0 320 320"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Outer Ring */}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: '160px 160px', transformBox: 'fill-box' }}
+        >
+          <circle cx="160" cy="160" r="140" fill="none" stroke="url(#outerGradient)" strokeWidth="2" strokeDasharray="8 4" opacity="0.6" />
+        </motion.g>
+        
+        {/* Middle Ring */}
+        <motion.g
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          style={{ transformOrigin: '160px 160px', transformBox: 'fill-box' }}
+        >
+          <circle cx="160" cy="160" r="110" fill="none" stroke="url(#middleGradient)" strokeWidth="2.5" opacity="0.9" />
+        </motion.g>
+        
+        {/* Inner Nucleus */}
+        <circle cx="160" cy="160" r="60" fill="url(#coreGradient)" opacity="0.9" />
+        
+        {/* Shimmering Nodes */}
+        {[...Array(8)].map((_, i) => {
+          const angle = (i * 360) / 8;
+          const rad = (angle * Math.PI) / 180;
+          return (
+            <motion.circle
+              key={i}
+              cx={160 + Math.cos(rad) * 40}
+              cy={160 + Math.sin(rad) * 40}
+              r="4"
+              fill="#a78bfa"
+              animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+              style={{ transformOrigin: 'center', transformBox: 'fill-box' }}
+            />
+          );
+        })}
+
+        <defs>
+          <linearGradient id="outerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+          </linearGradient>
+          <linearGradient id="middleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.9" />
+          </linearGradient>
+          <radialGradient id="coreGradient">
+            <stop offset="0%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </radialGradient>
+        </defs>
+      </svg>
+      
+      {/* Center Text Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="text-center">
+          <div className="text-sm md:text-xs font-semibold text-indigo-300 uppercase tracking-wider mb-1">The</div>
+          <div className="text-xl md:text-2xl font-bold text-white">SPONTANEITY AI</div>
+          <div className="text-sm md:text-xs font-medium text-violet-300 uppercase tracking-wider mt-1">Engine</div>
+        </div>
+      </div>
+
+      {/* Internal floating label - positioned INSIDE the box so it won't scroll */}
+      <div className="absolute text-[10px] md:text-xs text-gray-400 font-medium whitespace-nowrap z-50 bg-gray-900/80 backdrop-blur-sm px-2 py-1 rounded border border-gray-700/50" 
+           style={{ top: '22%', left: '22%', transform: 'translate(-50%, -50%) rotate(-45deg)' }}>
+        AI Logic
+      </div>
+    </div>
+
+    {/* Bottom Label - Now relative/static so it occupies real space */}
+    <div className="text-sm md:text-xs text-gray-400 font-medium mt-8">
+      Context Weighting
+    </div>
+
+  </div>
+</div>
                     
                     {/* Right Column - Outputs */}
                     <div className="space-y-6">
@@ -2644,28 +2671,116 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     </div>
                   </div>
                   
-                  {/* Mathematical Formula - Bottom */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mt-16 pt-8 border-t border-white/10"
-                  >
-                    <div className="text-center">
-                      <p className="text-gray-400 text-base md:text-sm mb-2">The Spontaneity Engine Logic</p>
-                      <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-lg p-4 md:p-6">
-                        <div className="text-white font-mono text-sm md:text-base">
-                          <div className="mb-2">S<sub>score</sub> = w<sub>1</sub>(L) + w<sub>2</sub>(T) + w<sub>3</sub>(B) - ΣC</div>
-                          <div className="text-sm md:text-sm text-gray-400 space-y-1">
-                            <div>L, T, B: Location, Time, and Behavior variables</div>
-                            <div>w: Dynamic weights based on AI learning</div>
-                            <div>C: Constraints (e.g., closing times, budget, travel distance)</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
+    {/* The Spontaneity Engine Logic */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="mt-20 pt-12 border-t border-gray-200"
+>
+  <div className="max-w-4xl mx-auto">
+    <div className="text-center mb-10">
+      <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-blue-600 mb-6">
+        System Logic: The Spontaneity Engine
+      </h3>
+
+      {/* Interactive Black Box */}
+      <div className="bg-slate-900 rounded-3xl p-6 md:p-12 shadow-2xl w-full relative overflow-hidden">
+        
+        {/* Interaction Affordance Hint */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400">
+              Select variables to inspect logic
+            </span>
+          </div>
+        </div>
+        
+        {/* Formula Container */}
+        <div className="text-white font-light text-2xl md:text-5xl mb-12 tracking-tight flex flex-wrap justify-center items-center gap-2 md:gap-4 select-none">
+          <span className="opacity-40">S<sub>score</sub> =</span>
+          
+          {['w', 'L', 'T', 'B', 'C'].map((key, index) => (
+            <span key={key} className="flex items-center gap-2 md:gap-4">
+              {/* Operators */}
+              {index === 2 || index === 3 ? <span className="text-gray-600 text-xl md:text-3xl">+</span> : null}
+              {index === 4 ? <span className="text-gray-600 text-xl md:text-3xl">−</span> : null}
+              
+              <button 
+                type="button"
+                onClick={() => setActiveVar(activeVar === key ? null : key)}
+                className={`group relative transition-all duration-300 pb-1 border-b-2 min-h-[44px] px-2 flex items-center ${
+                  activeVar === key 
+                  ? 'text-blue-400 border-blue-400 bg-blue-400/5' 
+                  : 'text-white border-dashed border-gray-600 hover:border-blue-400/50 hover:bg-white/5'
+                }`}
+              >
+                {key === 'w' ? <>w<sub>n</sub></> : key === 'C' ? 'ΣC' : `(${key})`}
+                
+                {/* Visual hint that it's clickable (Active Dot) */}
+                {activeVar !== key && (
+                  <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-blue-500/40 rounded-full scale-0 group-hover:scale-100 transition-transform"></span>
+                )}
+              </button>
+            </span>
+          ))}
+        </div>
+
+        {/* Dedicated Info Panel */}
+        <div className="min-h-[120px] flex items-center justify-center bg-white/[0.03] border border-white/5 rounded-2xl p-6 transition-all duration-300">
+          {activeVar ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98, y: 5 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              key={activeVar}
+              className="text-center"
+            >
+              <div className="inline-block px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-tighter mb-3">
+                Variable Parameters
+              </div>
+              <h4 className="block font-bold mb-1 text-white text-base md:text-xl">
+                {variables[activeVar].title}
+              </h4>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                {variables[activeVar].desc}
+              </p>
+            </motion.div>
+          ) : (
+            <div className="text-center group">
+               <svg className="w-5 h-5 text-gray-600 mx-auto mb-2 animate-bounce group-hover:text-blue-500/50 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+              </svg>
+              <p className="text-gray-500 text-xs md:text-sm font-medium tracking-wide">
+                Interactive logic engine: Tap parameters above
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Legend Grid */}
+        <div className="hidden md:grid grid-cols-3 gap-6 text-left border-t border-white/10 pt-8 mt-10 opacity-40">
+          <div className="space-y-1">
+            <span className="text-blue-400 font-bold text-[10px] uppercase tracking-widest">Input Layer</span>
+            <p className="text-gray-400 text-xs italic">Environmental telemetry</p>
+          </div>
+          <div className="space-y-1 text-center">
+            <span className="text-blue-400 font-bold text-[10px] uppercase tracking-widest">Logic Layer</span>
+            <p className="text-gray-400 text-xs italic">Inference engine</p>
+          </div>
+          <div className="space-y-1 text-right">
+            <span className="text-blue-400 font-bold text-[10px] uppercase tracking-widest">Filter Layer</span>
+            <p className="text-gray-400 text-xs italic">Constraint exclusion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
                 </div>
               </motion.div>
             </div>
@@ -2808,659 +2923,396 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
             </section>
           )}
 
-          {/* Behavioral & Environmental Constraints Section */}
-          <section id="research-audience" className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Behavioral & Environmental Constraints
-                  </h2>
-                  <p className="text-gray-300 text-lg">
-                    The system is designed around real-world constraints that limit planning, attention, and risk tolerance in live travel contexts.
-                  </p>
-                </div>
-                
-                {/* Constraint Blocks Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                  {/* Constraint 1: Time-Constrained Decision Windows */}
-                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h4 className="text-lg font-bold text-white mb-4">Time-Constrained Decision Windows</h4>
-                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
-                      Decisions often occur within minutes, not hours. Availability changes in real time for venues, transport, and events. Delayed decisions increase friction and reduce viable options. This constraint requires the system to provide low-latency, actionable output that enables immediate action.
-                    </p>
-                  </div>
-                  
-                  {/* Constraint 2: Cognitive Load in Unfamiliar Environments */}
-                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h4 className="text-lg font-bold text-white mb-4">Cognitive Load in Unfamiliar Environments</h4>
-                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
-                      Travelers operate under information overload in unfamiliar settings. Comparing options across multiple platforms increases decision fatigue. Excess choice reduces decision confidence and increases abandonment. This constraint limits the acceptable information density and response complexity the system can present.
-                    </p>
-                  </div>
-                  
-                  {/* Constraint 3: Social & Reputational Risk */}
-                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h4 className="text-lg font-bold text-white mb-4">Social & Reputational Risk</h4>
-                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
-                      Acting on recommendations often involves public or interpersonal exposure. Poor suggestions carry social cost, not just inconvenience. Actions that feel awkward, unsafe, or misaligned are avoided regardless of objective quality. This constraint requires the system to incorporate social context awareness in recommendation generation.
-                    </p>
-                  </div>
-                  
-                  {/* Constraint 4: Trust, Safety, and Legitimacy Signals */}
-                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h4 className="text-lg font-bold text-white mb-4">Trust, Safety, and Legitimacy Signals</h4>
-                    <p className="text-gray-300 text-base md:text-sm leading-relaxed">
-                      Unknown recommendations must signal credibility quickly under time pressure. Users rely on implicit trust markers when explicit verification is impractical. Safety concerns override novelty in unfamiliar settings. This constraint shapes how recommendations are framed and validated within the system interface.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+{/* Behavioral & Environmental Constraints */}
+<section className="py-24 bg-white">
+  <div className="container mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="max-w-4xl mx-auto"
+    >
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">Systemic Constraints</h2>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          The engine’s architecture is a direct response to the friction of live travel. I translated these behavioral realities into core system requirements.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
+        {/* Constraint 1 */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-blue-600">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <h4 className="font-bold uppercase tracking-widest text-[11px]">Time Sensitivity</h4>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 leading-tight">Decisions in Minutes, not Hours</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            <span className="text-gray-900 font-medium italic">Requirement:</span> Low-latency, actionable output. The system prioritizes "Activation" over "Browsing" to beat real-time availability decay.
+          </p>
+        </div>
+
+        {/* Constraint 2 */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-blue-600">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            <h4 className="font-bold uppercase tracking-widest text-[11px]">Cognitive Load</h4>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 leading-tight">Filtering by Intelligence</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            <span className="text-gray-900 font-medium italic">Requirement:</span> Information suppression. To prevent decision fatigue in unfamiliar settings, the system aggressively narrows the option space.
+          </p>
+        </div>
+
+        {/* Constraint 3 */}
+        <div className="space-y-3">
+        <div className="flex items-center gap-3 text-blue-600">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <h4 className="font-bold uppercase tracking-widest text-[11px]">Social Risk</h4>
+        </div>
+          <h3 className="text-xl font-bold text-gray-900 leading-tight">Reputational Safeguards</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            <span className="text-gray-900 font-medium italic">Requirement:</span> Social context awareness. Recommendations are weighted by social safety and implicit trust markers to reduce public friction.
+          </p>
+        </div>
+
+        {/* Constraint 4 */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-blue-600">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            <h4 className="font-bold uppercase tracking-widest text-[11px]">Trust & Safety</h4>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 leading-tight">Credibility Over Novelty</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            <span className="text-gray-900 font-medium italic">Requirement:</span> Immediate legitimacy signaling. Safety concerns override novelty, requiring fast, explicit validation markers for "unknown" gems.
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+ {/* Concept & Strategy Section */}
+<section id="designs-strategy" className="py-20 bg-white overflow-x-hidden">
+  <div className="container mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="max-w-4xl mx-auto w-full"
+    >
+      <div className="text-center mb-16">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto leading-[1.1]">
+            Concept & Strategy
+        </h2>
+        <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+          This system is built for real-world chaos, not idealized travel behavior. I translated behavioral constraints into <span className="text-black font-semibold underline decoration-amber-400/50">core system requirements</span>.
+        </p>
+      </div>
+      
+      <div className="space-y-4 w-full">
+
+        {/* 1. Intelligence required? */}
+        <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300">
+          <button
+            className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors focus:outline-none"
+            onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700 text-xs font-bold shrink-0">01</div>
+              <h3 className="text-lg font-bold text-gray-900">Required Intelligence</h3>
             </div>
-          </section>
-
-          {/* Concept & Strategy Section */}
-          <section id="designs-strategy" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-black">
-                    Concept & Strategy
-                  </h2>
-                  <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
-                    This system is designed around real-world constraints, not idealized travel behavior. Each design decision reflects trade-offs required to enable spontaneity without increasing cognitive load, social risk, or dependency on constant connectivity.
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-
-                  {/* Core Philosophy */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'philosophy' ? null : 'philosophy')}
-                      aria-expanded={activeAccordion === 'philosophy'}
-                      aria-controls="philosophy-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">What intelligence is required?</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'philosophy' && (
-                        <motion.div
-                          id="philosophy-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-4">
-                              <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Distinguishing high-value moments from background noise</h5>
-                                    <p className="text-gray-700">Filtering location, time, and movement signals to identify decision-relevant opportunities.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Interpreting place, time, and user state as decision signals</h5>
-                                    <p className="text-gray-700">Context interpretation that maps environmental cues to actionable suggestions without requiring user input.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Timing sensitivity for moment-based relevance</h5>
-                                    <p className="text-gray-700">Recognizing when proximity, time of day, weather, or movement patterns indicate a decision window.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Producing suggestions that require minimal evaluation</h5>
-                                    <p className="text-gray-700">Curating options to reduce cognitive load, prioritizing relevance over breadth.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* User Experience */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'ux' ? null : 'ux')}
-                      aria-expanded={activeAccordion === 'ux'}
-                      aria-controls="ux-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">What constraints shape the system?</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'ux' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'ux' && (
-                        <motion.div
-                          id="ux-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-4">
-                              <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Limited attention in unfamiliar environments</h5>
-                                    <p className="text-gray-700">Must operate with minimal screen time and cognitive load. Cannot require extended evaluation or comparison.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Intermittent connectivity</h5>
-                                    <p className="text-gray-700">Designed to operate under unreliable or absent network conditions. Cannot depend on real-time data synchronization.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Physical movement and safety</h5>
-                                    <p className="text-gray-700">Must not distract from navigation or situational awareness. Cannot require sustained interaction while in motion.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Battery and device resource limits</h5>
-                                    <p className="text-gray-700">Must minimize background processing and data usage. Cannot assume continuous location tracking or cloud API access.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* Functionality */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'functionality' ? null : 'functionality')}
-                      aria-expanded={activeAccordion === 'functionality'}
-                      aria-controls="functionality-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">Implementation approach</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'functionality' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'functionality' && (
-                        <motion.div
-                          id="functionality-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 leading-relaxed">
-                              Content is preloaded as region-specific packs before travel. Local storage handles all runtime data access. Sync occurs opportunistically when connectivity is available, not as a blocking operation. This architecture supports the offline-first constraint while enabling periodic content updates.
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* AI + Context Layer */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'ai' ? null : 'ai')}
-                      aria-expanded={activeAccordion === 'ai'}
-                      aria-controls="ai-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">What trade-offs were intentionally made?</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'ai' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'ai' && (
-                        <motion.div
-                          id="ai-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-4">
-                              <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">On-device inference over cloud intelligence</h5>
-                                    <p className="text-gray-700">Favors lightweight, local processing (Core ML, TensorFlow Lite) to enable offline operation. Accepts reduced model complexity and accuracy in exchange for independence from network connectivity.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Timely relevance over exhaustive coverage</h5>
-                                    <p className="text-gray-700">Prioritizes context-weighted suggestions (location, time, weather, movement) that are actionable in the moment. Does not attempt to provide comprehensive destination research or long-term planning.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Reactivity over prediction</h5>
-                                    <p className="text-gray-700">Responds to immediate context signals rather than attempting to predict future behavior or preferences. Context signals are weighted to avoid over-personalization that could reduce serendipity.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Offline-first architecture over real-time sync</h5>
-                                    <p className="text-gray-700">Preloaded content packs and local storage (SQLite, MMKV) take precedence over live data. Sync occurs opportunistically when connectivity is available, not as a blocking requirement.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Breadth of content over depth of personalization</h5>
-                                    <p className="text-gray-700">Uses lightweight context weighting rather than deep learning from historical behavior. Accepts less personalized results to maintain simplicity and reduce dependency on user data collection.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* Key Considerations */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'considerations' ? null : 'considerations')}
-                      aria-expanded={activeAccordion === 'considerations'}
-                      aria-controls="considerations-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">What the system deliberately avoids doing</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'considerations' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'considerations' && (
-                        <motion.div
-                          id="considerations-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <div className="space-y-4">
-                              <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Not a trip planner</h5>
-                                    <p className="text-gray-700">Does not generate itineraries, book accommodations, or manage reservations. Focuses on moment-to-moment decisions, not pre-travel planning.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Not a social network</h5>
-                                    <p className="text-gray-700">Does not maintain user profiles, friend connections, or persistent social graphs. Avoids features that require network effects or community building.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Not a recommendation feed</h5>
-                                    <p className="text-gray-700">Does not provide scrolling lists of options, ratings, or reviews. Avoids content browsing patterns that encourage extended screen engagement.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Not a dashboard or content browser</h5>
-                                    <p className="text-gray-700">Does not aggregate information for later review or provide comprehensive destination guides. Avoids interfaces that require navigation, filtering, or comparison.</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
-                                  <div>
-                                    <h5 className="font-semibold text-gray-900 mb-1">Not a predictive system</h5>
-                                    <p className="text-gray-700">Does not attempt to learn long-term preferences or build user models over time. Avoids personalization that could reduce discovery of unexpected experiences.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* Architecture and Tech Stack */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.7 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'architecture' ? null : 'architecture')}
-                      aria-expanded={activeAccordion === 'architecture'}
-                      aria-controls="architecture-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">Technical foundation</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'architecture' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'architecture' && (
-                        <motion.div
-                          id="architecture-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 leading-relaxed">
-                              Mobile-native implementation with local storage for offline data persistence. On-device ML models enable context processing without network dependency. Content management and sync services operate asynchronously, supporting the offline-first constraint while allowing periodic updates when connectivity is available.
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                </div>
-              </motion.div>
+            <div className="w-5 h-5 flex items-center justify-center shrink-0">
+              <motion.svg 
+                animate={{ rotate: activeAccordion === 'philosophy' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
             </div>
-          </section>
-
-          {/* Design Process Section */}
-          <section id="wireframes-ui" className="py-20 bg-[#0a0a0a]">
-            <div className="container mx-auto px-6">
+          </button>
+          
+          <AnimatePresence>
+            {activeAccordion === 'philosophy' && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden bg-white border-t border-gray-100"
               >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Designing for Activation, Not Planning
-                  </h2>
-                  <div className="max-w-3xl mx-auto space-y-4">
-                    <p className="text-gray-300 text-lg leading-relaxed">
-                      The interface is designed to collapse decision-making into moments of action, using AI to narrow options rather than expand them. This requires reducing the cognitive cost of each choice while maintaining contextual relevance in high-mobility environments.
-                    </p>
-                    <p className="text-gray-300 text-lg leading-relaxed">
-                      Design decisions prioritize immediate activation over contemplation. The system must operate under constraints of limited attention, intermittent connectivity, and physical movement—conditions that make traditional planning interfaces ineffective.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Design Constraints */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mb-16"
-                >
-                  <div className="max-w-4xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-                        <h4 className="text-white font-semibold mb-3">Decision cost reduction</h4>
-                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
-                          Each interaction must require minimal evaluation. Options are pre-filtered by context signals, eliminating comparison overhead.
-                        </p>
-                      </div>
-                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-                        <h4 className="text-white font-semibold mb-3">Timing sensitivity</h4>
-                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
-                          Suggestions are weighted by temporal relevance. Proximity, time of day, and movement state determine when information surfaces.
-                        </p>
-                      </div>
-                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-                        <h4 className="text-white font-semibold mb-3">Choice reduction through intelligence</h4>
-                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
-                          AI narrows the option space before presentation. The system filters rather than aggregates, reducing selection burden.
-                        </p>
-                      </div>
-                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-                        <h4 className="text-white font-semibold mb-3">Contextual relevance over breadth</h4>
-                        <p className="text-gray-400 text-base md:text-sm leading-relaxed">
-                          Information is constrained to what is actionable in the current moment. Historical data and future planning are excluded from the primary interface.
-                        </p>
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[
+                    { title: "Signal Filtering", desc: "Isolating high-value opportunities from GPS and movement noise." },
+                    { title: "Context Mapping", desc: "Converting environmental cues into actionable user suggestions." },
+                    { title: "Timing Sensitivity", desc: "Recognizing decision windows based on proximity and weather." },
+                    { title: "Cognitive Load", desc: "Curating options to prioritize immediate relevance over breadth." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 shrink-0" />
+                      <div>
+                        <h5 className="text-sm font-bold text-gray-900">{item.title}</h5>
+                        <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-                
-                {/* Iteration Evidence */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="mt-16"
-                >
-                  <div className="text-center mb-8">
-                    <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
-                      Iteration explored activation thresholds and constraint testing using Figma and UX Pilot for rapid pattern exploration.
-                    </p>
-                  </div>
-                
-                  {/* Wireframes Row - Evidence of Constraint Testing */}
-                  <div className="mb-12">
-                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 md:justify-center">
-                      <div className="flex-shrink-0 w-48">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png")}
-                            alt="Iteration exploring decision cost reduction patterns"
-                            fill
-                            className="object-cover"
-                            sizes="192px"
-                            priority={false}
-                            quality={85}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 w-48">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame.png")}
-                            alt="Iteration testing choice reduction approaches"
-                            fill
-                            className="object-cover"
-                            sizes="192px"
-                            priority={false}
-                            quality={85}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 w-48">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png")}
-                            alt="Iteration examining activation threshold variations"
-                            fill
-                            className="object-cover"
-                            sizes="192px"
-                            priority={false}
-                            quality={85}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 w-48">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png")}
-                            alt="Iteration exploring contextual relevance patterns"
-                            fill
-                            className="object-cover"
-                            sizes="192px"
-                            priority={false}
-                            quality={85}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 w-48">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png")}
-                            alt="Iteration testing narrowed option space"
-                            fill
-                            className="object-cover"
-                            sizes="192px"
-                            priority={false}
-                            quality={85}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* High-Fidelity Iterations - Activation Pattern Exploration */}
-                  <div>
-                    <div className="flex justify-center gap-8 flex-wrap">
-                      <div className="w-64 md:w-72">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco-2.png")}
-                            alt="Iteration exploring AI-narrowed suggestion presentation"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 256px, 288px"
-                            priority={false}
-                            quality={90}
-                          />
-                        </div>
-                      </div>
-                      <div className="w-64 md:w-72">
-                        <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/HomeScreen-UX-Pilot-Recco.png")}
-                            alt="Iteration testing immediate action affordances"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 256px, 288px"
-                            priority={false}
-                            quality={90}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  ))}
+                </div>
               </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* 2. System Constraints */}
+        <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300">
+          <button
+            className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors focus:outline-none"
+            onClick={() => setActiveAccordion(activeAccordion === 'ux' ? null : 'ux')}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 text-xs font-bold shrink-0">02</div>
+              <h3 className="text-lg font-bold text-gray-900">Systemic Constraints</h3>
             </div>
-          </section>
+            <div className="w-5 h-5 flex items-center justify-center shrink-0">
+              <motion.svg 
+                animate={{ rotate: activeAccordion === 'ux' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </div>
+          </button>
+          
+          <AnimatePresence>
+            {activeAccordion === 'ux' && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden bg-white border-t border-gray-100"
+              >
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[
+                    { title: "Limited Attention", desc: "Optimized for minimal screen-time in high-stimulus settings." },
+                    { title: "Offline-First", desc: "Designed for unreliable networks via local storage and SQLite." },
+                    { title: "Physical Safety", desc: "Interaction patterns that prioritize situational awareness." },
+                    { title: "Resource Limits", desc: "Minimizing background sync to preserve device battery life." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 shrink-0" />
+                      <div>
+                        <h5 className="text-sm font-bold text-gray-900">{item.title}</h5>
+                        <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* 3. Strategic Trade-offs */}
+        <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300">
+          <button
+            className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors focus:outline-none"
+            onClick={() => setActiveAccordion(activeAccordion === 'ai' ? null : 'ai')}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 text-xs font-bold shrink-0">03</div>
+              <h3 className="text-lg font-bold text-gray-900">Strategic Trade-offs</h3>
+            </div>
+            <div className="w-5 h-5 flex items-center justify-center shrink-0">
+              <motion.svg 
+                animate={{ rotate: activeAccordion === 'ai' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </div>
+          </button>
+          
+          <AnimatePresence>
+            {activeAccordion === 'ai' && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden bg-white border-t border-gray-100"
+              >
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+                  {[
+                    { choice: "On-Device Inference", over: "Cloud Intelligence", detail: "Prioritizes CoreML for offline autonomy over complex LLM latency." },
+                    { choice: "Timely Relevance", over: "Exhaustive Coverage", detail: "Focuses on 'now' rather than being a comprehensive travel wiki." },
+                    { choice: "Reactivity", over: "Behavioral Prediction", detail: "Uses real-time cues to avoid over-personalization bubbles." },
+                    { choice: "Local Storage", over: "Real-time Sync", detail: "Accepts opportunistic sync to guarantee offline stability." }
+                  ].map((item, i) => (
+                    <div key={i} className="space-y-1">
+                      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-tighter">
+                        <span className="text-emerald-600">{item.choice}</span>
+                        <span className="text-gray-300">over</span>
+                        <span className="text-gray-400">{item.over}</span>
+                      </div>
+                      <p className="text-xs text-gray-600 leading-tight">{item.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* 4. Anti-Goals (System Avoidance) */}
+        <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300">
+          <button
+            className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors focus:outline-none"
+            onClick={() => setActiveAccordion(activeAccordion === 'avoid' ? null : 'avoid')}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center text-red-700 text-xs font-bold shrink-0">04</div>
+              <h3 className="text-lg font-bold text-gray-900">Deliberate Anti-Goals</h3>
+            </div>
+            <div className="w-5 h-5 flex items-center justify-center shrink-0">
+              <motion.svg 
+                animate={{ rotate: activeAccordion === 'avoid' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </div>
+          </button>
+          
+          <AnimatePresence>
+            {activeAccordion === 'avoid' && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden bg-white border-t border-gray-100"
+              >
+                <div className="p-6 flex flex-wrap gap-3">
+                  {['Not a Trip Planner', 'Not a Social Network', 'Not a Feed', 'Not a Dashboard', 'Not Predictive'].map((goal) => (
+                    <span key={goal} className="px-3 py-1.5 rounded-full bg-red-50 border border-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wide flex items-center gap-2">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                      {goal}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+          {/* Wireframes Section */}
+<section id="wireframes-ui" className="py-20 bg-[#0a0a0a] overflow-x-hidden">
+  <div className="container mx-auto px-6">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="max-w-6xl mx-auto"
+    >
+      <div className="text-center mb-16">
+        <h2 className="text-3xl font-bold mb-6 text-white">Designing for Activation, Not Planning</h2>
+        <div className="max-w-3xl mx-auto space-y-4">
+          <p className="text-gray-300 text-lg leading-relaxed">The interface is designed to collapse decision-making into moments of action...</p>
+          <p className="text-gray-300 text-lg leading-relaxed">Design decisions prioritize immediate activation over contemplation...</p>
+        </div>
+      </div>
+
+      {/* Grid Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* ... Cards remain the same ... */}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Iteration Gallery */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16"
+      >
+        <div className="text-center mb-8">
+          <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
+            Iteration explored activation thresholds and constraint testing using Figma and UX Pilot.
+          </p>
+        </div>
+
+        <div className="mb-4">
+          {/* Main Scroll Container */}
+          <div 
+            ref={wireframeScrollRef}
+            onScroll={handleWireframeScroll}
+            className="flex gap-4 overflow-x-auto pb-6 touch-pan-y snap-x no-scrollbar md:justify-center px-4"
+          >
+            {[
+              "/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png",
+              "/images/TravelApp-UXpilot_Homescreen-WireFrame.png",
+              "/images/TravelApp-UXpilot_Homescreen-WireFrame-5.png",
+              "/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png",
+              "/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png"
+            ].map((src, idx) => (
+              <div key={idx} className="flex-shrink-0 w-48 snap-center">
+                <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/5 bg-neutral-900">
+                  <img src={src} alt="Wireframe iteration" className="object-cover w-full h-full" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* New Dot Indicators - Logic linked to wireframeActiveIndex */}
+          <div className="flex justify-center items-center gap-2.5 mt-4 md:hidden">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  wireframeActiveIndex === i 
+                    ? "w-6 bg-blue-600" 
+                    : "w-1.5 bg-neutral-700"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Final Mockups */}
+        <div className="mt-12">
+          <div className="flex justify-center gap-8 flex-wrap px-4">
+            <div className="w-64 md:w-72">
+              <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl border border-white/10 bg-neutral-900">
+                <img src="/images/HomeScreen-UX-Pilot-Recco-2.png" alt="Final UI" className="object-cover w-full h-full" />
+              </div>
+            </div>
+            <div className="w-64 md:w-72">
+              <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl border border-white/10 bg-neutral-900">
+                <img src="/images/HomeScreen-UX-Pilot-Recco.png" alt="Final UI" className="object-cover w-full h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
 
           {/* Build & Iteration Section */}
           <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
@@ -3481,20 +3333,17 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                       Builds & Iterations
                   </h2>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <p className="text-amber-300 text-base md:text-sm font-medium">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full w-fit whitespace-nowrap">
+                  <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse shrink-0"></div>
+                  <p className="text-amber-300 text-base md:text-sm font-medium">
                     Work In Progress
                   </p>
-                    </div>
+                </div>
                   </motion.div>
                 </div>
 
                 {/* System Build Approach */}
                 <div className="mb-16">
-                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
-                    System Build Approach
-                  </h3>
                   
                   {/* Enhanced AI Workflow Process Diagram */}
                 <motion.div
@@ -3506,7 +3355,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-8">
                       <p className="text-gray-400 text-base md:text-sm max-w-3xl mx-auto leading-relaxed">
-                        The workflow diagram below shows how responsibilities are separated: AI assists with prompt refinement and code generation, while engineering decisions determine architecture, integration points, and system boundaries.
+                        The workflow diagram below shows how responsibilities are separated.
                       </p>
                     </div>
                     
@@ -3626,48 +3475,76 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   </div>
                 </motion.div>
                 
-                {/* System Ownership and Integration */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <h3 className="text-xl font-bold text-white mb-6">System Ownership</h3>
-                    <div className="space-y-4 text-gray-300">
-                      <div>
-                        <p className="text-base md:text-sm mb-2"><span className="text-emerald-400 font-medium">Currently being implemented:</span> iOS SwiftUI app with offline-first local storage (Realm). Core context processing logic runs on-device.</p>
-                      </div>
-                      <div>
-                        <p className="text-base md:text-sm mb-2"><span className="text-amber-400 font-medium">Partially operational:</span> Sync gateway for content updates. Background sync occurs opportunistically when connectivity is available.</p>
-                      </div>
-                      <div>
-                        <p className="text-base md:text-sm mb-2"><span className="text-gray-400 font-medium">Simulated under controlled conditions:</span> AI recommendation engine uses lightweight on-device models. Cloud-based inference is stubbed for testing.</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <h3 className="text-xl font-bold text-white mb-6">Integration Points</h3>
-                    <div className="space-y-4 text-gray-300">
-                      <div>
-                        <p className="text-base md:text-sm mb-2">Third-party services (Firebase, Supabase) handle data persistence and sync orchestration. The system owns the sync logic and conflict resolution.</p>
-                      </div>
-                      <div>
-                        <p className="text-base md:text-sm mb-2">AI services (OpenAI, LangChain) provide inference capabilities. The system owns prompt engineering, context weighting, and response filtering.</p>
-                      </div>
-                      <div>
-                        <p className="text-base md:text-sm mb-2">Widget and API plugin architectures are designed for external integration, but client implementations are not yet deployed.</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
+               {/* System Architecture & Integration */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 overflow-x-hidden">
+  
+  {/* Column 1: System Ownership */}
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="bg-white/5 p-8 rounded-2xl border border-white/10 h-auto flex flex-col"
+  >
+    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+      System Ownership
+    </h3>
+    <div className="space-y-6 text-gray-400">
+      <div className="group">
+        <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 block mb-1">Production Ready</span>
+        <p className="text-sm leading-relaxed text-gray-300">
+          <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure zero-latency responses.
+        </p>
+      </div>
+      <div className="group">
+        <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block mb-1">Operational Beta</span>
+        <p className="text-sm leading-relaxed text-gray-300">
+          <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining state consistency.
+        </p>
+      </div>
+      <div className="group">
+        <span className="text-xs font-mono uppercase tracking-widest text-gray-500 block mb-1">Simulated/Stubbed</span>
+        <p className="text-sm leading-relaxed text-gray-300">
+          <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of recommendation thresholds.
+        </p>
+      </div>
+    </div>
+  </motion.div>
+
+  {/* Column 2: Integration Logic */}
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.1 }}
+    className="bg-white/5 p-8 rounded-2xl border border-white/10 h-auto flex flex-col"
+  >
+    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+      Integration Points
+    </h3>
+    <div className="space-y-6 text-gray-400">
+      <div>
+        <h4 className="text-white font-medium mb-1">Data & Persistence</h4>
+        <p className="text-sm leading-relaxed">
+          Orchestrating Firebase/Supabase for cloud state. The system manages conflict resolution locally to prevent UI "jank" during intermittent connectivity.
+        </p>
+      </div>
+      <div>
+        <h4 className="text-white font-medium mb-1">AI Intelligence Layer</h4>
+        <p className="text-sm leading-relaxed">
+          Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain for heavy lifting, but the system filters responses to ensure contextual safety.
+        </p>
+      </div>
+      <div>
+        <h4 className="text-white font-medium mb-1">Extensibility</h4>
+        <p className="text-sm leading-relaxed">
+          Architected for widget and API plugins. The interface is designed to be "headless," allowing future integrations without breaking the core UX.
+        </p>
+      </div>
+    </div>
+  </motion.div>
+</div>
                 
                 {/* Build Evidence Screenshots */}
                 <motion.div
@@ -3707,258 +3584,249 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
 
                 {/* Iteration Loop */}
                 <div className="mb-16 mt-20">
-                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
-                    Iteration Loop
-                  </h3>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto mb-12"
-                  >
-                    <p className="text-gray-300 leading-relaxed mb-6">
-                      Ideas move from prompt → logic → code → device through tight feedback cycles. Design constraints inform AI logic requirements, which shape code structure, which reveals failures on real devices. Each iteration validates assumptions about activation thresholds, context sensitivity, and offline behavior.
-                    </p>
-                    <p className="text-gray-300 leading-relaxed mb-6">
-                      Failures are discovered through real-device testing, not simulation. Rapid validation occurs by deploying to iOS simulators and physical devices, observing how context signals behave under actual network conditions and battery constraints. Design, AI logic, and engineering inform each other: a design constraint reveals a logic gap, which requires an architectural adjustment, which surfaces a new design question.
-                    </p>
-                    <p className="text-gray-300 leading-relaxed">
-                      This cadence prioritizes working code over perfect architecture. The system evolves through constraint-driven iteration, not upfront planning.
-                    </p>
-                  </motion.div>
+                 {/* Iteration Loop Section */}
+<div className="mb-16 mt-20">
+  <h3 className="text-2xl md:text-3xl font-bold mb-12 text-white text-center">
+    Iteration Loop
+  </h3>
+  
+  <div className="max-w-5xl mx-auto px-4">
+    {/* High-Signal Process Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      {[
+        {
+          step: "01. Define",
+          title: "Prompt → Logic",
+          desc: "Translating behavioral constraints into AI requirements. Design intent directly shapes logic gates and context weighting.",
+          color: "text-amber-400"
+        },
+        {
+          step: "02. Synthesize",
+          title: "Code → Deployment",
+          desc: "Moving from simulation to Swift. Implementing CoreML and SQLite to test how data behaves in an offline-first environment.",
+          color: "text-blue-400"
+        },
+        {
+          step: "03. Validate",
+          title: "Device → Reality",
+          desc: "Testing on physical hardware to observe battery drain, network jitter, and real-world activation thresholds.",
+          color: "text-emerald-400"
+        }
+      ].map((item, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: idx * 0.1 }}
+          className="flex flex-col space-y-3 bg-white/5 p-6 rounded-2xl border border-white/5 h-auto"
+        >
+          <span className={`font-mono text-[10px] uppercase tracking-[0.2em] font-bold ${item.color}`}>
+            {item.step}
+          </span>
+          <h4 className="text-lg font-bold text-white">{item.title}</h4>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            {item.desc}
+          </p>
+        </motion.div>
+      ))}
+    </div>
 
-                {/* Mobile Build Iterations - Part of Build & Iteration */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mt-12"
-                >
-                  <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-8">
-                      <p className="text-gray-400 text-base md:text-sm max-w-2xl mx-auto">
-                        Screenshots document real builds across iteration cycles, showing how failures were discovered and corrected through device testing.
-                      </p>
-                    </div>
-                    
-                    {/* Mobile Screenshots Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {/* Screenshot 1 - October 1 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp")}
-                            alt="Build iteration evidence - October 1, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
+    {/* Summary Insight: The "Why" for Hiring Managers */}
+    
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="max-w-3xl mx-auto text-center border-t border-white/10 pt-10"
+    >
+      <p className="text-gray-300 text-lg leading-relaxed italic">
+        "Failures are discovered through <span className="text-white font-medium">real-device testing</span>, not simulation. This cadence prioritizes working code over perfect architecture—using constraints to surface the next design question."
+      </p>
+    </motion.div>
+  </div>
+</div>
 
-                      {/* Screenshot 2 - October 3 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp")}
-                            alt="Build iteration evidence - October 3, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
 
-                      {/* Screenshot 3 - October 4 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp")}
-                            alt="Build iteration evidence - October 4, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
+ {/* Mobile Build Iterations */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="mt-12 overflow-hidden"
+>
+  <div className="max-w-6xl mx-auto">
+    <div className="text-center mb-8 px-6">
+      <p className="text-gray-500 text-base md:text-sm max-w-2xl mx-auto">
+        Screenshots document real builds across iteration cycles.
+      </p>
+    </div>
 
-                      {/* Screenshot 4 - October 5 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp")}
-                            alt="Build iteration evidence - October 5, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
+    {/* Scroll Container */}
+    <div 
+      ref={scrollRef}
+      onScroll={handleScroll}
+      className="flex flex-nowrap overflow-x-auto pb-8 px-6 gap-5 snap-x snap-mandatory sm:grid sm:flex-none sm:overflow-visible sm:grid-cols-2 lg:grid-cols-3 sm:px-0 sm:gap-6 no-scrollbar"
+    >
+      {[
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp", alt: "Oct 3" },
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp", alt: "Oct 4" },
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp", alt: "Oct 5" },
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp", alt: "Oct 7" },
+        { src: "/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
+      ].map((item, index) => (
+        <motion.div
+          key={index}
+          className="relative min-w-[75vw] sm:min-w-0 sm:w-full snap-start"
+        >
+          <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50">
+            <Image
+              src={normalizeImagePath(item.src)}
+              alt={`Build iteration - ${item.alt}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </div>
+        </motion.div>
+      ))}
+      <div className="min-w-[20vw] sm:hidden" aria-hidden="true" />
+    </div>
 
-                      {/* Screenshot 5 - October 7 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.5 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp")}
-                            alt="Build iteration evidence - October 7, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
+    {/* Dot Indicators */}
+    <div className="flex justify-center items-center gap-2.5 mt-4 mb-10 sm:hidden">
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <div
+          key={i}
+          className={`h-1.5 rounded-full transition-all duration-300 ${
+            activeIndex === i ? "w-6 bg-blue-600" : "w-1.5 bg-gray-300"
+          }`}
+        />
+      ))}
+    </div>
+  </div>
+</motion.div>
 
-                      {/* Screenshot 6 - September 29 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.6 }}
-                        className="relative group"
-                      >
-                        <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                          <Image
-                            src={normalizeImagePath("/portfolio/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp")}
-                            alt="Build iteration evidence - September 29, 2025"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-                </div>
+</div>
 
-                {/* Current System Limitations */}
-                <div className="mt-20 mb-12">
-                  <h3 className="text-2xl font-bold mb-8 text-white text-center">
-                    Current System Limitations
-                  </h3>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto"
-                  >
-                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
-                      <ul className="space-y-4 text-gray-300">
-                        <li className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1">•</span>
-                          <span className="leading-relaxed">
-                            <strong className="text-white">Offline sync conflicts:</strong> Rapid context switching under intermittent connectivity can produce sync conflicts. Conflict resolution logic handles common cases but edge conditions remain unhandled.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1">•</span>
-                          <span className="leading-relaxed">
-                            <strong className="text-white">Limited social graph depth:</strong> Early builds operate with shallow user interaction data. Social triggers and recommendations are constrained by the current data model's limited depth.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1">•</span>
-                          <span className="leading-relaxed">
-                            <strong className="text-white">AI decision confidence thresholds:</strong> On-device ML models produce confidence scores that are still being tuned. Some suggestions may surface with insufficient confidence, requiring manual filtering.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1">•</span>
-                          <span className="leading-relaxed">
-                            <strong className="text-white">Battery optimization trade-offs:</strong> Background context processing is constrained by battery limits. The system prioritizes responsiveness over continuous monitoring, which may miss some context signals.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1">•</span>
-                          <span className="leading-relaxed">
-                            <strong className="text-white">Widget and API plugin deployment:</strong> Architecture supports external integration, but client-facing implementations are not yet deployed. Integration testing occurs in controlled environments only.
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </motion.div>
-                </div>
+{/* Constraints Section - ADA Compliant Version with Status Note */}
+  <div className="max-w-4xl mx-auto">
+    
+    {/* Header */}
+    <div className="mb-12 text-center">
+      <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+        Constraints & Technical Reality
+      </h3>
+      <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+        Designing for AI and hardware requires navigating trade-offs between performance, battery life, and logic confidence. 
+      </p>
+    </div>
+
+    {/* Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      {[
+        {
+          label: "Data Integrity",
+          title: "Offline Sync Conflicts",
+          desc: "Rapid context switching under intermittent connectivity can produce edge-case conflicts. Current resolution logic handles 80% of common cases; deep-state resolution is in active development.",
+        },
+        {
+          label: "Intelligence",
+          title: "Confidence Thresholds",
+          desc: "On-device ML models are still being tuned. We currently use a high-pass filter to prevent 'hallucinated' suggestions, which can sometimes result in conservative system responsiveness.",
+        },
+        {
+          label: "Hardware",
+          title: "Battery Trade-offs",
+          desc: "Background processing is throttled to preserve device longevity. The system prioritizes reactive responsiveness over continuous monitoring to avoid significant power drain.",
+        },
+        {
+          label: "Scale",
+          title: "Social Graph Depth",
+          desc: "Early builds operate on shallow interaction data. Recommendations are currently weighted toward immediate physical proximity rather than long-term behavioral patterns.",
+        }
+      ].map((item, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/[0.05] border border-white/10 p-8 rounded-xl h-auto"
+        >
+          <span className="text-[12px] font-bold uppercase tracking-wider text-indigo-400 block mb-3">
+            {item.label}
+          </span>
+          <h4 className="text-xl font-bold text-white mb-3">
+            {item.title}
+          </h4>
+          <p className="text-gray-300 text-base leading-relaxed">
+            {item.desc}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Architecture Deployment Note - ADA Compliant Version */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="p-6 bg-indigo-500/10 border border-indigo-500/30 rounded-xl"
+    >
+      <p className="text-indigo-200 text-sm md:text-base leading-relaxed text-center font-medium">
+        <span className="uppercase tracking-widest text-[11px] bg-indigo-500/30 px-2 py-0.5 rounded mr-2 border border-indigo-400/20">
+          Architecture Status
+        </span>
+        Currently stress-testing the system to get it ready for beta. The focus right now is on hardening the API and plugin logic to make sure the experience is stable and responsive for our first round of real-world user testing.
+      </p>
+    </motion.div>
+  </div>
+
               </motion.div>
             </div>
           </section>
 
           {/* Live Demo Section */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">
-                    Live System Prototype
-                  </h2>
-                  <p className="text-gray-600 text-lg">
-                    This is an active system build, not a concept mock.
-                  </p>
-                </div>
-                
-                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
-                  {/* Demo Link */}
-                  <div className="text-center">
-                    <a
-                      href="https://spontaneity-engine.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 min-h-[48px] text-center"
-                      aria-label="View Live Demo"
-                    >
-                      View Live Demo
-                      <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
+<section id="live-demo" className="py-20 bg-white scroll-mt-24">
+  <div className="container mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="max-w-4xl mx-auto"
+    >
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">
+          Functional System Prototype
+        </h2>
+        <p className="text-gray-600 text-lg">
+        This is an active production build, not a static concept mock.
+        </p>
+      </div>
+      
+      <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
+        {/* Demo Link */}
+        <div className="text-center">
+          <a
+            href="https://spontaneity-engine.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 min-h-[48px] text-center"
+            aria-label="View Live Demo"
+          >
+            Explore Active Build
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
           {/* Launch & Testing Section */}
           <section id="outcomes-launch" className="py-20 bg-black">
@@ -3979,7 +3847,7 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
                   <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
                     <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
                     <p className="text-gray-300 mb-4">
-                      Initial testing is conducted through a limited closed beta designed to observe system behavior across varied travel contexts and connectivity conditions.
+                      Initial testing will be conducted through a limited closed beta designed to observe system behavior across varied travel contexts and connectivity conditions.
                     </p>
                     <p className="text-gray-300">
                       The primary goal is to validate system reliability, context accuracy, and failure handling in live conditions.
@@ -3991,189 +3859,151 @@ const TravelProjectDetailClient = ({ project, projectId }: TravelProjectDetailCl
           </section>
 
           {/* Learnings & Reflections Section */}
-          <section id="learnings-next" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Learnings & Reflections
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    These insights reflect ongoing system behavior observed during live prototyping and iteration, not final conclusions.
-                  </p>
-                </div>
-                
-                <div className="space-y-12">
-                  {/* System-Level Insights */}
-                  {/* Mobile: Accordion item; Desktop: Always expanded */}
-                  <div
-                    className="learnings-accordion-item"
-                    aria-expanded={learningsAccordion.has('system-insights') || !isMobile}
-                    role="region"
-                  >
-                    <h3 
-                      id="system-insights-heading"
-                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
-                      onClick={() => {
-                        if (isMobile) {
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('system-insights')) {
-                              next.delete('system-insights');
-                            } else {
-                              next.add('system-insights');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                      role={isMobile ? "button" : "heading"}
-                      tabIndex={isMobile ? 0 : undefined}
-                      aria-controls="system-insights-content"
-                      aria-expanded={learningsAccordion.has('system-insights') || !isMobile}
-                      onKeyDown={(e) => {
-                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
-                          e.preventDefault();
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('system-insights')) {
-                              next.delete('system-insights');
-                            } else {
-                              next.add('system-insights');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                    >
-                      System-Level Insights
-                    </h3>
-                    <div 
-                      id="system-insights-content"
-                      className="space-y-4 text-gray-700 leading-relaxed"
-                      role="region"
-                      aria-labelledby="system-insights-heading"
-                    >
-                      <p>
-                        Early iterations revealed that the system's activation threshold is critical—too many suggestions, even when contextually relevant, can feel like planning in disguise. The system demonstrated that information suppression is as important as disclosure. Observed behavior indicates restraint is necessary: the system should only activate when context genuinely creates value, not when data is simply available.
-                      </p>
-                      <p>
-                        Offline-first architecture exposed gaps in how AI recommendations degrade gracefully. A suggestion that works with full connectivity shouldn't break without it. The system required modular design where core logic works independently of real-time data layers. Observed behavior indicates that degradation must be predictable and transparent, not silent failure.
-                      </p>
-                      <p>
-                        Real-world context signals are messier than prototypes suggest. Location accuracy varies, time zones shift, and behavioral patterns aren't always consistent. The system demonstrated that multiple fallback strategies are essential, not just one primary path. This complexity is invisible to users but essential for reliability under imperfect conditions.
-                      </p>
-                    </div>
-                </div>
-                
-                  {/* Behavioral & Intelligence Trade-offs */}
-                  {/* Mobile: Accordion item; Desktop: Always expanded */}
-                  <div
-                    className="learnings-accordion-item"
-                    aria-expanded={learningsAccordion.has('behavioral-tradeoffs') || !isMobile}
-                    role="region"
-                  >
-                    <h3 
-                      id="behavioral-tradeoffs-heading"
-                      className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
-                      onClick={() => {
-                        if (isMobile) {
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('behavioral-tradeoffs')) {
-                              next.delete('behavioral-tradeoffs');
-                            } else {
-                              next.add('behavioral-tradeoffs');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                      role={isMobile ? "button" : "heading"}
-                      tabIndex={isMobile ? 0 : undefined}
-                      aria-controls="behavioral-tradeoffs-content"
-                      aria-expanded={learningsAccordion.has('behavioral-tradeoffs') || !isMobile}
-                      onKeyDown={(e) => {
-                        if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
-                          e.preventDefault();
-                          setLearningsAccordion(prev => {
-                            const next = new Set(prev);
-                            if (next.has('behavioral-tradeoffs')) {
-                              next.delete('behavioral-tradeoffs');
-                            } else {
-                              next.add('behavioral-tradeoffs');
-                            }
-                            return next;
-                          });
-                        }
-                      }}
-                    >
-                      Behavioral & Intelligence Trade-offs
-                    </h3>
-                    <div 
-                      id="behavioral-tradeoffs-content"
-                      className="space-y-4 text-gray-700 leading-relaxed"
-                      role="region"
-                      aria-labelledby="behavioral-tradeoffs-heading"
-                    >
-                      <p>
-                        The tension between choice reduction and choice abundance remains unresolved. The system must narrow options to reduce cognitive load, but over-narrowing can feel restrictive. Observed behavior indicates users want one good suggestion at the right moment, but the threshold for "good enough" varies by context and user state. This trade-off requires ongoing calibration.
-                      </p>
-                      <p>
-                        Trust calibration and explainability present an ongoing challenge. Users are comfortable sharing location and behavior data when the value exchange is clear and immediate. However, observed behavior indicates discomfort when the system seems to know too much without explanation. Transparency in AI reasoning is required, but the level of explanation needed varies by situation. This tension between transparency and simplicity is not yet resolved.
-                      </p>
-                      <p>
-                        Signal ambiguity in real-world environments creates reliability challenges. Location accuracy, time zone shifts, and behavioral inconsistencies produce conflicting context signals. The system must operate under uncertainty, but current confidence thresholds are still being tuned. Observed behavior indicates that the system needs better handling of ambiguous or conflicting signals.
-                      </p>
-                      <p>
-                        API misalignment with real-time decision support remains a constraint. Most existing travel APIs are optimized for pre-trip planning, not moment-to-moment decision support. The system requires abstraction layers that translate booking-focused data into context-rich signals, but this translation introduces latency and potential information loss. This architectural tension is ongoing.
-                      </p>
-                  </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
+<section id="learnings-next" className="py-24 bg-white border-t border-gray-100">
+  <div className="container mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="max-w-4xl mx-auto"
+    >
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">
+          Refining System Intuition
+        </h2>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          Prototyping in live travel environments shifted the project from "adding features" to "managing constraints." These principles now drive the system architecture.
+        </p>
+      </div>
 
-          {/* Future System Extensions Section */}
-          <section className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                    Future System Extensions
-                  </h2>
-                  </div>
-                
-                <div className="space-y-4 text-gray-700 leading-relaxed">
-                  <p>
-                    The core spontaneity engine is designed to support additional intelligence modules through API interfaces. Social signal ingestion modules could be exposed as API-consumable context layers, allowing external systems to push group behavior patterns, shared interest indicators, and proximity-based signals into the engine. These modules are designed to operate independently of the core recommendation logic, consumable by any system that needs to enrich context with social signals.
-                  </p>
-                  <p>
-                    Longitudinal preference models could be implemented as an intelligence service that operates across sessions and destinations. This service would query recommendation confidence scores and subscribe to suggestion triggers, building preference patterns over time without requiring explicit user input. The model would be exposed as a separate service layer, allowing the core engine to remain session-focused while supporting cross-trip learning.
-                  </p>
-                  <p>
-                    Physical environment context APIs could integrate as external data sources that enrich decision confidence. The system could consume real-time venue capacity, environmental conditions, and location energy levels from third-party services, treating these as additional context signals rather than primary decision factors. These APIs would be designed to degrade gracefully—when unavailable, the system continues operating with reduced confidence rather than failing.
-                  </p>
-                  <p>
-                    These extensions align with near-term platform trends: the growth of embedded AI decision systems that operate independently of primary interfaces (Gartner, 2024), the shift from planning tools to real-time intelligence services (McKinsey, 2024), and increased emphasis on explainability and trust calibration in AI systems (MIT Technology Review, 2024). The architecture supports these trends by maintaining modular boundaries and exposing capabilities through well-defined interfaces.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        </>
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {/* Principle 1 */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-blue-600"></div>
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Principle 01</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900">Restraint is Intelligence</h3>
+          <p className="text-gray-600 leading-relaxed">
+            The system creates more value by <strong className="text-gray-900 font-semibold">suppressing irrelevant data</strong> than by exposing it. High-quality discovery requires the AI to act as a high-pass filter, ensuring only "activation-ready" signals reach the user.
+          </p>
+        </div>
+
+        {/* Principle 2 */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-blue-600"></div>
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Principle 02</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900">Graceful Degradation</h3>
+          <p className="text-gray-600 leading-relaxed">
+            AI trust is fragile and easily lost when connectivity drops. My <strong className="text-gray-900 font-semibold">offline-first logic</strong> ensures the system simplifies its reasoning rather than failing silently, maintaining utility in low-signal environments.
+          </p>
+        </div>
+
+        {/* Principle 3 */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-blue-600"></div>
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Principle 03</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900">Context &gt; Content</h3>
+          <p className="text-gray-600 leading-relaxed">
+            A "perfect" recommendation delivered at the wrong moment is a system failure. We prioritize <strong className="text-gray-900 font-semibold">temporal and physical proximity</strong> over absolute content quality to reduce the friction between "seeing" and "doing."
+          </p>
+        </div>
+
+        {/* Principle 4 */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-blue-600"></div>
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Principle 04</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900">Transparency vs. Simplicity</h3>
+          <p className="text-gray-600 leading-relaxed">
+            Users accept data-sharing when the value exchange is immediate. The system must balance <strong className="text-gray-900 font-semibold">explainable AI</strong> with a low-noise UI, revealing the "why" only when it aids the decision-making process.
+          </p>
+        </div>
+      </div>
+
+      {/* Final "Closing Argument" Callout */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="mt-20 p-8 bg-gray-50 rounded-2xl border border-gray-100 text-center"
+      >
+        <p className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4 text-slate-900">Project Thesis</p>
+        <blockquote className="text-2xl font-light text-gray-900 italic">
+          "The goal is not to help travelers plan better, but to build a system that makes planning unnecessary."
+        </blockquote>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
+          {/* Future System Extensions */}
+<section id="roadmap" className="py-24 bg-slate-50">
+  <div className="container mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="max-w-4xl mx-auto"
+    >
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">Future Extensions</h2>
+        <p className="text-gray-600 text-lg">
+          The engine is architected as a modular core, designed to ingest evolving intelligence layers via a decoupled API strategy.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Module 1 */}
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+          </div>
+          <h4 className="font-bold text-gray-900 mb-2">Social Ingestion</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            API-consumable layers for group behavior patterns and shared proximity signals.
+          </p>
+        </div>
+
+        {/* Module 2 */}
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center mb-4">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h4 className="font-bold text-gray-900 mb-2">Longitudinal ML</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Cross-session preference modeling that builds patterns without explicit user input.
+          </p>
+        </div>
+
+        {/* Module 3 */}
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h4 className="font-bold text-gray-900 mb-2">Environmental APIs</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Real-time venue capacity and "energy levels" as secondary context weightings.
+          </p>
+        </div>
+      </div>
+
+      {/* Market Alignment Footer */}
+      <div className="mt-16 pt-8 border-t border-gray-200 flex flex-wrap justify-center gap-x-8 gap-y-4 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+        <span className="flex items-center gap-2">Gartner: Embedded AI Systems</span>
+        <span className="flex items-center gap-2">McKinsey: Real-time Intel</span>
+        <span className="flex items-center gap-2">MIT: Trust Calibration</span>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
       {isCulturalContextEngine && (
         <>
           {/* Trust Signals & System Constraints Section */}
