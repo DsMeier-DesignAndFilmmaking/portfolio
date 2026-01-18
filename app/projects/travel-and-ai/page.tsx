@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import SystemsGraphic from "@/components/SystemsGraphic";
 
-
+import { SpontaneityHero } from './SpontaneityHero'; // Import the new file
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -123,134 +123,117 @@ export default function AISandboxPage() {
 
   return (
     <main className="bg-white text-black overflow-hidden">
+      
       <AnimatePresence mode="wait">
         {isTransitioning && <PageTransitionOverlay key="page-transition" />}
       </AnimatePresence>
 
-      {/* Navigation */}
-      <motion.nav 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isNavbarWhite 
-            ? 'bg-white' 
-            : 'bg-transparent'
-        } ${
-          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
-        }`}
+    {/* Navigation */}
+<motion.nav 
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.4 }}
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    isNavbarWhite ? 'bg-white' : 'bg-transparent'
+  } ${
+    atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'lg:translate-y-0 -translate-y-full' : 'translate-y-0'
+  }`}
+>
+  <div className="container mx-auto px-6 relative z-20">
+    <div className="flex justify-between items-center">
+      
+      {/* Back Home Button Wrapper - Removed py-4 to give button full control */}
+    <div className="flex items-center">
+      <button
+        onClick={handleBackHome}
+        /* Added w-fit and h-fit to collapse the hit area to the content */
+        className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4"
+        aria-label="Return to home page"
       >
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center">
-            {/* Back Home Button */}
-            <div className="py-4 flex items-center gap-4">
-              <button
-                onClick={handleBackHome}
-                className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                aria-label="Return to home page"
-              >
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
-                  alt="Daniel Meier"
-                  width={150}
-                  height={37}
-                  className={`h-9 w-auto transition-all duration-500 ${
-                    isNavbarWhite ? 'brightness-0' : 'brightness-0'
-                  }`}
-                />
-              </button>
-              <div className={`h-6 w-px transition-colors duration-500 ${
-                isNavbarWhite ? 'bg-black/30' : 'bg-gray-700/30'
-              }`}></div>
-              <span className={`text-sm font-medium transition-colors duration-500 ${
-                isNavbarWhite ? 'text-black/70' : 'text-gray-700/70'
-              }`}>Design Work</span>
-            </div>
+        <Image
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
+          alt="Daniel Meier"
+          width={150}
+          height={37}
+          priority
+          /* h-9 is 36px, roughly matching your aspect ratio for the signature */
+          className={`h-9 w-auto transition-all duration-500 block ${
+            isNavbarWhite ? 'brightness-0' : 'brightness-0'
+          }`}
+        />
+      </button>
+    </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className={`md:hidden pl-4 py-2 rounded-lg flex items-center justify-end transition-colors duration-500 ${
-                isNavbarWhite ? 'text-black' : 'text-gray-700'
-              }`}
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:block rounded-lg px-6 py-4">
-              <nav className="flex items-center space-x-8">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-black hover:text-blue-400' 
-                      : 'text-gray-700 hover:text-blue-400'
-                  }`}
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-black hover:text-blue-400' 
-                      : 'text-gray-700 hover:text-blue-400'
-                  }`}
-                >
-                  Client Work
-                </Link>
-              </nav>
-            </div>
-          </div>
+      {/* Mobile Menu Button - Hamburger */}
+      <button
+        onClick={toggleMobileMenu}
+        className={`lg:hidden pl-4 py-2 rounded-lg flex items-center justify-end transition-colors duration-500 ${
+          isNavbarWhite ? 'text-black' : 'text-gray-700'
+        }`}
+        aria-label="Toggle mobile menu"
+      >
+        <div className="w-6 h-5 relative flex flex-col justify-between items-center">
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </div>
+      </button>
 
-        {/* Mobile Menu */}
-        <AnimatePresence mode="wait">
-          {isMobileMenuOpen && (
-            <motion.div
-              key="mobile-menu"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className={`md:hidden absolute top-full left-0 right-0 mt-2 backdrop-blur-sm rounded-lg shadow-lg mx-6 transition-colors duration-500 ${
-                isNavbarWhite ? 'bg-white/95' : 'bg-black/95'
-              }`}
-            >
-              <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-gray-600 hover:text-gray-900' 
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-[11pt] transition-colors duration-500 ${
-                    isNavbarWhite 
-                      ? 'text-gray-600 hover:text-gray-900' 
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  Client Work
-                </Link>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+      {/* Desktop Navigation */}
+      <div className="hidden lg:block rounded-lg px-6 py-4">
+        <nav className="flex items-center space-x-8">
+          <Link 
+            href="/projects/travel-and-ai" 
+            className={`text-[11pt] transition-colors duration-500 ${
+              isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
+            }`}
+          >
+            Travel & AI
+          </Link>
+          <Link 
+            href="/projects/previous" 
+            className={`text-[11pt] transition-colors duration-500 ${
+              isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
+            }`}
+          >
+            Client Work
+          </Link>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Menu Dropdown */}
+  <AnimatePresence mode="wait">
+    {isMobileMenuOpen && (
+      <motion.div
+        key="mobile-menu"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
+        className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
+      >
+        <nav className="flex flex-col p-4 px-6 space-y-4">
+          <Link 
+            href="/projects/travel-and-ai" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+          >
+            Travel & AI
+          </Link>
+          <Link 
+            href="/projects/previous" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+          >
+            Client Work
+          </Link>
+        </nav>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</motion.nav>
 
 {/* Hero Section */}
   <section
@@ -287,7 +270,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            <strong>The Spontaneity Engine: A Modular AI Platform</strong> with one core architecture orchestrating multiple intelligence layers. From mobile apps to APIs, the system aims to transform real-time context into spontaneous experiences rooted in local culture and social trust.
+            As the sole founder and lead architect, I am building the end-to-end infrastructure for a modular platform that orchestrates integrated intelligence modules to transform real-time context into verifiable local experiences. I personally own the entire product lifecycle—from engineering the core systemic logic and trust-based prompt architectures to the deployment of cross-platform APIs, widgets, and native {"applications."}
             </p>
 
             {/* Explore The System with Scroll Indicator */}
@@ -316,31 +299,35 @@ export default function AISandboxPage() {
               }}
               aria-label="Scroll to explore the system"
             >
+              <div className="flex items-center gap-2 group cursor-pointer">
               <span 
-                className="text-sm font-medium text-gray-600 tracking-wide group-hover:text-gray-800 transition-colors duration-200"
+                className="text-sm font-medium text-gray-400 tracking-wide group-hover:text-gray-800 transition-colors duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 Explore The System
               </span>
+              
               <motion.div
                 animate={{ 
-                  y: [0, 8, 0],
+                  y: [0, 4, 0], // Reduced bounce for a cleaner inline look
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col items-center"
+                className="flex items-center"
               >
                 <ChevronDown 
-                  className="w-5 h-5 text-gray-500 group-hover:text-gray-700 transition-colors duration-200"
+                  className="w-5 h-5 text-gray-400 group-hover:text-gray-700 transition-colors duration-200"
                   strokeWidth={2}
                 />
               </motion.div>
+            </div>
             </motion.div>
           </motion.div>
         </div>
+        
 
         {/* Right: Systems Graphic */}
         <div className="hidden lg:flex justify-center items-center">
@@ -357,6 +344,7 @@ export default function AISandboxPage() {
   </div>
 </section>
 
+<SpontaneityHero />
 
       {/* Core Platform & Embedded Intelligence Section */}
       <section className="pt-16 md:pt-12 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
@@ -369,7 +357,7 @@ export default function AISandboxPage() {
             className="mb-12 md:mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-              Core Platform & Embedded Intelligence
+            The Core Infrastructure (The "Brain")
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               A single core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
@@ -424,7 +412,7 @@ export default function AISandboxPage() {
                     </h3>
                   </div>
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  The engine behind the experience: A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it's goal is to power everything from apps to APIs, ensuring the best travel moments are always within reach.
+                  <strong>Inference & Timing Logic:</strong> A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it's goal is to power everything from apps to APIs.
                   </p>
                   <div className="flex items-center justify-between mt-auto">
                     
@@ -481,11 +469,11 @@ export default function AISandboxPage() {
                   <Shield className="w-6 h-6 text-white flex-shrink-0" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                  Trust & Authenticity Layer
+                 Integrity & Verification Layer
                 </h3>
               </div>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              To make spontaneity work, you need trust. This embedded layer handles the heavy lifting—verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
+              To make spontaneity work, you need trust. This embedded layer handles the heavy lifting, verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
               </p>
               <div className="flex items-center justify-end mt-auto w-full text-right">
                 <Link 
@@ -526,10 +514,120 @@ export default function AISandboxPage() {
             className="mb-12 md:mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-              Applied Intelligence Modules
+            Intelligence Modules (The "Middleware")
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            Reusable intelligence modules that translate core system capabilities into deployable product surfaces.            
+            A modular microservices architecture allowing for cross-platform intelligence deployment via SDKs.          
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: MapPin,
+                title: "Context-Aware Decision Making",
+                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms.",
+                gradient: "from-blue-500 to-cyan-600",
+                link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+              },
+              {
+                icon: Users,
+                title: "Social Opportunity Matching",
+                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments.",
+                gradient: "from-purple-800 to-pink-900",
+                link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
+              },
+              {
+                icon: Network,
+                title: "Social Graph-Driven Travel Network",
+                description: "A privacy-first system that uses ZK-proofs and social connections to turn trusted networks into spontaneous travel discoveries.",
+                gradient: "from-indigo-500 to-violet-600",
+                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+              },
+              {
+                icon: BookOpen,
+                title: "Narrative Context Generation",
+                description: "An intelligence module that transforms raw travel data into human stories, delivering meaningful narratives to any app, widget, or interface.",
+                gradient: "from-amber-500 to-orange-600",
+                link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+              }
+            ].map((system, index) => (
+              <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+              style={{
+                // 1. Force a new stacking context
+                isolation: 'isolate',
+                // 2. Hardware acceleration
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)',
+                // 3. Prevent the "flash" during opacity/transform changes
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitPerspective: 1000,
+                perspective: 1000,
+                // 4. Ensure smooth text rendering
+                WebkitFontSmoothing: 'antialiased',
+              }}
+              >
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+                  <system.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  {system.title}
+                </h3>
+                <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                  {system.description}
+                </p>
+                {system.link && (
+                  <div className="flex justify-end items-center mt-auto w-full text-right">
+                    <Link 
+                      href={system.link}
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                    >
+                      View Project
+                      <svg
+                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Surfaces Clarifier */}
+      {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
+      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            Product Surfaces (The "Glass")
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+            The same core intelligence surfaces across different interfaces: mobile apps, embedded widgets, and APIs/SDKs. Each product surface leverages the same platform capabilities, orchestrated by the Spontaneity Engine and enhanced by embedded intelligence layers.          
             </p>
           </motion.div>
 
@@ -634,11 +732,7 @@ export default function AISandboxPage() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-gray-200/50">
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed text-center" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                The same core intelligence surfaces across different interfaces: <strong>mobile apps</strong>, <strong>embedded widgets</strong>, and <strong>APIs/SDKs</strong>. Each product surface leverages the same platform capabilities, orchestrated by the Spontaneity Engine and enhanced by embedded intelligence layers.
-              </p>
-            </div>
+            
           </motion.div>
         </div>
       </section>

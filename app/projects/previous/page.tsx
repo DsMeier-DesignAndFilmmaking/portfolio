@@ -157,46 +157,55 @@ export default function PreviousProjectsPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
         className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
-          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'
+          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'lg:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
         style={{ minHeight: '80px' }}
       >
-        <div className="container mx-auto px-6">
+        {/* CONTAINER STRATEGY: 
+          'w-full' for fluid movement
+          'mx-auto' to center it
+          'px-6' for mobile gutter
+          'max-w-[1440px]' to match your body's max width 
+      */}
+      
+        <div className="container mx-auto px-6 relative z-20">
           <div className="flex justify-between items-center">
-            {/* Back Home Button */}
-            <div className="py-4 flex items-center gap-4">
-              <button
-                onClick={handleBackHome}
-                className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                aria-label="Return to home page"
-              >
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
-                  alt="Daniel Meier"
-                  width={150}
-                  height={37}
-                  className="h-9 w-auto brightness-0 invert"
-                />
-              </button>
-              <div className="h-6 w-px bg-white/30"></div>
-              <span className="text-white/70 text-sm font-medium" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Design Work</span>
-            </div>
+      {/* Back Home Button Wrapper */}
+    <div className="flex items-center">
+      <button
+        onClick={handleBackHome}
+        /* w-fit ensures the hit-area is only as wide as the signature */
+        className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4"
+        aria-label="Return to home page"
+      >
+        <Image
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
+          alt="Daniel Meier"
+          width={150}
+          height={37}
+          priority
+          /* brightness-0 + invert makes the black logo white for the black bg */
+          className="h-9 w-auto transition-all duration-500 block brightness-0 invert"
+        />
+      </button>
+    </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden pl-4 py-2 rounded-lg transition-colors flex items-center justify-end text-white"
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
+            {/* Ensure your Mobile/Desktop nav parts also use 'text-white' instead of the variable */}
+    <button
+      onClick={toggleMobileMenu}
+      className="lg:hidden p-2 flex items-center justify-end text-white"
+      aria-label="Toggle mobile menu"
+    >
+      <div className="w-6 h-5 relative flex flex-col justify-between items-center">
+        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+      </div>
+    </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block rounded-lg px-6 py-4">
+            <div className="hidden lg:block rounded-lg px-6 py-4">
               <nav className="flex items-center space-x-8">
                 <Link 
                   href="/projects/travel-and-ai" 
@@ -226,7 +235,7 @@ export default function PreviousProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
+              className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
             >
               <nav className="flex flex-col p-4 px-6 space-y-4">
                 <Link 

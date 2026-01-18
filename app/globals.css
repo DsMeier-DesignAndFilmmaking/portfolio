@@ -239,7 +239,7 @@ section *::-webkit-scrollbar,
     
     /* Prevent card flicker on scroll - stabilize GPU compositing */
     /* Target cards with whileInView animations in Core Platform and Applied Systems sections */
-    [aria-label="Core Platform & Embedded Intelligence"] .group,
+    [aria-label="The Core Infrastructure (The \"Brain\")"] .group
     [aria-label="Applied Systems"] .group {
       /* Ensure stable rendering layer - prevent re-triggered animations */
       transform: translateZ(0); /* Force GPU layer for smooth compositing */
@@ -249,7 +249,7 @@ section *::-webkit-scrollbar,
     }
 
     /* Card group containers - prevent layout shifts */
-    [aria-label="Core Platform & Embedded Intelligence"] .grid,
+    [aria-label="The Core Infrastructure (The \"Brain\")"] .group
     [aria-label="Applied Systems"] .grid {
       /* Prevent grid layout shifts that cause flicker */
       contain: layout;
