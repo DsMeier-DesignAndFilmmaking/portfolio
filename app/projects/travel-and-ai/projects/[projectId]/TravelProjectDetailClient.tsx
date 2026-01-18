@@ -1608,34 +1608,40 @@ const variables: Record<string, { title: string; desc: string }> = {
       <StickyProgressNav sections={sections} />
     )}
 
-      {/* Hero Section */}
-      <section className="bg-white
-        min-h-[80vh]
-        flex items-center
-        pt-24 pb-20" aria-label="Project Hero">
-        {isSpontaneousTravelCompanion && (
-        <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+{isSpontaneousTravelCompanion && (
+  <>
+    {/* 1. HERO SECTION */}
+    <section 
+      className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+      aria-label="Project Hero"
+    >
+      <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Main Grid Container */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+            
+            {/* Left Content Column */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
+              className="order-1"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                  Spontaneity Engine
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                Spontaneity Engine
               </h1>
-                  <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 whitespace-nowrap">
-                      In Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    Foundational AI System · Real-Time Decision Intelligence
-                  </p>
-                  
+              
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                  In Development
+                </span>
+              </div>
 
+              <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed">
+                Foundational AI System · Real-Time Decision Intelligence
+              </p>
+
+              
 {/* EXECUTIVE SUMMARY / TL;DR - Vertical Stack Version */}
 <motion.div 
   initial={{ opacity: 0, y: -10 }}
@@ -1681,651 +1687,36 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </motion.div>
 
-        <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8" aria-label="Hero actions">
-  {/* Primary Action */}
-  <a
-    href="#live-demo" 
-    onClick={(e) => {
-      e.preventDefault();
-      const target = document.querySelector('#live-demo');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }}
-    className="inline-flex items-center justify-center px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all duration-200 min-h-[48px] text-center text-base cursor-pointer"
-  >
-    <span>Explore Prototype</span>
-    <span className="ml-3 relative flex h-2.5 w-2.5">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-    </span>
-  </a>
+              {/* CTAs */}
+              <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
+                <a href="#live-demo" className="inline-flex items-center justify-center px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl text-base">Explore Prototype</a>
+                <a href="#design-exploration" className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-900 text-slate-900 font-bold rounded-xl text-base">View Case Study</a>
+              </nav>
+            </motion.div>
 
-  {/* Secondary Action: Updated to target design-exploration */}
-  <a
-    href="#design-exploration"
-    onClick={(e) => {
-      e.preventDefault();
-      const target = document.querySelector('#design-exploration');
-      if (target) {
-        // scrollIntoView is the most reliable method for cross-browser smooth scrolling
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }}
-    className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-900 text-slate-900 font-bold rounded-xl hover:bg-slate-50 transition-all duration-200 min-h-[48px] text-center text-base cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
-    aria-label="View Case Study"
-  >
-    View Case Study
-  </a>
-</nav>
-                 
-</motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-16 md:mt-10 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
-                >
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center w-full md:w-auto">
-                  
-                    <div className="relative flex-shrink-0 flex justify-center md:justify-start">
-                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                    <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")}
-                      alt="Micro Adventure Concept Graphic"
-                          width={280}
-                          height={560}
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                      priority
-                      quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                    />
-                  </div>
-                </div>
-                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12 flex justify-center md:justify-start">
-                      <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                    <Image
-                          src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")}
-                      alt="Micro Adventure Concept Graphic 2"
-                          width={280}
-                          height={560}
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                      priority
-                      quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                    />
-                      </div>
-                  </div>
-                </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {isCulturalContextEngine && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-5 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    A Trust Framework for Real-Time Travel AI
-                  </h1>
-                  <div className="mb-4">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      In Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 lg:mb-10 leading-relaxed font-normal">
-                    How architectural provenance and data integrity enable travelers to make bold, spontaneous choices with zero-risk 'hallucination' protection.
-                  </p>
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#research-audience"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#research-audience');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                  </nav>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-8 md:mt-10 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  <TrustFrameworkVisual />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {isTravelPlanningAssistant && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Context-Aware Travel Decision System (CATDS)
-                  </h1>
-                  <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      In Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    AI Orchestration · Semantic Context Mapping · System Middleware
-                  </p>
-                  
-                  {/* Overview Block */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      An architectural framework for adaptive orchestration in travel planning. A sophisticated AI middleware layer that bridges the gap between static travel data and real-world contextual intelligence.
-                    </p>
-                  </div>
-
-                  {/* Technical Stack */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
-                    <div className="space-y-2">
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Human-in-the-loop verification and explainability</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Context Interpreter:</strong> Semantic context mapping and Decision Vector generation</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System Specs Grid */}
-                  <div className="mb-8 md:mb-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Scenario
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          90m free, unfamiliar city, low energy, high crowd.
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Constraint
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          One decision at a time.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  <PlanningAssistantVisual />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {isSocialOpportunityMatching && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Social Opportunity Matching
-                  </h1>
-                  <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      In Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                  Trust Layer Middleware · Multi-Degree Matching · Real-Time Social Logic
-                  </p>
-                  
-                  {/* Overview Block */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through core platform APIs rather than a standalone app.
-                    </p>
-                  </div>
-
-                  {/* Technical Stack */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
-                    <div className="space-y-2">
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Proximity Detection:</strong> Real-time location-based matching</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Interest Matching:</strong> Shared preferences and activity detection</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Schedule Gap Analysis:</strong> Identifying 15-minute interaction windows</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System Specs Grid */}
-                  <div className="mb-8 md:mb-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Scenario
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          Two travelers near each other with shared interests and a 15-minute schedule gap.
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Key Constraint
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          Low-friction, spontaneous interactions only.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#research-audience"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#research-audience');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                  </nav>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  <SocialOpportunityMatchingVisual />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {isLocalExperienceFinder && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center items-center lg:items-start">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Social Graph-Driven Travel Network
-                  </h1>
-                  <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      In Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    AI Systems · Social Graph Theory · Zero-Knowledge Privacy · Network Effects
-                  </p>
-                  
-                  {/* Overview Block */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
-                      <strong className="font-semibold">Real-Time Network Effects for Spontaneous Global Discovery</strong>
-                    </p>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      Transitioning social capital from passive data to active intelligence. This system leverages ZK-proofs and multi-degree graph analysis to autonomously surface high-trust, low-friction social opportunities without compromising user sovereignty.
-                    </p>
-                  </div>
-                  
-                  {/* Technical Stack */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack: Spatial & Tabular Logic</p>
-                    <div className="space-y-2">
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Social Graph API:</strong> Serves as the backend for both views, feeding real-time 'Intent' data into the Map (for heat-mapping Trust Clusters) and the Table (for filtered sorting). Continuously mapping 2nd and 3rd-degree trust nodes.</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Trust Layer:</strong> The 'Validator' — utilizing Zero-Knowledge proofs to verify "Friend-of-a-Friend" status without exposing PII (Personally Identifiable Information)</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Influence Scorer:</strong> Weights the 'Trust Clusters' on the map, highlighting regions where the user has the highest concentration of verified connections. The prioritization engine weights matches based on shared context, current intent, and historical trust-density.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System Specs Grid */}
-                  <div className="mb-8 md:mb-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                      <div>
-                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Scenario
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                        A traveler opens the Global Map View and sees a live "Pulse" in Tokyo—the system indicates a high density of their extended social network is currently active there.
-                         <br></br><br></br>By switching to the Network Table, the traveler sees exactly who is "Roaming the Planet" in that region. They notice some mutual friends or connections are currently in Shibuya and 11 others have "Intent" signals to visit soon. This allows the traveler to move from observing a global trend to initiating a low-friction social moment with a verified connection already on the ground.
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Constraint
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          Privacy-first data ingestion (zero-knowledge proof).
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
-                    <a
-                      href="#research-audience"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        const target = document.querySelector('#research-audience');
-                        if (target) {
-                          const offset = 120;
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                      aria-label="View Case Study"
-                    >
-                      View Case Study
-                    </a>
-                    <a
-                      href="#wireframes-ui"
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        // Changed selector to match the "Design Evolution" section ID
-                        const target = document.querySelector('#wireframes-ui');
-                        if (target) {
-                          const offset = 100; // Adjust based on your header height
-                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                          window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                      aria-label="View Design Evolution Video Demo"
-                    >
-                      View Figma Prototype <span className="ml-2 text-sm md:text-sm opacity-70 font-normal">(Video Demo)</span>
-                    </a>
-                  </nav>
-                </motion.div>
-                <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
-                >
-                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center md:justify-start w-full md:w-auto mx-auto md:mx-0">
-                  <div className="relative flex-shrink-0 flex items-center justify-center">
-                      {/* Removed bg-gray-100 and rounded-xl (optional) to ensure no background container is visible */}
-                      <div className="overflow-visible"> 
-                        <Image
-                          src={normalizeImagePath("/portfolio/images/HomeScreen_Website_x2.png")}
-                          alt="Social Travel Network Concept Graphic"
-                          width={280}
-                          height={560}
-                          /* Ensure object-contain is used with h-auto to maintain aspect ratio without stretching */
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
-                      </div>
-                    </div>
-                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12 flex items-center justify-center">
-                      {/* Removed rounded-xl, overflow-hidden, shadow-lg, and bg-gray-100 */}
-                      <div className="relative">
-                        <Image
-                          src={normalizeImagePath("/portfolio/images/NetworkTravelers_1.png")}
-                          alt="Social Travel Network Concept Graphic 2"
-                          width={280}
-                          height={560}
-                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
-                          priority
-                          quality={90}
-                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
-                        />
-                      </div>
-                    </div>
-                </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {isNarrativeTravelGenerator && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1 lg:order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
-                    Narrative-Driven Travel Experience Generator
-                  </h1>
-                  <div className="mb-6 md:mb-7">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
-                      In Research & Development
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
-                    AI · Narrative Design · Experience Systems
-                  </p>
-                  
-                  {/* Overview Block */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                      An AI system that generates emotional travel arcs instead of itineraries—designing for how a place feels over time rather than what to check off.
-                    </p>
-                  </div>
-
-                  {/* Technical Stack */}
-                  <div className="mb-8 md:mb-10 lg:mb-12">
-                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
-                    <div className="space-y-2">
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Traveler Intent:</strong> Emotional state and preference analysis</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust & Authenticity Layer:</strong> Verification and safety overrides</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Narrative Engine:</strong> Story generation and emotional arc orchestration</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-gray-400 mt-1">•</span>
-                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Experience Phases:</strong> Arrival, Exploration, and Familiarity state management</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System Specs Grid */}
-                  <div className="mb-8 md:mb-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Scenario
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          Designing for emotional arcs & belonging over coverage.
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
-                          Key Constraint
-                        </div>
-                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
-                          No maps or schedules in the initial experience.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
-                >
-                  <NarrativeDiagram />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        )}
-        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isSocialOpportunityMatching && !isNarrativeTravelGenerator && !isOtherProject)) && (
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center"
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  {project?.title || "Project Title"}
-                </h1>
-                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  {project?.tagline || "Project description"}
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        )}
-        
-        {/* Subtle Divider */}
-        <div className="border-b border-gray-100 mt-16 md:mt-20 lg:mt-24"></div>
-      </section>
-
-      {/* Why Social Connection Matters in Travel Section - Only for local-experience-finder */}
-      {isLocalExperienceFinder && (
-        <section className="py-16 md:py-20 bg-gray-50">
-          <div className="container mx-auto px-6">
+            {/* Right Visual Column - This must be INSIDE the flex/grid div but OUTSIDE the first motion.div */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-5xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
             >
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                  Why Social Connection Matters in Travel
-                </h2>
-                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  The impact extends beyond individual travelers—it requires systemic solutions that balance connection with privacy
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Impact for Travelers
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    Meaningful social connections lead to <span className="font-semibold text-cyan-700">richer travel experiences and deeper cultural understanding</span>. Travelers can connect with like-minded people while maintaining <span className="font-semibold text-cyan-700">full control over their privacy and visibility</span>.
-                  </p>
+              <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                  <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} alt="Concept 1" width={280} height={560} className="w-[240px] h-auto" priority />
                 </div>
-                
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Impact for Communities
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    When travelers connect authentically, local communities benefit from <span className="font-semibold text-emerald-700">more meaningful cultural exchange</span>. Identity-based discovery creates connections that respect both traveler privacy and local community values.
-                  </p>
+                <div className="md:mt-12 rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                  <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} alt="Concept 2" width={280} height={560} className="w-[240px] h-auto" priority />
                 </div>
               </div>
             </motion.div>
-          </div>
-        </section>
-      )}
 
-      {/* Conditional Content: Full content for spontaneous-travel-companion, template for others */}
-      {isSpontaneousTravelCompanion && (
-  <>
-    {/* Systemic Travel Discovery Failures Section */}
+          </div> {/* End of Grid */}
+        </div> {/* End of Max-Width */}
+      </div> {/* End of Container */}
+    </section>
+
+    {/* 2. FAILURE PATTERNS SECTION */}
     <section id="design-exploration" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <motion.div
@@ -2403,18 +1794,17 @@ const variables: Record<string, { title: string; desc: string }> = {
           </p>
 
           <div className="mt-12 text-center border-t border-gray-200 pt-10">
-          <p className="text-gray-900 font-semibold text-lg md:text-xl leading-[1.6] max-w-2xl mx-auto italic [text-wrap:pretty]">
-            "These failures emerge from static, popularity-driven systems operating in {"dynamic,\u00A0time-sensitive\u00A0environments."}"
-          </p>
+            <p className="text-gray-900 font-semibold text-lg md:text-xl leading-[1.6] max-w-2xl mx-auto italic [text-wrap:pretty]">
+              "These failures emerge from static, popularity-driven systems operating in {"dynamic,\u00A0time-sensitive\u00A0environments."}"
+            </p>
           </div>
         </motion.div>
       </div>
     </section>
-  </>
-)}
 
-          {/* Why Spontaneity Is a Systems Problem Section */}
-          <section className="py-16 md:py-20 bg-white">
+       
+{/* Why Spontaneity Is a Systems Problem Section */}
+<section className="py-16 md:py-20 bg-white">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -2424,6 +1814,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                 className="max-w-5xl mx-auto"
               >
                <div className="text-center mb-12">
+
   {/* Headline: balanced for visual symmetry */}
   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
     Why Spontaneity Is a Systems Problem
@@ -2475,8 +1866,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             </div>
           </section>
 
-          {/* System Overview Section */}
-          <section id="system-overview" className="py-20 md:py-32 bg-zinc-950 relative">
+    
+     {/* System Overview Section */}
+     <section id="system-overview" className="py-20 md:py-32 bg-zinc-950 relative">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
             
@@ -2811,16 +2203,16 @@ const variables: Record<string, { title: string; desc: string }> = {
           <div className="space-y-1 text-right">
             <span className="text-blue-400 font-bold text-[10px] uppercase tracking-widest">Filter Layer</span>
             <p className="text-gray-400 text-xs italic">Constraint exclusion</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </section>
+          </div>
+        </motion.div>
+        </div>
+     </motion.div>
+     </div>
+    </section>
 
           {/* Video Section */}
           {isSpontaneousTravelCompanion && (
@@ -4000,7 +3392,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       >
         <p className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4 text-slate-900">Project Thesis</p>
         <blockquote className="text-2xl font-semibold text-gray-900 italic">
-        The goal isn’t to help travelers plan better. It is to build a system that 
+        The goal isn’t to help travelers plan better. It is to building a system that 
         provides the confidence to embrace the {"joy\u00A0of\u00A0discovery."}
         </blockquote>
       </motion.div>
@@ -4008,7 +3400,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-          {/* Future System Extensions */}
+{/* Future System Extensions */}
 <section id="roadmap" className="py-24 bg-slate-50">
   <div className="container mx-auto px-6">
     <motion.div
@@ -4075,6 +3467,599 @@ const variables: Record<string, { title: string; desc: string }> = {
     </motion.div>
   </div>
 </section>
+
+  </>
+)}
+
+{isCulturalContextEngine && (
+  <section 
+    className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+    aria-label="Cultural Context Project Hero"
+  >
+    <div className="container mx-auto px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+          
+          {/* Left Content Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-1"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              Trust Framework
+            </h1>
+            
+            <div className="mb-6">
+              <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                In Research & Development
+              </span>
+            </div>
+
+            <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed">
+              Cultural Intelligence · Systemic Trust Architectures
+            </p>
+
+            {/* EXECUTIVE SUMMARY / TL;DR */}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-16 border-t border-b border-gray-100 py-10 space-y-8"
+            >
+              {/* The Challenge */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                  The Challenge
+                </span>
+                <div className="md:col-span-3">
+                  <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                  Bridging the "Verification Gap" in real-time environments: the inability of current systems to distinguish between high-engagement marketing and high-integrity, authentic local experiences.                  </p>
+                </div>
+              </div>
+
+              {/* The Solution */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                  The Solution
+                </span>
+                <div className="md:col-span-3">
+                  <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                  An "Authenticity-First" engine that prioritizes cultural resonance and local sentiment, bypassing the homogenized results of traditional search to surface high-integrity, under-represented experiences.                  </p>
+                </div>
+              </div>
+
+              {/* My Role */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                  My Role
+                </span>
+                <div className="md:col-span-3">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl font-medium italic">
+                    <strong>Project Creator & Lead Architect.</strong> End-to-end ownership of the product lifecycle—from systemic AI logic and prompt engineering to the native iOS implementation.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTAs */}
+            
+          </motion.div>
+
+          {/* Right Visual Column (TrustFrameworkVisual) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+          >
+            <TrustFrameworkVisual />
+          </motion.div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+
+        {isTravelPlanningAssistant && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Context-Aware Travel Decision System (CATDS)
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                      In Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    AI Orchestration · Semantic Context Mapping · System Middleware
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      An architectural framework for adaptive orchestration in travel planning. A sophisticated AI middleware layer that bridges the gap between static travel data and real-world contextual intelligence.
+                    </p>
+                  </div>
+
+                  {/* Technical Stack */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust Layer:</strong> Human-in-the-loop verification and explainability</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Context Interpreter:</strong> Semantic context mapping and Decision Vector generation</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          90m free, unfamiliar city, low energy, high crowd.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          One decision at a time.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <PlanningAssistantVisual />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isSocialOpportunityMatching && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Social Opportunity Matching
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                      In Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                  Trust Layer Middleware · Multi-Degree Matching · Real-Time Social Logic
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments. Designed for integration into existing applications, exposing matching logic through core platform APIs rather than a standalone app.
+                    </p>
+                  </div>
+
+                  {/* Technical Stack */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Proximity Detection:</strong> Real-time location-based matching</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Interest Matching:</strong> Shared preferences and activity detection</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Schedule Gap Analysis:</strong> Identifying 15-minute interaction windows</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Two travelers near each other with shared interests and a 15-minute schedule gap.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Key Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Low-friction, spontaneous interactions only.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <SocialOpportunityMatchingVisual />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isLocalExperienceFinder && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center items-center lg:items-start">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Social Graph-Driven Travel Network
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                      In Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    AI Systems · Social Graph Theory · Zero-Knowledge Privacy · Network Effects
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
+                      <strong className="font-semibold">Real-Time Network Effects for Spontaneous Global Discovery</strong>
+                    </p>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      Transitioning social capital from passive data to active intelligence. This system leverages ZK-proofs and multi-degree graph analysis to autonomously surface high-trust, low-friction social opportunities without compromising user sovereignty.
+                    </p>
+                  </div>
+                  
+                  {/* Technical Stack */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack: Spatial & Tabular Logic</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Social Graph API:</strong> Serves as the backend for both views, feeding real-time 'Intent' data into the Map (for heat-mapping Trust Clusters) and the Table (for filtered sorting). Continuously mapping 2nd and 3rd-degree trust nodes.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Trust Layer:</strong> The 'Validator' — utilizing Zero-Knowledge proofs to verify "Friend-of-a-Friend" status without exposing PII (Personally Identifiable Information)</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-base text-gray-700"><strong className="font-semibold">Influence Scorer:</strong> Weights the 'Trust Clusters' on the map, highlighting regions where the user has the highest concentration of verified connections. The prioritization engine weights matches based on shared context, current intent, and historical trust-density.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                        A traveler opens the Global Map View and sees a live "Pulse" in Tokyo—the system indicates a high density of their extended social network is currently active there.
+                         <br></br><br></br>By switching to the Network Table, the traveler sees exactly who is "Roaming the Planet" in that region. They notice some mutual friends or connections are currently in Shibuya and 11 others have "Intent" signals to visit soon. This allows the traveler to move from observing a global trend to initiating a low-friction social moment with a verified connection already on the ground.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Privacy-first data ingestion (zero-knowledge proof).
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <nav className="flex flex-col sm:flex-row gap-3 sm:gap-4" aria-label="Hero actions">
+                    <a
+                      href="#research-audience"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        const target = document.querySelector('#research-audience');
+                        if (target) {
+                          const offset = 120;
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 active:bg-gray-700 transition-colors duration-200 min-h-[44px] text-center text-base sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                      aria-label="View Case Study"
+                    >
+                      View Case Study
+                    </a>
+                    <a
+                      href="#wireframes-ui"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        // Changed selector to match the "Design Evolution" section ID
+                        const target = document.querySelector('#wireframes-ui');
+                        if (target) {
+                          const offset = 100; // Adjust based on your header height
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                          window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200 min-h-[44px] text-center text-base focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                      aria-label="View Design Evolution Video Demo"
+                    >
+                      View Figma Prototype <span className="ml-2 text-sm md:text-sm opacity-70 font-normal">(Video Demo)</span>
+                    </a>
+                  </nav>
+                </motion.div>
+                <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 w-full flex items-center justify-center lg:justify-start"
+                >
+                  <div className="relative flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center md:justify-start w-full md:w-auto mx-auto md:mx-0">
+                  <div className="relative flex-shrink-0 flex items-center justify-center">
+                      {/* Removed bg-gray-100 and rounded-xl (optional) to ensure no background container is visible */}
+                      <div className="overflow-visible"> 
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/HomeScreen_Website_x2.png")}
+                          alt="Social Travel Network Concept Graphic"
+                          width={280}
+                          height={560}
+                          /* Ensure object-contain is used with h-auto to maintain aspect ratio without stretching */
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                        />
+                      </div>
+                    </div>
+                    <div className="relative flex-shrink-0 md:mt-8 lg:mt-12 flex items-center justify-center">
+                      {/* Removed rounded-xl, overflow-hidden, shadow-lg, and bg-gray-100 */}
+                      <div className="relative">
+                        <Image
+                          src={normalizeImagePath("/portfolio/images/NetworkTravelers_1.png")}
+                          alt="Social Travel Network Concept Graphic 2"
+                          width={280}
+                          height={560}
+                          className="w-[240px] sm:w-[280px] md:w-[240px] lg:w-[260px] xl:w-[280px] h-auto object-contain"
+                          priority
+                          quality={90}
+                          sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 260px, 280px"
+                        />
+                      </div>
+                    </div>
+                </div>
+                </motion.div>
+              </div>
+            </div>
+            <section className="py-16 md:py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-5xl mx-auto"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                  Why Social Connection Matters in Travel
+                </h2>
+                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                  The impact extends beyond individual travelers—it requires systemic solutions that balance connection with privacy
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-2xl border-2 border-cyan-100 hover:shadow-lg transition-all duration-300">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    Impact for Travelers
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Meaningful social connections lead to <span className="font-semibold text-cyan-700">richer travel experiences and deeper cultural understanding</span>. Travelers can connect with like-minded people while maintaining <span className="font-semibold text-cyan-700">full control over their privacy and visibility</span>.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-2xl border-2 border-emerald-100 hover:shadow-lg transition-all duration-300">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    Impact for Communities
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    When travelers connect authentically, local communities benefit from <span className="font-semibold text-emerald-700">more meaningful cultural exchange</span>. Identity-based discovery creates connections that respect both traveler privacy and local community values.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+          </div>
+        )}
+        {isNarrativeTravelGenerator && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto pt-12 md:pt-16">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="order-1 lg:order-1"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 md:mb-7 lg:mb-8 leading-tight tracking-tight">
+                    Narrative-Driven Travel Experience Generator
+                  </h1>
+                  <div className="mb-6 md:mb-7">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm md:text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 whitespace-nowrap">
+                      In Research & Development
+                    </span>
+                  </div>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-8 md:mb-10 lg:mb-12 leading-relaxed font-normal">
+                    AI · Narrative Design · Experience Systems
+                  </p>
+                  
+                  {/* Overview Block */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      An AI system that generates emotional travel arcs instead of itineraries—designing for how a place feels over time rather than what to check off.
+                    </p>
+                  </div>
+
+                  {/* Technical Stack */}
+                  <div className="mb-8 md:mb-10 lg:mb-12">
+                    <p className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Technical Stack</p>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Traveler Intent:</strong> Emotional state and preference analysis</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Spontaneity Engine:</strong> Real-time logistics and POI data processing</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Trust & Authenticity Layer:</strong> Verification and safety overrides</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Narrative Engine:</strong> Story generation and emotional arc orchestration</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-1">•</span>
+                        <span className="text-base md:text-sm text-gray-700"><strong className="font-semibold">Experience Phases:</strong> Arrival, Exploration, and Familiarity state management</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Specs Grid */}
+                  <div className="mb-8 md:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Scenario
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          Designing for emotional arcs & belonging over coverage.
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm md:text-xs font-medium text-gray-500 uppercase tracking-wider opacity-70 mb-2">
+                          Key Constraint
+                        </div>
+                        <div className="text-sm md:text-base text-gray-900 font-normal leading-relaxed">
+                          No maps or schedules in the initial experience.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 flex items-center justify-center lg:justify-start"
+                >
+                  <NarrativeDiagram />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+        {(isOtherProject || (!isSpontaneousTravelCompanion && !isCulturalContextEngine && !isTravelPlanningAssistant && !isLocalExperienceFinder && !isSocialOpportunityMatching && !isNarrativeTravelGenerator && !isOtherProject)) && (
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  {project?.title || "Project Title"}
+                </h1>
+                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  {project?.tagline || "Project description"}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        )}
+         
 
 
       {isCulturalContextEngine && (
