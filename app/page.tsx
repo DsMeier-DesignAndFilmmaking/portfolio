@@ -344,23 +344,12 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#2a2d35' }}>
+        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#ffffff' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
-          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-100">
-            <Image 
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/textures/earth-map.webp`}
-              alt="World Map Background"
-              fill
-              className="object-cover object-center"
-              loading="lazy"
-              sizes="100vw"
-              // ✅ REMOVED - onError handler (not allowed in server components)
-            />
+          <div id="world-travel-diaries-background" className="absolute inset-0 opacity-100" style={{ backgroundColor: '#ffffff' }}>
           </div>
-          {/* White Overlay */}
-          <div className="absolute inset-0 bg-white/80"></div>
           
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
@@ -395,9 +384,10 @@ export default function HomePage() {
               {/* Container with aspect-ratio to prevent layout shift */}
               {/* Remove minHeight - aspect-ratio handles sizing properly on all modern browsers */}
               <div 
-                className="relative w-full rounded-3xl overflow-hidden"
+                className="relative w-full rounded-3xl overflow-hidden travelogue-video-container"
                 style={{ 
-                  aspectRatio: '16 / 9'
+                  aspectRatio: '16 / 9',
+                  backgroundColor: '#2a2d35'
                 }}
               >
                 <iframe
@@ -409,6 +399,7 @@ export default function HomePage() {
                   style={{ 
                     border: 'none'
                   }}
+                  loading="lazy"
                 />
               </div>
             </div>

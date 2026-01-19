@@ -1289,9 +1289,9 @@ const variables: Record<string, { title: string; desc: string }> = {
     : isCulturalContextEngine
     ? [
         // Trust Framework page sections - order matches actual page structure
-        { id: 'research-audience', label: 'Trust Signals & System Constraints' },
-        { id: 'design-exploration', label: 'Observed Travel Frictions' },
-        { id: 'designs-strategy', label: 'Concept & Strategy' },
+        { id: 'designs-strategy', label: 'The Trust & Authenticity Crisis' },
+        { id: 'research-audience', label: 'Architectural Constraints' },
+        { id: 'architecture', label: 'Architecture: Powering Spontaneity through Veracity Logic' },
         { id: 'wireframes-ui', label: 'Design Evolution' },
         { id: 'prototyping-ai', label: 'Development & Build' },
         { id: 'outcomes-launch', label: 'Launch & Testing' },
@@ -5528,7 +5528,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
 {/* Trust Strategy: Concept, UVP & Systemic Impact */}
-<section className="py-24 bg-white">
+<section id="designs-strategy" className="py-24 bg-white">
   <div className="container mx-auto px-6">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -5814,7 +5814,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
 {/* System Overview Section */}
-<section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
+<section id="architecture" className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
   {/* Refined Gradient: Moving from Indigo to Cyan/Slate for a "Trust" vibe */}
   <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-zinc-950 to-cyan-950/20 pointer-events-none" />
   
@@ -6237,7 +6237,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* Outcome & Learnings Section */}
-          <section className="py-20 bg-white">
+          <section id="learnings-next" className="py-20 bg-white">
   <div className="max-w-6xl mx-auto px-6">
     {/* Executive Summary */}
     <div className="max-w-3xl mb-16">

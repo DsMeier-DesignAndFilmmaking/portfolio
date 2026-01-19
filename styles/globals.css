@@ -317,6 +317,18 @@ html {
 /* Special scroll margin for travelogue background element */
 #world-travel-diaries-background {
   scroll-margin-top: -426px; /* Negative offset to scroll to desired position (8988.609375) */
+  /* Prevent layout shifts and enable hardware acceleration */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+  /* Ensure stable positioning */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Ensure container maintains dimensions during image load */
+  min-height: 0;
+  min-width: 0;
+  /* Prevent any layout shifts */
+  isolation: isolate;
 }
 
 /* Video container styles for stable layout */
@@ -326,6 +338,23 @@ html {
   overflow: hidden;
   background: #000; /* optional poster background */
   border-radius: 0.5rem; /* rounded-lg */
+}
+
+/* Prevent layout shifts from video iframes in travelogue section */
+#travelogue iframe {
+  /* Ensure iframe doesn't cause layout shifts */
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Ensure travelogue video container maintains stable dimensions */
+.travelogue-video-container {
+  /* Prevent layout shifts from video container */
+  contain: layout style paint;
+  min-height: 0;
+  min-width: 0;
+  /* Ensure stable positioning */
+  isolation: isolate;
 }
 
 /* placeholder styling — visible before iframe loads */
