@@ -241,7 +241,7 @@ export default function AISandboxPage() {
     // 1. lg:h-[85vh] keeps desktop height
     // 2. h-auto allows mobile to shrink to content
     // 3. !pb-0 !mb-0 forces padding/margin to zero, overriding global CSS
-    className="relative w-full h-auto lg:h-[85vh] flex items-center !pb-0 !mb-0"
+    className="relative w-full h-auto lg:h-[100vh] flex items-center !pb-0 !mb-0"
     style={{ backgroundColor: "#E8FBF8" }}
     aria-label="Project Hero"
   >
@@ -279,29 +279,12 @@ export default function AISandboxPage() {
               animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
               transition={{ duration: 0.5, delay: 1.2 }}
               // ADDED: hidden (mobile first) and lg:flex (desktop)
-              className="hidden lg:flex flex-col items-start gap-3 cursor-pointer group" 
-              onClick={() => {
-                const nextSection = document.querySelector('[aria-label="Core Platform & Embedded Intelligence"]');
-                if (nextSection) {
-                  nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  const nextSection = document.querySelector('[aria-label="Core Platform & Embedded Intelligence"]');
-                  if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }
-              }}
-              aria-label="Scroll to explore the system"
+              className="hidden lg:flex flex-col items-start gap-3" 
+              
             >
-              <div className="flex items-center gap-2 group cursor-pointer">
+              <div className="flex items-center gap-2 group">
               <span 
-                className="text-sm font-medium text-gray-400 tracking-wide group-hover:text-gray-800 transition-colors duration-200"
+                className="text-sm font-medium text-gray-400 tracking-wide"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 Explore The System
@@ -319,7 +302,7 @@ export default function AISandboxPage() {
                 className="flex items-center"
               >
                 <ChevronDown 
-                  className="w-5 h-5 text-gray-400 group-hover:text-gray-700 transition-colors duration-200"
+                  className="w-5 h-5 text-gray-400"
                   strokeWidth={2}
                 />
               </motion.div>
@@ -347,7 +330,7 @@ export default function AISandboxPage() {
 <SpontaneityHero />
 
       {/* Core Platform & Embedded Intelligence Section */}
-      <section className="pt-16 md:pt-12 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
+      <section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -418,10 +401,10 @@ export default function AISandboxPage() {
                     
                     <Link 
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
-                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                      className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                     >
-                      View Project
+                      EXAMINE CORE ARCHITECTURE
                       <svg
                         className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
@@ -478,10 +461,10 @@ export default function AISandboxPage() {
               <div className="flex items-center justify-end mt-auto w-full text-right">
                 <Link 
                   href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
-                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+                  className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
                   style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
-                  View Project
+                  EXAMINE CORE ARCHITECTURE
                   <svg
                     className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
@@ -504,7 +487,7 @@ export default function AISandboxPage() {
 
       {/* Applied Systems Section */}
       {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
-      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+      <section className="pt-12 md:pt-12 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -522,99 +505,96 @@ export default function AISandboxPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: MapPin,
-                title: "Context-Aware Decision Making",
-                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms.",
-                gradient: "from-blue-500 to-cyan-600",
-                link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
-              },
-              {
-                icon: Users,
-                title: "Social Opportunity Matching",
-                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments.",
-                gradient: "from-purple-800 to-pink-900",
-                link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
-              },
-              {
-                icon: Network,
-                title: "Social Graph-Driven Travel Network",
-                description: "A privacy-first system that uses ZK-proofs and social connections to turn trusted networks into spontaneous travel discoveries.",
-                gradient: "from-indigo-500 to-violet-600",
-                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
-              },
-              {
-                icon: BookOpen,
-                title: "Narrative Context Generation",
-                description: "An intelligence module that transforms raw travel data into human stories, delivering meaningful narratives to any app, widget, or interface.",
-                gradient: "from-amber-500 to-orange-600",
-                link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
-              }
-            ].map((system, index) => (
-              <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
-              style={{
-                // 1. Force a new stacking context
-                isolation: 'isolate',
-                // 2. Hardware acceleration
-                WebkitTransform: 'translate3d(0, 0, 0)',
-                transform: 'translate3d(0, 0, 0)',
-                // 3. Prevent the "flash" during opacity/transform changes
-                WebkitBackfaceVisibility: 'hidden',
-                backfaceVisibility: 'hidden',
-                WebkitPerspective: 1000,
-                perspective: 1000,
-                // 4. Ensure smooth text rendering
-                WebkitFontSmoothing: 'antialiased',
-              }}
-              >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
-                  <system.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                  {system.title}
-                </h3>
-                <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  {system.description}
-                </p>
-                {system.link && (
-                  <div className="flex justify-end items-center mt-auto w-full text-right">
-                    <Link 
-                      href={system.link}
-                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
-                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                    >
-                      View Project
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+  {[
+    {
+      icon: MapPin,
+      title: "Contextual Decision Logic (CATDS)",
+      description: "An environmental sensing engine that converts geospatial variables—weather, terrain, and availability—into real-time travel feasibility signals.",
+      gradient: "from-blue-500 to-cyan-600",
+      link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system-logic"
+    },
+    {
+      icon: Users,
+      title: "Relational Heuristics Engine",
+      description: "A logic module that calculates 'social friction' and affinity weight to determine if a nearby connection warrants a system-level intervention.",
+      gradient: "from-purple-800 to-pink-900",
+      link: "/projects/travel-and-ai/projects/social-opportunity-matching-module-logic"
+    },
+    {
+      icon: Network,
+      title: "Privacy-Preserving Social Graph",
+      description: "A secure middleware layer using ZK-proofs to verify trusted network proximity without exposing PII (Personally Identifiable Information).",
+      gradient: "from-indigo-500 to-violet-600",
+      link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network-logic"
+    },
+    {
+      icon: BookOpen,
+      title: "Semantic Translation Module",
+      description: "An LLM-driven synthesis layer that transforms raw algorithmic outputs into human-centric narratives and actionable 'Moment' contexts.",
+      gradient: "from-amber-500 to-orange-600",
+      link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator-logic"
+    }
+  ].map((system, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+      style={{
+        isolation: 'isolate',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        transform: 'translate3d(0, 0, 0)',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitPerspective: 1000,
+        perspective: 1000,
+        WebkitFontSmoothing: 'antialiased',
+      }}
+    >
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+        <system.icon className="w-6 h-6 text-white" />
+      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+        {system.title}
+      </h3>
+      <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+        {system.description}
+      </p>
+      {system.link && (
+        <div className="flex justify-end items-center mt-auto w-full text-right">
+          <Link 
+            href={system.link}
+            className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
+            style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+          >
+            EXPLORE SYSTEM LOGIC
+            <svg
+              className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </Link>
+        </div>
+      )}
+    </motion.div>
+  ))}
+</div>
         </div>
       </section>
 
       {/* Product Surfaces Clarifier */}
       {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
-      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+      <section className="pt-12 md:pt-12 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -632,93 +612,90 @@ export default function AISandboxPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: MapPin,
-                title: "Context-Aware Decision Making",
-                description: "A reusable intelligence module that embeds real-time travel decision logic into existing platforms.",
-                gradient: "from-blue-500 to-cyan-600",
-                link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
-              },
-              {
-                icon: Users,
-                title: "Social Opportunity Matching",
-                description: "A lightweight intelligence module that detects and surfaces spontaneous, low-friction social moments.",
-                gradient: "from-purple-800 to-pink-900",
-                link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
-              },
-              {
-                icon: Network,
-                title: "Social Graph-Driven Travel Network",
-                description: "A privacy-first system that uses ZK-proofs and social connections to turn trusted networks into spontaneous travel discoveries.",
-                gradient: "from-indigo-500 to-violet-600",
-                link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
-              },
-              {
-                icon: BookOpen,
-                title: "Narrative Context Generation",
-                description: "An intelligence module that transforms raw travel data into human stories, delivering meaningful narratives to any app, widget, or interface.",
-                gradient: "from-amber-500 to-orange-600",
-                link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
-              }
-            ].map((system, index) => (
-              <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
-              style={{
-                // 1. Force a new stacking context
-                isolation: 'isolate',
-                // 2. Hardware acceleration
-                WebkitTransform: 'translate3d(0, 0, 0)',
-                transform: 'translate3d(0, 0, 0)',
-                // 3. Prevent the "flash" during opacity/transform changes
-                WebkitBackfaceVisibility: 'hidden',
-                backfaceVisibility: 'hidden',
-                WebkitPerspective: 1000,
-                perspective: 1000,
-                // 4. Ensure smooth text rendering
-                WebkitFontSmoothing: 'antialiased',
-              }}
-              >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
-                  <system.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                  {system.title}
-                </h3>
-                <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  {system.description}
-                </p>
-                {system.link && (
-                  <div className="flex justify-end items-center mt-auto w-full text-right">
-                    <Link 
-                      href={system.link}
-                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
-                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                    >
-                      View Project
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+  {[
+    {
+      icon: MapPin,
+      title: "Context-Aware Detours",
+      description: "Transforming environmental sensing into 'Frictionless Pathfinding.' This module calculates time-buffers and weather viability to suggest the perfect scenic detour.",
+      gradient: "from-blue-500 to-cyan-600",
+      link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+    },
+    {
+      icon: Users,
+      title: "Social Proximity Alerts",
+      description: "The 'Who' of spontaneity. A relational heuristic engine that surfaces low-friction social matches based on network trust and shared physical proximity.",
+      gradient: "from-purple-800 to-pink-900",
+      link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"
+    },
+    {
+      icon: Network,
+      title: "Privacy-First Discovery",
+      description: "Using ZK-proofs to verify social connections without identity leaks. A foundation of trust that enables 'Safe Serendipity' in public spaces.",
+      gradient: "from-indigo-500 to-violet-600",
+      link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+    },
+    {
+      icon: BookOpen,
+      title: "Semantic Travel Stories",
+      description: "The LLM Narrative layer that translates raw GPS and metadata into human-centric stories, replacing generic notifications with meaningful concierge-style guidance.",
+      gradient: "from-amber-500 to-orange-600",
+      link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+    }
+  ].map((system, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+      style={{
+        isolation: 'isolate',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        transform: 'translate3d(0, 0, 0)',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitPerspective: 1000,
+        perspective: 1000,
+        WebkitFontSmoothing: 'antialiased',
+      }}
+    >
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+        <system.icon className="w-6 h-6 text-white" />
+      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+        {system.title}
+      </h3>
+      <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.05rem' }}>
+        {system.description}
+      </p>
+      {system.link && (
+        <div className="flex justify-end items-center mt-auto w-full text-right">
+          <Link 
+            href={system.link}
+            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+            style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+          >
+            VIEW EXPERIENCE DESIGN
+            <svg
+              className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </Link>
+        </div>
+      )}
+    </motion.div>
+  ))}
+</div>
         </div>
       </section>
 
