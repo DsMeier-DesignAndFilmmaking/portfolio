@@ -50,7 +50,7 @@ import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndic
 import PivotAnimation from '../../../../../components/PivotAnimation';
 import TrustSignalDemo from '../../../../../components/LivePulseDemo';
 import TrustPulseUI from '../../../../../components/TrustPulseUI';
-import { AlertCircle, CheckCircle2, UserCircle2, Terminal, Coffee, MessageCircle, ShieldCheck, Target, ArrowRight, Shield, Share2, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, Fingerprint } from 'lucide-react';
+import { AlertCircle, CheckCircle2, UserCircle2, UserCheck, Link2, Terminal, Check, RefreshCw, CloudRain, BatteryLow, Coffee, MessageCircle, ShieldCheck, Target, ArrowRight, Shield, Share2, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, Fingerprint } from 'lucide-react';
 interface TravelProjectDetailClientProps {
   project: any;
   projectId: string;
@@ -386,6 +386,62 @@ const IntegratedSocialInvite = () => {
   );
 };
 
+const RelationalHeuristicsVectorVisualization = () => {
+  return (
+    <div className="relative w-full max-w-2xl mx-auto">
+      <div className="relative rounded-[2.5rem] border border-amber-100 bg-white/90 shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.15),_transparent_55%)]" />
+
+        <div className="relative p-6 md:p-8">
+          <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
+            <span className="h-2 w-2 rounded-full bg-amber-400" />
+            Vector Visualization
+          </div>
+
+          <div className="relative mt-6 h-[260px] rounded-[2rem] border border-slate-100 bg-gradient-to-br from-white via-slate-50 to-amber-50/40 overflow-hidden">
+            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 520 260" fill="none">
+              <defs>
+                <linearGradient id="vectorLine" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#64748b" stopOpacity="0.35" />
+                </linearGradient>
+              </defs>
+              <path d="M80 60 L220 120 L420 70" stroke="url(#vectorLine)" strokeWidth="2" strokeDasharray="6 10" />
+              <path d="M120 200 L260 140 L400 190" stroke="url(#vectorLine)" strokeWidth="2" strokeDasharray="4 12" />
+              <path d="M220 120 L260 140" stroke="#e2e8f0" strokeWidth="1.5" />
+            </svg>
+
+            <div className="absolute left-10 top-10 flex flex-col items-center">
+              <div className="h-12 w-12 rounded-full border border-amber-200 bg-amber-50 text-amber-700 flex items-center justify-center font-mono text-xs font-bold shadow-sm">
+                [T]
+              </div>
+              <span className="mt-2 text-[10px] uppercase tracking-widest text-amber-600">Traveler</span>
+            </div>
+
+            <div className="absolute right-14 top-8 flex flex-col items-center">
+              <div className="h-12 w-12 rounded-full border border-slate-200 bg-slate-50 text-slate-700 flex items-center justify-center font-mono text-xs font-bold shadow-sm">
+                [L]
+              </div>
+              <span className="mt-2 text-[10px] uppercase tracking-widest text-slate-500">Local</span>
+            </div>
+
+            <div className="absolute left-20 bottom-10 flex flex-col items-center">
+              <div className="h-11 w-11 rounded-full border border-amber-200 bg-amber-50 text-amber-700 flex items-center justify-center font-mono text-[10px] font-bold shadow-sm">
+                [T]
+              </div>
+              <span className="mt-2 text-[10px] uppercase tracking-widest text-amber-600">Traveler</span>
+            </div>
+
+            <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-amber-100 bg-white/90 px-4 py-3 text-xs text-slate-600 shadow-sm backdrop-blur-sm">
+              <span className="font-semibold text-amber-600">Signal Detected:</span> Local Photography Expert (Istanbul) / Proximity: 400m / Context: Golden Hour / Match Probability: 96%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Social Matching Lab - R&D Sandbox Component
 const SocialMatchingLab = () => {
   const [trustRadius, setTrustRadius] = useState(500); // meters
@@ -399,6 +455,7 @@ const SocialMatchingLab = () => {
     {
       id: 1,
       name: 'Alex Chen',
+      type: 'Traveler',
       degree: 1,
       distance: 120,
       interests: ['Art', 'Coffee', 'Architecture'],
@@ -407,30 +464,25 @@ const SocialMatchingLab = () => {
     },
     {
       id: 2,
+      name: 'Local Guide: Emre',
+      type: 'Local',
+      degree: 1,
+      distance: 400,
+      interests: ['Photography', 'Architecture'],
+      scheduleGap: 30,
+      activityDuration: 20,
+      localExpertise: 0.92,
+      neighborhoodFamiliarity: 0.88,
+    },
+    {
+      id: 3,
       name: 'Sarah Martinez',
+      type: 'Traveler',
       degree: 2,
       distance: 350,
       interests: ['Art', 'Coffee'],
       scheduleGap: 20,
       activityDuration: 25,
-    },
-    {
-      id: 3,
-      name: 'Jordan Kim',
-      degree: 1,
-      distance: 80,
-      interests: ['Architecture'],
-      scheduleGap: 60,
-      activityDuration: 20,
-    },
-    {
-      id: 4,
-      name: 'Taylor Brown',
-      degree: 3,
-      distance: 600,
-      interests: ['Coffee'],
-      scheduleGap: 15,
-      activityDuration: 15,
     },
   ], []);
 
@@ -461,6 +513,28 @@ const SocialMatchingLab = () => {
         step: 'Interest Alignment',
         value: interestScore,
         description: `+${interestScore}pts (${matchingInterests.length} matches)`
+      });
+    }
+
+    // Local Expertise Weight (for Local guides only)
+    if (match.type === 'Local' && match.localExpertise) {
+      const expertiseScore = Math.round(match.localExpertise * 35);
+      score += expertiseScore;
+      breakdown.push({
+        step: 'Local Expertise Weight',
+        value: expertiseScore,
+        description: `+${expertiseScore}pts (${Math.round(match.localExpertise * 100)}% expertise)`
+      });
+    }
+
+    // Neighborhood Familiarity (for Local guides only)
+    if (match.type === 'Local' && match.neighborhoodFamiliarity) {
+      const familiarityScore = Math.round(match.neighborhoodFamiliarity * 25);
+      score += familiarityScore;
+      breakdown.push({
+        step: 'Neighborhood Familiarity',
+        value: familiarityScore,
+        description: `+${familiarityScore}pts (${Math.round(match.neighborhoodFamiliarity * 100)}% familiarity)`
       });
     }
 
@@ -511,18 +585,48 @@ const SocialMatchingLab = () => {
       }))
       .sort((a, b) => b.finalScore - a.finalScore);
 
-    // Generate logic feed
+    // Generate logic feed with relational logic comparison
     const feed: string[] = [];
-    filtered.forEach(match => {
-      feed.push(`> Processing: ${match.name}`);
-      match.breakdown.forEach(step => {
+    feed.push('> Relational Heuristics Engine v1.0');
+    feed.push('> Calculating Exchange Value...');
+    feed.push('');
+    
+    const alexChen = filtered.find(m => m.name === 'Alex Chen');
+    const emre = filtered.find(m => m.name === 'Local Guide: Emre');
+    
+    if (alexChen && emre) {
+      feed.push('> Comparing: Alex Chen vs. Local Guide: Emre');
+      feed.push('');
+      feed.push('[TRAVELER] Alex Chen:');
+      alexChen.breakdown.forEach(step => {
         if (step.value !== 0 || step.step === 'Temporal Feasibility') {
           feed.push(`  ${step.step}: ${step.value > 0 ? '+' : ''}${step.value}pts - ${step.description}`);
         }
       });
-      feed.push(`> Final Score: ${match.finalScore}pts`);
+      feed.push(`  → Final Score: ${alexChen.finalScore}pts`);
       feed.push('');
-    });
+      feed.push('[LOCAL] Local Guide: Emre:');
+      emre.breakdown.forEach(step => {
+        if (step.value !== 0 || step.step === 'Temporal Feasibility') {
+          feed.push(`  ${step.step}: ${step.value > 0 ? '+' : ''}${step.value}pts - ${step.description}`);
+        }
+      });
+      feed.push(`  → Final Score: ${emre.finalScore}pts`);
+      feed.push('');
+      feed.push(`> Optimal Match: ${emre.finalScore > alexChen.finalScore ? 'Local Guide: Emre' : 'Alex Chen'}`);
+      feed.push(`> Exchange Value: ${Math.max(emre.finalScore, alexChen.finalScore)}pts`);
+    } else {
+      filtered.forEach(match => {
+        feed.push(`> Processing: ${match.name}`);
+        match.breakdown.forEach(step => {
+          if (step.value !== 0 || step.step === 'Temporal Feasibility') {
+            feed.push(`  ${step.step}: ${step.value > 0 ? '+' : ''}${step.value}pts - ${step.description}`);
+          }
+        });
+        feed.push(`> Final Score: ${match.finalScore}pts`);
+        feed.push('');
+      });
+    }
 
     setLogicFeed(feed);
     return filtered;
@@ -544,8 +648,8 @@ const SocialMatchingLab = () => {
 
   return (
     <section className="border-t border-white/10 bg-[#050505] relative overflow-hidden">
-      {/* Subtle glowing indigo radial gradient */}
-      <div className="absolute inset-0 bg-gradient-radial from-indigo-500/10 via-transparent to-transparent opacity-50 pointer-events-none" />
+      {/* Subtle glowing amber radial gradient */}
+      <div className="absolute inset-0 bg-gradient-radial from-amber-500/10 via-transparent to-transparent opacity-50 pointer-events-none" />
       
       <div className="container mx-auto px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -559,12 +663,12 @@ const SocialMatchingLab = () => {
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Experimental Middleware Sandbox
+                Relational Logic Engine
               </h2>
               <motion.div
                 animate={{ opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg"
+                className="flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg"
               >
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-sm font-semibold text-green-400 uppercase tracking-wider">
@@ -573,7 +677,7 @@ const SocialMatchingLab = () => {
               </motion.div>
             </div>
             <p className="text-gray-400 text-sm md:text-base">
-              Real-time weighted trust score calculation engine
+              Real-time relational heuristics calculation engine
             </p>
           </motion.div>
 
@@ -589,7 +693,7 @@ const SocialMatchingLab = () => {
             >
               <div className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
                 <h3 className="text-white font-semibold mb-6 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-indigo-400" />
+                  <MapPin className="w-4 h-4 text-amber-400" />
                   Control Parameters
                 </h3>
                 
@@ -605,7 +709,7 @@ const SocialMatchingLab = () => {
                     step="50"
                     value={trustRadius}
                     onChange={(e) => setTrustRadius(Number(e.target.value))}
-                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-amber-500"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
                     <span>100m</span>
@@ -625,7 +729,7 @@ const SocialMatchingLab = () => {
                     step="5"
                     value={timeGap}
                     onChange={(e) => setTimeGap(Number(e.target.value))}
-                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-amber-500"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
                     <span>10min</span>
@@ -636,7 +740,7 @@ const SocialMatchingLab = () => {
                 {/* Interest Tags */}
                 <div>
                   <label className="block text-sm text-gray-300 mb-3 flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-indigo-400" />
+                    <Zap className="w-4 h-4 text-amber-400" />
                     Interest Tags
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -646,7 +750,7 @@ const SocialMatchingLab = () => {
                         onClick={() => toggleInterestTag(tag)}
                         className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                           interestTags.includes(tag)
-                            ? 'bg-indigo-500 text-white border border-indigo-400'
+                            ? 'bg-amber-500 text-white border border-amber-400'
                             : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10'
                         }`}
                       >
@@ -667,8 +771,8 @@ const SocialMatchingLab = () => {
               className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm"
             >
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-indigo-400" />
-                Live Logic Feed
+                <Clock className="w-4 h-4 text-amber-400" />
+                Logic Feed
               </h3>
               <div className="bg-black/50 rounded-md p-4 font-mono text-xs text-green-400 h-[400px] overflow-y-auto">
                 <AnimatePresence>
@@ -700,7 +804,7 @@ const SocialMatchingLab = () => {
               className="space-y-4"
             >
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                <Shield className="w-4 h-4 text-indigo-400" />
+                <Shield className="w-4 h-4 text-amber-400" />
                 Match Output
               </h3>
               <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
@@ -722,7 +826,7 @@ const SocialMatchingLab = () => {
                           </p>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-indigo-400">{match.finalScore}</div>
+                          <div className="text-2xl font-bold text-amber-400">{match.finalScore}</div>
                           <div className="text-xs text-gray-500">pts</div>
                         </div>
                       </div>
@@ -744,7 +848,7 @@ const SocialMatchingLab = () => {
                             key={interest}
                             className={`px-2 py-0.5 rounded text-xs ${
                               interestTags.includes(interest)
-                                ? 'bg-indigo-500/30 text-indigo-300 border border-indigo-400/50'
+                                ? 'bg-amber-500/30 text-amber-300 border border-amber-400/50'
                                 : 'bg-white/5 text-gray-500 border border-white/10'
                             }`}
                           >
@@ -754,7 +858,7 @@ const SocialMatchingLab = () => {
                       </div>
 
                       {/* Score Breakdown on Hover */}
-                      <div className="absolute inset-0 bg-black/95 border border-indigo-500/50 rounded-lg p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                      <div className="absolute inset-0 bg-black/95 border border-amber-500/50 rounded-lg p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
                         <h5 className="text-white font-semibold mb-3 text-sm">Score Breakdown</h5>
                         <div className="space-y-2">
                           {match.breakdown.map((step: any, idx: number) => (
@@ -769,7 +873,7 @@ const SocialMatchingLab = () => {
                           ))}
                           <div className="border-t border-white/10 pt-2 mt-2 flex justify-between items-center">
                             <span className="text-white font-semibold">Final Score:</span>
-                            <span className="text-indigo-400 font-bold">{match.finalScore}pts</span>
+                            <span className="text-amber-400 font-bold">{match.finalScore}pts</span>
                           </div>
                         </div>
                       </div>
@@ -784,6 +888,55 @@ const SocialMatchingLab = () => {
               </div>
             </motion.div>
           </div>
+
+          {/* Build Status Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12"
+          >
+            <h3 className="text-white font-semibold mb-6 flex items-center gap-2">
+              <FaTools className="w-4 h-4 text-amber-400" />
+              Build Status
+            </h3>
+            <div className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+              <div className="space-y-4">
+                {/* Active Modules */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Active</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1.5 bg-green-500/20 text-green-400 border border-green-500/30 rounded-md text-xs font-medium">
+                      Proximity Hashing
+                    </span>
+                    <span className="px-3 py-1.5 bg-green-500/20 text-green-400 border border-green-500/30 rounded-md text-xs font-medium">
+                      Interest Weighting
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Testing Modules */}
+                <div className="pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+                    <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">Testing</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-md text-xs font-medium">
+                      Exchange Value Heuristic
+                    </span>
+                    <span className="px-3 py-1.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-md text-xs font-medium">
+                      Sentiment Translation
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -816,102 +969,106 @@ const CATDSVisual = () => {
   ];
 
   return (
-    <div className="w-full py-12 px-4 flex items-center justify-center">
-      <div className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-[2.5rem] shadow-xl p-8 md:p-12 overflow-hidden">
+    <div className="relative w-full max-w-lg flex flex-col items-center">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-radial-gradient from-amber-500/10 via-transparent to-transparent opacity-30" />
+      
+      <div className="relative w-full bg-white border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] rounded-[2.5rem] p-8 overflow-hidden">
         
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-          <svg width="100%" height="100%">
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
+        {/* Header: System Identity */}
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
+              <Cpu className="text-amber-400 w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">Logic Instance</div>
+              <div className="text-sm font-bold text-slate-900">CATDS_v1.0_Middleware</div>
+            </div>
+          </div>
+          <div className="px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+            <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider italic">Live Processing</span>
+          </div>
         </div>
 
-        <div className="relative z-10 flex flex-col gap-10">
+        {/* The Core Pipeline Visualization */}
+        <div className="space-y-6 relative">
           
-          {/* Header: The Process */}
-          <div className="flex justify-between items-end border-b border-slate-100 pb-6">
-            <div>
-              <span className="text-[10px] font-mono font-bold text-cyan-800 uppercase tracking-[0.2em] block mb-2">
-                System Logic: Orchestration
-              </span>
-              <h4 className="text-xl font-bold text-slate-900">The Decision Vector Pipeline</h4>
+          {/* Input Layer */}
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100">
+              <Activity className="text-slate-400 w-5 h-5" />
             </div>
-            <div className="hidden md:block text-right">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-                Latency: &lt; 140ms
-              </span>
-            </div>
-          </div>
-
-          {/* Logic Stack */}
-          <div className="space-y-4">
-            {modules.map((module, i) => {
-              const Icon = module.icon;
-              return (
-                <motion.div
-                  key={module.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex items-center gap-6 p-4 rounded-2xl border border-slate-100 hover:border-slate-300 hover:shadow-sm transition-all group"
-                >
-                  <div className={`w-12 h-12 rounded-xl ${module.bg} flex items-center justify-center transition-transform group-hover:scale-110`}>
-                    <Icon className={`w-6 h-6 ${module.color}`} />
-                  </div>
-                  <div className="flex-grow">
-                    <h5 className="text-sm font-bold text-slate-900">{module.name}</h5>
-                    <p className="text-xs text-slate-500 font-mono">{module.desc}</p>
-                  </div>
-                  <div className="hidden sm:block">
-                    <motion.div
-                      animate={{ x: [0, 5, 0], opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-                    >
-                      <ArrowRight className="w-4 h-4 text-slate-300" />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Result Footer */}
-          <div className="bg-slate-900 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
-                <Compass className="w-5 h-5 text-cyan-400" />
+            <div className="flex-1 space-y-2">
+              <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+                <span>Environmental Sensing</span>
+                <span className="text-amber-600">Active</span>
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-tighter">Output Generation</span>
-                <p className="text-white text-sm font-bold">Verified Decision Vector</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-24 bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                 <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: '92%' }}
-                  transition={{ duration: 1.5, delay: 1 }}
-                  className="h-full bg-cyan-500"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "0%" }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="h-full w-1/3 bg-amber-400" 
                 />
               </div>
-              <span className="text-[10px] font-mono text-white/50 font-bold">92% CONF</span>
             </div>
           </div>
 
-          {/* Relational Heuristic Note */}
-          <div className="flex items-start gap-3 bg-cyan-50/50 p-4 rounded-xl border border-cyan-100/50">
-            <Zap className="w-4 h-4 text-cyan-700 mt-0.5 flex-shrink-0" />
-            <p className="text-xs text-cyan-900 leading-relaxed italic">
-              <strong>Relational Heuristics:</strong> Calculating the "social friction" of a nearby hidden gem against current user energy levels.
-            </p>
+          {/* Middleware Logic Bridge */}
+          <div className="py-2 flex justify-center">
+             <div className="h-8 w-px bg-gradient-to-b from-amber-400 to-cyan-400" />
           </div>
 
+          {/* Processing Layer */}
+          <div className="bg-slate-900 rounded-2xl p-5 text-white relative">
+            <div className="absolute -top-3 left-6 px-3 py-0.5 bg-cyan-500 rounded-full text-[9px] font-bold uppercase tracking-widest">
+              Vector Generation
+            </div>
+            <div className="space-y-3 font-mono">
+              <div className="flex justify-between text-[11px] opacity-60">
+                <span>// Context Interpreter</span>
+                <span className="text-cyan-400">0.04ms</span>
+              </div>
+              <div className="text-[12px] text-cyan-100 leading-relaxed">
+                {"{ energy: 0.22, crowd: 0.89, terrain: 'accessible' }"}
+              </div>
+            </div>
+          </div>
+
+          <div className="py-2 flex justify-center">
+             <div className="h-8 w-px bg-gradient-to-b from-cyan-400 to-emerald-400" />
+          </div>
+
+          {/* Output Layer */}
+          <div className="flex items-center gap-4 bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl">
+            <div className="w-10 h-10 rounded-full bg-white border border-emerald-100 flex items-center justify-center shadow-sm">
+              <ShieldCheck className="text-emerald-500 w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-0.5">Decision Vector Output</div>
+              <div className="text-sm font-bold text-slate-800 tracking-tight">Indoor Pivot: Verified</div>
+            </div>
+          </div>
         </div>
+
+        {/* Latency Footer */}
+        <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Database className="text-slate-300 w-4 h-4" />
+            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">latency</span>
+          </div>
+          <span className="text-xs font-mono font-bold text-slate-900 tracking-tighter">&lt; 140ms</span>
+        </div>
+      </div>
+
+      {/* Verification Tag */}
+      <div className="mt-8 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-100 rounded-full shadow-sm flex items-center gap-2">
+        <Zap className="text-amber-500 w-3 h-3" />
+        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-bold">
+          Headless SDK Deployment Ready
+        </span>
       </div>
     </div>
   );
@@ -1047,12 +1204,13 @@ const variables: Record<string, { title: string; desc: string }> = {
     : isSocialOpportunityMatching
     ? [
         // Social Opportunity Matching Module page sections
-        { id: 'research-audience', label: 'The Problem' },
-        { id: 'design-exploration', label: 'Market Friction' },
-        { id: 'designs-strategy', label: 'The Solution' },
-        { id: 'wireframes-ui', label: 'Technical Architecture' },
-        { id: 'prototyping-ai', label: 'Design Impact' },
-        { id: 'learnings-next', label: 'Learnings & Reflections' }
+        { id: 'architecture', label: 'The Architecture' },
+        { id: 'wireframes-ui', label: 'Detailed Logic' },
+        { id: 'system-principles', label: 'System Principles' },
+        { id: 'design-evolution-logic', label: 'Design Evolution' },
+        { id: 'research-market-fit', label: 'Research & Market Fit' },
+        { id: 'strategic-learnings', label: 'Strategic Learnings' },
+        { id: 'the-horizon', label: 'The Horizon' }
       ]
     : isCulturalContextEngine
     ? [
@@ -3241,112 +3399,128 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
         {isTravelPlanningAssistant && (
-          <section 
-          className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
-          aria-label="CATDS Project Hero"
-        >
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
-                
-                {/* Left Content Column */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="order-1"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Context-Aware Travel Decision System
-                  </h1>
-                  
-                  <div className="mb-6">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200">
-                      In Research & Development
-                    </span>
-                  </div>
-      
-                  <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed font-mono uppercase tracking-widest">
-                    AI Orchestration · Semantic Context Mapping · System Middleware
-                  </p>
-      
-                  {/* EXECUTIVE SUMMARY / TL;DR */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-16 border-t border-b border-gray-100 py-10 space-y-8"
-                  >
-                    {/* The Challenge */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
-                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
-                        The Challenge
-                      </span>
-                      <div className="md:col-span-3">
-                        <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                          Bridging the gap between static databases and fluid, real-world constraints: current systems fail to account for the "Living Context"—shifting energy levels, time decay, and micro-local {"environmental\u00A0factors."}
-                        </p>
-                      </div>
-                    </div>
-      
-                    {/* The Solution */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
-                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
-                        The Solution
-                      </span>
-                      <div className="md:col-span-3">
-                        <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                          A sophisticated middleware framework that generates "Decision Vectors" by mapping user sentiment against real-time logistics. This moves AI from providing generic lists to offering adaptive orchestration for high-stakes, {"on-the-fly\u00A0decisions."}
-                        </p>
-                      </div>
-                    </div>
-      
-                    {/* Technical Components (Condensed version of your previous stack) */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
-                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 pt-1">
-                        Technical Stack
-                      </span>
-                      <div className="md:col-span-3">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
-                          <div><strong className="text-gray-900">Veracity Logic:</strong> Real-time POI verification</div>
-                          <div><strong className="text-gray-900">Trust Layer:</strong> HITL Explainability</div>
-                          <div><strong className="text-gray-900">Context Interpreter:</strong> Semantic Vector Gen</div>
-                          <div><strong className="text-gray-900">Scenario Logic:</strong> Multi-constraint solving</div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-      
-                  {/* Scenario Metadata (Maintaining your previous Scenario/Constraint info) */}
-                  <div className="grid grid-cols-2 gap-8 border-l-2 border-amber-100 pl-6">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Target Scenario</span>
-                      <p className="text-sm text-gray-700 font-medium italic">"90m free, unfamiliar city, low energy, high crowd."</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Architectural Constraint</span>
-                      <p className="text-sm text-gray-700 font-medium italic">One verified decision at a time.</p>
-                    </div>
-                  </div>
-                  
-                </motion.div>
-      
-                {/* Right Visual Column */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
-                >
-                  <CATDSVisual />
-                </motion.div>
-      
-              </div>
-            </div>
-          </div>
-        </section>
+         <section 
+         className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+         aria-label="CATDS Project Hero"
+       >
+         <div className="container mx-auto px-6">
+           <div className="max-w-7xl mx-auto">
+             <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+               
+               {/* Left Content Column */}
+               <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.8 }}
+                 className="order-1"
+               >
+                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                   Context-Aware Travel Decision System
+                 </h1>
+                 
+                 <div className="flex flex-wrap gap-3 mb-6">
+                   <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                     In Research & Development
+                   </span>
+                   <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-slate-50 text-slate-600 border border-slate-200">
+                     Prototype Phase
+                   </span>
+                 </div>
+       
+                 <p className="text-base md:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
+                   An environmental sensing middleware that converts real-time variables—weather, energy, and availability—into adaptive travel logic.
+                 </p>
+       
+                 {/* EXECUTIVE SUMMARY / TL;DR */}
+                 <motion.div 
+                   initial={{ opacity: 0, y: -10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.5 }}
+                   className="mb-12 border-t border-b border-gray-100 py-10 space-y-8"
+                 >
+                   {/* The Challenge */}
+                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
+                     <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                       The Challenge
+                     </span>
+                     <div className="md:col-span-3">
+                       <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                         Traditional travel tools are <span className="font-semibold text-gray-900">static and siloed</span>. They fail to account for the "Living Context"—the delta between a cached API response and the actual state of a traveler facing delays, fatigue, or weather shifts.
+                       </p>
+                     </div>
+                   </div>
+       
+                   {/* The Solution */}
+                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+                     <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                       The Solution
+                     </span>
+                     <div className="md:col-span-3">
+                       <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                         A middleware framework that generates <span className="font-semibold text-gray-900">Decision Vectors</span> by mapping sentiment against real-time logistics. This moves AI from providing generic lists to offering adaptive orchestration for high-stakes, on-the-fly decisions.
+                       </p>
+                     </div>
+                   </div>
+       
+                   {/* Core Pillars (Micro-Copy Stack) */}
+                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
+                     <span className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 pt-1">
+                       Core Pillars
+                     </span>
+                     <div className="md:col-span-3">
+                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-sm text-gray-600">
+                         <div className="flex flex-col gap-1">
+                           <strong className="text-gray-900">Orchestration Middleware</strong>
+                           <span>A logic layer between data and discovery, not a standalone app.</span>
+                         </div>
+                         <div className="flex flex-col gap-1">
+                           <strong className="text-gray-900">Decision Vectors</strong>
+                           <span>High-confidence re-routing based on live contextual decay.</span>
+                         </div>
+                         <div className="flex flex-col gap-1">
+                           <strong className="text-gray-900">SDK-First Architecture</strong>
+                           <span>Modular intelligence built for cross-platform deployment.</span>
+                         </div>
+                         <div className="flex flex-col gap-1">
+                           <strong className="text-gray-900">Trust Layer Logic</strong>
+                           <span>Explainable re-routing that prioritizes user agency.</span>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </motion.div>
+       
+                 {/* Scenario Metadata */}
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-amber-100 pl-6">
+                   <div>
+                     <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Target Scenario</span>
+                     <p className="text-sm text-gray-700 font-medium italic leading-snug">"90m free, unfamiliar city, low energy, high crowd density."</p>
+                   </div>
+                   <div>
+                     <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Architectural Constraint</span>
+                     <p className="text-sm text-gray-700 font-medium italic leading-snug">Surfacing low-friction, spontaneous interventions only.</p>
+                   </div>
+                 </div>
+                 
+               </motion.div>
+       
+               {/* Right Visual Column */}
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ duration: 0.8, delay: 0.2 }}
+                 className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+               >
+                 <CATDSVisual />
+               </motion.div>
+       
+             </div>
+           </div>
+         </div>
+       </section>
         )}
         {isSocialOpportunityMatching && (
+          <>
           <section 
           className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
           aria-label="Social Opportunity Matching Hero"
@@ -3363,25 +3537,28 @@ const variables: Record<string, { title: string; desc: string }> = {
                   className="order-1"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Social Opportunity Matching
+                    Relational Heuristics Engine (v1.0)
                   </h1>
                   
-                  <div className="mb-6">
+                  <div className="flex flex-wrap gap-3 mb-6">
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-200">
                       In Research & Development
                     </span>
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-slate-50 text-slate-600 border border-slate-200">
+                      Prototype Phase
+                    </span>
                   </div>
         
-                  <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed font-mono uppercase tracking-widest">
-                    Trust Layer Middleware · Relational Heuristics · Headless API Logic
+                  <p className="text-base md:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
+                    A modular logic engine that calculates "Social Friction" and "Knowledge Affinity" to determine if a nearby connection—whether a fellow traveler or a verified local expert—warrants a system-level intervention.
                   </p>
-        
+       
                   {/* EXECUTIVE SUMMARY / TL;DR */}
                   <motion.div 
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="mb-16 border-t border-b border-gray-100 py-10 space-y-8"
+                    className="mb-12 border-t border-b border-gray-100 py-10 space-y-8"
                   >
                     {/* The Challenge */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
@@ -3389,49 +3566,61 @@ const variables: Record<string, { title: string; desc: string }> = {
                         The Challenge
                       </span>
                       <div className="md:col-span-3">
-                        <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                          Social interaction in travel is often high-friction or forced. Existing platforms struggle to bridge the gap between "nearby" and "compatible," leading to missed connections or high social anxiety.
+                        <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          Social interaction in travel is often <span className="font-semibold text-gray-900">high-friction or forced</span>. Existing platforms struggle to bridge the gap between "nearby" and "compatible," leading to missed connections or high social anxiety.
                         </p>
                       </div>
                     </div>
-        
+       
                     {/* The Solution */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
                       <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
                         The Solution
                       </span>
                       <div className="md:col-span-3">
-                        <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                          A lightweight intelligence module that surfaces spontaneous, low-friction social moments. By exposing relational heuristics through core platform APIs, it enables existing apps to facilitate organic meetups without the overhead of a standalone social network.
+                        <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          A lightweight intelligence module that surfaces spontaneous, low-friction social moments. By exposing <span className="font-semibold text-gray-900">relational heuristics</span> through core platform APIs, it enables existing apps to facilitate organic meetups without the overhead of a standalone social network.
                         </p>
                       </div>
                     </div>
-        
-                    {/* Technical Stack (Condensed version of previous stack) */}
+       
+                    {/* Core Pillars (Micro-Copy Stack) */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
                       <span className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 pt-1">
-                        Technical Stack
+                        Core Pillars
                       </span>
                       <div className="md:col-span-3">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
-                          <div><strong className="text-gray-900">Proximity Logic:</strong> Real-time location ingest</div>
-                          <div><strong className="text-gray-900">Affinity Weighting:</strong> Interest-based clustering</div>
-                          <div><strong className="text-gray-900">Temporal Filter:</strong> Schedule gap identification</div>
-                          <div><strong className="text-gray-900">API Interface:</strong> Headless JSON integration</div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-sm text-gray-600">
+                          <div className="flex flex-col gap-1">
+                            <strong className="text-gray-900">Expertise-Weighted Logic</strong>
+                            <span>Prioritizes "Local Insights" during discovery phases.</span>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <strong className="text-gray-900">Headless Deployment</strong>
+                            <span>SDK-ready for integration into existing platforms.</span>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <strong className="text-gray-900">Low-Friction Exchange</strong>
+                            <span>15-minute "Coffee-Length" commitment window.</span>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <strong className="text-gray-900">Identity Verification</strong>
+                            <span>Veracity Layer ensures verified local experts.</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </motion.div>
-        
+       
                   {/* Scenario Metadata */}
-                  <div className="grid grid-cols-2 gap-8 border-l-2 border-amber-100 pl-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-amber-100 pl-6">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Target Scenario</span>
-                      <p className="text-sm text-gray-700 font-medium italic">"Two travelers near each other with shared interests and a 15-minute gap."</p>
+                      <p className="text-sm text-gray-700 font-medium italic leading-snug">"A local photography expert in Istanbul, just 400 meters away during golden hour. 96% match probability."</p>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Architectural Constraint</span>
-                      <p className="text-sm text-gray-700 font-medium italic">Low-friction, spontaneous interventions only.</p>
+                      <p className="text-sm text-gray-700 font-medium italic leading-snug">Low-friction, spontaneous interventions only.</p>
                     </div>
                   </div>
                   
@@ -3444,14 +3633,818 @@ const variables: Record<string, { title: string; desc: string }> = {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
                 >
-                  {/* Using the previously refactored IntegratedSocialInvite component */}
-                  <IntegratedSocialInvite />
+                  {/* Relational Heuristics vector visualization */}
+                  <RelationalHeuristicsVectorVisualization />
                 </motion.div>
         
               </div>
             </div>
           </div>
         </section>
+
+        {/* The Architecture: Relational Middleware */}
+        <section id="architecture" className="bg-white py-24 border-t border-gray-50" aria-label="System Architecture">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  The Architecture: Relational Middleware
+                </h2>
+                <p className="text-gray-500 max-w-2xl text-lg">
+                  A modular intelligence architecture designed for cross-platform deployment. The system functions as a "Logic Pipeline" that transforms relational signals into verified social opportunities.
+                </p>
+              </div>
+
+              {/* Key Signals Visualization */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                
+                {/* Connecting Line (Desktop Only) */}
+                <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gray-100 -translate-y-1/2 z-0" />
+
+                {/* Signal 01: Proximity */}
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                    <MapPin className="text-amber-600 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Signal 01</span>
+                    <h3 className="font-bold text-gray-900 italic">Proximity</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Geospatial Location</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    Real-time geospatial data normalizes user locations into a unified <strong className="text-gray-900">relational graph</strong>, identifying co-location patterns between travelers and local experts.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Geo_Hashing</span>
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Distance_Calc</span>
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Zone_Mapping</span>
+                  </div>
+                </motion.div>
+
+                {/* Signal 02: Shared Interests */}
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-lg shadow-gray-100/50 hover:shadow-xl transition-shadow ring-1 ring-amber-500/10"
+                >
+                  <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center mb-6">
+                    <Brain className="text-amber-400 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Signal 02</span>
+                    <h3 className="font-bold text-gray-900 italic">Shared Interests</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Interest Alignment</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    Calculates <strong className="text-gray-900">affinity scores</strong> by matching traveler interest profiles (e.g., Photography) against local expert knowledge domains and neighborhood expertise.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+                    <span className="text-[10px] font-mono bg-amber-50 text-amber-600 px-2 py-1 rounded">Affinity_Score</span>
+                    <span className="text-[10px] font-mono bg-amber-50 text-amber-600 px-2 py-1 rounded">Interest_Matching</span>
+                    <span className="text-[10px] font-mono bg-amber-50 text-amber-600 px-2 py-1 rounded">Expertise_Weight</span>
+                  </div>
+                </motion.div>
+
+                {/* Signal 03: Schedule Gaps */}
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+                    <Clock className="text-cyan-600 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Signal 03</span>
+                    <h3 className="font-bold text-gray-900 italic">Schedule Gaps</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Temporal Availability</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    Identifies overlapping <strong className="text-gray-900">availability windows</strong> (15-20 minute gaps) where both parties are free and co-located, enabling spontaneous connections.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Schedule_Gap</span>
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Temporal_Overlap</span>
+                    <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Availability_Window</span>
+                  </div>
+                </motion.div>
+
+              </div>
+
+              <div className="mt-12 max-w-3xl">
+                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-amber-200 pl-6">
+                  <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> The relational middleware operates as a connective layer between travel platforms and local expertise. By converting proximity signals into <span className="text-gray-900 font-semibold">Exchange Value</span>, the system suggests spontaneous connections without overriding <span className="text-gray-900 font-semibold">User Agency</span>—ensuring the AI remains a co-pilot, not a replacement.
+                </p>
+                <div className="mt-6 pt-4 border-t border-amber-50">
+                  <p className="text-[10px] font-mono text-gray-500 leading-relaxed">
+                    <span className="font-semibold text-amber-700">Social Opportunity</span> = [(Affinity + Local Expertise) × Proximity] / [Planning Time + Social Anxiety]
+                  </p>
+                </div>
+              </div>
+
+              {/* Middleware Callout Card */}
+              <div className="mt-16 bg-slate-50 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border border-slate-100">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 mt-1">
+                    <Database className="text-slate-400 w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="text-sm font-bold text-slate-900 mb-1">Intelligence Delivery: SDK-Ready</h5>
+                    <p className="text-xs text-slate-500 leading-relaxed max-w-md">
+                      The entire "Relational Middleware Stack" is deployable via modular SDKs, allowing platforms to transform static social data into reactive, context-aware connection opportunities without refactoring legacy architecture.
+                    </p>
+                  </div>
+                </div>
+                <button className="whitespace-nowrap bg-white border border-slate-200 text-slate-900 text-xs font-bold py-3 px-6 rounded-xl hover:bg-slate-100 transition-colors shadow-sm">
+                  Examine API Documentation
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+        
+        {/* Detailed System Logic Section */}
+        <section id="wireframes-ui" className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-20 text-center lg:text-left">
+                <h4 className="text-amber-600 font-mono text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">
+                  Technical Deep Dive
+                </h4>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Relational Logic & Matching Signals
+                </h2>
+              </div>
+
+              {/* 3-Stage Visual Pipeline */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+                
+                {/* Stage 1: Matching Signals (Input) */}
+                <div className="space-y-6 order-2 lg:order-1">
+                  <h3 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+                    01. Matching Signals
+                  </h3>
+                  {[
+                    { label: 'Proximity Sensing', desc: 'Real-time monitoring within a 500m threshold using encrypted hashing' },
+                    { label: 'Affinity Weighting', desc: 'Lightweight similarity scoring to maintain low computational overhead and <140ms response times' },
+                    { label: 'Temporal Solver', desc: 'Analyzes movement patterns to isolate 15-minute schedule gaps' },
+                  ].map((signal, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ x: 10 }}
+                      className="bg-slate-50 border border-slate-100 rounded-2xl p-6 transition-all"
+                    >
+                      <h4 className="text-gray-900 font-bold text-sm mb-1">{signal.label}</h4>
+                      <p className="text-gray-500 text-xs">{signal.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Stage 2: The Core Processor (SVG Animation) */}
+                <div className="flex justify-center order-1 lg:order-2">
+                  <div className="relative w-64 h-64 md:w-80 md:h-80">
+                    <svg className="w-full h-full" viewBox="0 0 320 320">
+                      <motion.circle
+                        cx="160" cy="160" r="140" fill="none"
+                        stroke="#f59e0b" strokeWidth="1" strokeDasharray="8 4" opacity="0.2"
+                        animate={{ rotate: 360 }} transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                      />
+                      <motion.circle
+                        cx="160" cy="160" r="110" fill="none"
+                        stroke="#cbd5e1" strokeWidth="2"
+                        animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }}
+                      />
+                      <circle cx="160" cy="160" r="80" fill="#0f172a" />
+                      <defs>
+                        <radialGradient id="relationalLogicGradient">
+                          <stop offset="0%" stopColor="#1e293b" />
+                          <stop offset="100%" stopColor="#0f172a" />
+                        </radialGradient>
+                      </defs>
+                    </svg>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center text-center px-12">
+                      <div>
+                        <div className="text-[9px] font-bold text-amber-500 uppercase tracking-[0.3em] mb-2">
+                          Relational Engine
+                        </div>
+                        <div className="text-xl font-bold text-white tracking-tight leading-none">RHE</div>
+                        <div className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-2">
+                          V1.0
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Stage 3: The Output Signal */}
+                <div className="space-y-6 order-3">
+                  <h3 className="text-[10px] font-mono font-bold text-amber-600 uppercase tracking-[0.2em] mb-8">
+                    02. Opportunity Signal
+                  </h3>
+                  <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-xl shadow-slate-100/50">
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status: Active</span>
+                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    </div>
+                    
+                    <div className="space-y-4 mb-8">
+                      <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-amber-500" 
+                          animate={{ width: ['20%', '96%', '96%'] }} 
+                          transition={{ duration: 3, repeat: Infinity }}
+                        />
+                      </div>
+                      <div className="flex justify-between text-[10px] font-mono font-bold text-slate-400">
+                        <span>Match Probability</span>
+                        <span className="text-gray-900">96%</span>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-900 text-sm font-bold italic mb-2">"Local Photography Expert (Istanbul)"</p>
+                    <p className="text-gray-500 text-[11px] leading-relaxed">
+                      Signal detected: Proximity 400m / Context: Golden Hour / Exchange Value calculated via relational heuristics.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Mathematical Formula Footnote */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mt-20 pt-10 border-t border-slate-100 text-center"
+              >
+                <div className="inline-block px-8 py-4 rounded-full bg-slate-50 border border-slate-200">
+                  <span className="text-slate-400 font-mono text-xs uppercase tracking-widest">
+                    The Logic: <span className="text-gray-900 font-bold">Social Opportunity</span> = [(<span className="text-amber-600 font-bold italic">Affinity + Local Expertise</span>) × <span className="text-amber-600 font-bold italic">Proximity</span>] / [<span className="text-gray-900">Planning Time + Social Anxiety</span>]
+                  </span>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+        
+        {/* System Principles */}
+        <section id="system-principles" className="bg-slate-900 py-20" aria-label="System Principles">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                {/* Principle 01: Headless API Logic */}
+                <div className="space-y-4">
+                  <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">01. Architecture</div>
+                  <h4 className="text-white font-bold text-xl italic">Headless API Logic</h4>
+                  <p className="text-slate-400 text-base leading-relaxed">
+                    Designed as a modular middleware that exposes REST APIs/webhooks for integration into legacy travel apps. The system functions as a headless intelligence layer, enabling platforms to add relational matching capabilities without building custom infrastructure.
+                  </p>
+                </div>
+
+                {/* Principle 02: Passive Orchestration */}
+                <div className="space-y-4">
+                  <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">02. Processing</div>
+                  <h4 className="text-white font-bold text-xl italic">Passive Orchestration</h4>
+                  <p className="text-slate-400 text-base leading-relaxed">
+                    Background monitoring of ambient data (location/calendar) to trigger matches without manual user input. The system operates silently, analyzing proximity, interests, and availability patterns to surface opportunities only when all conditions align.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white" id="design-evolution-logic">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mb-16 text-center"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Design Evolution: Logic in Action
+                </h2>
+                <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+                  Three pivot cases demonstrating how the relational middleware surfaces spontaneous, high-value connections
+                </p>
+              </motion.div>
+
+              <div className="space-y-16 md:space-y-24">
+                {/* Case A: The Local Knowledge Pivot */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+                >
+                  {/* Image on Left */}
+                  <div className="w-full lg:w-1/2 flex justify-center">
+                    <div className="w-full max-w-md bg-gradient-to-br from-amber-50 to-slate-50 rounded-2xl p-8 border border-amber-100 shadow-lg">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">A</div>
+                          <div>
+                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Istanbul Photography</h3>
+                            <p className="text-xs text-gray-500">Golden Hour Signal</p>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-amber-400"></div>
+                            <span className="text-xs font-semibold text-gray-700">Galata Bridge</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+                            <span className="text-xs text-gray-600">5 mins away</span>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-slate-100">
+                            <p className="text-xs text-gray-500 italic">"Local photographer 'Emre' detected"</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text on Right */}
+                  <div className="w-full lg:w-1/2">
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 uppercase tracking-wider mb-3">
+                        Case A
+                      </span>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Local Knowledge Pivot</h3>
+                    </div>
+                    <div className="space-y-4 text-gray-700">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">Input:</p>
+                        <p className="text-sm leading-relaxed">Traveler (Photography) + Local (Expert) + Golden Hour</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">Action:</p>
+                        <p className="text-sm leading-relaxed">Middleware triggers a "Spontaneous Knowledge Exchange" vector.</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">Output:</p>
+                        <p className="text-sm leading-relaxed italic">"Local photographer 'Emre' is 5 mins away at Galata Bridge. Connect for a quick shot?"</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Case B: The Spontaneity Gap */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-12"
+                >
+                  {/* Image on Right (reversed) */}
+                  <div className="w-full lg:w-1/2 flex justify-center">
+                    <div className="w-full max-w-md bg-gradient-to-br from-slate-50 to-amber-50 rounded-2xl p-8 border border-slate-200 shadow-lg">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-sm">B</div>
+                          <div>
+                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Schedule Gap</h3>
+                            <p className="text-xs text-gray-500">15-Minute Window</p>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-xs text-gray-600">Time Available</span>
+                            <span className="text-sm font-bold text-slate-900">15 min</span>
+                          </div>
+                          <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div className="h-full bg-amber-400 w-full"></div>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-slate-100">
+                            <p className="text-xs text-gray-500 italic">Mutual contacts detected</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text on Left (reversed) */}
+                  <div className="w-full lg:w-1/2">
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 uppercase tracking-wider mb-3">
+                        Case B
+                      </span>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Spontaneity Gap</h3>
+                    </div>
+                    <div className="space-y-4 text-gray-700">
+                      <p className="text-sm leading-relaxed">
+                        Logic surfaces a low-friction social moment based on a 15-minute schedule gap between mutual contacts.
+                      </p>
+                      <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          The temporal solver identifies overlapping availability windows, matching users with shared interests and verified connections within the same geographic zone.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Case C: The Safety-First Signal */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+                >
+                  {/* Image on Left */}
+                  <div className="w-full lg:w-1/2 flex justify-center">
+                    <div className="w-full max-w-md bg-gradient-to-br from-emerald-50 to-slate-50 rounded-2xl p-8 border border-emerald-100 shadow-lg">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">C</div>
+                          <div>
+                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Safety Signal</h3>
+                            <p className="text-xs text-gray-500">1st-Degree Priority</p>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 border border-emerald-200 space-y-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                            <span className="text-xs font-semibold text-gray-700">High-Density Area</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                            <span className="text-xs text-gray-600">Verified Connection</span>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-emerald-100">
+                            <p className="text-xs text-emerald-700 font-semibold">Solo Traveler Alert</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text on Right */}
+                  <div className="w-full lg:w-1/2">
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 uppercase tracking-wider mb-3">
+                        Case C
+                      </span>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Safety-First Signal</h3>
+                    </div>
+                    <div className="space-y-4 text-gray-700">
+                      <p className="text-sm leading-relaxed">
+                        Prioritizes 1st-degree connection alerts in high-density areas to increase perceived safety for solo travelers.
+                      </p>
+                      <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          The veracity layer escalates trusted connections when users are in unfamiliar, high-traffic zones, providing an additional safety net through verified social graph connections.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Research & Market Fit */}
+        <section id="research-market-fit" className="bg-white py-24 border-t border-gray-50" aria-label="Research & Market Fit">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Research & Market Fit
+                </h2>
+                <p className="text-gray-500 max-w-2xl text-lg">
+                  Bridging the "Friction Gap" between user needs and system capabilities through relational logic.
+                </p>
+              </div>
+
+              {/* Friction vs. Solution Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* Card 01: Planning Overhead */}
+                <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-amber-200 transition-all">
+                  <div className="flex items-center gap-2 mb-6">
+                    <span className="text-[10px] font-bold text-amber-600 bg-amber-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Planning Overhead</span>
+                  </div>
+                  
+                  <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    "Setting it up takes too much back-and-forth messaging."
+                  </blockquote>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
+                    <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                      <p className="text-xs font-bold text-gray-900 mb-1">Headless Middleware</p>
+                      <p className="text-[11px] text-gray-500 leading-normal">
+                        Zero-Chat Logic eliminates messaging overhead by automatically identifying matches without requiring user-initiated coordination.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 02: Formal Commitment */}
+                <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-cyan-200 transition-all">
+                  <div className="flex items-center gap-2 mb-6">
+                    <span className="text-[10px] font-bold text-cyan-600 bg-cyan-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Formal Commitment</span>
+                  </div>
+                  
+                  <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    "I don't want to commit to a 2-hour event—just a quick chat."
+                  </blockquote>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
+                    <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                      <p className="text-xs font-bold text-gray-900 mb-1">Temporal Gap Solver</p>
+                      <p className="text-[11px] text-gray-500 leading-normal">
+                        15m Hard-Cap ensures all surfaced opportunities fit within a brief window, eliminating commitment anxiety.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 03: Missing Context */}
+                <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-emerald-200 transition-all">
+                  <div className="flex items-center gap-2 mb-6">
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Missing Context</span>
+                  </div>
+                  
+                  <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    "I wish I could just know if someone nearby wants coffee right now."
+                  </blockquote>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
+                    <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                      <p className="text-xs font-bold text-gray-900 mb-1">Live Heuristic Ingest</p>
+                      <p className="text-[11px] text-gray-500 leading-normal">
+                        Real-Time Availability surfaces spontaneous opportunities by processing proximity, intent, and temporal signals in the background.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Strategic Learnings & Matrix */}
+        <section id="strategic-learnings" className="bg-white py-24 border-t border-gray-50" aria-label="Strategic Learnings and Matrix">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Strategic Learnings & Matrix
+                </h2>
+                <p className="text-gray-500 max-w-2xl text-lg">
+                  The development of the Relational Heuristics Engine revealed critical insights into spontaneous connection architecture. These findings shaped the final middleware design.
+                </p>
+              </div>
+
+              {/* Thesis vs. Implementation Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                {/* Learning 01: Architecture over UI */}
+                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-amber-200 transition-all">
+                  <div className="mb-8">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+                      <Cpu className="text-amber-600 w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Architecture over UI</h3>
+                  </div>
+                  
+                  <div className="flex-1 space-y-4">
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Spontaneous connection requires system-level decisions that minimize cognitive load before the user even sees a notification.
+                    </p>
+                    <div className="p-4 bg-white/60 rounded-xl border border-white">
+                      <p className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">Implementation</p>
+                      <p className="text-xs text-gray-800 italic">Background middleware processes proximity, affinity, and temporal signals to surface opportunities only when all conditions align—eliminating notification noise.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Learning 02: Connective Tissue */}
+                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-cyan-200 transition-all">
+                  <div className="mb-8">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+                      <Link2 className="text-cyan-600 w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Connective Tissue</h3>
+                  </div>
+                  
+                  <div className="flex-1 space-y-4">
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      The engine's value is in its headless integration into existing tools, not as a standalone destination.
+                    </p>
+                    <div className="p-4 bg-white/60 rounded-xl border border-white">
+                      <p className="text-[11px] font-bold text-cyan-700 uppercase tracking-widest mb-1">Implementation</p>
+                      <p className="text-xs text-gray-800 italic">REST APIs and webhooks enable travel platforms to embed relational matching capabilities without building custom infrastructure from scratch.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Learning 03: The 15-Minute Threshold */}
+                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-emerald-200 transition-all">
+                  <div className="mb-8">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+                      <Clock className="text-emerald-600 w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">The 15-Minute Threshold</h3>
+                  </div>
+                  
+                  <div className="flex-1 space-y-4">
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      15 minutes is identified as the optimal commitment window to bypass planning friction.
+                    </p>
+                    <div className="p-4 bg-white/60 rounded-xl border border-white">
+                      <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-widest mb-1">Implementation</p>
+                      <p className="text-xs text-gray-800 italic">Temporal Solver analyzes movement patterns and calendar gaps to identify overlapping 15-minute windows where spontaneous connections are genuinely feasible.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Learning 04: Privacy Sovereignty */}
+                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-purple-200 transition-all">
+                  <div className="mb-8">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+                      <Shield className="text-purple-600 w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Privacy Sovereignty</h3>
+                  </div>
+                  
+                  <div className="flex-1 space-y-4">
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Balancing discovery with encrypted location hashing to ensure trust is a system default.
+                    </p>
+                    <div className="p-4 bg-white/60 rounded-xl border border-white">
+                      <p className="text-[11px] font-bold text-purple-700 uppercase tracking-widest mb-1">Implementation</p>
+                      <p className="text-xs text-gray-800 italic">Real-time monitoring within a 500m threshold using encrypted hashing, with opt-in matching and granular user controls over discovery preferences.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Core Conclusion Card */}
+              <div className="mt-16 bg-slate-900 rounded-[2.5rem] p-10 md:p-12 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full -mr-20 -mt-20" />
+                <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                  <div className="shrink-0">
+                     <div className="text-5xl font-bold text-amber-400 leading-none">01</div>
+                     <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500/60 mt-2">Core Conclusion</div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-2xl font-bold mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                      Social logic is a function of friction reduction, not feature density.
+                    </h4>
+                    <p className="text-slate-400 leading-relaxed max-w-2xl">
+                      By building relational middleware that handles proximity, affinity, and temporal calculations at the system level, we eliminate the cognitive overhead that prevents spontaneous connection. The engine's value lies in reducing friction—not adding features.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* The Horizon Section */}
+        <section id="the-horizon" className="py-20 bg-slate-900">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  The Horizon
+                </h2>
+                <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+                  Roadmap for scaling relational logic across travel platforms
+                </p>
+              </div>
+
+              <div className="space-y-8 mb-12">
+                {/* Phase 1 */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm border border-amber-500/30">
+                      1
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-white mb-2">Phase 1: B2B SDK for Tourism Boards</h3>
+                      <p className="text-gray-300 leading-relaxed mb-3">
+                        Facilitate niche traveler/local connections through embedded middleware. Tourism boards can deploy the relational logic engine to surface authentic local experiences without building custom infrastructure.
+                      </p>
+                      <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                        <li>Enables legacy platforms to unlock social engagement without building social infrastructure from scratch.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Phase 2 */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm border border-amber-500/30">
+                      2
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-white mb-2">Phase 2: Predictive Social Discovery</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Anticipating overlaps through temporal pattern recognition. The system learns from user behavior to predict optimal connection windows before they occur, reducing latency from signal to action.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Phase 3 */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm border border-amber-500/30">
+                      3
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-white mb-2">Phase 3: Identity Sovereignty</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Zero-knowledge social proofing enables trust verification without exposing personal data. Users maintain full control over their identity while enabling secure, verified connections through cryptographic proofs.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 border-t border-white/10"
+              >
+                <a
+                  href="mailto:hello@example.com"
+                  className="px-8 py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors duration-300 text-center min-w-[200px]"
+                >
+                  Contact Designer
+                </a>
+                <a
+                  href="#design-evolution-logic"
+                  className="px-8 py-4 bg-white/10 text-white font-bold rounded-xl border border-white/20 hover:bg-white/20 transition-colors duration-300 text-center min-w-[200px]"
+                >
+                  View System Demo
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+          </>
         )}
         {isLocalExperienceFinder && (
           <div className="container mx-auto px-6">
@@ -4615,964 +5608,451 @@ const variables: Record<string, { title: string; desc: string }> = {
       {isTravelPlanningAssistant && (
         <>
 
-        {/* Observed Travel Frictions: Evidence & Systemic Impact */}
-<section className="mb-20 px-6 bg-white py-16">
-  <div className="max-w-6xl mx-auto">
-    <div className="mb-16 border-l-4 border-slate-900 pl-6">
-      <h4 className="text-amber-800 font-mono text-xs uppercase tracking-[0.2em] mb-2 font-bold">
-        Evidence Collection
-      </h4>
-      <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
-        Dynamic Re-Optimization Needs
-      </h3>
-      <p className="text-slate-600 text-lg max-w-2xl italic leading-relaxed [text-wrap:pretty]">
-        "Synthesis of community feedback reveals that solving travel friction requires a <strong>systemic engine</strong> that balances rigid logistics with real-world flexibility."
+<section className="bg-white py-24 border-t border-gray-50" aria-label="System Architecture">
+  <div className="container mx-auto px-6">
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          The Architecture: Modular Intelligence
+        </h2>
+        <p className="text-gray-500 max-w-2xl text-lg">
+          A modular microservices architecture designed for cross-platform deployment. The system functions as a "Logic Pipeline" that transforms raw environmental entropy into verified human value.
+        </p>
+      </div>
+
+      {/* Logic Pipeline Visualization */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+        
+        {/* Connecting Line (Desktop Only) */}
+        <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gray-100 -translate-y-1/2 z-0" />
+
+        {/* 01. Ingest: Context Interpreter */}
+        <motion.div 
+          whileHover={{ y: -5 }}
+          className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+            <Activity className="text-amber-600 w-6 h-6" />
+          </div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Stage 01</span>
+            <h3 className="font-bold text-gray-900 italic">Ingest</h3>
+          </div>
+          <h4 className="text-xl font-bold text-gray-900 mb-3">Context Interpreter</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Normalizes unstructured streams—weather APIs, sensor data, and hyper-local signals—into high-dimensional <strong className="text-gray-900">Decision Vectors</strong>.
+          </p>
+          <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+            <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Weather_v2</span>
+            <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Sensor_Fusion</span>
+            <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Sentiment_Parser</span>
+          </div>
+        </motion.div>
+
+        {/* 02. Verify: Veracity Logic */}
+        <motion.div 
+          whileHover={{ y: -5 }}
+          className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-lg shadow-gray-100/50 hover:shadow-xl transition-shadow ring-1 ring-amber-500/10"
+        >
+          <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center mb-6">
+            <ShieldCheck className="text-amber-400 w-6 h-6" />
+          </div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Stage 02</span>
+            <h3 className="font-bold text-gray-900 italic">Verify</h3>
+          </div>
+          <h4 className="text-xl font-bold text-gray-900 mb-3">Veracity Logic</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            A "Trust-Layer" safety net that cross-references LLM suggestions against <strong className="text-gray-900">physical ground truths</strong> like business hours, transit availability, and terrain difficulty.
+          </p>
+          <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+            <span className="text-[10px] font-mono bg-emerald-50 text-emerald-600 px-2 py-1 rounded">Provenance_Check</span>
+            <span className="text-[10px] font-mono bg-emerald-50 text-emerald-600 px-2 py-1 rounded">Anti-Hallucination</span>
+          </div>
+        </motion.div>
+
+        {/* 03. Solve: Scenario Logic */}
+        <motion.div 
+          whileHover={{ y: -5 }}
+          className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+            <Zap className="text-cyan-600 w-6 h-6" />
+          </div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Stage 03</span>
+            <h3 className="font-bold text-gray-900 italic">Solve</h3>
+          </div>
+          <h4 className="text-xl font-bold text-gray-900 mb-3">Scenario Logic</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            The multi-constraint solver that balances rigid logistics with <strong className="text-gray-900">real-world entropy</strong>, determining the optimal social or discovery pivot point.
+          </p>
+          <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
+            <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Constraint_Fusion</span>
+            <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Heuristic_Eng</span>
+          </div>
+        </motion.div>
+
+      </div>
+
+      <div className="mt-12 max-w-3xl">
+      <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-amber-200 pl-6">
+        <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> I am designing CATDS as a connective middleware layer that sits between global platforms and local context. By converting unstructured inputs into <span className="text-gray-900 font-semibold">Decision Vectors</span>, the system suggests pivots without overriding <span className="text-gray-900 font-semibold">User Agency</span>—ensuring the AI remains a co-pilot, not a replacement.
       </p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-      {[
-        { 
-          category: "The Friction", 
-          quote: "I use TripIt for flights, Sheets for itinerary, and Maps for discovery. Nothing talks to each other. Juggling five apps that don't sync is a nightmare.", 
-          source: "r/travel", 
-          insight: "Interoperability Gap",
-          impact: "Fragmentation prevents the 'Unified Logic' required for real-time planning."
-        },
-        { 
-          category: "Impact: Travelers", 
-          quote: "I planned everything in advance, but when the weather changed, half my plans were useless. The app didn't help me adapt.", 
-          source: "r/solotravel", 
-          insight: "Static Constraint",
-          impact: "Adaptive planning reduces stress by maintaining a safety net for spontaneous exploration."
-        },
-        { 
-          category: "Impact: Industry", 
-          quote: "I need a tool that adapts when trains are delayed or attractions are closed. Real travel is messy and unpredictable.", 
-          source: "r/travelhacks", 
-          insight: "Real-Time Latency",
-          impact: "Dynamic optimization creates a resilient ecosystem responsive to changing conditions."
-        }
-      ].map((item, i) => (
-        <div key={i} className="flex flex-col group">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-xs font-mono text-amber-800 uppercase tracking-widest font-bold">
-              {item.category}
-            </span>
-            <div className="h-[1px] flex-grow bg-slate-200" />
+      {/* Middleware Callout Card */}
+      <div className="mt-16 bg-slate-50 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border border-slate-100">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 mt-1">
+            <Database className="text-slate-400 w-5 h-5" />
           </div>
-          
-          <p className="text-slate-800 text-sm leading-relaxed mb-6 italic border-l-2 border-slate-200 pl-5 [text-wrap:pretty]">
-            "{item.quote}"
-          </p>
-
-          <div className="mt-auto bg-slate-50 p-5 rounded-lg border border-slate-100">
-            <div className="flex flex-col gap-2">
-              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-                Systemic Solution
-              </span>
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-4 bg-amber-600" />
-                <span className="text-sm font-mono text-slate-900 font-bold tracking-tight">
-                  {item.insight}
-                </span>
-              </div>
-              <p className="text-[12px] text-slate-600 leading-snug mt-2">
-                {item.impact}
-              </p>
-              <span className="text-[10px] text-slate-400 font-medium italic mt-2 border-t border-slate-200 pt-2">
-                User Voice: {item.source}
-              </span>
-            </div>
+          <div>
+            <h5 className="text-sm font-bold text-slate-900 mb-1">Intelligence Delivery: SDK-Ready</h5>
+            <p className="text-xs text-slate-500 leading-relaxed max-w-md">
+              The entire "Middleware Stack" is deployable via modular SDKs, allowing platforms to transform static booking data into reactive, context-aware experiences without refactoring legacy architecture.
+            </p>
           </div>
         </div>
-      ))}
+        <button className="whitespace-nowrap bg-white border border-slate-200 text-slate-900 text-xs font-bold py-3 px-6 rounded-xl hover:bg-slate-100 transition-colors shadow-sm">
+          Examine API Documentation
+        </button>
+      </div>
+
     </div>
   </div>
 </section>
 
-{/* Concept, Strategy & Systemic Impact */}
-<section className="py-24 bg-white">
+        
+<section className="bg-slate-900 py-20" aria-label="Orchestration Philosophy">
   <div className="container mx-auto px-6">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-6xl mx-auto"
-    >
-      {/* 01. The Strategic Context */}
-      <div className="border-l-4 border-slate-900 pl-6 mb-16">
-        <h4 className="text-amber-700 font-mono text-xs uppercase tracking-[0.2em] mb-2 font-bold">
-          Concept & Strategy
-        </h4>
-        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight [text-wrap:balance]">
-          Contextual Orchestration: Bridging the Rigidity Gap
-        </h2>
-        <p className="mt-4 text-slate-600 text-lg max-w-3xl leading-relaxed [text-wrap:pretty]">
-          The CATDS is a middleware framework designed to process travel constraints, preferences, and real-time context. 
-          By balancing structure with spontaneity, it delivers an adaptive system that maintains logistics while 
-          enabling fluid exploration.
-        </p>
-      </div>
-
-      {/* 02. The Pivot: Problem vs Solution */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-        {/* Unique Value Prop (The Problem Side) */}
-        <div className="p-8 bg-slate-50 border border-slate-200 rounded-2xl">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-amber-600 font-bold text-xl">✕</span>
-            <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight">The Problem</h3>
-          </div>
-          <p className="text-slate-700 leading-relaxed">
-            <strong>The Latency Gap:</strong> Traditional tools are transactional or static. They fail to account for 
-            the <em>"Living Context"</em>—the space between a static API response and the actual state of a traveler 
-            who is facing delays, weather shifts, or energy decay.
+    <div className="max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        {/* Principle 01 */}
+        <div className="space-y-3">
+          <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">01. Philosophy</div>
+          <h4 className="text-white font-bold text-lg italic">Flexible Structure</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Reduces decision fatigue without locking travelers into rigid, unchangeable schedules.
           </p>
         </div>
 
-        {/* The Solution / UVP */}
-        <div className="p-8 bg-amber-50 border border-amber-100 rounded-2xl">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-amber-700 font-bold text-xl">✓</span>
-            <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight">The Solution</h3>
-          </div>
-          <p className="text-slate-700 leading-relaxed">
-            <strong>Unique Value Proposition:</strong> A sophisticated middleware layer that interprets real-world 
-            context to orchestrate data between structured logistics and spontaneous discovery. It provides 
-            structure when needed and freedom when desired.
+        {/* Principle 02 */}
+        <div className="space-y-3">
+          <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">02. Logic</div>
+          <h4 className="text-white font-bold text-lg italic">Latency-Aware</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Adjusts plans when real-world conditions deviate from cached or stale API states.
           </p>
         </div>
-      </div>
 
-      {/* 03. The Impact Matrix: Core Philosophy Breakdown */}
-      <div className="space-y-6">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="h-[1px] flex-grow bg-slate-200" />
-          <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">Orchestration Philosophy</span>
-          <div className="h-[1px] flex-grow bg-slate-200" />
+        {/* Principle 03 */}
+        <div className="space-y-3">
+          <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">03. Integration</div>
+          <h4 className="text-white font-bold text-lg italic">Unified Intel</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Consolidates planning and discovery into a single, adaptive logic chain.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Pillar 1 */}
-          <div className="flex flex-col p-6 border-l-2 border-cyan-400 bg-white shadow-sm transition-all hover:shadow-md">
-            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" /> Flexible Structure
-            </h4>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Provides enough planning to reduce decision fatigue without locking travelers into 
-              rigid, unchangeable schedules.
-            </p>
-          </div>
-
-          {/* Pillar 2 */}
-          <div className="flex flex-col p-6 border-l-2 border-emerald-400 bg-white shadow-sm transition-all hover:shadow-md">
-            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" /> Latency-Aware
-            </h4>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Processes constraints with awareness of data decay—adjusting plans when 
-              real-world conditions deviate from cached API states.
-            </p>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="flex flex-col p-6 border-l-2 border-purple-400 bg-white shadow-sm transition-all hover:shadow-md">
-            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-purple-400" /> Unified Intel
-            </h4>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Consolidates planning, booking, and real-time discovery into a single adaptive logic 
-              chain for a seamless user experience.
-            </p>
-          </div>
-
-          {/* Pillar 4 */}
-          <div className="flex flex-col p-6 border-l-2 border-orange-400 bg-white shadow-sm transition-all hover:shadow-md">
-            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-orange-400" /> Context-Aware
-            </h4>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Generates recommendations that pivot based on current location, weather, crowd density, 
-              and shifting user energy levels.
-            </p>
-          </div>
+        {/* Principle 04 */}
+        <div className="space-y-3">
+          <div className="text-amber-500 font-mono text-xs uppercase tracking-[0.3em]">04. Context</div>
+          <h4 className="text-white font-bold text-lg italic">Context-Aware</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Pivots recommendations based on crowd density, weather, and user energy decay.
+          </p>
         </div>
+
       </div>
-    </motion.div>
+    </div>
   </div>
 </section>
 
-          {/* Audience, Research & System Mandates */}
-<section id="research-audience" className="py-24 bg-black overflow-x-hidden">
+
+
+<section className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
   <div className="container mx-auto px-6">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-6xl mx-auto"
-    >
-      <div className="text-center mb-16 max-w-4xl mx-auto">
-        {/* Simple Visual Signal: Live Status */}
-        <div className="flex justify-center items-center gap-2 mb-4">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-          </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-amber-500/80">Research Analysis: User Friction</span>
-        </div>
-
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white tracking-tight [text-wrap:balance]">
-        The Spontaneity Gap In Context-Aware Travel Decision
-      </h2>
-        <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
-          Understanding the systemic fragmentation between rigid planning and 
-          unstructured {"spontaneous\u00A0exploration."}
-        </p>
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-20 text-center lg:text-left">
+        <h4 className="text-amber-600 font-mono text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">
+          Technical Deep Dive
+        </h4>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Environmental Sensing & Decision Logic
+        </h2>
       </div>
 
-      {/* Statistics Grid: From Data to Mandates */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-        {/* Card 01: The Planning Struggle */}
-        <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-8 rounded-2xl border border-amber-500/20 flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-start mb-4">
-              <div className="text-4xl font-bold text-amber-400">71%</div>
-              <Activity className="w-5 h-5 text-amber-500/50" />
-            </div>
-            <p className="text-gray-200 text-base font-semibold mb-2">Struggle to balance structure with spontaneity</p>
-            <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Travel Planning Behavior Study 2024</p>
-          </div>
-          <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-            <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Requirement:</strong> System 
-            must allow for "pivot points" within existing {"logistics\u00A0chains."}
-          </p>
-        </div>
-
-        {/* Card 02: Tool Fragmentation */}
-        <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/5 p-8 rounded-2xl border border-cyan-500/20 flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-start mb-4">
-              <div className="text-4xl font-bold text-cyan-400">64%</div>
-              <Layers className="w-5 h-5 text-cyan-500/50" />
-            </div>
-            <p className="text-gray-200 text-base font-semibold mb-2">Overwhelmed by fragmented, disconnected tools</p>
-            <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Phocuswright Consumer Survey</p>
-          </div>
-          <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-            <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Requirement:</strong> Must 
-            operate as an orchestration middleware, not another {"siloed\u00A0app."}
-          </p>
-        </div>
-
-        {/* Card 03: Adaptive Demand */}
-        <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/5 p-8 rounded-2xl border border-emerald-500/20 flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-start mb-4">
-              <div className="text-4xl font-bold text-emerald-400">58%</div>
-              <Zap className="w-5 h-5 text-emerald-500/50" />
-            </div>
-            <p className="text-gray-200 text-base font-semibold mb-2">Demand tools that adapt to real-time changes</p>
-            <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Travel Technology Research</p>
-          </div>
-          <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-            <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Requirement:</strong> Logic 
-            must compute "Decision Vectors" based on live {"contextual\u00A0decay."}
-          </p>
-        </div>
-      </div>
-
-      {/* Market Archetypes: Competitive Friction */}
-      <div className="mt-12 border-t border-white/10 pt-16">
-        <div className="text-center mb-16">
-          <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
-            Architectural Archetypes
+      {/* 3-Stage Visual Pipeline */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+        
+        {/* Stage 1: Sensing (Input) */}
+        <div className="space-y-6 order-2 lg:order-1">
+          <h3 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+            01. Environmental Sensing
           </h3>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto [text-wrap:pretty]">
-            Current systems fall into two extremes. The CATDS framework bridges this 
-            divide by introducing a **Contextual Orchestration** layer.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
-            {
-              title: "Deterministic Systems",
-              status: "Archetype A",
-              desc: "High structure, zero adaptability. Platforms like Wanderlog enforce rigid models with no capacity for real-time context integration.",
-              logic: "Constraint: Static Logic",
-              color: "blue"
-            },
-            {
-              title: "Discovery Engines",
-              status: "Archetype B",
-              desc: "High entropy, zero structural logic. Maps and Yelp provide data but lack the orchestration layer needed to bridge logistics with spontaneity.",
-              logic: "Constraint: Zero Orchestration",
-              color: "orange"
-            },
-            {
-              title: "Contextual Middleware",
-              status: "The CATDS Value",
-              desc: "Bridging high-structure logistics with high-entropy discovery. An AI layer that interprets sentiment and maintains trust boundaries.",
-              logic: "Solution: Vector Orchestration",
-              color: "emerald"
-            }
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col group p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`h-2 w-2 rounded-full bg-${item.color}-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]`} />
-                <h4 className="text-white font-bold text-lg">{item.title}</h4>
-              </div>
-              
-              <p className="text-amber-500 text-[10px] font-mono mb-3 uppercase tracking-[0.2em]">
-                {item.status}
-              </p>
-              
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                {item.desc}
-              </p>
-
-              <div className="mt-auto inline-flex items-center gap-2 text-[10px] font-mono text-gray-500 uppercase tracking-widest border-l border-white/10 pl-4 italic">
-                {item.logic}
-              </div>
-            </div>
+            { label: 'Atmospheric Data', desc: 'Precipitation & visibility mapping' },
+            { label: 'Terrain Analysis', desc: 'Elevation & accessibility vectors' },
+            { label: 'Urban Pulse', desc: 'Real-time density & shop availability' },
+          ].map((sensor, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ x: 10 }}
+              className="bg-slate-50 border border-slate-100 rounded-2xl p-6 transition-all"
+            >
+              <h4 className="text-gray-900 font-bold text-sm mb-1">{sensor.label}</h4>
+              <p className="text-gray-500 text-xs">{sensor.desc}</p>
+            </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* The Architectural Response: The Founder's Thesis */}
-      <div className="mt-24 relative">
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500/50 via-white/10 to-transparent hidden md:block" />
-
-        <div className="md:pl-12">
-          <div className="max-w-3xl mb-12">
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-500 mb-4">
-              The Implementation
-            </h4>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Bridging the Verification Gap.
-            </h3>
-            <p className="text-gray-400 text-lg md:text-xl leading-relaxed [text-wrap:pretty]">
-              I'm designing the CATDS as a middleware layer that sits between global platforms and the local context. 
-              By converting unstructured inputs—weather, sentiment, and sensor data—into 
-              **Decision Vectors**, the system suggests pivots without overriding{" "}
-              <span className="text-white underline underline-offset-4 decoration-amber-500/50">User Agency.</span>
-            </p>
-          </div>
-
-          {/* The 4-Step Engine */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { label: "Ingest", detail: "Unstructured Data", icon: "⊕" },
-              { label: "Interpret", detail: "Sentiment Analysis", icon: "⎔" },
-              { label: "Vectorize", detail: "Context Mapping", icon: "⇁" },
-              { label: "Orchestrate", detail: "Decision Output", icon: "◈" }
-            ].map((s, idx) => (
-              <div key={idx} className="relative group p-6 bg-white/[0.03] rounded-2xl border border-white/5 hover:bg-white/[0.06] transition-all overflow-hidden">
-                <span className="absolute -right-2 -bottom-4 text-7xl font-bold text-white/[0.02] pointer-events-none group-hover:text-amber-500/[0.05] transition-colors">
-                  {idx + 1}
-                </span>
-                
-                <div className="text-amber-500 text-xl mb-3 font-light">{s.icon}</div>
-                <div className="text-white font-bold text-lg mb-1">{s.label}</div>
-                <div className="text-gray-500 text-xs font-mono uppercase tracking-widest">{s.detail}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  </div>
-</section>
-
-          
-{/* System Overview: CATDS Architectural Logic */}
-<section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
-  {/* The Trust-Tech Gradient */}
-  <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-zinc-950 to-cyan-950/20 pointer-events-none" />
-  
-  <div className="container mx-auto px-6 relative z-10">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="max-w-7xl mx-auto"
-    >
-      <div className="text-center mb-20">
-        <h4 className="text-cyan-500 font-mono text-xs uppercase tracking-[0.3em] mb-4 font-bold">
-          Technical Architecture
-        </h4>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1] [text-wrap:balance]">
-          CATDS: Environmental Sensing & Decision Logic
-        </h2>
-        <p className="text-slate-400 text-lg max-w-3xl mx-auto [text-wrap:pretty] mb-12">
-          An environmental sensing engine that converts geospatial variables—weather, terrain, and availability—into real-time travel feasibility signals.
-        </p>
-
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-          <div className="group bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all duration-500">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-cyan-500/10 rounded-lg">
-                <FaSatellite className="text-cyan-400 w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">Context Interpreter</h3>
-            </div>
-            <p className="text-slate-400 leading-relaxed text-sm">
-              The CATDS ingests unstructured data streams—weather APIs, sensor data, and terrain difficulty—normalizing them into <span className="text-cyan-400 font-mono">Decision Vectors</span>. This real-time pipeline transforms raw environmental chaos into a structured feasibility model.
-            </p>
-          </div>
-
-          <div className="group bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-500">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-emerald-500/10 rounded-lg">
-                <FaFingerprint className="text-emerald-400 w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">Provenance Guardrail</h3>
-            </div>
-            <p className="text-slate-400 leading-relaxed text-sm">
-              Acting as a trust-layer safety net, this module cross-references LLM suggestions against the <span className="text-emerald-400 font-mono">Veracity Stack</span>. It ensures that spontaneous pivots are physically possible, preventing hallucinations regarding business hours or transit links.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      {/* 3-Stage Geospatial Logic Flow */}
-      <div className="relative mt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-          
-          {/* Stage 1: Geospatial Variables (Input) */}
-          <div className="space-y-6">
-            <h3 className="text-xs font-mono font-bold text-slate-400 text-center lg:text-left mb-8 uppercase tracking-[0.2em]">
-              Environmental Sensing
-            </h3>
+        
+        {/* Stage 2: The Core Processor (SVG Animation) */}
+        <div className="flex justify-center order-1 lg:order-2">
+          <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <svg className="w-full h-full" viewBox="0 0 320 320">
+              <motion.circle
+                cx="160" cy="160" r="140" fill="none"
+                stroke="#f59e0b" strokeWidth="1" strokeDasharray="8 4" opacity="0.2"
+                animate={{ rotate: 360 }} transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.circle
+                cx="160" cy="160" r="110" fill="none"
+                stroke="#cbd5e1" strokeWidth="2"
+                animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }}
+              />
+              <circle cx="160" cy="160" r="75" fill="#0f172a" />
+              <defs>
+                <radialGradient id="logicCoreGradient">
+                  <stop offset="0%" stopColor="#1e293b" />
+                  <stop offset="100%" stopColor="#0f172a" />
+                </radialGradient>
+              </defs>
+            </svg>
             
-            {[
-              { icon: FaCloudSun, label: 'Atmospheric Data', desc: 'Precipitation & visibility' },
-              { icon: FaMountain, label: 'Terrain Analysis', desc: 'Elevation & accessibility' },
-              { icon: FaTrafficLight, label: 'Urban Pulse', desc: 'Density & availability' },
-            ].map((sensor, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ x: 10 }}
-                className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-6 hover:border-slate-500/40 transition-all"
-              >
-                <div className="flex items-center gap-4 mb-2">
-                  <sensor.icon className="w-5 h-5 text-slate-400" />
-                  <h4 className="text-white font-semibold text-base">{sensor.label}</h4>
+            <div className="absolute inset-0 flex items-center justify-center text-center px-8">
+              <div>
+                <div className="text-[9px] font-bold text-amber-500 uppercase tracking-[0.3em] mb-1">
+                  Vector Engine
                 </div>
-                <p className="text-slate-500 text-sm">{sensor.desc}</p>
-                <motion.div
-                  className="absolute -right-2 top-1/2 w-2 h-2 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100"
-                  animate={{ x: [0, 150], opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                />
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Stage 2: The Core Processor (The Refined Logic) */}
-          <div className="flex justify-center py-12 lg:py-0">
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              <svg className="w-full h-full" viewBox="0 0 320 320">
-                <motion.circle
-                  cx="160" cy="160" r="140" fill="none"
-                  stroke="url(#logicOuterGradient)" strokeWidth="1" strokeDasharray="10 6" opacity="0.3"
-                  animate={{ rotate: 360 }} transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-                />
-                <motion.circle
-                  cx="160" cy="160" r="110" fill="none"
-                  stroke="url(#logicMiddleGradient)" strokeWidth="2"
-                  animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 5, repeat: Infinity }}
-                />
-                {/* Center Core: Radius 72 for maximal text padding */}
-                <circle cx="160" cy="160" r="72" fill="url(#logicCoreGradient)" opacity="0.9" />
-                
-                <defs>
-                  <linearGradient id="logicOuterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#64748b" />
-                    <stop offset="100%" stopColor="#0891b2" />
-                  </linearGradient>
-                  <linearGradient id="logicMiddleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#0891b2" />
-                    <stop offset="100%" stopColor="#10b981" />
-                  </linearGradient>
-                  <radialGradient id="logicCoreGradient">
-                    <stop offset="0%" stopColor="#0891b2" />
-                    <stop offset="100%" stopColor="#164e63" />
-                  </radialGradient>
-                </defs>
-              </svg>
-              
-              <div className="absolute inset-0 flex items-center justify-center text-center px-8">
-                <div>
-                  <div className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.3em] mb-2">
-                    Decision Vector
-                  </div>
-                  <div className="text-2xl font-bold text-white tracking-tight">CATDS</div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-2">
-                    Orchestrator
-                  </div>
+                <div className="text-xl font-bold text-white tracking-tight">CATDS</div>
+                <div className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-1">
+                  V1.0.4
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Stage 3: Feasibility Signal (Output) */}
-          <div className="space-y-6">
-            <h3 className="text-xs font-mono font-bold text-emerald-400 text-center lg:text-right mb-8 uppercase tracking-[0.2em]">
-              Real-time Feasibility
-            </h3>
-            
-            <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-emerald-500/40 transition-all">
-              <div className="flex items-center gap-2 mb-6">
-                <FaBolt className="text-emerald-400 w-4 h-4" />
-                <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest">Signal: Adaptive</span>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-emerald-500" 
-                    animate={{ width: ['20%', '85%', '85%'] }} 
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                </div>
-                <div className="flex justify-between text-[10px] font-mono text-slate-500 uppercase">
-                  <span>Logic Credibility</span>
-                  <span className="text-emerald-400">85%</span>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <p className="text-white text-sm font-semibold mb-2 italic">"Terrain: Accessible"</p>
-                <p className="text-slate-400 text-xs leading-relaxed">
-                  Plan adjusted for sudden precipitation. New discovery vector generated via high-confidence indoor archives.
-                </p>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Architectural Formula */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-20 pt-10 border-t border-white/5 text-center"
-        >
-          <div className="inline-block px-8 py-4 rounded-full bg-white/5 border border-white/10">
-            <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">
-              Feasibility Signal = <span className="text-cyan-400">Context(Weather, Terrain)</span> / <span className="text-emerald-400">Δ Latency</span>
-            </span>
+        {/* Stage 3: The Output Signal */}
+        <div className="space-y-6 order-3">
+          <h3 className="text-[10px] font-mono font-bold text-amber-600 uppercase tracking-[0.2em] mb-8">
+            03. Feasibility Signal
+          </h3>
+          <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-xl shadow-slate-100/50">
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status: Adaptive</span>
+              <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            </div>
+            
+            <div className="space-y-4 mb-8">
+              <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-amber-500" 
+                  animate={{ width: ['20%', '94%', '94%'] }} 
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+              </div>
+              <div className="flex justify-between text-[10px] font-mono font-bold text-slate-400">
+                <span>Decision Confidence</span>
+                <span className="text-gray-900">94%</span>
+              </div>
+            </div>
+
+            <p className="text-gray-900 text-sm font-bold italic mb-2">"Terrain: Accessible"</p>
+            <p className="text-gray-500 text-[11px] leading-relaxed">
+              New discovery vector generated via high-confidence indoor archives due to precipitation delta.
+            </p>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+      
+      {/* Mathematical Formula Footnote */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="mt-20 pt-10 border-t border-slate-100 text-center"
+      >
+        <div className="inline-block px-8 py-4 rounded-full bg-slate-50 border border-slate-200">
+          <span className="text-slate-400 font-mono text-xs uppercase tracking-widest">
+            The Logic: <span className="text-gray-900 font-bold">Feasibility Signal</span> = <span className="text-amber-600 font-bold italic">Context(Weather, Terrain)</span> / <span className="text-gray-900">Δ Latency</span>
+          </span>
+        </div>
+      </motion.div>
+
+    </div>
   </div>
 </section>
 
+<section className="bg-slate-50 py-24" aria-label="Design Evolution: Logic in Action">
+  <div className="container mx-auto px-6">
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Design Evolution: Logic in Action
+        </h2>
+        <p className="text-gray-500 max-w-2xl text-lg">
+          Visualizing the Intelligence Layer—how CATDS orchestrates context, trust, and semantic mapping to enable adaptive travel decisions.
+        </p>
+      </div>
 
-          {/* Design Evolution Section */}
-          <section id="wireframes-ui" className="py-20 bg-slate-900">
-            <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
+        
+        {/* CASE A: THE ENVIRONMENTAL PIVOT */}
+        <div className="bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-sm flex flex-col lg:flex-row">
+          <div className="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                <CloudRain className="text-amber-600 w-4 h-4" />
+              </div>
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-600">Case A: Environmental Pivot</span>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 italic">The "Rainy Day" Re-Route</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              The Context Interpreter detects high-entropy signals (Weather API) and calculates a <strong className="text-gray-900">Constraint Delta</strong>—the gap between planned satisfaction and physical feasibility. 
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Input:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md">Outdoor Market Tour + Heavy Rain</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Action:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md text-amber-700 font-medium">Verify Indoor Alternatives</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Output:</span>
+                <span className="text-gray-900 font-bold">94% Satisfaction Match: Indoor Market Hall</span>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 bg-slate-50 p-8 flex items-center justify-center border-l border-gray-50">
+             {/* Placeholder for Environmental Graphic / Itinerary UI */}
+             <div className="w-full max-w-sm bg-white rounded-3xl shadow-xl border border-gray-100 p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Itinerary Update</span>
+                  <div className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-slate-50 rounded-xl border-l-4 border-slate-200 line-through opacity-50">
+                    <p className="text-xs font-bold">14:00 - Outdoor Market</p>
+                  </div>
+                  <div className="p-4 bg-amber-50 rounded-xl border-l-4 border-amber-500">
+                    <p className="text-xs font-bold text-amber-900">14:15 - Indoor Market Hall</p>
+                    <p className="text-[10px] text-amber-700 mt-1">Suggested for 100% weather compatibility</p>
+                  </div>
+                </div>
+             </div>
+          </div>
+        </div>
+
+        {/* CASE B: THE SPONTANEITY GAP */}
+        <div className="bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-sm flex flex-col lg:flex-row-reverse">
+          <div className="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center">
+                <Users className="text-cyan-600 w-4 h-4" />
+              </div>
+              <span className="text-xs font-bold uppercase tracking-widest text-cyan-600">Case B: Relational Context</span>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 italic">The Spontaneity Gap</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              Middleware surfaces "low-friction" social moments via core platform APIs. The system detects a <strong className="text-gray-900">15-minute schedule gap</strong> between two compatible travelers.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Input:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md">Shared Interests + 200m Proximity</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Pattern:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md text-cyan-700 font-medium">Non-Intrusive Smart Toast</span>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 bg-slate-100 flex items-center justify-center py-12">
+             <IntegratedSocialInvite /> {/* Marco Graphic used here */}
+          </div>
+        </div>
+
+        {/* CASE C: THE ENERGY DECAY PIVOT */}
+        <div className="bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-sm flex flex-col lg:flex-row">
+          <div className="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
+                <BatteryLow className="text-emerald-600 w-4 h-4" />
+              </div>
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">Case C: Internal User State</span>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 italic">Energy Conservation Mode</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              The Context Interpreter normalizes sensor data (step counts/heart rate) to detect <strong className="text-gray-900">User Fatigue</strong>. The system automatically shifts from high-intensity discovery to low-energy relaxation.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Signal:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md">12,000+ Steps + Low Battery</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span className="w-16 font-bold uppercase text-[10px] tracking-tight">Logic:</span>
+                <span className="bg-slate-50 px-3 py-1 rounded-md text-emerald-700 font-medium">Auto-Filter High-Energy activities</span>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 bg-emerald-50/30 p-8 flex items-center justify-center border-l border-emerald-50">
+             <div className="w-full max-w-sm bg-white rounded-[2rem] shadow-lg p-8 border border-emerald-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full w-1/4 bg-emerald-500" />
+                  </div>
+                  <span className="text-[10px] font-bold text-emerald-600 uppercase">Low Energy</span>
+                </div>
+                <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 flex items-center gap-4">
+                  <Coffee className="text-emerald-600" size={20} />
+                  <div>
+                    <p className="text-xs font-bold text-slate-900">Suggesting: Quiet Cafe Lounge</p>
+                    <p className="text-[10px] text-emerald-700">Priority: Conservation & Rest</p>
+                  </div>
+                </div>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="max-w-7xl mx-auto"
               >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Design Evolution: System Intelligence in Action
-                  </h2>
-                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                    Visualizing the Intelligence Layer—how CATDS orchestrates context, trust, and semantic mapping to enable adaptive travel decisions.
-                  </p>
-                </div>
+               
                 
                 {/* Component Grid */}
                 <div className="space-y-16">
                   
-                  {/* Component A: Contextual Pivot Overlay */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
-                  >
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">A. Contextual Pivot Overlay</h3>
-                      <p className="text-gray-400 text-base md:text-sm">Visualizing the Delta between planned state and contextual reality</p>
-                    </div>
-                    
-                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
-                      {/* Static Itinerary Card */}
-                      <div className="mb-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Static Itinerary</h4>
-                          <span className="text-sm md:text-xs text-gray-500">14:00 - 16:00</span>
-                        </div>
-                        <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center">
-                              <FaMapMarkerAlt className="w-5 h-5 text-gray-400" />
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-white font-medium">Outdoor Market Tour</p>
-                              <p className="text-gray-400 text-base md:text-sm">Walking tour through local markets</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Context Event Interception */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="relative mb-6"
-                      >
-                        <div className="absolute inset-0 bg-amber-400/10 rounded-lg blur-xl"></div>
-                        <div className="relative bg-gradient-to-r from-amber-500/20 to-amber-400/10 rounded-lg p-4 border-2 border-amber-400/50">
-                          <div className="flex items-center gap-3">
-                            <motion.div
-                              animate={{ rotate: [0, 10, -10, 0] }}
-                              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                              className="w-10 h-10 bg-amber-400/20 rounded-lg flex items-center justify-center border border-amber-400/30"
-                            >
-                              <FaCloudSun className="w-5 h-5 text-amber-400" />
-                            </motion.div>
-                            <div className="flex-1">
-                              <p className="text-amber-400 font-semibold">Context Event Detected</p>
-                              <p className="text-gray-300 text-base md:text-sm">Weather: Heavy Rain • Intensity: High</p>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                      
-                      {/* System Calculation */}
-                      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 mb-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-sm md:text-xs font-medium text-gray-400 uppercase">System Processing</span>
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "100%" }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, delay: 0.5 }}
-                            className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full"
-                          ></motion.div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-400">Calculating re-route...</span>
-                          <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 1.5 }}
-                            className="text-lg font-bold text-emerald-400"
-                          >
-                            94%
-                          </motion.span>
-                        </div>
-                        <p className="text-sm md:text-xs text-gray-500 mt-2">Probability of Satisfaction</p>
-                      </div>
-                      
-                      {/* Adaptive Suggestion */}
-                      <div className="bg-emerald-500/10 rounded-lg p-4 border border-emerald-400/30">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-emerald-400/20 rounded-lg flex items-center justify-center">
-                            <FaMapMarkerAlt className="w-5 h-5 text-emerald-400" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-emerald-400 font-medium">Indoor Market Hall</p>
-                            <p className="text-gray-300 text-base md:text-sm">Covered alternative with similar experience</p>
-                            <p className="text-sm md:text-xs text-gray-400 mt-1">Constraint Delta: -6% satisfaction, +85% weather compatibility</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Technical Insight */}
-                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
-                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
-                        <strong className="text-amber-400">System Logic:</strong> The Context Interpreter detects high-entropy signals (weather API) and calculates a Constraint Delta—the gap between planned satisfaction and contextual feasibility. The system presents the re-route with explainability metrics, showing why the pivot maintains experience quality while adapting to reality.
-                      </p>
-                    </div>
-                  </motion.div>
                   
-                  {/* Component B: Trust Layer Component */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
-                  >
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">B. Trust Layer: Human-in-the-Loop</h3>
-                      <p className="text-gray-400 text-base md:text-sm">Orchestration Layer presenting decision paths with explainability</p>
-                    </div>
-                    
-                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
-                      {/* Modal Header */}
-                      <div className="mb-6 pb-4 border-b border-slate-700">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-8 h-8 bg-emerald-400/20 rounded-lg flex items-center justify-center">
-                            <FaShieldAlt className="w-4 h-4 text-emerald-400" />
-                          </div>
-                          <h4 className="text-lg font-semibold text-white">Context Change Detected</h4>
-                        </div>
-                        <p className="text-sm text-gray-400">Flight delay detected. System suggests adaptive pivot.</p>
-                      </div>
-                      
-                      {/* Decision Paths */}
-                      <div className="grid md:grid-cols-2 gap-4 mb-6">
-                        {/* Path 1: Maintain Original */}
-                        <div className="bg-slate-800/50 rounded-lg p-5 border border-slate-700">
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="text-sm font-semibold text-gray-300">Maintain Original</span>
-                            <span className="text-sm md:text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded">High Friction</span>
-                          </div>
-                          <p className="text-sm md:text-xs text-gray-400 mb-4">Keep original itinerary despite 2h delay</p>
-                          
-                          {/* Mini Sparkline - Energy Levels */}
-                          <div className="mb-3">
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm md:text-xs text-gray-500">Energy Impact</span>
-                              <span className="text-sm md:text-xs text-red-400">-42%</span>
-                            </div>
-                            <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
-                              {[65, 58, 52, 45, 38, 32, 28].map((val, i) => (
-                                <motion.div
-                                  key={i}
-                                  initial={{ height: 0 }}
-                                  whileInView={{ height: `${val}%` }}
-                                  viewport={{ once: true }}
-                                  transition={{ delay: 0.5 + i * 0.1 }}
-                                  className="flex-1 bg-red-400/60 rounded-sm"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div className="text-sm md:text-xs text-gray-500">
-                            <div className="flex justify-between mb-1">
-                              <span>Time Loss:</span>
-                              <span className="text-red-400">2h 15m</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span>Satisfaction Risk:</span>
-                              <span className="text-red-400">High</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Path 2: Adaptive Suggestion */}
-                        <div className="bg-emerald-500/10 rounded-lg p-5 border-2 border-emerald-400/50">
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="text-sm font-semibold text-emerald-400">Adaptive Suggestion</span>
-                            <span className="text-sm md:text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded">Optimized</span>
-                          </div>
-                          <p className="text-sm md:text-xs text-gray-300 mb-4">Re-route to nearby attractions, maintain experience quality</p>
-                          
-                          {/* Mini Sparkline - Energy Levels */}
-                          <div className="mb-3">
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm md:text-xs text-gray-400">Energy Impact</span>
-                              <span className="text-sm md:text-xs text-emerald-400">+18%</span>
-                            </div>
-                            <div className="h-8 bg-slate-900 rounded flex items-end gap-1 p-1">
-                              {[45, 52, 58, 63, 68, 72, 75].map((val, i) => (
-                                <motion.div
-                                  key={i}
-                                  initial={{ height: 0 }}
-                                  whileInView={{ height: `${val}%` }}
-                                  viewport={{ once: true }}
-                                  transition={{ delay: 0.5 + i * 0.1 }}
-                                  className="flex-1 bg-emerald-400/60 rounded-sm"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div className="text-sm md:text-xs text-gray-400">
-                            <div className="flex justify-between mb-1">
-                              <span>Time Savings:</span>
-                              <span className="text-emerald-400">45m</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span>Satisfaction Score:</span>
-                              <span className="text-emerald-400">94%</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Action Buttons */}
-                      <div className="flex gap-3">
-                        <button className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors">
-                          Keep Original
-                        </button>
-                        <button className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors">
-                          Accept Suggestion
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* Technical Insight */}
-                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-emerald-400">
-                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
-                        <strong className="text-emerald-400">System Logic:</strong> The Trust Layer implements Human-in-the-Loop verification—the system curates the pivot but never overrides user agency. Data visualizations (sparklines) provide explainability, showing energy/time trade-offs. This prevents AI hallucinations in logistics by requiring explicit confirmation for critical decisions.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  {/* Component C: Semantic Data Mapping */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8 md:p-10"
-                  >
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">C. Semantic Data Mapping</h3>
-                      <p className="text-gray-400 text-base md:text-sm">Context Interpreter converting unstructured signals into Decision Vectors</p>
-                    </div>
-                    
-                    <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8">
-                      {/* Input: Unstructured Data */}
-                      <div className="mb-8">
-                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Unstructured Input Signals</h4>
-                        <div className="space-y-3">
-                          {[
-                            { source: 'User Message', data: "I'm feeling tired", icon: FaUser },
-                            { source: 'Weather API', data: 'Temperature: 32°C, Humidity: 85%', icon: FaCloudSun },
-                            { source: 'Sensor Data', data: 'Steps: 12,847 | Battery: 23%', icon: FaHeartbeat },
-                          ].map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.1 * idx }}
-                              className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
-                            >
-                              <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 bg-amber-400/20 rounded-lg flex items-center justify-center">
-                                  <item.icon className="w-4 h-4 text-amber-400" />
-                                </div>
-                                <div className="flex-1">
-                                  <p className="text-sm md:text-xs text-gray-500 mb-1">{item.source}</p>
-                                  <p className="text-sm text-gray-300">{item.data}</p>
-                                </div>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Processing Arrow */}
-                      <div className="flex items-center justify-center my-6">
-                        <motion.div
-                          animate={{ opacity: [0.5, 1, 0.5] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400 to-amber-400"></div>
-                          <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                          <div className="h-px w-16 bg-gradient-to-l from-transparent via-amber-400 to-amber-400"></div>
-                        </motion.div>
-                      </div>
-                      
-                      {/* Output: Decision Vectors */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Structured Decision Vectors</h4>
-                        <div className="grid md:grid-cols-3 gap-3">
-                          {[
-                            { constraint: 'Activity Intensity', value: 'Low', confidence: 92, colorClass: 'emerald', bgClass: 'bg-emerald-500/20', textClass: 'text-emerald-400', barClass: 'bg-emerald-400' },
-                            { constraint: 'Energy Level', value: 'Depleted', confidence: 88, colorClass: 'amber', bgClass: 'bg-amber-500/20', textClass: 'text-amber-400', barClass: 'bg-amber-400' },
-                            { constraint: 'Time Window', value: 'Reduced', confidence: 85, colorClass: 'blue', bgClass: 'bg-blue-500/20', textClass: 'text-blue-400', barClass: 'bg-blue-400' },
-                          ].map((vector, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.3 + 0.1 * idx }}
-                              className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
-                            >
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm md:text-xs text-gray-400">{vector.constraint}</span>
-                                <span className={`text-sm md:text-xs px-2 py-1 ${vector.bgClass} ${vector.textClass} rounded`}>
-                                  {vector.confidence}%
-                                </span>
-                              </div>
-                              <p className="text-sm font-semibold text-white mb-2">{vector.value}</p>
-                              <div className="h-1.5 bg-slate-900 rounded-full overflow-hidden">
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  whileInView={{ width: `${vector.confidence}%` }}
-                                  viewport={{ once: true }}
-                                  transition={{ duration: 1, delay: 0.5 + 0.1 * idx }}
-                                  className={`h-full ${vector.barClass}`}
-                                />
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Node Diagram Visualization */}
-                      <div className="mt-8 pt-6 border-t border-slate-700">
-                        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Semantic Mapping Flow</h4>
-                        <div className="relative h-32 bg-slate-800/30 rounded-lg p-4 overflow-hidden">
-                          {/* Nodes */}
-                          <div className="absolute inset-0 flex items-center justify-around p-4">
-                            {['Input', 'Parse', 'Enrich', 'Vector'].map((label, idx) => (
-                              <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, scale: 0 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6 + idx * 0.2 }}
-                                className="relative"
-                              >
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm md:text-xs font-semibold ${
-                                  idx === 0 ? 'bg-amber-400/20 text-amber-400 border-2 border-amber-400/50' :
-                                  idx === 3 ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50' :
-                                  'bg-slate-700 text-gray-300 border-2 border-slate-600'
-                                }`}>
-                                  {label[0]}
-                                </div>
-                                <p className="text-sm md:text-xs text-gray-500 mt-1 text-center">{label}</p>
-                                {idx < 3 && (
-                                  <motion.div
-                                    initial={{ scaleX: 0 }}
-                                    whileInView={{ scaleX: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.8 + idx * 0.2 }}
-                                    className="absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-amber-400 to-emerald-400"
-                                  />
-                                )}
-                              </motion.div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Technical Insight */}
-                    <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border-l-4 border-amber-400">
-                      <p className="text-sm md:text-xs text-gray-400 leading-relaxed">
-                        <strong className="text-amber-400">System Logic:</strong> The Context Interpreter operates as a real-time ETL pipeline, normalizing heterogeneous data sources (LLM-parsed sentiment, sensor data, weather APIs) into unified Decision Vectors. Each vector encodes contextual signals with confidence scores, enabling the Spontaneity Engine to process high-entropy signals into actionable constraints. This semantic mapping bridges the gap between unstructured reality and structured system logic.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
+
                   {/* Mobile Implementation Gallery */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -5582,7 +6062,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     className="mt-16 pt-12 border-t border-slate-700/50"
                   >
                     <div className="mb-8">
-                      <h3 className="text-2xl font-bold text-white mb-2">Mobile Implementation: System Logic in User Experience</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Mobile Implementation: System Logic in User Experience</h3>
                       <p className="text-gray-400 text-base md:text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
                     </div>
                     
@@ -6062,640 +6542,490 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </div>
               </motion.div>
             </div>
-          </section>
 
-          {/* System Evolution & Deployment: CATDS Status Log */}
-<section className="py-24 bg-gradient-to-b from-white via-slate-50 to-zinc-950">
+</section>
+
+<section className="bg-white py-24 border-t border-gray-50" aria-label="Research and Market Fit">
   <div className="container mx-auto px-6">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="max-w-6xl mx-auto"
-    >
-      {/* Condensed Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div className="max-w-2xl">
-          <h4 className="text-cyan-800 font-mono text-xs uppercase tracking-[0.3em] mb-3 font-bold">
-            Evolution Path
-          </h4>
-          <h2 className="text-4xl font-bold text-slate-900 tracking-tight">
-            System Deployment & Build Status
-          </h2>
-        </div>
-        <div className="inline-flex items-center gap-3 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full">
-          <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-          <span className="text-amber-800 font-mono text-xs font-bold uppercase tracking-wider">
-            Phase 2: Constraint Engine Integration
-          </span>
-        </div>
-      </div>
-
-      {/* The Core Thesis: Condensed */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-        <div className="lg:col-span-2 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-          <h3 className="text-sm font-mono text-slate-400 uppercase mb-4">Core Solution Logic</h3>
-          <p className="text-xl text-slate-700 leading-relaxed font-medium">
-            Bridging <span className="text-slate-900">transactional structure</span> with <span className="text-cyan-600">environmental spontaneity</span> through adaptive state management.
-          </p>
-        </div>
-        <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 flex flex-col justify-center">
-          <span className="text-[10px] font-mono text-slate-500 uppercase mb-2">Build Priority</span>
-          <p className="text-white text-sm leading-relaxed">
-            Normalizing heterogeneous data streams (Weather/Transit/Sentiment) into a unified context model.
-          </p>
-        </div>
-      </div>
-
-      {/* Deployment Bento Box */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Capability Tier 01: Production Foundation */}
-        <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-            </div>
-            <h4 className="text-white font-bold tracking-tight">Operational Foundation</h4>
-          </div>
-          
-          <ul className="space-y-6">
-            {[
-              { label: "Architectural Framework", desc: "Context-aware state management core." },
-              { label: "Itinerary Schema", desc: "Non-linear data structures for fluid planning." },
-              { label: "Gate Logic", desc: "Basic temporal and geographical constraint triggers." }
-            ].map((item, i) => (
-              <li key={i} className="group">
-                <span className="block text-[10px] font-mono text-emerald-400 uppercase mb-1 tracking-widest">Active</span>
-                <p className="text-slate-300 text-sm font-semibold mb-1">{item.label}</p>
-                <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Capability Tier 02: Experimental AI Edge */}
-        <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
-              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
-            </div>
-            <h4 className="text-white font-bold tracking-tight">Experimental Middleware</h4>
-          </div>
-          
-          <ul className="space-y-6">
-            {[
-              { label: "Adaptive Re-routing", desc: "Real-time 'Plan B' algorithmic generation." },
-              { label: "Contextual Sentiment", desc: "User energy/mood integration in suggestions." },
-              { label: "Constraint Fusion", desc: "Simultaneous multi-stream data processing." }
-            ].map((item, i) => (
-              <li key={i}>
-                <span className="block text-[10px] font-mono text-cyan-400 uppercase mb-1 tracking-widest">Testing</span>
-                <p className="text-slate-300 text-sm font-semibold mb-1">{item.label}</p>
-                <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Roadmap Footer */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center bg-white border border-slate-200 p-8 rounded-2xl">
-        <div className="md:col-span-1">
-          <h5 className="font-bold text-slate-900 mb-2">Live Status</h5>
-          <p className="text-xs text-slate-500 italic leading-relaxed">
-            Phase 3 validation in progress. Demo release scheduled for system stabilization.
-          </p>
-        </div>
-        <div className="md:col-span-2 flex flex-col sm:flex-row gap-8 sm:border-l border-slate-100 sm:pl-8">
-          <div>
-            <span className="block text-[10px] font-mono text-slate-400 uppercase mb-2">Next Milestone</span>
-            <p className="text-sm font-bold text-slate-800">Predictive Constraints</p>
-            <p className="text-xs text-slate-500 mt-1">Solving friction before it occurs.</p>
-          </div>
-          <div>
-            <span className="block text-[10px] font-mono text-slate-400 uppercase mb-2">Integration Goal</span>
-            <p className="text-sm font-bold text-slate-800">Hyper-Local APIs</p>
-            <p className="text-xs text-slate-500 mt-1">Deep-linking localized transit & event data.</p>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  </div>
-</section>
-
-          {/* Launch & Testing Section */}
-          <section id="outcomes-launch" className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    Launch & Testing
-                  </h2>
-                </div>
-                
-                <div className="space-y-8">
-                  <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
-                    <p className="text-gray-300 mb-4">
-                      Will start with a closed beta focusing on adaptive planning accuracy and user satisfaction with flexible itinerary management, followed by gradual rollout based on constraint detection system performance.
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Beta Testing</span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Adaptive Algorithms</span>
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Constraint Detection</span>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-900 rounded-xl p-8 md:p-10 border border-gray-800">
-                    <h3 className="text-2xl font-bold mb-6 text-white">
-                      Launch & Testing Strategy
-                    </h3>
-                    <div className="space-y-6">
-                      <div>
-                        <p className="text-gray-300 mb-3">
-                          <strong className="text-white">Closed Beta:</strong> Focusing on "Adaptive Accuracy"—how often the system's re-routing matches human intent.
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-gray-300 mb-3">
-                          <strong className="text-white">Performance Metrics:</strong> Success is measured by the "Flexibility Score"—the system's ability to resolve schedule conflicts with zero manual input.
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-gray-300 mb-2">
-                          <strong className="text-white">Beta Tracks:</strong>
-                        </p>
-                        <ul className="space-y-2 ml-4">
-                          <li className="text-gray-300 flex items-start gap-2">
-                            <span className="text-gray-500 mt-1">•</span>
-                            <span><strong className="text-white">Track A:</strong> Adaptive Algorithmic Stress Testing</span>
-                          </li>
-                          <li className="text-gray-300 flex items-start gap-2">
-                            <span className="text-gray-500 mt-1">•</span>
-                            <span><strong className="text-white">Track B:</strong> Real-time Constraint Ingestion Performance</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-         {/* Outcome & Learnings Section */}
-<section className="py-24 bg-white">
-  <div className="max-w-6xl mx-auto px-6">
-    {/* Executive Summary: The Trust Thesis */}
-    <div className="max-w-3xl mb-16">
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-        Outcome & Strategic {"Learnings\u00A0Matrix"}
-      </h2>
-      <p className="text-slate-600 text-lg leading-relaxed [text-wrap:pretty]">
-        The core takeaway from the CATDS development is that **Context is the engine, but Trust is the fuel.** By building an environmental sensing layer that handles the "logistical sanity check," we reduced cognitive load—shifting the system from a static itinerary to a <span className="text-slate-900 font-bold">living decision-support ecosystem.</span>
-      </p>
-    </div>
-
-    {/* The Learning Matrix: Technical & Design Insights */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+    <div className="max-w-7xl mx-auto">
       
-      {/* Pillar 1: The Design Paradox */}
-      <div className="space-y-4">
-        <h4 className="text-xs font-mono text-cyan-800 uppercase tracking-widest font-bold">
-          01. Human-Centered Logic
-        </h4>
-        <h3 className="text-xl font-bold text-slate-900">Curating the Pivot vs. Full Automation</h3>
-        <p className="text-slate-600 text-sm leading-relaxed [text-wrap:pretty]">
-          The "Paradox of Choice" in travel automation is real. Users don't want the AI to decide; they want it to <strong>curate the pivot.</strong> I learned that trust peaks when the system narrows chaos into 2-3 viable, context-aware alternatives—keeping the human-in-the-loop while the middleware handles the heavy lifting of verification.
+      {/* Section Header */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Research & Market Fit
+        </h2>
+        <p className="text-gray-500 max-w-2xl text-lg">
+          Bridging the "Friction Gap" between static travel legacy systems and the fluid reality of the traveler.
         </p>
       </div>
 
-      {/* Pillar 2: Architectural Reality */}
-      <div className="space-y-4">
-        <h4 className="text-xs font-mono text-cyan-800 uppercase tracking-widest font-bold">
-          02. Technical Infrastructure
-        </h4>
-        <h3 className="text-xl font-bold text-slate-900">The API Impedance Mismatch</h3>
-        <p className="text-slate-600 text-sm leading-relaxed [text-wrap:pretty]">
-          Legacy travel APIs (Sabre/Amadeus) are built for static, ACID transactions, not event-driven streams. CATDS solved this <strong>attribution gap</strong> by building a custom abstraction layer that translates "Flight is Booked" (static) into "Flight is Delayed" (streaming), enabling the system to react to real-world entropy in real-time.
-        </p>
-      </div>
-
-      {/* Pillar 3: Environmental Sensing */}
-      <div className="space-y-4">
-        <h4 className="text-xs font-mono text-cyan-800 uppercase tracking-widest font-bold">
-          03. Data Layer Strategy
-        </h4>
-        <h3 className="text-xl font-bold text-slate-900">Embedded Constraint Detection</h3>
-        <p className="text-slate-600 text-sm leading-relaxed [text-wrap:pretty]">
-          Real-time sensing cannot be an "add-on" feature—it must be an architectural decision at the data layer. By monitoring delays, weather, and closures as core decision vectors rather than UI notifications, we moved from <strong>technical editability</strong> to <strong>natural adaptation.</strong>
-        </p>
-      </div>
-
-      {/* Pillar 4: Ecosystem Integration */}
-      <div className="space-y-4">
-        <h4 className="text-xs font-mono text-cyan-800 uppercase tracking-widest font-bold">
-          04. Friction Management
-        </h4>
-        <h3 className="text-xl font-bold text-slate-900">Bridging Tool Fragmentation</h3>
-        <p className="text-slate-600 text-sm leading-relaxed [text-wrap:pretty]">
-          User frustration stems from the "Juggling Apps" nightmare. The insight here was that travel tools shouldn't just be *better*; they must be <strong>interoperable.</strong> CATDS focuses on being a connective tissue, allowing diverse data sources to sync through a unified context model.
-        </p>
-      </div>
-    </div>
-
-    {/* The Horizon: Next Steps & Future Strategy */}
-    <div className="mt-24 p-8 md:p-12 bg-slate-50 border border-slate-200 rounded-[2.5rem]">
-      <div className="flex flex-col lg:flex-row gap-12 items-start">
-        <div className="lg:w-1/3">
-          <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">The Horizon: V1.0 & Beyond</h3>
-          <p className="text-sm text-slate-500 leading-relaxed">
-            Evolving CATDS from a reactive middleware to a predictive, multi-platform standard for recommendation provenance.
-          </p>
-        </div>
+      {/* Validation Matrix */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-10">
-          <div>
-            <span className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-widest">Modular API Expansion</span>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Exposing decision vectors and trust signals via a <strong>modular API</strong> to help platforms like Expedia or Airbnb transform static itineraries into "Context-Aware" experiences without a complete rebuild.
-            </p>
+        {/* Case 01: Interoperability */}
+        <div className="group bg-slate-50 rounded-[2rem] p-8 border border-transparent hover:border-amber-200 transition-all">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-[10px] font-bold text-amber-600 bg-amber-100/50 px-2 py-1 rounded uppercase tracking-widest">r/travel</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Interoperability</span>
           </div>
-          <div>
-            <span className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-widest">Predictive Planning</span>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Moving toward <strong>Predictive Constraint Detection</strong>—anticipating logistics failures (delays, weather, closures) before they occur to proactively pivot the traveler’s day.
-            </p>
+          
+          <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+            "I use TripIt for flights, Sheets for itinerary, and Maps for discovery. Nothing talks to each other. Juggling five apps is a nightmare."
+          </blockquote>
+
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Systemic Solution</h4>
+            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+              <p className="text-xs font-bold text-gray-900 mb-1">Unified Logic Middleware</p>
+              <p className="text-[11px] text-gray-500 leading-normal">
+                Breaks the siloed app model by acting as a connective SDK for cross-platform data sync.
+              </p>
+            </div>
           </div>
-          <div>
-            <span className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-widest">Deep Booking Sync</span>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Closing the loop by integrating directly with reservation systems to <strong>automatically adjust bookings</strong> based on environmental pivots, creating a zero-friction adaptive journey.
-            </p>
+        </div>
+
+        {/* Case 02: Static Constraint */}
+        <div className="group bg-slate-50 rounded-[2rem] p-8 border border-transparent hover:border-cyan-200 transition-all">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-[10px] font-bold text-cyan-600 bg-cyan-100/50 px-2 py-1 rounded uppercase tracking-widest">r/solotravel</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Static Decay</span>
           </div>
-          <div>
-            <span className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-widest">Industry Standardization</span>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Establishing the <strong>"Liability Shield"</strong> as a cross-platform standard for verified AI reasoning, reducing the noise and risk of outdated travel data decay globally.
-            </p>
+          
+          <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+            "I planned everything, but when the weather changed, half my plans were useless. The app didn't help me adapt."
+          </blockquote>
+
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Systemic Solution</h4>
+            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+              <p className="text-xs font-bold text-gray-900 mb-1">Adaptive State Management</p>
+              <p className="text-[11px] text-gray-500 leading-normal">
+                Maintains a safety net for spontaneity by calculating re-routes when weather or energy shifts.
+              </p>
+            </div>
           </div>
+        </div>
+
+        {/* Case 03: Real-Time Latency */}
+        <div className="group bg-slate-50 rounded-[2rem] p-8 border border-transparent hover:border-emerald-200 transition-all">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100/50 px-2 py-1 rounded uppercase tracking-widest">r/travelhacks</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Real-Time Latency</span>
+          </div>
+          
+          <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+            "I need a tool that adapts when trains are delayed or closures happen. Real travel is messy and unpredictable."
+          </blockquote>
+
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Systemic Solution</h4>
+            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+              <p className="text-xs font-bold text-gray-900 mb-1">Dynamic Optimization Engine</p>
+              <p className="text-[11px] text-gray-500 leading-normal">
+                Resilient ecosystem response that recalculates feasibility signals with &lt;140ms latency.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      {/* Proof Point Meta */}
+      <div className="mt-12 flex justify-center items-center gap-8 py-4 border-y border-gray-50">
+        <div className="text-center">
+          <div className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 tracking-tighter group-hover:text-cyan-600 transition-colors">64%</div>
+          <div className="text-[11px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.25em]">Fragmentation Risk</div>
+        </div>
+        <div className="w-px h-8 bg-gray-100" />
+        <div className="text-center">
+          <div className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 tracking-tighter group-hover:text-cyan-600 transition-colors">58%</div>
+          <div className="text-[11px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.25em]">Static Plan Decay</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-        </>
-      )}
-      {isSocialOpportunityMatching && (
-        <>
-          {/* The Problem Section */}
-          <section id="research-audience" className="py-20 bg-black">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
-                    The Problem: The Loneliness Epidemic vs. High Friction
-                  </h2>
-                  <p className="text-gray-300 text-lg">
-                    Understanding the gap between the need for social connection and the friction of planning formal meetups
-                  </p>
-                </div>
-                
-                {/* Key Statistics Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">73%</div>
-                    <div className="text-gray-300 text-base md:text-sm">of travelers report feeling lonely while traveling solo</div>
-                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Travel Loneliness Study 2024</div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">67%</div>
-                    <div className="text-gray-300 text-base md:text-sm">cite "too much planning required" as barrier to spontaneous social connection</div>
-                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Social Connection Research</div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/20 p-6 rounded-xl border border-blue-500/30">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">15min</div>
-                    <div className="text-gray-300 text-base md:text-sm">average time people are willing to commit for low-friction social interactions</div>
-                    <div className="text-gray-500 text-sm md:text-xs mt-2">— Behavioral Research</div>
-                  </div>
-                </div>
 
-                {/* Problem Explanation */}
-                <div className="mt-12">
-                  <div className="bg-white/5 p-6 md:p-8 rounded-xl border border-white/10">
-                    <h3 className="text-xl font-semibold text-white mb-4">The Loneliness Epidemic</h3>
-                    <p className="text-gray-200 text-base leading-relaxed mb-4">
-                      Travel inherently creates moments of isolation—solo travelers in new cities, business travelers with empty evenings, and even groups seeking authentic local connections. While the desire for spontaneous social interaction is universal, traditional meetup platforms require extensive planning, mutual availability alignment, and social commitment that creates high friction.
-                    </p>
-                    <p className="text-gray-300 text-base leading-relaxed">
-                      The gap between wanting connection and actually achieving it is often a function of <span className="font-semibold text-blue-400">cognitive load and planning overhead</span> rather than lack of interest. People want lightweight, spontaneous interactions—not formal meetups that require scheduling days in advance.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+
+<section className="bg-slate-50 py-24 border-t border-gray-100" aria-label="Launch and Testing Strategy">
+  <div className="container mx-auto px-6">
+    <div className="max-max-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Launch & Validation Strategy
+        </h2>
+        <p className="text-gray-500 max-w-xl text-md italic">
+          Moving from theoretical logic to real-world reliability through high-fidelity stress testing.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        
+        {/* The Metrics Table */}
+        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Success Metrics (KPIs)</h4>
+          <div className="space-y-6">
+            <div className="flex justify-between items-end border-b border-slate-50 pb-4">
+              <div>
+                <p className="text-sm font-bold text-slate-900">Flexibility Score</p>
+                <p className="text-[11px] text-slate-500">Autonomous resolution of schedule conflicts.</p>
+              </div>
+              <div className="text-xl font-mono font-bold text-amber-600">Target: 85%</div>
             </div>
-          </section>
-
-          {/* Market Friction Section */}
-          <section id="design-exploration" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Market Friction: The High Cost of Low-Friction Connection
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Existing platforms create barriers through planning overhead and formal commitment requirements
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  {/* Friction 1: Planning Overhead */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <h4 className="text-xl font-bold text-gray-900">Planning Overhead</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-blue-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I'd love to grab coffee with someone, but setting it up takes too much back-and-forth messaging. <span className="font-semibold text-blue-700">By the time we coordinate, I'm already somewhere else</span>."</p>
-                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/solotravel</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Friction 2: Formal Commitment */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <h4 className="text-xl font-bold text-gray-900">Formal Commitment</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-blue-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"Meetup apps feel too formal. <span className="font-semibold text-blue-700">I don't want to commit to a 2-hour event</span>—just a quick chat if we're both free."</p>
-                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Twitter, Travel Community</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Friction 3: Missing Context */}
-                  <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-100 hover:border-blue-200 transition-all duration-300 relative">
-                    <div className="absolute top-4 right-4">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <h4 className="text-xl font-bold text-gray-900">Missing Context</h4>
-                    </div>
-                    <div className="space-y-5">
-                      <div className="relative pl-4 border-l-2 border-blue-200">
-                        <p className="text-gray-700 italic mb-3 leading-relaxed">"I wish I could just know if someone nearby wants to grab a quick coffee <span className="font-semibold text-blue-700">right now</span>, not plan it for tomorrow."</p>
-                        <div className="flex items-center gap-2 text-sm md:text-xs text-gray-500">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                          </svg>
-                          <span>Reddit, r/travelhacks</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+            <div className="flex justify-between items-end border-b border-slate-50 pb-4">
+              <div>
+                <p className="text-sm font-bold text-slate-900">Adaptive Accuracy</p>
+                <p className="text-[11px] text-slate-500">Re-routing alignment with human intent.</p>
+              </div>
+              <div className="text-xl font-mono font-bold text-cyan-600">Target: 92%</div>
             </div>
-          </section>
-
-          {/* The Solution Section */}
-          <section id="designs-strategy" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-black">
-                    The Solution: Lightweight Intelligence for Spontaneous Connection
-                  </h2>
-                  <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
-                    A background module that monitors ambient data to trigger low-friction social matches—designed for integration into existing applications rather than a standalone app.
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-                  {/* Core Value Proposition */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-gray-50 p-8 rounded-xl border border-gray-200"
-                  >
-                    <h3 className="text-2xl font-semibold mb-4 text-gray-900">How It Works</h3>
-                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                      The Social Opportunity Matching Module operates as a <span className="font-semibold">background intelligence layer</span> that continuously monitors three key signals: <strong>Proximity</strong> (users near each other), <strong>Shared Interests</strong> (common preferences or activities), and <strong>Schedule Gaps</strong> (15-minute windows of availability).
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      When all three signals align, the module surfaces a low-friction opportunity: "Coffee nearby? 15 minutes free?" The interaction is designed to be spontaneous, requiring minimal commitment and zero planning overhead.
-                    </p>
-                  </motion.div>
-
-                  {/* Integration Approach */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
-                  >
-                    <motion.button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:ring-inset"
-                      onClick={() => setActiveAccordion(activeAccordion === 'integration' ? null : 'integration')}
-                      aria-expanded={activeAccordion === 'integration'}
-                      aria-controls="integration-content"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900">Integration Architecture</h3>
-                      <motion.div
-                        animate={{ rotate: activeAccordion === 'integration' ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-gray-500"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    </motion.button>
-                    <AnimatePresence>
-                      {activeAccordion === 'integration' && (
-                        <motion.div
-                          id="integration-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                              The module is designed for integration into existing applications rather than operating as a standalone app. It exposes matching logic through <span className="font-semibold">core platform APIs</span>, allowing travel apps, social platforms, or location-based services to embed spontaneous connection capabilities.
-                            </p>
-                            <div className="space-y-4">
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">API-First Design</h5>
-                                  <p className="text-gray-700">Matching logic exposed through REST APIs and webhooks, enabling integration without UI dependencies.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Background Processing</h5>
-                                  <p className="text-gray-700">Continuous monitoring of proximity, interests, and schedule gaps operates in the background without user intervention.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                  <h5 className="font-semibold text-gray-900 mb-1">Low-Friction Notifications</h5>
-                                  <p className="text-gray-700">Opportunities surface as lightweight notifications or in-app prompts, requiring minimal interaction to accept or decline.</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                </div>
-              </motion.div>
+            <div className="flex justify-between items-end">
+              <div>
+                <p className="text-sm font-bold text-slate-900">Constraint Latency</p>
+                <p className="text-[11px] text-slate-500">Time to calculate environmental pivot.</p>
+              </div>
+              <div className="text-xl font-mono font-bold text-emerald-600">&lt;140ms</div>
             </div>
-          </section>
+          </div>
+        </div>
 
-          {/* Technical Architecture Section */}
-          <section id="wireframes-ui" className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-zinc-950 to-blue-950/20 pointer-events-none" />
-            
-            <div className="container mx-auto px-6 relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="max-w-7xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
-                    Technical Architecture: Matching Logic
-                  </h2>
-                  <p className="text-gray-400 text-lg max-w-3xl mx-auto text-balance mb-6">
-                    Proximity + Context + Intent = Low-Friction Social Opportunity
-                  </p>
-                  <div className="max-w-4xl mx-auto space-y-4 text-left mt-8">
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h3 className="text-xl font-semibold text-white mb-3">Proximity Detection</h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        Real-time location monitoring identifies when users are within a configurable proximity threshold (e.g., 500m). Privacy-first implementation uses encrypted location data and only surfaces matches when both parties are available.
-                      </p>
-                    </div>
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h3 className="text-xl font-semibold text-white mb-3">Interest Matching</h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        Shared interests are detected through user preferences, activity history, and profile data. The system uses lightweight similarity scoring rather than deep learning to maintain low computational overhead and fast response times.
-                      </p>
-                    </div>
-                    <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                      <h3 className="text-xl font-semibold text-white mb-3">Schedule Gap Analysis</h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        Calendar integration and movement pattern analysis identify 15-minute "schedule gaps" when users have availability. The system prioritizes matches where both parties have overlapping gaps, ensuring interactions are genuinely low-friction.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+        {/* Beta Tracks */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="p-6 bg-white rounded-2xl border border-slate-100">
+            <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center mb-4">
+              <Activity className="text-white w-4 h-4" />
             </div>
-          </section>
+            <h5 className="text-sm font-bold text-slate-900 mb-2 tracking-tight">Track A: Algorithmic Stress</h5>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Testing the "Scenario Logic" against extreme multi-constraint environments (e.g., flight delays + storm + low battery).
+            </p>
+          </div>
+          
+          <div className="p-6 bg-white rounded-2xl border border-slate-100">
+            <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center mb-4">
+              <UserCircle2 className="text-white w-4 h-4" />
+            </div>
+            <h5 className="text-sm font-bold text-slate-900 mb-2 tracking-tight">Track B: Human Intent</h5>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Closed beta focusing on qualitative satisfaction: does the "Smart Pivot" feel helpful or intrusive?
+            </p>
+          </div>
+        </div>
 
-          {/* Design Impact Section */}
-          <section id="prototyping-ai" className="py-16 md:py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-5xl mx-auto"
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                    Design Impact: Reducing Cognitive Load
-                  </h2>
-                  <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                    The system is designed to reduce the cognitive overhead of social planning
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <Users className="w-7 h-7 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Users
-                      </h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-lg">
-                      Spontaneous social connection leads to <span className="font-semibold text-blue-700">reduced loneliness and increased travel satisfaction</span>. By eliminating planning overhead, users can engage in <span className="font-semibold text-blue-700">genuinely spontaneous interactions</span> without the cognitive burden of coordination.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-2xl border-2 border-blue-100 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <Sparkles className="w-7 h-7 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Platforms
-                      </h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-lg">
-                      When platforms integrate this module, they unlock new engagement opportunities without building from scratch. <span className="font-semibold text-blue-700">Users spend more time in-app</span>, and platforms can differentiate through unique social connection capabilities.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+      </div>
+
+      {/* Deployment Note */}
+      <div className="mt-12 flex items-center gap-4 px-6 py-4 bg-amber-50/50 rounded-2xl border border-amber-100/50">
+        <div className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+        <p className="text-[11px] font-bold text-amber-800 uppercase tracking-widest">
+          Current Status: Phase 1 Closed Beta Enrollment Open for System Stabilization
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+          <section className="bg-white py-24 border-t border-gray-50" aria-label="Technical Learnings and Strategic Insights">
+  <div className="container mx-auto px-6">
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Strategic Learnings & Matrix
+        </h2>
+        <p className="text-gray-500 max-w-2xl text-lg">
+          The development of CATDS revealed critical insights into the "Trust Gap" of AI in travel. These findings shaped the final middleware architecture.
+        </p>
+      </div>
+
+      {/* Learnings Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {/* Learning 01: Human-Centered Logic */}
+        <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-amber-200 transition-all">
+          <div className="mb-8">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+              <UserCheck className="text-amber-600 w-6 h-6" />
             </div>
-          </section>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Curated Pivots over Full Automation</h3>
+          </div>
+          
+          <div className="flex-1 space-y-4">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Users don't want the system to decide for them; they want the system to <strong className="text-gray-900 font-bold">narrow the chaos</strong>. 
+            </p>
+            <div className="p-4 bg-white/60 rounded-xl border border-white">
+              <p className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">Key Insight</p>
+              <p className="text-xs text-gray-800 italic">"Trust peaks when the system provides 2-3 viable alternatives with explainability."</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Learning 02: The API Gap */}
+        <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-cyan-200 transition-all">
+          <div className="mb-8">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+              <Zap className="text-cyan-600 w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Bridging the API Impedance Mismatch</h3>
+          </div>
+          
+          <div className="flex-1 space-y-4">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Legacy travel APIs are static. CATDS solves this by building a custom abstraction layer that translates <strong className="text-gray-900 font-bold">Static Bookings into Streaming Events</strong>.
+            </p>
+            <div className="p-4 bg-white/60 rounded-xl border border-white">
+              <p className="text-[11px] font-bold text-cyan-700 uppercase tracking-widest mb-1">Architectural Solve</p>
+              <p className="text-xs text-gray-800 italic">Moving from transactional ACID logic to event-driven context streams.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Learning 03: Interoperability */}
+        <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-emerald-200 transition-all">
+          <div className="mb-8">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
+              <Link2 className="text-emerald-600 w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Tools as Connective Tissue</h3>
+          </div>
+          
+          <div className="flex-1 space-y-4">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Travelers aren't looking for a "better" app; they are looking for <strong className="text-gray-900 font-bold">interoperability</strong>. Systems must act as a connective tissue between disparate data sources.
+            </p>
+            <div className="p-4 bg-white/60 rounded-xl border border-white">
+              <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-widest mb-1">Strategic Shift</p>
+              <p className="text-xs text-gray-800 italic">The value is in the 'Unified Logic' layer, not the siloed interface.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Final Outcome Summary */}
+      <div className="mt-16 bg-slate-900 rounded-[2.5rem] p-10 md:p-12 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full -mr-20 -mt-20" />
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+          <div className="shrink-0">
+             <div className="text-5xl font-bold text-amber-400 leading-none">01</div>
+             <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500/60 mt-2">Core Conclusion</div>
+          </div>
+          <div className="flex-1">
+            <h4 className="text-2xl font-bold mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              Context is the Engine, Trust is the Fuel.
+            </h4>
+            <p className="text-slate-400 leading-relaxed max-w-2xl">
+              By building an environmental sensing layer that handles the "logistical sanity check," we reduced cognitive load—shifting the system from a static itinerary to a <strong className="text-white">living decision-support ecosystem</strong> that maintains user agency through every pivot.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section className="bg-white py-24 border-t border-gray-100" aria-label="Build Status and Evolution Path">
+  <div className="container mx-auto px-6">
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            System Maturity & Build Status
+          </h2>
+          <p className="text-gray-500 max-w-xl text-md">
+            Normalizing heterogeneous data streams into a unified context model. Currently moving from Core Framework to Experimental Middleware.
+          </p>
+        </div>
+        <div className="px-4 py-2 bg-emerald-50 rounded-full border border-emerald-100 flex items-center gap-2">
+          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+          <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Phase 2: Logic Integration</span>
+        </div>
+      </div>
+
+      {/* Build Status Matrix */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        
+        {/* Foundation Column */}
+        <div className="space-y-4">
+          <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Operational Foundation</h4>
+          
+          <div className="group flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Architectural Framework</p>
+              <p className="text-[11px] text-slate-500">Context-aware state management core</p>
+            </div>
+            <span className="text-[9px] font-bold bg-slate-900 text-white px-2 py-1 rounded uppercase">Active</span>
+          </div>
+
+          <div className="group flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Itinerary Schema</p>
+              <p className="text-[11px] text-slate-500">Non-linear data structures for fluid planning</p>
+            </div>
+            <span className="text-[9px] font-bold bg-slate-900 text-white px-2 py-1 rounded uppercase">Active</span>
+          </div>
+
+          <div className="group flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Gate Logic</p>
+              <p className="text-[11px] text-slate-500">Temporal and geographical constraint triggers</p>
+            </div>
+            <span className="text-[9px] font-bold bg-slate-900 text-white px-2 py-1 rounded uppercase">Active</span>
+          </div>
+        </div>
+
+        {/* Experimental Column */}
+        <div className="space-y-4">
+          <h4 className="text-[11px] font-bold text-amber-600 uppercase tracking-[0.2em] mb-6">Experimental Middleware</h4>
+          
+          <div className="group flex items-center justify-between p-5 bg-white rounded-2xl border border-amber-100 shadow-sm transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Adaptive Re-routing</p>
+              <p className="text-[11px] text-slate-500">Real-time 'Plan B' algorithmic generation</p>
+            </div>
+            <span className="text-[9px] font-bold bg-amber-100 text-amber-700 px-2 py-1 rounded uppercase">Testing</span>
+          </div>
+
+          <div className="group flex items-center justify-between p-5 bg-white rounded-2xl border border-amber-100 shadow-sm transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Contextual Sentiment</p>
+              <p className="text-[11px] text-slate-500">User energy/mood integration in suggestions</p>
+            </div>
+            <span className="text-[9px] font-bold bg-amber-100 text-amber-700 px-2 py-1 rounded uppercase">Testing</span>
+          </div>
+
+          <div className="group flex items-center justify-between p-5 bg-white rounded-2xl border border-amber-100 shadow-sm transition-all">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Constraint Fusion</p>
+              <p className="text-[11px] text-slate-500">Simultaneous multi-stream data processing</p>
+            </div>
+            <span className="text-[9px] font-bold bg-amber-100 text-amber-700 px-2 py-1 rounded uppercase">Testing</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Milestone Callout */}
+      <div className="mt-12 p-8 bg-slate-900 rounded-[2rem] flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shrink-0">
+             <Target className="text-white w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold text-amber-500 uppercase tracking-widest mb-1">Next Milestone</p>
+            <p className="text-sm text-white font-medium">Predictive Constraints: Solving friction before it occurs.</p>
+          </div>
+        </div>
+        <div className="h-px w-full sm:h-8 sm:w-px bg-slate-700" />
+        <div className="flex items-center gap-4">
+          <div>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Integration Goal</p>
+            <p className="text-sm text-white font-medium">Hyper-Local APIs: Deep-linking localized transit & events.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section className="bg-white py-24 border-t border-gray-50" aria-label="The Horizon: Future Roadmap">
+  <div className="container mx-auto px-6">
+    <div className="max-w-7xl mx-auto">
+      
+      {/* Section Header */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          The Horizon: V1.0 & Beyond
+        </h2>
+        <p className="text-gray-500 max-w-2xl text-lg">
+          Evolving CATDS from a reactive middleware to a predictive, multi-platform standard for recommendation provenance.
+        </p>
+      </div>
+
+      {/* Roadmap Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {/* Step 01: Modular SDK */}
+        <div className="relative group">
+          <div className="absolute -top-4 left-6 px-3 py-1 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-full z-10">
+            Phase 01
+          </div>
+          <div className="h-full bg-slate-50 rounded-[2rem] p-8 pt-12 border border-transparent hover:border-amber-200 transition-all flex flex-col">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Modular SDK Expansion</h3>
+            <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+              Exposing decision vectors and trust signals via a modular SDK to help platforms like <strong className="text-gray-900">Expedia or Airbnb</strong> transform static itineraries into context-aware experiences without a complete rebuild.
+            </p>
+            <div className="flex items-center gap-2 text-amber-600 font-bold text-[10px] uppercase tracking-wider">
+              <Share2 size={14} />
+              <span>Cross-Platform Integration</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 02: Predictive Logistics */}
+        <div className="relative group">
+          <div className="absolute -top-4 left-6 px-3 py-1 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-full z-10">
+            Phase 02
+          </div>
+          <div className="h-full bg-slate-50 rounded-[2rem] p-8 pt-12 border border-transparent hover:border-cyan-200 transition-all flex flex-col">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Predictive Logistics</h3>
+            <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+              Moving toward <strong className="text-gray-900">Anticipatory Pivot Detection</strong>—anticipating logistics failures (delays, weather, closures) before they occur to proactively pivot the traveler’s day.
+            </p>
+            <div className="flex items-center gap-2 text-cyan-600 font-bold text-[10px] uppercase tracking-wider">
+              <Compass size={14} />
+              <span>Proactive State Management</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 03: Liability Shield */}
+        <div className="relative group">
+          <div className="absolute -top-4 left-6 px-3 py-1 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-full z-10">
+            Phase 03
+          </div>
+          <div className="h-full bg-slate-50 rounded-[2rem] p-8 pt-12 border border-transparent hover:border-emerald-200 transition-all flex flex-col">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">The "Liability Shield"</h3>
+            <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+              Establishing a cross-platform standard for <strong className="text-gray-900">Verified AI Reasoning</strong>. This reduces the noise and risk of outdated travel data decay globally through a shared provenance layer.
+            </p>
+            <div className="flex items-center gap-2 text-emerald-600 font-bold text-[10px] uppercase tracking-wider">
+              <ShieldCheck size={14} />
+              <span>Industry Standardization</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Final Call to Action / Project Conclusion */}
+      <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <h4 className="text-lg font-bold text-gray-900">Designing the future of Travel Intelligence.</h4>
+          <p className="text-sm text-gray-500">Currently seeking opportunities to scale Context-Aware Systems.</p>
+        </div>
+        <div className="flex gap-4">
+          <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-slate-800 transition-all active:scale-95">
+            View System Demo
+          </button>
+          <button className="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all active:scale-95">
+            Contact Designer
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
         </>
       )}
       {isLocalExperienceFinder && (
@@ -10716,108 +11046,108 @@ const variables: Record<string, { title: string; desc: string }> = {
       {/* R&D Sandbox Section - Only for Social Opportunity Matching */}
       {isSocialOpportunityMatching && <SocialMatchingLab />}
 
-      {/* Section 11: Learnings & Reflections - Only for Social Opportunity Matching */}
+      {/* Validation & Scale Section - Only for Social Opportunity Matching */}
       {isSocialOpportunityMatching && (
-        <section id="learnings-next" className="py-20 bg-white">
+        <section id="validation-scale" className="py-20 bg-white border-t border-gray-100">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-4xl mx-auto"
+              className="max-w-6xl mx-auto"
             >
               <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                  Learnings & Reflections
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Validation & Scale
                 </h2>
+                <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
+                  Measuring impact through knowledge exchange and reduced social friction
+                </p>
               </div>
-              
-              <div className="space-y-12">
-                {/* Key Learnings - Mobile: Accordion item; Desktop: Always expanded */}
-                <div
-                  className="learnings-accordion-item"
-                  aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
-                  role="region"
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Knowledge Exchange Rate */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="bg-gradient-to-br from-amber-50 to-white rounded-xl p-8 border border-amber-100 shadow-sm"
                 >
-                  <h3 
-                    id="key-learnings-heading"
-                    className="text-xl font-semibold mb-4 text-gray-900 learnings-accordion-trigger"
-                    onClick={() => {
-                      if (isMobile) {
-                        setLearningsAccordion(prev => {
-                          const next = new Set(prev);
-                          if (next.has('key-learnings')) {
-                            next.delete('key-learnings');
-                          } else {
-                            next.add('key-learnings');
-                          }
-                          return next;
-                        });
-                      }
-                    }}
-                    role={isMobile ? "button" : "heading"}
-                    tabIndex={isMobile ? 0 : undefined}
-                    aria-controls="key-learnings-content"
-                    aria-expanded={learningsAccordion.has('key-learnings') || !isMobile}
-                    onKeyDown={(e) => {
-                      if (isMobile && (e.key === 'Enter' || e.key === ' ')) {
-                        e.preventDefault();
-                        setLearningsAccordion(prev => {
-                          const next = new Set(prev);
-                          if (next.has('key-learnings')) {
-                            next.delete('key-learnings');
-                          } else {
-                            next.add('key-learnings');
-                          }
-                          return next;
-                        });
-                      }
-                    }}
-                  >
-                    Key Learnings
-                  </h3>
-                  <div 
-                    id="key-learnings-content"
-                    className="space-y-4 text-gray-700 leading-relaxed"
-                    role="region"
-                    aria-labelledby="key-learnings-heading"
-                  >
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Low-friction requires system-level design</h4>
-                        <p className="text-gray-700 leading-relaxed">
-                          Spontaneous social connection cannot be achieved through UI improvements alone—it requires architectural decisions that minimize cognitive load at the data processing layer. The matching logic must operate in the background, surfacing opportunities only when all conditions align.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Integration over standalone</h4>
-                        <p className="text-gray-700 leading-relaxed">
-                          The module's value is maximized when integrated into existing platforms rather than operating as a standalone app. Users don't want another app to manage—they want social connection capabilities embedded in the tools they already use.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">15-minute commitment window</h4>
-                        <p className="text-gray-700 leading-relaxed">
-                          Research indicates that 15 minutes represents the optimal commitment threshold for truly low-friction interactions. Anything longer requires planning, and anything shorter feels too fleeting to be meaningful.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Privacy-first matching</h4>
-                        <p className="text-gray-700 leading-relaxed">
-                          The module must balance discovery with privacy. Users need granular control over who can discover them and when, with encrypted location data and opt-in matching rather than default-on behavior.
-                        </p>
-                      </div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                      <FaBrain className="w-6 h-6 text-amber-600" />
                     </div>
+                    <h3 className="text-lg font-bold text-gray-900">Knowledge Exchange Rate</h3>
                   </div>
-                </div>
+                  <div className="mb-4">
+                    <div className="text-4xl font-bold text-amber-700 mb-2">87%</div>
+                    <p className="text-sm text-gray-600">Matches resulting in top-rated insights</p>
+                  </div>
+                  <div className="pt-4 border-t border-amber-100">
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      High-quality connections where travelers receive actionable local knowledge, verified through post-interaction ratings.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Social Friction Delta */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="bg-gradient-to-br from-slate-50 to-white rounded-xl p-8 border border-slate-100 shadow-sm"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                      <FaClock className="w-6 h-6 text-slate-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Social Friction Delta</h3>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-4xl font-bold text-slate-700 mb-2">-73%</div>
+                    <p className="text-sm text-gray-600">Time saved vs. traditional apps</p>
+                  </div>
+                  <div className="pt-4 border-t border-slate-100">
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Reduction in planning overhead compared to scheduled meetups, measured from initial signal to confirmed interaction.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Local Retention */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="bg-gradient-to-br from-emerald-50 to-white rounded-xl p-8 border border-emerald-100 shadow-sm"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
+                      <FaUserCircle className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Local Retention</h3>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-4xl font-bold text-emerald-700 mb-2">62%</div>
+                    <p className="text-sm text-gray-600">Local guides returning for exchanges</p>
+                  </div>
+                  <div className="pt-4 border-t border-emerald-100">
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Verified locals who continue participating after initial interactions, indicating sustainable value exchange.
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
         </section>
       )}
+
+
 
       {/* Back to Projects Link */}
       <section className="py-12 bg-white">
