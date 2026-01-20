@@ -3,9 +3,40 @@
 
 export const projectRegistry = {
     "context-aware-travel-decision-system": {
+      id: "catds-module",
       title: "Context-Aware Detours",
       subtitle: "Frictionless Pathfinding via Environmental Sensing",
       color: "#3b82f6",
+      isAISystem: true, // This triggers the high-fidelity logic receipt
+      metrics: {
+        arrivalConfidence: "95%+",
+        logicLatency: "<200ms"
+      },
+      systemSpecs: {
+        slackDelta: "42m",
+        confidence: 0.98,
+        energyCost: "Low",
+        environment: {
+          weather: "Clear",
+          crowds: "High"
+        }
+      },
+      calmLogic: {
+        momentDuration: "15m",
+        harmonyType: "Golden Hour / Quiet Path",
+        arrivalGuarantee: "5:00 PM Sharp",
+        sensoryInput: "Lowered Noise Pollution",
+        harmonyPoints: [
+          { label: "Visual Quiet", value: "40% less foot traffic than the main road" },
+          { label: "Nature Access", value: "High tree canopy coverage on this route" },
+          { label: "Weather Window", value: "Clear skies for the next 45 minutes" }
+        ]
+      },
+      content: {
+        phase01: "The Brain: Calculating Time-Buffer Slack—the delta between current pace and hard arrival deadlines.",
+        phase02: "The Middleware: CATDS ingests weather, foot traffic, and venue status to validate the quality and safety of the detour.",
+        humanProblem: "Travelers miss serendipitous discoveries because they lack real-time data on 'detour viability'—fearing they'll miss deadlines if they explore."
+      },
       problem: "Travelers miss serendipitous discoveries because they lack real-time data on 'detour viability'—fearing they'll miss deadlines if they explore.",
       brainLogic: "The Engine calculates 'Time-Buffer Slack'—the delta between current pace and hard arrival deadlines.",
       middlewareLogic: "CATDS ingests weather, foot traffic, and venue status to validate the quality and safety of the detour.",
@@ -19,6 +50,9 @@ export const projectRegistry = {
       title: "Social Proximity Alerts",
       subtitle: "Relational Heuristics for Real-World Connection",
       color: "#8b5cf6",
+      proximitySignal: "High-Value",
+      interactionFriction: "Low (Shared Venue)",
+      privacyLevel: "ZK-Reveal Active",
       problem: "Standard social apps create a gap between knowing someone is nearby and feeling comfortable enough to initiate a meeting.",
       brainLogic: "The Engine filters proximity signals through a 'Dopamine Governor' to prevent notification fatigue.",
       middlewareLogic: "Relational Heuristics weight 'Inner Circle' vs 'Acquaintance' to determine signal urgency.",
@@ -26,7 +60,43 @@ export const projectRegistry = {
       features: [
         { title: "Proximity Reveal UI", desc: "Blurred avatars that sharpen only after mutual ZK-verification." },
         { title: "Contextual Icebreakers", desc: "Shared interests pulled from the Narrative layer to spark conversation." }
-      ]
+      ],
+      sharedInterest: "Tech Design",
+      highFidelitySurface: {
+        type: "SocialLogicReceipt",
+        config: {
+          initialBlur: 25,
+          proximityScore: 0.88,
+          sharedContexts: ["AI Architecture", "Tokyo Design Week"],
+          governorStatus: "Optimal"
+        }
+      },
+      socialLogic: {
+        energyBuffer: 0.75,
+        affinityStory: "High-Trust Connection",
+        contextReasoning: "Quiet venue nearby + 40m schedule gap",
+        vibeMatch: "86%",
+        actionPrompt: "Alex is nearby. Would a 10m 'catch-up' walk fit your energy level?",
+        connectionStory: "Last seen 4 months ago in NY",
+        energyStatus: "Preserving Focus"
+      },
+      handshakeData: {
+        revealStatus: "anonymous",
+        sharedInterests: [
+          { text: "Both mentioned wanting to try the espresso", icon: "coffee" },
+          { text: "Both in Berlin for Design Week", icon: "map" }
+        ],
+        energyLevel: 25,
+        locationContext: "The Barn"
+      },
+      humanContext: {
+        affinityReason: "Worked together at [Company]",
+        frictionScore: "Low - 3m detour",
+        sharedVibe: "Quiet Coffee",
+        connectionName: "Marcus",
+        location: "The Barn",
+        icebreaker: "You both mentioned wanting to try their espresso."
+      }
     },
     "social-graph-driven-travel-network": {
       title: "Privacy-First Discovery",
@@ -52,6 +122,52 @@ export const projectRegistry = {
       features: [
         { title: "Story Cards", desc: "Swipeable narrative recommendations instead of simple map pins." },
         { title: "Adaptive Voice Tone", desc: "UI copy that shifts tone based on time of day and user mood." }
-      ]
+      ],
+      narrativeData: {
+        narrativeThemes: ["Serendipity", "Urban Calm"],
+        dailySummary: "You traded the main road for a moment of silence, discovering a hidden park during golden hour. A brief encounter with a fellow traveler added warmth to an otherwise solitary afternoon.",
+        spontaneityScore: {
+          planned: 45,
+          spontaneous: 55
+        },
+        moments: [
+          { time: "9:00 AM", event: "Departure", weight: 0.3, type: "planned" },
+          { time: "2:30 PM", event: "Golden Hour Detour", weight: 0.92, type: "spontaneous", inputs: "Unusual Proximity + Calm Buffer Used" },
+          { time: "4:15 PM", event: "Social Match", weight: 0.78, type: "spontaneous", inputs: "High-Trust Connection + Low Friction" },
+          { time: "6:00 PM", event: "Arrival", weight: 0.4, type: "planned" }
+        ],
+        voiceTones: {
+          concierge: "We recommend a moment of pause at the park entrance—the light is particularly striking at this hour.",
+          friend: "Hey, that park you passed? Perfect spot for a quick breather. The lighting's amazing right now.",
+          minimalist: "Park entrance. 2 minutes. Golden hour."
+        },
+        semanticStory: {
+          location: "Shinjuku, Tokyo",
+          reflectionHeader: "Evening Reflection",
+          storyBody: {
+            storyteller: "Today wasn't just about moving through the city; it was about the spaces in between. That 15-minute detour through the Gyoen Garden became the highlight of your morning—a moment of urban serenity that the system recognized and protected.",
+            concierge: "Your journey through Shinjuku today included a carefully curated moment of pause. The Gyoen Garden detour, suggested during your 15-minute buffer, offered optimal lighting and reduced foot traffic—transforming transit into tranquility.",
+            minimalist: "Path: Gyoen Garden | Duration: 15m | Buffer: Protected | Outcome: Arrival on-time"
+          },
+          semanticTags: [
+            { label: "Theme", value: "Urban Serenity" },
+            { label: "Steps", value: "14k" },
+            { label: "Connections", value: "1 Social" }
+          ],
+          insightNodes: [
+            { time: "9:00 AM", event: "Departure", logic: "CATDS: Route initialized" },
+            { time: "10:30 AM", event: "Gyoen Detour", logic: "CATDS triggered: Weather validated at 10:30 AM. Calm buffer: 15m available." },
+            { time: "2:15 PM", event: "Social Match", logic: "Relational Heuristics: High-trust connection detected. Low friction path." },
+            { time: "6:00 PM", event: "Arrival", logic: "System: All waypoints completed within tolerance." }
+          ],
+          engineData: {
+            gpsPings: 47,
+            weatherChecks: 8,
+            socialInteractions: 1,
+            detoursSuggested: 2,
+            detoursAccepted: 1
+          }
+        }
+      }
     }
   };

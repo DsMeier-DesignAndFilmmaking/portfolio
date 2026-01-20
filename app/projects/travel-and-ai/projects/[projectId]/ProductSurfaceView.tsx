@@ -1,11 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { projectRegistry } from '../data';
+import LogicReceipt from '../../../../../components/LogicReceipt';
+import HeatmapOverlay from '../../../../../components/HeatmapOverlay';
+import SocialProximityAlerts from '../../../../../components/SocialProximityAlerts';
+import SocialLogicReceipt from '../../../../../components/SocialLogicReceipt';
+import SocialAffinitySurface from '../../../../../components/SocialAffinitySurface';
+import SocialHandshakeSurface from '../../../../../components/SocialHandshakeSurface';
+import SystemDebugOverlay from '../../../../../components/SystemDebugOverlay';
+import MomentOfCalmSurface from '../../../../../components/MomentOfCalmSurface';
+import NarrativeReflectionSurface from '../../../../../components/NarrativeReflectionSurface';
+import SemanticStorySurface from '../../../../../components/SemanticStorySurface';
 
 // Helper function to normalize image paths (handle both /portfolio/ prefix and base path)
 function normalizeImagePath(imagePath: string): string {
@@ -80,10 +90,10 @@ const DetourVisual = () => (
     </div>
 
     {/* Action UI */}
-    <button className="group w-full bg-slate-950 text-white py-4 rounded-2xl text-[11px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-blue-600 transition-all duration-300">
+    <div className="w-full bg-slate-950 text-white py-4 rounded-2xl text-[11px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2">
       Accept Path Shift
-      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-    </button>
+      <ChevronRight size={14} />
+    </div>
   </motion.div>
 );
 
@@ -280,6 +290,13 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
   const router = useRouter();
   const data = projectRegistry[projectId as keyof typeof projectRegistry];
 
+  // System Surface View Toggle (for AI Systems)
+  const isAISystem = (data as any)?.isAISystem === true;
+  const [viewMode, setViewMode] = useState<'standard' | 'intelligence'>('standard');
+  
+  // System Debug Toggle (for Human Comfort Layer)
+  const [showDebugOverlay, setShowDebugOverlay] = useState(false);
+
   // Mobile Demo state (only for social-graph-driven-travel-network)
   const [mobileDemoStage, setMobileDemoStage] = useState<'encrypted' | 'scanning' | 'connected'>('encrypted');
   const [mobileDemoLogs, setMobileDemoLogs] = useState<string[]>([]);
@@ -321,9 +338,32 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
   if (!data) return null;
 
+  // Render Logic Receipt view if AI System and in intelligence mode
+  if (isAISystem && viewMode === 'intelligence' && (data as any)?.systemSpecs) {
+    return (
+      <div className="bg-white min-h-screen">
+        <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+          <button 
+            onClick={() => router.back()} 
+            className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
+          </button>
+          <button
+            onClick={() => setViewMode('standard')}
+            className="group flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-white/40 rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-700 hover:bg-white/80 transition-all"
+          >
+            <Eye size={12} /> Standard View
+          </button>
+        </nav>
+        <LogicReceipt projectData={data as any} />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white min-h-screen text-slate-900 selection:bg-indigo-100">
-      {/* 1. Navigation */}fixed top-0 left-0 right-0 z-50 transition-all duration-500
+      {/* 1. Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
         <button 
           onClick={() => router.back()} 
@@ -331,8 +371,18 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
         </button>
-        <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
-          Surface_ID // <span className="text-slate-900 font-bold">{projectId}</span>
+        <div className="flex items-center gap-4">
+          {isAISystem && (
+            <button
+              onClick={() => setViewMode('intelligence')}
+              className="group flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-blue-500 to-emerald-500 border-2 border-blue-400/30 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:from-blue-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-100"
+            >
+              <Brain size={14} className="drop-shadow-sm" /> Intelligence Layer
+            </button>
+          )}
+          <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
+            Surface_ID // <span className="text-slate-900 font-bold">{projectId}</span>
+          </div>
         </div>
       </nav>
 
@@ -362,6 +412,11 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-[0.05] rounded-[48px] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
           
+          {/* Heatmap Overlay for Context-Aware Detours */}
+          {projectId === 'context-aware-travel-decision-system' && (data as any)?.systemSpecs?.environment && (
+            <HeatmapOverlay environment={(data as any).systemSpecs.environment} />
+          )}
+          
           <div className="z-10 relative">
               {/* Project Switcher */}
               {projectId === 'context-aware-travel-decision-system' && <DetourVisual />}
@@ -386,6 +441,164 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           </div>
         </motion.div>
       </header>
+
+      {/* High-Fidelity Surface: Social Logic Receipt - Only for social-opportunity-matching-module */}
+      {projectId === 'social-opportunity-matching-module' && (data as any)?.highFidelitySurface?.type === 'SocialLogicReceipt' && (
+        <section className="max-w-7xl mx-auto px-6 py-16 border-t border-violet-500/20">
+          {/* Narrative Bridge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto mb-12 text-center"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+              Bridging the Gap: From Proximity to Connection
+            </h3>
+            <p className="text-slate-600 leading-relaxed">
+              While the hero visual represents the ideal state of connection, the Social Logic Receipt below demonstrates the governing intelligence. The system must balance the user's dopamine levels and privacy requirements before a physical encounter is ever suggested.
+            </p>
+          </motion.div>
+
+          {/* System Surface Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-violet-50 border border-violet-200 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-violet-500" />
+              <span className="text-[10px] font-mono font-bold text-violet-700 uppercase tracking-widest">
+                SYSTEM SURFACE: RELATIONAL HEURISTICS
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Social Logic Receipt Component */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <SocialLogicReceipt 
+              config={(data as any).highFidelitySurface.config}
+              socialLogic={(data as any).socialLogic}
+            />
+          </motion.div>
+        </section>
+      )}
+
+      {/* Moments of Calm Layer: Context-Aware Detours - Only for context-aware-travel-decision-system */}
+      {projectId === 'context-aware-travel-decision-system' && (data as any)?.calmLogic && (
+        <section className="max-w-7xl mx-auto px-6 py-12 border-t border-amber-200/30">
+          {/* Narrative Bridge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto mb-8 text-center"
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3">
+              Moments of Calm: Transforming Transit into Serenity
+            </h3>
+            <p className="text-slate-600 leading-relaxed text-sm md:text-base">
+              In an era of hyper-optimization, the Spontaneity Engine treats 'Extra Time' as a luxury asset. By calculating 'Moments of Calm,' the system protects the traveler from the anxiety of the unknown, turning a standard detour into a curated experience of urban serenity.
+            </p>
+          </motion.div>
+
+          {/* Moment of Calm Surface Component */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center"
+          >
+            <MomentOfCalmSurface 
+              calmLogic={(data as any).calmLogic}
+              systemSpecs={(data as any).systemSpecs}
+            />
+          </motion.div>
+        </section>
+      )}
+
+      {/* Human Comfort Layer: Social Affinity Surface - Only for social-opportunity-matching-module */}
+      {projectId === 'social-opportunity-matching-module' && (data as any)?.humanContext && (
+        <section className="max-w-7xl mx-auto px-6 py-12 border-t border-amber-200/30">
+          {/* Human Comfort Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-amber-50/80 border border-amber-200/50 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-amber-500" />
+              <span className="text-[10px] font-mono font-bold text-amber-700 uppercase tracking-widest">
+                HUMAN COMFORT LAYER
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Social Affinity Surface Component */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-12"
+          >
+            <SocialAffinitySurface humanContext={(data as any).humanContext} />
+          </motion.div>
+
+          {/* Social Handshake Surface - Sheet/Drawer Pattern */}
+          {(data as any)?.handshakeData && (
+            <div className="relative">
+              <SocialHandshakeSurface
+                revealStatus={(data as any).handshakeData.revealStatus}
+                sharedInterests={(data as any).handshakeData.sharedInterests}
+                energyLevel={(data as any).handshakeData.energyLevel}
+                locationContext={(data as any).handshakeData.locationContext}
+                connectionName={(data as any).humanContext?.connectionName || "Alex"}
+              />
+            </div>
+          )}
+
+          {/* System Debug Toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-8 pt-8 border-t border-slate-200/50"
+          >
+            <button
+              onClick={() => setShowDebugOverlay(!showDebugOverlay)}
+              className="w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-xl text-[10px] font-semibold text-slate-700 uppercase tracking-wider transition-all flex items-center justify-center gap-2 active:scale-95"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              <Code className="w-4 h-4" />
+              {showDebugOverlay ? 'Hide System Debug' : 'Show System Debug'}
+            </button>
+          </motion.div>
+
+          {/* System Debug Overlay */}
+          {(data as any)?.highFidelitySurface && (
+            <SystemDebugOverlay
+              isVisible={showDebugOverlay}
+              onClose={() => setShowDebugOverlay(false)}
+              config={(data as any).highFidelitySurface.config}
+              socialLogic={(data as any).socialLogic}
+            />
+          )}
+        </section>
+      )}
 
       {/* Screenshot Images - Only for social-graph-driven-travel-network */}
       {projectId === 'social-graph-driven-travel-network' && (
@@ -510,7 +723,22 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
             </div>
             <div>
                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-8">The System Outcome</h4>
-               <p className="text-3xl font-medium text-slate-800 leading-tight">{data.outcome}</p>
+               <p className="text-3xl font-medium text-slate-800 leading-tight mb-6">{data.outcome}</p>
+               
+               {/* Narrative Layer Outcome Addition - Only for narrative-driven-travel-experience-generator */}
+               {projectId === 'narrative-driven-travel-experience-generator' && (
+                 <motion.div
+                   initial={{ opacity: 0, y: 10 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ duration: 0.6, delay: 0.2 }}
+                   className="mt-6 pt-6 border-t border-amber-200/30"
+                 >
+                   <p className="text-lg text-slate-700 leading-relaxed italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                     <strong className="not-italic text-slate-900 font-semibold">From Logistics to Legacy:</strong> Most travel apps stop at the 'Arrival.' The Narrative Layer ensures the experience continues after the traveler returns home. By using LLMs to synthesize the Spontaneity Engine's decisions, we provide the user with a 'Semantic Receipt'—a digital artifact of their physical journey.
+                   </p>
+                 </motion.div>
+               )}
             </div>
          </div>
       </section>
@@ -526,6 +754,51 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
             ))}
          </div>
       </section>
+
+      {/* Narrative Reflection Surface - Only for narrative-driven-travel-experience-generator */}
+      {projectId === 'narrative-driven-travel-experience-generator' && (data as any)?.narrativeData && (
+        <section className="bg-slate-950 py-24 px-6 border-t border-amber-500/20">
+          {/* Narrative Bridge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto mb-12 text-center"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Memory Mirror: The Day's Reflection
+            </h3>
+            <p className="text-slate-400 leading-relaxed">
+              The Narrative Layer turns disparate data points (GPS pings, weather, social interactions) into a cohesive memory. It helps the traveler answer the question: "What made today special?"
+            </p>
+          </motion.div>
+
+          {/* Semantic Story Surface Component - Swipeable Card Interface */}
+          {(data as any)?.narrativeData?.semanticStory && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center mb-12"
+            >
+              <SemanticStorySurface narrativeData={(data as any).narrativeData} />
+            </motion.div>
+          )}
+
+          {/* Narrative Reflection Surface Component */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex justify-center"
+          >
+            <NarrativeReflectionSurface narrativeData={(data as any).narrativeData} />
+          </motion.div>
+        </section>
+      )}
 
       {/* 6. The System in Motion: Mobile Demo (Tier 3: The Glass) */}
       {projectId === 'social-graph-driven-travel-network' && (

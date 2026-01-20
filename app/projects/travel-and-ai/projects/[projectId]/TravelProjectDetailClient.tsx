@@ -50,6 +50,7 @@ import RecoveryStateIndicator from '../../../../../components/RecoveryStateIndic
 import PivotAnimation from '../../../../../components/PivotAnimation';
 import TrustSignalDemo from '../../../../../components/LivePulseDemo';
 import TrustPulseUI from '../../../../../components/TrustPulseUI';
+import SystemOrchestrator from '../../SystemOrchestrator';
 import { AlertCircle, CheckCircle2, UserCircle2, UserCheck, Link2, Terminal, Check, RefreshCw, CloudRain, BatteryLow, Coffee, MessageCircle, ShieldCheck, Target, ArrowRight, Shield, Share2, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, Fingerprint, Eye } from 'lucide-react';
 interface TravelProjectDetailClientProps {
   project: any;
@@ -1585,13 +1586,16 @@ const variables: Record<string, { title: string; desc: string }> = {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
             >
-              <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                  <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} alt="Concept 1" width={280} height={560} className="w-[240px] h-auto" priority />
+              <div className="relative flex flex-col items-center">
+                <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+                  <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                    <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} alt="Concept 1" width={280} height={560} className="w-[240px] h-auto" priority />
+                  </div>
+                  <div className="md:mt-12 rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                    <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} alt="Concept 2" width={280} height={560} className="w-[240px] h-auto" priority />
+                  </div>
                 </div>
-                <div className="md:mt-12 rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                  <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} alt="Concept 2" width={280} height={560} className="w-[240px] h-auto" priority />
-                </div>
+                <p className="text-xs text-gray-500 mt-4 italic">*design concepts</p>
               </div>
             </motion.div>
 
@@ -2484,7 +2488,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </AnimatePresence>
         </div>
 
-        {/* 4. Anti-Goals (System Avoidance) */}
+        {/* 4. Architectural Boundaries (System Constraints) */}
         <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300">
           <button
             className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors focus:outline-none"
@@ -2492,7 +2496,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           >
             <div className="flex items-center gap-4">
               <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center text-red-700 text-xs font-bold shrink-0">04</div>
-              <h3 className="text-lg font-bold text-gray-900">Deliberate Anti-Goals</h3>
+              <h3 className="text-lg font-bold text-gray-900">Architectural Boundaries</h3>
             </div>
             <div className="w-5 h-5 flex items-center justify-center shrink-0">
               <motion.svg 
@@ -2513,13 +2517,114 @@ const variables: Record<string, { title: string; desc: string }> = {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden bg-white border-t border-gray-100"
               >
-                <div className="p-6 flex flex-wrap gap-3">
-                  {['Not a Trip Planner', 'Not a Social Network', 'Not a Feed', 'Not a Dashboard', 'Not Predictive'].map((goal) => (
-                    <span key={goal} className="px-3 py-1.5 rounded-full bg-red-50 border border-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wide flex items-center gap-2">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                      {goal}
-                    </span>
-                  ))}
+                <div className="p-6">
+                  {/* Status Badge */}
+                  <div className="mb-6 flex items-center justify-start">
+                    <div className="px-4 py-2 bg-slate-900/40 border border-slate-800 rounded-lg">
+                      <span className="text-xs font-mono text-slate-300 uppercase tracking-wider">
+                        [LOGIC_STATUS: CONSTRAINT_ENFORCED]
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Architectural Boundary Table */}
+                  <div className="bg-black rounded-2xl overflow-hidden border border-slate-800">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b border-white/10">
+                            <th className="p-5 text-left text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Anti-Goal</th>
+                            <th className="p-5 text-left text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">The Technical Why</th>
+                            <th className="p-5 text-left text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Architectural Displacement</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/10">
+                          <tr className="bg-gradient-to-br from-red-500/10 to-orange-500/5 border-l-4 border-red-500/30">
+                            <td className="p-5 align-top">
+                              <span className="text-base font-semibold text-gray-200" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Not a Trip Planner</span>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-300 leading-relaxed">
+                                Pre-computed itineraries create temporal rigidity. The Narrative Engine requires <span className="font-semibold text-white">full temporal elasticity</span> to respond to real-time context shifts processed through CATDS middleware.
+                              </p>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-400 italic leading-relaxed pt-4 border-t border-white/5">
+                                <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Displaced:</strong> <span className="font-mono text-emerald-400">Semantic Translation</span> layer handles route optimization externally; system processes semantic intent into actionable signals.
+                              </p>
+                            </td>
+                          </tr>
+                          <tr className="bg-gradient-to-br from-purple-500/10 to-pink-500/5 border-l-4 border-purple-500/30">
+                            <td className="p-5 align-top">
+                              <span className="text-base font-semibold text-gray-200" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Not a Social Network</span>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-300 leading-relaxed">
+                                Persistent identity graphs create privacy overhead and reduce spontaneity. The system operates on <span className="font-semibold text-white">ephemeral connection signals</span> verified via ZK-proofs.
+                              </p>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-400 italic leading-relaxed pt-4 border-t border-white/5">
+                                <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Displaced:</strong> <span className="font-mono text-emerald-400">CATDS Trust Layer</span> handles social verification at middleware level; UI surfaces only verified connection states.
+                              </p>
+                            </td>
+                          </tr>
+                          <tr className="bg-gradient-to-br from-cyan-500/10 to-blue-500/5 border-l-4 border-cyan-500/30">
+                            <td className="p-5 align-top">
+                              <span className="text-base font-semibold text-gray-200" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Not a Feed</span>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-300 leading-relaxed">
+                                Infinite scroll patterns create decision paralysis. The system surfaces <span className="font-semibold text-white">activation-ready signals</span> via constraint-based filtering, not content aggregation.
+                              </p>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-400 italic leading-relaxed pt-4 border-t border-white/5">
+                                <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Displaced:</strong> <span className="font-mono text-emerald-400">Narrative Engine Logic</span> handles content discovery via temporal context processors; UI renders only actionable outcomes.
+                              </p>
+                            </td>
+                          </tr>
+                          <tr className="bg-gradient-to-br from-amber-500/10 to-orange-500/5 border-l-4 border-amber-500/30">
+                            <td className="p-5 align-top">
+                              <span className="text-base font-semibold text-gray-200" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Not a Dashboard</span>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-300 leading-relaxed">
+                                Static data visualization requires maintenance overhead. The system provides <span className="font-semibold text-white">situational intelligence</span> through real-time Semantic Translation, not historical analytics.
+                              </p>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-400 italic leading-relaxed pt-4 border-t border-white/5">
+                                <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Displaced:</strong> <span className="font-mono text-emerald-400">ZK-proof Verification</span> handles historical data storage off-system; UI displays only verified, context-relevant signals.
+                              </p>
+                            </td>
+                          </tr>
+                          <tr className="bg-gradient-to-br from-emerald-500/10 to-green-500/5 border-l-4 border-emerald-500/30">
+                            <td className="p-5 align-top">
+                              <span className="text-base font-semibold text-gray-200" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Not Predictive</span>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-300 leading-relaxed">
+                                Behavioral prediction creates filter bubbles. The system operates on <span className="font-semibold text-white">reactive constraint resolution</span> via CATDS, prioritizing present-moment activation over future-state forecasting.
+                              </p>
+                            </td>
+                            <td className="p-5 align-top">
+                              <p className="text-sm text-gray-400 italic leading-relaxed pt-4 border-t border-white/5">
+                                <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Displaced:</strong> <span className="font-mono text-emerald-400">Real-time Context Processing</span> replaces prediction logic with constraint-based decision vectors; system responds to environmental signals, not user history patterns.
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Technical Footer */}
+                  <div className="mt-6 pt-6 border-t border-slate-800">
+                    <p className="text-xs text-slate-400 leading-relaxed italic font-mono">
+                      The future of spontaneity requires the removal of legacy planning artifacts to allow the Narrative Engine full temporal elasticity.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -2631,6 +2736,33 @@ const variables: Record<string, { title: string; desc: string }> = {
             </div>
           </div>
         </div>
+
+        {/* System Integration: The Live Orchestrator */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-24 pt-16 border-t border-gray-200"
+        >
+          {/* Sub-header */}
+          <div className="mb-8 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 border border-indigo-200 rounded-full mb-4">
+              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider">System Integration</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+              The Live Orchestrator: From Concept to System Surface
+            </h3>
+            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            This interface demonstrates the Spontaneity Engine's ability to translate complex middleware—like ZK-verified trust and context-aware logistics—into intuitive, floating surfaces. Toggle between the Human Narrative to see the adaptive user experience and the Logic Trace to audit the real-time decision vectors driving the system.
+             </p>
+          </div>
+
+          {/* SystemOrchestrator Component */}
+          <div className="w-full max-w-7xl mx-auto">
+            <SystemOrchestrator hideHeader={true} />
+          </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   </div>
@@ -2675,43 +2807,43 @@ const variables: Record<string, { title: string; desc: string }> = {
                   className="mb-20"
                 >
                   <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-8">
-                      <p className="text-gray-400 text-base md:text-sm max-w-3xl mx-auto leading-relaxed">
+                    <div className="text-center mb-4 md:mb-8">
+                      <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
                         The workflow diagram below shows how responsibilities are separated.
                       </p>
                     </div>
                     
-                    <div className="flex flex-col items-center justify-center gap-6">
+                    <div className="flex flex-col items-center justify-center gap-3 md:gap-6">
                       
                       {/* Top Row: AI Models */}
-                      <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full">
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
                         {/* ChatGPT Step */}
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group w-full max-w-[280px]">
-                          <div className="flex flex-col items-center text-center gap-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-green-400/30 transition-all duration-300 group w-full max-w-[280px]">
+                          <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-green-300 transition-colors">ChatGPT</h3>
-                              <p className="text-base md:text-sm text-gray-400">Writing Prompts</p>
+                              <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-green-300 transition-colors">ChatGPT</h3>
+                              <p className="text-xs md:text-base text-gray-400">Writing Prompts</p>
                             </div>
                           </div>
                         </div>
 
                         {/* Google Gemini Step */}
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-indigo-400/30 transition-all duration-300 group w-full max-w-[280px]">
-                          <div className="flex flex-col items-center text-center gap-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-9 h-9 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-indigo-400/30 transition-all duration-300 group w-full max-w-[280px]">
+                          <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-7 h-7 md:w-9 md:h-9 text-white" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 22C12 22 12 17 10 15C8 13 3 13 3 13C3 13 8 13 10 11C12 9 12 4 12 4C12 4 12 9 14 11C16 13 21 13 21 13C21 13 16 13 14 15C12 17 12 22 12 22Z" />
                                 <path d="M19 9C19 9 19 7 18.2 6.2C17.4 5.4 15.4 5.4 15.4 5.4C15.4 5.4 17.4 5.4 18.2 4.6C19 3.8 19 1.8 19 1.8C19 1.8 19 3.8 19.8 4.6C20.6 5.4 22.6 5.4 22.6 5.4C22.6 5.4 20.6 5.4 19.8 6.2C19 7 19 9 19 9Z" />
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-indigo-300 transition-colors">Gemini</h3>
-                              <p className="text-base md:text-sm text-gray-400">Logic & Analysis</p>
+                              <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-indigo-300 transition-colors">Gemini</h3>
+                              <p className="text-xs md:text-base text-gray-400">Logic & Analysis</p>
                             </div>
                           </div>
                         </div>
@@ -2719,76 +2851,76 @@ const variables: Record<string, { title: string; desc: string }> = {
                       
                       {/* Arrow 1 - Down */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 md:w-8 md:h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                       </div>
 
                       {/* Cursor Step - Middle */}
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group w-full max-w-[280px]">
-                        <div className="flex flex-col items-center text-center gap-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-blue-400/30 transition-all duration-300 group w-full max-w-[280px]">
+                        <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">Cursor</h3>
-                            <p className="text-sm text-gray-400">AI-assisted Code</p>
+                            <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-blue-300 transition-colors">Cursor</h3>
+                            <p className="text-xs md:text-sm text-gray-400">AI-assisted Code</p>
                           </div>
                         </div>
                       </div>
                       
                       {/* Arrow 2 - Down */}
                       <div className="flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 md:w-8 md:h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                       </div>
 
                       {/* Bottom Row: iOS, API Plugin, Widget */}
-                      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 w-full">
                         {/* Xcode Step */}
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
-                          <div className="flex flex-col items-center text-center gap-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v1h12v-1l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
-                              <p className="text-base md:text-sm text-gray-400">Real iOS Build</p>
+                              <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-purple-300 transition-colors">Xcode</h3>
+                              <p className="text-xs md:text-base text-gray-400">Real iOS Build</p>
                             </div>
                           </div>
                         </div>
 
                         {/* API Plugin Step */}
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
-                          <div className="flex flex-col items-center text-center gap-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-amber-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
-                              <p className="text-base md:text-sm text-gray-400">Industry Integration</p>
+                              <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-amber-300 transition-colors">API Plugin</h3>
+                              <p className="text-xs md:text-base text-gray-400">Industry Integration</p>
                             </div>
                           </div>
                         </div>
 
                         {/* Widget Step */}
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
-                          <div className="flex flex-col items-center text-center gap-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 border border-white/20 shadow-xl hover:bg-white/15 hover:border-cyan-400/30 transition-all duration-300 group flex-1 max-w-[240px] w-full">
+                          <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
-                              <p className="text-base md:text-sm text-gray-400">Client-facing</p>
+                              <h3 className="text-lg md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-cyan-300 transition-colors">Widget</h3>
+                              <p className="text-xs md:text-base text-gray-400">Client-facing</p>
                             </div>
                           </div>
                         </div>
@@ -3276,7 +3408,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       >
         <p className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4 text-slate-900">Project Thesis</p>
         <blockquote className="text-2xl font-semibold text-gray-900 italic">
-        The goal isn’t to help travelers plan better. It is to building a system that 
+        The goal isn’t to help travelers plan better. It is to build a system that 
         provides the confidence to embrace the {"joy\u00A0of\u00A0discovery."}
         </blockquote>
       </motion.div>
@@ -4583,7 +4715,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-indigo-100 pl-6 mb-8">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Target Scenario</span>
-                      <p className="text-sm text-gray-700 font-medium italic leading-snug">"ZK-Proof Verified: Friend-of-a-Friend status confirmed. 0% PII Exfiltration. Trust Score: 0.92"</p>
+                      <p className="text-sm text-gray-700 font-medium italic leading-snug">"You're connected through a mutual friend nearby—verified privately, with your personal information kept safe. Trust: 92%"</p>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Architectural Constraint</span>
