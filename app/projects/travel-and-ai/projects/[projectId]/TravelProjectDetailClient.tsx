@@ -391,26 +391,26 @@ const IntegratedSocialInvite = () => {
 const ConnectionPathVisualization = () => {
   return (
     <div className="relative w-full max-w-2xl mx-auto">
-      <div className="relative rounded-[2.5rem] border border-indigo-100 bg-white/90 shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.15),_transparent_55%)]" />
+      <div className="relative rounded-[2.5rem] border border-sky-100 bg-white/90 shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.15),_transparent_55%)]" />
 
         <div className="relative p-6 md:p-8">
           <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400 mb-6">
-            <span className="h-2 w-2 rounded-full bg-indigo-400" />
+            <span className="h-2 w-2 rounded-full bg-sky-400" />
             Connection Path
           </div>
 
-          <div className="relative mt-6 h-[260px] rounded-[2rem] border border-slate-100 bg-gradient-to-br from-white via-slate-50 to-indigo-50/40 overflow-hidden">
+          <div className="relative mt-6 h-[260px] rounded-[2rem] border border-slate-100 bg-gradient-to-br from-white via-slate-50 to-sky-50/40 overflow-hidden">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 520 260" fill="none">
               <defs>
                 <linearGradient id="connectionPath" x1="0%" y1="50%" x2="100%" y2="50%">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#6366f1" stopOpacity="0.5" />
+                  <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="#06B6D4" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.5" />
                 </linearGradient>
                 <radialGradient id="nodeGlowPath">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" />
                 </radialGradient>
               </defs>
               
@@ -421,7 +421,7 @@ const ConnectionPathVisualization = () => {
               {/* Connection Nodes */}
               {/* Node 1: You */}
               <g>
-                <circle cx="120" cy="130" r="18" fill="#6366f1" opacity="0.9">
+                <circle cx="120" cy="130" r="18" fill="#0EA5E9" opacity="0.9">
                   <animate attributeName="r" values="18;20;18" dur="2s" repeatCount="indefinite" />
                 </circle>
                 <circle cx="120" cy="130" r="25" fill="url(#nodeGlowPath)" opacity="0.3" />
@@ -430,7 +430,7 @@ const ConnectionPathVisualization = () => {
               
               {/* Node 2: Mutual Friend */}
               <g>
-                <circle cx="260" cy="130" r="16" fill="#8b5cf6" opacity="0.85">
+                <circle cx="260" cy="130" r="16" fill="#06B6D4" opacity="0.85">
                   <animate attributeName="r" values="16;18;16" dur="2.2s" repeatCount="indefinite" />
                 </circle>
                 <circle cx="260" cy="130" r="22" fill="url(#nodeGlowPath)" opacity="0.25" />
@@ -439,8 +439,8 @@ const ConnectionPathVisualization = () => {
               
               {/* Node 3: Planning Traveler */}
               <g>
-                <circle cx="400" cy="130" r="18" fill="#6366f1" opacity="0.9">
-                  <animate attributeName="r" values="18;20;18" dur="2s" repeatCount="indefinite" />
+                <circle cx="400" cy="130" r="18" fill="#0EA5E9" opacity="0.9">
+                  <animate attributeName="r" values="24;26;24" dur="2s" repeatCount="indefinite" />
                 </circle>
                 <circle cx="400" cy="130" r="25" fill="url(#nodeGlowPath)" opacity="0.3" />
                 <text x="400" y="135" textAnchor="middle" className="fill-white text-[10px] font-bold">Traveler</text>
@@ -448,12 +448,12 @@ const ConnectionPathVisualization = () => {
             </svg>
 
             {/* Expertise Match Label */}
-            <div className="absolute top-4 left-4 right-4 rounded-xl border border-indigo-100 bg-white/95 backdrop-blur-sm px-4 py-2.5 text-xs text-slate-700 shadow-sm">
-              <span className="font-semibold text-indigo-600">Expertise Match:</span> You (40 Countries) → Mutual Friend → Planning Traveler (Headed to Istanbul)
+            <div className="absolute top-4 left-4 right-4 rounded-xl border border-sky-100 bg-white/95 backdrop-blur-sm px-4 py-2.5 text-xs text-slate-700 shadow-sm">
+              <span className="font-semibold text-sky-600">Expertise Match:</span> You (40 Countries) → Mutual Friend → Planning Traveler (Headed to Istanbul)
             </div>
 
             {/* Trust Validated Badge */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-xs font-semibold text-indigo-700 shadow-sm">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-semibold text-sky-700 shadow-sm">
               Trust Validated: 2nd Degree Connection
             </div>
           </div>
@@ -1507,13 +1507,13 @@ const variables: Record<string, { title: string; desc: string }> = {
   <>
     {/* 1. HERO SECTION */}
     <section 
-      className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+      className="bg-white min-h-[80vh] flex items-center pt-24 pb-20 lg:pt-[91px] lg:pb-[76px] overflow-visible" 
       aria-label="Project Hero"
     >
-      <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 overflow-visible">
+        <div className="max-w-7xl mx-auto overflow-visible">
           {/* Main Grid Container */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center overflow-visible">
             
             {/* Left Content Column */}
             <motion.div
@@ -1532,45 +1532,36 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </span>
               </div>
 
-              <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed">
-                Foundational AI System · Real-Time Decision Intelligence
-              </p>
+              {/* Hero Copy - WCAG AA Compliant Typography */}
+              <div className="space-y-6 mb-8 max-w-2xl">
+                {/* Intro */}
+                <p className="text-[16px] sm:text-[14px] text-gray-100 dark:text-gray-900 leading-relaxed tracking-wide">
+                  This system orchestrates complex middleware—from Private-Certified trust to context-aware logistics—into a seamless experience. Explore the cards to see how the engine adapts to human needs.
+                </p>
+
+                {/* The Challenge */}
+                <div className="space-y-2">
+                  <div className="text-[12px] font-bold uppercase tracking-wide text-gray-900 dark:text-blue-700">
+                    The Challenge
+                  </div>
+                  <p className="text-[16px] sm:text-[14px] text-gray-700 dark:text-gray-900 leading-relaxed tracking-wide">
+                    Solving the 'Filter Bubble' and decision fatigue in live, spontaneous travel environments.
+                  </p>
+                </div>
+
+                {/* The Solution */}
+                <div className="space-y-2">
+                  <div className="text-[12px] font-bold uppercase tracking-wide text-gray-900 dark:text-blue-700">
+                    The Solution
+                  </div>
+                  <p className="text-[16px] sm:text-[14px] text-gray-700 dark:text-gray-900 leading-relaxed tracking-wide">
+                    Context-driven AI designed for the moment, prioritizing live activation over static planning logic.
+                  </p>
+                </div>
+              </div>
 
               
-{/* EXECUTIVE SUMMARY / TL;DR - Vertical Stack Version */}
-<motion.div 
-  initial={{ opacity: 0, y: -10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
-  className="mb-16 border-t border-b border-gray-100 py-10 space-y-8"
->
-  {/* The Challenge */}
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
-    <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-700 pt-1">
-      The Challenge
-    </span>
-    <div className="md:col-span-3">
-      <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-        Solving the "Filter Bubble" and decision fatigue in live, spontaneous travel environments.
-      </p>
-    </div>
-  </div>
 
-  {/* The Solution */}
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
-    <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-700 pt-1">
-      The Solution
-    </span>
-    <div className="md:col-span-3">
-    <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-  Context-driven AI designed for the moment, prioritizing live activation 
-  over {"static\u00A0planning\u00A0logic."}
-</p>
-    </div>
-  </div>
-
-
-</motion.div>
 
               {/* CTAs */}
               <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
@@ -1579,23 +1570,15 @@ const variables: Record<string, { title: string; desc: string }> = {
               </nav>
             </motion.div>
 
-            {/* Right Visual Column - This must be INSIDE the flex/grid div but OUTSIDE the first motion.div */}
+            {/* Right Visual Column - SystemOrchestrator Interactive Component */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+              className="order-2 mt-16 lg:mt-0 w-full h-full flex items-center justify-center overflow-visible"
             >
-              <div className="relative flex flex-col items-center">
-                <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                  <div className="rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                    <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} alt="Concept 1" width={280} height={560} className="w-[240px] h-auto" priority />
-                  </div>
-                  <div className="md:mt-12 rounded-xl overflow-hidden shadow-lg bg-gray-100">
-                    <Image src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} alt="Concept 2" width={280} height={560} className="w-[240px] h-auto" priority />
-                  </div>
-                </div>
-                <p className="text-xs text-gray-500 mt-4 italic">*design concepts</p>
+              <div className="relative z-10 w-full h-full flex items-center justify-center scale-[0.9]">
+                <SystemOrchestrator hideHeader={true} />
               </div>
             </motion.div>
 
@@ -2638,14 +2621,14 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
 {/* Wireframes Section */}
-<section id="wireframes-ui" className="py-24 bg-white border-t border-gray-100">
+<section id="wireframes-ui" className="py-24 bg-white border-t border-gray-100 overflow-x-hidden">
   <div className="container mx-auto px-6">
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }} // FIX 2: Added margin to match Strategy
-      transition={{ duration: 0.6, ease: "easeOut" }} // FIX 3: Matches Strategy ease
-      className="max-w-4xl mx-auto"
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="max-w-4xl mx-auto w-full overflow-y-hidden"
     >
       <div className="mb-16 text-center">
   {/* Header: text-center + balanced wrap */}
@@ -2666,8 +2649,8 @@ const variables: Record<string, { title: string; desc: string }> = {
       
       {/* Grid Section */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         className="mb-16"
       >
@@ -2676,14 +2659,14 @@ const variables: Record<string, { title: string; desc: string }> = {
 
       {/* Iteration Gallery */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         className="mt-16"
       >
         
 
-        <div className="mb-4 relative">
+        <div className="relative h-auto">
           
           {/* Main Scroll Container */}
           <div 
@@ -2737,30 +2720,38 @@ const variables: Record<string, { title: string; desc: string }> = {
           </div>
         </div>
 
-        {/* System Integration: The Live Orchestrator */}
+        {/* Visual Design Language Gallery */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
           className="mt-24 pt-16 border-t border-gray-200"
         >
-          {/* Sub-header */}
-          <div className="mb-8 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 border border-indigo-200 rounded-full mb-4">
-              <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider">System Integration</span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
-              The Live Orchestrator: From Concept to System Surface
-            </h3>
-            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            This interface demonstrates the Spontaneity Engine's ability to translate complex middleware—like ZK-verified trust and context-aware logistics—into intuitive, floating surfaces. Toggle between the Human Narrative to see the adaptive user experience and the Logic Trace to audit the real-time decision vectors driving the system.
-             </p>
-          </div>
+          
 
-          {/* SystemOrchestrator Component */}
-          <div className="w-full max-w-7xl mx-auto">
-            <SystemOrchestrator hideHeader={true} />
+          {/* Image Gallery - Grid of 2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100">
+              <Image 
+                src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} 
+                alt="Concept Graphic 1" 
+                width={280} 
+                height={560} 
+                className="w-full h-auto object-contain" 
+                priority 
+              />
+            </div>
+            <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100">
+              <Image 
+                src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} 
+                alt="Concept Graphic 2" 
+                width={280} 
+                height={560} 
+                className="w-full h-auto object-contain" 
+                priority 
+              />
+            </div>
           </div>
         </motion.div>
       </motion.div>
@@ -2807,11 +2798,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   className="mb-20"
                 >
                   <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-4 md:mb-8">
-                      <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
-                        The workflow diagram below shows how responsibilities are separated.
-                      </p>
-                    </div>
+                    
                     
                     <div className="flex flex-col items-center justify-center gap-3 md:gap-6">
                       
@@ -3514,7 +3501,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             </div>
 
             <p className="text-sm md:text-lg text-gray-500 mb-8 leading-relaxed">
-              Cultural Intelligence · Systemic Trust Architectures
+            Designing the freedom to be spontaneous. I architect the trust systems and safety logic that allow travelers to explore the unknown without ever feeling lost or unsafe.
             </p>
 
             {/* EXECUTIVE SUMMARY / TL;DR */}
@@ -3572,7 +3559,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 
         {isTravelPlanningAssistant && (
          <section 
-         className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+         className="bg-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-4rem)] flex items-center pt-24 pb-20" 
          aria-label="CATDS Project Hero"
        >
          <div className="container mx-auto px-6">
@@ -3600,7 +3587,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                  </div>
        
                  <p className="text-base md:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-                   An environmental sensing middleware that converts real-time variables—weather, energy, and availability—into adaptive travel logic.
+                 An environmental sensing middleware that converts real-time variables,such as weather, energy, and availability into adaptive travel logic.
                  </p>
        
                  {/* EXECUTIVE SUMMARY / TL;DR */}
@@ -3681,7 +3668,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                  initial={{ opacity: 0, scale: 0.95 }}
                  animate={{ opacity: 1, scale: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+                 className="order-2 mt-16 lg:mt-0 lg:pt-[73px] w-full flex justify-center lg:flex lg:items-center lg:justify-end"
                >
                  <CATDSVisual />
                </motion.div>
@@ -4640,7 +4627,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </h1>
                   
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                    <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-sky-100 text-sky-800 border border-sky-200">
                       In Research & Development
                     </span>
                     <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-slate-50 text-slate-600 border border-slate-200">
@@ -4649,7 +4636,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </div>
         
                   <p className="text-base md:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-                    A high-trust middleware that converts your travel history into social capital—connecting travelers with verified experts in their extended network for spontaneous knowledge sharing.
+                    A high-trust middleware that converts your travel history into social capital, connecting travelers with verified experts in their extended network for spontaneous knowledge sharing.
                   </p>
        
                   {/* EXECUTIVE SUMMARY / TL;DR */}
@@ -4661,7 +4648,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   >
                     {/* The Challenge */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
-                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-indigo-700 pt-1">
+                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-sky-700 pt-1">
                         The Challenge
                       </span>
                       <div className="md:col-span-3">
@@ -4673,7 +4660,7 @@ const variables: Record<string, { title: string; desc: string }> = {
        
                     {/* The Solution */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
-                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-indigo-700 pt-1">
+                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-sky-700 pt-1">
                         The Solution
                       </span>
                       <div className="md:col-span-3">
@@ -4712,7 +4699,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </motion.div>
                   
                   {/* Scenario Metadata */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-indigo-100 pl-6 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-sky-100 pl-6 mb-8">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Target Scenario</span>
                       <p className="text-sm text-gray-700 font-medium italic leading-snug">"You're connected through a mutual friend nearby—verified privately, with your personal information kept safe. Trust: 92%"</p>
@@ -4764,11 +4751,11 @@ const variables: Record<string, { title: string; desc: string }> = {
                   whileHover={{ y: -5 }}
                   className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100">
-                    <Activity className="text-indigo-600 w-6 h-6" />
+                  <div className="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center mb-6 border border-sky-100">
+                    <Activity className="text-sky-600 w-6 h-6" />
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded">Stage 01</span>
+                    <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest bg-sky-50 px-2 py-0.5 rounded">Stage 01</span>
                     <h3 className="font-bold text-gray-900 italic">Presence Intelligence</h3>
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 mb-3">Ingest</h4>
@@ -4777,18 +4764,18 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </p>
                   <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
                     <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Location_Monitor</span>
-                    <span className="text-[10px] font-mono bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Intent_Signals</span>
-                    <span className="text-[10px] font-mono bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Overlap_Detect</span>
+                    <span className="text-[10px] font-mono bg-sky-50 text-sky-600 px-2 py-1 rounded">Intent_Signals</span>
+                    <span className="text-[10px] font-mono bg-sky-50 text-sky-600 px-2 py-1 rounded">Overlap_Detect</span>
                   </div>
                 </motion.div>
 
                 {/* Stage 02: Provenance Gate */}
                 <motion.div 
                   whileHover={{ y: -5 }}
-                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-lg shadow-gray-100/50 hover:shadow-xl transition-shadow ring-1 ring-indigo-500/10"
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-lg shadow-gray-100/50 hover:shadow-xl transition-shadow ring-1 ring-sky-500/10"
                 >
                   <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center mb-6">
-                    <ShieldCheck className="text-indigo-400 w-6 h-6" />
+                    <ShieldCheck className="text-sky-400 w-6 h-6" />
                   </div>
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Stage 02</span>
@@ -4799,9 +4786,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                     Cryptographically verifying that the "Expert" traveler was <strong className="text-gray-900">actually on the ground</strong>, ensuring all advice is based on verified presence rather than speculation.
                   </p>
                   <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
-                    <span className="text-[10px] font-mono bg-indigo-50 text-indigo-600 px-2 py-1 rounded">ZK_Proof</span>
-                    <span className="text-[10px] font-mono bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Presence_Verify</span>
-                    <span className="text-[10px] font-mono bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Trust_Weight</span>
+                    <span className="text-[10px] font-mono bg-sky-50 text-sky-600 px-2 py-1 rounded">ZK_Proof</span>
+                    <span className="text-[10px] font-mono bg-sky-50 text-sky-600 px-2 py-1 rounded">Presence_Verify</span>
+                    <span className="text-[10px] font-mono bg-sky-50 text-sky-600 px-2 py-1 rounded">Trust_Weight</span>
                   </div>
                 </motion.div>
 
@@ -4810,11 +4797,11 @@ const variables: Record<string, { title: string; desc: string }> = {
                   whileHover={{ y: -5 }}
                   className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
-                    <Zap className="text-purple-600 w-6 h-6" />
+                  <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+                    <Zap className="text-cyan-600 w-6 h-6" />
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-0.5 rounded">Stage 03</span>
+                    <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Stage 03</span>
                     <h3 className="font-bold text-gray-900 italic">Identity Filter</h3>
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 mb-3">Scorer</h4>
@@ -4822,8 +4809,8 @@ const variables: Record<string, { title: string; desc: string }> = {
                     Using <strong className="text-gray-900">Travel DNA vectors</strong> (behavioral history) to match expertise rather than simple proximity, ensuring connections are based on verified knowledge overlap.
                   </p>
                   <div className="mt-6 pt-6 border-t border-gray-50 flex flex-wrap gap-2">
-                    <span className="text-[10px] font-mono bg-purple-50 text-purple-600 px-2 py-1 rounded">Travel_DNA</span>
-                    <span className="text-[10px] font-mono bg-purple-50 text-purple-600 px-2 py-1 rounded">Expertise_Match</span>
+                    <span className="text-[10px] font-mono bg-cyan-50 text-cyan-600 px-2 py-1 rounded">Travel_DNA</span>
+                    <span className="text-[10px] font-mono bg-cyan-50 text-cyan-600 px-2 py-1 rounded">Expertise_Match</span>
                     <span className="text-[10px] font-mono bg-gray-50 text-gray-500 px-2 py-1 rounded">Behavioral_History</span>
                   </div>
                 </motion.div>
@@ -4831,7 +4818,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               </div>
 
               <div className="mt-12 max-w-3xl">
-                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-indigo-200 pl-6">
+                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
                   <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> The Knowledge-Trust flow transforms passive travel history into active social capital. By validating expertise through cryptographic proofs and triggering connections only when high-value overlaps are detected, the system ensures <span className="text-gray-900 font-semibold">quality over quantity</span> in mentorship opportunities.
                 </p>
               </div>
@@ -4870,10 +4857,10 @@ const variables: Record<string, { title: string; desc: string }> = {
                 >
                   {/* Image on Left */}
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-indigo-50 to-slate-50 rounded-2xl p-8 border border-indigo-100 shadow-lg">
+                    <div className="w-full max-w-md bg-gradient-to-br from-sky-50 to-slate-50 rounded-2xl p-8 border border-sky-100 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">A</div>
+                          <div className="w-10 h-10 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm">A</div>
                           <div>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Reciprocal Match</h3>
                             <p className="text-xs text-gray-500">Kyoto Expertise</p>
@@ -4881,7 +4868,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         </div>
                         <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
+                            <div className="w-2 h-2 rounded-full bg-sky-400"></div>
                             <span className="text-xs font-semibold text-gray-700">You: Lived in Kyoto</span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -4889,7 +4876,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                             <span className="text-xs text-gray-600">2nd-degree: Planning Kyoto</span>
                           </div>
                           <div className="mt-3 pt-3 border-t border-slate-100">
-                            <p className="text-xs text-indigo-700 font-semibold italic">"Willing to share 15 mins of Kyoto insight?"</p>
+                            <p className="text-xs text-sky-700 font-semibold italic">"Willing to share 15 mins of Kyoto insight?"</p>
                           </div>
                         </div>
                       </div>
@@ -4899,18 +4886,18 @@ const variables: Record<string, { title: string; desc: string }> = {
                   {/* Text on Right */}
                   <div className="w-full lg:w-1/2">
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 uppercase tracking-wider mb-3">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 uppercase tracking-wider mb-3">
                         Case A
                       </span>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">The Reciprocal Match</h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Scenario:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
                         <p className="text-sm leading-relaxed">You've lived in Kyoto. A 2nd-degree connection is currently "Planning" Kyoto.</p>
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Logic:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
                         <p className="text-sm leading-relaxed">System triggers a notification to both: "Willing to share 15 mins of Kyoto insight?"</p>
                       </div>
                     </div>
@@ -4927,7 +4914,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                 >
                   {/* Image on Right (reversed) */}
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-slate-50 to-indigo-50 rounded-2xl p-8 border border-slate-200 shadow-lg">
+                    <div className="w-full max-w-md bg-gradient-to-br from-slate-50 to-sky-50 rounded-2xl p-8 border border-slate-200 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-sm">B</div>
@@ -4942,7 +4929,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                             <span className="text-sm font-bold text-slate-900">12 connections</span>
                           </div>
                           <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-indigo-400 w-3/4"></div>
+                            <div className="h-full bg-sky-400 w-3/4"></div>
                           </div>
                           <div className="mt-3 pt-3 border-t border-slate-100">
                             <p className="text-xs text-gray-500 italic">Filtered by your expertise regions</p>
@@ -4962,11 +4949,11 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Scenario:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
                         <p className="text-sm leading-relaxed">You open the map to see who is currently roaming.</p>
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Logic:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
                         <p className="text-sm leading-relaxed">System filters for connections currently "on-trip" or planning trips to places you have expertise in.</p>
                       </div>
                     </div>
@@ -4983,26 +4970,26 @@ const variables: Record<string, { title: string; desc: string }> = {
                 >
                   {/* Image on Left */}
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-purple-50 to-slate-50 rounded-2xl p-8 border border-purple-100 shadow-lg">
+                    <div className="w-full max-w-md bg-gradient-to-br from-cyan-50 to-slate-50 rounded-2xl p-8 border border-cyan-100 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">C</div>
+                          <div className="w-10 h-10 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">C</div>
                           <div>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Trust Path</h3>
                             <p className="text-xs text-gray-500">Validation Display</p>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 border border-purple-200 space-y-2">
+                        <div className="bg-white rounded-xl p-4 border border-cyan-200 space-y-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                            <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                             <span className="text-xs font-semibold text-gray-700">Trust Path Visible</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                            <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                             <span className="text-xs text-gray-600">3 mutual friends</span>
                           </div>
-                          <div className="mt-3 pt-3 border-t border-purple-100">
-                            <p className="text-xs text-purple-700 font-semibold">"Vouched by 3 mutual friends"</p>
+                          <div className="mt-3 pt-3 border-t border-cyan-100">
+                            <p className="text-xs text-cyan-700 font-semibold">"Vouched by 3 mutual friends"</p>
                           </div>
                         </div>
                       </div>
@@ -5012,18 +4999,18 @@ const variables: Record<string, { title: string; desc: string }> = {
                   {/* Text on Right */}
                   <div className="w-full lg:w-1/2">
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-700 uppercase tracking-wider mb-3">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-700 uppercase tracking-wider mb-3">
                         Case C
                       </span>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">Trust-Layer Validation</h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Scenario:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
                         <p className="text-sm leading-relaxed">A traveler reaches out.</p>
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Logic:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
                         <p className="text-sm leading-relaxed">The UI shows the "Trust Path" (e.g., "Vouched by 3 mutual friends") to eliminate social anxiety.</p>
                       </div>
                     </div>
@@ -5041,7 +5028,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               
               {/* Section Header */}
               <div className="mb-20 text-center lg:text-left">
-                <h4 className="text-indigo-600 font-mono text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">
+                <h4 className="text-sky-600 font-mono text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">
                   Technical Deep Dive
                 </h4>
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
@@ -5080,33 +5067,33 @@ const variables: Record<string, { title: string; desc: string }> = {
                       {/* Outer rotating ring */}
                       <motion.circle
                         cx="160" cy="160" r="140" fill="none"
-                        stroke="#6366f1" strokeWidth="1" strokeDasharray="8 4" opacity="0.2"
+                        stroke="#0EA5E9" strokeWidth="1" strokeDasharray="8 4" opacity="0.2"
                         animate={{ rotate: 360 }} transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                       />
                       
                       {/* Logic Gate Ring (middle) - represents 1st/2nd degree validation */}
                       <motion.circle
                         cx="160" cy="160" r="110" fill="none"
-                        stroke="#8b5cf6" strokeWidth="2"
+                        stroke="#06B6D4" strokeWidth="2"
                         animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }}
                       />
                       
                       {/* Logic Gate Indicators - Small gates on the ring */}
                       <g>
                         {/* Gate 1 */}
-                        <rect x="155" y="50" width="10" height="8" rx="2" fill="#8b5cf6" opacity="0.8">
+                        <rect x="155" y="50" width="10" height="8" rx="2" fill="#06B6D4" opacity="0.8">
                           <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
                         </rect>
                         {/* Gate 2 */}
-                        <rect x="265" y="155" width="10" height="8" rx="2" fill="#8b5cf6" opacity="0.8">
+                        <rect x="265" y="155" width="10" height="8" rx="2" fill="#06B6D4" opacity="0.8">
                           <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="0.5s" />
                         </rect>
                         {/* Gate 3 */}
-                        <rect x="155" y="262" width="10" height="8" rx="2" fill="#8b5cf6" opacity="0.8">
+                        <rect x="155" y="262" width="10" height="8" rx="2" fill="#06B6D4" opacity="0.8">
                           <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="1s" />
                         </rect>
                         {/* Gate 4 */}
-                        <rect x="45" y="155" width="10" height="8" rx="2" fill="#8b5cf6" opacity="0.8">
+                        <rect x="45" y="155" width="10" height="8" rx="2" fill="#06B6D4" opacity="0.8">
                           <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="1.5s" />
                         </rect>
                       </g>
@@ -5123,7 +5110,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     
                     <div className="absolute inset-0 flex items-center justify-center text-center px-12">
                       <div>
-                        <div className="text-[9px] font-bold text-indigo-500 uppercase tracking-[0.3em] mb-2">
+                        <div className="text-[9px] font-bold text-sky-500 uppercase tracking-[0.3em] mb-2">
                           Mentorship Match Engine
                         </div>
                         <div className="text-xl font-bold text-white tracking-tight leading-none">MME</div>
@@ -5137,7 +5124,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                 
                 {/* Stage 3: The Output Signal */}
                 <div className="space-y-6 order-3">
-                  <h3 className="text-[10px] font-mono font-bold text-indigo-600 uppercase tracking-[0.2em] mb-8">
+                  <h3 className="text-[10px] font-mono font-bold text-sky-600 uppercase tracking-[0.2em] mb-8">
                     02. Mentorship Signal
                   </h3>
                   <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-xl shadow-slate-100/50">
@@ -5149,7 +5136,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     <div className="space-y-4 mb-8">
                       <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                         <motion.div 
-                          className="h-full bg-indigo-500" 
+                          className="h-full bg-sky-500" 
                           animate={{ width: ['30%', '92%', '92%'] }} 
                           transition={{ duration: 3, repeat: Infinity }}
                         />
@@ -5215,7 +5202,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="space-y-4"
                 >
-                  <div className="text-indigo-400 font-mono text-xs uppercase tracking-[0.3em]">01. Core Principle</div>
+                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">01. Core Principle</div>
                   <h4 className="text-white font-bold text-xl italic">Mentorship is Social Capital</h4>
                   <p className="text-slate-400 text-base leading-relaxed">
                     Your travel history is a <strong className="text-white">valuable asset</strong>. The system's job is to <strong className="text-white">"activate"</strong> that asset for your network—converting passive experience into active mentorship opportunities.
@@ -5230,7 +5217,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="space-y-4"
                 >
-                  <div className="text-indigo-400 font-mono text-xs uppercase tracking-[0.3em]">02. Trust Architecture</div>
+                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">02. Trust Architecture</div>
                   <h4 className="text-white font-bold text-xl italic">Validated Provenance</h4>
                   <p className="text-slate-400 text-base leading-relaxed">
                     Trust isn't about <strong className="text-white">"rating" people</strong>; it's about <strong className="text-white">"verifying" history</strong> via ZK-Proofs. The system cryptographically validates that expertise claims are backed by actual presence.
@@ -5251,7 +5238,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="space-y-4"
                 >
-                  <div className="text-indigo-400 font-mono text-xs uppercase tracking-[0.3em]">03. Connection Design</div>
+                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">03. Connection Design</div>
                   <h4 className="text-white font-bold text-xl italic">Low-Friction Intro</h4>
                   <p className="text-slate-400 text-base leading-relaxed">
                     Connection triggers must be <strong className="text-white">"Opt-In"</strong> and <strong className="text-white">"Short-Term"</strong> (15 mins) to protect the Expert's time. The system respects expertise boundaries by limiting commitment windows.
@@ -5302,26 +5289,26 @@ const variables: Record<string, { title: string; desc: string }> = {
                 >
                   {/* Visual on Left */}
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-indigo-50 to-slate-50 rounded-2xl p-8 border border-indigo-100 shadow-lg">
+                    <div className="w-full max-w-md bg-gradient-to-br from-sky-50 to-slate-50 rounded-2xl p-8 border border-sky-100 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">01</div>
+                          <div className="w-10 h-10 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm">01</div>
                           <div>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Global Map</h3>
                             <p className="text-xs text-gray-500">Macro-Discovery</p>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 border border-indigo-200 space-y-2">
+                        <div className="bg-white rounded-xl p-4 border border-sky-200 space-y-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
+                            <div className="w-2 h-2 rounded-full bg-sky-400"></div>
                             <span className="text-xs font-semibold text-gray-700">Trust Clusters</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                            <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                             <span className="text-xs text-gray-600">Spatial Gravity</span>
                           </div>
-                          <div className="mt-3 pt-3 border-t border-indigo-100">
-                            <p className="text-xs text-indigo-700 font-semibold italic">"Map as Pattern Recognition"</p>
+                          <div className="mt-3 pt-3 border-t border-sky-100">
+                            <p className="text-xs text-sky-700 font-semibold italic">"Map as Pattern Recognition"</p>
                           </div>
                         </div>
                       </div>
@@ -5331,25 +5318,25 @@ const variables: Record<string, { title: string; desc: string }> = {
                   {/* Text on Right */}
                   <div className="w-full lg:w-1/2">
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 uppercase tracking-wider mb-3">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 uppercase tracking-wider mb-3">
                         Interface 01
                       </span>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">The Global Map (Macro-Discovery)</h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Logic:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
                         <p className="text-sm leading-relaxed">Visualizing <strong className="text-gray-900">'Trust Clusters'</strong> through spatial gravity, revealing patterns of expertise demand across geographic regions.</p>
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1">Context:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Context:</p>
                         <p className="text-sm leading-relaxed">Allows a user who has been to <strong className="text-gray-900">40 countries</strong> to see where their expertise is currently needed by their network.</p>
                       </div>
-                      <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
-                        <p className="text-xs font-bold text-indigo-900 uppercase tracking-wider mb-2">Design Detail:</p>
+                      <div className="bg-sky-50 rounded-lg p-4 border border-sky-200">
+                        <p className="text-xs font-bold text-sky-900 uppercase tracking-wider mb-2">Design Detail:</p>
                         <p className="text-xs text-gray-800 italic leading-relaxed mb-3">"Map as Pattern Recognition"</p>
-                        <div className="pt-3 border-t border-indigo-200">
-                          <span className="inline-block px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Logic Pill: Pattern Recognition</span>
+                        <div className="pt-3 border-t border-sky-200">
+                          <span className="inline-block px-3 py-1.5 bg-sky-100 text-sky-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Logic Pill: Pattern Recognition</span>
                         </div>
                       </div>
                     </div>
@@ -5366,16 +5353,16 @@ const variables: Record<string, { title: string; desc: string }> = {
                 >
                   {/* Visual on Right (reversed) */}
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-purple-50 to-slate-50 rounded-2xl p-8 border border-purple-100 shadow-lg">
+                    <div className="w-full max-w-md bg-gradient-to-br from-cyan-50 to-slate-50 rounded-2xl p-8 border border-cyan-100 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">02</div>
+                          <div className="w-10 h-10 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">02</div>
                           <div>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Intent Table</h3>
                             <p className="text-xs text-gray-500">Micro-Matching</p>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 border border-purple-200 space-y-3">
+                        <div className="bg-white rounded-xl p-4 border border-cyan-200 space-y-3">
                           <div className="flex justify-between items-center">
                             <span className="text-xs text-gray-600">Who</span>
                             <span className="text-sm font-bold text-gray-900">2nd-degree</span>
@@ -5388,8 +5375,8 @@ const variables: Record<string, { title: string; desc: string }> = {
                             <span className="text-xs text-gray-600">When</span>
                             <span className="text-sm font-bold text-gray-900">Metadata Scan</span>
                           </div>
-                          <div className="mt-3 pt-3 border-t border-purple-100">
-                            <p className="text-xs text-purple-700 font-semibold italic">"Table as Source of Truth"</p>
+                          <div className="mt-3 pt-3 border-t border-cyan-100">
+                            <p className="text-xs text-cyan-700 font-semibold italic">"Table as Source of Truth"</p>
                           </div>
                         </div>
                       </div>
@@ -5399,25 +5386,25 @@ const variables: Record<string, { title: string; desc: string }> = {
                   {/* Text on Left (reversed) */}
                   <div className="w-full lg:w-1/2">
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-700 uppercase tracking-wider mb-3">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-700 uppercase tracking-wider mb-3">
                         Interface 02
                       </span>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">The Intent Table (Micro-Matching)</h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-purple-700 mb-1">Logic:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-cyan-700 mb-1">Logic:</p>
                         <p className="text-sm leading-relaxed">High-density metadata scanning for specific <strong className="text-gray-900">intent nodes</strong>, enabling precise matching without spatial constraints.</p>
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-purple-700 mb-1">Context:</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-cyan-700 mb-1">Context:</p>
                         <p className="text-sm leading-relaxed">Surfaces the raw <strong className="text-gray-900">'Who, Where, and When'</strong> to eliminate the coordination tax of travel planning.</p>
                       </div>
-                      <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                        <p className="text-xs font-bold text-purple-900 uppercase tracking-wider mb-2">Design Detail:</p>
+                      <div className="bg-cyan-50 rounded-lg p-4 border border-cyan-200">
+                        <p className="text-xs font-bold text-cyan-900 uppercase tracking-wider mb-2">Design Detail:</p>
                         <p className="text-xs text-gray-800 italic leading-relaxed mb-3">"Table as Source of Truth"</p>
-                        <div className="pt-3 border-t border-purple-200">
-                          <span className="inline-block px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Logic Pill: Data Precision</span>
+                        <div className="pt-3 border-t border-cyan-200">
+                          <span className="inline-block px-3 py-1.5 bg-cyan-100 text-cyan-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Logic Pill: Data Precision</span>
                         </div>
                       </div>
                     </div>
@@ -5436,8 +5423,8 @@ const variables: Record<string, { title: string; desc: string }> = {
               >
                 <div className="max-w-4xl mx-auto">
                   <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
-                    <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">Logic Pill: Pattern Recognition</span>
-                    <span className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wider">Logic Pill: Data Precision</span>
+                    <span className="inline-block px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-xs font-bold uppercase tracking-wider">Logic Pill: Pattern Recognition</span>
+                    <span className="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-xs font-bold uppercase tracking-wider">Logic Pill: Data Precision</span>
                   </div>
                   <div className="text-center">
                     <p className="text-sm text-gray-500 leading-relaxed italic">
@@ -5484,8 +5471,8 @@ const variables: Record<string, { title: string; desc: string }> = {
                       </span>
                     </div>
           
-                    <p className="text-base md:text-xl text-gray-700 mb-8 leading-relaxed max-w-xl">
-                      An AI system that generates emotional travel arcs instead of itineraries—designing for how a place feels over time rather than what to check off.
+                    <p className="text-base text-gray-700 mb-8 leading-relaxed max-w-xl">
+                      An AI system that generates emotional travel arcs instead of itineraries, designing for how a place feels over time rather than what to check off.
                     </p>
        
                     {/* EXECUTIVE SUMMARY / TL;DR */}
@@ -5497,24 +5484,24 @@ const variables: Record<string, { title: string; desc: string }> = {
                     >
                       {/* The Challenge */}
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8">
-                        <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                        <span className="text-base font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
                           The Challenge
                         </span>
                         <div className="md:col-span-3">
                           <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                            Travel experiences are often <span className="font-semibold text-gray-900">reduced to checklists and maps</span>. Current systems prioritize logistical efficiency over emotional resonance, leading to trips that feel transactional rather than transformative.
+                            Travel experiences are often reduced to checklists and maps. Current systems prioritize logistical efficiency over emotional resonance, leading to trips that feel transactional rather than transformative.
                           </p>
                         </div>
                       </div>
        
                       {/* The Solution */}
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 pt-8 border-t border-gray-50">
-                        <span className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
+                        <span className="text-base font-bold uppercase tracking-[0.15em] text-amber-700 pt-1">
                           The Solution
                         </span>
                         <div className="md:col-span-3">
                           <p className="text-base text-gray-800 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                            A narrative-driven system that generates <span className="font-semibold text-gray-900">emotional travel arcs</span> instead of itineraries. By embedding narrative architecture into the core logic, the system designs for how a place feels over time, prioritizing emotional resonance over logistical coverage.
+                            A narrative-driven system that generates emotional travel arcs instead of itineraries. By embedding narrative architecture into the core logic, the system designs for how a place feels over time, prioritizing emotional resonance over logistical coverage.
                           </p>
                         </div>
                       </div>
@@ -10492,12 +10479,12 @@ const variables: Record<string, { title: string; desc: string }> = {
                       
                       {/* System Logic Label */}
                       <div className="mt-6 pt-4 border-t border-slate-700">
-                        <p className="text-sm md:text-xs text-gray-400 text-center leading-relaxed">
+                        <p className="text-sm md:text-xs text-gray-100 text-center leading-relaxed">
                           {narrativeEvolutionLevel === 1 && (
                             <><strong className="text-amber-400 not-italic">System Logic:</strong> Real-time API Logistics. The Spontaneity Engine processes Latent Nodes (POI data, distance, hours) into actionable routing information.</>
                           )}
                           {narrativeEvolutionLevel === 2 && (
-                            <><strong className="text-violet-400 not-italic">Augmentation:</strong> Injecting Intent & Mystery. The Narrative Layer overlays story prompts onto logistics data, transforming waypoints into objectives.</>
+                            <><strong className="text-violet-200 not-italic">Augmentation:</strong> Injecting Intent & Mystery. The Narrative Layer overlays story prompts onto logistics data, transforming waypoints into objectives.</>
                           )}
                           {narrativeEvolutionLevel === 3 && (
                             <><strong className="text-amber-400 not-italic">The Experience:</strong> Story-First Exploration. Active Story Beats replace maps entirely—the system orchestrates meaning, not just directions.</>
@@ -10846,7 +10833,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                           Narrative as Infrastructure
                         </h3>
-                        <p className="text-gray-300 leading-relaxed text-sm">
+                        <p className="text-gray-100 leading-relaxed text-sm">
                           The Narrative-Driven Travel Experience Generator demonstrates that narrative architecture can function as foundational infrastructure, not just decorative overlay. By embedding emotional arcs into the system's core logic, we create travel experiences that adapt to how travelers feel, not just where they are.
                         </p>
                       </motion.div>
@@ -10866,7 +10853,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                           The Transparency of Mood
                         </h3>
-                        <p className="text-gray-300 leading-relaxed text-sm">
+                        <p className="text-gray-100 leading-relaxed text-sm">
                           Rather than hiding emotional state detection behind black-box AI, the system makes mood transparent and actionable. By surfacing emotional tone metrics (anxiety, comfort, curiosity), travelers can understand why the system suggests certain experiences, building trust through transparency rather than opacity.
                         </p>
                       </motion.div>

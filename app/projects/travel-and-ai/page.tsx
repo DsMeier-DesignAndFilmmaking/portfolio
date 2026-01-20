@@ -347,14 +347,14 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch">
             {/* Spontaneity Engine - Centerpiece */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="group relative"
+              className="group relative flex-shrink-0 w-[75vw] md:w-full"
               style={{
                 WebkitTransform: 'translate3d(0, 0, 0)',
                 transform: 'translate3d(0, 0, 0)',
@@ -431,7 +431,7 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+              className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full"
               style={{
                 // 1. Force a new stacking context
                 isolation: 'isolate',
@@ -448,7 +448,7 @@ export default function AISandboxPage() {
               }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-lg flex-shrink-0">
+                <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center md:shadow-lg flex-shrink-0">
                   <Shield className="w-6 h-6 text-white flex-shrink-0" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
@@ -504,12 +504,12 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch">
   {[
     {
       icon: MapPin,
       title: "Contextual Decision Logic (CATDS)",
-      description: "An environmental sensing engine that converts geospatial variables—weather, terrain, and availability—into real-time travel feasibility signals.",
+      description: "An environmental sensing engine that converts geospatial variables, such as weather, terrain, and availability into real-time travel feasibility signals.",
       gradient: "from-blue-500 to-cyan-600",
       link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system-logic"
     },
@@ -541,7 +541,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[70vw] md:w-full"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -553,7 +553,7 @@ export default function AISandboxPage() {
         WebkitFontSmoothing: 'antialiased',
       }}
     >
-      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6`}>
         <system.icon className="w-6 h-6 text-white" />
       </div>
       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
@@ -611,7 +611,7 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch">
   {[
     {
       icon: MapPin,
@@ -648,7 +648,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl h-full flex flex-col"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[70vw] md:w-full"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -660,7 +660,7 @@ export default function AISandboxPage() {
         WebkitFontSmoothing: 'antialiased',
       }}
     >
-      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center shadow-lg mb-6`}>
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6`}>
         <system.icon className="w-6 h-6 text-white" />
       </div>
       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>

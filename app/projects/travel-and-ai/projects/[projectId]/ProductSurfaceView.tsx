@@ -371,13 +371,13 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
         </button>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           {isAISystem && (
             <button
               onClick={() => setViewMode('intelligence')}
-              className="group flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-blue-500 to-emerald-500 border-2 border-blue-400/30 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:from-blue-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-100"
+              className="group flex items-center gap-1 md:gap-2.5 px-2.5 py-1.5 md:px-5 md:py-2.5 bg-gradient-to-r from-blue-500 to-emerald-500 border-2 border-blue-400/30 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-tight md:tracking-wider text-white hover:from-blue-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 whitespace-nowrap"
             >
-              <Brain size={14} className="drop-shadow-sm" /> Intelligence Layer
+              <Brain size={11} className="md:w-[14px] md:h-[14px] drop-shadow-sm shrink-0" /> Intelligence Layer
             </button>
           )}
           <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
@@ -387,7 +387,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       </nav>
 
      {/* 2. Hero */}
-     <header className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16 items-center">
+     <header className="max-w-7xl mx-auto px-6 py-28 grid lg:grid-cols-2 gap-16 items-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-3 mb-8">
             <div className="h-[1px] w-8 bg-slate-200" />
