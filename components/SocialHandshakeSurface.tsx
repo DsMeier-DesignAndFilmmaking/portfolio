@@ -48,17 +48,16 @@ const SocialHandshakeSurface: React.FC<SocialHandshakeSurfaceProps> = ({
 
   return (
     <motion.div
-      initial={{ y: "100%", opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ 
-        type: "spring",
-        damping: 25,
-        stiffness: 200,
-        duration: 0.6
+        duration: 0.6,
+        delay: 0.2
       }}
-      className="fixed bottom-0 left-0 right-0 z-50 max-w-sm mx-auto"
+      className="relative w-full max-w-sm mx-auto mt-8"
     >
-      <div className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 rounded-t-3xl border-t border-violet-500/20 overflow-hidden shadow-2xl">
+      <div className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 rounded-3xl border border-violet-500/20 overflow-hidden shadow-2xl">
         {/* Background Image - Blurred Cafe */}
         <div 
           className="absolute inset-0 opacity-20 bg-cover bg-center"

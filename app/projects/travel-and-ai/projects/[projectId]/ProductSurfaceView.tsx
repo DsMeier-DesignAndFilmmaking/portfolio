@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X } from 'lucide-react';
+import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X, Users, Shield, MessageCircle, Copy, Check, Lock, EyeOff, Activity, Radio, Info, ChevronUp, ChevronLeft, Key, Search, Mic, Volume2, Watch, LayoutGrid, ChevronDown } from 'lucide-react';
+import { ComposableMap, Geographies, Geography, Marker, Graticule } from 'react-simple-maps';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { projectRegistry } from '../data';
@@ -97,6 +98,410 @@ const DetourVisual = () => (
   </motion.div>
 );
 
+// --- NARRATIVE ENGINE: Mock function to find intersection points ---
+type IntersectionType = 'Shared Hobby' | 'Recent Location' | 'Professional Goal' | 'Niche Interest';
+
+interface Icebreaker {
+  id: string;
+  text: string;
+  type: IntersectionType;
+  confidenceScore: number;
+  prompt: string; // Pre-filled message for chat
+}
+
+interface NarrativeLayer {
+  interests: string[];
+  recentLocations: string[];
+  professionalGoals: string[];
+  nicheInterests: string[];
+}
+
+const NarrativeEngine = (userNarrative: NarrativeLayer, matchNarrative: NarrativeLayer): Icebreaker[] => {
+  const icebreakers: Icebreaker[] = [];
+  let idCounter = 1;
+
+  // Shared Hobby intersections
+  userNarrative.interests.forEach(interest => {
+    if (matchNarrative.interests.includes(interest)) {
+      icebreakers.push({
+        id: `hobby-${idCounter++}`,
+        text: `Both interested in ${interest}`,
+        type: 'Shared Hobby',
+        confidenceScore: 0.85,
+        prompt: `Hi! I noticed we're both interested in ${interest}. Want to explore that together?`,
+      });
+    }
+  });
+
+  // Recent Location intersections
+  userNarrative.recentLocations.forEach(location => {
+    if (matchNarrative.recentLocations.includes(location)) {
+      icebreakers.push({
+        id: `location-${idCounter++}`,
+        text: `Both visited ${location}`,
+        type: 'Recent Location',
+        confidenceScore: 0.92,
+        prompt: `Hey! I see we both visited ${location}. Did you enjoy it?`,
+      });
+    }
+  });
+
+  // Professional Goal intersections
+  userNarrative.professionalGoals.forEach(goal => {
+    if (matchNarrative.professionalGoals.includes(goal)) {
+      icebreakers.push({
+        id: `goal-${idCounter++}`,
+        text: `Both working on ${goal}`,
+        type: 'Professional Goal',
+        confidenceScore: 0.78,
+        prompt: `Hi! I noticed we're both focused on ${goal}. Would love to connect!`,
+      });
+    }
+  });
+
+  // Niche Interest intersections
+  userNarrative.nicheInterests.forEach(interest => {
+    if (matchNarrative.nicheInterests.includes(interest)) {
+      icebreakers.push({
+        id: `niche-${idCounter++}`,
+        text: `Both into ${interest}`,
+        type: 'Niche Interest',
+        confidenceScore: 0.95,
+        prompt: `Wow, we're both into ${interest}! That's rare. Want to chat?`,
+      });
+    }
+  });
+
+  // Sort by confidence score (highest first) and return top 3
+  return icebreakers.sort((a, b) => b.confidenceScore - a.confidenceScore).slice(0, 3);
+};
+
+// --- PROXIMITY REVEAL LENS: High-Fidelity UX/UI for Social Opportunity Matching ---
+const ProximityRevealLens = () => {
+  // Mock dataset: 3 profiles with varying distances and trust levels, including Narrative Layer
+  const [matches, setMatches] = useState([
+    {
+      id: 1,
+      name: "Alex Chen",
+      initials: "AC",
+      blurLevel: 25,
+      sharedNodes: 7,
+      proximity: "240m",
+      matchScore: 88,
+      verified: false,
+      narrative: {
+        interests: ['Tokyo Jazz Clubs', 'ZK-Proofs', 'Minimalist Design'],
+        recentLocations: ['Tokyo Design Week', 'Berlin Coffee Shops'],
+        professionalGoals: ['Cryptographic Systems', 'UX Architecture'],
+        nicheInterests: ['Zero-Knowledge Protocols', 'Japanese Jazz'],
+      } as NarrativeLayer,
+    },
+    {
+      id: 2,
+      name: "Jordan Martinez",
+      initials: "JM",
+      blurLevel: 25,
+      sharedNodes: 4,
+      proximity: "180m",
+      matchScore: 72,
+      verified: false,
+      narrative: {
+        interests: ['Photography', 'Urban Exploration'],
+        recentLocations: ['Barcelona', 'Amsterdam'],
+        professionalGoals: ['Product Design'],
+        nicheInterests: ['Film Photography'],
+      } as NarrativeLayer,
+    },
+    {
+      id: 3,
+      name: "Sam Taylor",
+      initials: "ST",
+      blurLevel: 25,
+      sharedNodes: 9,
+      proximity: "400m",
+      matchScore: 91,
+      verified: false,
+      narrative: {
+        interests: ['ZK-Proofs', 'Minimalist Design', 'Coffee Culture'],
+        recentLocations: ['Tokyo Design Week', 'Berlin Coffee Shops', 'Copenhagen'],
+        professionalGoals: ['Cryptographic Systems', 'UX Architecture'],
+        nicheInterests: ['Zero-Knowledge Protocols', 'Nordic Design'],
+      } as NarrativeLayer,
+    },
+  ]);
+
+  // Current user's narrative layer (mock)
+  const userNarrative: NarrativeLayer = {
+    interests: ['Tokyo Jazz Clubs', 'ZK-Proofs', 'Minimalist Design'],
+    recentLocations: ['Tokyo Design Week', 'Berlin Coffee Shops'],
+    professionalGoals: ['Cryptographic Systems', 'UX Architecture'],
+    nicheInterests: ['Zero-Knowledge Protocols', 'Japanese Jazz'],
+  };
+
+  const [verificationStatus, setVerificationStatus] = useState<'idle' | 'proving' | 'verified'>('idle');
+  const [zkProofLogs, setZkProofLogs] = useState<string[]>([]);
+  const [selectedMatchId, setSelectedMatchId] = useState<number | null>(null);
+  const [revealedInterests, setRevealedInterests] = useState<Record<number, Icebreaker[]>>({});
+  const [copiedIcebreakerId, setCopiedIcebreakerId] = useState<string | null>(null);
+
+  const handleReveal = (matchId: number) => {
+    setSelectedMatchId(matchId);
+    setVerificationStatus('proving');
+    setZkProofLogs([]);
+
+    // Get the match's narrative layer
+    const match = matches.find(m => m.id === matchId);
+    if (!match) return;
+
+    // Simulate ZK-Proof sequence
+    const logs = [
+      '[ZK_Gate_L1]: Initiating proximity proof verification...',
+      '[ZK_Gate_L2]: Validating location attestation hash...',
+      '[ZK_Gate_L3]: Checking mutual reveal consent...',
+      '[ZK_Gate_L4]: Verifying social graph trust nodes...',
+      '[ZK_Gate_L5]: ✓ Proof verified. Revealing identity.',
+    ];
+
+    logs.forEach((log, index) => {
+      setTimeout(() => {
+        setZkProofLogs(prev => [...prev, log]);
+        if (index === logs.length - 1) {
+          setVerificationStatus('verified');
+          setMatches(prev => prev.map(m => 
+            m.id === matchId 
+              ? { ...m, blurLevel: 0, verified: true }
+              : m
+          ));
+          
+          // Generate icebreakers using NarrativeEngine
+          const icebreakers = NarrativeEngine(userNarrative, match.narrative);
+          setRevealedInterests(prev => ({ ...prev, [matchId]: icebreakers }));
+        }
+      }, (index + 1) * 600);
+    });
+  };
+
+  const handleCopyIcebreaker = async (prompt: string, icebreakerId: string) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedIcebreakerId(icebreakerId);
+      setTimeout(() => setCopiedIcebreakerId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  return (
+    <motion.div 
+      initial={{ scale: 0.95, opacity: 0 }} 
+      animate={{ scale: 1, opacity: 1 }} 
+      className="w-80 bg-slate-900/95 backdrop-blur-xl rounded-[40px] border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] p-6 relative overflow-hidden"
+    >
+      {/* Background: Subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-violet-500/5" />
+      
+      {/* Header: Lens Status */}
+      <div className="relative z-10 flex justify-between items-center mb-6">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_8px_#8b5cf6]" />
+          <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-purple-400">PROXIMITY_LENS</span>
+        </div>
+        <div className="text-[9px] font-mono text-slate-400">
+          {matches.length} Nearby
+        </div>
+      </div>
+
+      {/* The Lens Overlay: List of Social Matches */}
+      <div className="relative z-10 space-y-3 mb-6">
+        {matches.map((match) => {
+          const isHighMatch = match.matchScore > 80;
+          const isVerified = match.verified || (selectedMatchId === match.id && verificationStatus === 'verified');
+          const icebreakers = revealedInterests[match.id] || [];
+          const hasIcebreakers = icebreakers.length > 0;
+          
+          return (
+            <div key={match.id} className="space-y-3">
+              <motion.div
+                className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-4 hover:bg-white/[0.08] transition-all cursor-pointer"
+                whileHover={{ scale: isVerified ? 1 : 1.02 }}
+                animate={isHighMatch && !isVerified ? {
+                  boxShadow: [
+                    '0 0 0px rgba(139, 92, 246, 0)',
+                    '0 0 12px rgba(139, 92, 246, 0.3)',
+                    '0 0 0px rgba(139, 92, 246, 0)',
+                  ],
+                } : {}}
+                transition={{ duration: 2, repeat: isHighMatch && !isVerified ? Infinity : 0 }}
+                onClick={() => !isVerified && handleReveal(match.id)}
+              >
+                <div className="flex items-center gap-4">
+                  {/* Blurred Avatar */}
+                  <div className="relative flex-shrink-0">
+                    <motion.div
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-violet-600 flex items-center justify-center text-white font-bold text-sm"
+                      animate={{
+                        filter: isVerified ? 'blur(0px)' : `blur(${match.blurLevel}px)`,
+                      }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                      {match.initials}
+                    </motion.div>
+                  </div>
+
+                  {/* Match Metadata */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-sm font-semibold text-white truncate" style={{ fontFamily: "'Inter', sans-serif" }}>
+                        {isVerified ? match.name : 'Anonymous'}
+                      </h4>
+                      {isHighMatch && !isVerified && (
+                        <motion.div
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          className="w-2 h-2 rounded-full bg-purple-400"
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Relational Heuristic Display */}
+                    <div className="flex items-center gap-3">
+                      {/* Social Trust Badge */}
+                      <div className="flex items-center gap-1.5 px-2 py-1 bg-purple-500/20 rounded-lg border border-purple-500/30">
+                        <Users size={10} className="text-purple-400" />
+                        <span className="text-[10px] font-mono font-bold text-purple-300">
+                          {match.sharedNodes} nodes
+                        </span>
+                      </div>
+                      
+                      {/* Proximity Index */}
+                      <div className="flex items-center gap-1.5 px-2 py-1 bg-violet-500/20 rounded-lg border border-violet-500/30">
+                        <Shield size={10} className="text-violet-400" />
+                        <span className="text-[10px] font-mono font-bold text-violet-300">
+                          {match.proximity}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Contextual Icebreakers Drawer - Only show when verified */}
+              <AnimatePresence>
+                {isVerified && hasIcebreakers && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20, height: 0 }}
+                    animate={{ opacity: 1, y: 0, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ delay: 0.2, duration: 0.4, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="bg-white/[0.03] backdrop-blur-xl rounded-xl border border-white/10 p-4 space-y-3">
+                      {/* Common Ground Badge */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <Sparkles size={12} className="text-purple-400" />
+                        <span className="text-[10px] font-mono font-bold text-purple-300 uppercase tracking-wider">
+                          Common Ground
+                        </span>
+                        <motion.div
+                          className="flex-1 h-[1px] bg-gradient-to-r from-purple-500/30 to-transparent"
+                          initial={{ width: 0 }}
+                          animate={{ width: '100%' }}
+                          transition={{ delay: 0.4, duration: 0.3 }}
+                        />
+                      </div>
+
+                      {/* Icebreaker Chips */}
+                      <div className="space-y-2">
+                        {icebreakers.map((icebreaker, index) => (
+                          <motion.button
+                            key={icebreaker.id}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
+                            onClick={() => handleCopyIcebreaker(icebreaker.prompt, icebreaker.id)}
+                            className="w-full bg-transparent border border-white/20 rounded-lg px-3 py-2.5 hover:bg-white/[0.05] hover:border-white/30 transition-all text-left group"
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="flex items-center gap-2 flex-1 min-w-0">
+                                <MessageCircle size={12} className="text-purple-400 flex-shrink-0" />
+                                <span className="text-[11px] text-white font-medium truncate" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                  {icebreaker.text}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 flex-shrink-0">
+                                <span className="text-[9px] font-mono text-slate-400">
+                                  {Math.round(icebreaker.confidenceScore * 100)}%
+                                </span>
+                                {copiedIcebreakerId === icebreaker.id ? (
+                                  <Check size={12} className="text-emerald-400" />
+                                ) : (
+                                  <Copy size={12} className="text-slate-400 group-hover:text-purple-400 transition-colors" />
+                                )}
+                              </div>
+                            </div>
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ZK-Proof Terminal Logs */}
+      {verificationStatus !== 'idle' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 mt-4"
+        >
+          <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-white/5 p-3">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                ZK-Proof Terminal
+              </span>
+            </div>
+            <code className="block text-[9px] font-mono text-slate-300 space-y-1">
+              {zkProofLogs.map((log, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className={log.includes('✓') ? 'text-emerald-400' : 'text-slate-400'}
+                >
+                  {log}
+                </motion.div>
+              ))}
+              {verificationStatus === 'proving' && (
+                <motion.span
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className="text-purple-400"
+                >
+                  ▋
+                </motion.span>
+              )}
+            </code>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Instructions */}
+      {verificationStatus === 'idle' && (
+        <div className="relative z-10 text-center">
+          <p className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+            Tap a match to reveal
+          </p>
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
 const SocialRadarVisual = () => (
     <motion.div 
       initial={{ scale: 0.95, opacity: 0 }} 
@@ -158,6 +563,995 @@ const SocialRadarVisual = () => (
       </button>
     </motion.div>
   );
+
+  // --- SOCIAL GRAPH DATA MOCK ---
+  interface SocialGraphNode {
+    id: string;
+    trustScore: number; // 0.0 to 1.0
+    sharedInterests: string[];
+    nodeDrift: number; // Drift radius in pixels
+    position: { x: number; y: number };
+    baseRadius: number;
+  }
+
+  interface PrivacyDataPoint {
+    id: string;
+    label: string;
+    isMasked: boolean;
+    category: 'location' | 'identity' | 'behavior';
+  }
+
+  const initialPrivacyData: PrivacyDataPoint[] = [
+    { id: '1', label: 'Exact Coordinates', isMasked: true, category: 'location' },
+    { id: '2', label: 'Search History', isMasked: true, category: 'behavior' },
+    { id: '3', label: 'Last Name', isMasked: true, category: 'identity' },
+    { id: '4', label: 'Mutual Interests', isMasked: false, category: 'behavior' },
+    { id: '5', label: 'Trust Score', isMasked: false, category: 'identity' },
+    { id: '6', label: 'General Neighborhood', isMasked: false, category: 'location' },
+  ];
+
+  // --- PRIVACY DASHBOARD (MASKING MONITOR) COMPONENT ---
+  const PrivacyDashboard = () => {
+    const [privacyData, setPrivacyData] = useState<PrivacyDataPoint[]>(initialPrivacyData);
+
+    const handleToggle = (id: string) => {
+      setPrivacyData(prev => prev.map(item => 
+        item.id === id ? { ...item, isMasked: !item.isMasked } : item
+      ));
+    };
+
+    const maskedItems = privacyData.filter(item => item.isMasked);
+    const sharedItems = privacyData.filter(item => !item.isMasked);
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-4xl mx-auto bg-slate-900/80 backdrop-blur-2xl rounded-2xl border-2 border-white/20 p-6 shadow-2xl"
+      >
+        <div className="flex items-center gap-2 mb-6">
+          <Lock className="w-5 h-5 text-purple-300" />
+          <h3 className="text-lg font-bold text-white">Privacy Dashboard</h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left Column - Masked */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-4">
+              <EyeOff className="w-4 h-4 text-purple-300" />
+              <span className="text-sm font-bold text-purple-300 uppercase tracking-wider">Masked</span>
+            </div>
+            <AnimatePresence>
+              {maskedItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-purple-500/20 border-2 border-purple-500/50 rounded-lg p-4 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <div className="relative flex-1 overflow-hidden">
+                      <div className="text-sm text-white font-semibold truncate">{item.label}</div>
+                      {/* Shimmering redacted effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"
+                        animate={{
+                          x: ['-100%', '200%'],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      />
+                    </div>
+                    <button
+                      onClick={() => handleToggle(item.id)}
+                      className="flex-shrink-0 w-10 h-6 bg-purple-600/40 rounded-full p-1 transition-all hover:bg-purple-600/60 flex justify-start border border-purple-400/50"
+                    >
+                      <motion.div
+                        className="w-4 h-4 bg-purple-300 rounded-full"
+                        animate={{ x: 0 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Right Column - Shared */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-4">
+              <Shield className="w-4 h-4 text-lime-300" />
+              <span className="text-sm font-bold text-lime-300 uppercase tracking-wider">Shared</span>
+            </div>
+            <AnimatePresence>
+              {sharedItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-lime-500/20 border-2 border-lime-500/50 rounded-lg p-4 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <div className="relative flex-1 overflow-hidden">
+                      <div className="text-sm text-white font-semibold truncate">{item.label}</div>
+                    </div>
+                    <button
+                      onClick={() => handleToggle(item.id)}
+                      className="flex-shrink-0 w-10 h-6 bg-lime-600/40 rounded-full p-1 transition-all hover:bg-lime-600/60 flex justify-start border border-lime-400/50"
+                    >
+                      <motion.div
+                        className="w-4 h-4 bg-lime-300 rounded-full"
+                        animate={{ x: 16 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  // --- ENCRYPTED MATCH PULSE (PRIVACY RADAR) COMPONENT ---
+  const EncryptedMatchPulse = ({ showIntelligence = false }: { showIntelligence?: boolean }) => {
+    const [nodes, setNodes] = useState<SocialGraphNode[]>([
+      {
+        id: '1',
+        trustScore: 0.85,
+        sharedInterests: ['Design', 'Travel'],
+        nodeDrift: 45,
+        position: { x: 150, y: 120 },
+        baseRadius: 20,
+      },
+      {
+        id: '2',
+        trustScore: 0.72,
+        sharedInterests: ['Photography'],
+        nodeDrift: 60,
+        position: { x: 250, y: 180 },
+        baseRadius: 18,
+      },
+      {
+        id: '3',
+        trustScore: 0.91,
+        sharedInterests: ['Music', 'Art', 'Travel'],
+        nodeDrift: 30,
+        position: { x: 200, y: 250 },
+        baseRadius: 24,
+      },
+    ]);
+
+    const [pulseTime, setPulseTime] = useState(0);
+
+    // Pulse animation every 3 seconds
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setPulseTime(prev => prev + 1);
+      }, 3000);
+      return () => clearInterval(interval);
+    }, []);
+
+    // Node drift animation - update positions smoothly
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setNodes(prev => prev.map(node => {
+          const angle = Math.random() * Math.PI * 2;
+          const driftDistance = node.nodeDrift * (1 - node.trustScore); // Shrink drift as trust increases
+          const maxDrift = driftDistance * 0.5; // Limit movement
+          const newX = node.position.x + (Math.cos(angle) * maxDrift);
+          const newY = node.position.y + (Math.sin(angle) * maxDrift);
+          
+          // Keep within bounds (assuming 400x400 canvas, centered at 200,200)
+          const centerX = 200;
+          const centerY = 200;
+          const maxRadius = 130;
+          const distanceFromCenter = Math.sqrt(
+            Math.pow(newX - centerX, 2) + Math.pow(newY - centerY, 2)
+          );
+          
+          let finalX = newX;
+          let finalY = newY;
+          if (distanceFromCenter > maxRadius) {
+            const angleToCenter = Math.atan2(newY - centerY, newX - centerX);
+            finalX = centerX + Math.cos(angleToCenter) * maxRadius;
+            finalY = centerY + Math.sin(angleToCenter) * maxRadius;
+          }
+          
+          return {
+            ...node,
+            position: {
+              x: finalX,
+              y: finalY,
+            },
+          };
+        }));
+      }, 3000);
+      return () => clearInterval(interval);
+    }, []);
+
+    const centerX = 200;
+    const centerY = 200;
+    const radarRadius = 150;
+
+    return (
+      <div className="w-full max-w-2xl mx-auto bg-slate-900/80 backdrop-blur-2xl rounded-2xl border-2 border-purple-500/30 p-8 shadow-2xl relative overflow-hidden">
+        {/* Background Grid */}
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#818cf8_1px,transparent_1px)] bg-[size:20px_20px]" />
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-6">
+            <Radio className="w-5 h-5 text-purple-300" />
+            <h3 className="text-lg font-bold text-white">Encrypted Match Pulse</h3>
+          </div>
+
+          {/* Radar SVG */}
+          <div className="relative w-full aspect-square max-w-md mx-auto bg-slate-900/50 rounded-xl p-4">
+            <svg viewBox="0 0 400 400" className="w-full h-full">
+              {/* Radar Circles */}
+              <circle cx={centerX} cy={centerY} r={radarRadius} fill="none" stroke="#818cf8" strokeWidth="2" opacity="0.6" />
+              <circle cx={centerX} cy={centerY} r={radarRadius * 0.66} fill="none" stroke="#818cf8" strokeWidth="1.5" opacity="0.5" />
+              <circle cx={centerX} cy={centerY} r={radarRadius * 0.33} fill="none" stroke="#818cf8" strokeWidth="1.5" opacity="0.5" />
+              
+              {/* Center Point */}
+              <circle cx={centerX} cy={centerY} r={4} fill="#818cf8" />
+              
+              {/* Expanding Ripples */}
+              <motion.circle
+                cx={centerX}
+                cy={centerY}
+                r={radarRadius}
+                fill="none"
+                stroke="#a855f7"
+                strokeWidth="3"
+                opacity={0.6}
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.6, 0, 0.6],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeOut"
+                }}
+              />
+
+              {/* Probability Rings and Nodes */}
+              {nodes.map((node) => {
+                const highInterest = node.sharedInterests.length > 1;
+                const pulseActive = pulseTime % 2 === 0 && highInterest;
+                
+                return (
+                  <g key={node.id}>
+                    {/* Probability Ring (drift area) */}
+                    <circle
+                      cx={node.position.x}
+                      cy={node.position.y}
+                      r={node.nodeDrift * (1 - node.trustScore)}
+                      fill="none"
+                      stroke="#8b5cf6"
+                      strokeWidth="1"
+                      strokeDasharray="4 4"
+                      opacity="0.2"
+                    />
+                    
+                    {/* Floating Node */}
+                    <g transform={`translate(${node.position.x}, ${node.position.y})`}>
+                      {/* Node Glow */}
+                      <circle
+                        cx={0}
+                        cy={0}
+                        r={node.baseRadius + 5}
+                        fill={highInterest ? "#a855f7" : "#818cf8"}
+                        opacity={pulseActive ? 0.4 : 0.2}
+                      >
+                        {pulseActive && (
+                          <animate
+                            attributeName="r"
+                            values={`${node.baseRadius + 5};${node.baseRadius + 15};${node.baseRadius + 5}`}
+                            dur="1.5s"
+                            repeatCount="1"
+                          />
+                        )}
+                      </circle>
+                      
+                      {/* Node Core */}
+                      <circle
+                        cx={0}
+                        cy={0}
+                        r={node.baseRadius}
+                        fill={highInterest ? "#c084fc" : "#818cf8"}
+                        stroke={highInterest ? "#d8b4fe" : "#a5b4fc"}
+                        strokeWidth="2"
+                        className="drop-shadow-lg"
+                      />
+                      
+                      {/* Trust Score Indicator */}
+                      <text
+                        x={0}
+                        y={-node.baseRadius - 12}
+                        textAnchor="middle"
+                        className="text-[11px] fill-white font-mono font-bold"
+                        style={{ textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}
+                      >
+                        {Math.round(node.trustScore * 100)}%
+                      </text>
+                    </g>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+
+          {/* ZK-Proof Strings Overlay (Intelligence Layer) */}
+          {showIntelligence && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-2xl p-6 z-20"
+            >
+              <div className="space-y-2 font-mono text-xs text-purple-300">
+                <div>[ZK_PROOF_001]: 0x4f2a8e1b3c9d...</div>
+                <div>[ZK_PROOF_002]: 0x7b9c3f2a1e8d...</div>
+                <div>[ZK_PROOF_003]: 0x2d5a8c7f1b4e...</div>
+                <div className="text-lime-400">✓ All proofs verified</div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Legend */}
+          <div className="mt-6 flex flex-wrap gap-6 justify-center text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-purple-500 border-2 border-purple-300" />
+              <span className="text-white font-medium">High Trust Match</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-indigo-500 border-2 border-indigo-300" />
+              <span className="text-white font-medium">Standard Match</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // --- ENCRYPTED MATCH PULSE MOBILE MOCKUP (THE GLASS) - MAP-CENTRIC ---
+  const EncryptedMatchPulseMobileMockup = () => {
+    const [isMounted, setIsMounted] = useState(false);
+    const [photonProgress, setPhotonProgress] = useState<Record<string, number>>({});
+    
+    // Ensure client-side only rendering to prevent hydration errors
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
+    // Network Locations - Encrypted pins (Tokyo-focused with dense background network)
+    const networkLocations = [
+      { id: 'tokyo', name: 'Tokyo', coords: [139.69, 35.68] as [number, number], trust: 0.98, status: 'Active' },
+      { id: 'seoul', name: 'Seoul', coords: [126.98, 37.57] as [number, number], trust: 0.88, status: 'Active' },
+      { id: 'hongkong', name: 'Hong Kong', coords: [114.17, 22.28] as [number, number], trust: 0.85, status: 'Traveling' },
+      { id: 'singapore', name: 'Singapore', coords: [103.85, 1.29] as [number, number], trust: 0.82, status: 'Active' },
+      { id: 'taipei', name: 'Taipei', coords: [121.57, 25.03] as [number, number], trust: 0.87, status: 'Active' },
+      { id: 'osaka', name: 'Osaka', coords: [135.50, 34.69] as [number, number], trust: 0.90, status: 'Active' },
+      { id: 'bangkok', name: 'Bangkok', coords: [100.50, 13.75] as [number, number], trust: 0.80, status: 'Traveling' }
+    ];
+    
+    // User's origin location (off-screen, west of Tokyo)
+    const userOrigin: [number, number] = [100, 35]; // Approximate position west of Tokyo
+
+    // Travel paths with major cities
+    interface TravelPath {
+      id: string;
+      origin: {
+        city: string;
+        coordinates: [number, number]; // [lng, lat]
+      };
+      destination: {
+        city: string;
+        coordinates: [number, number];
+        trustScore: number;
+        driftRadius: number;
+      };
+    }
+    
+    const travelPaths: TravelPath[] = [
+      {
+        id: '1',
+        origin: { city: 'New York', coordinates: [-74.0060, 40.7128] },
+        destination: { city: 'London', coordinates: [-0.1276, 51.5074], trustScore: 0.88, driftRadius: 22 }
+      },
+      {
+        id: '2',
+        origin: { city: 'New York', coordinates: [-74.0060, 40.7128] },
+        destination: { city: 'Tokyo', coordinates: [139.6503, 35.6762], trustScore: 0.92, driftRadius: 18 }
+      },
+      {
+        id: '3',
+        origin: { city: 'London', coordinates: [-0.1276, 51.5074] },
+        destination: { city: 'Berlin', coordinates: [13.4050, 52.5200], trustScore: 0.85, driftRadius: 20 }
+      },
+      {
+        id: '4',
+        origin: { city: 'London', coordinates: [-0.1276, 51.5074] },
+        destination: { city: 'Tokyo', coordinates: [139.6503, 35.6762], trustScore: 0.92, driftRadius: 18 }
+      },
+    ];
+
+    // Animate photons traveling along paths
+    useEffect(() => {
+      if (!isMounted) return;
+      
+      const intervals = travelPaths.map((path) => {
+        return setInterval(() => {
+          setPhotonProgress(prev => ({
+            ...prev,
+            [path.id]: prev[path.id] === undefined ? 0 : (prev[path.id] + 0.01) % 1
+          }));
+        }, 50);
+      });
+      
+      return () => intervals.forEach(clearInterval);
+    }, [isMounted]);
+
+    // Origin Node Component
+    const OriginNode = ({ coordinates }: { coordinates: [number, number] }) => {
+      return (
+        <Marker coordinates={coordinates}>
+          <div className="relative">
+            <div
+              className="absolute rounded-full border-2 border-white/40"
+              style={{
+                width: '10px',
+                height: '10px',
+                left: '-5px',
+                top: '-5px',
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              }}
+            />
+          </div>
+        </Marker>
+      );
+    };
+
+    // Destination Node with Probability Ring (Brownian motion drift)
+    const DestinationNode = ({ 
+      coordinates, 
+      trustScore, 
+      driftRadius 
+    }: { 
+      coordinates: [number, number];
+      trustScore: number;
+      driftRadius: number;
+    }) => {
+      const [driftX, setDriftX] = useState(0);
+      const [driftY, setDriftY] = useState(0);
+      
+      // Brownian motion for location masking
+      useEffect(() => {
+        if (!isMounted) return;
+        const interval = setInterval(() => {
+          setDriftX((Math.random() - 0.5) * driftRadius * 0.6);
+          setDriftY((Math.random() - 0.5) * driftRadius * 0.6);
+        }, 2000);
+        return () => clearInterval(interval);
+      }, [isMounted, driftRadius]);
+      
+      const nodeColor = '#10b981'; // Emerald
+      
+      return (
+        <Marker coordinates={coordinates}>
+          <motion.div
+            className="relative"
+            animate={{
+              x: driftX,
+              y: driftY,
+            }}
+            transition={{
+              duration: 2,
+              ease: "easeOut"
+            }}
+          >
+            {/* Probability Ring - Soft emerald glow */}
+            <motion.div
+              className="absolute rounded-full"
+              style={{
+                width: `${driftRadius * 2}px`,
+                height: `${driftRadius * 2}px`,
+                left: `-${driftRadius}px`,
+                top: `-${driftRadius}px`,
+                border: `1px solid ${nodeColor}`,
+                opacity: 0.4,
+                boxShadow: `0 0 ${driftRadius}px ${nodeColor}`,
+              }}
+              animate={{
+                opacity: [0.4, 0.6, 0.4],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Node Core */}
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: '12px',
+                height: '12px',
+                left: '-6px',
+                top: '-6px',
+                backgroundColor: nodeColor,
+                opacity: 0.9,
+                boxShadow: `0 0 12px ${nodeColor}`,
+              }}
+            />
+          </motion.div>
+        </Marker>
+      );
+    };
+
+    // Network Location Marker Component - Tokyo Hero with Background Network
+    const NetworkLocationMarker = ({ location }: { location: typeof networkLocations[0] }) => {
+      const isTokyo = location.id === 'tokyo' || location.name === 'Tokyo';
+      const labelY = -50;
+      const labelHeight = 44;
+      
+      return (
+        <Marker coordinates={location.coords}>
+          <g style={{ zIndex: isTokyo ? 999 : 10 }}>
+            {/* ZK-Proof Pulse Animation - Localized on Tokyo */}
+            {isTokyo && (
+              <>
+                <motion.circle
+                  cx={0}
+                  cy={0}
+                  r={40}
+                  fill="none"
+                  stroke="#00FF9D"
+                  strokeWidth={1}
+                  opacity={0}
+                  animate={{
+                    r: [40, 80, 40],
+                    opacity: [0.4, 0, 0.4],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+                <motion.circle
+                  cx={0}
+                  cy={0}
+                  r={40}
+                  fill="none"
+                  stroke="#00FF9D"
+                  strokeWidth={1}
+                  opacity={0}
+                  animate={{
+                    r: [40, 100, 40],
+                    opacity: [0.3, 0, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    delay: 1,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+              </>
+            )}
+            
+            {/* Outer Halo - ZK-Proof Trust Zone */}
+            {isTokyo ? (
+              // Tokyo: Larger, more visible halo
+              <motion.circle
+                cx={0}
+                cy={0}
+                r={24}
+                fill="none"
+                stroke="#00FF9D"
+                strokeWidth={1}
+                opacity={0.3}
+                animate={{
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            ) : (
+              // Background nodes: Visible but muted halo with subtle pulse
+              <motion.circle
+                cx={0}
+                cy={0}
+                r={16}
+                fill="none"
+                stroke="#00FF9D"
+                strokeWidth={0.8}
+                opacity={0.3}
+                animate={{
+                  opacity: [0.3, 0.4, 0.3],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            )}
+            
+            {/* Inner Core - Hero status for Tokyo, muted for others */}
+            {isTokyo ? (
+              // Tokyo: Enhanced glow with intense drop-shadow
+              <circle
+                cx={0}
+                cy={0}
+                r={3}
+                fill="#00FF9D"
+                filter="url(#cyberPinGlow)"
+                style={{
+                  filter: 'drop-shadow(0 0 15px #00FF9D)',
+                }}
+              />
+            ) : (
+              // Background nodes: Visible dots with subtle glow
+              <motion.circle
+                cx={0}
+                cy={0}
+                r={2.5}
+                fill="#00FF9D"
+                opacity={0.6}
+                style={{
+                  filter: 'drop-shadow(0 0 6px #00FF9D)',
+                }}
+                animate={{
+                  opacity: [0.6, 0.7, 0.6],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            )}
+            
+            {/* Connector Line - Only for Tokyo */}
+            {isTokyo && (
+              <line
+                x1={0}
+                y1={0}
+                x2={0}
+                y2={labelY + labelHeight / 2}
+                stroke="#00FF9D"
+                strokeWidth={2}
+                opacity={0.8}
+              />
+            )}
+            
+            {/* Label - ONLY render for Tokyo */}
+            {isTokyo && (
+              <foreignObject 
+                x={-150} 
+                y={labelY} 
+                width={300}
+                height={labelHeight}
+              >
+                <div 
+                  className="flex items-center justify-center bg-black/80 backdrop-blur-md border border-emerald-500/50 rounded-full px-3 py-1.5"
+                  style={{
+                    display: 'flex',
+                    width: 'fit-content',
+                    minWidth: 'max-content',
+                    whiteSpace: 'nowrap',
+                    position: 'relative',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    margin: '0 auto',
+                  }}
+                >
+                  <p 
+                    className="font-bold whitespace-nowrap"
+                    style={{ 
+                      fontFamily: 'JetBrains Mono, monospace',
+                      color: '#FFFFFF',
+                      fontSize: '18px',
+                      letterSpacing: '0.1em',
+                      textAlign: 'center',
+                    }}
+                  >
+                    TOKYO • REVEAL READY
+                  </p>
+                </div>
+              </foreignObject>
+            )}
+          </g>
+        </Marker>
+      );
+    };
+
+    // World map GeoJSON URL
+    const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+    // Prevent hydration errors
+    if (!isMounted) {
+      return (
+        <div className="relative mx-auto" style={{ width: '390px', maxWidth: '100%', height: '844px' }}>
+          <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-30" />
+            <div 
+              className="relative rounded-[2.5rem] overflow-hidden"
+              style={{ 
+                width: '100%', 
+                height: '844px', 
+                backgroundColor: '#000000'
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="relative mx-auto"
+        style={{ width: '390px', maxWidth: '100%' }}
+      >
+        {/* Mobile Device Frame */}
+        <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800">
+          {/* Notch */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-30" />
+          
+          {/* Screen Container - 390x844 with Dead Zone padding */}
+          <div 
+            className="relative rounded-[2.5rem] overflow-hidden"
+            style={{ 
+              width: '100%', 
+              height: '844px', 
+              maxHeight: '100vh',
+              backgroundColor: '#000000', // Pure black water
+              overflow: 'hidden',
+              position: 'relative',
+              padding: '0 20px', // Dead Zone: prevents labels from touching edges
+            }}
+          >
+            {/* THE CANVAS - Map occupying 100% viewport */}
+            <div className="absolute inset-0 z-0" style={{ position: 'absolute', width: '100%', height: '100%' }}>
+              <ComposableMap
+                projection="geoMercator"
+                projectionConfig={{
+                  scale: 400,
+                  center: [139.69, 35.68], // Tokyo-focused viewport
+                }}
+                style={{ width: '100%', height: '100%', position: 'absolute' }}
+              >
+                {/* World Map - Deep charcoal land, muted teal borders */}
+                <Geographies geography={geoUrl}>
+                  {({ geographies }) =>
+                    geographies.map((geo) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill="#111111" // Deep charcoal
+                        stroke="#2dd4bf" // Muted teal
+                        strokeWidth={0.5}
+                        style={{
+                          default: { outline: 'none' },
+                          hover: { outline: 'none' },
+                          pressed: { outline: 'none' },
+                        }}
+                      />
+                    ))
+                  }
+                </Geographies>
+                
+                {/* SVG Defs for gradients and filters */}
+                <defs>
+                  {/* Connection Arc Gradient - Cyan to Emerald */}
+                  <linearGradient id="connectionArcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#06b6d4" stopOpacity={0.4} />
+                    <stop offset="100%" stopColor="#00FF9D" stopOpacity={0.4} />
+                  </linearGradient>
+                  <linearGradient id="travelGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.7} />
+                  </linearGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  {/* Cyber-Pin Drop Shadow Filter */}
+                  <filter id="cyberPinGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                    <feOffset in="blur" dx="0" dy="0" result="offsetBlur"/>
+                    <feFlood floodColor="#00FF9D" floodOpacity="1" result="glowColor"/>
+                    <feComposite in="glowColor" in2="offsetBlur" operator="in" result="glow"/>
+                    <feMerge>
+                      <feMergeNode in="glow"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                {/* Connection Arc - From user origin (off-screen) to Tokyo */}
+                {(() => {
+                  const tokyoNode = networkLocations.find(loc => loc.id === 'tokyo');
+                  if (!tokyoNode) return null;
+                  
+                  const [originLng, originLat] = userOrigin;
+                  const [tokyoLng, tokyoLat] = tokyoNode.coords;
+                  
+                  // Calculate curved path midpoint (curve upward)
+                  const midLng = (originLng + tokyoLng) / 2;
+                  const midLat = Math.max(originLat, tokyoLat) + 8;
+                  
+                  const pathData = `M ${originLng} ${originLat} Q ${midLng} ${midLat} ${tokyoLng} ${tokyoLat}`;
+                  
+                  return (
+                    <motion.path
+                      key="connection-origin-tokyo"
+                      d={pathData}
+                      fill="none"
+                      stroke="url(#connectionArcGradient)"
+                      strokeWidth={2}
+                      opacity={0.5}
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 2.5, ease: "easeInOut" }}
+                    />
+                  );
+                })()}
+                
+                {/* Connection Arcs - All background nodes connect to Tokyo (Social Graph) */}
+                {networkLocations
+                  .filter(loc => loc.id !== 'tokyo' && loc.name !== 'Tokyo')
+                  .map((location) => {
+                    const tokyoNode = networkLocations.find(loc => loc.id === 'tokyo');
+                    if (!tokyoNode) return null;
+                    
+                    const [lng1, lat1] = location.coords;
+                    const [lng2, lat2] = tokyoNode.coords;
+                    
+                    // Calculate curved path midpoint (arc toward Tokyo)
+                    const midLng = (lng1 + lng2) / 2;
+                    const midLat = Math.max(lat1, lat2) + 5;
+                    
+                    const pathData = `M ${lng1} ${lat1} Q ${midLng} ${midLat} ${lng2} ${lat2}`;
+                    
+                    return (
+                      <motion.path
+                        key={`connection-${location.id}-tokyo`}
+                        d={pathData}
+                        fill="none"
+                        stroke="url(#connectionArcGradient)"
+                        strokeWidth={1}
+                        opacity={0.2}
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2.5, delay: 0.8, ease: "easeInOut" }}
+                      />
+                    );
+                  })}
+                
+                
+                {/* Network Location Markers - Background Network First, Tokyo Last (Hero) */}
+                {networkLocations
+                  .filter(loc => loc.id !== 'tokyo' && loc.name !== 'Tokyo')
+                  .map((location) => (
+                    <NetworkLocationMarker key={location.id} location={location} />
+                  ))}
+                {/* Tokyo Marker - Rendered last for highest z-index priority */}
+                {networkLocations
+                  .filter(loc => loc.id === 'tokyo' || loc.name === 'Tokyo')
+                  .map((location) => (
+                    <NetworkLocationMarker key={location.id} location={location} />
+                  ))}
+              </ComposableMap>
+            </div>
+
+            {/* Scanline Overlay - High-tech monitor effect */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-[1] opacity-[0.05]"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.1) 2px, rgba(255, 255, 255, 0.1) 4px)',
+              }}
+            />
+
+            {/* THE GLASS CHROME - Foreground Layer */}
+            <div className="absolute inset-0 z-10 pointer-events-none">
+              {/* Floating Header - Thin pill at top */}
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                className="absolute top-12 left-1/2 -translate-x-1/2 z-20 pointer-events-auto"
+              >
+                <div className="bg-white/5 backdrop-blur-[12px] rounded-full border border-white/10 px-4 py-2 shadow-2xl">
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-3 h-3 text-emerald-400" />
+                    <span className="text-[10px] font-mono font-bold text-emerald-300 uppercase tracking-wider">
+                      ZK-PROOF ACTIVE
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Match Notification Card - Lower-third */}
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="absolute bottom-20 left-6 right-6 z-20 pointer-events-none"
+              >
+                <div className="bg-white/5 backdrop-blur-2xl rounded-2xl border border-white/10 p-5 shadow-2xl">
+                  <h3 className="text-base font-bold text-emerald-300 mb-2">
+                    Mutual Connection Detected in Tokyo
+                  </h3>
+                  <p className="text-[10px] text-white/50 leading-relaxed mb-4 font-mono">
+                    Fostering safe serendipity without identity leaks.
+                  </p>
+                  <div 
+                    className="w-full py-3 px-4 rounded-xl text-sm font-semibold text-white flex items-center justify-center gap-2 relative overflow-hidden"
+                    style={{
+                      background: 'linear-gradient(to right, #06b6d4, #8b5cf6)',
+                      boxShadow: '0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(139, 92, 246, 0.3)',
+                    }}
+                  >
+                    <span className="relative z-10">Reveal Identity</span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-400/0 via-cyan-400/50 to-cyan-400/0"
+                      animate={{
+                        x: ['-100%', '200%'],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        
+        {/* User Story Text - Directly below the map */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-6 text-center"
+        >
+          <div className="bg-white/10 backdrop-blur-[12px] rounded-xl border border-white/20 px-5 py-4 shadow-xl inline-block max-w-lg">
+            <p className="text-[10px] text-slate-700/90 leading-relaxed font-mono font-semibold" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+              Narrative: As a traveler, I want to see my network's intersections in Tokyo via ZK-Proofs to foster safe serendipity without leaking identity.
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  };
 
   const PrivacyVaultVisual = () => (
     <motion.div 
@@ -224,65 +1618,503 @@ const SocialRadarVisual = () => (
     </motion.div>
   );
 
-  const StoryCardVisual = () => (
-    <motion.div 
-      initial={{ y: 20, opacity: 0 }} 
-      animate={{ y: 0, opacity: 1 }} 
-      className="w-80 bg-white rounded-[40px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-slate-100 p-2 overflow-hidden"
-    >
-      {/* Visual Header: The "Mood" Image */}
-      <div className="h-44 bg-amber-50 rounded-[32px] mb-4 flex items-center justify-center relative overflow-hidden group">
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#fbbf24_0%,transparent_60%)] opacity-30" />
-         <motion.div 
-           animate={{ 
-             scale: [1, 1.05, 1],
-             rotate: [0, 2, 0] 
-           }} 
-           transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-           className="text-6xl drop-shadow-sm"
-         >
-           ☕️
-         </motion.div>
-         
-         {/* LLM Processing Indicator */}
-         <div className="absolute bottom-4 left-4 right-4 h-1 bg-white/40 rounded-full overflow-hidden backdrop-blur-sm">
-            <motion.div 
-              initial={{ width: "0%" }} 
-              animate={{ width: "100%" }} 
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="h-full bg-amber-400" 
+  // Narrative-Driven Travel Experience - High-Fidelity Mobile Mockup
+  const StoryCardVisual = () => {
+    const [isMounted, setIsMounted] = useState(false);
+    const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+    const [viewMode, setViewMode] = useState<'mobile' | 'widget' | 'watch'>('mobile');
+    const [toneMode, setToneMode] = useState<'Serene' | 'Energetic' | 'Curious'>('Serene');
+    
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
+    // Story Cards Data
+    const storyCards = [
+      {
+        id: 1,
+        title: "Hidden Wine Window",
+        image: "🍷",
+        narrative: "The sun is beginning to set over the Arno. If you duck into this alleyway now, you'll catch the golden hour at a hidden wine window before the dinner rush begins.",
+        location: "Florence, Italy",
+        timeContext: "Evening"
+      },
+      {
+        id: 2,
+        title: "Morning Market Serenity",
+        image: "🌅",
+        narrative: "The morning market is at its quietest right now—just the vendors setting up. Perfect for a slow walk and fresh pastries without the crowds.",
+        location: "Barcelona, Spain",
+        timeContext: "Morning"
+      },
+      {
+        id: 3,
+        title: "Secret Garden Courtyard",
+        image: "🌿",
+        narrative: "Behind this unassuming door lies a courtyard that only locals know. The wisteria is in bloom, and there's a bench that catches the afternoon light perfectly.",
+        location: "Kyoto, Japan",
+        timeContext: "Afternoon"
+      }
+    ];
+
+    const currentStory = storyCards[currentStoryIndex];
+
+    // Adaptive Voice Wave Component
+    const VoiceWave = () => {
+      return (
+        <div className="flex items-center justify-center gap-1.5 py-3">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <motion.div
+              key={i}
+              className="w-1 rounded-full"
+              style={{ 
+                height: '20px',
+                backgroundColor: 'rgba(134, 239, 172, 0.6)', // sage-300 equivalent
+              }}
+              animate={{
+                height: ['8px', '24px', '8px'],
+                opacity: [0.4, 0.8, 0.4],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.1,
+                ease: "easeInOut"
+              }}
             />
-         </div>
-      </div>
-  
-      {/* Content: The Narrative Output */}
-      <div className="p-6 pt-2">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="px-2 py-0.5 bg-amber-100 text-[9px] font-bold text-amber-700 rounded uppercase tracking-wider">
-            Semantic_Synthesis
-          </div>
-          <div className="h-1 w-1 rounded-full bg-slate-300" />
-          <div className="text-[9px] font-mono text-slate-400">LLM_CONCIERGE_v1</div>
+          ))}
         </div>
-        
-        <h4 className="text-[19px] font-bold text-slate-900 italic mb-4 font-serif leading-[1.3]">
-          "The morning light hits this terrace perfectly right now—ideal for your espresso and a 20-minute deep-work session."
-        </h4>
-        
-        {/* Logic Metadata: How it arrived here */}
-        <div className="space-y-3 pt-4 border-t border-slate-50">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] text-slate-400 font-medium">Input Signal:</span>
-            <span className="text-[10px] font-mono text-slate-600">Solar_Angle + User_Bio</span>
+      );
+    };
+
+    // Widget/Smartwatch View Component
+    const WidgetView = ({ mode }: { mode: 'widget' | 'watch' }) => {
+      const isWatch = mode === 'watch';
+      const toneColor = toneMode === 'Serene' ? 'rgba(134, 239, 172, 1)' : toneMode === 'Energetic' ? 'rgba(251, 191, 36, 1)' : 'rgba(148, 163, 184, 1)';
+      
+      if (isWatch) {
+        // Watch Card: Circular/Square with centered content
+        return (
+          <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="w-[220px] aspect-square rounded-[60px] shadow-lg overflow-hidden relative z-10 backdrop-blur-xl"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(187, 247, 208, 0.5)',
+              transformOrigin: 'top center',
+            }}
+          >
+            {/* Text Container with Safe Area Padding */}
+            <div className="w-full h-full flex flex-col items-center justify-center text-center px-6 py-10">
+              {/* Micro-Header */}
+              <div className="mb-2 flex-shrink-0">
+                <span className="text-[8px] font-sans font-bold text-slate-500 uppercase tracking-[0.15em]">
+                  MOMENT
+                </span>
+              </div>
+
+              {/* Tone Mode Indicator */}
+              <div className="flex items-center gap-2 mb-3 flex-shrink-0">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: toneColor }} />
+                <span className="text-[8px] font-sans font-medium text-slate-600 uppercase tracking-wider">
+                  {toneMode}
+                </span>
+              </div>
+
+              {/* Narrative Story Text - Cradled in Safe Area */}
+              <div className="flex-1 flex items-center justify-center max-w-full flex-shrink-0">
+                <p 
+                  className="text-sm font-medium font-serif text-slate-800 leading-tight max-w-full"
+                  style={{ 
+                    fontFamily: 'Playfair Display, Georgia, serif',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 4,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {currentStory.narrative}
+                </p>
+              </div>
+
+              {/* Location Footer */}
+              <div className="text-[9px] font-sans text-slate-500 mt-auto pt-2 flex-shrink-0">
+                {currentStory.location}
+              </div>
+            </div>
+          </motion.div>
+        );
+      }
+
+      // Widget Card: Rectangular with editorial padding
+      return (
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="w-[350px] aspect-[1.5/1] rounded-2xl shadow-lg overflow-hidden relative z-10 backdrop-blur-xl"
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(187, 247, 208, 0.5)',
+            transformOrigin: 'top center',
+          }}
+        >
+          {/* Internal Layout with justify-between */}
+          <div className="w-full h-full flex flex-col justify-between">
+            {/* Text Content Container with Editorial Padding */}
+            <div className="p-8 flex flex-col flex-shrink-0 max-w-full">
+              {/* Micro-Header */}
+              <div className="mb-2">
+                <span className="text-[9px] font-sans font-bold text-slate-500 uppercase tracking-[0.15em]">
+                  SUGGESTION
+                </span>
+              </div>
+
+              {/* Tone Mode Indicator */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: toneColor }} />
+                <span className="text-[9px] font-sans font-medium text-slate-600 uppercase tracking-wider">
+                  {toneMode}
+                </span>
+              </div>
+
+              {/* Narrative Story Text - Cradled with Editorial Padding */}
+              <div className="flex-shrink-0 max-w-full">
+                <p 
+                  className="text-lg font-serif text-slate-800 leading-snug max-w-full"
+                  style={{ 
+                    fontFamily: 'Playfair Display, Georgia, serif',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 5,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {currentStory.narrative}
+                </p>
+              </div>
+            </div>
+
+            {/* Location Footer */}
+            <div className="px-8 pb-8 text-[10px] font-sans text-slate-500 flex-shrink-0">
+              {currentStory.location}
+            </div>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] text-slate-400 font-medium">Confidence:</span>
-            <span className="text-[10px] font-mono text-emerald-600">High (0.94)</span>
+        </motion.div>
+      );
+    };
+
+    // Mobile View Component
+    const MobileView = () => {
+      return (
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="relative mx-auto max-h-full"
+          style={{ 
+            width: '390px', 
+            maxWidth: '100%',
+            transformOrigin: 'top center',
+          }}
+        >
+          {/* Mobile Device Frame */}
+          <div 
+            className="relative bg-slate-200 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-300"
+            style={{ 
+              maxHeight: '100%',
+              objectFit: 'contain',
+            }}
+          >
+            {/* Notch */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-200 rounded-b-2xl z-30" />
+            
+            {/* Screen Container */}
+            <div 
+              className="relative rounded-[2.5rem] overflow-hidden"
+              style={{ 
+                width: '100%', 
+                height: '844px',
+                maxHeight: '100%',
+                background: 'linear-gradient(to bottom, #fefdf8, rgba(240, 253, 244, 0.3), #fefdf8)',
+              }}
+            >
+            {/* Main Content Area */}
+            <div className="h-full flex flex-col px-6 pt-16 pb-8">
+              {/* Concierge Card - Main Focus */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="flex-1 flex flex-col justify-center mb-8"
+              >
+                <div 
+                  className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden"
+                  style={{
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+                    border: '1px solid rgba(187, 247, 208, 0.5)',
+                  }}
+                >
+                  {/* Tone Mode Indicator */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div 
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{
+                        backgroundColor: toneMode === 'Serene' ? 'rgba(134, 239, 172, 1)' : 
+                                        toneMode === 'Energetic' ? 'rgba(251, 191, 36, 1)' : 
+                                        'rgba(148, 163, 184, 1)',
+                      }}
+                    />
+                    <span className="text-xs font-sans font-semibold text-slate-600 uppercase tracking-wider">
+                      {toneMode} Mode
+                    </span>
+                  </div>
+
+                  {/* Narrative Story */}
+                  <p 
+                    className="text-xl font-serif text-slate-900 leading-relaxed mb-6"
+                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                  >
+                    {currentStory.narrative}
+                  </p>
+
+                  {/* Location & Time Context */}
+                  <div 
+                    className="flex items-center justify-between pt-4"
+                    style={{ borderTop: '1px solid rgba(240, 253, 244, 1)' }}
+                  >
+                    <span className="text-sm font-sans font-medium text-slate-600">
+                      {currentStory.location}
+                    </span>
+                    <span className="text-xs font-sans text-slate-400">
+                      {currentStory.timeContext}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Swipeable Story Deck */}
+              <div className="relative">
+                <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
+                  {storyCards.map((card, index) => (
+                    <motion.div
+                      key={card.id}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: index === currentStoryIndex ? 1 : 0.95, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => setCurrentStoryIndex(index)}
+                      className={`flex-shrink-0 w-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all ${
+                        index === currentStoryIndex ? 'ring-2' : 'ring-1 ring-slate-200'
+                      }`}
+                      style={{
+                        scrollSnapAlign: 'start' as any,
+                        ...(index === currentStoryIndex ? { 
+                          boxShadow: '0 0 0 2px rgba(134, 239, 172, 1), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                        } : {})
+                      }}
+                    >
+                      {/* Story Card Image */}
+                      <div 
+                        className="h-40 flex items-center justify-center relative"
+                        style={{
+                          background: 'linear-gradient(to bottom right, rgba(240, 253, 244, 1), rgba(254, 253, 248, 1))',
+                        }}
+                      >
+                        <div className="text-6xl">{card.image}</div>
+                        {/* Gradient Overlay for Text Readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h4 className="text-lg font-serif font-bold text-white mb-1" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                            {card.title}
+                          </h4>
+                          <p className="text-xs font-sans text-white/90">{card.location}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Adaptive Voice Interface */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mt-6 bg-white/50 backdrop-blur-md rounded-2xl p-4"
+                style={{
+                  border: '1px solid rgba(187, 247, 208, 0.5)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-sans font-medium text-slate-600">Voice Assistant</span>
+                  <Mic className="w-4 h-4" style={{ color: 'rgba(134, 239, 172, 1)' }} />
+                </div>
+                <VoiceWave />
+              </motion.div>
+            </div>
           </div>
         </div>
+      </motion.div>
+    );
+    };
+
+    if (!isMounted) {
+      return (
+        <div className="w-full h-[800px] flex items-center justify-center">
+          <div className="relative mx-auto" style={{ width: '390px', maxWidth: '100%', height: '844px' }}>
+            <div className="relative bg-slate-200 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-300">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-200 rounded-b-2xl z-30" />
+              <div className="relative rounded-[2.5rem] overflow-hidden" style={{ width: '100%', height: '844px', backgroundColor: '#fefdf8' }} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Tab buttons configuration
+    const tabs = [
+      { id: 'mobile' as const, label: 'Mobile', icon: Smartphone },
+      { id: 'widget' as const, label: 'Widget', icon: LayoutGrid },
+      { id: 'watch' as const, label: 'Watch', icon: Watch },
+    ];
+
+    return (
+      <div className="w-full relative">
+        {/* Tab Switcher - Aligned with Left Text Top */}
+        <div className="mb-6 flex justify-center" style={{ paddingTop: '0' }}>
+          <div className="relative inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-1.5 border border-slate-200 shadow-sm">
+            {/* Sliding Pill Background */}
+            <motion.div
+              className="absolute bg-sage-200 rounded-lg"
+              style={{
+                backgroundColor: 'rgba(187, 247, 208, 0.5)',
+                height: 'calc(100% - 12px)',
+                top: '6px',
+              }}
+              initial={false}
+              animate={{
+                left: `${tabs.findIndex(t => t.id === viewMode) * (100 / tabs.length)}%`,
+                width: `${100 / tabs.length}%`,
+              }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            />
+            
+            {/* Tab Buttons */}
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = viewMode === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setViewMode(tab.id)}
+                  className={`relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive 
+                      ? 'text-sage-900' 
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Icon className="w-4 h-4 inline mr-2" />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Dynamic Height Container - "The Stage" */}
+        <motion.div 
+          layout
+          className="w-full relative"
+          style={{ 
+            minHeight: '850px',
+            height: viewMode === 'mobile' ? 'auto' : '850px',
+            minWidth: '390px',
+          }}
+        >
+          {/* Background Blob - Changes color based on view mode */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+              style={{
+                background: viewMode === 'mobile' 
+                  ? 'radial-gradient(circle, rgba(134, 239, 172, 0.3), rgba(240, 253, 244, 0.1))'
+                  : viewMode === 'widget'
+                  ? 'radial-gradient(circle, rgba(251, 191, 36, 0.3), rgba(254, 243, 199, 0.1))'
+                  : 'radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(237, 233, 254, 0.1))',
+              }}
+            />
+          </motion.div>
+
+          {/* Content Container - Flex Column with Top Alignment */}
+          <div className="w-full min-h-[850px] flex flex-col items-center justify-start pt-8 relative z-10">
+            <AnimatePresence mode="wait">
+              {viewMode === 'mobile' && (
+                <motion.div
+                  key="mobile"
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full flex items-start justify-center pb-8"
+                  style={{ transformOrigin: 'top center' }}
+                >
+                  <div className="w-full max-w-full flex items-center justify-center" style={{ maxHeight: '100%' }}>
+                    <div style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}>
+                      <MobileView />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              {viewMode === 'widget' && (
+                <motion.div
+                  key="widget"
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1.5 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex items-center justify-center"
+                  style={{ transformOrigin: 'top center' }}
+                >
+                  <WidgetView mode="widget" />
+                </motion.div>
+              )}
+              {viewMode === 'watch' && (
+                <motion.div
+                  key="watch"
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1.8 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex items-center justify-center"
+                  style={{ transformOrigin: 'top center' }}
+                >
+                  <WidgetView mode="watch" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
-  );
+    );
+  };
 
 // --- MAIN VIEW COMPONENT ---
 
@@ -338,8 +2170,352 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
   if (!data) return null;
 
-  // Render Logic Receipt view if AI System and in intelligence mode
-  if (isAISystem && viewMode === 'intelligence' && (data as any)?.systemSpecs) {
+  // Render Intelligence Layer view if AI System and in intelligence mode
+  if (isAISystem && viewMode === 'intelligence') {
+    // Route to appropriate intelligence view based on projectId
+    const renderIntelligenceView = () => {
+      // Context-Aware Travel Decision System - uses LogicReceipt
+      if (projectId === 'context-aware-travel-decision-system' && (data as any)?.systemSpecs) {
+        return <LogicReceipt projectData={data as any} />;
+      }
+      
+      // Social Opportunity Matching Module - show ZK-proof status, relational graph nodes, proximity heuristics
+      if (projectId === 'social-opportunity-matching-module') {
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-purple-50/20">
+            <div className="relative pt-24 pb-16 px-6">
+              <div className="max-w-6xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-12"
+                >
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-white/40 mb-4">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+                    <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                      System Surface Active
+                    </span>
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">{data.title}</h1>
+                  <p className="text-lg text-slate-600 max-w-2xl mx-auto">{data.subtitle}</p>
+                </motion.div>
+
+                {/* Human Problem */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="mb-12"
+                >
+                  <div className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8 md:p-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-violet-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">The Human Problem</h3>
+                        <p className="text-lg text-slate-800 leading-relaxed italic">"{data.problem}"</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* ZK-Proof Status & Relational Graph */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+                >
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-purple-600" /> ZK-Proof Status
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Status</div>
+                        <div className="text-2xl font-bold text-emerald-600">{(data as any)?.systemSpecs?.zkProofStatus || 'Active'}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Anonymity Shield</div>
+                        <div className="text-lg font-semibold text-purple-600">{(data as any)?.systemSpecs?.proximityHeuristics?.anonymityShield || 'Active'}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-purple-600" /> Relational Graph Nodes
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Shared Nodes</div>
+                        <div className="text-2xl font-bold text-purple-600">{(data as any)?.systemSpecs?.relationalGraphNodes || 7}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Trust Degree</div>
+                        <div className="text-lg font-semibold text-violet-600">{(data as any)?.systemSpecs?.proximityHeuristics?.trustDegree || '2nd'}</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Proximity Heuristics */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">Proximity Heuristics</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Distance</div>
+                      <div className="text-2xl font-bold text-violet-600">{(data as any)?.systemSpecs?.proximityHeuristics?.distance || '240m'}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Confidence</div>
+                      <div className="text-2xl font-bold text-emerald-600">{Math.round(((data as any)?.systemSpecs?.confidence || 0.88) * 100)}%</div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Governor Status</div>
+                      <div className="text-lg font-semibold text-purple-600">{(data as any)?.systemSpecs?.governorStatus || 'Optimal'}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // Social Graph-Driven Travel Network - show ZK protocol, trust signals, encrypted proximity
+      if (projectId === 'social-graph-driven-travel-network') {
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20">
+            <div className="relative pt-24 pb-16 px-6">
+              <div className="max-w-6xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-12"
+                >
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-white/40 mb-4">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" />
+                    <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">System Surface Active</span>
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">{data.title}</h1>
+                  <p className="text-lg text-slate-600 max-w-2xl mx-auto">{data.subtitle}</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="mb-12"
+                >
+                  <div className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8 md:p-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-400 to-violet-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">The Human Problem</h3>
+                        <p className="text-lg text-slate-800 leading-relaxed italic">"{data.problem}"</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+                >
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-indigo-600" /> ZK Protocol
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Protocol Version</div>
+                        <div className="text-2xl font-bold text-indigo-600">{(data as any)?.systemSpecs?.zkProtocol || 'v4'}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Encrypted Proximity</div>
+                        <div className="text-lg font-semibold text-emerald-600">{(data as any)?.systemSpecs?.encryptedProximity ? 'Active' : 'Inactive'}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-indigo-600" /> Trust Signals
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Active Travelers</div>
+                        <div className="text-2xl font-bold text-indigo-600">{(data as any)?.metrics?.trustSignals || '13,056 active'}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Verification Rate</div>
+                        <div className="text-lg font-semibold text-emerald-600">{(data as any)?.metrics?.verificationRate || '98.5%'}</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">Trust Degree Distribution</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">1st Degree</div>
+                      <div className="text-2xl font-bold text-indigo-600">{(data as any)?.systemSpecs?.trustDegree?.firstDegree || 45}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">2nd Degree</div>
+                      <div className="text-2xl font-bold text-violet-600">{(data as any)?.systemSpecs?.trustDegree?.secondDegree || 312}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Verified</div>
+                      <div className="text-lg font-semibold text-emerald-600">{(data as any)?.systemSpecs?.trustDegree?.verified ? 'Yes' : 'No'}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // Narrative-Driven Travel Experience Generator - show LLM model, narrative weight, semantic synthesis
+      if (projectId === 'narrative-driven-travel-experience-generator') {
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-orange-50/20">
+            <div className="relative pt-24 pb-16 px-6">
+              <div className="max-w-6xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-12"
+                >
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-white/40 mb-4">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
+                    <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">System Surface Active</span>
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">{data.title}</h1>
+                  <p className="text-lg text-slate-600 max-w-2xl mx-auto">{data.subtitle}</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="mb-12"
+                >
+                  <div className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8 md:p-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">The Human Problem</h3>
+                        <p className="text-lg text-slate-800 leading-relaxed italic">"{data.problem}"</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+                >
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Brain className="w-5 h-5 text-amber-600" /> LLM Model
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Model</div>
+                        <div className="text-2xl font-bold text-amber-600">{(data as any)?.systemSpecs?.llmModel || 'GPT-4 Fine-tuned'}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Narrative Accuracy</div>
+                        <div className="text-lg font-semibold text-emerald-600">{(data as any)?.metrics?.narrativeAccuracy || '94%'}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8">
+                    <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                      <Layers className="w-5 h-5 text-amber-600" /> Narrative Weight
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Score</div>
+                        <div className="text-2xl font-bold text-amber-600">{Math.round(((data as any)?.systemSpecs?.narrativeWeight || 0.92) * 100)}%</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Semantic Latency</div>
+                        <div className="text-lg font-semibold text-blue-600">{(data as any)?.metrics?.semanticLatency || '<300ms'}</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/40 shadow-xl p-8"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">Semantic Synthesis</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Voice Tones</div>
+                      <div className="flex gap-2">
+                        {((data as any)?.systemSpecs?.semanticSynthesis?.voiceTones || ['concierge', 'friend', 'minimalist']).map((tone: string, i: number) => (
+                          <span key={i} className="px-3 py-1 bg-amber-100 text-amber-700 rounded-lg text-sm font-semibold capitalize">{tone}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Spontaneity Score</div>
+                        <div className="text-xl font-bold text-amber-600">{Math.round(((data as any)?.systemSpecs?.semanticSynthesis?.spontaneityScore || 0.55) * 100)}%</div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Story Quality</div>
+                        <div className="text-xl font-bold text-emerald-600">{(data as any)?.metrics?.storyQuality || 'High'}</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // Fallback: try LogicReceipt if systemSpecs exists
+      if ((data as any)?.systemSpecs) {
+        return <LogicReceipt projectData={data as any} />;
+      }
+
+      return null;
+    };
+
     return (
       <div className="bg-white min-h-screen">
         <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
@@ -356,7 +2532,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
             <Eye size={12} /> Standard View
           </button>
         </nav>
-        <LogicReceipt projectData={data as any} />
+        {renderIntelligenceView()}
       </div>
     );
   }
@@ -377,40 +2553,59 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
               onClick={() => setViewMode('intelligence')}
               className="group flex items-center gap-1 md:gap-2.5 px-2.5 py-1.5 md:px-5 md:py-2.5 bg-gradient-to-r from-blue-500 to-emerald-500 border-2 border-blue-400/30 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-tight md:tracking-wider text-white hover:from-blue-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 whitespace-nowrap"
             >
-              <Brain size={11} className="md:w-[14px] md:h-[14px] drop-shadow-sm shrink-0" /> Intelligence Layer
+              <Brain size={11} className="md:w-[14px] md:h-[14px] drop-shadow-sm shrink-0" /> View Intelligence Layer
             </button>
           )}
-          <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
-            Surface_ID // <span className="text-slate-900 font-bold">{projectId}</span>
-          </div>
+         
         </div>
       </nav>
 
      {/* 2. Hero */}
-     <header className="max-w-7xl mx-auto px-6 py-28 grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-[1px] w-8 bg-slate-200" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">The Glass (Tier 3)</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-950 mb-6 leading-[1.05]">
-            {data.title}
-          </h1>
-          <p className="text-xl text-slate-500 leading-relaxed max-w-lg mb-8">
-            {data.subtitle}
-          </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full text-[10px] font-bold uppercase tracking-widest">
-            <Smartphone size={12} /> Human-Centric Output
-          </div>
-        </motion.div>
+     <header className="max-w-7xl mx-auto px-6 py-28 grid lg:grid-cols-2 gap-16 items-start">
+        {/* Left Column - Sticky Text Content */}
+        <div 
+          className="sticky top-24 self-start"
+          style={{ 
+            minHeight: '850px',
+          }}
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-[1px] w-8 bg-slate-200" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">The Glass (Tier 3)</span>
+                <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
+                Surface_ID // <span className="text-slate-900 font-bold">{projectId}</span>
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-950 mb-6 leading-[1.05]">
+              {data.title}
+            </h1>
+            <p className="text-xl text-slate-500 leading-relaxed max-w-lg mb-6">
+              {data.subtitle}
+            </p>
+            <p className="text-base text-slate-600 leading-relaxed max-w-lg mb-8 font-medium">
+              This page explores the high-fidelity UX/UI design phase of the system, polished interface work that translates complex system intelligence into intuitive, human-centered experiences.
+            </p>
+            <div className="inline-flex items-center w-auto max-w-full gap-2 px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap border border-indigo-100/50">
+              <Smartphone size={12} /> Human-Centric Output
+            </div>
+          </motion.div>
+        </div>
 
-        {/* Dynamic Mockup Container */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
-          className="aspect-[4/5] md:aspect-square bg-slate-100 rounded-[48px] border border-slate-200 shadow-2xl flex flex-col items-center justify-center relative overflow-visible group"
+        {/* Dynamic Mockup Container - Right Side */}
+        <div 
+          className={`aspect-[4/5] md:aspect-square rounded-[48px] flex flex-col items-center justify-center relative overflow-visible group self-start ${
+            projectId === 'social-graph-driven-travel-network' || projectId === 'narrative-driven-travel-experience-generator' ? '' : 'bg-slate-100 shadow-2xl border border-slate-200'
+          }`}
         >
           {/* Background pattern */}
-          <div className="absolute inset-0 opacity-[0.05] rounded-[48px] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          {projectId !== 'narrative-driven-travel-experience-generator' && (
+            <div className="absolute inset-0 opacity-[0.05] rounded-[48px] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          )}
           
           {/* Heatmap Overlay for Context-Aware Detours */}
           {projectId === 'context-aware-travel-decision-system' && (data as any)?.systemSpecs?.environment && (
@@ -420,8 +2615,8 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           <div className="z-10 relative">
               {/* Project Switcher */}
               {projectId === 'context-aware-travel-decision-system' && <DetourVisual />}
-              {projectId === 'social-opportunity-matching-module' && <SocialRadarVisual />}
-              {projectId === 'social-graph-driven-travel-network' && <PrivacyVaultVisual />}
+              {projectId === 'social-opportunity-matching-module' && <ProximityRevealLens />}
+              {projectId === 'social-graph-driven-travel-network' && <EncryptedMatchPulseMobileMockup />}
               {projectId === 'narrative-driven-travel-experience-generator' && <StoryCardVisual />}
               
               {/* ✅ FIXED FALLBACK: Only shows if the ID is NOT one of our custom visuals */}
@@ -439,7 +2634,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
                 </div>
               )}
           </div>
-        </motion.div>
+        </div>
       </header>
 
       {/* High-Fidelity Surface: Social Logic Receipt - Only for social-opportunity-matching-module */}
@@ -469,12 +2664,14 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8"
           >
+          <div className="flex justify-center w-full">
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-violet-50 border border-violet-200 rounded-full">
               <div className="w-2 h-2 rounded-full bg-violet-500" />
               <span className="text-[10px] font-mono font-bold text-violet-700 uppercase tracking-widest">
                 SYSTEM SURFACE: RELATIONAL HEURISTICS
               </span>
             </div>
+          </div>
           </motion.div>
 
           {/* Social Logic Receipt Component */}
@@ -558,6 +2755,14 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           </motion.div>
 
           {/* Social Handshake Surface - Sheet/Drawer Pattern */}
+          <div className="flex justify-center w-full">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-violet-50 border border-violet-200 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-violet-500" />
+              <span className="text-[10px] font-mono font-bold text-violet-700 uppercase tracking-widest">
+                Intersections in Real-Time
+              </span>
+            </div>
+          </div>
           {(data as any)?.handshakeData && (
             <div className="relative">
               <SocialHandshakeSurface
@@ -603,7 +2808,18 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       {/* Screenshot Images - Only for social-graph-driven-travel-network */}
       {projectId === 'social-graph-driven-travel-network' && (
         <>
-          <section className="max-w-7xl mx-auto px-6 py-12">
+          <section className="max-w-7xl mx-auto px-6 py-12 bg-white">
+            {/* Design Concept Note */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8"
+            >
+              <p className="text-sm text-slate-500 italic">
+                Early design concepts created in Figma
+              </p>
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -683,6 +2899,33 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
         </>
       )}
 
+      {/* Privacy Dashboard & Encrypted Match Pulse - Only for social-graph-driven-travel-network */}
+      {projectId === 'social-graph-driven-travel-network' && (
+        <>
+          {/* Privacy Dashboard Section */}
+          <section className="max-w-7xl mx-auto px-6 py-16 bg-gradient-to-b from-white to-slate-50">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-12 text-center"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Trust-Based Discovery
+              </h2>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                Control what data is masked versus shared. Privacy-first design ensures you maintain control while enabling meaningful connections.
+              </p>
+            </motion.div>
+            <PrivacyDashboard />
+          </section>
+
+          
+
+        </>
+      )}
+
       {/* 3. The Logic Receipt */}
 <section className="px-4 md:px-6 py-12"> 
   <div className="max-w-7xl mx-auto bg-slate-950 rounded-[48px] md:rounded-[64px] py-16 px-6 md:py-24 md:px-12 text-white relative overflow-hidden">
@@ -744,16 +2987,21 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       </section>
 
       {/* 5. Scalable Feature Grid */}
-      <section className="bg-slate-50 py-24 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-            {data.features.map((feature, i) => (
-              <div key={i} className="p-10 bg-white rounded-[32px] border border-slate-100 shadow-sm">
-                <h5 className="text-xl font-bold mb-3">{feature.title}</h5>
-                <p className="text-slate-500 leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
-         </div>
-      </section>
+      {(() => {
+        const features = (data as any).features;
+        return features && features.length > 0 ? (
+          <section className="bg-slate-50 py-24 px-6">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+              {features.map((feature: any, i: number) => (
+                <div key={i} className="p-10 bg-white rounded-[32px] border border-slate-100 shadow-sm">
+                  <h5 className="text-xl font-bold mb-3">{feature.title}</h5>
+                  <p className="text-slate-500 leading-relaxed">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })()}
 
       {/* Narrative Reflection Surface - Only for narrative-driven-travel-experience-generator */}
       {projectId === 'narrative-driven-travel-experience-generator' && (data as any)?.narrativeData && (

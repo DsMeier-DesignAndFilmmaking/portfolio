@@ -26,6 +26,12 @@ export default function AISandboxPage() {
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   
+  // Scroll tracking for horizontal card containers
+  const [intelligenceModulesCurrentCard, setIntelligenceModulesCurrentCard] = useState(1);
+  const [productSurfacesCurrentCard, setProductSurfacesCurrentCard] = useState(1);
+  const intelligenceModulesContainerRef = useRef<HTMLDivElement>(null);
+  const productSurfacesContainerRef = useRef<HTMLDivElement>(null);
+  
   // Use refs to avoid recreating the event listener
   const lastScrollYRef = useRef(0);
   const isMobileMenuOpenRef = useRef(false);
@@ -38,6 +44,72 @@ export default function AISandboxPage() {
   useEffect(() => {
     isMobileMenuOpenRef.current = isMobileMenuOpen;
   }, [isMobileMenuOpen]);
+
+  // Scroll tracking for Intelligence Modules container
+  useEffect(() => {
+    const container = intelligenceModulesContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      // Card width is 70vw, gap is 24px (gap-6)
+      // On mobile, container is w-screen (100vw)
+      const viewportWidth = window.innerWidth;
+      const cardWidth = viewportWidth * 0.7; // 70vw
+      const gap = 24; // gap-6 = 24px
+      const paddingLeft = 24; // pl-6 = 24px
+      
+      // Calculate which card is most visible
+      // Account for padding left offset
+      const adjustedScrollLeft = scrollLeft + paddingLeft;
+      const cardIndex = Math.round(adjustedScrollLeft / (cardWidth + gap));
+      const currentCard = Math.min(Math.max(cardIndex + 1, 1), 4);
+      setIntelligenceModulesCurrentCard(currentCard);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    // Also listen for resize to recalculate on orientation change
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // Scroll tracking for Product Surfaces container
+  useEffect(() => {
+    const container = productSurfacesContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      // Card width is 70vw, gap is 24px (gap-6)
+      // On mobile, container is w-screen (100vw)
+      const viewportWidth = window.innerWidth;
+      const cardWidth = viewportWidth * 0.7; // 70vw
+      const gap = 24; // gap-6 = 24px
+      const paddingLeft = 24; // pl-6 = 24px
+      
+      // Calculate which card is most visible
+      // Account for padding left offset
+      const adjustedScrollLeft = scrollLeft + paddingLeft;
+      const cardIndex = Math.round(adjustedScrollLeft / (cardWidth + gap));
+      const currentCard = Math.min(Math.max(cardIndex + 1, 1), 4);
+      setProductSurfacesCurrentCard(currentCard);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    // Also listen for resize to recalculate on orientation change
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -504,7 +576,10 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch">
+          <div 
+            ref={intelligenceModulesContainerRef}
+            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch"
+          >
   {[
     {
       icon: MapPin,
@@ -541,7 +616,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[70vw] md:w-full"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -553,10 +628,10 @@ export default function AISandboxPage() {
         WebkitFontSmoothing: 'antialiased',
       }}
     >
-      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6`}>
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6 flex-shrink-0`}>
         <system.icon className="w-6 h-6 text-white" />
       </div>
-      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex-shrink-0" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
         {system.title}
       </h3>
       <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
@@ -589,6 +664,14 @@ export default function AISandboxPage() {
     </motion.div>
   ))}
 </div>
+          {/* Scroll Indicator - Intelligence Modules */}
+          <div className="flex justify-center mt-4 md:hidden">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="font-medium">{intelligenceModulesCurrentCard}</span>
+              <span className="text-gray-400">/</span>
+              <span className="text-gray-500">4</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -611,7 +694,10 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch">
+          <div 
+            ref={productSurfacesContainerRef}
+            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch"
+          >
   {[
     {
       icon: MapPin,
@@ -629,7 +715,7 @@ export default function AISandboxPage() {
     },
     {
       icon: Network,
-      title: "Privacy-First Discovery",
+      title: "Unlock the world’s hidden social graph",
       description: "Using ZK-proofs to verify social connections without identity leaks. A foundation of trust that enables 'Safe Serendipity' in public spaces.",
       gradient: "from-indigo-500 to-violet-600",
       link: "/projects/travel-and-ai/projects/social-graph-driven-travel-network"
@@ -648,7 +734,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[70vw] md:w-full"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -660,10 +746,10 @@ export default function AISandboxPage() {
         WebkitFontSmoothing: 'antialiased',
       }}
     >
-      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6`}>
+      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${system.gradient} flex items-center justify-center md:shadow-lg mb-6 flex-shrink-0`}>
         <system.icon className="w-6 h-6 text-white" />
       </div>
-      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex-shrink-0" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
         {system.title}
       </h3>
       <p className="text-base text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.05rem' }}>
@@ -696,6 +782,14 @@ export default function AISandboxPage() {
     </motion.div>
   ))}
 </div>
+          {/* Scroll Indicator - Product Surfaces */}
+          <div className="flex justify-center mt-4 md:hidden">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="font-medium">{productSurfacesCurrentCard}</span>
+              <span className="text-gray-400">/</span>
+              <span className="text-gray-500">4</span>
+            </div>
+          </div>
         </div>
       </section>
 
