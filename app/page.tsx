@@ -141,7 +141,8 @@ export default function HomePage() {
               <div 
                 className="w-full relative rounded-lg shadow-lg overflow-hidden" 
                 style={{ 
-                  background: '#f0f0f0' /* Skeleton state background */
+                  background: '#f0f0f0' /* Skeleton state background */,
+                  aspectRatio: '576 / 432' /* Prevent layout shift when image loads */
                 }}
               >
                 <Image 
@@ -199,15 +200,16 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      background: '#f0f0f0' /* Skeleton state background */
+                      background: '#f0f0f0' /* Skeleton state background */,
+                      aspectRatio: '2129 / 1383' /* Match actual image dimensions (2129x1383) */
                     }}
                   >
                     <Image 
                       id="me_heroImage-1_1.1.1-about"
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
                       alt="Dan Meier"
-                      width={576}
-                      height={768}
+                      width={2129}
+                      height={1383}
                       className="w-full h-auto rounded-lg"
                       sizes="(max-width: 768px) 100vw, 576px"
                       loading="lazy"
@@ -221,7 +223,8 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      background: '#f0f0f0' /* Skeleton state background */
+                      background: '#f0f0f0' /* Skeleton state background */,
+                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
                     }}
                   >
                     <Image 
@@ -286,7 +289,8 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      background: '#f0f0f0' /* Skeleton state background */
+                      background: '#f0f0f0' /* Skeleton state background */,
+                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
                     }}
                   >
                     <Image 
@@ -308,7 +312,8 @@ export default function HomePage() {
                   <div 
                     className="w-full relative rounded-lg shadow-lg overflow-hidden"
                     style={{
-                      background: '#f0f0f0' /* Skeleton state background */
+                      background: '#f0f0f0' /* Skeleton state background */,
+                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
                     }}
                   >
                     <Image 

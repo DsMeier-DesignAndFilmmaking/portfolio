@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, ShieldCheck, Sparkles, Map, Camera, Hand, AlertCircle, Users, Fingerprint, Activity, Code, ArrowRight, Sun } from 'lucide-react';
+import { Shield, ShieldCheck, Sparkles, Map, Camera, Hand, AlertCircle, Users, Fingerprint, Activity, Code, ArrowRight, Sun, ScanLine, CheckCircle2 } from 'lucide-react';
 
 interface SystemOrchestratorProps {
   hideHeader?: boolean;
@@ -14,9 +14,9 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
 
   // Screen configurations
   const screens = [
-    { id: 0, label: '01: Discover', module: 'Sentiment', status: 'Local', icon: Sparkles, vector: 'Affinity: 0.94 | Friction: 0.10' },
-    { id: 1, label: '02: Trust', module: 'ZK-Proof', status: 'Verified', icon: ShieldCheck, vector: 'Trust: 0.92 | Proximity: 0.94' },
-    { id: 2, label: '03: Safety', module: 'Offline', status: 'Active', icon: AlertCircle, vector: 'Safety: 0.98 | Network: Offline' },
+    { id: 0, label: 'Discover', module: 'Sentiment', status: 'Local', icon: Sparkles, vector: 'Affinity: 0.94 | Friction: 0.10' },
+    { id: 1, label: 'Trust', module: 'ZK-Proof', status: 'Verified', icon: ShieldCheck, vector: 'Trust: 0.92 | Proximity: 0.94' },
+    { id: 2, label: 'Safety', module: 'Offline', status: 'Active', icon: AlertCircle, vector: 'Safety: 0.98 | Network: Offline' },
     { id: 3, label: 'Moment', module: 'Unified', status: 'Synthesis', icon: Sparkles, vector: 'Synthesis: 0.95 | All Modules: Active' },
   ];
 
@@ -25,10 +25,9 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
     0: {
       title: "Istanbul",
       data: [
-        { label: 'SENTIMENT_SCORE', value: '0.94' },
-        { label: 'CULTURAL_RESONANCE', value: 'HIGH' },
-        { label: 'TOURISM_DENSITY_INDEX', value: '< 0.05' },
-        { label: 'VECTOR', value: '[STREET_PHOTOGRAPHY, LOCAL_TRADITION]' },
+        { label: 'GEO_SIGNAL', value: '0% Tourist Density' },
+        { label: 'CULTURAL_PURITY', value: '100% (No English Menus/Signage detected)' },
+        { label: 'SOCIAL_GRAPH', value: 'Local Residents Only' },
       ],
     },
     1: {
@@ -64,19 +63,18 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
     <div className={`${hideHeader ? 'bg-transparent py-0' : 'min-h-screen bg-white py-12'} px-4`}>
       {/* Content Container - Floating Glass Effect */}
       <div 
-        className="w-[90vw] md:w-[390px] mx-auto relative rounded-3xl"
-        style={{ perspective: '1000px' }}
+        className="w-[calc(100vw-2rem)] max-w-[390px] md:w-[390px] mx-auto relative overflow-visible bg-transparent rounded-3xl"
       >
 
         {/* Stage Container - Dynamic Height */}
         <div className="relative flex flex-col items-center justify-center w-full py-0">
           
           {/* Experience/Logic Toggle - Top */}
-          <div className="flex justify-center z-50 mb-4">
-            <div className="flex bg-white/40 dark:bg-zinc-900/40 backdrop-blur-3xl rounded-full p-0.5 border border-white/20 dark:border-zinc-800/20 shadow-xl">
+          <div className="flex justify-center z-50 mb-4 w-full px-2">
+            <div className="flex bg-white/40 dark:bg-zinc-900/40 backdrop-blur-3xl rounded-full p-0.5 border border-white/20 dark:border-zinc-800/20 shadow-xl w-full max-w-[calc(100vw-2rem)] md:w-fit md:max-w-none">
               <button
                 onClick={() => setViewMode('experience')}
-                className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                className={`flex-1 md:flex-none px-4 md:px-3 py-2 md:py-1 rounded-full text-sm md:text-xs font-semibold transition-all ${
                   viewMode === 'experience'
                     ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-50 shadow-sm'
                     : 'text-zinc-600 dark:text-gray-100 hover:text-zinc-300'
@@ -87,7 +85,7 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
               </button>
               <button
                 onClick={() => setViewMode('logic')}
-                className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                className={`flex-1 md:flex-none px-4 md:px-3 py-2 md:py-1 rounded-full text-sm md:text-xs font-semibold transition-all ${
                   viewMode === 'logic'
                     ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-50 shadow-sm'
                     : 'text-zinc-600 dark:text-gray-100 hover:text-zinc-300'
@@ -100,7 +98,16 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
           </div>
 
           {/* Card Stage - Fixed Height Container with 3D Flip */}
-          <div className="relative w-full h-[600px] z-10 flex items-center justify-center">
+          <div 
+            className="relative w-full h-[650px] md:h-[600px] z-10 flex items-center justify-center" 
+            style={{ 
+              padding: '8px', 
+              perspective: '1200px',
+              WebkitPerspective: '1200px',
+              perspectiveOrigin: 'center center',
+              WebkitPerspectiveOrigin: 'center center',
+            }}
+          >
             <AnimatePresence mode="wait">
               {/* Screen 1: Istanbul "Street Soul" */}
               {currentScreen === 0 && (
@@ -120,7 +127,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                   <motion.div
                     animate={{ rotateY: viewMode === 'logic' ? 180 : 0 }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transformOrigin: 'center center',
+                      WebkitTransformOrigin: 'center center',
+                    }}
                     className="relative w-full h-full"
                   >
                     {/* Front Side - Experience View */}
@@ -128,14 +140,25 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        zIndex: 10
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'translateZ(1px)',
+                        WebkitTransform: 'translateZ(1px)',
+                        zIndex: viewMode === 'logic' ? 0 : 10,
+                        pointerEvents: viewMode === 'logic' ? 'none' : 'auto',
                       }}
                       className="absolute inset-0"
                     >
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full"
+                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Intelligence Module Status Icons - Top Right */}
                         <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -143,11 +166,17 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                           <Map className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                         </div>
 
-                        {/* Dan Context Pill */}
-                        <div className="flex items-center gap-2 mb-4 pr-12">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/20 dark:bg-blue-500/30 rounded-full border border-blue-500/40 dark:border-blue-500/50">
-                            <Camera className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                            <span className="text-xs font-semibold text-blue-700 dark:text-blue-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                        {/* Discovery Status & Context Pills */}
+                        <div className="flex items-center gap-2 mb-3.5 pr-12 flex-wrap">
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/20 dark:bg-emerald-500/30 rounded-full border border-emerald-500/40 dark:border-emerald-500/50 shadow-lg shadow-emerald-500/20">
+                            <Map className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                            <span className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                              Discovery Status: Off-the-Grid
+                            </span>
+                          </div>
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-500/20 dark:bg-blue-500/30 rounded-full border border-blue-500/40 dark:border-blue-500/50">
+                            <Camera className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                            <span className="text-[11px] font-semibold text-blue-700 dark:text-blue-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                               Current Mood: Exploratory
                             </span>
                           </div>
@@ -163,22 +192,40 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                           Dan, skip the waterfront. Three blocks in, at Kardesler Kahvesi, the local backgammon tournament just started. It's high-energy but welcoming to observers. Our Sentiment Engine confirms: 0% Tourist Density, 100% Cultural Resonance.
                         </p>
 
-                        {/* Local Sentiment Gauge Widget */}
-                        <div className="mb-6 p-4 bg-amber-50/50 dark:bg-amber-950/30 rounded-2xl border border-amber-200/50 dark:border-amber-800/50">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              Local Sentiment
-                            </span>
-                            <span className="text-2xl font-bold text-amber-700 dark:text-amber-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              0%
-                            </span>
+                        {/* Community Pulse & Tourist Footprint Widget */}
+                        <div className="mb-5 space-y-3">
+                          {/* Community Pulse */}
+                          <div className="p-3 bg-amber-50/50 dark:bg-amber-950/30 rounded-2xl border border-amber-200/50 dark:border-amber-800/50">
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-50" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
+                                Community Pulse
+                              </span>
+                              <span className="text-base font-bold text-amber-700 dark:text-amber-400" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
+                                High Energy
+                              </span>
+                            </div>
                           </div>
-                          <div className="w-full h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
-                            <div className="h-full bg-amber-500 dark:bg-amber-600 rounded-full" style={{ width: '0%' }} />
+                          
+                          {/* Tourist Footprint - Badge of Honor */}
+                          <div className="relative p-3 bg-gradient-to-br from-emerald-50/80 via-indigo-50/60 to-emerald-50/80 dark:from-emerald-950/40 dark:via-indigo-950/30 dark:to-emerald-950/40 rounded-2xl border-2 border-emerald-400/50 dark:border-emerald-500/40 shadow-lg shadow-emerald-500/20 dark:shadow-emerald-500/10">
+                            {/* Glow effect */}
+                            <div className="absolute inset-0 rounded-2xl bg-emerald-400/10 dark:bg-emerald-500/5 blur-xl animate-pulse" />
+                            <div className="relative flex items-center justify-between">
+                              <span className="text-xs font-semibold text-emerald-900 dark:text-emerald-300" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
+                                Tourist Footprint
+                              </span>
+                              <span 
+                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200/50 dark:border-emerald-500/20 text-base font-bold text-emerald-700 dark:text-emerald-400" 
+                              style={{ 
+                                fontFamily: '"New York", Georgia, "Times New Roman", serif',
+                                width: 'fit-content' // Ensures it only takes up the space of the text + icon
+                              }}
+                            >
+                              <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
+                              <span className="whitespace-nowrap">None</span>
+                            </span>
+                            </div>
                           </div>
-                          <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                            Tourism Index
-                          </p>
                         </div>
 
                         {/* CTA Button */}
@@ -201,41 +248,85 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'rotateY(180deg) translateZ(50px)',
+                        WebkitTransform: 'rotateY(180deg) translateZ(50px)',
+                        transformOrigin: 'center center',
+                        WebkitTransformOrigin: 'center center',
+                        zIndex: viewMode === 'logic' ? 50 : 0,
+                        pointerEvents: viewMode === 'logic' ? 'auto' : 'none',
                       }}
                       className="absolute inset-0"
                     >
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="bg-zinc-950 rounded-3xl p-6 shadow-2xl border border-green-500/20 relative h-full w-full overflow-hidden"
+                        className="bg-[#0a0a0a] rounded-3xl p-6 shadow-2xl border border-blue-500/30 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
+                        {/* Blue Radar Scanning Animation Background */}
+                        <div className="absolute inset-0 opacity-20">
+                          <motion.div
+                            className="absolute inset-0"
+                            style={{
+                              background: 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)',
+                            }}
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.2, 0.4, 0.2],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: 'easeInOut',
+                            }}
+                          />
+                          {/* Scanning line effect */}
+                          <motion.div
+                            className="absolute top-0 left-0 right-0 h-px bg-blue-400/40"
+                            animate={{
+                              y: [0, 600, 0],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            }}
+                          />
+                        </div>
+                        
                         {/* Circuitry Grid Background */}
-                        <div className="absolute inset-0 opacity-10" style={{
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300ff88' fill-opacity='0.4'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z'/%3E%3C/g%3E%3C/svg%3E")`,
+                        <div className="absolute inset-0 opacity-5" style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='0.4'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z'/%3E%3C/g%3E%3C/svg%3E")`,
                         }} />
 
                         {/* Header */}
-                        <div className="relative mb-6 border-b border-green-500/30 pb-4">
+                        <div className="relative mb-5 border-b border-blue-500/40 pb-3.5">
                           <div className="flex items-center gap-2 mb-2">
-                            <Code className="w-4 h-4 text-green-400" />
-                            <span className="text-[10px] font-mono font-bold text-green-400 uppercase tracking-wider">
+                            <ScanLine className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+                            <span className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider">
                               SYSTEM_AUDIT_LOG
                             </span>
                           </div>
-                          <h2 className="text-xl font-bold text-green-300 font-mono">
+                          <h2 className="text-lg font-bold text-blue-300 font-mono">
                             {logicData[0].title} // SYSTEM_AUDIT_LOG
                           </h2>
                         </div>
 
                         {/* Logic Data Points */}
-                        <div className="relative space-y-4">
+                        <div className="relative space-y-3">
                           {logicData[0].data.map((item, index) => (
-                            <div key={index} className="border-l-2 border-green-500/50 pl-4">
-                              <p className="text-[10px] font-mono text-green-500/70 uppercase tracking-wider mb-1">
+                            <div key={index} className="border-l-2 border-blue-500/50 pl-3.5 relative">
+                              <p className="text-[10px] font-mono text-blue-500/70 uppercase tracking-wider mb-1">
                                 {item.label}:
                               </p>
-                              <p className="text-sm font-mono text-green-300">
+                              <p className="text-xs font-mono text-blue-300 leading-relaxed">
                                 {item.value}
                               </p>
                             </div>
@@ -265,7 +356,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                   <motion.div
                     animate={{ rotateY: viewMode === 'logic' ? 180 : 0 }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transformOrigin: 'center center',
+                      WebkitTransformOrigin: 'center center',
+                    }}
                     className="relative w-full h-full"
                   >
                     {/* Front Side - Experience View */}
@@ -273,14 +369,25 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        zIndex: 10
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'translateZ(1px)',
+                        WebkitTransform: 'translateZ(1px)',
+                        zIndex: viewMode === 'logic' ? 0 : 10,
+                        pointerEvents: viewMode === 'logic' ? 'none' : 'auto',
                       }}
                       className="absolute inset-0"
                     >
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full"
+                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Intelligence Module Status Icons - Top Right */}
                         <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -353,7 +460,14 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'rotateY(180deg) translateZ(50px)',
+                        WebkitTransform: 'rotateY(180deg) translateZ(50px)',
+                        transformOrigin: 'center center',
+                        WebkitTransformOrigin: 'center center',
+                        zIndex: viewMode === 'logic' ? 50 : 0,
+                        pointerEvents: viewMode === 'logic' ? 'auto' : 'none',
                       }}
                       className="absolute inset-0"
                     >
@@ -361,6 +475,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
                         className="bg-zinc-950 rounded-3xl p-6 shadow-2xl border border-blue-500/20 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Circuitry Grid Background */}
                         <div className="absolute inset-0 opacity-10" style={{
@@ -417,7 +537,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                   <motion.div
                     animate={{ rotateY: viewMode === 'logic' ? 180 : 0 }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transformOrigin: 'center center',
+                      WebkitTransformOrigin: 'center center',
+                    }}
                     className="relative w-full h-full"
                   >
                     {/* Front Side - Experience View */}
@@ -425,14 +550,25 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        zIndex: 10
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'translateZ(1px)',
+                        WebkitTransform: 'translateZ(1px)',
+                        zIndex: viewMode === 'logic' ? 0 : 10,
+                        pointerEvents: viewMode === 'logic' ? 'none' : 'auto',
                       }}
                       className="absolute inset-0"
                     >
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full"
+                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Intelligence Module Status Icons - Top Right */}
                         <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -500,7 +636,14 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'rotateY(180deg) translateZ(50px)',
+                        WebkitTransform: 'rotateY(180deg) translateZ(50px)',
+                        transformOrigin: 'center center',
+                        WebkitTransformOrigin: 'center center',
+                        zIndex: viewMode === 'logic' ? 50 : 0,
+                        pointerEvents: viewMode === 'logic' ? 'auto' : 'none',
                       }}
                       className="absolute inset-0"
                     >
@@ -508,6 +651,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
                         className="bg-zinc-950 rounded-3xl p-6 shadow-2xl border border-cyan-500/20 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Circuitry Grid Background */}
                         <div className="absolute inset-0 opacity-10" style={{
@@ -564,7 +713,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                   <motion.div
                     animate={{ rotateY: viewMode === 'logic' ? 180 : 0 }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transformOrigin: 'center center',
+                      WebkitTransformOrigin: 'center center',
+                    }}
                     className="relative w-full h-full"
                   >
                     {/* Front Side - Experience View */}
@@ -577,44 +731,21 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       className="absolute inset-0"
                     >
                       <div className="relative h-full w-full">
-                        {/* Animated Gradient Border for Unified */}
-                        {currentScreen === 3 && (
-                          <motion.div
-                            className="absolute -inset-[3px] rounded-3xl -z-10"
-                            style={{
-                              background: 'linear-gradient(90deg, rgba(59, 130, 246, 0.6), rgba(168, 85, 247, 0.6), rgba(251, 191, 36, 0.6), rgba(59, 130, 246, 0.6))',
-                              backgroundSize: '200% 100%',
-                            }}
-                            animate={{
-                              backgroundPosition: ['0% 50%', '100% 50%'],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            }}
-                          />
-                        )}
                         <motion.div
                           layout
                           transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                          className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full"
-                          style={currentScreen === 3 ? { margin: '3px' } : {}}
+                          className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                          style={{
+                            WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                            maskImage: '-webkit-radial-gradient(white, black)',
+                          }}
                         >
 
-                        {/* Intelligence Module Status Icons - Top Right (All 5 modules) */}
-                        <div className="absolute top-4 right-4 flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                          <ShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                          <Map className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                          <Users className="w-4 h-4 text-violet-600 dark:text-violet-400" />
-                          <Activity className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                        </div>
+                        
 
                         {/* Dan Context Pill - Transition Moment */}
-                        <div className="flex items-center gap-2 mb-4 pr-16">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/20 dark:bg-purple-500/30 rounded-full border border-purple-500/40 dark:border-purple-500/50">
-                            <Camera className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                        <div className="flex items-center mb-4">
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/20 dark:bg-purple-500/30 rounded-full border border-purple-500/40 dark:border-purple-500/50 ml-auto">
                             <span className="text-xs font-semibold text-purple-700 dark:text-purple-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                               Transition Moment: Museum → Sunset
                             </span>
@@ -712,7 +843,14 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       style={{ 
                         backfaceVisibility: 'hidden', 
                         WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                        transform: 'rotateY(180deg) translateZ(50px)',
+                        WebkitTransform: 'rotateY(180deg) translateZ(50px)',
+                        transformOrigin: 'center center',
+                        WebkitTransformOrigin: 'center center',
+                        zIndex: viewMode === 'logic' ? 50 : 0,
+                        pointerEvents: viewMode === 'logic' ? 'auto' : 'none',
                       }}
                       className="absolute inset-0"
                     >
@@ -720,6 +858,12 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
                         className="bg-zinc-950 rounded-3xl p-6 shadow-2xl border border-purple-500/20 relative h-full w-full overflow-hidden"
+                        style={{
+                          transform: 'translateZ(0)',
+                          WebkitTransform: 'translateZ(0)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: '-webkit-radial-gradient(white, black)',
+                        }}
                       >
                         {/* Circuitry Grid Background */}
                         <div className="absolute inset-0 opacity-10" style={{
@@ -775,13 +919,13 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
           </div>
 
           {/* Navigation Dock - Bottom */}
-          <div className="flex justify-center z-50 mt-4">
-            <div className="flex backdrop-blur-3xl bg-white/60 dark:bg-black/60 rounded-2xl px-6 py-3 border border-white/20 dark:border-zinc-800/20 shadow-xl w-fit">
+          <div className="flex justify-center z-50 mt-4 w-full px-2">
+            <div className="flex backdrop-blur-3xl bg-white/60 dark:bg-black/60 rounded-2xl px-2 md:px-6 py-3 border border-white/20 dark:border-zinc-800/20 shadow-xl w-full max-w-[calc(100vw-2rem)] md:w-fit md:max-w-none">
               {screens.map((screen) => (
                 <button
                   key={screen.id}
                   onClick={() => setCurrentScreen(screen.id as 0 | 1 | 2 | 3)}
-                  className="relative flex flex-col items-center justify-center transition-all px-4"
+                  className="relative flex flex-col items-center justify-center transition-all px-2 md:px-4 flex-1 md:flex-none min-w-0"
                   style={{ fontFamily: 'system-ui, -apple-system, sans-serif', touchAction: 'manipulation' }}
                 >
                   {/* Glow Indicator for Active Tab */}
@@ -789,7 +933,7 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className={`absolute -bottom-1 w-12 h-1 rounded-full blur-sm ${
+                      className={`absolute -bottom-1 w-8 md:w-12 h-1 rounded-full blur-sm ${
                         screen.id === 3 
                           ? 'bg-gradient-to-r from-blue-500/80 via-purple-500/80 to-amber-500/80 dark:from-blue-400/80 dark:via-purple-400/80 dark:to-amber-400/80' 
                           : 'bg-blue-500/80 dark:bg-blue-400/80'
@@ -797,9 +941,9 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                     />
                   )}
                   {screen.id === 3 && (
-                    <Sparkles className="w-3 h-3 text-purple-500 dark:text-purple-400 mb-1" />
+                    <Sparkles className="w-3 h-3 text-purple-500 dark:text-purple-400 mb-1 flex-shrink-0" />
                   )}
-                  <span className={`text-xs font-semibold transition-all ${
+                  <span className={`text-xs md:text-sm font-semibold transition-all whitespace-nowrap truncate w-full text-center ${
                     currentScreen === screen.id
                       ? screen.id === 3 
                         ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-amber-600 dark:from-blue-400 dark:via-purple-400 dark:to-amber-400'

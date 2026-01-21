@@ -479,13 +479,21 @@ section *::-webkit-scrollbar,
     }
     
     /* Fix transforms - ensure they don't push content outside viewport */
-    [style*="transform"] {
+    /* EXCEPT: Don't flatten 3D card flip components that need preserve-3d */
+    [style*="transform"]:not([style*="preserve-3d"]):not([style*="rotateY"]) {
  /* Flatten the GPU layer to prevent sub-pixel "wiggle" */
  -webkit-backface-visibility: hidden;
  backface-visibility: hidden;
  transform-style: flat !important;
  /* Keep your existing origin logic */
  transform-origin: center;
+    }
+    
+    /* Ensure 3D card flip components maintain preserve-3d on mobile */
+    [style*="preserve-3d"],
+    [style*="rotateY"] {
+      transform-style: preserve-3d !important;
+      -webkit-transform-style: preserve-3d !important;
     }
     
     /* Fix wide images and media - ensure they respect container width */
