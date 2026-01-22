@@ -419,14 +419,17 @@ export default function AISandboxPage() {
             </p>
           </motion.div>
 
-          <div className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch">
+          <div 
+            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             {/* Spontaneity Engine - Centerpiece */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="group relative flex-shrink-0 w-[75vw] md:w-full"
+              className="group relative flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 WebkitTransform: 'translate3d(0, 0, 0)',
                 transform: 'translate3d(0, 0, 0)',
@@ -503,7 +506,7 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full"
+              className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 // 1. Force a new stacking context
                 isolation: 'isolate',
@@ -578,7 +581,8 @@ export default function AISandboxPage() {
 
           <div 
             ref={intelligenceModulesContainerRef}
-            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch"
+            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            style={{ WebkitOverflowScrolling: 'touch' }}
           >
   {[
     {
@@ -616,7 +620,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -701,7 +705,8 @@ export default function AISandboxPage() {
 
           <div 
             ref={productSurfacesContainerRef}
-            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch"
+            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            style={{ WebkitOverflowScrolling: 'touch' }}
           >
   {[
     {
@@ -739,7 +744,7 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full"
+      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',

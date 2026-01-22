@@ -1906,7 +1906,7 @@ const SocialRadarVisual = () => (
 
               {/* Swipeable Story Deck */}
               <div className="relative">
-                <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
+                <div className="flex items-center gap-3 overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide touch-pan-x overscroll-x-contain" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
                   {storyCards.map((card, index) => (
                     <motion.div
                       key={card.id}
@@ -1914,7 +1914,7 @@ const SocialRadarVisual = () => (
                       animate={{ scale: index === currentStoryIndex ? 1 : 0.95, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}
                       onClick={() => setCurrentStoryIndex(index)}
-                      className={`flex-shrink-0 w-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all ${
+                      className={`flex-shrink-0 w-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all touch-pan-x select-none ${
                         index === currentStoryIndex ? 'ring-2' : 'ring-1 ring-slate-200'
                       }`}
                       style={{
