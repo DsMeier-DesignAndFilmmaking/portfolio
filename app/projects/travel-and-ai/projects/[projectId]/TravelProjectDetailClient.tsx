@@ -2673,8 +2673,11 @@ const variables: Record<string, { title: string; desc: string }> = {
           <div 
             ref={wireframeScrollRef} // Isolated Ref
             onScroll={handleWireframeScroll}
-            className="flex gap-4 overflow-x-auto overflow-y-hidden pb-6 touch-pan-x snap-x snap-mandatory no-scrollbar md:justify-center px-4 overscroll-x-contain"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            className="flex gap-4 overflow-x-auto overflow-y-hidden pb-6 snap-x snap-mandatory no-scrollbar md:justify-center px-4 overscroll-x-contain"
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'auto'
+            }}
           >
             {[
               "/images/TravelApp-UXpilot_Homescreen-WireFrame-2.png",
@@ -2683,7 +2686,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               "/images/TravelApp-UXpilot_Homescreen-WireFrame-4.png",
               "/images/TravelApp-UXpilot_Homescreen-WireFrame-3.png"
             ].map((src, idx) => (
-              <div key={idx} className="flex-shrink-0 w-48 snap-center touch-pan-x select-none">
+              <div key={idx} className="flex-shrink-0 w-48 snap-center select-none" style={{ touchAction: 'auto' }}>
                 <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/5 bg-neutral-900">
                   <img src={src} alt="Wireframe iteration" className="object-cover w-full h-full" />
                 </div>
@@ -3129,8 +3132,11 @@ const variables: Record<string, { title: string; desc: string }> = {
       <div 
         ref={buildsScrollRef}
         onScroll={handleBuildsScroll}
-        className="flex gap-4 overflow-x-auto overflow-y-hidden pb-6 touch-pan-x snap-x snap-mandatory no-scrollbar md:justify-center px-4 overscroll-x-contain"
-        style={{ WebkitOverflowScrolling: 'touch' }}
+        className="flex gap-4 overflow-x-auto overflow-y-hidden pb-6 snap-x snap-mandatory no-scrollbar md:justify-center px-4 overscroll-x-contain"
+        style={{ 
+          WebkitOverflowScrolling: 'touch',
+          touchAction: 'auto'
+        }}
       >
         {[
           { src: "/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
@@ -3141,7 +3147,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           { src: "/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
         ].map((item, idx) => (
           /* flex-shrink-0 is the key to preventing image "squishing" */
-          <div key={idx} className="flex-shrink-0 w-64 md:w-48 snap-center touch-pan-x select-none">
+          <div key={idx} className="flex-shrink-0 w-64 md:w-48 snap-center select-none" style={{ touchAction: 'auto' }}>
             <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-neutral-900">
               <img 
                 src={item.src} 
