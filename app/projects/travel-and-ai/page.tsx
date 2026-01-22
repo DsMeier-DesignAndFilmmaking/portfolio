@@ -35,6 +35,63 @@ export default function AISandboxPage() {
   // Use refs to avoid recreating the event listener
   const lastScrollYRef = useRef(0);
   const isMobileMenuOpenRef = useRef(false);
+  
+  // Scroll intent detection for mobile touch events
+  // Tracks whether user is scrolling (horizontal movement > vertical) vs tapping
+  const scrollIntentRef = useRef<{
+    startX: number;
+    startY: number;
+    isScrolling: boolean;
+    linkElement: HTMLAnchorElement | null;
+  }>({ startX: 0, startY: 0, isScrolling: false, linkElement: null });
+  
+  // Hook to handle scroll intent detection for Links inside scrollable cards
+  const handleLinkTouchStart = (e: React.TouchEvent<HTMLAnchorElement>) => {
+    if (!isMobile) return; // Only on mobile
+    scrollIntentRef.current.startX = e.touches[0].clientX;
+    scrollIntentRef.current.startY = e.touches[0].clientY;
+    scrollIntentRef.current.isScrolling = false;
+    scrollIntentRef.current.linkElement = e.currentTarget;
+  };
+  
+  const handleLinkTouchMove = (e: React.TouchEvent<HTMLAnchorElement>) => {
+    if (!isMobile) return; // Only on mobile
+    if (!scrollIntentRef.current.startX) return;
+    
+    const deltaX = Math.abs(e.touches[0].clientX - scrollIntentRef.current.startX);
+    const deltaY = Math.abs(e.touches[0].clientY - scrollIntentRef.current.startY);
+    
+    // If horizontal movement is greater than vertical, it's a scroll
+    if (deltaX > deltaY && deltaX > 10) {
+      scrollIntentRef.current.isScrolling = true;
+    }
+  };
+  
+  const handleLinkTouchEnd = (e: React.TouchEvent<HTMLAnchorElement>) => {
+    if (!isMobile) return;
+    // Don't reset here - let click handler check and reset
+  };
+  
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Desktop: always allow navigation
+    if (!isMobile) {
+      return;
+    }
+    
+    // Mobile: prevent navigation if it was a scroll gesture
+    const wasScrolling = scrollIntentRef.current.isScrolling;
+    
+    // Reset for next interaction
+    scrollIntentRef.current = { startX: 0, startY: 0, isScrolling: false, linkElement: null };
+    
+    if (wasScrolling) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    
+    // If not scrolling, allow normal Link navigation
+  };
 
   // Update refs when state changes
   useEffect(() => {
@@ -421,7 +478,11 @@ export default function AISandboxPage() {
 
           <div 
             className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              position: 'relative',
+              touchAction: 'pan-x pan-y'
+            }}
           >
             {/* Spontaneity Engine - Centerpiece */}
             <motion.div
@@ -429,6 +490,7 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              drag={false}
               className="group relative flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 WebkitTransform: 'translate3d(0, 0, 0)',
@@ -436,6 +498,7 @@ export default function AISandboxPage() {
                 WebkitBackfaceVisibility: 'hidden',
                 backfaceVisibility: 'hidden',
                 WebkitFontSmoothing: 'antialiased',
+                touchAction: 'pan-x pan-y'
               }}
             >
               {/* Gradient border wrapper */}
@@ -478,6 +541,10 @@ export default function AISandboxPage() {
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
                       className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                      onTouchStart={handleLinkTouchStart}
+                      onTouchMove={handleLinkTouchMove}
+                      onTouchEnd={handleLinkTouchEnd}
+                      onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/spontaneous-travel-companion")}
                     >
                       EXAMINE CORE ARCHITECTURE
                       <svg
@@ -506,6 +573,7 @@ export default function AISandboxPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              drag={false}
               className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 // 1. Force a new stacking context
@@ -520,6 +588,7 @@ export default function AISandboxPage() {
                 perspective: 1000,
                 // 4. Ensure smooth text rendering
                 WebkitFontSmoothing: 'antialiased',
+                touchAction: 'pan-x pan-y'
               }}
             >
               <div className="flex items-center gap-4 mb-6">
@@ -538,6 +607,10 @@ export default function AISandboxPage() {
                   href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
                   className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
                   style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                  onTouchStart={handleLinkTouchStart}
+                  onTouchMove={handleLinkTouchMove}
+                  onTouchEnd={handleLinkTouchEnd}
+                  onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/trust-framework-ai-travel")}
                 >
                   EXAMINE CORE ARCHITECTURE
                   <svg
@@ -582,7 +655,11 @@ export default function AISandboxPage() {
           <div 
             ref={intelligenceModulesContainerRef}
             className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              position: 'relative',
+              touchAction: 'pan-x pan-y'
+            }}
           >
   {[
     {
@@ -647,6 +724,10 @@ export default function AISandboxPage() {
             href={system.link}
             className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+            onTouchStart={handleLinkTouchStart}
+            onTouchMove={handleLinkTouchMove}
+            onTouchEnd={handleLinkTouchEnd}
+            onClick={(e) => handleLinkClick(e, system.link)}
           >
             EXPLORE SYSTEM LOGIC
             <svg
@@ -706,7 +787,11 @@ export default function AISandboxPage() {
           <div 
             ref={productSurfacesContainerRef}
             className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              position: 'relative',
+              touchAction: 'pan-x pan-y'
+            }}
           >
   {[
     {
@@ -771,6 +856,10 @@ export default function AISandboxPage() {
             href={system.link}
             className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+            onTouchStart={handleLinkTouchStart}
+            onTouchMove={handleLinkTouchMove}
+            onTouchEnd={handleLinkTouchEnd}
+            onClick={(e) => handleLinkClick(e, system.link)}
           >
             VIEW EXPERIENCE DESIGN
             <svg
