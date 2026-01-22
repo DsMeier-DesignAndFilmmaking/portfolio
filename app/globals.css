@@ -889,6 +889,23 @@ section *::-webkit-scrollbar,
     scroll-margin-top: calc(env(safe-area-inset-top) + 80px);
   }
 
+  /* Trust Framework page: remove top padding from designs-strategy on mobile only */
+  @media (max-width: 768px) {
+    section#designs-strategy.trust-framework-designs-strategy {
+      padding-top: 0 !important;
+    }
+  }
+
+  /* Mobile Implementation section: override global section styles on mobile only */
+  @media (max-width: 768px) {
+    section#mobile-implementation.mobile-implementation-override {
+      min-height: auto !important;
+      padding-top: 0 !important;
+      padding-bottom: clamp(5rem, 10vh, 10rem) !important;
+      scroll-margin-top: calc(env(safe-area-inset-top) + 80px) !important;
+    }
+  }
+
   /* Standardized internal spacing - 8px grid system */
   .section-header-spacing {
     margin-bottom: 3rem; /* 48px - consistent gap between H2 and body content */
@@ -903,8 +920,12 @@ section *::-webkit-scrollbar,
   /* ===== TRUST LAYER & DESIGN EVOLUTION MOBILE SCROLL FIX ===== */
   /* Force overflow visible and height auto to prevent internal scroll traps on mobile */
   #trust-layer,
-  section[id="design-evolution-logic"] {
-    overflow: visible !important;
+  section[id="design-evolution-logic"],
+  #research-audience,
+  #wireframes-ui,
+  #implementation-strategy {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
     height: auto !important;
     min-height: min-content !important;
   }
@@ -913,10 +934,25 @@ section *::-webkit-scrollbar,
   #trust-layer .container,
   #trust-layer [class*="max-w-"],
   section[id="design-evolution-logic"] .container,
-  section[id="design-evolution-logic"] [class*="max-w-"] {
+  section[id="design-evolution-logic"] [class*="max-w-"],
+  #research-audience .container,
+  #research-audience [class*="max-w-"],
+  #wireframes-ui .container,
+  #wireframes-ui [class*="max-w-"],
+  #implementation-strategy .container,
+  #implementation-strategy [class*="max-w-"] {
     overflow: visible !important;
     height: auto !important;
     min-height: min-content !important;
+    max-height: none !important;
+  }
+
+  /* Force all direct children of container in research-audience and wireframes-ui to be visible */
+  #research-audience .container > *,
+  #wireframes-ui .container > *,
+  #implementation-strategy .container > * {
+    overflow: visible !important;
+    height: auto !important;
     max-height: none !important;
   }
 }

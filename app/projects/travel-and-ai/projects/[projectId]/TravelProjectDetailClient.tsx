@@ -2624,29 +2624,18 @@ const variables: Record<string, { title: string; desc: string }> = {
 {/* Wireframes Section */}
 <section id="wireframes-ui" className="py-24 bg-white border-t border-gray-100 overflow-x-hidden">
   <div className="container mx-auto px-6">
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="max-w-4xl mx-auto w-full overflow-y-hidden"
-    >
-      <div className="mb-16 text-center">
-  {/* Header: text-center + balanced wrap */}
-  <h2 className="text-3xl font-bold mb-4 text-gray-900 [text-wrap:balance]">
+    <div className="max-w-7xl mx-auto">
+      {/* Section Header */}
+      <div className="mb-20 text-center lg:text-left">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
           Designing for Activation,<br />Not Planning
         </h2>
-        <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
-          By engineering moments of action directly into the logic layer...
+        <p className="text-gray-700 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
+          By engineering moments of action directly into the logic layer, I ensured 
+          that the interface serves as a direct-drive mechanism for user intent—where 
+          every interaction is an outcome, not an {"item\u00A0on\u00A0a\u00A0list."}
         </p>
-  
-  {/* Body: mx-auto is required to center the max-width paragraph */}
-  <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
-    By engineering moments of action directly into the logic layer, I ensured 
-    that the interface serves as a direct-drive mechanism for user intent—where 
-    every interaction is an outcome, not an {"item\u00A0on\u00A0a\u00A0list."}
-  </p>
-</div>
+      </div>
       
       {/* Grid Section */}
       <motion.div 
@@ -2760,7 +2749,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </div>
         </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   </div>
 </section>
 
@@ -3553,7 +3542,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+            className="order-2 mt-0 lg:mt-0 w-full flex justify-center lg:justify-end"
           >
             <TrustFrameworkVisual />
           </motion.div>
@@ -3935,7 +3924,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         </section>
         
         {/* Detailed System Logic Section */}
-        <section id="wireframes-ui" className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
+        <section id="wireframes-ui" className="bg-white py-24 border-t border-gray-50 overflow-x-hidden" aria-label="Detailed System Logic">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               
@@ -4982,7 +4971,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         </section>
 
         {/* Detailed System Logic: Trust & Expertise Score */}
-        <section id="wireframes-ui" className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
+        <section id="wireframes-ui" className="bg-white py-24 border-t border-gray-50 overflow-x-hidden" aria-label="Detailed System Logic">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               
@@ -5558,7 +5547,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 {isCulturalContextEngine && (
         <>
        {/* Observed Travel Frictions: ADA AA Compliant Version */}
-<section id="design-exploration" className="mb-20 px-6 bg-white py-0">
+<section id="design-exploration" className="mb-0 lg:mb-20 px-6 bg-white py-0">
   <div className="max-w-6xl mx-auto">
     <div className="mb-16 border-l-4 border-slate-900 pl-6">
       <h4 className="text-cyan-800 font-mono text-xs uppercase tracking-[0.2em] mb-2 font-bold">
@@ -5615,7 +5604,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
 {/* Trust Strategy: Concept, UVP & Systemic Impact */}
-<section id="designs-strategy" className="py-24 bg-white">
+<section id="designs-strategy" className="trust-framework-designs-strategy mt-0 pt-0 pb-24 lg:mt-0 lg:py-24 bg-white">
   <div className="container mx-auto px-6">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -5717,98 +5706,98 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
 {/* Trust Signals & System Constraints */}
-<section id="research-audience" className="py-24 bg-black overflow-x-hidden">
+<section id="research-audience" className="py-24 bg-black overflow-x-hidden" aria-label="Architectural Constraints">
   <div className="container mx-auto px-6">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-6xl mx-auto"
-    >
-      <div className="text-center mb-16 max-w-4xl mx-auto">
-        {/* Simple Visual Signal: Live Status */}
-        <div className="flex justify-center items-center gap-2 mb-4">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-          </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-500/80">System Analysis: Core Trust</span>
-        </div>
-
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white tracking-tight">
+    <div className="max-w-7xl mx-auto">
+      {/* Section Header */}
+      <div className="mb-20 text-center lg:text-left">
+        <h4 className="text-cyan-500 font-mono text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">
+          System Analysis: Core Trust
+        </h4>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
           Architectural Constraints
         </h2>
-        <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
+        <p className="text-gray-300 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
           Trust is an architectural requirement, not a UI preference. 
           These mandates define the system’s core {"logic\u00A0boundaries."}
         </p>
       </div>
 
-      {/* Constraints Grid - Simplified Visuals with Sources */}
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-  {/* Card 01: Explainability */}
-  <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-8 rounded-2xl border border-amber-500/20 flex flex-col justify-between">
-    <div>
-      <div className="flex justify-between items-start mb-4">
-        <div className="text-4xl font-bold text-amber-400">62%</div>
-        <Shield className="w-5 h-5 text-amber-500/50" />
+      {/* Constraints Grid - Card Structure Matching wireframes-ui */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Card 01: Explainability */}
+        <div className="space-y-6">
+          <h3 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+            01. Explainability
+          </h3>
+          <motion.div
+            whileHover={{ x: 10 }}
+            className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="text-4xl font-bold text-amber-400">62%</div>
+              <Shield className="w-5 h-5 text-amber-500/50" />
+            </div>
+            <h4 className="text-white font-bold text-sm mb-1">Distrust unverified AI recommendations</h4>
+            <p className="text-gray-500 text-xs mb-4">— Travel Industry Trust Survey 2024</p>
+            <p className="text-gray-400 text-xs pt-4 border-t border-white/5">
+              <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> Every 
+              output must expose its underlying {"source\u00A0chain."}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Card 02: Conflict Resolution */}
+        <div className="space-y-6">
+          <h3 className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-[0.2em] mb-8">
+            02. Provenance & Conflict Resolution
+          </h3>
+          <motion.div
+            whileHover={{ x: 10 }}
+            className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="text-4xl font-bold text-emerald-400">45%</div>
+              <AlertCircle className="w-5 h-5 text-emerald-500/50" />
+            </div>
+            <h4 className="text-white font-bold text-sm mb-1">Misled by outdated or fake information</h4>
+            <p className="text-gray-500 text-xs mb-4">— Trust & Authenticity Primary Research</p>
+            <p className="text-gray-400 text-xs pt-4 border-t border-white/5">
+              <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> Conflict 
+              logic must resolve disputes before reaching the {"user\u00A0interface."}
+            </p>
+          </motion.div>
+          <motion.div
+            whileHover={{ x: 10 }}
+            className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="text-4xl font-bold text-cyan-400">78%</div>
+              <Database className="w-5 h-5 text-cyan-500/50" />
+            </div>
+            <h4 className="text-white font-bold text-sm mb-1">Require origin and data credibility</h4>
+            <p className="text-gray-500 text-xs mb-4">— Phocuswright Consumer Survey</p>
+            <p className="text-gray-400 text-xs pt-4 border-t border-white/5">
+              <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> The system 
+              must surface provenance and {"freshness\u00A0signals."}
+            </p>
+          </motion.div>
+        </div>
       </div>
-      <p className="text-gray-200 text-base font-semibold mb-2">Distrust unverified AI recommendations</p>
-      <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Travel Industry Trust Survey 2024</p>
-    </div>
-    <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-      <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> Every 
-      output must expose its underlying {"source\u00A0chain."}
-    </p>
-  </div>
 
-  {/* Card 02: Provenance */}
-  <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/5 p-8 rounded-2xl border border-cyan-500/20 flex flex-col justify-between">
-    <div>
-      <div className="flex justify-between items-start mb-4">
-        <div className="text-4xl font-bold text-cyan-400">78%</div>
-        <Database className="w-5 h-5 text-cyan-500/50" />
-      </div>
-      <p className="text-gray-200 text-base font-semibold mb-2">Require origin and data credibility</p>
-      <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Phocuswright Consumer Survey</p>
-    </div>
-    <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-      <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> The system 
-      must surface provenance and {"freshness\u00A0signals."}
-    </p>
-  </div>
+      {/* Trust Anti-Patterns - Human-Centric Narrative */}
+      <div className="mt-20 pt-10 border-t border-white/10">
+        <div className="mb-20 text-center lg:text-left">
+          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            Where Current AI Fails the Traveler
+          </h3>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
+            I identified three "Anti-Patterns" where typical AI systems break user trust. 
+            Designing for authenticity meant solving these architectural flaws first.
+          </p>
+        </div>
 
-  {/* Card 03: Conflict Resolution */}
-  <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/5 p-8 rounded-2xl border border-emerald-500/20 flex flex-col justify-between">
-    <div>
-      <div className="flex justify-between items-start mb-4">
-        <div className="text-4xl font-bold text-emerald-400">45%</div>
-        <AlertCircle className="w-5 h-5 text-emerald-500/50" />
-      </div>
-      <p className="text-gray-200 text-base font-semibold mb-2">Misled by outdated or fake information</p>
-      <p className="text-gray-500 text-[10px] font-medium uppercase tracking-tight mb-4">— Trust & Authenticity Primary Research</p>
-    </div>
-    <p className="text-gray-400 text-sm italic leading-relaxed pt-4 border-t border-white/5">
-      <strong className="text-gray-300 not-italic uppercase tracking-wider text-[10px]">Mandate:</strong> Conflict 
-      logic must resolve disputes before reaching the {"user\u00A0interface."}
-    </p>
-  </div>
-</div>
-
-{/* Trust Anti-Patterns - Human-Centric Narrative */}
-<div className="mt-12 border-t border-white/10 pt-16">
-  <div className="text-center mb-16">
-    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
-      Where Current AI Fails the Traveler
-    </h3>
-    <p className="text-gray-400 text-lg max-w-2xl mx-auto [text-wrap:pretty]">
-      I identified three "Anti-Patterns" where typical AI systems break user trust. 
-      Designing for authenticity meant solving these architectural flaws first.
-    </p>
-  </div>
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
     {[
       {
         title: "The Single-Source Trap",
@@ -5832,70 +5821,48 @@ const variables: Record<string, { title: string; desc: string }> = {
         color: "purple"
       }
     ].map((item, i) => (
-      <div key={i} className="flex flex-col">
+      <motion.div
+        key={i}
+        whileHover={{ x: 10 }}
+        className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
+      >
         <div className="flex items-center gap-3 mb-4">
-          <div className={`h-2 w-2 rounded-full bg-${item.color}-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]`} />
-          <h4 className="text-white font-bold text-lg">{item.title}</h4>
+          <div className={`h-2 w-2 rounded-full bg-${item.color}-500`} />
+          <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
         </div>
         
         <p className="text-cyan-400 text-xs font-mono mb-3 uppercase tracking-wider">
           {item.humanProblem}
         </p>
         
-        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+        <p className="text-gray-500 text-xs mb-4">
           {item.desc}
         </p>
 
-        <div className="mt-auto inline-flex items-center gap-2 text-[10px] font-mono text-gray-500 uppercase tracking-widest border-l border-white/10 pl-4 italic">
+        <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest border-t border-white/10 pt-4">
           {item.logic}
         </div>
-      </div>
+      </motion.div>
     ))}
-  </div>
-</div>
-
-{/* The Architectural Response: The Founder's Pitch */}
-<div className="mt-24 relative">
-  {/* Visual Accent: A vertical line that connects the thesis to the steps */}
-  <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/50 via-white/10 to-transparent hidden md:block" />
-
-  <div className="md:pl-12">
-    <div className="max-w-3xl mb-12">
-      <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan-500 mb-4">
-        The Thesis
-      </h4>
-      <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-        Trust is a calculation, not a feeling.
-      </h3>
-      <p className="text-gray-400 text-lg md:text-xl leading-relaxed [text-wrap:pretty]">
-        Current AI "guesses" when data conflicts. I'm building a framework that <strong>computes consensus.</strong> By moving from binary logic to a probabilistic model, the system arbitrates between 
-        conflicting sources to create a verifiable <span className="text-white underline underline-offset-4 decoration-cyan-500/50">Audit Trail</span> for the traveler.
-      </p>
-    </div>
-
-    {/* The 4-Step Engine: Simplified for Scannability */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {[
-        { label: "Gather", detail: "Multi-source intake", icon: "↓" },
-        { label: "Arbitrate", detail: "Consensus logic", icon: "⇋" },
-        { label: "Resolve", detail: "Conflict detection", icon: "✓" },
-        { label: "Expose", detail: "Source attribution", icon: "◎" }
-      ].map((s, idx) => (
-        <div key={idx} className="relative group p-6 bg-white/[0.03] rounded-2xl border border-white/5 hover:bg-white/[0.06] transition-all overflow-hidden">
-          {/* Subtle Step Number Background */}
-          <span className="absolute -right-2 -bottom-4 text-7xl font-bold text-white/[0.02] pointer-events-none group-hover:text-cyan-500/[0.05] transition-colors">
-            {idx + 1}
-          </span>
-          
-          <div className="text-cyan-500 text-xl mb-3 font-light">{s.icon}</div>
-          <div className="text-white font-bold text-lg mb-1">{s.label}</div>
-          <div className="text-gray-500 text-xs font-mono uppercase tracking-widest">{s.detail}</div>
         </div>
-      ))}
+      </div>
+
+      {/* The Architectural Response: The Founder's Pitch */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mt-20 pt-10 border-t border-white/10 text-center"
+      >
+        <div className="inline-block px-8 py-4 rounded-full bg-slate-900/50 border border-slate-700/50 h-auto overflow-visible">
+          <span className="text-slate-400 font-mono text-xs uppercase tracking-widest">
+            The Thesis: <span className="text-white font-bold">Trust is a calculation, not a feeling.</span> Current AI "guesses" when data conflicts. I'm building a framework that <span className="text-cyan-400 font-bold italic">computes consensus.</span> By moving from binary logic to a probabilistic model, the system arbitrates between 
+            conflicting sources to create a verifiable <span className="text-white underline underline-offset-4 decoration-cyan-500/50">Audit Trail</span> for the traveler.
+          </span>
+        </div>
+      </motion.div>
+
     </div>
-  </div>
-</div>
-    </motion.div>
   </div>
 </section>
 
@@ -6090,21 +6057,17 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
          {/* Design Evolution Section */}
-        <section id="wireframes-ui" className="py-20 bg-black">
+        <section id="wireframes-ui" className="py-24 bg-black overflow-x-hidden">
           <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold mb-6 text-white">
+            <div className="max-w-7xl mx-auto">
+              {/* Section Header */}
+              <div className="mb-20 text-center lg:text-left">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Design Evolution
                 </h2>
-                <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto [text-wrap:pretty] leading-relaxed">
-                I translated the architecture and formulas above into a "Verified Cultural Context" component. This UI pattern replaces the traditional "trust me" AI chat with a rigorous evidence block.
-              </p>
+                <p className="text-gray-300 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
+                  I translated the architecture and formulas above into a "Verified Cultural Context" component. This UI pattern replaces the traditional "trust me" AI chat with a rigorous evidence block.
+                </p>
               </div>
 
               {/* High-Contrast / ADA Compliant Recommendation Component */}
@@ -6154,7 +6117,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               >
                 <TrustPulseUI />
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -6238,7 +6201,6 @@ const variables: Record<string, { title: string; desc: string }> = {
                 
                 <div className="space-y-8">
                   <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
                     <p className="text-gray-300 mb-4">
                       Will start with a closed beta focusing on source verification accuracy and user trust metrics, followed by gradual rollout based on verification system performance.
                     </p>
@@ -6277,16 +6239,11 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* Implementation Strategy & Design Roadmap */}
-          <section className="pt-0 pb-16 bg-white overflow-x-hidden">
-            <div className="container mx-auto px-6 w-full max-w-screen">
-              <div className="max-w-4xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-12"
-                >
+          <section id="implementation-strategy" className="pt-0 pb-16 bg-white overflow-x-hidden">
+            <div className="container mx-auto px-6">
+              <div className="max-w-7xl mx-auto">
+                {/* Section Header */}
+                <div className="mb-20 text-center lg:text-left">
                   {/* Status Ribbon */}
                   <div className="flex md:inline-flex w-fit items-center px-4 py-2 bg-indigo-50 border border-indigo-200 rounded-full mb-6 max-w-full">
                     <span className="text-xs font-mono font-semibold text-indigo-700 uppercase tracking-wider whitespace-nowrap">
@@ -6296,15 +6253,15 @@ const variables: Record<string, { title: string; desc: string }> = {
                   
                   {/* Section Title */}
                   <h2 
-                    className="text-3xl md:text-4xl font-bold text-gray-900 mb-8" 
+                    className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" 
                     style={{ fontFamily: "'tiempos-headline-regular', serif" }}
                   >
                     Implementation Strategy & Design Roadmap
                   </h2>
-                </motion.div>
+                </div>
 
                 {/* Vertical Step Pattern */}
-                <div className="space-y-12">
+                <div className="space-y-12 h-auto overflow-visible">
                   {/* Phase 01 */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -6316,7 +6273,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="flex-none">
                         <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[01]</span>
                       </div>
-                      <div className="flex-1 min-w-0 overflow-visible">
+                      <div className="flex-1 min-w-0 h-auto overflow-visible">
                         <h3 className="text-lg font-bold mb-3 text-slate-900">
                           ARCHITECTURAL RESEARCH: Logic Mapping & Traceability
                         </h3>
@@ -6338,7 +6295,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="flex-none">
                         <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[02]</span>
                       </div>
-                      <div className="flex-1 min-w-0 overflow-visible">
+                      <div className="flex-1 min-w-0 h-auto overflow-visible">
                         <div className="flex flex-col md:flex-row md:items-center gap-3 mb-3">
                           <h3 className="text-lg font-bold text-slate-900">
                             BEHAVIORAL ANALYSIS: Edge Case Stress Testing
@@ -6367,7 +6324,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="flex-none">
                         <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[03]</span>
                       </div>
-                      <div className="flex-1 min-w-0 overflow-visible">
+                      <div className="flex-1 min-w-0 h-auto overflow-visible">
                         <h3 className="text-lg font-bold mb-3 text-slate-900">
                           SCALABILITY STRATEGY: From Logic to Ecosystem
                         </h3>
@@ -6755,16 +6712,16 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-<section id="wireframes-ui" className="bg-slate-50 py-24" aria-label="Design Evolution: Logic in Action">
+<section id="wireframes-ui" className="bg-slate-50 py-24 overflow-x-hidden" aria-label="Design Evolution: Logic in Action">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
       {/* Section Header */}
-      <div className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+      <div className="mb-20 text-center lg:text-left">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
           Design Evolution: Logic in Action
         </h2>
-        <p className="text-gray-500 max-w-2xl text-lg">
+        <p className="text-gray-500 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
           Visualizing the Intelligence Layer—how CATDS orchestrates context, trust, and semantic mapping to enable adaptive travel decisions.
         </p>
       </div>
@@ -6772,7 +6729,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
         
         {/* CASE A: THE ENVIRONMENTAL PIVOT */}
-        <div className="bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-sm flex flex-col lg:flex-row">
+        <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col lg:flex-row h-auto overflow-visible">
           <div className="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
@@ -6894,510 +6851,6 @@ const variables: Record<string, { title: string; desc: string }> = {
       </div>
     </div>
   </div>
-
-  <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-7xl mx-auto"
-              >
-               
-                
-                {/* Component Grid */}
-                <div className="space-y-16">
-                  
-                  
-
-                  {/* Mobile Implementation Gallery */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mt-16 pt-12 border-t border-slate-700/50"
-                  >
-                    <div className="mb-8">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Mobile Implementation: System Logic in User Experience</h3>
-                      <p className="text-gray-400 text-base md:text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
-                    </div>
-                    
-                    {/* Mobile Frames Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 lg:gap-8">
-                      
-                      {/* Mobile Screen A: The Adaptive Intervention */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
-                          {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
-                            {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
-                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* App Content */}
-                            <div className="h-[calc(100%-3rem)] bg-gray-50 overflow-y-auto">
-                              {/* Header */}
-                              <div className="bg-white px-6 py-4 border-b border-gray-100">
-                                <h2 className="text-xl font-bold text-gray-900">Kyoto Day 2</h2>
-                                <p className="text-sm text-gray-500 mt-1">March 15, 2024</p>
-                              </div>
-                              
-                              {/* Blurred Itinerary (Background) */}
-                              <div className="px-6 py-4 space-y-4 blur-sm opacity-40">
-                                <div className="bg-white rounded-xl p-4 shadow-sm">
-                                  <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-lg"></div>
-                                    <div className="flex-1">
-                                      <p className="font-semibold text-gray-900">Fushimi Inari Shrine</p>
-                                      <p className="text-sm md:text-xs text-gray-500">14:00 - 16:00</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm">
-                                  <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 bg-purple-100 rounded-lg"></div>
-                                    <div className="flex-1">
-                                      <p className="font-semibold text-gray-900">Tea Ceremony</p>
-                                      <p className="text-sm md:text-xs text-gray-500">17:00 - 18:30</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              {/* System Intervention Toast (Foreground) */}
-                              <motion.div
-                                initial={{ y: 100, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-                                className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 z-10"
-                              >
-                                <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-5 shadow-xl border border-amber-400/30">
-                                  <div className="flex items-start gap-3 mb-3">
-                                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                      <FaCloudSun className="w-5 h-5 text-white" />
-                                    </div>
-                                    <div className="flex-1">
-                                      <h4 className="text-white font-bold text-sm mb-1">Context Change Detected</h4>
-                                      <p className="text-white/90 text-sm md:text-xs leading-relaxed">
-                                        Heavy Rain Detected. High crowd density at Fushimi Inari. Suggesting indoor alternative.
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <button className="w-full bg-white text-amber-600 font-semibold py-3 rounded-xl text-sm shadow-lg hover:bg-amber-50 transition-colors">
-                                    View Re-Optimized Plan
-                                  </button>
-                                </div>
-                              </motion.div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Designer Note */}
-                        <div className="mt-4 max-w-[280px]">
-                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
-                            <strong className="text-amber-400 not-italic">System Logic:</strong> The Orchestration Layer surfaces contextual pivots through non-intrusive interventions. The toast pattern maintains user agency while providing explainability—showing why the system suggests a change (Constraint Delta visible in the message).
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Mobile Screen B: The Trust-Layer Comparison */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
-                          {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
-                            {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
-                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
-                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* App Content */}
-                            <div className="h-[calc(100%-3rem)] bg-gray-50 p-6 overflow-y-auto">
-                              {/* Header */}
-                              <div className="mb-6">
-                                <h2 className="text-xl font-bold text-gray-900 mb-1">Route Comparison</h2>
-                                <p className="text-sm text-gray-500">Choose your preferred option</p>
-                              </div>
-                              
-                              {/* Top Card: Original Plan */}
-                              <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="bg-white rounded-2xl p-5 shadow-lg border-2 border-red-100 mb-4"
-                              >
-                                <div className="flex items-center justify-between mb-3">
-                                  <h3 className="font-bold text-gray-900">Original Plan</h3>
-                                  <span className="text-sm md:text-xs px-2 py-1 bg-red-100 text-red-600 rounded-full font-semibold">High Friction</span>
-                                </div>
-                                <div className="space-y-2 mb-4">
-                                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <FaClock className="w-4 h-4 text-red-500" />
-                                    <span>1hr commute</span>
-                                  </div>
-                                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <FaMapMarkerAlt className="w-4 h-4 text-red-500" />
-                                    <span>3 transfers required</span>
-                                  </div>
-                                </div>
-                                <div className="pt-3 border-t border-gray-100">
-                                  <div className="flex items-center justify-between mb-1">
-                                    <span className="text-sm md:text-xs text-gray-500">Match Score</span>
-                                    <span className="text-sm font-semibold text-gray-700">67%</span>
-                                  </div>
-                                  <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                    <motion.div
-                                      initial={{ width: 0 }}
-                                      whileInView={{ width: "67%" }}
-                                      viewport={{ once: true }}
-                                      transition={{ delay: 0.4, duration: 0.8 }}
-                                      className="h-full bg-red-400 rounded-full"
-                                    />
-                                  </div>
-                                </div>
-                              </motion.div>
-                              
-                              {/* Bottom Card: Smart Pivot */}
-                              <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 }}
-                                className="bg-white rounded-2xl p-5 shadow-lg border-2 border-emerald-400 mb-6"
-                              >
-                                <div className="flex items-center justify-between mb-3">
-                                  <h3 className="font-bold text-gray-900">Smart Pivot</h3>
-                                  <span className="text-sm md:text-xs px-2 py-1 bg-emerald-100 text-emerald-600 rounded-full font-semibold">Optimized</span>
-                                </div>
-                                <div className="space-y-2 mb-4">
-                                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <FaClock className="w-4 h-4 text-emerald-500" />
-                                    <span>15min walk</span>
-                                  </div>
-                                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <FaMapMarkerAlt className="w-4 h-4 text-emerald-500" />
-                                    <span>No transfers needed</span>
-                                  </div>
-                                </div>
-                                <div className="pt-3 border-t border-gray-100">
-                                  <div className="flex items-center justify-between mb-1">
-                                    <span className="text-sm md:text-xs text-gray-500">Match Score</span>
-                                    <span className="text-sm font-semibold text-emerald-600">92%</span>
-                                  </div>
-                                  <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                    <motion.div
-                                      initial={{ width: 0 }}
-                                      whileInView={{ width: "92%" }}
-                                      viewport={{ once: true }}
-                                      transition={{ delay: 0.5, duration: 0.8 }}
-                                      className="h-full bg-emerald-400 rounded-full"
-                                    />
-                                  </div>
-                                </div>
-                              </motion.div>
-                              
-                              {/* Action Button */}
-                              <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-colors">
-                                Accept & Update Itinerary
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Designer Note */}
-                        <div className="mt-4 max-w-[280px]">
-                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
-                            <strong className="text-emerald-400 not-italic">System Logic:</strong> The Trust Layer presents decision paths with explainability metrics. Visual data (satisfaction percentages, progress bars) shows the trade-offs transparently. Human-in-the-Loop verification requires explicit confirmation, maintaining user agency while leveraging system intelligence.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Mobile Screen C: Semantic Preference Tuning */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
-                          {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
-                            {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
-                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
-                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* App Content */}
-                            <div className="flex-1 bg-gray-50 min-h-0">
-                              {/* Header */}
-                              <div className="bg-white px-6 py-4 border-b border-gray-100">
-                                <h2 className="text-xl font-bold text-gray-900">System Preferences</h2>
-                                <p className="text-sm text-gray-500 mt-1">Customize AI behavior</p>
-                              </div>
-                              
-                              <div className="p-6 space-y-6">
-                                {/* Preference 1: Spontaneity vs Structure */}
-                                <div className="bg-white rounded-xl p-5 shadow-sm">
-                                  <div className="flex items-center justify-between mb-4">
-                                    <div>
-                                      <h3 className="font-semibold text-gray-900 mb-1">Spontaneity vs Structure</h3>
-                                      <p className="text-sm md:text-xs text-gray-500">Balance between flexibility and planning</p>
-                                    </div>
-                                  </div>
-                                  <div className="relative">
-                                    <div className="flex items-center justify-between mb-2">
-                                      <span className="text-sm md:text-xs text-gray-500">Structured</span>
-                                      <span className="text-sm md:text-xs text-gray-500">Spontaneous</span>
-                                    </div>
-                                    <div className="relative h-2 bg-gray-200 rounded-full">
-                                      <motion.div
-                                        initial={{ width: "35%" }}
-                                        whileInView={{ width: "65%" }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2, duration: 0.8 }}
-                                        className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                                      />
-                                      <motion.div
-                                        initial={{ left: "35%" }}
-                                        whileInView={{ left: "65%" }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-                                        className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg border-2 border-purple-500"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                                {/* Preference 2: Energy Conservation Mode */}
-                                <div className="bg-white rounded-xl p-5 shadow-sm">
-                                  <div className="flex items-center justify-between mb-4">
-                                    <div className="flex-1">
-                                      <h3 className="font-semibold text-gray-900 mb-1">Energy Conservation Mode</h3>
-                                      <p className="text-sm md:text-xs text-gray-500">Prioritize low-intensity activities</p>
-                                    </div>
-                                    <motion.button
-                                      whileTap={{ scale: 0.95 }}
-                                      className={`relative w-12 h-6 rounded-full transition-colors ${
-                                        true ? 'bg-emerald-500' : 'bg-gray-300'
-                                      }`}
-                                    >
-                                      <motion.div
-                                        animate={{ x: true ? 24 : 0 }}
-                                        className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
-                                      />
-                                    </motion.button>
-                                  </div>
-                                  <p className="text-sm md:text-xs text-gray-400 mt-2">
-                                    {true ? 'Active' : 'Inactive'} • System will filter high-energy activities
-                                  </p>
-                                </div>
-                                
-                                {/* Preference 3: Indoor Preference */}
-                                <div className="bg-white rounded-xl p-5 shadow-sm">
-                                  <div className="flex items-center justify-between mb-4">
-                                    <div className="flex-1">
-                                      <h3 className="font-semibold text-gray-900 mb-1">Indoor Preference</h3>
-                                      <p className="text-sm md:text-xs text-gray-500">Weather-triggered auto-adjustment</p>
-                                    </div>
-                                    <motion.button
-                                      whileTap={{ scale: 0.95 }}
-                                      className={`relative w-12 h-6 rounded-full transition-colors ${
-                                        true ? 'bg-amber-500' : 'bg-gray-300'
-                                      }`}
-                                    >
-                                      <motion.div
-                                        animate={{ x: true ? 24 : 0 }}
-                                        className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
-                                      />
-                                    </motion.button>
-                                  </div>
-                                  <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
-                                    <div className="flex items-center gap-2 mb-1">
-                                      <FaCloudSun className="w-4 h-4 text-amber-600" />
-                                      <span className="text-sm md:text-xs font-semibold text-amber-900">Weather Trigger Active</span>
-                                    </div>
-                                    <p className="text-sm md:text-xs text-amber-700">
-                                      System will automatically suggest indoor alternatives when rain is in the forecast
-                                    </p>
-                                  </div>
-                                </div>
-                                
-                                {/* Save Button */}
-                                <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                                  Save Preferences
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Designer Note */}
-                        <div className="mt-4 max-w-[280px]">
-                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
-                            <strong className="text-amber-400 not-italic">System Logic:</strong> Semantic Preference Tuning allows users to configure how the Context Interpreter weights different signals. These preferences generate Decision Vector parameters, enabling personalized orchestration. The system maintains explainability by showing active triggers and their effects in real-time.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Mobile Screen D: The Spontaneous Landing (Arrival Portal) */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
-                          {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
-                            {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
-                              <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 border border-gray-900 rounded-sm">
-                                  <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* App Content */}
-                            <div className="flex-1 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 min-h-0">
-                              {/* Flight Info Header */}
-                              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 border-b border-blue-500/30">
-                                <div className="flex items-center justify-between mb-2">
-                                  <div className="font-mono text-sm md:text-xs tracking-wider">
-                                    FLIGHT BA247 • LANDED • LISBON
-                                  </div>
-                                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                </div>
-                                <div className="text-sm font-semibold mt-1">Adventure Awaits</div>
-                              </div>
-                              
-                              {/* Main Content */}
-                              <div className="p-6 space-y-6">
-                                {/* Narrative Prompt */}
-                                <motion.div
-                                  initial={{ opacity: 0, y: 20 }}
-                                  whileInView={{ opacity: 1, y: 0 }}
-                                  viewport={{ once: true }}
-                                  transition={{ delay: 0.2 }}
-                                  className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100"
-                                >
-                                  <div className="text-sm md:text-xs font-mono text-blue-600 uppercase tracking-wider mb-3">The Arrival Portal</div>
-                                  <div className="text-gray-800 leading-relaxed text-sm space-y-3" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                    <p>
-                                      The baggage carousel is a transition, not a destination. While you wait for your luggage, the city is breathing.
-                                    </p>
-                                    <p>
-                                      A vintage tram is departing in <strong className="text-blue-600">40 minutes</strong> from the terminal exit—it's the slow way into the Chiado district, passing the bakeries as they pull the first morning <em>pastéis de nata</em> from the ovens.
-                                    </p>
-                                    <p className="font-semibold text-blue-700">
-                                      Shall we take the scenic route instead of a taxi?
-                                    </p>
-                                  </div>
-                                </motion.div>
-                                
-                                {/* Action Buttons */}
-                                <div className="space-y-3">
-                                  <motion.button
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4 }}
-                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-cyan-700 transition-all"
-                                  >
-                                    Initiate Scenic Route
-                                  </motion.button>
-                                  <motion.button
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5 }}
-                                    className="w-full bg-white border-2 border-blue-300 text-blue-700 font-semibold py-3 rounded-xl hover:bg-blue-50 transition-all"
-                                  >
-                                    Standard Transit (Logistics Only)
-                                  </motion.button>
-                                </div>
-                                
-                                {/* System Logic Footer - Scanning Animation */}
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  whileInView={{ opacity: 1 }}
-                                  viewport={{ once: true }}
-                                  transition={{ delay: 0.6 }}
-                                  className="bg-slate-900/90 backdrop-blur-sm border border-slate-700 rounded-xl p-4 space-y-3"
-                                >
-                                  <div className="text-sm md:text-xs font-mono text-blue-400/80 mb-2">System Logic (The Engine):</div>
-                                  
-                                  {/* Scanning Indicators */}
-                                  <div className="space-y-2">
-                                    <div className="flex items-center gap-2">
-                                      <motion.div
-                                        animate={{ opacity: [0.5, 1, 0.5] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                        className="w-2 h-2 bg-blue-400 rounded-full"
-                                      />
-                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Syncing Flight API]</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                      <motion.div
-                                        animate={{ opacity: [0.5, 1, 0.5] }}
-                                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
-                                        className="w-2 h-2 bg-cyan-400 rounded-full"
-                                      />
-                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Local Transit Real-time]</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                      <motion.div
-                                        animate={{ opacity: [0.5, 1, 0.5] }}
-                                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
-                                        className="w-2 h-2 bg-blue-400 rounded-full"
-                                      />
-                                      <span className="text-sm md:text-xs font-mono text-gray-300">[Hyper-local POI Density]</span>
-                                    </div>
-                                  </div>
-                                  
-                                  {/* Data Points */}
-                                  <div className="pt-3 border-t border-slate-700 space-y-1">
-                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
-                                      <span className="text-gray-400">GATE:</span>
-                                      <span className="text-blue-400">B12</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
-                                      <span className="text-gray-400">ARRIVAL:</span>
-                                      <span className="text-green-400">+4m early</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-sm md:text-xs font-mono">
-                                      <span className="text-gray-400">TAXI QUEUE:</span>
-                                      <span className="text-amber-400">18min wait</span>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Designer Note */}
-                        <div className="mt-4 max-w-[280px]">
-                          <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
-                            <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, the system proves its value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
-                          </p>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </motion.div>
-                  
-                </div>
-              </motion.div>
-            </div>
 
 </section>
 
@@ -9691,19 +9144,15 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* Section 6: Design Evolution */}
-          <section id="wireframes-ui" className="py-20 bg-[#0a0a0a]">
+          <section id="wireframes-ui" className="py-24 bg-[#0a0a0a] overflow-x-hidden">
             <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold mb-6 text-white">
+              <div className="max-w-7xl mx-auto">
+                {/* Section Header */}
+                <div className="mb-20 text-center lg:text-left">
+                  <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Design Evolution
                   </h2>
-                  <p className="text-gray-300 text-lg">
+                  <p className="text-gray-300 text-lg leading-relaxed max-w-2xl [text-wrap:pretty]">
                     UX decisions as intent-driven outcomes, highlighting removals and simplifications
                   </p>
                 </div>
@@ -9735,7 +9184,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     )}
                   </div>
                 )}
-              </motion.div>
+              </div>
             </div>
           </section>
 
@@ -11487,7 +10936,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       {/* Project Navigation */}
       <ProjectNavigation currentProjectId={projectId} />
 
-      {/* Product Surfaces (The Glass) Navigation */}
+      {/* Product Surfaces (The Glass) Navigation - Always show all 4 on every project page */}
       <section className="py-8 bg-white border-t border-gray-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -11501,67 +10950,202 @@ const variables: Record<string, { title: string; desc: string }> = {
                 Product Surfaces (The "Glass")
               </h3>
               
-              {/* Product Surface Links */}
-              {(() => {
-                // Define product surface projects (non-logic versions - only the 4 "Glass" surfaces)
-                const productSurfaces: Array<{ id: string; title: string; path: string }> = [
-                  {
-                    id: 'context-aware-travel-decision-system',
-                    title: 'Context-Aware Decision System',
-                    path: '/projects/travel-and-ai/projects/context-aware-travel-decision-system',
-                  },
-                  {
-                    id: 'social-opportunity-matching-module',
-                    title: 'Social Opportunity Matching',
-                    path: '/projects/travel-and-ai/projects/social-opportunity-matching-module',
-                  },
-                  {
-                    id: 'social-graph-driven-travel-network',
-                    title: 'Social Graph Network',
-                    path: '/projects/travel-and-ai/projects/social-graph-driven-travel-network',
-                  },
-                  {
-                    id: 'narrative-driven-travel-experience-generator',
-                    title: 'Narrative Experience Generator',
-                    path: '/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator',
-                  },
-                ];
-
-                // Normalize current project ID
-                const normalizedCurrentId = projectId.replace(/\/$/, '').split('/').pop() || projectId;
-                
-                // Filter out the current project if it's a Glass page
-                const availableSurfaces = productSurfaces.filter(surface => {
-                  const surfacePathId = surface.path.split('/').pop() || '';
-                  return surfacePathId !== normalizedCurrentId && surface.id !== normalizedCurrentId;
-                });
-
-                return (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {availableSurfaces.map((surface) => (
-                      <Link
-                        key={surface.id}
-                        href={surface.path}
-                        className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300"
-                      >
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                            <Smartphone className="w-4 h-4 text-blue-600" />
-                          </div>
-                          <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                            {surface.title}
-                          </span>
-                        </div>
-                        <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
-                      </Link>
-                    ))}
+              {/* Product Surface Links - All 4 always shown */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Context-Aware Decision System */}
+                <Link
+                  href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                      <Smartphone className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                      Context-Aware Decision System
+                    </span>
                   </div>
-                );
-              })()}
+                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                </Link>
+
+                {/* Social Opportunity Matching */}
+                <Link
+                  href="/projects/travel-and-ai/projects/social-opportunity-matching-module"
+                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                      <Smartphone className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                      Social Opportunity Matching
+                    </span>
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                </Link>
+
+                {/* Social Graph Network */}
+                <Link
+                  href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                      <Smartphone className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                      Social Graph Network
+                    </span>
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                </Link>
+
+                {/* Narrative Experience Generator */}
+                <Link
+                  href="/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                      <Smartphone className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                      Narrative Experience Generator
+                    </span>
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                </Link>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Product Surface Navigation Footer - Only for logic pages */}
+      {projectId.endsWith('-logic') && (
+        <section className="py-24 bg-gray-50 border-t border-gray-100" id="surface-navigation" aria-label="Product Surface Navigation">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              {/* Section Header */}
+              <div className="mb-12 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  Explore Product Surfaces
+                </h2>
+                <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                  See how this logic translates into user-facing interfaces.
+                </p>
+              </div>
+
+              {/* Product Surface Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Surface 01: Context-Aware Travel Decision System */}
+                <Link
+                  href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+                  className="group"
+                >
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="h-auto bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow overflow-visible"
+                  >
+                    <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 border border-blue-100">
+                      <Compass className="text-blue-600 w-6 h-6" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2 py-0.5 rounded">Surface 01</span>
+                      <h3 className="font-bold text-gray-900 italic">Context-Aware Travel Decision System</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                      Environmental sensing and adaptive routing interfaces
+                    </p>
+                    <div className="flex items-center gap-2 text-blue-600 font-medium text-sm group-hover:gap-3 transition-all">
+                      <span>Explore Surface</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.div>
+                </Link>
+
+                {/* Surface 02: Social Graph Driven Travel Network */}
+                <Link
+                  href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                  className="group"
+                >
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="h-auto bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow overflow-visible"
+                  >
+                    <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
+                      <Network className="text-purple-600 w-6 h-6" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-0.5 rounded">Surface 02</span>
+                      <h3 className="font-bold text-gray-900 italic">Social Graph Driven Travel Network</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                      Trust verification and connection interfaces
+                    </p>
+                    <div className="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all">
+                      <span>Explore Surface</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.div>
+                </Link>
+
+                {/* Surface 03: Trust Framework AI Travel */}
+                <Link
+                  href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
+                  className="group"
+                >
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="h-auto bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow overflow-visible"
+                  >
+                    <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 border border-slate-100">
+                      <Shield className="text-slate-600 w-6 h-6" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Surface 03</span>
+                      <h3 className="font-bold text-gray-900 italic">Trust Framework AI Travel</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                      Cryptographic verification and trust infrastructure
+                    </p>
+                    <div className="flex items-center gap-2 text-slate-600 font-medium text-sm group-hover:gap-3 transition-all">
+                      <span>Explore Surface</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.div>
+                </Link>
+
+                {/* Surface 04: Spontaneous Travel Companion */}
+                <Link
+                  href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
+                  className="group"
+                >
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="h-auto bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow overflow-visible"
+                  >
+                    <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 border border-emerald-100">
+                      <Sparkles className="text-emerald-600 w-6 h-6" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Surface 04</span>
+                      <h3 className="font-bold text-gray-900 italic">Spontaneous Travel Companion</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                      AI-powered spontaneous travel planning and discovery
+                    </p>
+                    <div className="flex items-center gap-2 text-emerald-600 font-medium text-sm group-hover:gap-3 transition-all">
+                      <span>Explore Surface</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Back to Projects Link */}
       <section className="py-6 bg-white">

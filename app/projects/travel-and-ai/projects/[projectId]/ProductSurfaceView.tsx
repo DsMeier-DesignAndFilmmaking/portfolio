@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X, Users, Shield, MessageCircle, Copy, Check, Lock, EyeOff, Activity, Radio, Info, ChevronUp, ChevronLeft, Key, Search, Mic, Volume2, Watch, LayoutGrid, ChevronDown, Monitor } from 'lucide-react';
+import { FaCloudSun, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 import { ComposableMap, Geographies, Geography, Marker, Graticule } from 'react-simple-maps';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -2475,13 +2476,10 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       </nav>
 
      {/* 2. Hero */}
-     <header className="max-w-7xl mx-auto px-6 py-28 flex flex-col lg:flex-row gap-16 items-center min-h-[80vh]">
+     <header className="max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row gap-16 items-center min-h-[80vh]">
         {/* Left Column - Sticky Text Content */}
         <div 
-          className="sticky top-24"
-          style={{ 
-            minHeight: '850px',
-          }}
+          className="static lg:sticky lg:top-24 mb-8 lg:mb-0"
         >
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
@@ -2512,7 +2510,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
         {/* Dynamic Mockup Container - Right Side */}
         <div 
-          className={`aspect-[4/5] md:aspect-square rounded-[32px] md:rounded-[48px] flex flex-col items-center justify-center relative overflow-visible group mx-auto lg:mx-0 w-full max-w-lg lg:max-w-full box-border ${
+          className={`aspect-[4/5] md:aspect-square rounded-[32px] md:rounded-[48px] flex flex-col items-center justify-center relative overflow-hidden md:overflow-visible group mx-auto lg:mx-0 w-full max-w-lg lg:max-w-full box-border ${
             projectId === 'social-graph-driven-travel-network' || projectId === 'narrative-driven-travel-experience-generator' ? '' : 'bg-slate-100 shadow-2xl border border-slate-200'
           }`}
         >
@@ -2722,7 +2720,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       {/* Screenshot Images - Only for social-graph-driven-travel-network */}
       {projectId === 'social-graph-driven-travel-network' && (
         <>
-          <section className="max-w-7xl mx-auto px-6 pt-48 md:pt-12 pb-12 bg-white">
+          <section className="max-w-7xl mx-auto px-6 pt-12 md:pt-12 pb-12 bg-white">
             {/* Design Concept Note */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -3211,6 +3209,499 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
                 </div>
               </motion.div>
             </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* Mobile Implementation: System Logic in User Experience - Only for context-aware-travel-decision-system */}
+      {projectId === 'context-aware-travel-decision-system' && (
+        <section className="mobile-implementation-override pt-0 md:pt-12 pb-24 bg-white border-t border-gray-50" id="mobile-implementation">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Mobile Implementation: System Logic in User Experience</h3>
+                  <p className="text-gray-400 text-base md:text-sm">How the Intelligence Layer manifests in realistic mobile interfaces</p>
+                </div>
+                
+                {/* Mobile Frames Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 lg:gap-8">
+                  
+                  {/* Mobile Screen A: The Adaptive Intervention */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                      {/* Device Frame */}
+                      <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                        {/* Status Bar */}
+                        <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                          <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
+                          <div className="flex items-center gap-1">
+                            <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                              <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* App Content */}
+                        <div className="h-auto bg-gray-50 overflow-visible">
+                          {/* Header */}
+                          <div className="bg-white px-6 py-4 border-b border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900">Kyoto Day 2</h2>
+                            <p className="text-sm text-gray-500 mt-1">March 15, 2024</p>
+                          </div>
+                          
+                          {/* Blurred Itinerary (Background) */}
+                          <div className="px-6 py-4 space-y-4 blur-sm opacity-40">
+                            <div className="bg-white rounded-xl p-4 shadow-sm">
+                              <div className="flex items-center gap-3">
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg"></div>
+                                <div className="flex-1">
+                                  <p className="font-semibold text-gray-900">Fushimi Inari Shrine</p>
+                                  <p className="text-sm md:text-xs text-gray-500">14:00 - 16:00</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="bg-white rounded-xl p-4 shadow-sm">
+                              <div className="flex items-center gap-3">
+                                <div className="w-12 h-12 bg-purple-100 rounded-lg"></div>
+                                <div className="flex-1">
+                                  <p className="font-semibold text-gray-900">Tea Ceremony</p>
+                                  <p className="text-sm md:text-xs text-gray-500">17:00 - 18:30</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* System Intervention Toast (Foreground) */}
+                          <motion.div
+                            initial={{ y: 100, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                            className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 z-10"
+                          >
+                            <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-5 shadow-xl border border-amber-400/30">
+                              <div className="flex items-start gap-3 mb-3">
+                                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                  <FaCloudSun className="w-5 h-5 text-white" />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="text-white font-bold text-sm mb-1">Context Change Detected</h4>
+                                  <p className="text-white/90 text-sm md:text-xs leading-relaxed">
+                                    Heavy Rain Detected. High crowd density at Fushimi Inari. Suggesting indoor alternative.
+                                  </p>
+                                </div>
+                              </div>
+                              <button className="w-full bg-white text-amber-600 font-semibold py-3 rounded-xl text-sm shadow-lg hover:bg-amber-50 transition-colors">
+                                View Re-Optimized Plan
+                              </button>
+                            </div>
+                          </motion.div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Designer Note */}
+                    <div className="mt-4 max-w-[280px]">
+                      <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
+                        <strong className="text-amber-400 not-italic">System Logic:</strong> The Orchestration Layer surfaces contextual pivots through non-intrusive interventions. The toast pattern maintains user agency while providing explainability—showing why the system suggests a change (Constraint Delta visible in the message).
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Mobile Screen B: The Trust-Layer Comparison */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                      {/* Device Frame */}
+                      <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                        {/* Status Bar */}
+                        <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                          <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
+                          <div className="flex items-center gap-1">
+                            <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                              <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* App Content */}
+                        <div className="h-auto bg-gray-50 p-6 overflow-visible">
+                          {/* Header */}
+                          <div className="mb-6">
+                            <h2 className="text-xl font-bold text-gray-900 mb-1">Route Comparison</h2>
+                            <p className="text-sm text-gray-500">Choose your preferred option</p>
+                          </div>
+                          
+                          {/* Top Card: Original Plan */}
+                          <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="bg-white rounded-2xl p-5 shadow-lg border-2 border-red-100 mb-4"
+                          >
+                            <div className="flex items-center justify-between mb-3">
+                              <h3 className="font-bold text-gray-900">Original Plan</h3>
+                              <span className="text-sm md:text-xs px-2 py-1 bg-red-100 text-red-600 rounded-full font-semibold">High Friction</span>
+                            </div>
+                            <div className="space-y-2 mb-4">
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <FaClock className="w-4 h-4 text-red-500" />
+                                <span>1hr commute</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <FaMapMarkerAlt className="w-4 h-4 text-red-500" />
+                                <span>3 transfers required</span>
+                              </div>
+                            </div>
+                            <div className="pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-sm md:text-xs text-gray-500">Match Score</span>
+                                <span className="text-sm font-semibold text-gray-700">67%</span>
+                              </div>
+                              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: "67%" }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.4, duration: 0.8 }}
+                                  className="h-full bg-red-400 rounded-full"
+                                />
+                              </div>
+                            </div>
+                          </motion.div>
+                          
+                          {/* Bottom Card: Smart Pivot */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="bg-white rounded-2xl p-5 shadow-lg border-2 border-emerald-400 mb-6"
+                          >
+                            <div className="flex items-center justify-between mb-3">
+                              <h3 className="font-bold text-gray-900">Smart Pivot</h3>
+                              <span className="text-sm md:text-xs px-2 py-1 bg-emerald-100 text-emerald-600 rounded-full font-semibold">Optimized</span>
+                            </div>
+                            <div className="space-y-2 mb-4">
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <FaClock className="w-4 h-4 text-emerald-500" />
+                                <span>15min walk</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <FaMapMarkerAlt className="w-4 h-4 text-emerald-500" />
+                                <span>No transfers needed</span>
+                              </div>
+                            </div>
+                            <div className="pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-sm md:text-xs text-gray-500">Match Score</span>
+                                <span className="text-sm font-semibold text-emerald-600">92%</span>
+                              </div>
+                              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: "92%" }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.5, duration: 0.8 }}
+                                  className="h-full bg-emerald-400 rounded-full"
+                                />
+                              </div>
+                            </div>
+                          </motion.div>
+                          
+                          {/* Action Button */}
+                          <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-colors">
+                            Accept & Update Itinerary
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Designer Note */}
+                    <div className="mt-4 max-w-[280px]">
+                      <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
+                        <strong className="text-emerald-400 not-italic">System Logic:</strong> The Trust Layer presents decision paths with explainability metrics. Visual data (satisfaction percentages, progress bars) shows the trade-offs transparently. Human-in-the-Loop verification requires explicit confirmation, maintaining user agency while leveraging system intelligence.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Mobile Screen C: Semantic Preference Tuning */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                      {/* Device Frame */}
+                      <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
+                        {/* Status Bar */}
+                        <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
+                          <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
+                          <div className="flex items-center gap-1">
+                            <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                              <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* App Content */}
+                        <div className="h-auto bg-gray-50">
+                          {/* Header */}
+                          <div className="bg-white px-6 py-4 border-b border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900">System Preferences</h2>
+                            <p className="text-sm text-gray-500 mt-1">Customize AI behavior</p>
+                          </div>
+                          
+                          <div className="p-6 space-y-6">
+                            {/* Preference 1: Spontaneity vs Structure */}
+                            <div className="bg-white rounded-xl p-5 shadow-sm">
+                              <div className="flex items-center justify-between mb-4">
+                                <div>
+                                  <h3 className="font-semibold text-gray-900 mb-1">Spontaneity vs Structure</h3>
+                                  <p className="text-sm md:text-xs text-gray-500">Balance between flexibility and planning</p>
+                                </div>
+                              </div>
+                              <div className="relative">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-sm md:text-xs text-gray-500">Structured</span>
+                                  <span className="text-sm md:text-xs text-gray-500">Spontaneous</span>
+                                </div>
+                                <div className="relative h-2 bg-gray-200 rounded-full">
+                                  <motion.div
+                                    initial={{ width: "35%" }}
+                                    whileInView={{ width: "65%" }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2, duration: 0.8 }}
+                                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                                  />
+                                  <motion.div
+                                    initial={{ left: "35%" }}
+                                    whileInView={{ left: "65%" }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
+                                    className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg border-2 border-purple-500"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Preference 2: Energy Conservation Mode */}
+                            <div className="bg-white rounded-xl p-5 shadow-sm">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="flex-1">
+                                  <h3 className="font-semibold text-gray-900 mb-1">Energy Conservation Mode</h3>
+                                  <p className="text-sm md:text-xs text-gray-500">Prioritize low-intensity activities</p>
+                                </div>
+                                <motion.button
+                                  whileTap={{ scale: 0.95 }}
+                                  className={`relative w-12 h-6 rounded-full transition-colors ${
+                                    true ? 'bg-emerald-500' : 'bg-gray-300'
+                                  }`}
+                                >
+                                  <motion.div
+                                    animate={{ x: true ? 24 : 0 }}
+                                    className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
+                                  />
+                                </motion.button>
+                              </div>
+                              <p className="text-sm md:text-xs text-gray-400 mt-2">
+                                {true ? 'Active' : 'Inactive'} • System will filter high-energy activities
+                              </p>
+                            </div>
+                            
+                            {/* Preference 3: Indoor Preference */}
+                            <div className="bg-white rounded-xl p-5 shadow-sm">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="flex-1">
+                                  <h3 className="font-semibold text-gray-900 mb-1">Indoor Preference</h3>
+                                  <p className="text-sm md:text-xs text-gray-500">Weather-triggered auto-adjustment</p>
+                                </div>
+                                <motion.button
+                                  whileTap={{ scale: 0.95 }}
+                                  className={`relative w-12 h-6 rounded-full transition-colors ${
+                                    true ? 'bg-amber-500' : 'bg-gray-300'
+                                  }`}
+                                >
+                                  <motion.div
+                                    animate={{ x: true ? 24 : 0 }}
+                                    className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md"
+                                  />
+                                </motion.button>
+                              </div>
+                              <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <FaCloudSun className="w-4 h-4 text-amber-600" />
+                                  <span className="text-sm md:text-xs font-semibold text-amber-900">Weather Trigger Active</span>
+                                </div>
+                                <p className="text-sm md:text-xs text-amber-700">
+                                  System will automatically suggest indoor alternatives when rain is in the forecast
+                                </p>
+                              </div>
+                            </div>
+                            
+                            {/* Save Button */}
+                            <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                              Save Preferences
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Designer Note */}
+                    <div className="mt-4 max-w-[280px]">
+                      <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
+                        <strong className="text-amber-400 not-italic">System Logic:</strong> Semantic Preference Tuning allows users to configure how the Context Interpreter weights different signals. These preferences generate Decision Vector parameters, enabling personalized orchestration. The system maintains explainability by showing active triggers and their effects in real-time.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Mobile Screen D: The Spontaneous Landing (Arrival Portal) */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
+                      {/* Device Frame */}
+                      <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
+                        {/* Status Bar */}
+                        <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
+                          <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
+                          <div className="flex items-center gap-1">
+                            <div className="w-4 h-2 border border-gray-900 rounded-sm">
+                              <div className="w-3 h-1.5 bg-gray-900 rounded-sm m-0.5"></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* App Content */}
+                        <div className="h-auto bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50">
+                          {/* Flight Info Header */}
+                          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 border-b border-blue-500/30">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="font-mono text-sm md:text-xs tracking-wider">
+                                FLIGHT BA247 • LANDED • LISBON
+                              </div>
+                              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            </div>
+                            <div className="text-sm font-semibold mt-1">Adventure Awaits</div>
+                          </div>
+                          
+                          {/* Main Content */}
+                          <div className="p-6 space-y-6">
+                            {/* Narrative Prompt */}
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.2 }}
+                              className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100"
+                            >
+                              <div className="text-sm md:text-xs font-mono text-blue-600 uppercase tracking-wider mb-3">The Arrival Portal</div>
+                              <div className="text-gray-800 leading-relaxed text-sm space-y-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                <p>
+                                  The baggage carousel is a transition, not a destination. While you wait for your luggage, the city is breathing.
+                                </p>
+                                <p>
+                                  A vintage tram is departing in <strong className="text-blue-600">40 minutes</strong> from the terminal exit—it's the slow way into the Chiado district, passing the bakeries as they pull the first morning <em>pastéis de nata</em> from the ovens.
+                                </p>
+                                <p className="font-semibold text-blue-700">
+                                  Shall we take the scenic route instead of a taxi?
+                                </p>
+                              </div>
+                            </motion.div>
+                            
+                            {/* Action Buttons */}
+                            <div className="space-y-3">
+                              <motion.button
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-cyan-700 transition-all"
+                              >
+                                Initiate Scenic Route
+                              </motion.button>
+                              <motion.button
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5 }}
+                                className="w-full bg-white border-2 border-blue-300 text-blue-700 font-semibold py-3 rounded-xl hover:bg-blue-50 transition-all"
+                              >
+                                Standard Transit (Logistics Only)
+                              </motion.button>
+                            </div>
+                            
+                            {/* System Logic Footer - Scanning Animation */}
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.6 }}
+                              className="bg-slate-900/90 backdrop-blur-sm border border-slate-700 rounded-xl p-4 space-y-3"
+                            >
+                              <div className="text-sm md:text-xs font-mono text-blue-400/80 mb-2">System Logic (The Engine):</div>
+                              
+                              {/* Scanning Indicators */}
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <motion.div
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                    className="w-2 h-2 bg-blue-400 rounded-full"
+                                  />
+                                  <span className="text-sm md:text-xs font-mono text-gray-300">[Syncing Flight API]</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <motion.div
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+                                    className="w-2 h-2 bg-cyan-400 rounded-full"
+                                  />
+                                  <span className="text-sm md:text-xs font-mono text-gray-300">[Local Transit Real-time]</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <motion.div
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
+                                    className="w-2 h-2 bg-blue-400 rounded-full"
+                                  />
+                                  <span className="text-sm md:text-xs font-mono text-gray-300">[Hyper-local POI Density]</span>
+                                </div>
+                              </div>
+                              
+                              {/* Data Points */}
+                              <div className="pt-3 border-t border-slate-700 space-y-1">
+                                <div className="flex items-center justify-between text-sm md:text-xs font-mono">
+                                  <span className="text-gray-400">GATE:</span>
+                                  <span className="text-blue-400">B12</span>
+                                </div>
+                                <div className="flex items-center justify-between text-sm md:text-xs font-mono">
+                                  <span className="text-gray-400">ARRIVAL:</span>
+                                  <span className="text-green-400">+4m early</span>
+                                </div>
+                                <div className="flex items-center justify-between text-sm md:text-xs font-mono">
+                                  <span className="text-gray-400">TAXI QUEUE:</span>
+                                  <span className="text-amber-400">18min wait</span>
+                                </div>
+                              </div>
+                            </motion.div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Designer Note */}
+                    <div className="mt-4 max-w-[280px]">
+                      <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
+                        <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, the system proves its value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
+                      </p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}

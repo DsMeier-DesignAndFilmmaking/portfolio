@@ -176,10 +176,6 @@ export const projectRegistry = {
         phase02: "The Middleware: Semantic Translation module pipes raw GPS data into a fine-tuned LLM for story synthesis.",
         humanProblem: "Travel notifications are usually cold and robotic ('Turn left'), failing to capture the emotional intent of the journey."
       },
-      features: [
-        { title: "Story Cards", desc: "Swipeable narrative recommendations instead of simple map pins." },
-        { title: "Adaptive Voice Tone", desc: "UI copy that shifts tone based on time of day and user mood." }
-      ],
       narrativeData: {
         narrativeThemes: ["Serendipity", "Urban Calm"],
         dailySummary: "You traded the main road for a moment of silence, discovering a hidden park during golden hour. A brief encounter with a fellow traveler added warmth to an otherwise solitary afternoon.",
