@@ -18,7 +18,7 @@ const NarrativeDiagram = () => {
   const pathData = "M 40 10 Q 90 60, 40 110 T 40 210 T 40 310 T 40 410";
 
   return (
-    <div className="relative w-full max-w-md mx-auto h-[500px] flex items-center justify-center py-12">
+    <div className="relative w-full max-w-md mx-auto h-[400px] md:h-[500px] flex items-center justify-center py-8 md:py-12 overflow-visible">
       {/* Background Textural Element: Narrative Infrastructure */}
       <div className="absolute inset-0 flex justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden">
         <span className="text-[10rem] font-bold rotate-90 leading-none">NARRATIVE</span>

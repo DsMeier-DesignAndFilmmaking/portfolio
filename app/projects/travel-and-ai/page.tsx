@@ -399,7 +399,7 @@ export default function AISandboxPage() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
             Travel revealed the friction. Systems design solves it.
             <br /><br />
-            As the sole founder and lead architect, I am building the end-to-end infrastructure for a modular platform that orchestrates integrated intelligence modules to transform real-time context into verifiable local experiences. I personally own the entire product lifecycle—from engineering the core systemic logic and trust-based prompt architectures to the deployment of cross-platform APIs, widgets, and native {"applications."}
+            As the sole founder and lead architect, I am building the end-to-end infrastructure for a modular platform that orchestrates integrated intelligence modules to transform real-time context into verifiable local experiences. 
             </p>
 
             {/* Explore The System with Scroll Indicator */}

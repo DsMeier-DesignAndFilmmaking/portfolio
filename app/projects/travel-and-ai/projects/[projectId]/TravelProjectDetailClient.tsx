@@ -1047,11 +1047,11 @@ const CATDSVisual = () => {
   ];
 
   return (
-    <div className="relative w-full max-w-lg flex flex-col items-center">
+    <div className="relative w-full max-w-lg flex flex-col items-center overflow-visible">
       {/* Background Glow */}
       <div className="absolute inset-0 bg-radial-gradient from-amber-500/10 via-transparent to-transparent opacity-30" />
       
-      <div className="relative w-full bg-white border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] rounded-[2.5rem] p-8 overflow-hidden">
+      <div className="relative w-full bg-white border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] rounded-[2.5rem] p-8 overflow-visible">
         
         {/* Header: System Identity */}
         <div className="flex items-center justify-between mb-10">
@@ -1100,8 +1100,8 @@ const CATDSVisual = () => {
           </div>
 
           {/* Processing Layer */}
-          <div className="bg-slate-900 rounded-2xl p-5 text-white relative">
-            <div className="absolute -top-3 left-6 px-3 py-0.5 bg-cyan-500 rounded-full text-[9px] font-bold uppercase tracking-widest">
+          <div className="bg-slate-900 rounded-2xl p-5 text-white relative overflow-visible">
+            <div className="absolute -top-3 left-6 px-3 py-0.5 bg-cyan-500 rounded-full text-[9px] font-bold uppercase tracking-widest z-10">
               Vector Generation
             </div>
             <div className="space-y-3 font-mono">
@@ -3556,19 +3556,19 @@ const variables: Record<string, { title: string; desc: string }> = {
 
         {isTravelPlanningAssistant && (
          <section 
-         className="bg-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-4rem)] flex items-center pt-24 pb-20" 
+         className="bg-white min-h-auto lg:min-h-[calc(100vh-4rem)] flex lg:items-center pt-24 pb-20 lg:pt-24 lg:pb-20" 
          aria-label="CATDS Project Hero"
        >
-         <div className="container mx-auto px-6">
-           <div className="max-w-7xl mx-auto">
-             <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+         <div className="container mx-auto px-6 overflow-visible">
+           <div className="max-w-7xl mx-auto overflow-visible">
+             <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center overflow-visible">
                
                {/* Left Content Column */}
                <motion.div
                  initial={{ opacity: 0, y: 20 }}
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.8 }}
-                 className="order-1"
+                 className="order-1 overflow-visible"
                >
                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                    Context-Aware Travel Decision System
@@ -3665,9 +3665,11 @@ const variables: Record<string, { title: string; desc: string }> = {
                  initial={{ opacity: 0, scale: 0.95 }}
                  animate={{ opacity: 1, scale: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="order-2 mt-16 lg:mt-0 lg:pt-[73px] w-full flex justify-center lg:flex lg:items-center lg:justify-end"
+                 className="order-2 mt-16 lg:mt-0 lg:pt-[73px] w-full flex justify-center lg:flex lg:items-center lg:justify-end overflow-visible"
                >
-                 <CATDSVisual />
+                 <div className="w-full overflow-visible">
+                   <CATDSVisual />
+                 </div>
                </motion.div>
        
              </div>
@@ -5399,19 +5401,19 @@ const variables: Record<string, { title: string; desc: string }> = {
           {/* [01] The Thesis: Narrative Architecture */}
           <section 
             id="narrative-thesis" 
-            className="bg-white min-h-[80vh] flex items-center pt-24 pb-20 w-full overflow-x-hidden" 
+            className="bg-white min-h-auto lg:min-h-[80vh] flex lg:items-center pt-24 pb-20 w-full overflow-x-hidden overflow-visible" 
             aria-label="Narrative Architecture Hero"
           >
-            <div className="container mx-auto px-4 md:px-6 w-full">
-              <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
+            <div className="container mx-auto px-4 md:px-6 w-full overflow-visible">
+              <div className="max-w-7xl mx-auto overflow-visible">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center overflow-visible">
                   
                   {/* Left Content Column */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="order-1"
+                    className="order-1 overflow-visible"
                   >
                     <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight break-words hyphens-auto" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                       Narrative Architecture: Designing for How a Place Feels Over Time
@@ -5508,11 +5510,13 @@ const variables: Record<string, { title: string; desc: string }> = {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:flex lg:items-center lg:justify-end"
+                    className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:flex lg:items-center lg:justify-end overflow-visible"
                   >
                     {/* Narrative Diagram visualization */}
-                    <div className="w-full max-w-full">
-                      <NarrativeDiagram />
+                    <div className="w-full max-w-full overflow-visible">
+                      <div className="scale-90 md:scale-100 origin-center">
+                        <NarrativeDiagram />
+                      </div>
                     </div>
                   </motion.div>
         
@@ -10933,93 +10937,188 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
 
-      {/* Project Navigation */}
-      <ProjectNavigation currentProjectId={projectId} />
-
-      {/* Product Surfaces (The Glass) Navigation - Always show all 4 on every project page */}
-      <section className="py-8 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                Product Surfaces (The "Glass")
-              </h3>
-              
-              {/* Product Surface Links - All 4 always shown */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Context-Aware Decision System */}
-                <Link
-                  href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
-                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+      {/* Conditional ordering: For context-aware-travel-decision-system, show Product Surfaces first, then Project Navigation */}
+      {projectId === 'context-aware-travel-decision-system' ? (
+        <>
+          {/* Product Surfaces (The Glass) Navigation - Always show all 4 on every project page */}
+          <section className="py-8 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-6">
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                      <Smartphone className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                      Context-Aware Decision System
-                    </span>
-                  </div>
-                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
-                </Link>
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Product Surfaces (The "Glass")
+                  </h3>
+                  
+                  {/* Product Surface Links - All 4 always shown */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Context-Aware Decision System */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Context-Aware Decision System
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
 
-                {/* Social Opportunity Matching */}
-                <Link
-                  href="/projects/travel-and-ai/projects/social-opportunity-matching-module"
-                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                      <Smartphone className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                      Social Opportunity Matching
-                    </span>
-                  </div>
-                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
-                </Link>
+                    {/* Social Opportunity Matching */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-opportunity-matching-module"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Opportunity Matching
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
 
-                {/* Social Graph Network */}
-                <Link
-                  href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
-                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                      <Smartphone className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                      Social Graph Network
-                    </span>
-                  </div>
-                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
-                </Link>
+                    {/* Social Graph Network */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Graph Network
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
 
-                {/* Narrative Experience Generator */}
-                <Link
-                  href="/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
-                  className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                      <Smartphone className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
-                      Narrative Experience Generator
-                    </span>
+                    {/* Narrative Experience Generator */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Narrative Experience Generator
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
                   </div>
-                  <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
-                </Link>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+
+          {/* Project Navigation */}
+          <ProjectNavigation currentProjectId={projectId} />
+        </>
+      ) : (
+        <>
+          {/* Project Navigation */}
+          <ProjectNavigation currentProjectId={projectId} />
+
+          {/* Product Surfaces (The Glass) Navigation - Always show all 4 on every project page */}
+          <section className="py-8 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-6">
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    Product Surfaces (The "Glass")
+                  </h3>
+                  
+                  {/* Product Surface Links - All 4 always shown */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Context-Aware Decision System */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Context-Aware Decision System
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Social Opportunity Matching */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-opportunity-matching-module"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Opportunity Matching
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Social Graph Network */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Graph Network
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Narrative Experience Generator */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Narrative Experience Generator
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Product Surface Navigation Footer - Only for logic pages */}
       {projectId.endsWith('-logic') && (

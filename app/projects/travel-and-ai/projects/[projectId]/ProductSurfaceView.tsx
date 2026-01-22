@@ -1623,410 +1623,115 @@ const SocialRadarVisual = () => (
 
   // Narrative-Driven Travel Experience - High-Fidelity Mobile Mockup
   const StoryCardVisual = () => {
-    const [isMounted, setIsMounted] = useState(false);
-    const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
-    const [toneMode, setToneMode] = useState<'Serene' | 'Energetic' | 'Curious'>('Serene');
-    
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
-
-    // Story Cards Data
-    const storyCards = [
-      {
-        id: 1,
-        title: "Hidden Wine Window",
-        image: "🍷",
-        narrative: "The sun is beginning to set over the Arno. If you duck into this alleyway now, you'll catch the golden hour at a hidden wine window before the dinner rush begins.",
-        location: "Florence, Italy",
-        timeContext: "Evening"
-      },
-      {
-        id: 2,
-        title: "Morning Market Serenity",
-        image: "🌅",
-        narrative: "The morning market is at its quietest right now—just the vendors setting up. Perfect for a slow walk and fresh pastries without the crowds.",
-        location: "Barcelona, Spain",
-        timeContext: "Morning"
-      },
-      {
-        id: 3,
-        title: "Secret Garden Courtyard",
-        image: "🌿",
-        narrative: "Behind this unassuming door lies a courtyard that only locals know. The wisteria is in bloom, and there's a bench that catches the afternoon light perfectly.",
-        location: "Kyoto, Japan",
-        timeContext: "Afternoon"
-      }
-    ];
-
-    const currentStory = storyCards[currentStoryIndex];
-
-    // Adaptive Voice Wave Component
-    const VoiceWave = () => {
-      return (
-        <div className="flex items-center justify-center gap-1.5 py-3">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              className="w-1 rounded-full"
-              style={{ 
-                height: '20px',
-                backgroundColor: 'rgba(134, 239, 172, 0.6)', // sage-300 equivalent
-              }}
-              animate={{
-                height: ['8px', '24px', '8px'],
-                opacity: [0.4, 0.8, 0.4],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-      );
-    };
-
-    // Widget/Smartwatch View Component
-    const WidgetView = ({ mode }: { mode: 'widget' | 'watch' }) => {
-      const isWatch = mode === 'watch';
-      const toneColor = toneMode === 'Serene' ? 'rgba(134, 239, 172, 1)' : toneMode === 'Energetic' ? 'rgba(251, 191, 36, 1)' : 'rgba(148, 163, 184, 1)';
-      
-      if (isWatch) {
-        // Watch Card: Circular/Square with centered content
-        return (
-          <motion.div
-            layout
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-[220px] aspect-square rounded-[60px] shadow-lg overflow-hidden relative z-10 backdrop-blur-xl"
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(187, 247, 208, 0.5)',
-              transformOrigin: 'top center',
-            }}
-          >
-            {/* Text Container with Safe Area Padding */}
-            <div className="w-full h-full flex flex-col items-center justify-center text-center px-6 py-10">
-              {/* Micro-Header */}
-              <div className="mb-2 flex-shrink-0">
-                <span className="text-[8px] font-sans font-bold text-slate-500 uppercase tracking-[0.15em]">
-                  MOMENT
-                </span>
-              </div>
-
-              {/* Tone Mode Indicator */}
-              <div className="flex items-center gap-2 mb-3 flex-shrink-0">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: toneColor }} />
-                <span className="text-[8px] font-sans font-medium text-slate-600 uppercase tracking-wider">
-                  {toneMode}
-                </span>
-              </div>
-
-              {/* Narrative Story Text - Cradled in Safe Area */}
-              <div className="flex-1 flex items-center justify-center max-w-full flex-shrink-0">
-                <p 
-                  className="text-sm font-medium font-serif text-slate-800 leading-tight max-w-full"
-                  style={{ 
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 4,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}
-                >
-                  {currentStory.narrative}
-                </p>
-              </div>
-
-              {/* Location Footer */}
-              <div className="text-[9px] font-sans text-slate-500 mt-auto pt-2 flex-shrink-0">
-                {currentStory.location}
-              </div>
-            </div>
-          </motion.div>
-        );
-      }
-
-      // Widget Card: Rectangular with editorial padding
-      return (
-        <motion.div
-          layout
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="w-[350px] aspect-[1.5/1] rounded-2xl shadow-lg overflow-hidden relative z-10 backdrop-blur-xl"
-          style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(187, 247, 208, 0.5)',
-            transformOrigin: 'top center',
-          }}
-        >
-          {/* Internal Layout with justify-between */}
-          <div className="w-full h-full flex flex-col justify-between">
-            {/* Text Content Container with Editorial Padding */}
-            <div className="p-8 flex flex-col flex-shrink-0 max-w-full">
-              {/* Micro-Header */}
-              <div className="mb-2">
-                <span className="text-[9px] font-sans font-bold text-slate-500 uppercase tracking-[0.15em]">
-                  SUGGESTION
-                </span>
-              </div>
-
-              {/* Tone Mode Indicator */}
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: toneColor }} />
-                <span className="text-[9px] font-sans font-medium text-slate-600 uppercase tracking-wider">
-                  {toneMode}
-                </span>
-              </div>
-
-              {/* Narrative Story Text - Cradled with Editorial Padding */}
-              <div className="flex-shrink-0 max-w-full">
-                <p 
-                  className="text-lg font-serif text-slate-800 leading-snug max-w-full"
-                  style={{ 
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 5,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}
-                >
-                  {currentStory.narrative}
-                </p>
-              </div>
-            </div>
-
-            {/* Location Footer */}
-            <div className="px-8 pb-8 text-[10px] font-sans text-slate-500 flex-shrink-0">
-              {currentStory.location}
-            </div>
-          </div>
-        </motion.div>
-      );
-    };
-
-    // Mobile View Component
-    const MobileView = () => {
-      return (
-        <motion.div
-          layout
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="relative mx-auto max-h-full"
-          style={{ 
-            width: '390px', 
-            maxWidth: '100%',
-            transformOrigin: 'top center',
-          }}
-        >
-          {/* Mobile Device Frame */}
-          <div 
-            className="relative bg-slate-200 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-300"
-            style={{ 
-              maxHeight: '100%',
-              objectFit: 'contain',
-            }}
-          >
+    return (
+      <div className="w-full flex items-center justify-center">
+        {/* Phone Frame Container */}
+        <div className="relative w-full max-w-[280px] md:max-w-[300px] aspect-[9/19.5] mx-auto">
+          {/* Phone Frame - Rounded corners, border, shadow */}
+          <div className="relative bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl border-2 border-slate-700 h-full">
             {/* Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-200 rounded-b-2xl z-30" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 bg-slate-800 rounded-b-xl z-30" />
             
             {/* Screen Container */}
             <div 
-              className="relative rounded-[2.5rem] overflow-hidden"
-              style={{ 
-                width: '100%', 
-                height: '844px',
-                maxHeight: '100%',
-                background: 'linear-gradient(to bottom, #fefdf8, rgba(240, 253, 244, 0.3), #fefdf8)',
-              }}
+              className="relative rounded-[2rem] overflow-hidden h-full bg-gradient-to-b from-slate-50 via-white to-slate-50"
             >
-            {/* Main Content Area */}
-            <div className="h-full flex flex-col px-6 pt-16 pb-8">
-              {/* Concierge Card - Main Focus */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="flex-1 flex flex-col justify-center mb-8"
-              >
-                <div 
-                  className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden"
-                  style={{
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-                    border: '1px solid rgba(187, 247, 208, 0.5)',
-                  }}
+              {/* Screen Content */}
+              <div className="h-full flex flex-col px-5 pt-12 pb-6">
+                
+                {/* Spontaneity Indicator - Top Status Bar */}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="mb-6"
                 >
-                  {/* Tone Mode Indicator */}
-                  <div className="flex items-center gap-2 mb-6">
-                    <div 
-                      className="w-2.5 h-2.5 rounded-full"
-                      style={{
-                        backgroundColor: toneMode === 'Serene' ? 'rgba(134, 239, 172, 1)' : 
-                                        toneMode === 'Energetic' ? 'rgba(251, 191, 36, 1)' : 
-                                        'rgba(148, 163, 184, 1)',
-                      }}
-                    />
-                    <span className="text-xs font-sans font-semibold text-slate-600 uppercase tracking-wider">
-                      {toneMode} Mode
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50/80 backdrop-blur-sm rounded-full border border-emerald-200/50">
+                    <div className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </div>
+                    <span className="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider">
+                      Spontaneity Engine Active
                     </span>
                   </div>
+                </motion.div>
 
-                  {/* Narrative Story */}
-                  <p 
-                    className="text-xl font-serif text-slate-900 leading-relaxed mb-6"
-                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
-                  >
-                    {currentStory.narrative}
-                  </p>
-
-                  {/* Location & Time Context */}
+                {/* Concierge Card - Main Narrative */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="flex-1 flex flex-col justify-center mb-6"
+                >
                   <div 
-                    className="flex items-center justify-between pt-4"
-                    style={{ borderTop: '1px solid rgba(240, 253, 244, 1)' }}
+                    className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-slate-200/50"
+                    style={{
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                    }}
                   >
-                    <span className="text-sm font-sans font-medium text-slate-600">
-                      {currentStory.location}
-                    </span>
-                    <span className="text-xs font-sans text-slate-400">
-                      {currentStory.timeContext}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
+                    {/* Local Friend Persona Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-md">
+                        <span className="text-white text-lg">👤</span>
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900">Local Friend</div>
+                        <div className="text-[10px] text-slate-500">Rome, Trastevere</div>
+                      </div>
+                    </div>
 
-              {/* Swipeable Story Deck */}
-              <div className="relative">
-                <div className="flex items-center gap-3 overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide touch-pan-x overscroll-x-contain" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
-                  {storyCards.map((card, index) => (
-                    <motion.div
-                      key={card.id}
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: index === currentStoryIndex ? 1 : 0.95, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                      onClick={() => setCurrentStoryIndex(index)}
-                      className={`flex-shrink-0 w-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all touch-pan-x select-none ${
-                        index === currentStoryIndex ? 'ring-2' : 'ring-1 ring-slate-200'
-                      }`}
-                      style={{
-                        scrollSnapAlign: 'start' as any,
-                        ...(index === currentStoryIndex ? { 
-                          boxShadow: '0 0 0 2px rgba(134, 239, 172, 1), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                        } : {})
+                    {/* Narrative Text - Editorial Style */}
+                    <p 
+                      className="text-base leading-relaxed text-slate-800 mb-4"
+                      style={{ 
+                        fontFamily: "'Georgia', 'Times New Roman', serif",
+                        lineHeight: '1.6',
+                        letterSpacing: '0.01em',
                       }}
                     >
-                      {/* Story Card Image */}
-                      <div 
-                        className="h-40 flex items-center justify-center relative"
-                        style={{
-                          background: 'linear-gradient(to bottom right, rgba(240, 253, 244, 1), rgba(254, 253, 248, 1))',
-                        }}
-                      >
-                        <div className="text-6xl">{card.image}</div>
-                        {/* Gradient Overlay for Text Readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h4 className="text-lg font-serif font-bold text-white mb-1" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                            {card.title}
-                          </h4>
-                          <p className="text-xs font-sans text-white/90">{card.location}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+                      The evening sun is hitting the Trastevere rooftops perfectly right now. Skip the main road and take the alley behind Santa Maria—there's a small wine bar there that just opened its doors.
+                    </p>
 
-              {/* Adaptive Voice Interface */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="mt-6 bg-white/50 backdrop-blur-md rounded-2xl p-4"
-                style={{
-                  border: '1px solid rgba(187, 247, 208, 0.5)',
-                }}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-sans font-medium text-slate-600">Voice Assistant</span>
-                  <Mic className="w-4 h-4" style={{ color: 'rgba(134, 239, 172, 1)' }} />
-                </div>
-                <VoiceWave />
-              </motion.div>
+                    {/* Subtle Divider */}
+                    <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                  </div>
+                </motion.div>
+
+                {/* Semantic Receipt - Travel Legacy */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="bg-slate-900/95 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-1 h-4 bg-emerald-400 rounded-full" />
+                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                      Travel Legacy
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-300 font-medium">Hidden Gems Discovered</span>
+                      <span className="text-sm text-white font-bold">3</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-300 font-medium">Connections Made</span>
+                      <span className="text-sm text-white font-bold">1</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                      <span className="text-xs text-slate-400">Emotional Arc</span>
+                      <span className="text-xs text-emerald-400 font-semibold">Serene → Discovery</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
             </div>
           </div>
         </div>
-      </motion.div>
-    );
-    };
-
-    if (!isMounted) {
-      return (
-        <div className="w-full h-[800px] flex items-center justify-center">
-          <div className="relative mx-auto" style={{ width: '390px', maxWidth: '100%', height: '844px' }}>
-            <div className="relative bg-slate-200 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-300">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-200 rounded-b-2xl z-30" />
-              <div className="relative rounded-[2.5rem] overflow-hidden" style={{ width: '100%', height: '844px', backgroundColor: '#fefdf8' }} />
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="w-full relative">
-        {/* Mobile View Container */}
-        <motion.div 
-          className="w-full relative"
-          style={{ 
-            minHeight: '850px',
-            height: 'auto',
-            minWidth: '390px',
-          }}
-        >
-          {/* Background Blob */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
-              style={{
-                background: 'radial-gradient(circle, rgba(134, 239, 172, 0.3), rgba(240, 253, 244, 0.1))',
-              }}
-            />
-          </motion.div>
-
-          {/* Content Container - Flex Column with Top Alignment */}
-          <div className="w-full min-h-[850px] flex flex-col items-center justify-start pt-8 relative z-10">
-            <motion.div
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-full flex items-start justify-center pb-8"
-              style={{ transformOrigin: 'top center' }}
-            >
-              <div className="w-full max-w-full flex items-center justify-center" style={{ maxHeight: '100%' }}>
-                <div style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}>
-                  <MobileView />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
     );
   };
@@ -2476,7 +2181,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       </nav>
 
      {/* 2. Hero */}
-     <header className="max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row gap-16 items-center min-h-[80vh]">
+     <header className={`max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-24 flex flex-col lg:flex-row gap-16 ${projectId === 'social-graph-driven-travel-network' ? 'items-start lg:items-center' : 'items-center'} min-h-[80vh] ${projectId === 'social-graph-driven-travel-network' ? 'md:min-h-0' : 'md:min-h-[calc(100vh-5rem)]'}`}>
         {/* Left Column - Sticky Text Content */}
         <div 
           className="static lg:sticky lg:top-24 mb-8 lg:mb-0"
@@ -2510,7 +2215,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
         {/* Dynamic Mockup Container - Right Side */}
         <div 
-          className={`aspect-[4/5] md:aspect-square rounded-[32px] md:rounded-[48px] flex flex-col items-center justify-center relative overflow-hidden md:overflow-visible group mx-auto lg:mx-0 w-full max-w-lg lg:max-w-full box-border ${
+          className={`min-h-[500px] ${projectId === 'narrative-driven-travel-experience-generator' ? 'md:h-auto md:max-h-[calc(100vh-14rem)]' : projectId === 'social-graph-driven-travel-network' ? 'h-auto' : 'md:aspect-square md:max-h-[calc(80vh-6rem)]'} rounded-[32px] md:rounded-[48px] flex flex-col items-center ${projectId === 'social-graph-driven-travel-network' ? 'justify-start' : 'justify-center'} relative overflow-visible group mx-auto lg:mx-0 w-full ${projectId === 'narrative-driven-travel-experience-generator' ? 'max-w-full' : 'max-w-lg'} lg:max-w-full box-border py-6 md:py-6 ${
             projectId === 'social-graph-driven-travel-network' || projectId === 'narrative-driven-travel-experience-generator' ? '' : 'bg-slate-100 shadow-2xl border border-slate-200'
           }`}
         >
@@ -2524,12 +2229,16 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
             <HeatmapOverlay environment={(data as any).systemSpecs.environment} />
           )}
           
-          <div className="z-10 relative">
+          <div className={`z-10 relative w-full flex ${projectId === 'social-graph-driven-travel-network' ? 'items-start' : 'items-center'} justify-center overflow-visible`}>
               {/* Project Switcher */}
               {projectId === 'context-aware-travel-decision-system' && <DetourVisual />}
               {projectId === 'social-opportunity-matching-module' && <ProximityRevealLens />}
               {projectId === 'social-graph-driven-travel-network' && <EncryptedMatchPulseMobileMockup />}
-              {projectId === 'narrative-driven-travel-experience-generator' && <StoryCardVisual />}
+              {projectId === 'narrative-driven-travel-experience-generator' && (
+                <div className="w-full flex items-center justify-center overflow-visible">
+                  <StoryCardVisual />
+                </div>
+              )}
               
               {/* ✅ FIXED FALLBACK: Only shows if the ID is NOT one of our custom visuals */}
               {!['context-aware-travel-decision-system', 
