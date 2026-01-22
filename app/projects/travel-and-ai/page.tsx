@@ -61,8 +61,8 @@ export default function AISandboxPage() {
     const deltaX = Math.abs(e.touches[0].clientX - scrollIntentRef.current.startX);
     const deltaY = Math.abs(e.touches[0].clientY - scrollIntentRef.current.startY);
     
-    // If horizontal movement is greater than vertical, it's a scroll
-    if (deltaX > deltaY && deltaX > 10) {
+    // If horizontal movement > vertical, or > 8px horizontal → treat as scroll (iOS-safe threshold)
+    if (deltaX > deltaY || deltaX > 8) {
       scrollIntentRef.current.isScrolling = true;
     }
   };
@@ -477,7 +477,7 @@ export default function AISandboxPage() {
           </motion.div>
 
           <div 
-            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               position: 'relative',
@@ -491,7 +491,7 @@ export default function AISandboxPage() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               drag={false}
-              className="group relative flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
+              className="travel-ai-h-scroll-card group relative flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 WebkitTransform: 'translate3d(0, 0, 0)',
                 transform: 'translate3d(0, 0, 0)',
@@ -539,7 +539,7 @@ export default function AISandboxPage() {
                     
                     <Link 
                       href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
-                      className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
+                      className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
                       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                       onTouchStart={handleLinkTouchStart}
                       onTouchMove={handleLinkTouchMove}
@@ -574,7 +574,7 @@ export default function AISandboxPage() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               drag={false}
-              className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
+              className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
               style={{
                 // 1. Force a new stacking context
                 isolation: 'isolate',
@@ -605,7 +605,7 @@ export default function AISandboxPage() {
               <div className="flex items-center justify-end mt-auto w-full text-right">
                 <Link 
                   href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
-                  className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
+                  className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
                   style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                   onTouchStart={handleLinkTouchStart}
                   onTouchMove={handleLinkTouchMove}
@@ -654,7 +654,7 @@ export default function AISandboxPage() {
 
           <div 
             ref={intelligenceModulesContainerRef}
-            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               position: 'relative',
@@ -697,7 +697,8 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
+      drag={false}
+      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -722,7 +723,7 @@ export default function AISandboxPage() {
         <div className="flex justify-end items-center mt-auto w-full text-right">
           <Link 
             href={system.link}
-            className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300"
+            className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
             onTouchStart={handleLinkTouchStart}
             onTouchMove={handleLinkTouchMove}
@@ -786,7 +787,7 @@ export default function AISandboxPage() {
 
           <div 
             ref={productSurfacesContainerRef}
-            className="flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               position: 'relative',
@@ -829,7 +830,8 @@ export default function AISandboxPage() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
+      drag={false}
+      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -854,7 +856,7 @@ export default function AISandboxPage() {
         <div className="flex justify-end items-center mt-auto w-full text-right">
           <Link 
             href={system.link}
-            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300"
+            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300 travel-ai-h-scroll-link"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
             onTouchStart={handleLinkTouchStart}
             onTouchMove={handleLinkTouchMove}

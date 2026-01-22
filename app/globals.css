@@ -103,6 +103,16 @@ section *::-webkit-scrollbar,
   -webkit-overflow-scrolling: auto !important;
 }
 
+/* Override: travel-and-ai horizontal scroll containers and cards must allow horizontal pan */
+.travel-ai-h-scroll,
+.travel-ai-h-scroll .rounded-2xl,
+.travel-ai-h-scroll .rounded-\[14px\],
+.travel-ai-h-scroll .rounded-xl,
+.travel-ai-h-scroll-card,
+.travel-ai-h-scroll-link {
+  touch-action: pan-x pan-y !important;
+}
+
 /* Add a specific override to ensure Image containers ALWAYS clip */
 .isolate-clip {
   overflow: hidden !important;
