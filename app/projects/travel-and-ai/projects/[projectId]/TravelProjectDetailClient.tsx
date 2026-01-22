@@ -51,7 +51,8 @@ import PivotAnimation from '../../../../../components/PivotAnimation';
 import TrustSignalDemo from '../../../../../components/LivePulseDemo';
 import TrustPulseUI from '../../../../../components/TrustPulseUI';
 import SystemOrchestrator from '../../SystemOrchestrator';
-import { AlertCircle, CheckCircle2, UserCircle2, UserCheck, Link2, Terminal, Check, RefreshCw, CloudRain, BatteryLow, Coffee, MessageCircle, ShieldCheck, Target, ArrowRight, Shield, Share2, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, Fingerprint, Eye } from 'lucide-react';
+import ProjectNavigation from '../../../../../components/ProjectNavigation';
+import { AlertCircle, CheckCircle2, UserCircle2, UserCheck, Link2, Terminal, Check, RefreshCw, CloudRain, BatteryLow, Coffee, MessageCircle, ShieldCheck, Target, ArrowRight, Shield, Share2, CheckCircle, Sparkles, MapPin, Clock, Utensils, Navigation, Compass, BookOpen, Zap, Cpu, Network, Database, Layers, Activity, Users, Globe, TrendingUp, Brain, GitBranch, Fingerprint, Eye, Monitor, Smartphone } from 'lucide-react';
 interface TravelProjectDetailClientProps {
   project: any;
   projectId: string;
@@ -1290,7 +1291,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     : isCulturalContextEngine
     ? [
         // Trust Framework page sections - order matches actual page structure
-        { id: 'designs-strategy', label: 'The Trust & Authenticity Crisis' },
+        { id: 'design-exploration', label: 'Observed Travel Frictions' },
         { id: 'research-audience', label: 'Architectural Constraints' },
         { id: 'architecture', label: 'Architecture: Powering Spontaneity through Veracity Logic' },
         { id: 'wireframes-ui', label: 'Design Evolution' },
@@ -1536,7 +1537,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               <div className="space-y-6 mb-8 max-w-2xl">
                 {/* Intro */}
                 <p className="text-[16px] sm:text-[14px] text-gray-100 dark:text-gray-900 leading-relaxed tracking-wide">
-                  This system orchestrates complex middleware—from Private-Certified trust to context-aware logistics—into a seamless experience. Explore the cards to see how the engine adapts to human needs.
+                This architecture connects private trust frameworks with environmental logic to simplify how we navigate the unknown. Explore the functional modules to understand how the engine balances systemic safety with the freedom of spontaneous discovery.
                 </p>
 
                 {/* The Challenge */}
@@ -2641,7 +2642,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   
   {/* Body: mx-auto is required to center the max-width paragraph */}
   <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto [text-wrap:pretty]">
-    By engineering moments of action directly into the logic layer, we ensure 
+    By engineering moments of action directly into the logic layer, I ensured 
     that the interface serves as a direct-drive mechanism for user intent—where 
     every interaction is an outcome, not an {"item\u00A0on\u00A0a\u00A0list."}
   </p>
@@ -2760,7 +2761,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
           {/* Build & Iteration Section */}
-          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+          <section id="prototyping-ai" className="py-20 bg-black">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -3001,8 +3002,8 @@ const variables: Record<string, { title: string; desc: string }> = {
   <div>
     <h4 className="text-white font-semibold mb-2">AI Intelligence Layer</h4>
     <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-      Owning the prompt engineering and context-weighting logic. We use OpenAI/LangChain 
-      for heavy lifting, but the system filters responses to ensure contextual protocols.
+      Owning the prompt engineering and context-weighting logic. The system uses OpenAI/LangChain 
+      for heavy lifting, but filters responses to ensure contextual protocols.
     </p>
   </div>
   
@@ -3186,7 +3187,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     {
       label: "Intelligence",
       title: "Confidence Thresholds",
-      desc: "On-device ML models are still being tuned. We currently use a high-pass filter to prevent 'hallucinated' suggestions, which can sometimes result in conservative system responsiveness.",
+      desc: "On-device ML models are still being tuned. The system currently uses a high-pass filter to prevent 'hallucinated' suggestions, which can sometimes result in conservative system responsiveness.",
     },
     {
       label: "Hardware",
@@ -3295,7 +3296,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="text-center mb-16">
+                <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold mb-6 text-white">
                     Launch & Testing
                   </h2>
@@ -3303,7 +3304,6 @@ const variables: Record<string, { title: string; desc: string }> = {
                 
                 <div className="space-y-8">
                   <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-white">Launch Strategy</h3>
                     <p className="text-gray-300 mb-4">
                       Initial testing will be conducted through a limited closed beta designed to observe system behavior across varied travel contexts and connectivity conditions.
                     </p>
@@ -3370,7 +3370,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </div>
           <h3 className="text-xl font-bold text-gray-900">Context &gt; Content</h3>
           <p className="text-gray-600 leading-relaxed">
-            A "perfect" recommendation delivered at the wrong moment is a system failure. We prioritize <strong className="text-gray-900 font-semibold">temporal and physical proximity</strong> over absolute content quality to reduce the friction between "seeing" and "doing."
+            A "perfect" recommendation delivered at the wrong moment is a system failure. I prioritized <strong className="text-gray-900 font-semibold">temporal and physical proximity</strong> over absolute content quality to reduce the friction between "seeing" and "doing."
           </p>
         </div>
 
@@ -4082,9 +4082,9 @@ const variables: Record<string, { title: string; desc: string }> = {
           </div>
         </section>
 
-        <section className="py-24 bg-white" id="design-evolution-logic">
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
+        <section className="bg-white py-24 border-t border-gray-50 flex-shrink-0" id="design-evolution-logic">
+          <div className="container mx-auto px-6 flex-shrink-0">
+            <div className="max-w-7xl mx-auto flex-shrink-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -4384,88 +4384,92 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </p>
               </div>
 
-              {/* Thesis vs. Implementation Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* 4-Learning Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
                 
                 {/* Learning 01: Architecture over UI */}
-                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-amber-200 transition-all">
-                  <div className="mb-8">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
-                      <Cpu className="text-amber-600 w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Architecture over UI</h3>
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                    <Cpu className="text-amber-600 w-6 h-6" />
                   </div>
-                  
-                  <div className="flex-1 space-y-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      Spontaneous connection requires system-level decisions that minimize cognitive load before the user even sees a notification.
-                    </p>
-                    <div className="p-4 bg-white/60 rounded-xl border border-white">
-                      <p className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">Implementation</p>
-                      <p className="text-xs text-gray-800 italic">Background middleware processes proximity, affinity, and temporal signals to surface opportunities only when all conditions align—eliminating notification noise.</p>
-                    </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Learning 01</span>
+                    <h3 className="font-bold text-gray-900 italic">Architecture over UI</h3>
                   </div>
-                </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    Spontaneous connection requires system-level decisions that minimize cognitive load before the user even sees a notification.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50">
+                    <p className="text-[11px] font-bold text-amber-700 uppercase tracking-widest mb-1">Implementation</p>
+                    <p className="text-xs text-gray-600 leading-relaxed italic">Background middleware processes proximity, affinity, and temporal signals to surface opportunities only when all conditions align—eliminating notification noise.</p>
+                  </div>
+                </motion.div>
 
                 {/* Learning 02: Connective Tissue */}
-                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-cyan-200 transition-all">
-                  <div className="mb-8">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
-                      <Link2 className="text-cyan-600 w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Connective Tissue</h3>
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+                    <Link2 className="text-cyan-600 w-6 h-6" />
                   </div>
-                  
-                  <div className="flex-1 space-y-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      The engine's value is in its headless integration into existing tools, not as a standalone destination.
-                    </p>
-                    <div className="p-4 bg-white/60 rounded-xl border border-white">
-                      <p className="text-[11px] font-bold text-cyan-700 uppercase tracking-widest mb-1">Implementation</p>
-                      <p className="text-xs text-gray-800 italic">REST APIs and webhooks enable travel platforms to embed relational matching capabilities without building custom infrastructure from scratch.</p>
-                    </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Learning 02</span>
+                    <h3 className="font-bold text-gray-900 italic">Connective Tissue</h3>
                   </div>
-                </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    The engine's value is in its headless integration into existing tools, not as a standalone destination.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50">
+                    <p className="text-[11px] font-bold text-cyan-700 uppercase tracking-widest mb-1">Implementation</p>
+                    <p className="text-xs text-gray-600 leading-relaxed italic">REST APIs and webhooks enable travel platforms to embed relational matching capabilities without building custom infrastructure from scratch.</p>
+                  </div>
+                </motion.div>
 
                 {/* Learning 03: The 15-Minute Threshold */}
-                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-emerald-200 transition-all">
-                  <div className="mb-8">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
-                      <Clock className="text-emerald-600 w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">The 15-Minute Threshold</h3>
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 border border-emerald-100">
+                    <Clock className="text-emerald-600 w-6 h-6" />
                   </div>
-                  
-                  <div className="flex-1 space-y-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      15 minutes is identified as the optimal commitment window to bypass planning friction.
-                    </p>
-                    <div className="p-4 bg-white/60 rounded-xl border border-white">
-                      <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-widest mb-1">Implementation</p>
-                      <p className="text-xs text-gray-800 italic">Temporal Solver analyzes movement patterns and calendar gaps to identify overlapping 15-minute windows where spontaneous connections are genuinely feasible.</p>
-                    </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Learning 03</span>
+                    <h3 className="font-bold text-gray-900 italic">The 15-Minute Threshold</h3>
                   </div>
-                </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    15 minutes is identified as the optimal commitment window to bypass planning friction.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50">
+                    <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-widest mb-1">Implementation</p>
+                    <p className="text-xs text-gray-600 leading-relaxed italic">Temporal Solver analyzes movement patterns and calendar gaps to identify overlapping 15-minute windows where spontaneous connections are genuinely feasible.</p>
+                  </div>
+                </motion.div>
 
                 {/* Learning 04: Privacy Sovereignty */}
-                <div className="flex flex-col h-full bg-slate-50 rounded-[2.5rem] p-10 border border-transparent hover:border-purple-200 transition-all">
-                  <div className="mb-8">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
-                      <Shield className="text-purple-600 w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Privacy Sovereignty</h3>
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
+                    <Shield className="text-purple-600 w-6 h-6" />
                   </div>
-                  
-                  <div className="flex-1 space-y-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      Balancing discovery with encrypted location hashing to ensure trust is a system default.
-                    </p>
-                    <div className="p-4 bg-white/60 rounded-xl border border-white">
-                      <p className="text-[11px] font-bold text-purple-700 uppercase tracking-widest mb-1">Implementation</p>
-                      <p className="text-xs text-gray-800 italic">Real-time monitoring within a 500m threshold using encrypted hashing, with opt-in matching and granular user controls over discovery preferences.</p>
-                    </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-0.5 rounded">Learning 04</span>
+                    <h3 className="font-bold text-gray-900 italic">Privacy Sovereignty</h3>
                   </div>
-                </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    Balancing discovery with encrypted location hashing to ensure trust is a system default.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50">
+                    <p className="text-[11px] font-bold text-purple-700 uppercase tracking-widest mb-1">Implementation</p>
+                    <p className="text-xs text-gray-600 leading-relaxed italic">Real-time monitoring within a 500m threshold using encrypted hashing, with opt-in matching and granular user controls over discovery preferences.</p>
+                  </div>
+                </motion.div>
 
               </div>
 
@@ -4482,10 +4486,16 @@ const variables: Record<string, { title: string; desc: string }> = {
                       Social logic is a function of friction reduction, not feature density.
                     </h4>
                     <p className="text-slate-400 leading-relaxed max-w-2xl">
-                      By building relational middleware that handles proximity, affinity, and temporal calculations at the system level, we eliminate the cognitive overhead that prevents spontaneous connection. The engine's value lies in reducing friction—not adding features.
+                      By building relational middleware that handles proximity, affinity, and temporal calculations at the system level, the architecture eliminates the cognitive overhead that prevents spontaneous connection. The engine's value lies in reducing friction—not adding features.
                     </p>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-12 max-w-3xl">
+                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                  <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> These strategic learnings reveal that spontaneous connection requires architectural decisions at the system level, headless integration for existing platforms, temporal constraints that bypass planning friction, and privacy sovereignty through cryptographic validation—demonstrating that <span className="text-gray-900 font-semibold">friction reduction, not feature density</span>, enables authentic social connection.
+                </p>
               </div>
 
             </div>
@@ -4493,20 +4503,16 @@ const variables: Record<string, { title: string; desc: string }> = {
         </section>
 
         {/* The Horizon Section */}
-        <section id="the-horizon" className="py-20 bg-slate-900">
+        <section id="the-horizon" className="py-24 bg-slate-900">
           <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl mx-auto"
-            >
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   The Horizon
                 </h2>
-                <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+                <p className="text-slate-400 max-w-2xl text-lg">
                   Roadmap for scaling relational logic across travel platforms
                 </p>
               </div>
@@ -4600,7 +4606,8 @@ const variables: Record<string, { title: string; desc: string }> = {
                   View System Demo
                 </a>
               </motion.div>
-            </motion.div>
+
+            </div>
           </div>
         </section>
           </>
@@ -4608,10 +4615,10 @@ const variables: Record<string, { title: string; desc: string }> = {
         {isLocalExperienceFinder && (
           <>
           <section 
-          className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+          className="bg-white min-h-[80vh] flex items-center pt-24 pb-20 w-full overflow-x-hidden" 
           aria-label="Social Capital Orchestrator Hero"
         >
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-4 md:px-6 w-full">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                 
@@ -4622,7 +4629,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                   transition={{ duration: 0.8 }}
                   className="order-1"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight break-words" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Social Capital Orchestrator: The Mentorship Logic
                   </h1>
                   
@@ -4716,9 +4723,11 @@ const variables: Record<string, { title: string; desc: string }> = {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 w-full flex items-center justify-center lg:justify-end"
+                  className="order-2 lg:order-2 mt-12 md:mt-16 lg:mt-0 w-full flex justify-center lg:flex lg:items-center lg:justify-end"
                 >
-                  <ConnectionPathVisualization />
+                  <div className="w-full max-w-full">
+                    <ConnectionPathVisualization />
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -4827,195 +4836,138 @@ const variables: Record<string, { title: string; desc: string }> = {
           </div>
         </section>
 
+
         {/* Logic in Action: Mentorship Use Cases */}
         <section className="py-24 bg-white border-t border-gray-50" id="logic-in-action">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16 text-center"
-              >
+              
+              {/* Section Header */}
+              <div className="mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Logic in Action: Mentorship Use Cases
                 </h2>
                 <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
                   Three cases demonstrating how the Knowledge-Trust flow surfaces high-value mentorship opportunities
                 </p>
-              </motion.div>
+              </div>
 
-              <div className="space-y-16 md:space-y-24">
+              {/* 3-Case Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                
                 {/* Case A: The Reciprocal Match */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {/* Image on Left */}
-                  <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-sky-50 to-slate-50 rounded-2xl p-8 border border-sky-100 shadow-lg">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm">A</div>
-                          <div>
-                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Reciprocal Match</h3>
-                            <p className="text-xs text-gray-500">Kyoto Expertise</p>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-sky-400"></div>
-                            <span className="text-xs font-semibold text-gray-700">You: Lived in Kyoto</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-slate-400"></div>
-                            <span className="text-xs text-gray-600">2nd-degree: Planning Kyoto</span>
-                          </div>
-                          <div className="mt-3 pt-3 border-t border-slate-100">
-                            <p className="text-xs text-sky-700 font-semibold italic">"Willing to share 15 mins of Kyoto insight?"</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center mb-6 border border-sky-100">
+                    <span className="text-sky-600 text-lg font-bold">A</span>
                   </div>
-
-                  {/* Text on Right */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 uppercase tracking-wider mb-3">
-                        Case A
-                      </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Reciprocal Match</h3>
-                    </div>
-                    <div className="space-y-4 text-gray-700">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
-                        <p className="text-sm leading-relaxed">You've lived in Kyoto. A 2nd-degree connection is currently "Planning" Kyoto.</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest bg-sky-50 px-2 py-0.5 rounded">Case A</span>
+                    <h3 className="font-bold text-gray-900 italic">Reciprocal Match</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Kyoto Expertise</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Scenario:</strong> You've lived in Kyoto. A 2nd-degree connection is currently "Planning" Kyoto.
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Logic:</strong> System triggers a notification to both: "Willing to share 15 mins of Kyoto insight?"
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 bg-gradient-to-br from-sky-50 to-slate-50 rounded-xl p-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-sky-400"></div>
+                        <span className="text-xs font-semibold text-gray-700">You: Lived in Kyoto</span>
                       </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
-                        <p className="text-sm leading-relaxed">System triggers a notification to both: "Willing to share 15 mins of Kyoto insight?"</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+                        <span className="text-xs text-gray-600">2nd-degree: Planning Kyoto</span>
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-sky-100">
+                        <p className="text-xs text-sky-700 font-semibold italic">"Willing to share 15 mins of Kyoto insight?"</p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
 
                 {/* Case B: The Active Network Pulse */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-12"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {/* Image on Right (reversed) */}
-                  <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-slate-50 to-sky-50 rounded-2xl p-8 border border-slate-200 shadow-lg">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-sm">B</div>
-                          <div>
-                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Network Pulse</h3>
-                            <p className="text-xs text-gray-500">Active Travelers</p>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs text-gray-600">Currently Roaming</span>
-                            <span className="text-sm font-bold text-slate-900">12 connections</span>
-                          </div>
-                          <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-sky-400 w-3/4"></div>
-                          </div>
-                          <div className="mt-3 pt-3 border-t border-slate-100">
-                            <p className="text-xs text-gray-500 italic">Filtered by your expertise regions</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 border border-slate-100">
+                    <span className="text-slate-600 text-lg font-bold">B</span>
                   </div>
-
-                  {/* Text on Left (reversed) */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 uppercase tracking-wider mb-3">
-                        Case B
-                      </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Active Network Pulse</h3>
-                    </div>
-                    <div className="space-y-4 text-gray-700">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
-                        <p className="text-sm leading-relaxed">You open the map to see who is currently roaming.</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Case B</span>
+                    <h3 className="font-bold text-gray-900 italic">Network Pulse</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Active Travelers</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Scenario:</strong> You open the map to see who is currently roaming.
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Logic:</strong> System filters for connections currently "on-trip" or planning trips to places you have expertise in.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 bg-gradient-to-br from-slate-50 to-sky-50 rounded-xl p-4">
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-gray-600">Currently Roaming</span>
+                        <span className="text-sm font-bold text-slate-900">12 connections</span>
                       </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
-                        <p className="text-sm leading-relaxed">System filters for connections currently "on-trip" or planning trips to places you have expertise in.</p>
+                      <div className="h-2 bg-slate-100 rounded-full">
+                        <div className="h-full bg-sky-400 w-3/4"></div>
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-slate-100">
+                        <p className="text-xs text-gray-500 italic">Filtered by your expertise regions</p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
 
                 {/* Case C: Trust-Layer Validation */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {/* Image on Left */}
-                  <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="w-full max-w-md bg-gradient-to-br from-cyan-50 to-slate-50 rounded-2xl p-8 border border-cyan-100 shadow-lg">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">C</div>
-                          <div>
-                            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Trust Path</h3>
-                            <p className="text-xs text-gray-500">Validation Display</p>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-cyan-200 space-y-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                            <span className="text-xs font-semibold text-gray-700">Trust Path Visible</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                            <span className="text-xs text-gray-600">3 mutual friends</span>
-                          </div>
-                          <div className="mt-3 pt-3 border-t border-cyan-100">
-                            <p className="text-xs text-cyan-700 font-semibold">"Vouched by 3 mutual friends"</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+                    <span className="text-cyan-600 text-lg font-bold">C</span>
                   </div>
-
-                  {/* Text on Right */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="mb-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-700 uppercase tracking-wider mb-3">
-                        Case C
-                      </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Trust-Layer Validation</h3>
-                    </div>
-                    <div className="space-y-4 text-gray-700">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Scenario:</p>
-                        <p className="text-sm leading-relaxed">A traveler reaches out.</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Case C</span>
+                    <h3 className="font-bold text-gray-900 italic">Trust Path</h3>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Validation Display</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Scenario:</strong> A traveler reaches out.
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    <strong className="text-gray-900">Logic:</strong> The UI shows the "Trust Path" (e.g., "Vouched by 3 mutual friends") to eliminate social anxiety.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-50 bg-gradient-to-br from-cyan-50 to-slate-50 rounded-xl p-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                        <span className="text-xs font-semibold text-gray-700">Trust Path Visible</span>
                       </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-700 mb-1">Logic:</p>
-                        <p className="text-sm leading-relaxed">The UI shows the "Trust Path" (e.g., "Vouched by 3 mutual friends") to eliminate social anxiety.</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                        <span className="text-xs text-gray-600">3 mutual friends</span>
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-cyan-100">
+                        <p className="text-xs text-cyan-700 font-semibold">"Vouched by 3 mutual friends"</p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
+
+              </div>
+
+              <div className="mt-12 max-w-3xl">
+                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                  <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> These three cases demonstrate how the Knowledge-Trust flow surfaces high-value mentorship opportunities through verified expertise matching, active network filtering, and trust path visualization—ensuring <span className="text-gray-900 font-semibold">quality connections over quantity</span> in spontaneous knowledge sharing.
+                </p>
               </div>
             </div>
           </div>
@@ -5177,52 +5129,53 @@ const variables: Record<string, { title: string; desc: string }> = {
         <section id="system-principles" className="bg-slate-900 py-24" aria-label="Validated Networking">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16 text-center"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Validated Networking
                 </h2>
-                <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto">
+                <p className="text-slate-400 max-w-2xl text-lg">
                   Three core theses that define how the system activates travel history as social capital
                 </p>
-              </motion.div>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              {/* 3-Thesis Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
                 
                 {/* Thesis 01: Mentorship is Social Capital */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="space-y-4"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-slate-800 border border-slate-700 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">01. Core Principle</div>
-                  <h4 className="text-white font-bold text-xl italic">Mentorship is Social Capital</h4>
-                  <p className="text-slate-400 text-base leading-relaxed">
+                  <div className="w-12 h-12 bg-sky-500/20 rounded-2xl flex items-center justify-center mb-6 border border-sky-500/30">
+                    <span className="text-sky-400 text-lg font-bold">01</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-sky-400 uppercase tracking-widest bg-sky-500/20 px-2 py-0.5 rounded">Core Principle</span>
+                    <h3 className="font-bold text-white italic">Mentorship is Social Capital</h3>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
                     Your travel history is a <strong className="text-white">valuable asset</strong>. The system's job is to <strong className="text-white">"activate"</strong> that asset for your network—converting passive experience into active mentorship opportunities.
                   </p>
                 </motion.div>
 
                 {/* Thesis 02: Validated Provenance */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="space-y-4"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-slate-800 border border-slate-700 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">02. Trust Architecture</div>
-                  <h4 className="text-white font-bold text-xl italic">Validated Provenance</h4>
-                  <p className="text-slate-400 text-base leading-relaxed">
+                  <div className="w-12 h-12 bg-slate-700 rounded-2xl flex items-center justify-center mb-6 border border-slate-600">
+                    <span className="text-slate-300 text-lg font-bold">02</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-700 px-2 py-0.5 rounded">Trust Architecture</span>
+                    <h3 className="font-bold text-white italic">Validated Provenance</h3>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
                     Trust isn't about <strong className="text-white">"rating" people</strong>; it's about <strong className="text-white">"verifying" history</strong> via ZK-Proofs. The system cryptographically validates that expertise claims are backed by actual presence.
                   </p>
-                  <div className="mt-4 pt-4 border-t border-slate-700">
+                  <div className="mt-6 pt-6 border-t border-slate-700">
                     <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Technical Constraint</div>
                     <p className="text-xs text-slate-400 leading-relaxed">
                       <strong className="text-slate-300">Sovereign Identity:</strong> Identity anchored to user-owned DIDs for cross-platform portability.
@@ -5231,19 +5184,21 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
 
                 {/* Thesis 03: Low-Friction Intro */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="space-y-4"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-slate-800 border border-slate-700 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="text-sky-400 font-mono text-xs uppercase tracking-[0.3em]">03. Connection Design</div>
-                  <h4 className="text-white font-bold text-xl italic">Low-Friction Intro</h4>
-                  <p className="text-slate-400 text-base leading-relaxed">
+                  <div className="w-12 h-12 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6 border border-cyan-500/30">
+                    <span className="text-cyan-400 text-lg font-bold">03</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest bg-cyan-500/20 px-2 py-0.5 rounded">Connection Design</span>
+                    <h3 className="font-bold text-white italic">Low-Friction Intro</h3>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
                     Connection triggers must be <strong className="text-white">"Opt-In"</strong> and <strong className="text-white">"Short-Term"</strong> (15 mins) to protect the Expert's time. The system respects expertise boundaries by limiting commitment windows.
                   </p>
-                  <div className="mt-4 pt-4 border-t border-slate-700">
+                  <div className="mt-6 pt-6 border-t border-slate-700">
                     <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Technical Constraint</div>
                     <p className="text-xs text-slate-400 leading-relaxed">
                       <strong className="text-slate-300">Ephemeral Activation:</strong> Nodes auto-deactivate post-trip to minimize the temporal exposure window. Activation occurs only during the 'Planning Window'.
@@ -5255,6 +5210,13 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
 
               </div>
+
+              <div className="mt-12 max-w-3xl">
+                <p className="text-sm text-slate-400 leading-relaxed italic border-l-2 border-sky-500/50 pl-6">
+                  <strong className="text-white font-bold not-italic">Design Intent:</strong> These three principles define how the system transforms passive travel history into active social capital through verified expertise, cryptographic validation, and low-friction connection design—ensuring <span className="text-white font-semibold">trust through verification</span> rather than ratings.
+                </p>
+              </div>
+
             </div>
           </div>
         </section>
@@ -5263,20 +5225,16 @@ const variables: Record<string, { title: string; desc: string }> = {
         <section className="py-24 bg-white border-t border-gray-50" id="design-evolution-logic">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16 text-center"
-              >
+              
+              {/* Section Header */}
+              <div className="mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Design Evolution: Density vs. Context
                 </h2>
                 <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
                   A dual-interface strategy balancing macro-discovery through spatial patterns with micro-matching via high-density metadata
                 </p>
-              </motion.div>
+              </div>
 
               <div className="space-y-16 md:space-y-24">
                 {/* Card 1: The Global Map (Macro-Discovery) */}
@@ -5444,10 +5402,10 @@ const variables: Record<string, { title: string; desc: string }> = {
           {/* [01] The Thesis: Narrative Architecture */}
           <section 
             id="narrative-thesis" 
-            className="bg-white min-h-[80vh] flex items-center pt-24 pb-20" 
+            className="bg-white min-h-[80vh] flex items-center pt-24 pb-20 w-full overflow-x-hidden" 
             aria-label="Narrative Architecture Hero"
           >
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-4 md:px-6 w-full">
               <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 lg:items-center">
                   
@@ -5458,7 +5416,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     transition={{ duration: 0.8 }}
                     className="order-1"
                   >
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight break-words hyphens-auto" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                       Narrative Architecture: Designing for How a Place Feels Over Time
                     </h1>
                     
@@ -5553,10 +5511,12 @@ const variables: Record<string, { title: string; desc: string }> = {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:justify-end"
+                    className="order-2 mt-16 lg:mt-0 w-full flex justify-center lg:flex lg:items-center lg:justify-end"
                   >
                     {/* Narrative Diagram visualization */}
-                    <NarrativeDiagram />
+                    <div className="w-full max-w-full">
+                      <NarrativeDiagram />
+                    </div>
                   </motion.div>
         
                 </div>
@@ -5590,7 +5550,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 {isCulturalContextEngine && (
         <>
        {/* Observed Travel Frictions: ADA AA Compliant Version */}
-<section className="mb-20 px-6 bg-white py-0">
+<section id="design-exploration" className="mb-20 px-6 bg-white py-0">
   <div className="max-w-6xl mx-auto">
     <div className="mb-16 border-l-4 border-slate-900 pl-6">
       <h4 className="text-cyan-800 font-mono text-xs uppercase tracking-[0.2em] mb-2 font-bold">
@@ -5729,7 +5689,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               <span className="w-2 h-2 rounded-full bg-slate-900" /> Liability Shield
             </h4>
             <p className="text-sm text-slate-600 leading-relaxed">
-              I designed a feature that converts AI reasoning into a permanent, <strong>downloadable audit trail</strong> for industry professionals.
+              A feature that converts AI reasoning into a permanent, <strong>downloadable audit trail</strong> for industry professionals.
             </p>
           </div>
 
@@ -5900,7 +5860,7 @@ const variables: Record<string, { title: string; desc: string }> = {
         Trust is a calculation, not a feeling.
       </h3>
       <p className="text-gray-400 text-lg md:text-xl leading-relaxed [text-wrap:pretty]">
-        Current AI "guesses" when data conflicts. I built a framework that **computes consensus.** By moving from binary logic to a probabilistic model, the system arbitrates between 
+        Current AI "guesses" when data conflicts. I'm building a framework that <strong>computes consensus.</strong> By moving from binary logic to a probabilistic model, the system arbitrates between 
         conflicting sources to create a verifiable <span className="text-white underline underline-offset-4 decoration-cyan-500/50">Audit Trail</span> for the traveler.
       </p>
     </div>
@@ -6286,7 +6246,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* Live Demo Section */}
-          <section className="py-20 bg-white">
+          <section className="pt-20 pb-0 bg-white">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -6303,55 +6263,114 @@ const variables: Record<string, { title: string; desc: string }> = {
                   A live demo will be available once the verification system is fully implemented.
                   </p>
                 </div>
-                
-                <div className="bg-gray-50 rounded-xl p-8 md:p-10 border border-gray-200">
-                  
-                  
-                  <div className="space-y-12">
-  {/* Phase 1: Milestones */}
-  <div>
-    <h3 className="text-lg font-bold mb-4 text-slate-900 flex items-center gap-3">
-      <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.4)]"></span>
-      Phase 01: Technical Milestones
-    </h3>
-    <p className="text-slate-600 leading-relaxed [text-wrap:pretty]">
-      The structural "skeleton" of the system is now operational. I am currently 
-      refining the data-orchestration layers that allow the UI to communicate 
-      with the verification middleware, finalizing the logic that binds 
-      every LLM suggestion to a unique {"source\u00A0ID."}
-    </p>
-  </div>
-  
-  {/* Phase 2: Experimental Beta */}
-  <div>
-    <h3 className="text-lg font-bold mb-4 text-slate-900 flex items-center gap-3">
-      <span className="w-2.5 h-2.5 bg-amber-500 rounded-full shadow-[0_0_8px_rgba(245,158,11,0.4)]"></span>
-      Phase 02: Experimental Beta Testing
-    </h3>
-    <p className="text-slate-600 leading-relaxed [text-wrap:pretty]">
-      These features are in "Sandboxed Beta," where I am observing how the logic 
-      holds up against edge cases. This includes testing <strong>Dynamic Freshness 
-      Indicators</strong> (data decay logic) and observing how travelers react when 
-      the system explicitly flags {"conflicting\u00A0signals."}
-    </p>
-  </div>
-  
-  {/* Phase 3: Roadmap */}
-  <div>
-    <h3 className="text-lg font-bold mb-4 text-slate-900 flex items-center gap-3">
-      <span className="w-2.5 h-2.5 bg-cyan-600 rounded-full shadow-[0_0_8px_rgba(8,145,178,0.4)]"></span>
-      Phase 03: The Roadmap to V1.0
-    </h3>
-    <p className="text-slate-600 leading-relaxed [text-wrap:pretty]">
-      Once the core verification logic is validated through user feedback, the next 
-      sprint focuses on the <strong>"Liability Shield"</strong>—developing 
-      professional-grade audit exports for B2B agents and expanding the API 
-      hooks for local {"expert\u00A0networks."}
-    </p>
-  </div>
-</div>
-                </div>
+              
               </motion.div>
+            </div>
+          </section>
+
+          {/* Implementation Strategy & Design Roadmap */}
+          <section className="pt-0 pb-16 bg-white overflow-x-hidden">
+            <div className="container mx-auto px-6 w-full max-w-screen">
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-12"
+                >
+                  {/* Status Ribbon */}
+                  <div className="flex md:inline-flex w-fit items-center px-4 py-2 bg-indigo-50 border border-indigo-200 rounded-full mb-6 max-w-full">
+                    <span className="text-xs font-mono font-semibold text-indigo-700 uppercase tracking-wider whitespace-nowrap">
+                      STATUS: RESEARCH_&_VALIDATION_ACTIVE
+                    </span>
+                  </div>
+                  
+                  {/* Section Title */}
+                  <h2 
+                    className="text-3xl md:text-4xl font-bold text-gray-900 mb-8" 
+                    style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+                  >
+                    Implementation Strategy & Design Roadmap
+                  </h2>
+                </motion.div>
+
+                {/* Vertical Step Pattern */}
+                <div className="space-y-12">
+                  {/* Phase 01 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                  >
+                    <div className="flex items-start gap-3 md:gap-6">
+                      <div className="flex-none">
+                        <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[01]</span>
+                      </div>
+                      <div className="flex-1 min-w-0 overflow-visible">
+                        <h3 className="text-lg font-bold mb-3 text-slate-900">
+                          ARCHITECTURAL RESEARCH: Logic Mapping & Traceability
+                        </h3>
+                        <p className="text-gray-800 leading-relaxed">
+                          The structural skeleton is operational, but the current focus is a deep-dive research phase into <span className="font-semibold text-slate-900">data-orchestration</span>. I am designing the implementation strategy for a "Verified Intelligence" layer—finalizing the schema that binds every LLM suggestion to a unique <span className="font-semibold text-slate-900">source ID</span>. This ensures that the system's "reasoning" is always auditable and grounded in factual middleware.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Phase 02 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <div className="flex items-start gap-3 md:gap-6">
+                      <div className="flex-none">
+                        <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[02]</span>
+                      </div>
+                      <div className="flex-1 min-w-0 overflow-visible">
+                        <div className="flex flex-col md:flex-row md:items-center gap-3 mb-3">
+                          <h3 className="text-lg font-bold text-slate-900">
+                            BEHAVIORAL ANALYSIS: Edge Case Stress Testing
+                          </h3>
+                          <div className="flex md:inline-flex w-fit items-center px-3 py-1 bg-amber-50 border border-amber-200 rounded-full flex-shrink-0 max-w-full">
+                            <span className="text-xs font-mono font-semibold text-amber-700 uppercase tracking-wider whitespace-nowrap">
+                              LOGIC_STATUS: CONSTRAINT_ENFORCED
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-gray-800 leading-relaxed">
+                          In the current Sandboxed Beta, I am observing how users navigate system uncertainty. I am specifically testing the implementation of <span className="font-semibold text-slate-900">Dynamic Freshness Indicators</span> (data decay logic). The goal is to determine the optimal threshold for flagging <span className="font-semibold text-slate-900">conflicting signals</span>, ensuring the AI prioritizes safety and accuracy over simple "helpfulness" when data is stale.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Phase 03 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <div className="flex items-start gap-3 md:gap-6">
+                      <div className="flex-none">
+                        <span className="text-xl md:text-2xl font-mono text-indigo-500 font-bold">[03]</span>
+                      </div>
+                      <div className="flex-1 min-w-0 overflow-visible">
+                        <h3 className="text-lg font-bold mb-3 text-slate-900">
+                          SCALABILITY STRATEGY: From Logic to Ecosystem
+                        </h3>
+                        <p className="text-gray-800 leading-relaxed">
+                          Following the validation of the core verification logic, the implementation roadmap moves toward systemic interoperability. This involves architecting a <span className="font-semibold text-slate-900">Liability Shield</span>—a standardized audit export for B2B stakeholders—and designing the API hooks required to integrate localized expert networks. This ensures the engine can scale from a personal companion to a professional-grade travel tool.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -6365,8 +6384,8 @@ const variables: Record<string, { title: string; desc: string }> = {
       </h2>
       <p className="text-slate-600 text-lg leading-relaxed [text-wrap:pretty]">
         The core takeaway from this project is that **Trust is the fuel for spontaneity.** When cognitive load drops because the system handles the "sanity check," 
-        users make faster, more adventurous decisions. We didn't just build a 
-        database; we built the <span className="text-slate-900 font-bold">confidence to act.</span>
+        users make faster, more adventurous decisions. I didn't just build a 
+        database; I built the <span className="text-slate-900 font-bold">confidence to act.</span>
       </p>
     </div>
 
@@ -6437,7 +6456,7 @@ const variables: Record<string, { title: string; desc: string }> = {
       {isTravelPlanningAssistant && (
         <>
 
-<section className="bg-white py-24 border-t border-gray-50" aria-label="System Architecture">
+<section id="research-audience" className="bg-white py-24 border-t border-gray-50" aria-label="System Architecture">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
@@ -6555,7 +6574,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
         
-<section className="bg-slate-900 py-20" aria-label="Orchestration Philosophy">
+<section id="designs-strategy" className="bg-slate-900 py-20" aria-label="Orchestration Philosophy">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -6603,7 +6622,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
 
-<section className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
+<section id="design-exploration" className="bg-white py-24 border-t border-gray-50 overflow-hidden" aria-label="Detailed System Logic">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
@@ -6642,8 +6661,8 @@ const variables: Record<string, { title: string; desc: string }> = {
         </div>
         
         {/* Stage 2: The Core Processor (SVG Animation) */}
-        <div className="flex justify-center order-1 lg:order-2">
-          <div className="relative w-64 h-64 md:w-80 md:h-80">
+        <div className="flex justify-center order-1 lg:order-2 w-full md:w-auto">
+          <div className="relative w-full aspect-square max-w-full md:w-80 md:h-80 md:max-w-none">
             <svg className="w-full h-full" viewBox="0 0 320 320">
               <motion.circle
                 cx="160" cy="160" r="140" fill="none"
@@ -6728,7 +6747,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-<section className="bg-slate-50 py-24" aria-label="Design Evolution: Logic in Action">
+<section id="wireframes-ui" className="bg-slate-50 py-24" aria-label="Design Evolution: Logic in Action">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
@@ -7101,9 +7120,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="flex flex-col items-center">
                         <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
                           {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
                             {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
                               <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
@@ -7113,9 +7132,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                             </div>
                             
                             {/* App Content */}
-                            <div className="h-[calc(100%-3rem)] bg-gray-50 overflow-y-auto">
+                            <div className="flex-1 bg-gray-50 min-h-0">
                               {/* Header */}
-                              <div className="bg-white px-6 py-4 border-b border-gray-100 sticky top-0 z-10">
+                              <div className="bg-white px-6 py-4 border-b border-gray-100">
                                 <h2 className="text-xl font-bold text-gray-900">System Preferences</h2>
                                 <p className="text-sm text-gray-500 mt-1">Customize AI behavior</p>
                               </div>
@@ -7228,9 +7247,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="flex flex-col items-center">
                         <div className="relative w-full max-w-[280px] aspect-[9/19.5] bg-slate-800 rounded-[2.5rem] p-2 shadow-2xl">
                           {/* Device Frame */}
-                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative flex flex-col">
                             {/* Status Bar */}
-                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2">
+                            <div className="h-12 bg-gradient-to-b from-gray-50 to-white flex items-center justify-between px-6 pt-2 flex-shrink-0">
                               <span className="text-sm md:text-xs font-semibold text-gray-900">9:41</span>
                               <div className="flex items-center gap-1">
                                 <div className="w-4 h-2 border border-gray-900 rounded-sm">
@@ -7240,7 +7259,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                             </div>
                             
                             {/* App Content */}
-                            <div className="h-[calc(100%-3rem)] bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 overflow-y-auto">
+                            <div className="flex-1 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 min-h-0">
                               {/* Flight Info Header */}
                               <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 border-b border-blue-500/30">
                                 <div className="flex items-center justify-between mb-2">
@@ -7360,7 +7379,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         {/* Designer Note */}
                         <div className="mt-4 max-w-[280px]">
                           <p className="text-sm md:text-xs text-gray-400 italic leading-relaxed text-center">
-                            <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, we prove the system's value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
+                            <strong className="text-blue-400 not-italic">System Logic:</strong> The "Waiting Window" solves a critical UX pain point: the dead time at baggage carousel. By showing the AI is already "thinking" ahead of the user's luggage, the system proves its value as a proactive companion. The prompt emphasizes Meaning over Efficiency—Scenic Route vs. Taxi—highlighting the core value proposition of the Narrative Layer.
                           </p>
                         </div>
                       </div>
@@ -7476,7 +7495,7 @@ const variables: Record<string, { title: string; desc: string }> = {
 </section>
 
 
-<section className="bg-slate-50 py-24 border-t border-gray-100" aria-label="Launch and Testing Strategy">
+<section id="outcomes-launch" className="bg-slate-50 py-24 border-t border-gray-100" aria-label="Launch and Testing Strategy">
   <div className="container mx-auto px-6">
     <div className="max-max-7xl mx-auto">
       
@@ -7557,7 +7576,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-          <section className="bg-white py-24 border-t border-gray-50" aria-label="Technical Learnings and Strategic Insights">
+          <section id="learnings-next" className="bg-white py-24 border-t border-gray-50" aria-label="Technical Learnings and Strategic Insights">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
@@ -7649,7 +7668,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               Context is the Engine, Trust is the Fuel.
             </h4>
             <p className="text-slate-400 leading-relaxed max-w-2xl">
-              By building an environmental sensing layer that handles the "logistical sanity check," we reduced cognitive load—shifting the system from a static itinerary to a <strong className="text-white">living decision-support ecosystem</strong> that maintains user agency through every pivot.
+              By building an environmental sensing layer that handles the "logistical sanity check," I reduced cognitive load—shifting the system from a static itinerary to a <strong className="text-white">living decision-support ecosystem</strong> that maintains user agency through every pivot.
             </p>
           </div>
         </div>
@@ -7659,7 +7678,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   </div>
 </section>
 
-<section className="bg-white py-24 border-t border-gray-100" aria-label="Build Status and Evolution Path">
+<section id="prototyping-ai" className="bg-white py-24 border-t border-gray-100" aria-label="Build Status and Evolution Path">
   <div className="container mx-auto px-6">
     <div className="max-w-7xl mx-auto">
       
@@ -7874,89 +7893,97 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </p>
                 </div>
 
-                {/* Friction vs. Solution Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 3-Paradox Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
                   
                   {/* Card 01: Superficiality vs. Identity */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-indigo-200 transition-all">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Superficiality vs. Identity</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100">
+                      <Users className="text-indigo-600 w-6 h-6" />
                     </div>
-                    
-                    {/* Stat Badge */}
-                    <div className="mb-6">
-                      <span className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded">Paradox 01</span>
+                      <h3 className="font-bold text-gray-900 italic">Superficiality vs. Identity</h3>
+                    </div>
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">
                         82% Authenticity Gap
                       </span>
                     </div>
-                    
-                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-4 border-l-2 border-gray-200 pl-4">
                       "Existing networks feel superficial for travel"
                     </blockquote>
-
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                        <p className="text-xs font-bold text-gray-900 mb-1">Travel DNA & Verified Expertise</p>
-                        <p className="text-[11px] text-gray-500 leading-normal">
-                          Prioritizing Travel DNA and verified 2nd-degree expertise to surface authentic, identity-focused connections beyond superficial matching.
-                        </p>
-                      </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Solution</h4>
+                      <p className="text-xs font-bold text-gray-900 mb-1">Travel DNA & Verified Expertise</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        Prioritizing Travel DNA and verified 2nd-degree expertise to surface authentic, identity-focused connections beyond superficial matching.
+                      </p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Card 02: Discovery Blindness */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-purple-200 transition-all">
-                    <div className="flex items-center gap-2 mb-6">
-                      <span className="text-[10px] font-bold text-purple-600 bg-purple-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Discovery Blindness</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
+                      <Eye className="text-purple-600 w-6 h-6" />
                     </div>
-                    
-                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-0.5 rounded">Paradox 02</span>
+                      <h3 className="font-bold text-gray-900 italic">Discovery Blindness</h3>
+                    </div>
+                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-4 border-l-2 border-gray-200 pl-4">
                       "Lack of intent-based discovery signals"
                     </blockquote>
-
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                        <p className="text-xs font-bold text-gray-900 mb-1">Proactive Graph Mapping</p>
-                        <p className="text-[11px] text-gray-500 leading-normal">
-                          A proactive graph mapping <strong className="text-gray-700">People → Places → Intent</strong>, enabling autonomous discovery of high-value opportunities without manual search.
-                        </p>
-                      </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Solution</h4>
+                      <p className="text-xs font-bold text-gray-900 mb-1">Proactive Graph Mapping</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        A proactive graph mapping <strong className="text-gray-700">People → Places → Intent</strong>, enabling autonomous discovery of high-value opportunities without manual search.
+                      </p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Card 03: The Privacy Binary */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-indigo-200 transition-all">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100/50 px-2 py-1 rounded uppercase tracking-widest">Friction</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">The Privacy Binary</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100">
+                      <Shield className="text-indigo-600 w-6 h-6" />
                     </div>
-                    
-                    {/* Stat Badge */}
-                    <div className="mb-6">
-                      <span className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded">Paradox 03</span>
+                      <h3 className="font-bold text-gray-900 italic">The Privacy Binary</h3>
+                    </div>
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">
                         73% Isolation Gap
                       </span>
                     </div>
-                    
-                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-4 border-l-2 border-gray-200 pl-4">
                       "Current UX is binary (Public vs. Private)"
                     </blockquote>
-
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Solution</h4>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                        <p className="text-xs font-bold text-gray-900 mb-1">Zero-Knowledge Discovery</p>
-                        <p className="text-[11px] text-gray-500 leading-normal">
-                          Proof of presence/expertise is shared, but precise GPS coordinates remain <strong className="text-gray-700">encrypted until a mutual match is confirmed</strong>. Zero-Knowledge proofs build trust through cryptographic validation rather than data transparency.
-                        </p>
-                      </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Solution</h4>
+                      <p className="text-xs font-bold text-gray-900 mb-1">Zero-Knowledge Discovery</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        Proof of presence/expertise is shared, but precise GPS coordinates remain <strong className="text-gray-700">encrypted until a mutual match is confirmed</strong>. Zero-Knowledge proofs build trust through cryptographic validation rather than data transparency.
+                      </p>
                     </div>
-                  </div>
+                  </motion.div>
 
+                </div>
+
+                <div className="mt-12 max-w-3xl">
+                  <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                    <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> The Privacy-Discovery Paradox highlights the fundamental tension between connection and privacy in travel networks. By addressing superficiality through Travel DNA verification, discovery blindness through proactive graph mapping, and the privacy binary through zero-knowledge proofs, the system enables <span className="text-gray-900 font-semibold">authentic connection without sacrificing privacy sovereignty</span>.
+                  </p>
                 </div>
 
               </div>
@@ -8028,18 +8055,13 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* System Overview Section */}
-          <section className="py-20 md:py-32 bg-zinc-950 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-zinc-950 to-violet-950/20 pointer-events-none" />
+          <section id="trust-layer" className="py-20 md:py-32 bg-zinc-950 relative">
             
-            <div className="container mx-auto px-6 relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="max-w-7xl mx-auto"
-              >
-                <div className="text-center mb-16">
+            <div className="container mx-auto px-6">
+              <div className="max-w-7xl mx-auto">
+              
+                {/* Section Header */}
+                <div className="mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1]">
                   The Trust Layer: Logic Gates & Validation Firewall
                 </h2>
@@ -8049,7 +8071,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </div>
                 
                 {/* Trust Layer Logic Gates */}
-                <div className="max-w-5xl mx-auto flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-6 mb-16">
+                <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-6 mb-16">
                   {/* Gate 01: Proximity Gate */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -8507,7 +8529,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                   </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
 
@@ -8624,7 +8646,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                           <h4 className="text-xl font-bold text-white">Index-Free Adjacency (Graph/AI)</h4>
                         </div>
                         <p className="text-gray-300 leading-relaxed">
-                          Our Social Graph utilizes <strong className="text-emerald-400">Index-Free Adjacency</strong>. Each node (Traveler) stores a direct physical pointer to its neighbors (Friends/Interests).
+                          The Social Graph utilizes <strong className="text-emerald-400">Index-Free Adjacency</strong>. Each node (Traveler) stores a direct physical pointer to its neighbors (Friends/Interests).
                         </p>
                         <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 space-y-2">
                           <div className="flex items-start gap-2">
@@ -8659,7 +8681,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                           </div>
                           <div>
                             <strong className="text-emerald-400">The AI Solution:</strong>
-                            <p className="text-gray-300 mt-1">We implemented <strong className="text-white">Breadth-First Search (BFS) Capping</strong> and <strong className="text-white">Graph Partitioning</strong> to ensure that one "Influencer" doesn't bottleneck the entire network's performance.</p>
+                            <p className="text-gray-300 mt-1">I implemented <strong className="text-white">Breadth-First Search (BFS) Capping</strong> and <strong className="text-white">Graph Partitioning</strong> to ensure that one "Influencer" doesn't bottleneck the entire network's performance.</p>
                           </div>
                         </div>
                       </div>
@@ -8887,20 +8909,16 @@ const variables: Record<string, { title: string; desc: string }> = {
           <section id="journey-dna" className="py-24 bg-slate-900 border-t border-slate-800">
             <div className="container mx-auto px-6">
               <div className="max-w-7xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-16 text-center"
-                >
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                
+                {/* Section Header */}
+                <div className="mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Journey: Autonomous Discovery Flow
                   </h2>
-                  <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto">
+                  <p className="text-slate-400 max-w-2xl text-lg">
                     How 40-country expertise triggers a notification for a friend-of-a-friend: from passive data to active intelligence
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
                   
@@ -8912,7 +8930,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     transition={{ duration: 0.6 }}
                     className="lg:col-span-1"
                   >
-                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 sticky top-24">
+                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
                       <div className="text-indigo-400 font-mono text-xs uppercase tracking-[0.3em] mb-4">DNA Extraction</div>
                       <h3 className="text-xl font-bold text-white mb-4">Travel DNA: Beyond the Itinerary</h3>
                       <p className="text-slate-300 text-sm leading-relaxed mb-4">
@@ -9057,7 +9075,7 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* Development & Build Section */}
-          <section id="prototyping-ai" className="py-20 bg-gray-100">
+          <section id="prototyping-ai" className="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -9108,76 +9126,91 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </p>
                 </div>
 
-                {/* Value Exchange Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 3-Impact Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
                   
                   {/* Card 01: Traveler Sovereignty & Trust */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-amber-200 transition-all">
-                    <div className="flex items-center gap-2 mb-6">
-                      <span className="text-[10px] font-bold text-amber-600 bg-amber-100/50 px-2 py-1 rounded uppercase tracking-widest">Value</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Traveler Sovereignty</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                      <Users className="text-amber-600 w-6 h-6" />
                     </div>
-                    
-                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Impact 01</span>
+                      <h3 className="font-bold text-gray-900 italic">Traveler Sovereignty</h3>
+                    </div>
+                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-4 border-l-2 border-gray-200 pl-4">
                       Reducing 'Stranger Danger' Cognitive Load
                     </blockquote>
-
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Outcome</h4>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                        <p className="text-xs font-bold text-gray-900 mb-1">Multi-degree (FofF) Validation</p>
-                        <p className="text-[11px] text-gray-500 leading-normal">
-                          Connections via Travel DNA vs. Proximity. Authentic connections triggered by shared identity signals rather than raw geographic proximity.
-                        </p>
-                      </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Outcome</h4>
+                      <p className="text-xs font-bold text-gray-900 mb-1">Multi-degree (FofF) Validation</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        Connections via Travel DNA vs. Proximity. Authentic connections triggered by shared identity signals rather than raw geographic proximity.
+                      </p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Card 02: Community Equilibrium */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-cyan-200 transition-all">
-                    <div className="flex items-center gap-2 mb-6">
-                      <span className="text-[10px] font-bold text-cyan-600 bg-cyan-100/50 px-2 py-1 rounded uppercase tracking-widest">Value</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Community Equilibrium</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6 border border-cyan-100">
+                      <Globe className="text-cyan-600 w-6 h-6" />
                     </div>
-                    
-                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-8 border-l-2 border-slate-200 pl-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-2 py-0.5 rounded">Impact 02</span>
+                      <h3 className="font-bold text-gray-900 italic">Community Equilibrium</h3>
+                    </div>
+                    <blockquote className="text-gray-700 italic text-sm leading-relaxed mb-4 border-l-2 border-gray-200 pl-4">
                       Mitigating 'Tourist Swarming'
                     </blockquote>
-
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Outcome</h4>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                        <p className="text-xs font-bold text-gray-900 mb-1">Intent-based Discovery</p>
-                        <p className="text-[11px] text-gray-500 leading-normal">
-                          Equitable benefit distribution. Facilitates meaningful cultural exchange and distributes tourism benefits more equitably across local communities.
-                        </p>
-                      </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                      <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Outcome</h4>
+                      <p className="text-xs font-bold text-gray-900 mb-1">Intent-based Discovery</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        Equitable benefit distribution. Facilitates meaningful cultural exchange and distributes tourism benefits more equitably across local communities.
+                      </p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Card 03: Terminal Stats */}
-                  <div className="group bg-slate-50 rounded-3xl p-8 border border-transparent hover:border-emerald-200 transition-all">
-                    <div className="flex items-center gap-2 mb-6">
-                      <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100/50 px-2 py-1 rounded uppercase tracking-widest">Metrics</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">System Performance</span>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 border border-emerald-100">
+                      <TrendingUp className="text-emerald-600 w-6 h-6" />
                     </div>
-                    
-                    <div className="space-y-6 mb-8">
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Metrics</span>
+                      <h3 className="font-bold text-gray-900 italic">System Performance</h3>
+                    </div>
+                    <div className="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                      <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                         <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-1">Trust Confidence</div>
                         <div className="text-3xl font-bold text-emerald-700 font-mono">99.2%</div>
                       </div>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                      <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                         <div className="text-[10px] font-bold text-cyan-700 uppercase tracking-widest mb-1">Coordination Tax</div>
                         <div className="text-3xl font-bold text-cyan-700 font-mono">-65%</div>
                       </div>
-                      <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                      <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                         <div className="text-[10px] font-bold text-purple-700 uppercase tracking-widest mb-1">Signal Density</div>
                         <div className="text-3xl font-bold text-purple-700 font-mono">+4.2x</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
+                </div>
+
+                <div className="mt-12 max-w-3xl">
+                  <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                    <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> The ecosystem impact demonstrates how technical architecture directly enables social value—traveler sovereignty through multi-degree validation, community equilibrium through intent-based discovery, and measurable system performance metrics—showing that <span className="text-gray-900 font-semibold">technical decisions create social outcomes</span>.
+                  </p>
                 </div>
 
               </div>
@@ -9185,44 +9218,40 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* 11 Validation & Scale */}
-          <section id="validation-scale" className="py-20 bg-white border-t border-gray-100">
+          <section id="validation-scale" className="py-24 bg-white border-t border-gray-50">
             <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+              <div className="max-w-7xl mx-auto">
+                
+                {/* Section Header */}
+                <div className="mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Validation & Scale
                   </h2>
-                  <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-500 max-w-2xl text-lg">
                     Beta focus on identity matching & privacy satisfaction
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* 3-Validation Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                  
                   {/* Launch Strategy */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-gradient-to-br from-amber-50 to-white rounded-xl p-8 border border-amber-100 shadow-sm"
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
-                        <FaLightbulb className="w-6 h-6 text-amber-600" />
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900">Launch Strategy</h3>
+                    <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                      <FaLightbulb className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Beta 01</span>
+                      <h3 className="font-bold text-gray-900 italic">Launch Strategy</h3>
                     </div>
                     <div className="mb-4">
                       <div className="text-4xl font-bold text-amber-700 mb-2">Beta</div>
                       <p className="text-sm text-gray-600">Focus on identity matching & privacy satisfaction</p>
                     </div>
-                    <div className="pt-4 border-t border-amber-100">
+                    <div className="mt-6 pt-6 border-t border-gray-50">
                       <p className="text-xs text-gray-500 leading-relaxed">
                         Closed beta testing with gradual rollout based on connection quality metrics and user satisfaction with privacy controls.
                       </p>
@@ -9230,24 +9259,22 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </motion.div>
 
                   {/* Identity Matching Accuracy */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-gradient-to-br from-slate-50 to-white rounded-xl p-8 border border-slate-100 shadow-sm"
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                        <FaFingerprint className="w-6 h-6 text-slate-600" />
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900">Identity Matching Accuracy</h3>
+                    <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 border border-slate-100">
+                      <FaFingerprint className="w-6 h-6 text-slate-600" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Metric 01</span>
+                      <h3 className="font-bold text-gray-900 italic">Identity Matching Accuracy</h3>
                     </div>
                     <div className="mb-4">
                       <div className="text-4xl font-bold text-slate-700 mb-2">[01]</div>
                       <p className="text-sm text-gray-600">Travel DNA signal alignment precision</p>
                     </div>
-                    <div className="pt-4 border-t border-slate-100">
+                    <div className="mt-6 pt-6 border-t border-gray-50">
                       <p className="text-xs text-gray-500 leading-relaxed">
                         Measuring precision of Travel DNA signal alignment and multi-degree trust validation accuracy through controlled beta testing scenarios.
                       </p>
@@ -9255,31 +9282,37 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </motion.div>
 
                   {/* Privacy Control Granularity */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="bg-gradient-to-br from-emerald-50 to-white rounded-xl p-8 border border-emerald-100 shadow-sm"
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-                        <FaShieldAlt className="w-6 h-6 text-emerald-600" />
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900">Privacy Control Granularity</h3>
+                    <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 border border-emerald-100">
+                      <FaShieldAlt className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Metric 02</span>
+                      <h3 className="font-bold text-gray-900 italic">Privacy Control Granularity</h3>
                     </div>
                     <div className="mb-4">
                       <div className="text-4xl font-bold text-emerald-700 mb-2">[02]</div>
                       <p className="text-sm text-gray-600">User satisfaction with privacy controls</p>
                     </div>
-                    <div className="pt-4 border-t border-emerald-100">
+                    <div className="mt-6 pt-6 border-t border-gray-50">
                       <p className="text-xs text-gray-500 leading-relaxed">
                         Validating user satisfaction with privacy control granularity and zero-knowledge proof transparency through user feedback and system metrics.
                       </p>
                     </div>
                   </motion.div>
+
                 </div>
-              </motion.div>
+
+                <div className="mt-12 max-w-3xl">
+                  <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                    <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> Beta validation focuses on identity matching accuracy and privacy control granularity—ensuring <span className="text-gray-900 font-semibold">trust through precision</span> rather than transparency, and user satisfaction through granular control rather than binary privacy choices.
+                  </p>
+                </div>
+
+              </div>
             </div>
           </section>
 
@@ -10787,93 +10820,68 @@ const variables: Record<string, { title: string; desc: string }> = {
           </section>
 
           {/* [07] Strategic Outlook: The Horizon */}
-          <section id="strategic-outlook" className="py-24 bg-gray-100">
+          <section id="strategic-outlook" className="py-24 bg-white border-t border-gray-50">
             <div className="container mx-auto px-6">
               <div className="max-w-7xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-16 text-center"
-                >
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                
+                {/* Section Header */}
+                <div className="mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                     Strategic Outlook: The Horizon
                   </h2>
-                  <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+                  <p className="text-gray-500 max-w-2xl text-lg">
                     Strategic learnings and future roadmap for narrative-driven travel systems.
                   </p>
-                </motion.div>
+                </div>
 
                 {/* Strategic Learnings */}
-                <div className="mb-20">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-12"
-                  >
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-6 text-center">
-                      Strategic Learnings
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {/* Learning 01 */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="bg-slate-900/50 rounded-2xl p-8 border border-slate-800"
-                      >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="text-[10px] font-mono text-amber-400 uppercase tracking-wider font-bold">Learning 01</div>
-                          <div className="h-[1px] flex-grow bg-slate-700" />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                          Narrative as Infrastructure
-                        </h3>
-                        <p className="text-gray-100 leading-relaxed text-sm">
-                          The Narrative-Driven Travel Experience Generator demonstrates that narrative architecture can function as foundational infrastructure, not just decorative overlay. By embedding emotional arcs into the system's core logic, we create travel experiences that adapt to how travelers feel, not just where they are.
-                        </p>
-                      </motion.div>
+                <div className="mb-16">
+                  <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-6 text-center">
+                    Strategic Learnings
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
+                    {/* Learning 01 */}
+                    <motion.div 
+                      whileHover={{ y: -5 }}
+                      className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                        <Brain className="text-amber-600 w-6 h-6" />
+                      </div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Learning 01</span>
+                        <h3 className="font-bold text-gray-900 italic">Narrative as Infrastructure</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        The Narrative-Driven Travel Experience Generator demonstrates that narrative architecture can function as foundational infrastructure, not just decorative overlay. By embedding emotional arcs into the system's core logic, the architecture creates travel experiences that adapt to how travelers feel, not just where they are.
+                      </p>
+                    </motion.div>
 
-                      {/* Learning 02 */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="bg-slate-900/50 rounded-2xl p-8 border border-slate-800"
-                      >
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="text-[10px] font-mono text-amber-400 uppercase tracking-wider font-bold">Learning 02</div>
-                          <div className="h-[1px] flex-grow bg-slate-700" />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                          The Transparency of Mood
-                        </h3>
-                        <p className="text-gray-100 leading-relaxed text-sm">
-                          Rather than hiding emotional state detection behind black-box AI, the system makes mood transparent and actionable. By surfacing emotional tone metrics (anxiety, comfort, curiosity), travelers can understand why the system suggests certain experiences, building trust through transparency rather than opacity.
-                        </p>
-                      </motion.div>
-                    </div>
-                  </motion.div>
+                    {/* Learning 02 */}
+                    <motion.div 
+                      whileHover={{ y: -5 }}
+                      className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
+                        <Eye className="text-purple-600 w-6 h-6" />
+                      </div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-0.5 rounded">Learning 02</span>
+                        <h3 className="font-bold text-gray-900 italic">The Transparency of Mood</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        Rather than hiding emotional state detection behind black-box AI, the system makes mood transparent and actionable. By surfacing emotional tone metrics (anxiety, comfort, curiosity), travelers can understand why the system suggests certain experiences, building trust through transparency rather than opacity.
+                      </p>
+                    </motion.div>
+                  </div>
                 </div>
 
                 {/* Roadmap */}
                 <div className="mb-16">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-12"
-                  >
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-6 text-center">
-                      Roadmap
-                    </div>
-                    <div className="relative max-w-4xl mx-auto" style={{ touchAction: 'pan-y' }}>
+                  <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-6 text-center">
+                    Roadmap
+                  </div>
+                  <div className="relative max-w-4xl mx-auto">
                       {/* Vertical Timeline Line */}
                       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-200 via-purple-200 to-emerald-200 hidden md:block" />
 
@@ -11038,7 +11046,6 @@ const variables: Record<string, { title: string; desc: string }> = {
                         </motion.div>
                       </div>
                     </div>
-                  </motion.div>
                 </div>
 
                 {/* Final Thesis Quote */}
@@ -11058,6 +11065,13 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </blockquote>
                   </div>
                 </motion.div>
+
+                <div className="mt-12 max-w-3xl">
+                  <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                    <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> The strategic outlook demonstrates that narrative architecture functions as foundational infrastructure, with transparent mood detection building trust through visibility—enabling travel systems that <span className="text-gray-900 font-semibold">prioritize how travelers feel over where they go</span>.
+                  </p>
+                </div>
+
               </div>
             </div>
           </section>
@@ -11361,44 +11375,40 @@ const variables: Record<string, { title: string; desc: string }> = {
 
       {/* Validation & Scale Section - Only for Social Opportunity Matching */}
       {isSocialOpportunityMatching && (
-        <section id="validation-scale" className="py-20 bg-white border-t border-gray-100">
+        <section id="validation-scale" className="py-24 bg-white border-t border-gray-50">
           <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            <div className="max-w-7xl mx-auto">
+              
+              {/* Section Header */}
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
                   Validation & Scale
                 </h2>
-                <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
+                <p className="text-gray-500 max-w-2xl text-lg">
                   Measuring impact through knowledge exchange and reduced social friction
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* 3-Metric Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                
                 {/* Knowledge Exchange Rate */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="bg-gradient-to-br from-amber-50 to-white rounded-xl p-8 border border-amber-100 shadow-sm"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
-                      <FaBrain className="w-6 h-6 text-amber-600" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Knowledge Exchange Rate</h3>
+                  <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 border border-amber-100">
+                    <FaBrain className="text-amber-600 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Metric 01</span>
+                    <h3 className="font-bold text-gray-900 italic">Knowledge Exchange Rate</h3>
                   </div>
                   <div className="mb-4">
                     <div className="text-4xl font-bold text-amber-700 mb-2">87%</div>
                     <p className="text-sm text-gray-600">Matches resulting in top-rated insights</p>
                   </div>
-                  <div className="pt-4 border-t border-amber-100">
+                  <div className="mt-6 pt-6 border-t border-gray-50">
                     <p className="text-xs text-gray-500 leading-relaxed">
                       High-quality connections where travelers receive actionable local knowledge, verified through post-interaction ratings.
                     </p>
@@ -11406,24 +11416,22 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
 
                 {/* Social Friction Delta */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="bg-gradient-to-br from-slate-50 to-white rounded-xl p-8 border border-slate-100 shadow-sm"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                      <FaClock className="w-6 h-6 text-slate-600" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Social Friction Delta</h3>
+                  <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 border border-slate-100">
+                    <FaClock className="text-slate-600 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Metric 02</span>
+                    <h3 className="font-bold text-gray-900 italic">Social Friction Delta</h3>
                   </div>
                   <div className="mb-4">
                     <div className="text-4xl font-bold text-slate-700 mb-2">-73%</div>
                     <p className="text-sm text-gray-600">Time saved vs. traditional apps</p>
                   </div>
-                  <div className="pt-4 border-t border-slate-100">
+                  <div className="mt-6 pt-6 border-t border-gray-50">
                     <p className="text-xs text-gray-500 leading-relaxed">
                       Reduction in planning overhead compared to scheduled meetups, measured from initial signal to confirmed interaction.
                     </p>
@@ -11431,39 +11439,124 @@ const variables: Record<string, { title: string; desc: string }> = {
                 </motion.div>
 
                 {/* Local Retention */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="bg-gradient-to-br from-emerald-50 to-white rounded-xl p-8 border border-emerald-100 shadow-sm"
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="relative z-10 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-                      <FaUserCircle className="w-6 h-6 text-emerald-600" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Local Retention</h3>
+                  <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 border border-emerald-100">
+                    <FaUserCircle className="text-emerald-600 w-6 h-6" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Metric 03</span>
+                    <h3 className="font-bold text-gray-900 italic">Local Retention</h3>
                   </div>
                   <div className="mb-4">
                     <div className="text-4xl font-bold text-emerald-700 mb-2">62%</div>
                     <p className="text-sm text-gray-600">Local guides returning for exchanges</p>
                   </div>
-                  <div className="pt-4 border-t border-emerald-100">
+                  <div className="mt-6 pt-6 border-t border-gray-50">
                     <p className="text-xs text-gray-500 leading-relaxed">
                       Verified locals who continue participating after initial interactions, indicating sustainable value exchange.
                     </p>
                   </div>
                 </motion.div>
+
               </div>
-            </motion.div>
+
+              <div className="mt-12 max-w-3xl">
+                <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-sky-200 pl-6">
+                  <strong className="text-gray-900 font-bold not-italic">Design Intent:</strong> These metrics validate the system's impact on knowledge exchange quality, social friction reduction, and local guide retention—demonstrating <span className="text-gray-900 font-semibold">sustainable value creation</span> through verified expertise matching.
+                </p>
+              </div>
+
+            </div>
           </div>
         </section>
       )}
 
 
 
+      {/* Project Navigation */}
+      <ProjectNavigation currentProjectId={projectId} />
+
+      {/* Product Surfaces (The Glass) Navigation */}
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                Product Surfaces (The "Glass")
+              </h3>
+              
+              {/* Product Surface Links */}
+              {(() => {
+                // Define product surface projects (non-logic versions - only the 4 "Glass" surfaces)
+                const productSurfaces: Array<{ id: string; title: string; path: string }> = [
+                  {
+                    id: 'context-aware-travel-decision-system',
+                    title: 'Context-Aware Decision System',
+                    path: '/projects/travel-and-ai/projects/context-aware-travel-decision-system',
+                  },
+                  {
+                    id: 'social-opportunity-matching-module',
+                    title: 'Social Opportunity Matching',
+                    path: '/projects/travel-and-ai/projects/social-opportunity-matching-module',
+                  },
+                  {
+                    id: 'social-graph-driven-travel-network',
+                    title: 'Social Graph Network',
+                    path: '/projects/travel-and-ai/projects/social-graph-driven-travel-network',
+                  },
+                  {
+                    id: 'narrative-driven-travel-experience-generator',
+                    title: 'Narrative Experience Generator',
+                    path: '/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator',
+                  },
+                ];
+
+                // Normalize current project ID
+                const normalizedCurrentId = projectId.replace(/\/$/, '').split('/').pop() || projectId;
+                
+                // Filter out the current project if it's a Glass page
+                const availableSurfaces = productSurfaces.filter(surface => {
+                  const surfacePathId = surface.path.split('/').pop() || '';
+                  return surfacePathId !== normalizedCurrentId && surface.id !== normalizedCurrentId;
+                });
+
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {availableSurfaces.map((surface) => (
+                      <Link
+                        key={surface.id}
+                        href={surface.path}
+                        className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                            <Smartphone className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                            {surface.title}
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                      </Link>
+                    ))}
+                  </div>
+                );
+              })()}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Back to Projects Link */}
-      <section className="py-12 bg-white">
+      <section className="py-6 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <Link

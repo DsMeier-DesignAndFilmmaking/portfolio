@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X, Users, Shield, MessageCircle, Copy, Check, Lock, EyeOff, Activity, Radio, Info, ChevronUp, ChevronLeft, Key, Search, Mic, Volume2, Watch, LayoutGrid, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Cpu, Layers, Sparkles, ChevronRight, Smartphone, Brain, Eye, Code, X, Users, Shield, MessageCircle, Copy, Check, Lock, EyeOff, Activity, Radio, Info, ChevronUp, ChevronLeft, Key, Search, Mic, Volume2, Watch, LayoutGrid, ChevronDown, Monitor } from 'lucide-react';
 import { ComposableMap, Geographies, Geography, Marker, Graticule } from 'react-simple-maps';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 import { projectRegistry } from '../data';
 import LogicReceipt from '../../../../../components/LogicReceipt';
@@ -17,6 +18,7 @@ import SystemDebugOverlay from '../../../../../components/SystemDebugOverlay';
 import MomentOfCalmSurface from '../../../../../components/MomentOfCalmSurface';
 import NarrativeReflectionSurface from '../../../../../components/NarrativeReflectionSurface';
 import SemanticStorySurface from '../../../../../components/SemanticStorySurface';
+import ProjectNavigation from '../../../../../components/ProjectNavigation';
 
 // Helper function to normalize image paths (handle both /portfolio/ prefix and base path)
 function normalizeImagePath(imagePath: string): string {
@@ -1316,7 +1318,7 @@ const SocialRadarVisual = () => (
         style={{ width: '390px', maxWidth: '100%' }}
       >
         {/* Mobile Device Frame */}
-        <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800">
+        <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-800 mb-4 md:mb-0">
           {/* Notch */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-30" />
           
@@ -1541,7 +1543,7 @@ const SocialRadarVisual = () => (
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-6 text-center"
+          className="mt-4 md:mt-6 text-center w-full"
         >
           <div className="bg-white/10 backdrop-blur-[12px] rounded-xl border border-white/20 px-5 py-4 shadow-xl inline-block max-w-lg">
             <p className="text-[10px] text-slate-700/90 leading-relaxed font-mono font-semibold" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
@@ -1622,7 +1624,6 @@ const SocialRadarVisual = () => (
   const StoryCardVisual = () => {
     const [isMounted, setIsMounted] = useState(false);
     const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
-    const [viewMode, setViewMode] = useState<'mobile' | 'widget' | 'watch'>('mobile');
     const [toneMode, setToneMode] = useState<'Serene' | 'Energetic' | 'Curious'>('Serene');
     
     useEffect(() => {
@@ -1981,67 +1982,18 @@ const SocialRadarVisual = () => (
       );
     }
 
-    // Tab buttons configuration
-    const tabs = [
-      { id: 'mobile' as const, label: 'Mobile', icon: Smartphone },
-      { id: 'widget' as const, label: 'Widget', icon: LayoutGrid },
-      { id: 'watch' as const, label: 'Watch', icon: Watch },
-    ];
-
     return (
       <div className="w-full relative">
-        {/* Tab Switcher - Aligned with Left Text Top */}
-        <div className="mb-6 flex justify-center" style={{ paddingTop: '0' }}>
-          <div className="relative inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-1.5 border border-slate-200 shadow-sm">
-            {/* Sliding Pill Background */}
-            <motion.div
-              className="absolute bg-sage-200 rounded-lg"
-              style={{
-                backgroundColor: 'rgba(187, 247, 208, 0.5)',
-                height: 'calc(100% - 12px)',
-                top: '6px',
-              }}
-              initial={false}
-              animate={{
-                left: `${tabs.findIndex(t => t.id === viewMode) * (100 / tabs.length)}%`,
-                width: `${100 / tabs.length}%`,
-              }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            />
-            
-            {/* Tab Buttons */}
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = viewMode === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setViewMode(tab.id)}
-                  className={`relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive 
-                      ? 'text-sage-900' 
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <Icon className="w-4 h-4 inline mr-2" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Dynamic Height Container - "The Stage" */}
+        {/* Mobile View Container */}
         <motion.div 
-          layout
           className="w-full relative"
           style={{ 
             minHeight: '850px',
-            height: viewMode === 'mobile' ? 'auto' : '850px',
+            height: 'auto',
             minWidth: '390px',
           }}
         >
-          {/* Background Blob - Changes color based on view mode */}
+          {/* Background Blob */}
           <motion.div
             className="absolute inset-0 pointer-events-none"
             initial={{ opacity: 0 }}
@@ -2051,65 +2003,27 @@ const SocialRadarVisual = () => (
             <div 
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
               style={{
-                background: viewMode === 'mobile' 
-                  ? 'radial-gradient(circle, rgba(134, 239, 172, 0.3), rgba(240, 253, 244, 0.1))'
-                  : viewMode === 'widget'
-                  ? 'radial-gradient(circle, rgba(251, 191, 36, 0.3), rgba(254, 243, 199, 0.1))'
-                  : 'radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(237, 233, 254, 0.1))',
+                background: 'radial-gradient(circle, rgba(134, 239, 172, 0.3), rgba(240, 253, 244, 0.1))',
               }}
             />
           </motion.div>
 
           {/* Content Container - Flex Column with Top Alignment */}
           <div className="w-full min-h-[850px] flex flex-col items-center justify-start pt-8 relative z-10">
-            <AnimatePresence mode="wait">
-              {viewMode === 'mobile' && (
-                <motion.div
-                  key="mobile"
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="w-full flex items-start justify-center pb-8"
-                  style={{ transformOrigin: 'top center' }}
-                >
-                  <div className="w-full max-w-full flex items-center justify-center" style={{ maxHeight: '100%' }}>
-                    <div style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}>
-                      <MobileView />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-              {viewMode === 'widget' && (
-                <motion.div
-                  key="widget"
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1.5 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="flex items-center justify-center"
-                  style={{ transformOrigin: 'top center' }}
-                >
-                  <WidgetView mode="widget" />
-                </motion.div>
-              )}
-              {viewMode === 'watch' && (
-                <motion.div
-                  key="watch"
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1.8 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="flex items-center justify-center"
-                  style={{ transformOrigin: 'top center' }}
-                >
-                  <WidgetView mode="watch" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="w-full flex items-start justify-center pb-8"
+              style={{ transformOrigin: 'top center' }}
+            >
+              <div className="w-full max-w-full flex items-center justify-center" style={{ maxHeight: '100%' }}>
+                <div style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}>
+                  <MobileView />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -2561,10 +2475,10 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       </nav>
 
      {/* 2. Hero */}
-     <header className="max-w-7xl mx-auto px-6 py-28 grid lg:grid-cols-2 gap-16 items-start">
+     <header className="max-w-7xl mx-auto px-6 py-28 flex flex-col lg:flex-row gap-16 items-center min-h-[80vh]">
         {/* Left Column - Sticky Text Content */}
         <div 
-          className="sticky top-24 self-start"
+          className="sticky top-24"
           style={{ 
             minHeight: '850px',
           }}
@@ -2598,7 +2512,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
         {/* Dynamic Mockup Container - Right Side */}
         <div 
-          className={`aspect-[4/5] md:aspect-square rounded-[48px] flex flex-col items-center justify-center relative overflow-visible group self-start ${
+          className={`aspect-[4/5] md:aspect-square rounded-[32px] md:rounded-[48px] flex flex-col items-center justify-center relative overflow-visible group mx-auto lg:mx-0 w-full max-w-lg lg:max-w-full box-border ${
             projectId === 'social-graph-driven-travel-network' || projectId === 'narrative-driven-travel-experience-generator' ? '' : 'bg-slate-100 shadow-2xl border border-slate-200'
           }`}
         >
@@ -2808,7 +2722,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
       {/* Screenshot Images - Only for social-graph-driven-travel-network */}
       {projectId === 'social-graph-driven-travel-network' && (
         <>
-          <section className="max-w-7xl mx-auto px-6 py-12 bg-white">
+          <section className="max-w-7xl mx-auto px-6 pt-48 md:pt-12 pb-12 bg-white">
             {/* Design Concept Note */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -3300,6 +3214,85 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           </div>
         </section>
       )}
+
+      {/* Project Navigation */}
+      <ProjectNavigation currentProjectId={projectId} />
+
+      {/* Product Surfaces (The Glass) Navigation */}
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                Product Surfaces (The "Glass")
+              </h3>
+              
+              {/* Product Surface Links */}
+              {(() => {
+                // Define product surface projects (non-logic versions - only the 4 "Glass" surfaces)
+                const productSurfaces: Array<{ id: string; title: string; path: string }> = [
+                  {
+                    id: 'context-aware-travel-decision-system',
+                    title: 'Context-Aware Decision System',
+                    path: '/projects/travel-and-ai/projects/context-aware-travel-decision-system',
+                  },
+                  {
+                    id: 'social-opportunity-matching-module',
+                    title: 'Social Opportunity Matching',
+                    path: '/projects/travel-and-ai/projects/social-opportunity-matching-module',
+                  },
+                  {
+                    id: 'social-graph-driven-travel-network',
+                    title: 'Social Graph Network',
+                    path: '/projects/travel-and-ai/projects/social-graph-driven-travel-network',
+                  },
+                  {
+                    id: 'narrative-driven-travel-experience-generator',
+                    title: 'Narrative Experience Generator',
+                    path: '/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator',
+                  },
+                ];
+
+                // Normalize current project ID
+                const normalizedCurrentId = projectId.replace(/\/$/, '').split('/').pop() || projectId;
+                
+                // Filter out the current project if it's a Glass page
+                const availableSurfaces = productSurfaces.filter(surface => {
+                  const surfacePathId = surface.path.split('/').pop() || '';
+                  return surfacePathId !== normalizedCurrentId && surface.id !== normalizedCurrentId;
+                });
+
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {availableSurfaces.map((surface) => (
+                      <Link
+                        key={surface.id}
+                        href={surface.path}
+                        className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                            <Smartphone className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                            {surface.title}
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                      </Link>
+                    ))}
+                  </div>
+                );
+              })()}
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

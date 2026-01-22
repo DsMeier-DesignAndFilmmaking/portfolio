@@ -507,6 +507,8 @@ section *::-webkit-scrollbar,
     }
     
     /* Fix grid and flex containers */
+    /* COMMENTED OUT: Tailwind handles responsive widths much better than a "catch-all" global selector which breaks the framework's internal logic */
+    /*
     .grid,
     .flex,
     [class*="grid"],
@@ -515,6 +517,7 @@ section *::-webkit-scrollbar,
       overflow-x: hidden;
       width: 100%;
     }
+    */
     
     /* Fix padding that might cause overflow when combined with width */
     /* Ensure box-sizing is border-box for containers with padding */
@@ -886,6 +889,26 @@ section *::-webkit-scrollbar,
   .spacing-sm { margin: 1rem; } /* 16px */
   .spacing-md { margin: 1.5rem; } /* 24px */
   .spacing-lg { margin: 2rem; } /* 32px */
+
+  /* ===== TRUST LAYER & DESIGN EVOLUTION MOBILE SCROLL FIX ===== */
+  /* Force overflow visible and height auto to prevent internal scroll traps on mobile */
+  #trust-layer,
+  section[id="design-evolution-logic"] {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: min-content !important;
+  }
+
+  /* Trust Layer section containers - ensure they expand naturally */
+  #trust-layer .container,
+  #trust-layer [class*="max-w-"],
+  section[id="design-evolution-logic"] .container,
+  section[id="design-evolution-logic"] [class*="max-w-"] {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: min-content !important;
+    max-height: none !important;
+  }
 }
 
 /* Bento-System Diagram Text Contrast Fixes - No hover effects */

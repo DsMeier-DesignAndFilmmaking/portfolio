@@ -686,17 +686,22 @@ export default function AISandboxPage() {
             transition={{ duration: 0.6 }}
             className="mb-12 md:mb-16"
           >
+            <div className="mb-3">
+              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                [LAYER: PRESENTATION_SYSTEM]
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            Product Surfaces (The "Glass")
+            Interface Architecture & Presentation Touchpoints
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            The same core intelligence surfaces across different interfaces: mobile apps, embedded widgets, and APIs/SDKs. Each product surface leverages the same platform capabilities, orchestrated by the Spontaneity Engine and enhanced by embedded intelligence layers.          
+            The same core intelligence manifests through functional touchpoints: interface layers spanning mobile apps, embedded widgets, and APIs/SDKs. Each interface layer leverages design tokens and component library patterns, orchestrated by the Spontaneity Engine and enhanced by visual hierarchy principles.          
             </p>
           </motion.div>
 
           <div 
             ref={productSurfacesContainerRef}
-            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch"
+            className="flex flex-row overflow-x-auto gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch"
           >
   {[
     {
@@ -782,7 +787,7 @@ export default function AISandboxPage() {
     </motion.div>
   ))}
 </div>
-          {/* Scroll Indicator - Product Surfaces */}
+          {/* Scroll Indicator - Interface Layers */}
           <div className="flex justify-center mt-4 md:hidden">
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="font-medium">{productSurfacesCurrentCard}</span>
@@ -790,11 +795,17 @@ export default function AISandboxPage() {
               <span className="text-gray-500">4</span>
             </div>
           </div>
+          {/* Caption for Interface Architecture Section */}
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-500 italic" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+              Mapping core heuristics to UI components
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Product Surfaces Clarifier */}
-      <section className="pt-8 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Product Surfaces">
+      {/* Interface Architecture Clarifier */}
+      <section className="pt-8 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Interface Architecture">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

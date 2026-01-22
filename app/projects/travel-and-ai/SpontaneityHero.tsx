@@ -56,8 +56,9 @@ export const SpontaneityHero = () => {
 
           {/* Right Side: Fixed Z-Stack Isometric Visual */}
           <div className="flex-1 w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[450px]">
-              <svg viewBox="0 0 400 550" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto overflow-visible">
+            <div className="relative w-full max-w-full md:max-w-[450px] overflow-hidden">
+              <div className="scale-[1.17] md:scale-100 origin-center">
+              <svg viewBox="0 0 400 550" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
                 <defs>
                   <style>{`
                     .data-pulse { animation: pulseMove 3s ease-in-out infinite; opacity: 0; }
@@ -96,6 +97,7 @@ export const SpontaneityHero = () => {
                 <circle cx="200" cy="380" r="4" fill="#10B981" className="data-pulse" style={{ animationDelay: '0s' }} />
                 <circle cx="200" cy="380" r="4" fill="#6366F1" className="data-pulse" style={{ animationDelay: '1.5s' }} />
               </svg>
+              </div>
             </div>
           </div>
 
