@@ -291,6 +291,17 @@ export default function AISandboxPage() {
           }`}
         />
       </button>
+      {/* Design Work: separator + label; visible on all breakpoints, scaled for mobile */}
+      <div className="flex items-center flex-shrink-0 ml-2 sm:ml-2.5 md:ml-3">
+        <div className="w-px h-3.5 sm:h-4 md:h-5 bg-slate-300 flex-shrink-0" aria-hidden="true" />
+        <span
+          className={`ml-2 sm:ml-2.5 md:ml-3 text-[11px] sm:text-xs md:text-sm font-medium transition-colors duration-500 whitespace-nowrap ${
+            isNavbarWhite ? 'text-black' : 'text-gray-700'
+          }`}
+        >
+          Design Work
+        </span>
+      </div>
     </div>
 
       {/* Mobile Menu Button - Hamburger */}

@@ -142,7 +142,7 @@ export default function ProjectNavigation({ currentProjectId }: ProjectNavigatio
   const nextLogicalStepId = NEXT_LOGICAL_STEP[normalizedCurrentId] || NEXT_LOGICAL_STEP[logicEquivalent] || '';
 
   return (
-    <section className="py-8 bg-white">
+    <section className="py-12 border border-gray-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -151,13 +151,19 @@ export default function ProjectNavigation({ currentProjectId }: ProjectNavigatio
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 
-              className="text-3xl font-bold mb-8 text-gray-900 tracking-tight" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
-            >
-              Explore more in the AI Travel Ecosystem (The Logic Layer)
-            </h2>
-            
+            <h3 
+            className="text-4xl md:text-4xl font-bold mb-10 text-slate-900 leading-[1.1] tracking-tight transition-all duration-300" 
+            style={{ 
+              fontFamily: "'tiempos-headline-regular', serif",
+              textShadow: "0 2px 10px rgba(0,0,0,0.05)" // Very subtle depth
+            }}
+          >
+            Explore more in the <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">AI Travel Ecosystem</span>
+            <span className="text-xl md:text-2xl block mt-2 font-medium text-slate-500 italic opacity-80">
+              (The Logic Layer)
+            </span>
+          </h3>
+                      
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {availableProjects.map((project) => (
                 <Link

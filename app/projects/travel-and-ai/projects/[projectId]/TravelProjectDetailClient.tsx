@@ -40,7 +40,7 @@ import {
   FaFingerprint,
 } from 'react-icons/fa';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../../components/PageTransitionOverlay';
 import StickyProgressNav from '../../../../../components/StickyProgressNav';
 import SystemStack from '../../../../../components/SystemStack';
@@ -1223,6 +1223,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
   
   // Video-related state
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -1255,6 +1256,9 @@ const variables: Record<string, { title: string; desc: string }> = {
   const isSocialOpportunityMatching = projectId === 'social-opportunity-matching-module';
   const isNarrativeTravelGenerator = projectId === 'narrative-driven-travel-experience-generator';
   const isOtherProject = false; // All projects now have full implementations
+
+  // Check if we're on the logic version of the context-aware-travel-decision-system page
+  const isContextAwareLogicPage = isTravelPlanningAssistant && pathname?.includes('context-aware-travel-decision-system-logic');
 
   // Define sections for the sticky progress nav
   const sections = isNarrativeTravelGenerator
@@ -1300,16 +1304,27 @@ const variables: Record<string, { title: string; desc: string }> = {
         { id: 'learnings-next', label: 'Learnings & Reflections' }
       ]
     : isTravelPlanningAssistant
-    ? [
-        // Context-Aware Travel Decision System page sections
-        { id: 'research-audience', label: 'Audience & Research' },
-        { id: 'design-exploration', label: 'Observed Travel Frictions' },
-        { id: 'designs-strategy', label: 'Concept & Strategy' },
-        { id: 'wireframes-ui', label: 'Design Evolution' },
-        { id: 'prototyping-ai', label: 'System Evolution & Deployment' },
-        { id: 'outcomes-launch', label: 'Launch & Testing' },
-        { id: 'learnings-next', label: 'Learnings & Reflections' }
-      ]
+    ? isContextAwareLogicPage
+      ? [
+          // Context-Aware Travel Decision System Logic page sections (order matches DOM)
+          { id: 'research-audience', label: 'The Architecture' },
+          { id: 'designs-strategy', label: 'Concept & Strategy' },
+          { id: 'design-exploration', label: 'System Logic' },
+          { id: 'wireframes-ui', label: 'Design Evolution' },
+          { id: 'outcomes-launch', label: 'Launch & Testing' },
+          { id: 'learnings-next', label: 'Learnings & Reflections' },
+          { id: 'prototyping-ai', label: 'System Evolution & Deployment' }
+        ]
+      : [
+          // Context-Aware Travel Decision System page sections (order matches DOM)
+          { id: 'research-audience', label: 'Audience & Research' },
+          { id: 'designs-strategy', label: 'Concept & Strategy' },
+          { id: 'design-exploration', label: 'Observed Travel Frictions' },
+          { id: 'wireframes-ui', label: 'Design Evolution' },
+          { id: 'outcomes-launch', label: 'Launch & Testing' },
+          { id: 'learnings-next', label: 'Learnings & Reflections' },
+          { id: 'prototyping-ai', label: 'System Evolution & Deployment' }
+        ]
     : [
         // Default sections for other projects (Spontaneity Engine, etc.)
         { id: 'design-exploration', label: 'Systemic Travel Discovery Failures' },
@@ -1537,7 +1552,7 @@ const variables: Record<string, { title: string; desc: string }> = {
               <div className="space-y-6 mb-8 max-w-2xl">
                 {/* Intro */}
                 <p className="text-[16px] sm:text-[14px] text-gray-100 dark:text-gray-900 leading-relaxed tracking-wide">
-                This architecture connects private trust frameworks with environmental logic to simplify how we navigate the unknown. Explore the functional modules to understand how the engine balances systemic safety with the freedom of spontaneous discovery.
+                This architecture integrates private trust frameworks with environmental logic to bridge systemic safety with spontaneous discovery.               
                 </p>
 
                 {/* The Challenge */}
@@ -2723,30 +2738,36 @@ const variables: Record<string, { title: string; desc: string }> = {
           className="mt-24 pt-16 border-t border-gray-200"
         >
           
+        {/* Section Header Note */}
+        <div className="max-w-4xl mx-auto mb-3">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold italic">
+            *mockup design concepts
+          </p>
+        </div>
 
-          {/* Image Gallery - Grid of 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100">
-              <Image 
-                src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} 
-                alt="Concept Graphic 1" 
-                width={280} 
-                height={560} 
-                className="w-full h-auto object-contain" 
-                priority 
-              />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100">
-              <Image 
-                src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} 
-                alt="Concept Graphic 2" 
-                width={280} 
-                height={560} 
-                className="w-full h-auto object-contain" 
-                priority 
-              />
-            </div>
+              {/* Image Gallery - Grid of 2 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
+          <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100 w-fit h-fit">
+            <Image 
+              src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic.png")} 
+              alt="Concept Graphic 1" 
+              width={280} 
+              height={560} 
+              className="w-full h-auto block" 
+              priority 
+            />
           </div>
+          <div className="rounded-xl overflow-hidden shadow-xl bg-gray-100 w-fit h-fit">
+            <Image 
+              src={normalizeImagePath("/portfolio/images/Micro-Adventure_ConceptGraphic_2.png")} 
+              alt="Concept Graphic 2" 
+              width={280} 
+              height={560} 
+              className="w-full h-auto block" 
+              priority 
+            />
+          </div>
+        </div>
         </motion.div>
       </motion.div>
     </div>
@@ -2918,8 +2939,7 @@ const variables: Record<string, { title: string; desc: string }> = {
   */}
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16">
     
-    {/* Column 1: System Ownership */}
-    {/* Added 'h-full' to ensure the background fills the grid cell height */}
+    {/* Column 1: System Architecture & Readiness */}
     <div className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none">
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
@@ -2930,45 +2950,41 @@ const variables: Record<string, { title: string; desc: string }> = {
       >
         <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-          System Ownership
+          System Architecture
         </h3>
         
         <div className="space-y-8 text-gray-300">
           <div className="group">
-            {/* 400-level emerald is excellent for black; it glows without being blurry */}
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-bold block mb-2">
               Production Ready
             </span>
             <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-              <strong className="text-white">On-Device Processing:</strong> iOS SwiftUI app using Realm for offline-first persistence. Context logic stays on the hardware to ensure {"zero-latency\u00A0responses."}
+              <strong className="text-white">On-Device Processing:</strong> Native iOS/SwiftUI environment leveraging Realm for offline-first persistence. On-hardware logic ensures {"zero-latency\u00A0interaction."}
             </p>
           </div>
 
           <div className="group">
-            {/* Amber-400 provides high visibility and warmth against black */}
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-amber-400 font-bold block mb-2">
               Operational Beta
             </span>
             <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-              <strong className="text-white">Sync Gateway:</strong> Opportunistic background syncing that respects battery life and data constraints while maintaining {"state\u00A0consistency."}
+              <strong className="text-white">Sync Gateway:</strong> Opportunistic background synchronization designed to preserve battery health while maintaining {"global\u00A0state\u00A0consistency."}
             </p>
           </div>
 
           <div className="group">
-            {/* Switched to gray-400 for the label to ensure it doesn't disappear */}
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-400 font-bold block mb-2">
-              Simulated/Stubbed
+              Active Simulation
             </span>
             <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-              <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud LLMs are currently stubbed for rapid testing of {"recommendation\u00A0thresholds."}
+              <strong className="text-white">Inference Engine:</strong> Utilizing lightweight on-device models; cloud nodes are currently stubbed to accelerate {"recommendation\u00A0threshold\u00A0testing."}
             </p>
           </div>
         </div>
       </motion.div>
     </div>
 
-    {/* Column 2: Integration Logic */}
-    {/* Added 'h-full' here as well to match the emerald column */}
+    {/* Column 2: Core Integration Points */}
     <div className="bg-white/5 p-8 rounded-2xl border border-white/10 block h-full touch-none">
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
@@ -2982,32 +2998,27 @@ const variables: Record<string, { title: string; desc: string }> = {
           Integration Points
         </h3>
         
-        <div className="space-y-8 text-gray-400">
         <div className="space-y-8">
-  <div>
-    <h4 className="text-white font-semibold mb-2">Data & Persistence</h4>
-    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-      Orchestrating Firebase/Supabase for cloud state. The system manages conflict 
-      resolution locally to prevent UI "jank" during intermittent connectivity logic.
-    </p>
-  </div>
-  
-  <div>
-    <h4 className="text-white font-semibold mb-2">AI Intelligence Layer</h4>
-    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-      Owning the prompt engineering and context-weighting logic. The system uses OpenAI/LangChain 
-      for heavy lifting, but filters responses to ensure contextual protocols.
-    </p>
-  </div>
-  
-  <div>
-    <h4 className="text-white font-semibold mb-2">Extensibility</h4>
-    <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
-      Architected for widget and API plugins. The interface is designed to be "headless," 
-      allowing future integrations without breaking the core architecture.
-    </p>
-  </div>
-</div>
+          <div>
+            <h4 className="text-white font-semibold mb-2">Data & Persistence Architecture</h4>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              Orchestrating Firebase/Supabase with local conflict resolution to eliminate UI "jank" and ensure seamless performance during {"intermittent\u00A0connectivity."}
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-semibold mb-2">Intelligence Layer</h4>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              Owning the proprietary prompt engineering and contextual weighting. Leveraging OpenAI/LangChain for synthesis, filtered through strict {"contextual\u00A0protocols."}
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-semibold mb-2">Extensibility & Scale</h4>
+            <p className="text-sm leading-relaxed text-gray-200 [text-wrap:pretty]">
+              Decoupled, headless architecture designed for modular widget and API plugins. Future-proof extensibility without {"architectural\u00A0debt."}
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -6349,10 +6360,10 @@ const variables: Record<string, { title: string; desc: string }> = {
     {/* Executive Summary */}
     <div className="max-w-3xl mb-16">
       <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-        Post-Mortem: Verification as a {"Product\u00A0Value"}
+        Verification as a {"Product\u00A0Value"}
       </h2>
       <p className="text-slate-600 text-lg leading-relaxed [text-wrap:pretty]">
-        The core takeaway from this project is that **Trust is the fuel for spontaneity.** When cognitive load drops because the system handles the "sanity check," 
+        The core takeaway from this project is that <strong>Trust is the fuel for spontaneity.</strong> When cognitive load drops because the system handles the "sanity check," 
         users make faster, more adventurous decisions. I didn't just build a 
         database; I built the <span className="text-slate-900 font-bold">confidence to act.</span>
       </p>
@@ -10937,8 +10948,9 @@ const variables: Record<string, { title: string; desc: string }> = {
 
 
 
-      {/* Conditional ordering: For context-aware-travel-decision-system, show Product Surfaces first, then Project Navigation */}
-      {projectId === 'context-aware-travel-decision-system' ? (
+      {/* Conditional ordering: For context-aware-travel-decision-system (non-logic), show Product Surfaces first, then Project Navigation.
+          For context-aware-travel-decision-system-logic, show Project Navigation first, then Product Surfaces. */}
+      {projectId === 'context-aware-travel-decision-system' && !isContextAwareLogicPage ? (
         <>
           {/* Product Surfaces (The Glass) Navigation - Always show all 4 on every project page */}
           <section className="py-8 bg-white border-t border-gray-100">
@@ -10950,9 +10962,19 @@ const variables: Record<string, { title: string; desc: string }> = {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Product Surfaces (The "Glass")
-                  </h3>
+                  <h3 
+                  className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-[1.1] tracking-tight" 
+                  style={{ 
+                    fontFamily: "'tiempos-headline-regular', serif",
+                  }}
+                >
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-green-600">
+                    Product Surfaces
+                  </span>
+                  <span className="text-lg md:text-xl block mt-1 font-medium text-slate-500 italic opacity-90">
+                  (The UX & UI "Glass")
+                  </span>
+                </h3>
                   
                   {/* Product Surface Links - All 4 always shown */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -11028,6 +11050,106 @@ const variables: Record<string, { title: string; desc: string }> = {
           {/* Project Navigation */}
           <ProjectNavigation currentProjectId={projectId} />
         </>
+      ) : projectId === 'context-aware-travel-decision-system' && isContextAwareLogicPage ? (
+        <>
+          {/* Project Navigation - Show first for logic page */}
+          <ProjectNavigation currentProjectId={projectId} />
+
+          {/* Product Surfaces (The Glass) Navigation - Show second for logic page */}
+          <section className="py-8 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-6">
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h3 
+                  className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-[1.1] tracking-tight" 
+                  style={{ 
+                    fontFamily: "'tiempos-headline-regular', serif",
+                  }}
+                >
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-green-600">
+                    Product Surfaces
+                  </span>
+                  <span className="text-lg md:text-xl block mt-1 font-medium text-slate-500 italic opacity-90">
+                    (The "Glass")
+                  </span>
+                </h3>
+                  
+                  {/* Product Surface Links - All 4 always shown */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Context-Aware Decision System */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/context-aware-travel-decision-system"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Context-Aware Decision System
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Social Opportunity Matching */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-opportunity-matching-module"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Opportunity Matching
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Social Graph Network */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/social-graph-driven-travel-network"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Social Graph Network
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+
+                    {/* Narrative Experience Generator */}
+                    <Link
+                      href="/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator"
+                      className="group flex flex-col p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm transition-all duration-300 h-auto overflow-visible"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                          <Smartphone className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Narrative Experience Generator
+                        </span>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-1">View Interface Design</span>
+                    </Link>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+        </>
       ) : (
         <>
           {/* Project Navigation */}
@@ -11043,9 +11165,19 @@ const variables: Record<string, { title: string; desc: string }> = {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                    Product Surfaces (The "Glass")
-                  </h3>
+                  <h3 
+                  className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-[1.1] tracking-tight" 
+                  style={{ 
+                    fontFamily: "'tiempos-headline-regular', serif",
+                  }}
+                >
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-green-600">
+                    Product Surfaces
+                  </span>
+                  <span className="text-lg md:text-xl block mt-1 font-medium text-slate-500 italic opacity-90">
+                  (The UX & UI "Glass")
+                  </span>
+                </h3>
                   
                   {/* Product Surface Links - All 4 always shown */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

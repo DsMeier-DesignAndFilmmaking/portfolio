@@ -256,7 +256,7 @@ export default function SphereSoftwareProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/Sphere Software - Service Desk White Paper.pdf" 
+              href="/documents/Sphere Software - Service Desk White Paper.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -277,7 +277,7 @@ export default function SphereSoftwareProjectPage() {
               </svg>
             </a>
             <a 
-              href="/portfolio/documents/SphereWhitepaper-1.pdf" 
+              href="/documents/SphereWhitepaper-1.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -298,7 +298,7 @@ export default function SphereSoftwareProjectPage() {
               </svg>
             </a>
             <a 
-              href="/portfolio/documents/Reports_09-06-16.pdf" 
+              href="/documents/Reports_09-06-16.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -319,7 +319,7 @@ export default function SphereSoftwareProjectPage() {
               </svg>
             </a>
             <a 
-              href="/portfolio/documents/iOS_v2_10-25-2016.pdf" 
+              href="/documents/iOS_v2_10-25-2016.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

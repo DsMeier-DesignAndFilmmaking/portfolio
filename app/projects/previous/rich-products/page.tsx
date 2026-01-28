@@ -194,7 +194,7 @@ export default function RichProductsProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/FarmRich_wireSpecs_02-07-20 11.pdf" 
+              href="/documents/FarmRich_wireSpecs_02-07-20 11.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -216,7 +216,7 @@ export default function RichProductsProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/FarmRich_wireSpecs_02-07-20 24.pdf" 
+              href="/documents/FarmRich_wireSpecs_02-07-20 24.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -238,7 +238,7 @@ export default function RichProductsProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/FarmRich_GlobalNav_WhereToBuy_wireSpecs.pdf" 
+              href="/documents/FarmRich_GlobalNav_WhereToBuy_wireSpecs.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

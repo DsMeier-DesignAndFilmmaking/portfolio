@@ -40,90 +40,87 @@ export default function DesignWork() {
             </p>
           </div>
         
-       
+{/* Work Grid */}
+<div 
+  className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4" 
+  style={{ maxWidth: '576px', margin: '48px auto 0 auto' }}
+>
+  
+  {/* Block 1: Product Explorations */}
+  <div className="flex flex-col">
+    <h3 className="text-sm font-medium text-gray-400 mb-4 font-sans uppercase tracking-wider">
+      Product Exploration
+    </h3>
+    <Link
+      href="/projects/travel-and-ai"
+      className="group block rounded-lg border border-gray-200 bg-white p-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
+    >
+      <div className="flex flex-col">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">Travel & AI</h3>
+        <p className="text-gray-600 line-clamp-3" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
+          Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.
+        </p>
+      </div>
+      <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
+        <span>View Case Study</span>
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </div>
+    </Link>
+  </div>
 
-        {/* Work Grid */}
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-stretch gap-12" style={{ maxWidth: '576px', margin: '0 auto' }}>
-          
-          {/* Product Explorations Block */}
-          <div className="flex-1 w-full lg:w-auto">
-            <h3 className="text-sm font-medium text-gray-400 mb-4 font-sans uppercase tracking-wider">
-              Product Explorations
-            </h3>
-            <div className="grid grid-cols-1 gap-6">
-              {/* Travel & AI Card */}
-              <Link
-                href="/projects/travel-and-ai"
-                className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
-              >
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Travel & AI
-                  </h3>
-                  <p className="text-gray-600 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
-                    Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.
-                  </p>
-                </div>
-                <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
-                  <span>View Case Studies</span>
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </div>
-              </Link>
-            </div>
-          </div>
+    {/* Block 2: Offline Travel Packs (Full Width) */}
+    <div className="flex flex-col">
+    <h3 className="text-sm font-medium text-gray-400 mb-4 font-sans uppercase tracking-wider">
+      Product Exploration
+    </h3>
+    <Link
+      href="https://local-logic-travel-packs.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block rounded-lg border border-gray-200 bg-white p-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
+    >
+      <div className="flex flex-col">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">Offline Travel Packs</h3>
+        <p className="text-gray-600 line-clamp-3" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
+          Using AI and systems thinking to solve real-world travel challenges through design and hands-on experimentation.
+        </p>
+      </div>
+      <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
+        <span>View Product</span>
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </div>
+    </Link>
+  </div>
 
-          {/* Selected Client Work Block */}
-          <div className="flex-1 w-full lg:w-auto">
-            <h3 className="text-sm font-medium text-gray-400 mb-4 font-sans uppercase tracking-wider">
-              Selected Client Work
-            </h3>
-            <div className="grid grid-cols-1 gap-6">
-              {/* The Archive Card */}
-              <Link
-                href="/projects/previous"
-                className="group block rounded-lg border border-gray-200 bg-white pt-6 px-6 pb-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
-              >
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    The Archive
-                  </h3>
-                  <p className="text-gray-600 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
-                    A collection of projects highlighting expertise in UX, UI, web and product design.
-                  </p>
-                </div>
-                <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
-                  <span>View Projects</span>
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </div>
-              </Link>
-            </div>
-          </div>
+  {/* Block 3: Selected Client Work */}
+  <div className="md:col-span-2 flex flex-col">
+    <h3 className="text-sm font-medium text-gray-400 mb-4 font-sans uppercase tracking-wider">
+      Selected Client Work
+    </h3>
+    <Link
+      href="/projects/previous"
+      className="group block rounded-lg border border-gray-200 bg-white p-6 hover:border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg h-[240px] flex flex-col justify-between"
+    >
+      <div className="flex flex-col">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">The Archive</h3>
+        <p className="text-gray-600 line-clamp-3" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
+          A collection of projects highlighting expertise in UX, UI, web and product design.
+        </p>
+      </div>
+      <div className="flex items-center font-medium text-blue-600 hover:text-blue-700 transition-colors">
+        <span>View Projects</span>
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </div>
+    </Link>
+      </div>
 
-        </div>
+    </div>
         </div>
       </div>
     </section>

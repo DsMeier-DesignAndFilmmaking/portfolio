@@ -251,7 +251,7 @@ export default function HealthcareProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/XYWAV_HCP_ComingSoon_HCP_Specs_v13.pdf" 
+              href="/documents/XYWAV_HCP_ComingSoon_HCP_Specs_v13.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -273,7 +273,7 @@ export default function HealthcareProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/02-15-19_Northera_Dan_SiteMap_FuncSpecs.pdf" 
+              href="/documents/02-15-19_Northera_Dan_SiteMap_FuncSpecs.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -295,7 +295,7 @@ export default function HealthcareProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/XYW-12485_VirtualTriviaGame_V03.pdf" 
+              href="/documents/XYW-12485_VirtualTriviaGame_V03.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

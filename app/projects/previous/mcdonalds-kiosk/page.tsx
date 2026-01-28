@@ -274,7 +274,7 @@ export default function McDonaldsKioskProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/DY Cross-sell Up-sell Wireframes 7.8.pdf" 
+              href="/documents/DY Cross-sell Up-sell Wireframes 7.8.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -296,7 +296,7 @@ export default function McDonaldsKioskProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/DynamicYield_ConceptFlows.pdf" 
+              href="/documents/DynamicYield_ConceptFlows.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

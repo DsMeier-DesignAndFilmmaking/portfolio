@@ -229,7 +229,7 @@ export default function AdviseStreamProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/AdviseStream_mobileDesigns.pdf" 
+              href="/documents/AdviseStream_mobileDesigns.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"

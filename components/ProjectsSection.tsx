@@ -30,97 +30,49 @@ export default function ProjectsSection() {
         className="py-24"
         style={{ backgroundColor: '#1A1A1A' }}
       >
-        <div className="max-w-4xl mx-auto px-6">
-        {process.env.NODE_ENV === 'development' ? (
-          <FadeInSection 
-            delay={0.1}
-            duration={0.8}
-            direction="up"
-            distance={40}
-            threshold={0.2}
-          >
-            <div id="stats-section" className="mb-0 md:mb-24">
-              <StatsSection />
-            </div>
-          </FadeInSection>
-        ) : (
-          <div id="stats-section" className="mb-0 md:mb-24">
-            <StatsSection />
-          </div>
-        )}
+        <div className="max-w-4xl mx-auto px-6 py-24 flex flex-col gap-y-24">
+  
+  {/* Intro Text Section */}
+  <FadeInSection delay={0.15} duration={0.8} direction="up" distance={30} threshold={0.2}>
+    {/* Using space-y-12 to give paragraphs breathing room consistent with section gaps */}
+    <div className="max-w-2xl space-y-10">
+      <p className="text-xl text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+        My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
+      </p>
+      <p className="text-xl text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+        Alongside client work, I explore and build AI-driven product concepts centered on discovery, spontaneity, and experience-based use cases, with a particular interest in location-aware and travel-adjacent contexts.
+      </p>
+    </div>
+  </FadeInSection>
 
-        <FadeInSection 
-          delay={0.15}
-          duration={0.8}
-          direction="up"
-          distance={30}
-          threshold={0.2}
-        >
-          <div className="mb-16 max-w-2xl">
-            <p className="text-xl text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products and experiences that support real behavior, adapt to context, and hold up beyond idealized user flows.
-            </p>
-            <p className="text-xl text-gray-300 leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              Alongside client work, I explore and build AI-driven product concepts centered on discovery, spontaneity, and experience-based use cases, with a particular interest in location-aware and travel-adjacent contexts.
-            </p>
-          </div>
-        </FadeInSection>
-
-        <FadeInSection 
-          delay={0.2}
-          duration={0.8}
-          direction="up"
-          distance={30}
-          threshold={0.2}
-        >
-          <div className="mb-16">
-            <h2 className="text-base font-normal text-gray-400 mb-4 font-sans uppercase">
-              Work and Projects
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl font-sans">
-              A curated collection of work and projects showcasing UX, UI, Web, Graphic and Product Design.
-            </p>
-          </div>
-        </FadeInSection>
-
-        <FadeInSection 
-          delay={0.3}
-          duration={0.8}
-          direction="up"
-          distance={50}
-          threshold={0.1}
-        >
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-16 md:gap-12 lg:gap-8">
-            {/* Product Explorations Block */}
-            <div className="flex-1">
-              <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
-                Product Explorations
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
-                <ProjectCard 
-                  key="travel-ai"
-                  data-project="travel-ai"
-                  {...projects[0]} 
-                />
-              </div>
-            </div>
-
-            {/* Selected Client Work Block */}
-            <div className="flex-1">
-              <h3 className="text-sm font-medium text-gray-400 mb-6 font-sans uppercase tracking-wider">
-                Selected Client Work
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
-                <ProjectCard 
-                  key="select-client-work"
-                  data-project="select-client-work"
-                  {...projects[1]} 
-                />
-              </div>
-            </div>
-          </div>
-        </FadeInSection>
+  {/* Projects Grid Section */}
+  <FadeInSection delay={0.3} duration={0.8} direction="up" distance={50} threshold={0.1}>
+    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-24 lg:gap-12">
+      
+      {/* Product Explorations Block */}
+      <div className="flex-1 flex flex-col">
+        <h3 className="text-sm font-medium text-gray-400 mb-10 font-sans uppercase tracking-wider">
+          Product Explorations
+        </h3>
+        {/* Gap-8 matches the gutter between columns for visual symmetry */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+          <ProjectCard key="travel-ai" data-project="travel-ai" {...projects[0]} />
+        </div>
       </div>
+
+      {/* Selected Client Work Block */}
+      <div className="flex-1 flex flex-col">
+        <h3 className="text-sm font-medium text-gray-400 mb-10 font-sans uppercase tracking-wider">
+          Selected Client Work
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+          <ProjectCard key="select-client-work" data-project="select-client-work" {...projects[1]} />
+        </div>
+      </div>
+
+    </div>
+  </FadeInSection>
+</div>
     </section>
     </>
   );

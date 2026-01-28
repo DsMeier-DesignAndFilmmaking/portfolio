@@ -3428,9 +3428,19 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                Product Surfaces (The "Glass")
-              </h3>
+              <h3 
+              className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-[1.1] tracking-tight" 
+              style={{ 
+                fontFamily: "'tiempos-headline-regular', serif",
+              }}
+            >
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-green-600">
+                Product Surfaces
+              </span>
+              <span className="text-lg md:text-xl block mt-1 font-medium text-slate-500 italic opacity-90">
+                (The UX & UI "Glass")
+              </span>
+            </h3>
               
               {/* Product Surface Links */}
               {(() => {

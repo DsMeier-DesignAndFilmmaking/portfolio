@@ -35,6 +35,9 @@ const Navbar = () => {
   // 3. Determine Styles based on Route
   const isProjectPage = pathname?.includes('/projects/');
   
+  // Show "Design Work" only on /projects/previous/ and /projects/travel-and-ai/ (and subpaths)
+  const showDesignWork = pathname?.startsWith('/projects/previous') || pathname?.startsWith('/projects/travel-and-ai');
+  
   // Clean logic: If home and not scrolled, background is 100% transparent
   const navBg = !isScrolled && pathname === '/' 
     ? 'bg-transparent' 
@@ -48,15 +51,25 @@ const Navbar = () => {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBg}`}
     >
       <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="relative h-9 w-32">
-          <Image 
-            src={`${basePath}/images/signature-25.png`}
-            alt="Logo" 
-            fill 
-            className="object-contain"
-          />
-        </Link>
+        {/* Logo + Design Work (flex items-center) */}
+        <div className="flex items-center gap-0">
+          <Link href="/" className="relative h-9 w-32 flex-shrink-0">
+            <Image 
+              src={`${basePath}/images/signature-25.png`}
+              alt="Logo" 
+              fill 
+              className="object-contain"
+            />
+          </Link>
+          {showDesignWork && (
+            <>
+              <div className="hidden md:block w-px h-5 bg-slate-300 flex-shrink-0 mx-3" aria-hidden="true" />
+              <span className={`hidden md:inline text-sm font-medium transition-colors duration-300 ${textColor}`}>
+                Design Work
+              </span>
+            </>
+          )}
+        </div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">

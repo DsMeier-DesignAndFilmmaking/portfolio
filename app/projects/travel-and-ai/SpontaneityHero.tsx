@@ -33,24 +33,28 @@ export const SpontaneityHero = () => {
               <div className="flex items-start gap-3">
                 <div className="w-1 h-12 bg-emerald-500 rounded-full flex-shrink-0" />
                 <div>
-                  <span className="block text-xs uppercase text-slate-500 font-bold">3. The Glass (The Story)</span>
-                  <p className="text-sm text-slate-300 italic">Semantic Translation: Turning "GPS + Social Data" into human-friendly detours and stories.</p>
+                  <span className="block text-xs uppercase text-slate-500 font-bold [text-wrap:balance]">3. The Glass (UX & UI) Experience Layer</span>
+                  <p className="text-sm text-slate-300 italic [text-wrap:balance]">Abstracting complex datasets into legible and editorialized wayfinding.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-1 h-12 bg-indigo-500 rounded-full flex-shrink-0" />
                 <div>
-                  <span className="block text-xs uppercase text-slate-500 font-bold">2. Middleware (The Logic)</span>
-                  <p className="text-sm text-slate-300 italic">Relational Heuristics: Calculating the "social friction" of a nearby friend or hidden gem.</p>
+                  <span className="block text-xs uppercase text-slate-500 font-bold [text-wrap:balance]">2. Middleware (The Logic) Contextual Heuristics</span>
+                  <p className="text-sm text-slate-300 italic [text-wrap:balance]">Relational Heuristics: Calculating the "social friction" of a nearby friend or hidden gem.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-1 h-12 bg-slate-700 rounded-full flex-shrink-0" />
-                <div>
-                  <span className="block text-xs uppercase text-slate-500 font-bold">1. The Brain (The Timing)</span>
-                  <p className="text-sm text-slate-300 italic">Inference Logic: Determining the "Right Moment" to intervene without breaking travel flow.</p>
-                </div>
+              <div className="w-1 h-12 bg-slate-700 rounded-full flex-shrink-0" />
+              <div>
+                <span className="block text-xs uppercase text-slate-500 font-bold [text-wrap:balance]">
+                  1. The Engine (The Timing) Temporal Heuristics
+                </span>
+                <p className="text-sm text-slate-300 italic [text-wrap:balance]">
+                  Syncing data delivery with the user’s physical movement to ensure zero-friction assistance.
+                </p>
               </div>
+            </div>
             </div>
           </div>
 
@@ -73,24 +77,24 @@ export const SpontaneityHero = () => {
                 {/* TIER 1: CORE INFRASTRUCTURE */}
                 <g transform="translate(50, 300)">
                   <path d="M150 0L300 75L150 150L0 75L150 0Z" fill="#1E293B" fillOpacity="0.95" stroke="#4F46E5" strokeWidth="2.5"/>
-                  <text x="150" y="65" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">1. SERENDIPITY CORE</text>
-                  <text x="150" y="85" textAnchor="middle" fill="#94A3B8" fontSize="10" fontWeight="600">Inference: "When to Interrupt"</text>
-                  <text x="150" y="102" textAnchor="middle" fill="#6366F1" fontSize="10" fontWeight="700">ZK-Verified Trust Layer</text>
+                  <text x="150" y="65" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">1. Anticipatory Core</text>
+                  <text x="150" y="85" textAnchor="middle" fill="#94A3B8" fontSize="10" fontWeight="600">Predictive Intent</text>
+                  <text x="150" y="102" textAnchor="middle" fill="#6366F1" fontSize="10" fontWeight="700">Privacy Layer</text>
                 </g>
 
                 {/* TIER 2: INTELLIGENCE MODULES */}
                 <g transform="translate(50, 180)">
                   <path d="M150 0L300 75L150 150L0 75L150 0Z" fill="#312E81" fillOpacity="0.8" stroke="#6366F1" strokeWidth="2.5"/>
-                  <text x="150" y="65" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">2. DISCOVERY LOGIC</text>
-                  <text x="150" y="85" textAnchor="middle" fill="#818CF8" fontSize="10" fontWeight="600">Context-Aware Sensing (CATDS)</text>
-                  <text x="150" y="102" textAnchor="middle" fill="#818CF8" fontSize="10" fontWeight="600">Social Opportunity Heuristics</text>
+                  <text x="150" y="65" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">2. Contextual Logic</text>
+                  <text x="150" y="85" textAnchor="middle" fill="#818CF8" fontSize="10" fontWeight="600">Environmental Sensing</text>
+                  <text x="150" y="102" textAnchor="middle" fill="#818CF8" fontSize="10" fontWeight="600">Relational Heuristics</text>
                 </g>
 
                 {/* TIER 3: PRODUCT SURFACES */}
                 <g transform="translate(50, 60)">
                   <path d="M150 0L300 75L150 150L0 75L150 0Z" fill="#064E3B" fillOpacity="0.9" stroke="#10B981" strokeWidth="2.5"/>
-                  <text x="150" y="70" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">3. MOMENT UI</text>
-                  <text x="150" y="92" textAnchor="middle" fill="#10B981" fontSize="10" fontWeight="600">Narrative Detours • Semantic Stories</text>
+                  <text x="150" y="70" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" className="uppercase tracking-widest">3. Experience Layer</text>
+                  <text x="150" y="92" textAnchor="middle" fill="#10B981" fontSize="10" fontWeight="600">Narrative Wayfinding • Editorialized Stories</text>
                 </g>
 
                 <line x1="200" y1="130" x2="200" y2="420" stroke="#4F46E5" strokeWidth="1" strokeDasharray="6 6" opacity="0.3" />

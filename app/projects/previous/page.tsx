@@ -188,6 +188,13 @@ export default function PreviousProjectsPage() {
           className="h-9 w-auto transition-all duration-500 block brightness-0 invert"
         />
       </button>
+      {/* Design Work: separator + label; visible on all breakpoints, scaled for mobile */}
+      <div className="flex items-center flex-shrink-0 ml-2 sm:ml-2.5 md:ml-3">
+        <div className="w-px h-3.5 sm:h-4 md:h-5 bg-white/40 flex-shrink-0" aria-hidden="true" />
+        <span className="ml-2 sm:ml-2.5 md:ml-3 text-[11px] sm:text-xs md:text-sm font-medium text-white transition-colors duration-300 whitespace-nowrap">
+          Design Work
+        </span>
+      </div>
     </div>
 
             {/* Mobile Menu Button */}

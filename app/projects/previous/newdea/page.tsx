@@ -238,7 +238,7 @@ export default function NewdeaProjectPage() {
           </p>
           <div className="space-y-4 max-w-4xl">
             <a 
-              href="/portfolio/documents/Newdea-AllScreens.pdf" 
+              href="/documents/Newdea-AllScreens.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
@@ -260,7 +260,7 @@ export default function NewdeaProjectPage() {
             </a>
 
             <a 
-              href="/portfolio/documents/Newdea_Brand Guidelines.pdf" 
+              href="/documents/Newdea_Brand Guidelines.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center justify-between p-6 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
