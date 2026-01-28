@@ -65,7 +65,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, link, 
                 ? "View Work" 
                 : title === "Travel & AI" 
                 ? "View Case Studies" 
-                : title === "The Archive"
+                : title === "Selected Client Projects"
                 ? "View Projects"
                 : "View Projects"}
               <motion.svg
