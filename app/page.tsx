@@ -217,28 +217,26 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Second Image (Portrait) */}
-                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                <div className="w-full">
-                  <div 
-                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-                    style={{
-                      background: '#f0f0f0' /* Skeleton state background */,
-                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
-                    }}
-                  >
-                    <Image 
-                      id="me_heroImage-1_1.1.1-about-2"
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
-                      alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 576px"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
+               {/* Second Image (Portrait) */}
+<div className="w-full">
+  <div 
+    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+    style={{
+      background: '#f0f0f0' /* Maintains the placeholder color while loading */
+    }}
+  >
+    <Image 
+      id="me_heroImage-1_1.1.1-about-2"
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
+      alt="Dan Meier"
+      width={576} // The intrinsic width of the file
+      height={768} // The intrinsic height of the file
+      className="w-full h-auto block rounded-lg" // h-auto is key for auto-fitting
+      sizes="(max-width: 768px) 100vw, 576px"
+      loading="lazy"
+    />
+  </div>
+</div>
 
                 {/* Design Journey Section */}
                 <div className="w-full" style={{ marginTop: '3.45rem' }}>
@@ -283,51 +281,51 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Third Image (Portrait - Duplicate) */}
-                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
-                  <div 
-                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-                    style={{
-                      background: '#f0f0f0' /* Skeleton state background */,
-                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
-                    }}
-                  >
-                    <Image 
-                      id="me_heroImage-1_1.1.1-about-3"
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
-                      alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 576px"
-                      loading="lazy"
-                    />
-                  </div>
+                <div 
+                  className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                  style={{
+                    background: '#f0f0f0', 
+                    /* We remove the hardcoded aspectRatio style here */
+                  }}
+                >
+                  <Image 
+                    id="me_heroImage-1_1.1.1-about-3"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
+                    alt="Dan Meier"
+                    // Providing these tells Next.js the intrinsic ratio
+                    width={576} 
+                    height={768}
+                    // h-auto ensures the height adjusts based on the width of the container
+                    className="w-full h-auto block rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 576px"
+                    priority={true} // Optional: use if this is "above the fold"
+                  />
                 </div>
+              </div>
 
                 {/* Fourth Image (Portrait) */}
-                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                <div className="w-full">
-                  <div 
-                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-                    style={{
-                      background: '#f0f0f0' /* Skeleton state background */,
-                      aspectRatio: '576 / 768' /* Prevent layout shift when image loads */
-                    }}
-                  >
-                    <Image 
-                      id="me_heroImage-1_1.1.1-about-4"
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
-                      alt="Dan Meier"
-                      width={576}
-                      height={768}
-                      className="w-full h-auto rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 576px"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
+<div className="w-full">
+  <div 
+    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+    style={{
+      background: '#f0f0f0' /* Skeleton state remains for the initial box */
+    }}
+  >
+    <Image 
+      id="me_heroImage-1_1.1.1-about-4"
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
+      alt="Dan Meier"
+      // Provide the natural dimensions of the file to preserve ratio
+      width={576} 
+      height={768}
+      // w-full makes it responsive; h-auto lets the file ratio define the height
+      className="w-full h-auto block rounded-lg"
+      sizes="(max-width: 768px) 100vw, 576px"
+      loading="lazy"
+    />
+  </div>
+</div>
               </div>
             </div>
           </div>
@@ -392,7 +390,7 @@ export default function HomePage() {
                 className="relative w-full rounded-3xl overflow-hidden travelogue-video-container"
                 style={{ 
                   aspectRatio: '16 / 9',
-                  backgroundColor: '#2a2d35'
+                  backgroundColor: '#000000'
                 }}
               >
                 <iframe

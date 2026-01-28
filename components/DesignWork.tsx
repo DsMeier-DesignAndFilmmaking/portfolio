@@ -65,7 +65,7 @@ export default function DesignWork() {
       <h3 className="text-2xl font-extrabold text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">
         Intelligent Travel Systems
       </h3>
-      <p className="text-gray-600 line-clamp-none text-pretty leading-relaxed" 
+      <p className="text-gray-600 line-clamp-none text-balance leading-relaxed" 
          style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
       Architecting multi-agent systems that move beyond static interfaces to coordinate complex travel logic, autonomous discovery, and real-time environmental context.      
       </p>
@@ -104,7 +104,7 @@ export default function DesignWork() {
       <h3 className="text-2xl font-extrabold text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">
         Offline Travel Packs
       </h3>
-      <p className="text-gray-600 line-clamp-none text-pretty leading-relaxed" 
+      <p className="text-gray-600 line-clamp-none text-balance leading-relaxed" 
          style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1rem' }}>
         Offline travel packs designed to provide immediate, actionable solutions to common real-time travel challenges and questions.
       </p>
