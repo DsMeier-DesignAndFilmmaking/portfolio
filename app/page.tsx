@@ -142,18 +142,18 @@ export default function HomePage() {
                 className="w-full relative rounded-lg shadow-lg overflow-hidden" 
                 style={{ 
                   background: '#f0f0f0' /* Skeleton state background */,
-                  aspectRatio: '576 / 432' /* Prevent layout shift when image loads */
+                  aspectRatio: '1920 / 1080' /* Match actual hero image dimensions */
                 }}
               >
                 <Image 
                   id="me_heroImage-1_1.1.1"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
                   alt="Dan Meier"
-                  width={576}
-                  height={432}
+                  width={1920}
+                  height={1080}
                   priority
                   sizes="(max-width: 768px) 100vw, 576px"
-                  className="w-full h-auto rounded-lg transition-all duration-300"
+                  className="w-full h-auto block rounded-lg transition-all duration-300"
                 />
               </div>
             </div>
