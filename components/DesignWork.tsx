@@ -90,7 +90,7 @@ export default function DesignWork() {
     Product Exploration
   </h3>
   <Link
-    href="https://city-travel-packs.vercel.app/"
+    href="https://downloadable-travel-packs.vercel.app/"
     target="_blank"
     rel="noopener noreferrer"
     className="group relative block rounded-xl border border-gray-200 bg-white p-7 
