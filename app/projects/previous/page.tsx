@@ -228,6 +228,15 @@ export default function PreviousProjectsPage() {
                 >
                   Client Work
                 </Link>
+                <a
+                  href="https://downloadable-travel-packs.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                >
+                  Offline Travel Packs
+                </a>
               </nav>
             </div>
           </div>
@@ -261,6 +270,16 @@ export default function PreviousProjectsPage() {
                 >
                   Client Work
                 </Link>
+                <a
+                  href="https://downloadable-travel-packs.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+                >
+                  Offline Travel Packs
+                </a>
               </nav>
             </motion.div>
           )}

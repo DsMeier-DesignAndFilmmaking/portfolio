@@ -338,6 +338,16 @@ export default function AISandboxPage() {
           >
             Client Work
           </Link>
+          <a
+            href="https://downloadable-travel-packs.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-[11pt] transition-colors duration-500 ${
+              isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
+            }`}
+          >
+            Offline Travel Packs
+          </a>
         </nav>
       </div>
     </div>
@@ -369,6 +379,15 @@ export default function AISandboxPage() {
           >
             Client Work
           </Link>
+          <a
+            href="https://downloadable-travel-packs.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+          >
+            Offline Travel Packs
+          </a>
         </nav>
       </motion.div>
     )}
