@@ -422,7 +422,7 @@ export default function AISandboxPage() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-left" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-gray-900">
-              Designing AI-Driven Mobility for a World in Motion
+              Building a Core AI Spontaneity Engine Powering Modular Travel Experiences
               </span>
             </h1>
 
