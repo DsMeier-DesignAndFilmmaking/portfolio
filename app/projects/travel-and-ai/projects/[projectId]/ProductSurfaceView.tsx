@@ -2138,20 +2138,35 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
 
     return (
       <div className="bg-white min-h-screen">
-        <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
-          <button 
-            onClick={() => router.back()} 
-            className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all"
-          >
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
-          </button>
-          <button
-            onClick={() => setViewMode('standard')}
-            className="group flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-white/40 rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-700 hover:bg-white/80 transition-all"
-          >
-            <Eye size={12} /> Standard View
-          </button>
-        </nav>
+        <motion.nav 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
+        >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center py-4">
+            
+            {/* LEFT SIDE: Breadcrumbs & Navigation */}
+            <div className="flex items-center gap-4">
+              {/* Back to Stack Button */}
+                <button 
+                  onClick={() => router.back()} 
+                  className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all"
+                >
+                  <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
+                </button>
+                <button
+                  onClick={() => setViewMode('standard')}
+                  className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all cursor-pointer"
+                  >
+                  <Eye size={12} /> Standard View
+                </button>
+                </div>
+
+          </div>
+        </div>
+          </motion.nav>
         {renderIntelligenceView()}
       </div>
     );
@@ -2160,25 +2175,41 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
   return (
     <div className="bg-white min-h-screen text-slate-900 selection:bg-indigo-100">
       {/* 1. Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+      <motion.nav 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
+    >
+    <div className="max-w-7xl mx-auto px-6">
+    <div className="flex justify-between items-center py-4">
+      
+      {/* LEFT SIDE: Breadcrumbs & Navigation */}
+      <div className="flex items-center gap-4">
+        {/* Back to Stack Button */}
         <button 
           onClick={() => router.back()} 
           className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Stack
         </button>
+        
         <div className="flex items-center gap-2 md:gap-4">
           {isAISystem && (
             <button
               onClick={() => setViewMode('intelligence')}
-              className="group flex items-center gap-1 md:gap-2.5 px-2.5 py-1.5 md:px-5 md:py-2.5 bg-gradient-to-r from-blue-500 to-emerald-500 border-2 border-blue-400/30 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-tight md:tracking-wider text-white hover:from-blue-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 whitespace-nowrap"
+              className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all cursor-pointer"
             >
-              <Brain size={11} className="md:w-[14px] md:h-[14px] drop-shadow-sm shrink-0" /> View Intelligence Layer
+              <Brain size={14} className="group-hover:scale-110 transition-transform text-slate-400 group-hover:text-blue-500" />
+              <span>View Intelligence Layer</span>
             </button>
           )}
-         
+         </div>
+
         </div>
-      </nav>
+        </div>
+        </div>
+        </motion.nav>
 
      {/* 2. Hero */}
      <header className={`max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-24 flex flex-col lg:flex-row gap-16 ${projectId === 'social-graph-driven-travel-network' ? 'items-start lg:items-center' : 'items-center'} min-h-[80vh] ${projectId === 'social-graph-driven-travel-network' ? 'md:min-h-0' : 'md:min-h-[calc(100vh-5rem)]'}`}>

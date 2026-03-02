@@ -470,7 +470,7 @@ useEffect(() => {
       className="text-gray-700 text-base md:text-lg leading-relaxed"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
-      As the lead designer and developer, I’m building the modular platform that makes this possible, integrating intelligence modules to deliver real-time, safe and verifiable local experiences.
+      As the lead designer and developer, I am building the modular platform that integrates intelligence layers to deliver real-time, verifiable, and safe local experiences.
     </p>
 
     {/* Scroll / Explore Indicator */}
@@ -532,7 +532,7 @@ useEffect(() => {
         The Core Infrastructure (The "Brain")
       </h2>
       <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-        A single core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
+        A core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
       </p>
     </motion.div>
     

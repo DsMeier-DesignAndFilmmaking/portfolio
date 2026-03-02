@@ -1488,31 +1488,54 @@ const variables: Record<string, { title: string; desc: string }> = {
       </AnimatePresence>
 
       {/* Navigation */}
-      <motion.nav 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center py-4">
-            <button
-              onClick={(e: React.MouseEvent) => {
-                e.preventDefault();
-                setIsTransitioning(true);
-                setTimeout(() => {
-                  router.push('/projects/travel-and-ai');
-                }, 500);
-              }}
-              className="hover:opacity-80 transition-opacity flex items-center gap-2 text-gray-900"
-              aria-label="Back to projects"
-            >
-              <FaArrowLeft className="w-5 h-5" />
-              <span className="text-base md:text-sm font-medium">Back to Travel & AI</span>
-            </button>
-          </div>
-        </div>
-      </motion.nav>
+<motion.nav 
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.4 }}
+  className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
+>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="flex justify-between items-center py-4">
+      <div className="flex items-center gap-4">
+        {/* Updated Back to Stack Button */}
+        <button
+          onClick={(e: React.MouseEvent) => {
+            e.preventDefault();
+            setIsTransitioning(true);
+            setTimeout(() => {
+              router.push('/projects/travel-and-ai');
+            }, 500);
+          }}
+          className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all cursor-pointer"
+        >
+          <FaArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> 
+          Back to Stack
+        </button>
+
+        {/* Subtle Divider */}
+        <div className="h-3 w-[1px] bg-gray-300" aria-hidden="true" />
+
+        {/* Travel & AI Home Link */}
+        <Link
+          href="/projects/travel-and-ai"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsTransitioning(true);
+            setTimeout(() => router.push('/projects/travel-and-ai'), 500);
+          }}
+          className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all"
+        >
+          Travel & AI Home
+        </Link>
+      </div>
+
+      {/* Right side of nav (if needed) */}
+      <div className="hidden md:block">
+        {/* You can add a 'Status: Beta' or 'Module: 01' tag here for extra UX polish */}
+      </div>
+    </div>
+  </div>
+</motion.nav>
 
     {/* Sticky Progress Navigation */}
     {(isSpontaneousTravelCompanion || isCulturalContextEngine || isLocalExperienceFinder || isTravelPlanningAssistant || isSocialOpportunityMatching || isNarrativeTravelGenerator) && (
