@@ -2193,7 +2193,6 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="h-[1px] w-8 bg-slate-200" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">The Glass (Tier 3)</span>
                 <div className="font-mono text-[9px] text-slate-300 uppercase tracking-tighter">
                 Surface_ID // <span className="text-slate-900 font-bold">{projectId}</span>
               </div>

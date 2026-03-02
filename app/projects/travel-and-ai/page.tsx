@@ -420,14 +420,14 @@ export default function AISandboxPage() {
               <span className="text-gray-600">Intelligent Travel Systems</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-left" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-left" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-gray-900">
-              Building a Core AI Spontaneity Engine Powering Modular Travel Experiences
+              HADE — Hyperlocal Agentic Decision Engine: Building a Core AI Spontaneity Engine Powering Modular Travel Experiences
               </span>
-            </h1>
+            </h2>
 
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            Travel revealed the friction. Systems design solves it.
+            Turning the physical world into a context-aware, socially intelligent experience.
             <br /><br />
             As the sole founder and lead architect, I am building the end-to-end infrastructure for a modular platform that orchestrates integrated intelligence modules to transform real-time context into verifiable local experiences. 
             </p>
