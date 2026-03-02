@@ -27,10 +27,14 @@ export default function AISandboxPage() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   
   // Scroll tracking for horizontal card containers
-  const [intelligenceModulesCurrentCard, setIntelligenceModulesCurrentCard] = useState(1);
-  const [productSurfacesCurrentCard, setProductSurfacesCurrentCard] = useState(1);
-  const intelligenceModulesContainerRef = useRef<HTMLDivElement>(null);
-  const productSurfacesContainerRef = useRef<HTMLDivElement>(null);
+// 1. All States and Refs go at the top of the component
+const [brainSurfacesCurrentCard, setBrainSurfacesCurrentCard] = useState(1);
+const [intelligenceModulesCurrentCard, setIntelligenceModulesCurrentCard] = useState(1);
+const [productSurfacesCurrentCard, setProductSurfacesCurrentCard] = useState(1);
+
+const brainSurfacesContainerRef = useRef<HTMLDivElement>(null);
+const intelligenceModulesContainerRef = useRef<HTMLDivElement>(null);
+const productSurfacesContainerRef = useRef<HTMLDivElement>(null);
   
   // Use refs to avoid recreating the event listener
   const lastScrollYRef = useRef(0);
@@ -101,6 +105,27 @@ export default function AISandboxPage() {
   useEffect(() => {
     isMobileMenuOpenRef.current = isMobileMenuOpen;
   }, [isMobileMenuOpen]);
+
+// 2. The Logic
+useEffect(() => {
+  const container = brainSurfacesContainerRef.current;
+  if (!container) return;
+
+  const handleScroll = () => {
+    const { scrollLeft, offsetWidth } = container;
+    
+    // Calculate index: 
+    // We use offsetWidth (the visible width of the container)
+    // Since cards are roughly 75vw, we divide by that logic.
+    const index = Math.round(scrollLeft / (offsetWidth * 0.75)) + 1;
+    
+    // Update state (clamped between 1 and 2)
+    setBrainSurfacesCurrentCard(Math.min(Math.max(index, 1), 2));
+  };
+
+  container.addEventListener('scroll', handleScroll, { passive: true });
+  return () => container.removeEventListener('scroll', handleScroll);
+}, []);
 
   // Scroll tracking for Intelligence Modules container
   useEffect(() => {
@@ -408,67 +433,71 @@ export default function AISandboxPage() {
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Left: Hero Content */}
-        <div className="relative z-20 text-left md:text-left">
-          <motion.div
-            className="max-w-2xl text-left md:text-left mt-[100px]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              <span className="text-gray-600">Intelligent Travel Systems</span>
-            </div>
+   {/* Left: Hero Content */}
+<div className="relative z-20 text-left md:text-left">
+  <motion.div
+    className="max-w-2xl mt-[100px] flex flex-col space-y-6"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.3 }}
+  >
+    {/* Category / Tagline */}
+    <div 
+      className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium"
+      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+    >
+      <span className="text-gray-600">Intelligent Travel Systems</span>
+    </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-left" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-              <span className="text-gray-900">
-              HADE — Hyperlocal Agentic Decision Engine: Building a Core AI Spontaneity Engine Powering Modular Travel Experiences
-              </span>
-            </h2>
+    {/* Headline */}
+    <h1 
+      className="text-3xl md:text-5xl font-bold leading-snug" 
+      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    >
+      {/* Primary */}
+      <span className="block text-gray-900">
+        Hyperlocal Agentic Decision Engine <span className="text-indigo-600">(HADE)</span>
+      </span>
 
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-left mb-8" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            Turning the physical world into a context-aware, socially intelligent experience.
-            <br /><br />
-            As the sole founder and lead architect, I am building the end-to-end infrastructure for a modular platform that orchestrates integrated intelligence modules to transform real-time context into verifiable local experiences. 
-            </p>
+      {/* Sub-primary (Option 1 flow) */}
+      <span className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
+        Transforms the physical world into context-aware, socially intelligent experiences
+      </span>
+    </h1>
 
-            {/* Explore The System with Scroll Indicator */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
-              transition={{ duration: 0.5, delay: 1.2 }}
-              // ADDED: hidden (mobile first) and lg:flex (desktop)
-              className="hidden lg:flex flex-col items-start gap-3" 
-              
-            >
-              <div className="flex items-center gap-2 group">
-              <span 
-                className="text-sm font-medium text-gray-400 tracking-wide"
-                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-              >
-                Explore The System
-              </span>
-              
-              <motion.div
-                animate={{ 
-                  y: [0, 4, 0], // Reduced bounce for a cleaner inline look
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="flex items-center"
-              >
-                <ChevronDown 
-                  className="w-5 h-5 text-gray-400"
-                  strokeWidth={2}
-                />
-              </motion.div>
-            </div>
-            </motion.div>
-          </motion.div>
-        </div>
+    {/* Subcopy / Description */}
+    <p 
+      className="text-gray-700 text-base md:text-lg leading-relaxed"
+      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+    >
+      As the lead designer and developer, I’m building the modular platform that makes this possible, integrating intelligence modules to deliver real-time, safe and verifiable local experiences.
+    </p>
+
+    {/* Scroll / Explore Indicator */}
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
+      transition={{ duration: 0.5, delay: 1.2 }}
+      className="hidden lg:flex flex-col items-start"
+    >
+      <div className="flex items-center gap-2 group">
+        <span 
+          className="text-sm font-medium text-gray-400 tracking-wide" 
+          style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+        >
+          Explore The System
+        </span>
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center"
+        >
+          <ChevronDown className="w-5 h-5 text-gray-400" strokeWidth={2} />
+        </motion.div>
+      </div>
+    </motion.div>
+  </motion.div>
+</div>
         
 
         {/* Right: Systems Graphic */}
@@ -489,179 +518,163 @@ export default function AISandboxPage() {
 <SpontaneityHero />
 
       {/* Core Platform & Embedded Intelligence Section */}
-      <section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 md:mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            The Core Infrastructure (The "Brain")
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              A single core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
-            </p>
-          </motion.div>
-
-          <div 
-            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
-            style={{ 
-              WebkitOverflowScrolling: 'touch',
-              position: 'relative',
-              touchAction: 'pan-x pan-y'
-            }}
-          >
-            {/* Spontaneity Engine - Centerpiece */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              drag={false}
-              className="travel-ai-h-scroll-card group relative flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
+<section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
+  <div className="container mx-auto px-6">
+    {/* Header Section */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6 }}
+      className="mb-12 md:mb-16"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+        The Core Infrastructure (The "Brain")
+      </h2>
+      <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+        A single core system orchestrates decision timing and action output, while embedded intelligence layers provide cross-cutting capabilities across all modules.
+      </p>
+    </motion.div>
+    
+    {/* HORIZONTAL SCROLL CONTAINER 
+        Note: Added 'snap-x snap-mandatory' for precise indicator tracking
+    */}
+    <div 
+      ref={brainSurfacesContainerRef}
+      className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain snap-x snap-mandatory"
+      style={{ 
+        WebkitOverflowScrolling: 'touch',
+        position: 'relative',
+        touchAction: 'pan-x pan-y',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none'
+      }}
+    >
+      {/* Card 1: Spontaneity Engine */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="travel-ai-h-scroll-card group relative flex-shrink-0 w-[75vw] md:w-full snap-center select-none"
+        style={{
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          WebkitFontSmoothing: 'antialiased'
+        }}
+      >
+        <div 
+          className="relative rounded-2xl p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:shadow-2xl transition-all duration-500 h-full"
+          style={{
+            boxShadow: '0 10px 40px rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1)',
+          }}
+        >
+          <div className="relative bg-white rounded-[14px] p-8 md:p-10 h-full bg-gradient-to-br from-white to-blue-50/20 flex flex-col">
+            <div className="absolute inset-0 rounded-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               style={{
-                WebkitTransform: 'translate3d(0, 0, 0)',
-                transform: 'translate3d(0, 0, 0)',
-                WebkitBackfaceVisibility: 'hidden',
-                backfaceVisibility: 'hidden',
-                WebkitFontSmoothing: 'antialiased',
-                touchAction: 'pan-x pan-y'
+                background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%)',
+                pointerEvents: 'none'
               }}
-            >
-              {/* Gradient border wrapper */}
-              <div 
-                className="relative rounded-2xl p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:shadow-2xl transition-all duration-500 h-full"
-                style={{
-                  boxShadow: '0 10px 40px rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1)',
-                }}
-              >
-                {/* Inner content with white background */}
-                <div className="relative bg-white rounded-[14px] p-8 md:p-10 h-full bg-gradient-to-br from-white to-blue-50/20 flex flex-col">
-                  {/* Subtle glow effect on hover */}
-                  <div className="absolute inset-0 rounded-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%)',
-                      pointerEvents: 'none'
-                    }}
-                  />
-                  
-                  <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center gap-2 text-gray-600 font-medium">
-                    <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
-                      <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
-                    </div><br />
-                    <div className="flex items-center gap-4 mb-6">
-                      
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
-                        <Sparkles className="w-6 h-6 text-white" />
-                      </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      Spontaneity Engine
-                    </h3>
-                  </div>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-                  <strong>Inference & Timing Logic:</strong> A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it's goal is to power everything from apps to APIs.
-                  </p>
-                  <div className="flex items-center justify-between mt-auto">
-                    
-                    <Link 
-                      href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
-                      className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
-                      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                      onTouchStart={handleLinkTouchStart}
-                      onTouchMove={handleLinkTouchMove}
-                      onTouchEnd={handleLinkTouchEnd}
-                      onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/spontaneous-travel-companion")}
-                    >
-                      EXAMINE CORE ARCHITECTURE
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                  </div>
-                </div>
+            />
+            
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-2 text-gray-600 font-medium">
+                <div className="w-2 h-2 rounded-full bg-gray-500 animate-pulse" />
+                <span className="text-sm" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>Core Innovation</span>
               </div>
-            </motion.div>
-
-            {/* Trust & Authenticity Layer */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              drag={false}
-              className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full touch-pan-x select-none"
-              style={{
-                // 1. Force a new stacking context
-                isolation: 'isolate',
-                // 2. Hardware acceleration
-                WebkitTransform: 'translate3d(0, 0, 0)',
-                transform: 'translate3d(0, 0, 0)',
-                // 3. Prevent the "flash" during opacity/transform changes
-                WebkitBackfaceVisibility: 'hidden',
-                backfaceVisibility: 'hidden',
-                WebkitPerspective: 1000,
-                perspective: 1000,
-                // 4. Ensure smooth text rendering
-                WebkitFontSmoothing: 'antialiased',
-                touchAction: 'pan-x pan-y'
-              }}
-            >
+              <br />
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center md:shadow-lg flex-shrink-0">
-                  <Shield className="w-6 h-6 text-white flex-shrink-0" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                 Integrity & Verification Layer
+                  Spontaneity Engine
                 </h3>
               </div>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              To make spontaneity work, you need trust. This embedded layer handles the heavy lifting, verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
+                <strong>Inference & Timing Logic:</strong> A central intelligence that turns real-time signals into spontaneous discoveries. Built to be modular, it's goal is to power everything from apps to APIs.
               </p>
-              <div className="flex items-center justify-end mt-auto w-full text-right">
+              <div className="flex items-center justify-between mt-auto">
                 <Link 
-                  href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
+                  href="/projects/travel-and-ai/projects/spontaneous-travel-companion"
                   className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
                   style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                   onTouchStart={handleLinkTouchStart}
                   onTouchMove={handleLinkTouchMove}
                   onTouchEnd={handleLinkTouchEnd}
-                  onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/trust-framework-ai-travel")}
+                  onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/spontaneous-travel-companion")}
                 >
                   EXAMINE CORE ARCHITECTURE
-                  <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
+                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
-      </section>
+      </motion.div>
+
+      {/* Card 2: Integrity & Verification Layer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full snap-center select-none"
+        style={{
+          isolation: 'isolate',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          WebkitPerspective: 1000,
+          perspective: 1000,
+          WebkitFontSmoothing: 'antialiased'
+        }}
+      >
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 min-w-[3rem] min-h-[3rem] rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center md:shadow-lg flex-shrink-0">
+            <Shield className="w-6 h-6 text-white flex-shrink-0" />
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            Integrity & Verification Layer
+          </h3>
+        </div>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+          To make spontaneity work, you need trust. This embedded layer handles the heavy lifting, verifying social connections and keeping the logic transparent. It’s built into every experience, ensuring that every 'spontaneous' moment is one you can actually rely on.
+        </p>
+        <div className="flex items-center justify-end mt-auto w-full text-right">
+          <Link 
+            href="/projects/travel-and-ai/projects/trust-framework-ai-travel"
+            className="inline-flex items-center text-sm font-medium tracking-wide text-blue-600 hover:text-blue-800 transition-colors duration-300 travel-ai-h-scroll-link"
+            style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+            onTouchStart={handleLinkTouchStart}
+            onTouchMove={handleLinkTouchMove}
+            onTouchEnd={handleLinkTouchEnd}
+            onClick={(e) => handleLinkClick(e, "/projects/travel-and-ai/projects/trust-framework-ai-travel")}
+          >
+            EXAMINE CORE ARCHITECTURE
+            <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Dynamic Scroll Indicator */}
+    <div className="flex justify-center mt-8 md:hidden">
+      <div className="flex items-center gap-2 text-sm text-gray-600 bg-white/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-black/5 shadow-sm">
+        <span className="font-bold text-blue-600 w-3 text-center">{brainSurfacesCurrentCard}</span> 
+        <span className="text-gray-300">/</span>
+        <span className="text-gray-500">2</span>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Applied Systems Section */}
       {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
