@@ -371,7 +371,7 @@ useEffect(() => {
               isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
             }`}
           >
-            Offline Travel Packs
+           Field Notes for Modern Travel
           </a>
         </nav>
       </div>
@@ -411,7 +411,7 @@ useEffect(() => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
-            Offline Travel Packs
+            Field Notes for Modern Travel
           </a>
         </nav>
       </motion.div>

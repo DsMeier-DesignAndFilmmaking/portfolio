@@ -1503,7 +1503,11 @@ const variables: Record<string, { title: string; desc: string }> = {
             e.preventDefault();
             setIsTransitioning(true);
             setTimeout(() => {
-              router.push('/projects/travel-and-ai');
+              if (typeof window !== 'undefined' && window.history.length > 1) {
+                router.back();
+              } else {
+                router.push('/projects/travel-and-ai');
+              }
             }, 500);
           }}
           className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-black transition-all cursor-pointer"
@@ -11421,4 +11425,3 @@ const variables: Record<string, { title: string; desc: string }> = {
 };
 
 export default TravelProjectDetailClient;
-

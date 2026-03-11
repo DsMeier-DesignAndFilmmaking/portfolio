@@ -235,7 +235,7 @@ export default function PreviousProjectsPage() {
                   className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
                   style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
                 >
-                  Offline Travel Packs
+                  Field Notes for Modern Travel
                 </a>
               </nav>
             </div>
