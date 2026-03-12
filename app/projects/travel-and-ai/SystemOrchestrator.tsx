@@ -152,7 +152,7 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        className="backdrop-blur-2xl bg-white dark:bg-zinc-900 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
                         style={{
                           transform: 'translateZ(0)',
                           WebkitTransform: 'translateZ(0)',
@@ -229,10 +229,15 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                         </div>
 
                         {/* CTA Button */}
-                        <button className="w-full py-4 bg-blue-600 dark:bg-blue-500 text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors active:scale-[0.98] flex items-center justify-center gap-2 mb-4" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                          <Map className="w-4 h-4" />
-                          Activate Detour
-                        </button>
+{/* CTA Button (Mockup Only: Non-Interactive) */}
+<button 
+  disabled
+  className="w-full py-4 bg-blue-600 dark:bg-blue-500 text-white rounded-full font-semibold shadow-lg pointer-events-none flex items-center justify-center gap-2 mb-4" 
+  style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+>
+  <Map className="w-4 h-4" />
+  Activate Detour
+</button>
 
                         {/* Decision Vector Summary - Card Footer */}
                         <div className="pt-4 border-t border-zinc-200/50 dark:border-zinc-700/50">
@@ -381,7 +386,7 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        className="backdrop-blur-2xl bg-white dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
                         style={{
                           transform: 'translateZ(0)',
                           WebkitTransform: 'translateZ(0)',
@@ -562,7 +567,7 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       <motion.div
                         layout
                         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                        className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+                        className="backdrop-blur-2xl bg-white dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
                         style={{
                           transform: 'translateZ(0)',
                           WebkitTransform: 'translateZ(0)',
@@ -730,113 +735,118 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                       }}
                       className="absolute inset-0"
                     >
-                      <div className="relative h-full w-full">
-                        <motion.div
-                          layout
-                          transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-                          className="backdrop-blur-2xl bg-white/70 dark:bg-zinc-900/70 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
-                          style={{
-                            WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-                            maskImage: '-webkit-radial-gradient(white, black)',
-                          }}
-                        >
+                      {/* Front Side - Experience View (Opaque) */}
+<div 
+  className="relative h-full w-full"
+  style={{ 
+    zIndex: 10,
+    transform: 'translateZ(1px)', // Ensures it sits physically above the logic card
+  }}
+>
+  <motion.div
+    layout
+    transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+    
+    className="bg-white dark:bg-zinc-900 rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-zinc-700/50 relative h-full w-full overflow-hidden"
+    style={{
+      WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+      maskImage: '-webkit-radial-gradient(white, black)',
+    }}
+  >
+    {/* Dan Context Pill - Transition Moment */}
+    <div className="flex items-center mb-4">
+      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/20 dark:bg-purple-500/30 rounded-full border border-purple-500/40 dark:border-purple-500/50 ml-auto">
+        <span className="text-xs font-semibold text-purple-700 dark:text-purple-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          Transition Moment: Museum → Sunset
+        </span>
+      </div>
+    </div>
 
-                        
+    {/* Narrative Title */}
+    <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-4" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
+      The Golden Hour Connection
+    </h2>
 
-                        {/* Dan Context Pill - Transition Moment */}
-                        <div className="flex items-center mb-4">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/20 dark:bg-purple-500/30 rounded-full border border-purple-500/40 dark:border-purple-500/50 ml-auto">
-                            <span className="text-xs font-semibold text-purple-700 dark:text-purple-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              Transition Moment: Museum → Sunset
-                            </span>
-                          </div>
-                        </div>
+    {/* Narrative Body - Serendipity Nexus */}
+    <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6 text-base" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
+      Alex is just 3 minutes away at a hidden rooftop—and they're vouched for by your network. Your privacy is protected, so you can just focus on the sunset. Head to the rooftop?
+    </p>
 
-                        {/* Narrative Title */}
-                        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-4" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
-                        The Golden Hour Connection
-                        </h2>
+    {/* Intelligence Synthesis Widgets Grid */}
+    <div className="grid grid-cols-2 gap-3 mb-6">
+      {/* Trust Badge */}
+      <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl border border-indigo-200/50 dark:border-indigo-800/50">
+        <div className="flex items-center gap-2 mb-1">
+          <ShieldCheck className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+          <span className="text-[10px] font-semibold text-indigo-700 dark:text-indigo-400 uppercase" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            Trusted Connection Nearby
+          </span>
+        </div>
+        <p className="text-xs text-indigo-600 dark:text-indigo-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          Privacy Protected
+        </p>
+      </div>
 
-                        {/* Narrative Body - Serendipity Nexus */}
-                        <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6 text-base" style={{ fontFamily: '"New York", Georgia, "Times New Roman", serif' }}>
-                          Alex is just 3 minutes away at a hidden rooftop—and they're vouched for by your network. Your privacy is protected, so you can just focus on the sunset. Head to the rooftop?
-                        </p>
+      {/* Cultural Insight */}
+      <div className="p-3 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-amber-200/50 dark:border-amber-800/50">
+        <div className="flex items-center gap-2 mb-1">
+          <Sparkles className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+          <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            Authenticity
+          </span>
+        </div>
+        <p className="text-xs font-bold text-amber-700 dark:text-amber-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          98% Local
+        </p>
+      </div>
+    </div>
 
-                        {/* Intelligence Synthesis Widgets Grid */}
-                        <div className="grid grid-cols-2 gap-3 mb-6">
-                          {/* Trust Badge */}
-                          <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl border border-indigo-200/50 dark:border-indigo-800/50">
-                            <div className="flex items-center gap-2 mb-1">
-                              <ShieldCheck className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                              <span className="text-[10px] font-semibold text-indigo-700 dark:text-indigo-400 uppercase" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                                Trusted Connection Nearby
-                              </span>
-                            </div>
-                            <p className="text-xs text-indigo-600 dark:text-indigo-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              Privacy Protected
-                            </p>
-                          </div>
+    {/* Horizontal Data Row - Pulse Row */}
+    <div className="flex flex-row justify-between items-center w-full py-3 border-y border-white/10 dark:border-zinc-700/20 mb-4">
+      {/* Left Side: Window | 45m Golden Hour */}
+      <div className="flex items-center gap-2">
+        <Sun className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-tighter opacity-50 text-zinc-600 dark:text-zinc-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            Window
+          </span>
+          <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            45m Golden Hour
+          </span>
+        </div>
+      </div>
 
-                          {/* Cultural Insight */}
-                          <div className="p-3 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-amber-200/50 dark:border-amber-800/50">
-                            <div className="flex items-center gap-2 mb-1">
-                              <Sparkles className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                              <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                                Authenticity
-                              </span>
-                            </div>
-                            <p className="text-xs font-bold text-amber-700 dark:text-amber-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              98% Local
-                            </p>
-                          </div>
-                        </div>
+      {/* Separator */}
+      <div className="h-8 w-px bg-zinc-300/30 dark:bg-zinc-600/30" />
 
-                        {/* Horizontal Data Row - Pulse Row */}
-                        <div className="flex flex-row justify-between items-center w-full py-3 border-y border-white/10 dark:border-zinc-700/20 mb-4">
-                          {/* Left Side: Window | 45m Golden Hour */}
-                          <div className="flex items-center gap-2">
-                            <Sun className="w-4 h-4 text-amber-500 dark:text-amber-400" />
-                            <div className="flex flex-col">
-                              <span className="text-[10px] uppercase tracking-tighter opacity-50 text-zinc-600 dark:text-zinc-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                                Window
-                              </span>
-                              <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                                45m Golden Hour
-                              </span>
-                            </div>
-                          </div>
+      {/* Right Side: Mood Shift | Curiosity → Social */}
+      <div className="flex flex-col items-end">
+        <span className="text-[10px] uppercase tracking-tighter opacity-50 text-zinc-600 dark:text-zinc-400 mb-1 block" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          Mood Shift
+        </span>
+        <div className="flex items-center gap-2 text-sm font-medium" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          <span className="text-zinc-700 dark:text-zinc-300">Curiosity</span>
+          <ArrowRight className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+          <span className="text-zinc-900 dark:text-zinc-50">Social</span>
+        </div>
+      </div>
+    </div>
 
-                          {/* Separator */}
-                          <div className="h-8 w-px bg-zinc-300/30 dark:bg-zinc-600/30" />
+    {/* CTA Button */}
+    <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white rounded-full font-semibold shadow-lg hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-600 transition-colors active:scale-[0.98] flex items-center justify-center gap-2 mb-6" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      <Sparkles className="w-4 h-4" />
+      Join Alex on the Rooftop
+    </button>
 
-                          {/* Right Side: Mood Shift | Curiosity → Social */}
-                          <div className="flex flex-col items-end">
-                            <span className="text-[10px] uppercase tracking-tighter opacity-50 text-zinc-600 dark:text-zinc-400 mb-1 block" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              Mood Shift
-                            </span>
-                            <div className="flex items-center gap-2 text-sm font-medium" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                              <span className="text-zinc-700 dark:text-zinc-300">Curiosity</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
-                              <span className="text-zinc-900 dark:text-zinc-50">Social</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* CTA Button - Elevated with 24px padding from navigation */}
-                        <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white rounded-full font-semibold shadow-lg hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-600 transition-colors active:scale-[0.98] flex items-center justify-center gap-2 mb-6" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                          <Sparkles className="w-4 h-4" />
-                          Join Alex on the Rooftop
-                        </button>
-
-                        {/* Decision Vector Summary - Card Footer */}
-                        <div className="pt-4 border-t border-zinc-200/50 dark:border-zinc-700/50">
-                          <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 text-center" style={{ fontFamily: 'ui-monospace, monospace' }}>
-                            {screens[3].vector}
-                          </p>
-                        </div>
-                      </motion.div>
-                      </div>
-                    </div>
+    {/* Decision Vector Summary - Card Footer */}
+    <div className="pt-4 border-t border-zinc-200/50 dark:border-zinc-700/50">
+      <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 text-center" style={{ fontFamily: 'ui-monospace, monospace' }}>
+        {screens[3].vector}
+      </p>
+    </div>
+  </motion.div>
+</div>
+</div>
 
                     {/* Back Side - Logic View (System Synthesis) */}
                     <div

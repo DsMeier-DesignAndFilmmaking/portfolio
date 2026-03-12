@@ -456,12 +456,12 @@ useEffect(() => {
     >
       {/* Primary */}
       <span className="block text-gray-900">
-        Hyperlocal Agentic Decision Engine <span className="text-indigo-600">(HADE)</span>
+      Turning Real-World Signals Into Confident Decisions
       </span>
 
       {/* Sub-primary (Option 1 flow) */}
       <span className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
-        Transforms the physical world into context-aware, socially intelligent experiences
+      Cities are alive with signals — shifting weather, neighborhood energy, proximity to people and places that matter. Yet most travel tools still rely on static lists and outdated reviews.
       </span>
     </h1>
 
@@ -470,7 +470,9 @@ useEffect(() => {
       className="text-gray-700 text-base md:text-lg leading-relaxed"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
-      As the lead designer and developer, I am building the modular platform that integrates intelligence layers to deliver real-time, verifiable, and safe local experiences.
+      I’m exploring how intelligent systems can interpret these real-world signals in real time, helping travelers navigate unfamiliar places with curiosity and confidence.
+
+This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a system designed to transform the living signals of a city into spontaneous, high-confidence moments.
     </p>
 
     {/* Scroll / Explore Indicator */}

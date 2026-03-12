@@ -11,35 +11,36 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
     setMounted(true);
   }, []);
 
+  // Fix 1: Added 'as const' to the transition object
   const smoothTransition = {
-    opacity: { duration: 1.2, ease: "easeInOut" },
-    scale: { duration: 1.2, ease: "easeOut" },
+    opacity: { duration: 1.2, ease: "easeInOut" as const },
+    scale: { duration: 1.2, ease: "easeOut" as const },
   };
 
+  // Fix 2: Added 'as const' to the internal easing strings
   const floatingAnimation = (xRange: number[], yRange: number[], duration: number) => ({
     x: prefersReducedMotion ? 0 : xRange,
     y: prefersReducedMotion ? 0 : yRange,
     transition: {
-      x: { duration: duration, repeat: Infinity, ease: "easeInOut" },
-      y: { duration: duration * 1.2, repeat: Infinity, ease: "easeInOut" },
+      x: { duration: duration, repeat: Infinity, ease: "easeInOut" as const },
+      y: { duration: duration * 1.2, repeat: Infinity, ease: "easeInOut" as const },
     }
   });
 
   if (!mounted) return <div className={`w-full h-[600px] ${className}`} />;
 
   return (
-<div className={`w-full h-[400px] md:h-[600px] relative overflow-hidden bg-transparent ${className}`}>      
-  {/* The "Cluster Container" uses VW for its dimensions. 
-        This ensures the distance between items scales linearly with the screen.
-      */}
+    <div className={`w-full h-[400px] md:h-[600px] relative overflow-hidden bg-transparent ${className}`}>      
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div className="relative w-[85vw] h-[100vw] md:w-[85vw] md:h-[85vw] max-w-[550px] max-h-[550px]">          
-          {/* 1. Spontaneity Engine (Core) - High Contrast Text, Subtle BG */}
+        <div className="relative w-[85vw] h-[100vw] md:w-[85vw] md:h-[85vw] max-w-[550px] max-h-[550px]">          
+          
+          {/* 1. Spontaneity Engine */}
           <motion.div
             className="absolute z-30"
             style={{ left: '18%', top: '22%' }}
             initial={{ opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 1, scale: 1, transition: smoothTransition }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={smoothTransition}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, 5, 0], [0, -10, 0], 12)}>
@@ -50,12 +51,13 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
             </motion.div>
           </motion.div>
 
-          {/* 2. Trust & Authenticity (Overlaps Engine) */}
+          {/* 2. Trust & Authenticity */}
           <motion.div
             className="absolute z-40"
             style={{ left: '40%', top: '34%' }}
             initial={{ opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 0.9, scale: 1, transition: smoothTransition }}
+            whileInView={{ opacity: 0.9, scale: 1 }}
+            transition={smoothTransition}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, -5, 0], [0, 8, 0], 14)}>
@@ -66,12 +68,13 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
             </motion.div>
           </motion.div>
 
-          {/* 3. Social Graph Network (Overlaps Trust) */}
+          {/* 3. Social Graph Network */}
           <motion.div
             className="absolute z-20"
             style={{ left: '52%', top: '46%' }}
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 0.9, scale: 1, transition: { ...smoothTransition, delay: 0.2 } }}
+            whileInView={{ opacity: 0.9, scale: 1 }}
+            transition={{ ...smoothTransition, delay: 0.2 }}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, 8, 0], [0, -12, 0], 11)}>
@@ -81,12 +84,13 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
             </motion.div>
           </motion.div>
 
-          {/* 4. Narrative Experiences (Overlaps Social Graph & Engine) */}
+          {/* 4. Narrative Experiences */}
           <motion.div
             className="absolute z-10"
             style={{ left: '32%', top: '56%' }}
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 0.9, scale: 1, transition: { ...smoothTransition, delay: 0.3 } }}
+            whileInView={{ opacity: 0.9, scale: 1 }}
+            transition={{ ...smoothTransition, delay: 0.3 }}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, -8, 0], [0, 10, 0], 10)}>
@@ -96,12 +100,13 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
             </motion.div>
           </motion.div>
 
-          {/* 5. Travel Decisions (Overlaps Engine left) */}
+          {/* 5. Travel Decisions */}
           <motion.div
             className="absolute z-10"
             style={{ left: '8%', top: '45%' }}
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 0.9, scale: 1, transition: { ...smoothTransition, delay: 0.4 } }}
+            whileInView={{ opacity: 0.9, scale: 1 }}
+            transition={{ ...smoothTransition, delay: 0.4 }}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, 12, 0], [0, -8, 0], 9)}>
@@ -111,12 +116,13 @@ export default function SystemsGraphic({ className = '' }: { className?: string 
             </motion.div>
           </motion.div>
 
-          {/* 6. Social Micro-Events (Overlaps Engine top) */}
+          {/* 6. Social Micro-Events */}
           <motion.div
             className="absolute z-10"
             style={{ left: '12%', top: '10%' }}
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 0.9, scale: 1, transition: { ...smoothTransition, delay: 0.5 } }}
+            whileInView={{ opacity: 0.9, scale: 1 }}
+            transition={{ ...smoothTransition, delay: 0.5 }}
             viewport={{ once: false, amount: 0.2 }}
           >
             <motion.div animate={floatingAnimation([0, -10, 0], [0, 15, 0], 13)}>
