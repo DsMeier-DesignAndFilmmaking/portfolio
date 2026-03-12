@@ -37,7 +37,7 @@ const SocialLogicReceipt: React.FC<SocialLogicReceiptProps> = ({ config, socialL
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const // Add 'as const' here
       }
     }
   };
@@ -91,7 +91,7 @@ const SocialLogicReceipt: React.FC<SocialLogicReceiptProps> = ({ config, socialL
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    ease: "linear"
+                    ease: "linear" as const
                   }}
                 />
               </div>
@@ -116,7 +116,7 @@ const SocialLogicReceipt: React.FC<SocialLogicReceiptProps> = ({ config, socialL
                       filter: isHandshakeActive ? 'blur(0px)' : `blur(${config.initialBlur}px)`,
                       opacity: isHandshakeActive ? 1 : 0.7
                     }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.8, ease: "easeOut" as const }}
                   >
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center">
                       <Users className="w-10 h-10 text-white/80" />
@@ -133,7 +133,7 @@ const SocialLogicReceipt: React.FC<SocialLogicReceiptProps> = ({ config, socialL
                       filter: isHandshakeActive ? 'blur(0px)' : `blur(${config.initialBlur}px)`,
                       opacity: isHandshakeActive ? 1 : 0.7
                     }}
-                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.1 }}
                   >
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-violet-600 flex items-center justify-center">
                       <Users className="w-10 h-10 text-white/80" />
