@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ReactNode, useEffect, useState, useRef } from 'react';
 
 interface FadeInSectionProps {
@@ -73,10 +73,8 @@ export default function FadeInSection({
       }
     };
     
-    // Check immediately for anchor navigation
     checkViewport();
     
-    // Check after delays to catch delayed anchor navigation
     const timeouts = [
       setTimeout(checkViewport, 100),
       setTimeout(checkViewport, 300),
@@ -86,15 +84,12 @@ export default function FadeInSection({
     
     observer.observe(element);
 
-    // Listen for scroll completion events
     const handleScrollComplete = () => {
       checkViewport();
     };
 
-    // Listen for custom scroll completion event
     window.addEventListener('scrollComplete', handleScrollComplete);
 
-    // Full cleanup on unmount
     return () => {
       timeouts.forEach(clearTimeout);
       observer.disconnect();
@@ -102,80 +97,43 @@ export default function FadeInSection({
     };
   }, [threshold, rootMargin, triggerOnce]);
 
-  // ✅ Mounting guard: Return null until mounted (AFTER all hooks)
-  if (!mounted) {
-    return null;
-  }
+  // ✅ Refactored getVariants to be strictly typed for production build
+  const getVariants = (): Variants => {
+    const ease = [0.16, 1, 0.3, 1] as const;
 
-  // Animation variants based on direction
-  const getVariants = () => {
+    // 1. Define the base fade states
     const baseVariants = {
-      hidden: {
-        opacity: 0,
-        transition: {
-          duration,
-          delay,
-          ease: [0.25, 0.46, 0.45, 0.94] // Custom easing for smooth animation
-        }
+      hidden: { 
+        opacity: 0, 
+        transition: { duration, delay, ease } 
       },
-      visible: {
-        opacity: 1,
-        transition: {
-          duration,
-          delay,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }
+      visible: { 
+        opacity: 1, 
+        transition: { duration, delay, ease } 
       }
     };
 
+    // 2. Apply directional offsets
     switch (direction) {
       case 'up':
         return {
-          ...baseVariants,
-          hidden: {
-            ...baseVariants.hidden,
-            y: distance
-          },
-          visible: {
-            ...baseVariants.visible,
-            y: 0
-          }
+          hidden: { ...baseVariants.hidden, y: distance },
+          visible: { ...baseVariants.visible, y: 0 }
         };
       case 'down':
         return {
-          ...baseVariants,
-          hidden: {
-            ...baseVariants.hidden,
-            y: -distance
-          },
-          visible: {
-            ...baseVariants.visible,
-            y: 0
-          }
+          hidden: { ...baseVariants.hidden, y: -distance },
+          visible: { ...baseVariants.visible, y: 0 }
         };
       case 'left':
         return {
-          ...baseVariants,
-          hidden: {
-            ...baseVariants.hidden,
-            x: distance
-          },
-          visible: {
-            ...baseVariants.visible,
-            x: 0
-          }
+          hidden: { ...baseVariants.hidden, x: distance },
+          visible: { ...baseVariants.visible, x: 0 }
         };
       case 'right':
         return {
-          ...baseVariants,
-          hidden: {
-            ...baseVariants.hidden,
-            x: -distance
-          },
-          visible: {
-            ...baseVariants.visible,
-            x: 0
-          }
+          hidden: { ...baseVariants.hidden, x: -distance },
+          visible: { ...baseVariants.visible, x: 0 }
         };
       case 'fade':
       default:
@@ -183,16 +141,16 @@ export default function FadeInSection({
     }
   };
 
+  if (!mounted) {
+    return null;
+  }
+
   const shouldAnimate = triggerOnce ? (isVisible || hasAnimated) : isVisible;
 
-  // Reserve space for animations that move content (prevent layout shift)
-  // Use transform: translateY/translateX which doesn't affect layout flow
-  // But ensure container has min-height to prevent collapse
   return (
     <div style={{ 
-      // Reserve space for directional animations to prevent layout shift
-      minHeight: direction === 'up' || direction === 'down' ? `${distance}px` : 'auto',
-      minWidth: direction === 'left' || direction === 'right' ? `${distance}px` : 'auto'
+      minHeight: (direction === 'up' || direction === 'down') ? '1px' : 'auto',
+      minWidth: (direction === 'left' || direction === 'right') ? '1px' : 'auto'
     }}>
       <motion.div
         ref={elementRef}
@@ -200,9 +158,7 @@ export default function FadeInSection({
         initial="hidden"
         animate={shouldAnimate ? "visible" : "hidden"}
         variants={getVariants()}
-        viewport={{ once: triggerOnce, amount: threshold }}
         style={{
-          // Ensure transform doesn't affect layout flow
           willChange: 'transform, opacity'
         }}
       >
