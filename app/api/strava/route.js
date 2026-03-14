@@ -1,4 +1,6 @@
 // app/api/strava/route.js
+export const dynamic = "force-static";
+
 import { getStravaDashboardData } from '@/lib/api/strava';
 import { NextResponse } from 'next/server';
 

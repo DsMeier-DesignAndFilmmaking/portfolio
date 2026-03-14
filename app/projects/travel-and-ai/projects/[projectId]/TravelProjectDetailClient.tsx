@@ -2220,7 +2220,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                           setIsMobileVideoError(false);
                         }}
                       >
-                        <source src="/portfolio/videos/Create_a_cinematic_web.mp4" type="video/mp4" />
+                        <source src={normalizeImagePath("/portfolio/videos/Create_a_cinematic_web.mp4")} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     )}
@@ -2719,7 +2719,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             ].map((src, idx) => (
               <div key={idx} className="flex-shrink-0 w-48 snap-center select-none" style={{ touchAction: 'auto' }}>
                 <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/5 bg-neutral-900">
-                  <img src={src} alt="Wireframe iteration" className="object-cover w-full h-full" />
+                  <img src={normalizeImagePath(src)} alt="Wireframe iteration" className="object-cover w-full h-full" />
                 </div>
               </div>
             ))}
@@ -2745,12 +2745,12 @@ const variables: Record<string, { title: string; desc: string }> = {
           <div className="flex justify-center gap-8 flex-wrap px-4">
             <div className="w-64 md:w-72">
               <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl border border-white/10 bg-neutral-900">
-                <img src="/images/HomeScreen-UX-Pilot-Recco-2.png" alt="Final UI" className="object-cover w-full h-full" />
+                <img src={normalizeImagePath("/images/HomeScreen-UX-Pilot-Recco-2.png")} alt="Final UI" className="object-cover w-full h-full" />
               </div>
             </div>
             <div className="w-64 md:w-72">
               <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-xl border border-white/10 bg-neutral-900">
-                <img src="/images/HomeScreen-UX-Pilot-Recco.png" alt="Final UI" className="object-cover w-full h-full" />
+                <img src={normalizeImagePath("/images/HomeScreen-UX-Pilot-Recco.png")} alt="Final UI" className="object-cover w-full h-full" />
               </div>
             </div>
           </div>
@@ -3165,19 +3165,19 @@ const variables: Record<string, { title: string; desc: string }> = {
           touchAction: 'auto'
         }}
       >
-        {[
-          { src: "/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
-          { src: "/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp", alt: "Oct 3" },
-          { src: "/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp", alt: "Oct 4" },
-          { src: "/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp", alt: "Oct 5" },
-          { src: "/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp", alt: "Oct 7" },
-          { src: "/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
-        ].map((item, idx) => (
+          {[
+            { src: "/images/mobile-screenshots/simulator-2025-10-01-15-38-09.webp", alt: "Oct 1" },
+            { src: "/images/mobile-screenshots/simulator-2025-10-03-22-43-11.webp", alt: "Oct 3" },
+            { src: "/images/mobile-screenshots/simulator-2025-10-04-13-04-38.webp", alt: "Oct 4" },
+            { src: "/images/mobile-screenshots/simulator-2025-10-05-09-44-52-2.webp", alt: "Oct 5" },
+            { src: "/images/mobile-screenshots/simulator-2025-10-07-22-01-21.webp", alt: "Oct 7" },
+            { src: "/images/mobile-screenshots/simulator-2025-09-29-16-25-52.webp", alt: "Sept 29" },
+          ].map((item, idx) => (
           /* flex-shrink-0 is the key to preventing image "squishing" */
           <div key={idx} className="flex-shrink-0 w-64 md:w-48 snap-center select-none" style={{ touchAction: 'auto' }}>
             <div className="relative aspect-[9/19.5] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-neutral-900">
               <img 
-                src={item.src} 
+                src={normalizeImagePath(item.src)} 
                 alt={`Build iteration - ${item.alt}`} 
                 className="object-cover w-full h-full" 
               />

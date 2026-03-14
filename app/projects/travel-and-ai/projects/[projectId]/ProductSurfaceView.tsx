@@ -1740,7 +1740,10 @@ const SocialRadarVisual = () => (
 
 export default function ProductSurfaceView({ projectId }: { projectId: string }) {
   const router = useRouter();
-  const data = projectRegistry[projectId as keyof typeof projectRegistry];
+  const data = projectRegistry[projectId as keyof typeof projectRegistry] as (typeof projectRegistry)[keyof typeof projectRegistry] & {
+    brainLogic?: string;
+    middlewareLogic?: string;
+  };
 
   // System Surface View Toggle (for AI Systems)
   const isAISystem = (data as any)?.isAISystem === true;
@@ -2595,13 +2598,13 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
         <div className="p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-white/[0.03] border border-white/10 flex flex-col items-center md:items-start text-center md:text-left">
            <Cpu className="text-indigo-400 mb-6 md:mb-8" size={32} />
            <h3 className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-4">Phase 01: The Brain</h3>
-           <p className="text-lg md:text-xl text-slate-200 leading-relaxed italic font-medium">"{data.brainLogic}"</p>
+           <p className="text-lg md:text-xl text-slate-200 leading-relaxed italic font-medium">"{data?.brainLogic ?? ''}"</p>
         </div>
         
         <div className="p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-white/[0.03] border border-white/10 flex flex-col items-center md:items-start text-center md:text-left">
            <Layers className="text-emerald-400 mb-6 md:mb-8" size={32} />
            <h3 className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-4">Phase 02: The Middleware</h3>
-           <p className="text-lg md:text-xl text-slate-200 leading-relaxed italic font-medium">"{data.middlewareLogic}"</p>
+           <p className="text-lg md:text-xl text-slate-200 leading-relaxed italic font-medium">"{data?.middlewareLogic ?? ''}"</p>
         </div>
       </div>
     </div>

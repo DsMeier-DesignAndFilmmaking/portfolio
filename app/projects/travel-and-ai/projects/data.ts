@@ -222,5 +222,23 @@ export const projectRegistry = {
           }
         }
       }
+    },
+    "spontaneous-travel-companion": {
+      title: "Spontaneous Travel Engine",
+      subtitle: "Ambient discovery without planning overhead",
+      tagline: "A low-friction travel companion that surfaces moments when context is right.",
+      color: "#0f172a",
+      isAISystem: false,
+      problem: "Travelers miss meaningful moments because discovery tools require too much manual input.",
+      outcome: "A companion that quietly orchestrates spontaneity and reduces cognitive load."
+    },
+    "trust-framework-ai-travel": {
+      title: "Trust Framework for AI-Driven Travel",
+      subtitle: "Verification-first recommendations",
+      tagline: "A system architecture that makes AI travel advice auditable and credible.",
+      color: "#0e7490",
+      isAISystem: false,
+      problem: "AI travel recommendations decay quickly without provenance, verification, and freshness.",
+      outcome: "A trust layer that tracks source credibility and data recency before surfacing guidance."
     }
   };

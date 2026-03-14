@@ -41,6 +41,7 @@ export default function StaticFooter() {
             <nav className="flex flex-col space-y-3">
               <Link 
                 href="/" 
+                scroll={true}
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
                 Home
@@ -52,7 +53,7 @@ export default function StaticFooter() {
                 Travel & AI
               </Link>
               <Link 
-                href="#work" 
+                href="/projects/previous/" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
                 Client Work
