@@ -394,17 +394,16 @@ export default function HomePage() {
                 }}
               >
                 <iframe
-    src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
-    title="Travel video"
-    frameBorder="0"
-    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-    /* ADD 'pointer-events-none' TO THE CLASSNAME BELOW */
-    className="absolute inset-0 w-full h-full pointer-events-none" 
-    style={{ 
-      border: 'none'
-    }}
-    loading="lazy"
-  />
+                  src="https://player.vimeo.com/video/1089382469?h=f20ea6cdaf&controls=0&background=0&autopause=0&loop=1&quality=720p&muted=1&playsinline=1&autoplay=1"
+                  title="Travel video"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    border: 'none'
+                  }}
+                  loading="lazy"
+                />
               </div>
             </div>
             

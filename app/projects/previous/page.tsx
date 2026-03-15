@@ -152,139 +152,107 @@ export default function PreviousProjectsPage() {
   return (
     <main className="min-h-screen bg-black" style={{ marginTop: 0, paddingTop: 0 }}>
       {/* Navigation */}
-      <motion.nav 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className={`fixed top-0 left-0 right-0 z-50 bg-black transition-transform duration-300 ${
-          atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'lg:translate-y-0 -translate-y-full' : 'translate-y-0'
-        }`}
-        style={{ minHeight: '80px' }}
-      >
-        {/* CONTAINER STRATEGY: 
-          'w-full' for fluid movement
-          'mx-auto' to center it
-          'px-6' for mobile gutter
-          'max-w-[1440px]' to match your body's max width 
-      */}
+      {/* Navigation */}
+<motion.nav 
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.4 }}
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/95 backdrop-blur-md border-b border-white/10 ${
+    atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'lg:translate-y-0 -translate-y-full' : 'translate-y-0'
+  }`}
+>
+  <div className="max-w-7xl mx-auto px-6 relative z-20">
+    <div className="flex justify-between items-center">
       
-        <div className="container mx-auto px-6 relative z-20">
-          <div className="flex justify-between items-center">
-      {/* Back Home Button Wrapper */}
-    <div className="flex items-center">
+      {/* Signature & Label Group */}
+      <div className="flex items-center">
+        <button
+          onClick={handleBackHome}
+          className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4"
+          aria-label="Return to home page"
+        >
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
+            alt="Dan Meier"
+            width={150}
+            height={37}
+            priority
+            /* Invert ensures the black logo file renders as white */
+            className="h-9 w-auto invert brightness-0"
+          />
+        </button>
+        
+        <div className="flex items-center flex-shrink-0 ml-3">
+          <div className="w-px h-5 bg-white/20 flex-shrink-0" aria-hidden="true" />
+          <span className="ml-3 text-xs md:text-sm font-medium text-white/90 whitespace-nowrap">
+            Design Work
+          </span>
+        </div>
+      </div>
+
+      {/* Mobile Menu Button */}
       <button
-        onClick={handleBackHome}
-        /* w-fit ensures the hit-area is only as wide as the signature */
-        className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4"
-        aria-label="Return to home page"
+        onClick={toggleMobileMenu}
+        className="lg:hidden pl-4 py-2 flex items-center justify-end text-white/80 hover:text-white"
+        aria-label="Toggle mobile menu"
       >
-        <Image
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
-          alt="Daniel Meier"
-          width={150}
-          height={37}
-          priority
-          /* brightness-0 + invert makes the black logo white for the black bg */
-          className="h-9 w-auto transition-all duration-500 block brightness-0 invert"
-        />
+        <div className="w-6 h-5 relative flex flex-col justify-between items-center">
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+          <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        </div>
       </button>
-      {/* Design Work: separator + label; visible on all breakpoints, scaled for mobile */}
-      <div className="flex items-center flex-shrink-0 ml-2 sm:ml-2.5 md:ml-3">
-        <div className="w-px h-3.5 sm:h-4 md:h-5 bg-white/40 flex-shrink-0" aria-hidden="true" />
-        <span className="ml-2 sm:ml-2.5 md:ml-3 text-[11px] sm:text-xs md:text-sm font-medium text-white transition-colors duration-300 whitespace-nowrap">
-          Design Work
-        </span>
+
+      {/* Desktop Navigation */}
+      <div className="hidden lg:block px-6 py-4">
+        <nav className="flex items-center space-x-8">
+          {[
+            { name: 'Travel Field Notes', href: '/projects/field-notes' },
+            { name: 'Intelligent Systems', href: '/projects/travel-and-ai' },
+            { name: 'Client Work', href: '/projects/previous' },
+            
+          ].map((link) => (
+            <Link 
+              key={link.name}
+              href={link.href} 
+              className={`text-[11pt] transition-colors duration-500 ${
+                pathname === link.href ? 'text-white' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
       </div>
     </div>
+  </div>
 
-            {/* Mobile Menu Button */}
-            {/* Ensure your Mobile/Desktop nav parts also use 'text-white' instead of the variable */}
-    <button
-      onClick={toggleMobileMenu}
-      className="lg:hidden p-2 flex items-center justify-end text-white"
-      aria-label="Toggle mobile menu"
-    >
-      <div className="w-6 h-5 relative flex flex-col justify-between items-center">
-        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-        <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-      </div>
-    </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:block rounded-lg px-6 py-4">
-              <nav className="flex items-center space-x-8">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Client Work
-                </Link>
-                <a
-                  href="https://downloadable-travel-packs.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11pt] text-white hover:text-blue-400 transition-colors duration-200"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Field Notes for Modern Travel
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence mode="wait">
-          {isMobileMenuOpen && (
-            <motion.div
-              key="mobile-menu"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
-            >
-              <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Travel & AI
-                </Link>
-                <Link 
-                  href="/projects/previous" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Client Work
-                </Link>
-                <a
-                  href="https://downloadable-travel-packs.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-                  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-                >
-                  Field Notes for Modern Travel
-                </a>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+  {/* Mobile Menu Dropdown */}
+  <AnimatePresence mode="wait">
+    {isMobileMenuOpen && (
+      <motion.div
+        key="mobile-menu"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
+        className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-md rounded-lg shadow-lg mx-6 border border-white/10"
+      >
+        <nav className="flex flex-col p-4 px-6 space-y-4">
+        <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
+            Travel Field Notes
+          </Link>
+          <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
+          Intelligent Systems
+          </Link>
+          <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
+            Client Work
+          </Link>
+        </nav>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</motion.nav>
 
       {/* Hero Section */}
       <section 

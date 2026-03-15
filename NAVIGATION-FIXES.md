@@ -51,7 +51,7 @@ const isPreviousProject = pathname?.startsWith('/projects/previous');
 import Link from 'next/link';
 
 <Link href="/projects/travel-and-ai">
-  Travel & AI
+  Intelligent Systems
 </Link>
 ```
 

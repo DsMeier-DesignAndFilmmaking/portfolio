@@ -76,7 +76,7 @@ export default function DesignWork() {
                   <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
                   <p className="text-gray-900 font-semibold">Field Notes Intelligence</p>
                 </div>
-                <Link href="https://downloadable-travel-packs.vercel.app/" target="_blank" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
+                <Link href="/projects/field-notes/" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
                   Explore Layer <span className="ml-1">→</span>
                 </Link>
               </div>

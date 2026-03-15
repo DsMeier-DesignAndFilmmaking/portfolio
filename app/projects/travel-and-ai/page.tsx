@@ -347,13 +347,23 @@ useEffect(() => {
       {/* Desktop Navigation */}
       <div className="hidden lg:block rounded-lg px-6 py-4">
         <nav className="flex items-center space-x-8">
+        <a
+            href="/projects/field-notes"
+            
+            rel="noopener noreferrer"
+            className={`text-[11pt] transition-colors duration-500 ${
+              isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
+            }`}
+          >
+           Travel Field Notes
+          </a>
           <Link 
             href="/projects/travel-and-ai" 
             className={`text-[11pt] transition-colors duration-500 ${
               isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
             }`}
           >
-            Travel & AI
+            Intelligent Systems
           </Link>
           <Link 
             href="/projects/previous" 
@@ -363,16 +373,7 @@ useEffect(() => {
           >
             Client Work
           </Link>
-          <a
-            href="https://downloadable-travel-packs.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`text-[11pt] transition-colors duration-500 ${
-              isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
-            }`}
-          >
-           Field Notes for Modern Travel
-          </a>
+         
         </nav>
       </div>
     </div>
@@ -395,7 +396,7 @@ useEffect(() => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
-            Travel & AI
+            Intelligent Systems
           </Link>
           <Link 
             href="/projects/previous" 
@@ -405,13 +406,13 @@ useEffect(() => {
             Client Work
           </Link>
           <a
-            href="https://downloadable-travel-packs.vercel.app/"
-            target="_blank"
+            href="/projects/field-notes"
+            
             rel="noopener noreferrer"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
-            Field Notes for Modern Travel
+            Travel Field Notes
           </a>
         </nav>
       </motion.div>
@@ -467,7 +468,7 @@ useEffect(() => {
 
     {/* Subcopy / Description */}
     <p 
-      className="text-gray-700 text-base md:text-lg leading-relaxed"
+      className="text-gray-700 text-base md:text-lg leading-relaxed text-balance"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
       I’m exploring how intelligent systems can interpret these real-world signals in real time, helping travelers navigate unfamiliar places with curiosity and confidence.
@@ -518,6 +519,129 @@ This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a syste
 </section>
 
 <SpontaneityHero />
+
+{/* HOW THE SYSTEM THINKS: SCENARIO SECTION */}
+<section className="border-t border-neutral-100 bg-[#F9F7F2] py-24">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="mb-16">
+      <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">How the System Thinks</h2>
+      <p className="text-neutral-500 uppercase tracking-[0.2em] text-[10px] font-bold">Deconstructing the logic from signal to decision</p>
+    </div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      {/* LEFT: TECHNICAL REASONING */}
+      <div className="lg:col-span-7 space-y-12">
+        
+        {/* 1. Traveler Context */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black text-white text-[10px] font-bold">01</span>
+            <h3 className="font-bold text-sm uppercase tracking-widest text-neutral-800">Traveler Context (The Input)</h3>
+          </div>
+          <div className="grid grid-cols-2 gap-4 bg-white/50 p-6 rounded-xl border border-black/5">
+            <div>
+              <p className="text-[10px] text-neutral-400 uppercase font-bold mb-1">Location</p>
+              <p className="text-sm font-medium">Chiado, Lisbon</p>
+            </div>
+            <div>
+              <p className="text-[10px] text-neutral-400 uppercase font-bold mb-1">Weather</p>
+              <p className="text-sm font-medium">Sudden Heavy Rain (85%)</p>
+            </div>
+            <div>
+              <p className="text-[10px] text-neutral-400 uppercase font-bold mb-1">User Mode</p>
+              <p className="text-sm font-medium">Walking Exploration</p>
+            </div>
+            <div>
+              <p className="text-[10px] text-neutral-400 uppercase font-bold mb-1">Energy Level</p>
+              <p className="text-sm font-medium">Moderate (3h Active)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. Field Notes Insight */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black text-white text-[10px] font-bold">02</span>
+            <h3 className="font-bold text-sm uppercase tracking-widest text-neutral-800">Field Notes Insight (The Strategy)</h3>
+          </div>
+          <div className="bg-[#FFDD00]/10 border-l-4 border-[#FFDD00] p-6 rounded-r-xl">
+            <p className="text-xs font-bold text-[#A38D00] uppercase tracking-tighter mb-2">Playbook: The Rainfall Loop</p>
+            <p className="text-neutral-800 italic font-serif text-lg leading-relaxed">
+              &ldquo;Chiado&apos;s hills become slick and cafes overflow during sudden rain. Local movement shifts to the covered 18th-century arcades and interconnected gallery corridors.&rdquo;
+            </p>
+          </div>
+        </div>
+
+        {/* 3. Spontaneity Engine Reasoning */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black text-white text-[10px] font-bold">03</span>
+            <h3 className="font-bold text-sm uppercase tracking-widest text-neutral-800">Engine Reasoning (The Logic)</h3>
+          </div>
+          <ul className="space-y-4">
+            {[
+              { label: "Environmental Check", desc: "Confirms rain will persist for 60+ minutes." },
+              { label: "Trust Calibration", desc: "Detects signal freshness (Livraria Bertrand) — friend checked in 45m ago." },
+              { label: "Decision Filtering", desc: "Rejects 'Return to Hotel' (too early) and 'Nearby Cafe' (100% occupancy)." }
+            ].map((item, i) => (
+              <li key={i} className="flex gap-4 items-start">
+                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-neutral-300 flex-shrink-0" />
+                <p className="text-sm text-neutral-600">
+                  <span className="font-bold text-neutral-900">{item.label}:</span> {item.desc}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* RIGHT: TRAVELER EXPERIENCE (THE UI) */}
+      <div className="lg:col-span-5 sticky top-32">
+        <div className="relative mx-auto w-full max-w-[320px] aspect-[9/19] bg-white rounded-[3rem] shadow-2xl border-[8px] border-neutral-900 overflow-hidden">
+          {/* Status Bar */}
+          <div className="h-6 w-full flex justify-between px-8 pt-4 items-center">
+            <span className="text-[10px] font-bold">3:15</span>
+            <div className="flex gap-1">
+              <div className="w-3 h-3 bg-black rounded-full opacity-20" />
+              <div className="w-3 h-3 bg-black rounded-full opacity-20" />
+            </div>
+          </div>
+
+          <div className="p-6 pt-12">
+            <div className="flex items-center gap-2 mb-8">
+              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="text-[10px] uppercase tracking-widest font-bold text-neutral-400 font-sans">Live Signal Detected</span>
+            </div>
+
+            {/* HADE ACTION CARD */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-[#F9F7F2] rounded-[2rem] p-6 shadow-xl border border-black/5"
+            >
+              <p className="font-[Georgia,serif] italic text-2xl mb-4 text-neutral-900">It&apos;s pouring.</p>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-8">
+                Take the <span className="text-black font-bold">Bertrand Loop</span> to stay in motion. It&apos;s dry, and it gets you to the Upper District. Maya was here an hour ago.
+              </p>
+
+              <button className="w-full py-4 bg-[#FFDD00] rounded-full text-xs font-black uppercase tracking-widest text-black shadow-lg active:scale-95 transition-transform mb-4">
+                Enter the Loop
+              </button>
+              
+              <button className="w-full text-[10px] uppercase tracking-widest font-bold text-neutral-400 hover:text-neutral-900 transition-colors">
+                Not the move?
+              </button>
+            </motion.div>
+            
+            <p className="mt-8 text-center text-[10px] text-neutral-300 uppercase tracking-[0.3em]">
+              Agentic Logic V1.0
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Core Platform & Embedded Intelligence Section */}
 <section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
