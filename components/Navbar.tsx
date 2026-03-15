@@ -65,7 +65,7 @@ const Navbar = () => {
             <>
               <div className="hidden md:block w-px h-5 bg-slate-300 flex-shrink-0 mx-3" aria-hidden="true" />
               <span className={`hidden md:inline text-sm font-medium transition-colors duration-300 ${textColor}`}>
-                Design Work
+                Work
               </span>
             </>
           )}

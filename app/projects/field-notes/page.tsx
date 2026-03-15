@@ -8,8 +8,6 @@ import { usePathname, useRouter } from 'next/navigation';
 
 // --- Constants & Variants ---
 const NAT_GEO_YELLOW = "#FFDD00"; 
-
-// Match navbar exactly: max-w-7xl + px-6
 const contentBounds = "max-w-7xl mx-auto px-6";
 
 const sectionVariants: Variants = {
@@ -110,53 +108,28 @@ export default function FieldNotesProjectPage() {
         const scrollPosition = window.scrollY;
         setIsNavbarWhite(scrollPosition > 100);
         setAtTop(scrollPosition < 10);
-
-        if (isMobileMenuOpenRef.current) {
-          setIsMobileMenuOpen(false);
-        }
-
+        if (isMobileMenuOpenRef.current) setIsMobileMenuOpen(false);
         const currentScrollY = window.scrollY;
         const previousScrollY = lastScrollYRef.current;
-        if (currentScrollY > previousScrollY) {
-          setScrollDirection('down');
-        } else if (currentScrollY < previousScrollY) {
-          setScrollDirection('up');
-        }
+        if (currentScrollY > previousScrollY) setScrollDirection('down');
+        else if (currentScrollY < previousScrollY) setScrollDirection('up');
         lastScrollYRef.current = currentScrollY;
         setLastScrollY(currentScrollY);
-      } catch (error) {
-        console.debug('Scroll handler error:', error);
-      }
+      } catch (error) { console.debug('Scroll error:', error); }
     };
-
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    isMobileMenuOpenRef.current = isMobileMenuOpen;
-  }, [isMobileMenuOpen]);
-
-  const handleBackHome = () => {
-    router.push('/');
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const linkClass = (isActive: boolean) =>
-    `text-[11pt] transition-colors duration-500 ${
-      isNavbarWhite 
-        ? (isActive ? 'text-blue-500' : 'text-black hover:text-blue-400') 
-        : (isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-400')
-    }`;
+  const handleBackHome = () => router.push('/');
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const linkClass = (isActive: boolean) => `text-[11pt] transition-colors duration-500 ${isNavbarWhite ? (isActive ? 'text-blue-500' : 'text-black hover:text-blue-400') : (isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-400')}`;
 
   return (
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-[#FFDD00]/30">
       
-      {/* Navigation */}
+      {/* Navigation - PRESERVED LOGIC */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -169,89 +142,38 @@ export default function FieldNotesProjectPage() {
       >
         <div className="max-w-7xl mx-auto px-6 relative z-20">
           <div className="flex justify-between items-center">
-            
-            {/* Signature & Label Group */}
             <div className="flex items-center">
-              <button
-                onClick={handleBackHome}
-                className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4"
-                aria-label="Return to home page"
-              >
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
-                  alt="Dan Meier"
-                  width={150}
-                  height={37}
-                  priority
-                  className="h-9 w-auto brightness-0"
-                />
+              <button onClick={handleBackHome} className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4">
+                <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`} alt="Dan Meier" width={150} height={37} priority className="h-9 w-auto brightness-0" />
               </button>
-              
               <div className="flex items-center flex-shrink-0 ml-3">
-                <div className="w-px h-5 bg-slate-300 flex-shrink-0" aria-hidden="true" />
-                <span className={`ml-3 text-xs md:text-sm font-medium transition-colors duration-500 whitespace-nowrap ${
-                  isNavbarWhite ? 'text-black' : 'text-gray-700'
-                }`}>
-                  Design Work
-                </span>
+                <div className="w-px h-5 bg-slate-300 flex-shrink-0" />
+                <span className={`ml-3 text-xs md:text-sm font-medium transition-colors duration-500 whitespace-nowrap ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}>Work</span>
               </div>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className={`lg:hidden pl-4 py-2 flex items-center justify-end transition-colors duration-500 ${
-                isNavbarWhite ? 'text-black' : 'text-gray-700'
-              }`}
-              aria-label="Toggle mobile menu"
-            >
+            <button onClick={toggleMobileMenu} className={`lg:hidden pl-4 py-2 flex items-center justify-end transition-colors duration-500 ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}>
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
               </div>
             </button>
-
-            {/* Desktop Navigation */}
             <div className="hidden lg:block px-6 py-4">
               <nav className="flex items-center space-x-8">
-              <Link href="/projects/field-notes" className={linkClass(pathname === '/projects/field-notes')}>
-                  Travel Field Notes
-                </Link>
-                <Link href="/projects/travel-and-ai" className={linkClass(pathname === '/projects/travel-and-ai')}>
-                Intelligent Systems
-                </Link>
-                <Link href="/projects/previous" className={linkClass(pathname === '/projects/previous')}>
-                  Client Work
-                </Link>
-                
+                <Link href="/projects/field-notes" className={linkClass(pathname === '/projects/field-notes')}>Travel Field Notes</Link>
+                <Link href="/projects/travel-and-ai" className={linkClass(pathname === '/projects/travel-and-ai')}>Intelligent Systems (HADE)</Link>
+                <Link href="/projects/previous" className={linkClass(pathname === '/projects/previous')}>Client Work</Link>
               </nav>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu Dropdown */}
         <AnimatePresence mode="wait">
           {isMobileMenuOpen && (
-            <motion.div
-              key="mobile-menu"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
-            >
+            <motion.div key="mobile-menu" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10">
               <nav className="flex flex-col p-4 px-6 space-y-4">
-              <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">
-                  Travel Field Notes
-                </Link>
-                <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">
-                Intelligent Systems
-                </Link>
-                <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">
-                  Client Work
-                </Link>
-                
+                <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">Travel Field Notes</Link>
+                <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">Intelligent Systems (HADE)</Link>
+                <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 hover:text-white transition-colors">Client Work</Link>
               </nav>
             </motion.div>
           )}
@@ -259,12 +181,7 @@ export default function FieldNotesProjectPage() {
       </motion.nav>
 
       {/* HERO SECTION */}
-      <motion.section
-        className={`${contentBounds} pt-48 pb-24`}
-        initial="hidden"
-        animate="show"
-        variants={sectionVariants}
-      >
+      <motion.section className={`${contentBounds} pt-48 pb-24`} initial="hidden" animate="show" variants={sectionVariants}>
         <div className="max-w-4xl">
           <div className="flex items-center space-x-3 mb-6">
             <div className="w-12 h-[3px] bg-[#FFDD00]" />
@@ -279,37 +196,42 @@ export default function FieldNotesProjectPage() {
         </div>
       </motion.section>
 
-      {/* PROBLEM SECTION */}
-      <motion.section
-        className="border-t border-neutral-100 bg-neutral-50/50"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+  {/* PROBLEM SECTION - KEPT Scenario Archive // 01 */}
+  <motion.section 
+        className="border-t border-neutral-100 bg-neutral-50/50" 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true }} 
         variants={sectionVariants}
       >
         <div className={`${contentBounds} py-24`}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            <div className="lg:col-span-7">
-              <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8 leading-tight">
-                Most travel advice is <span className="underline decoration-[#FFDD00] decoration-4 underline-offset-8">broken.</span>
-              </h2>
-              <div className="space-y-6 text-neutral-600 text-lg leading-relaxed">
+          <div className="lg:col-span-7">
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8 leading-tight">
+              Most travel recommendations are missing{"\u00A0"}
+              <span className="underline decoration-[#FFDD00] decoration-4 underline-offset-8">
+                the moment.
+              </span>
+            </h2>
+            <div className="space-y-6 text-neutral-600 text-lg leading-relaxed">
               <p>
-                Today&apos;s recommendations are dominated by SEO listicles that assume 
-                context is{"\u00A0"}constant.
+                Today’s suggestions are buried in generic lists that assume your environment 
+                is{"\u00A0"}constant.
               </p>
               <p>
-                Travelers need actionable clarity for the moment they&apos;re actually in, 
-                not a ranked list of places they might never{"\u00A0"}reach.
+                Travelers need a decisive strategy for the specific situation they are in, 
+                rather than a catalog of places they might never{"\u00A0"}reach.
               </p>
             </div>
-            </div>
+          </div>
             <div className="lg:col-span-5">
               <div className="relative p-10 bg-white border border-neutral-200 shadow-xl rounded-sm">
                 <div className="absolute top-0 left-0 w-[6px] h-full bg-[#FFDD00]" />
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#000000] mb-4 font-black">Scenario Archive // 01</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#000000] mb-4 font-black">
+                  Scenario Archive // 01
+                </p>
                 <p className="text-neutral-800 text-xl italic font-serif leading-relaxed">
-                  “It&apos;s raining in Lisbon at 3pm and every cafe is packed.”
+                  “It&apos;s raining in Lisbon at 3pm and every cafe is{"\u00A0"}packed.”
                 </p>
               </div>
             </div>
@@ -317,12 +239,131 @@ export default function FieldNotesProjectPage() {
         </div>
       </motion.section>
 
+      {/* SYSTEM DESIGN: THE HANDSHAKE */}
+<section className="border-t border-neutral-100 bg-white">
+  <div className={`${contentBounds} py-24`}>
+    <div className="max-w-3xl mb-16">
+      <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">System Design</p>
+      <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6">Expertise at Scale</h2>
+      <p className="text-neutral-600 leading-relaxed text-lg">
+        Field Notes act as the system’s strategic brain. When the Spontaneity Engine (HADE) senses a shift in your environment like a sudden Lisbon downpour, it instantly maps your location to a specific travel playbook. This allows the system to translate deep local expertise into a single decisive move for that exact moment.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="p-10 border border-neutral-100 rounded-2xl bg-[#F9F7F2]">
+        <h3 className="font-bold text-xl mb-4">The Strategy Layer</h3>
+        <p className="text-neutral-500 text-base leading-relaxed mb-8">
+          The Field Note is the authoritative source of truth. It contains local logic a machine cannot invent—storytelling and editorial expertise that builds foundational trust.
+        </p>
+        <div className="text-[10px] uppercase font-bold tracking-[0.2em] text-neutral-900 border-t pt-4">Knowledge Base</div>
+      </div>
+      <div className="p-10 border border-neutral-100 rounded-2xl bg-white shadow-sm">
+        <h3 className="font-bold text-xl mb-4">The Delivery Layer</h3>
+        <p className="text-neutral-500 text-base leading-relaxed mb-8">
+          HADE acts as the real-time processor. It filters long-form strategy through live signals like time and weather to output a high-fidelity Decision Card.
+        </p>
+        <div className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#00000] border-t pt-4">Execution Engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* NON-TECH SYSTEM ARCHITECTURE: THE PIPELINE */}
+<section className="border-t border-neutral-100 bg-[#F9F7F2] py-24">
+  <div className={contentBounds}>
+    <div className="max-w-3xl mb-16">
+      <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">The Simple Version</p>
+      <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6">How it actually works</h2>
+      <p className="text-neutral-600 leading-relaxed text-lg italic font-serif">
+        "Think of it as a conversation between the city and an expert."
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Left Side: Process */}
+      <div className="lg:col-span-5 space-y-12">
+        <div className="relative">
+          <div className="mb-4 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center font-bold text-sm">1</div>
+            <h4 className="font-bold uppercase tracking-widest text-xs">HADE Listens</h4>
+          </div>
+          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
+            The engine monitors the world like a sensor. It notices it’s 3:00 PM, your battery is low, and a storm is rolling in.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="mb-4 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center font-bold text-sm">2</div>
+            <h4 className="font-bold uppercase tracking-widest text-xs">The Expert Speaks</h4>
+          </div>
+          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
+            It scans the Field Notes library to find a strategy specifically for rainy days in your exact neighborhood.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="mb-4 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center font-bold text-sm text-black">3</div>
+            <h4 className="font-bold uppercase tracking-widest text-xs">You Act</h4>
+          </div>
+          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
+            The system turns expert strategy into a clear button. No lists or scrolling—just the best move for right now.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side: Visual UI Result */}
+      <div className="lg:col-span-7 bg-white rounded-[3rem] p-8 md:p-12 border border-neutral-200 shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="hidden md:flex flex-col gap-4">
+             <div className="p-4 bg-neutral-50 rounded-xl border border-black/5 text-center">
+                <span className="text-[9px] uppercase font-black text-blue-500 block mb-1">Live Signal</span>
+                <span className="text-xs font-medium text-neutral-900">3:15 PM • Rain</span>
+             </div>
+             <div className="flex justify-center">
+                <div className="w-px h-6 bg-neutral-200 border-dashed border-l" />
+             </div>
+             <div className="p-4 bg-neutral-50 rounded-xl border border-black/5 text-center">
+                <span className="text-[9px] uppercase font-black text-neutral-400 block mb-1">Field Note</span>
+                <span className="text-xs font-medium italic font-serif text-neutral-900">"Rainfall Loop"</span>
+             </div>
+             <div className="flex justify-center">
+                <div className="w-px h-6 bg-neutral-200 border-dashed border-l" />
+             </div>
+             <div className="p-4 bg-black rounded-xl shadow-lg text-center">
+                <span className="text-[10px] uppercase font-black text-[#FFDD00] block mb-1">Result</span>
+                <span className="text-xs font-medium text-white">Generate Move</span>
+             </div>
+          </div>
+
+          {/* Device Mockup */}
+          <div className="relative mx-auto w-full max-w-[240px] aspect-[9/18.5] bg-white rounded-[2.5rem] shadow-2xl border-[6px] border-neutral-900 overflow-hidden">
+             <div className="p-6 pt-12">
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse mb-6" />
+                <p className="font-serif italic text-xl mb-4 leading-tight text-neutral-900">Chiado is a wet mess.</p>
+                <div className="h-px bg-neutral-100 w-full mb-6" />
+                <p className="text-[11px] text-neutral-500 leading-relaxed mb-8">
+                  Skip the cafes. Use the <span className="text-black font-bold">Bertrand Loop</span> to stay dry and keep exploring.
+                </p>
+                <button className="w-full py-4 bg-[#FFDD00] text-black text-[10px] font-black uppercase tracking-widest rounded-full">
+                  Let's Go
+                </button>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* SITUATIONS GRID */}
-      <section className="border-t border-neutral-100">
+      <section className="border-t border-neutral-100 bg-white">
         <div className={`${contentBounds} py-24`}>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">The Insight</p>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">Framework</p>
               <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900">Experienced travelers think in situations, not lists.</h2>
             </div>
           </div>
@@ -341,7 +382,7 @@ export default function FieldNotesProjectPage() {
       <section className="border-t border-neutral-100 bg-white">
         <div className={`${contentBounds} py-24`}>
           <div className="max-w-3xl mb-16">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">Example Field Logs</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">Log Examples</p>
             <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900">Three real-world moments.</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -355,15 +396,8 @@ export default function FieldNotesProjectPage() {
       {/* FINAL CTA */}
       <section className="bg-black py-32 relative overflow-hidden">
         <div className={`${contentBounds} text-center relative z-10`}>
-          <h2 className="text-4xl md:text-6xl font-semibold text-white mb-8 tracking-tighter">
-            Explore the Prototype
-          </h2>
-          <Link 
-            href="https://downloadable-travel-packs.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-block bg-[#FFDD00] text-black px-12 py-5 font-black uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)]"
-          >
+          <h2 className="text-4xl md:text-6xl font-semibold text-white mb-8 tracking-tighter">Explore the Prototype</h2>
+          <Link href="https://downloadable-travel-packs.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#FFDD00] text-black px-12 py-5 font-black uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)]">
             Open Field Notes
           </Link>
         </div>

@@ -185,7 +185,7 @@ export default function PreviousProjectsPage() {
         <div className="flex items-center flex-shrink-0 ml-3">
           <div className="w-px h-5 bg-white/20 flex-shrink-0" aria-hidden="true" />
           <span className="ml-3 text-xs md:text-sm font-medium text-white/90 whitespace-nowrap">
-            Design Work
+            Work
           </span>
         </div>
       </div>
@@ -208,7 +208,7 @@ export default function PreviousProjectsPage() {
         <nav className="flex items-center space-x-8">
           {[
             { name: 'Travel Field Notes', href: '/projects/field-notes' },
-            { name: 'Intelligent Systems', href: '/projects/travel-and-ai' },
+            { name: 'Intelligent Systems (HADE)', href: '/projects/travel-and-ai' },
             { name: 'Client Work', href: '/projects/previous' },
             
           ].map((link) => (
@@ -243,7 +243,7 @@ export default function PreviousProjectsPage() {
             Travel Field Notes
           </Link>
           <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
-          Intelligent Systems
+          Intelligent Systems (HADE)
           </Link>
           <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
             Client Work

@@ -64,7 +64,7 @@ export default function DesignWork() {
               >
                 Agentic Discovery Stack
               </h2>
-              <p className="text-sm text-gray-500 mt-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+              <p className="text-md text-gray-500 mt-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
               Bridging situational field notes with agentic orchestration, HADE is a hyperlocal decision engine that transforms environmental context and trusted signals into confident travel actions.
               </p>
             </div>

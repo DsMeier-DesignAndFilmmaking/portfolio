@@ -324,7 +324,7 @@ useEffect(() => {
             isNavbarWhite ? 'text-black' : 'text-gray-700'
           }`}
         >
-          Design Work
+          Work
         </span>
       </div>
     </div>
@@ -363,7 +363,7 @@ useEffect(() => {
               isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
             }`}
           >
-            Intelligent Systems
+            Intelligent Systems (HADE)
           </Link>
           <Link 
             href="/projects/previous" 
@@ -396,7 +396,7 @@ useEffect(() => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
-            Intelligent Systems
+            Intelligent Systems (HADE)
           </Link>
           <Link 
             href="/projects/previous" 
@@ -621,11 +621,11 @@ This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a syste
             >
               <p className="font-[Georgia,serif] italic text-2xl mb-4 text-neutral-900">It&apos;s pouring.</p>
               <p className="text-sm text-neutral-600 leading-relaxed mb-8">
-                Take the <span className="text-black font-bold">Bertrand Loop</span> to stay in motion. It&apos;s dry, and it gets you to the Upper District. Maya was here an hour ago.
+                Take the <span className="text-black font-bold">Bertrand Loop</span> to stay in motion. It&apos;s dry, and it gets you to the Upper District. <strong>Maya was here an hour ago.</strong>
               </p>
 
               <button className="w-full py-4 bg-[#FFDD00] rounded-full text-xs font-black uppercase tracking-widest text-black shadow-lg active:scale-95 transition-transform mb-4">
-                Enter the Loop
+                Let's Go
               </button>
               
               <button className="w-full text-[10px] uppercase tracking-widest font-bold text-neutral-400 hover:text-neutral-900 transition-colors">

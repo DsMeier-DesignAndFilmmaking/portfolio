@@ -566,7 +566,7 @@ export default function HomePage() {
               href="/projects/travel-and-ai" 
               className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
             >
-              Travel & AI
+              Intelligent Systems (HADE)
             </Link>
             <Link 
               href="/projects/previous" 
