@@ -150,44 +150,47 @@ const TrustFrameworkVisual = () => {
                 />
                 
                 {/* Verification Nodes */}
-                {[...Array(6)].map((_, i) => {
-                  const angle = (i * 360) / 6;
-                  const rad = (angle * Math.PI) / 180;
-                  const radius = 50;
-                  const x = Math.cos(rad) * radius;
-                  const y = Math.sin(rad) * radius;
-                  
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                      className="absolute"
-                      style={{
-                        left: `calc(50% + ${x}px)`,
-                        top: `calc(50% + ${y}px)`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    >
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.3, 1],
-                          opacity: [0.7, 1, 0.7],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.3,
-                          ease: 'easeInOut',
-                        }}
-                        className="w-8 h-8 bg-cyan-400 rounded-full border-2 border-cyan-300 flex items-center justify-center shadow-lg shadow-cyan-400/50"
-                      >
-                        <CheckCircle className="w-4 h-4 text-indigo-900" />
-                      </motion.div>
-                    </motion.div>
-                  );
-                })}
+{[...Array(6)].map((_, i) => {
+  const angle = (i * 360) / 6;
+  const rad = (angle * Math.PI) / 180;
+  const radius = 50;
+  
+  // FIX: Round to 2 decimal places to ensure SSR and Client strings match exactly
+  const x = (Math.cos(rad) * radius).toFixed(2);
+  const y = (Math.sin(rad) * radius).toFixed(2);
+  
+  return (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+      className="absolute"
+      style={{
+        // Use the rounded strings in the calc function
+        left: `calc(50% + ${x}px)`,
+        top: `calc(50% + ${y}px)`,
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.7, 1, 0.7],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          delay: i * 0.3,
+          ease: 'easeInOut',
+        }}
+        className="w-8 h-8 bg-cyan-400 rounded-full border-2 border-cyan-300 flex items-center justify-center shadow-lg shadow-cyan-400/50"
+      >
+        <CheckCircle className="w-4 h-4 text-indigo-900" />
+      </motion.div>
+    </motion.div>
+  );
+})}
                 
                 {/* Center Shield Icon */}
                 <motion.div
@@ -5773,7 +5776,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             01. Explainability
           </h3>
           <motion.div
-            whileHover={{ x: 10 }}
+            
             className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
           >
             <div className="flex justify-between items-start mb-4">
@@ -5795,7 +5798,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             02. Provenance & Conflict Resolution
           </h3>
           <motion.div
-            whileHover={{ x: 10 }}
+            
             className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
           >
             <div className="flex justify-between items-start mb-4">
@@ -5810,7 +5813,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             </p>
           </motion.div>
           <motion.div
-            whileHover={{ x: 10 }}
+            
             className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
           >
             <div className="flex justify-between items-start mb-4">
@@ -5865,7 +5868,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     ].map((item, i) => (
       <motion.div
         key={i}
-        whileHover={{ x: 10 }}
+        
         className="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-6 transition-all h-auto overflow-visible"
       >
         <div className="flex items-center gap-3 mb-4">

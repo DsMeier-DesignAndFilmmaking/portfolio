@@ -204,26 +204,33 @@ export default function PreviousProjectsPage() {
       </button>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:block px-6 py-4">
-        <nav className="flex items-center space-x-8">
-          {[
-            { name: 'Travel Field Notes', href: '/projects/field-notes' },
-            { name: 'Intelligent Systems (HADE)', href: '/projects/travel-and-ai' },
-            { name: 'Client Work', href: '/projects/previous' },
-            
-          ].map((link) => (
-            <Link 
-              key={link.name}
-              href={link.href} 
-              className={`text-[11pt] transition-colors duration-500 ${
-                pathname === link.href ? 'text-white' : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-      </div>
+<div className="hidden lg:block px-6 py-4">
+  <nav className="flex items-center space-x-8">
+    {[
+      { name: 'Travel Field Notes', href: '/projects/field-notes' },
+      { name: 'Intelligent Systems (HADE)', href: '/projects/travel-and-ai' },
+      { name: 'Client Work', href: '/projects/previous' },
+    ].map((link) => {
+      const isActive = pathname.startsWith(link.href);
+
+      return (
+        <Link
+          key={link.name}
+          href={link.href}
+          className={`text-[11pt] transition-colors duration-500 relative ${
+            isActive ? 'text-white' : 'text-white/60 hover:text-white'
+          }`}
+        >
+          {link.name}
+
+          {isActive && (
+            <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white/80 rounded-full"></span>
+          )}
+        </Link>
+      );
+    })}
+  </nav>
+</div>
     </div>
   </div>
 

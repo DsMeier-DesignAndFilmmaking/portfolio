@@ -47,6 +47,12 @@ export default function StaticFooter() {
                 Home
               </Link>
               <Link 
+                href="/projects/field-notes" 
+                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
+              >
+                Field Notes
+              </Link>
+              <Link 
                 href="/projects/travel-and-ai" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >

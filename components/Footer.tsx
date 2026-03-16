@@ -27,6 +27,7 @@ export default function Footer() {
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Quick Links</h3>
             <nav className="flex flex-col space-y-3">
               <Link href="https://dan-meier-portfolio.vercel.app/" className="text-sm text-gray-600 hover:text-black transition-colors">Home</Link>
+              <Link href="https://dan-meier-portfolio.vercel.app/projects/field-notes/" className="text-sm text-gray-600 hover:text-black transition-colors">Field Notes</Link>
               <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-sm text-gray-600 hover:text-black transition-colors">Travel & AI</Link>
               <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-sm text-gray-600 hover:text-black transition-colors">Client Work</Link>
             </nav>

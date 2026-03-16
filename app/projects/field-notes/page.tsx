@@ -5,10 +5,25 @@ import { motion, Variants, AnimatePresence, easeOut } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { 
+  BookOpen, 
+  Network, 
+  Shield, 
+  Zap, 
+  Users, 
+  BarChart3, 
+  ArrowRight, 
+  Cpu, 
+  MapPin, 
+  Search, 
+  BrainCircuit,
+  CloudRain,
+  Fingerprint
+} from 'lucide-react';
 
 // --- Constants & Variants ---
 const NAT_GEO_YELLOW = "#FFDD00"; 
-const contentBounds = "max-w-7xl mx-auto px-6";
+const contentBounds = "container mx-auto px-6";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -33,7 +48,7 @@ const fadeItem: Variants = {
 };
 
 const situationItems = [
-  'Arriving late in a new city', 'Hungry but overwhelmed with options', 'Rainy exploration day',
+  'Arriving late in a new city', 'Hungry but overwhelmed', 'Rainy exploration day',
   'Only two hours to explore', 'Need a quiet place to work', 'Tourist areas overcrowded',
   'Jet lag early morning', 'Phone battery dying',
 ];
@@ -62,25 +77,34 @@ const fieldNoteExamples = [
   },
 ];
 
-// --- Components ---
+// --- Sub-Components ---
+
+function SafetyBadge() {
+  return (
+    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFDD00] rounded-full mb-6">
+      <Fingerprint className="w-3 h-3 text-black" />
+      <span className="text-[9px] font-black uppercase tracking-wider text-black">Identity Verified Substrate</span>
+    </div>
+  );
+}
 
 function FieldNoteCard({ situation, problem, insight, moves, why }: any) {
   return (
-    <div className="group border border-neutral-200 rounded-xl p-6 bg-white hover:border-[#FFDD00] transition-all duration-300 shadow-sm hover:shadow-md">
-      <div className="space-y-5">
+    <div className="group border border-neutral-200 rounded-2xl p-8 bg-white hover:border-[#FFDD00] transition-all duration-300 shadow-sm hover:shadow-xl">
+      <div className="space-y-6">
         {[
           { label: 'Situation', val: situation, bold: true },
           { label: 'Problem', val: problem },
-          { label: 'Local Insight', val: insight },
+          { label: 'Local Insight', val: insight, highlight: true },
           { label: 'Suggested Moves', val: moves },
           { label: 'Why This Works', val: why },
         ].map((item) => (
           <div key={item.label}>
-            <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400 mb-1.5 font-bold flex items-center">
-              <span className="w-1.5 h-1.5 bg-[#FFDD00] mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400 mb-2 font-black flex items-center">
+              <span className={`w-1.5 h-1.5 bg-[#FFDD00] mr-2 ${item.highlight ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity`} />
               {item.label}
             </p>
-            <p className={`${item.bold ? 'text-neutral-900 font-semibold text-base' : 'text-neutral-600 text-sm'} leading-relaxed`}>
+            <p className={`${item.bold ? 'text-neutral-900 font-bold text-lg' : item.highlight ? 'text-neutral-900 font-serif italic text-base' : 'text-neutral-600 text-sm'} leading-relaxed`}>
               {item.val}
             </p>
           </div>
@@ -89,6 +113,8 @@ function FieldNoteCard({ situation, problem, insight, moves, why }: any) {
     </div>
   );
 }
+
+// --- Main Page Component ---
 
 export default function FieldNotesProjectPage() {
   const pathname = usePathname();
@@ -129,7 +155,7 @@ export default function FieldNotesProjectPage() {
   return (
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-[#FFDD00]/30">
       
-      {/* Navigation - PRESERVED LOGIC */}
+      {/* Navigation - Logic Untouched */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -140,7 +166,7 @@ export default function FieldNotesProjectPage() {
           atTop ? 'translate-y-0' : scrollDirection === 'down' ? 'lg:translate-y-0 -translate-y-full' : 'translate-y-0'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-20">
+        <div className="container mx-auto px-6 relative z-20">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <button onClick={handleBackHome} className="hover:opacity-80 transition-opacity p-0 m-0 w-fit h-fit flex items-center py-4">
@@ -160,9 +186,18 @@ export default function FieldNotesProjectPage() {
             </button>
             <div className="hidden lg:block px-6 py-4">
               <nav className="flex items-center space-x-8">
-                <Link href="/projects/field-notes" className={linkClass(pathname === '/projects/field-notes')}>Travel Field Notes</Link>
-                <Link href="/projects/travel-and-ai" className={linkClass(pathname === '/projects/travel-and-ai')}>Intelligent Systems (HADE)</Link>
-                <Link href="/projects/previous" className={linkClass(pathname === '/projects/previous')}>Client Work</Link>
+                <div className="relative">
+                  <Link href="/projects/field-notes" className={linkClass(pathname.startsWith('/projects/field-notes'))}>Travel Field Notes</Link>
+                  {pathname.startsWith('/projects/field-notes') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
+                </div>
+                <div className="relative">
+                  <Link href="/projects/travel-and-ai" className={linkClass(pathname.startsWith('/projects/travel-and-ai'))}>Intelligent Systems (HADE)</Link>
+                  {pathname.startsWith('/projects/travel-and-ai') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
+                </div>
+                <div className="relative">
+                  <Link href="/projects/previous" className={linkClass(pathname.startsWith('/projects/previous'))}>Client Work</Link>
+                  {pathname.startsWith('/projects/previous') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
+                </div>
               </nav>
             </div>
           </div>
@@ -187,205 +222,407 @@ export default function FieldNotesProjectPage() {
             <div className="w-12 h-[3px] bg-[#FFDD00]" />
             <p className="text-[11px] uppercase tracking-[0.4em] text-neutral-500 font-bold">Situational Framework</p>
           </div>
-          <h1 className="text-6xl md:text-8xl font-semibold tracking-tighter text-neutral-900 leading-[0.95] mb-8">
-            Field Notes<span className="text-[#FFDD00]">.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-neutral-500 font-light max-w-2xl leading-relaxed">
-            A system for capturing real-world travel situations and converting them into reusable local decision playbooks.
-          </p>
-        </div>
+           {/* Headline */}
+    <h1 
+        className="text-3xl md:text-5xl font-bold leading-snug" 
+        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+      >
+        {/* Primary */}
+        <span className="block text-gray-900">
+        Captured Context.<span className="block italic text-gray-500">Suggested Moves.</span>
+        </span>
+
+      {/* Sub-primary */}
+      <span 
+        className="block mt-4 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl"
+        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+      >
+        I am currently field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban{" "}
+        <span className="whitespace-nowrap">environments.</span>
+      </span>
+    </h1> 
+      </div>
       </motion.section>
 
-  {/* PROBLEM SECTION - KEPT Scenario Archive // 01 */}
-  <motion.section 
-        className="border-t border-neutral-100 bg-neutral-50/50" 
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true }} 
-        variants={sectionVariants}
-      >
-        <div className={`${contentBounds} py-24`}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          <div className="lg:col-span-7">
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8 leading-tight">
-              Most travel recommendations are missing{"\u00A0"}
-              <span className="underline decoration-[#FFDD00] decoration-4 underline-offset-8">
-                the moment.
-              </span>
-            </h2>
-            <div className="space-y-6 text-neutral-600 text-lg leading-relaxed">
-              <p>
-                Today’s suggestions are buried in generic lists that assume your environment 
-                is{"\u00A0"}constant.
-              </p>
-              <p>
-                Travelers need a decisive strategy for the specific situation they are in, 
-                rather than a catalog of places they might never{"\u00A0"}reach.
-              </p>
+      {/* 01. THE KNOWLEDGE LAYER */}
+      <section className="py-24 bg-white">
+        <div className={contentBounds}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6">
+              <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={sectionVariants}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center shadow-sm">
+                    <BookOpen className="w-5 h-5 text-black" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 01 // The Archive</span>
+                </div>
+                {/* Headline */}
+{/* 01. THE EDITORIAL HANDSHAKE */}
+<header className="mb-20">
+  <h1 
+    className="text-3xl md:text-5xl font-bold leading-snug" 
+    style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+  >
+    {/* Primary */}
+    <span 
+      className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance"
+      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    >
+      The Editorial Handshake
+    </span>
+
+    {/* Sub-primary */}
+    <span 
+  className="block mt-4 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance"
+  style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+>
+      <p>
+        I am engineering an automated pipeline that synthesizes industry travel reports, my 10+ global travel experience and real time telemetry into adaptive situational playbooks.
+      </p>
+    </span>
+  </h1> 
+</header>
+
+{/* Supporting Detail Block */}
+<div 
+  className="max-w-xl lg:max-w-2xl text-lg text-neutral-500 leading-relaxed font-light text-balance"
+  style={{ fontFamily: "'Roboto', sans-serif" }}
+>
+  <p>
+    In this current phase, HADE uses agentic logic to generate playbooks from high integrity data APIs and environmental signals. While the core engine is powered by AI synthesis, the roadmap is focused on a hybrid intelligence model where these digital strategies are eventually calibrated and verified by direct human expertise.
+  </p>
+</div>
+                
+              </motion.div>
             </div>
-          </div>
-            <div className="lg:col-span-5">
-              <div className="relative p-10 bg-white border border-neutral-200 shadow-xl rounded-sm">
-                <div className="absolute top-0 left-0 w-[6px] h-full bg-[#FFDD00]" />
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#000000] mb-4 font-black">
-                  Scenario Archive // 01
-                </p>
-                <p className="text-neutral-800 text-xl italic font-serif leading-relaxed">
-                  “It&apos;s raining in Lisbon at 3pm and every cafe is{"\u00A0"}packed.”
-                </p>
+            <div className="lg:col-span-6 relative">
+              <div className="relative p-10 bg-[#F9F7F2] rounded-[3rem] border border-black/5 shadow-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5">
+                  <Network className="w-64 h-64 text-black" />
+                </div>
+                <div className="relative z-10">
+                  <div className="bg-white p-8 rounded-2xl shadow-md mb-8 border-l-8 border-[#FFDD00]">
+                    <p className="text-[9px] uppercase tracking-widest text-neutral-400 font-black mb-3">Source: Lisbon Field Note // #042</p>
+                    <p className="font-serif italic text-xl text-neutral-800 leading-relaxed">
+                      “When the Tagus mist rolls in, the Miradouro crowds vanish. Head to the hidden arcade behind the Chiado ruins...”
+                    </p>
+                  </div>
+                  <div className="flex justify-center my-6">
+                    <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="w-px h-16 bg-gradient-to-b from-[#FFDD00] to-transparent" />
+                  </div>
+                  <div className="bg-neutral-900 text-white p-8 rounded-2xl shadow-lg border border-white/10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
+                      <p className="text-[10px] uppercase font-black tracking-widest text-blue-400">HADE Synthesis Active</p>
+                    </div>
+                    <p className="text-sm font-medium opacity-90 leading-relaxed">
+                      Environmental Match Found: High Humidity + Sunset + Low Social Friction. 
+                      Activating <span className="text-amber-400">"Mist Strategy"</span> for immediate presentation.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* SYSTEM DESIGN: THE HANDSHAKE */}
-<section className="border-t border-neutral-100 bg-white">
-  <div className={`${contentBounds} py-24`}>
-    <div className="max-w-3xl mb-16">
-      <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">System Design</p>
-      <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6">Expertise at Scale</h2>
-      <p className="text-neutral-600 leading-relaxed text-lg">
-        Field Notes act as the system’s strategic brain. When the Spontaneity Engine (HADE) senses a shift in your environment like a sudden Lisbon downpour, it instantly maps your location to a specific travel playbook. This allows the system to translate deep local expertise into a single decisive move for that exact moment.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div className="p-10 border border-neutral-100 rounded-2xl bg-[#F9F7F2]">
-        <h3 className="font-bold text-xl mb-4">The Strategy Layer</h3>
-        <p className="text-neutral-500 text-base leading-relaxed mb-8">
-          The Field Note is the authoritative source of truth. It contains local logic a machine cannot invent—storytelling and editorial expertise that builds foundational trust.
-        </p>
-        <div className="text-[10px] uppercase font-bold tracking-[0.2em] text-neutral-900 border-t pt-4">Knowledge Base</div>
-      </div>
-      <div className="p-10 border border-neutral-100 rounded-2xl bg-white shadow-sm">
-        <h3 className="font-bold text-xl mb-4">The Delivery Layer</h3>
-        <p className="text-neutral-500 text-base leading-relaxed mb-8">
-          HADE acts as the real-time processor. It filters long-form strategy through live signals like time and weather to output a high-fidelity Decision Card.
-        </p>
-        <div className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#00000] border-t pt-4">Execution Engine</div>
-      </div>
-    </div>
+      {/* 02. SYSTEM DECONSTRUCTION (NEW COMPLIANT STYLE) */}
+      <section className="border-t border-neutral-100 bg-[#F9F7F2] py-24">
+        <div className={contentBounds}>
+        <header className="mb-20">
+  <div className="flex items-center gap-3 mb-6">
+    <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center shadow-sm">
+      <BookOpen className="w-5 h-5 text-black" />
+    </div>  
+    <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400" style={{ fontFamily: "'Roboto', sans-serif" }}>
+      Layer 02 // Logic Handshake
+    </span>
   </div>
-</section>
 
-{/* NON-TECH SYSTEM ARCHITECTURE: THE PIPELINE */}
-<section className="border-t border-neutral-100 bg-[#F9F7F2] py-24">
-  <div className={contentBounds}>
-    <div className="max-w-3xl mb-16">
-      <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">The Simple Version</p>
-      <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6">How it actually works</h2>
-      <p className="text-neutral-600 leading-relaxed text-lg italic font-serif">
-        "Think of it as a conversation between the city and an expert."
-      </p>
-    </div>
+  <h1 
+    className="text-3xl md:text-5xl font-bold leading-snug" 
+    style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+  >
+{/* Primary */}
+<span 
+  className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance"
+  style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+>
+  How the Engine Activates Knowledge
+</span>
 
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      {/* Left Side: Process */}
-      <div className="lg:col-span-5 space-y-12">
-        <div className="relative">
-          <div className="mb-4 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center font-bold text-sm">1</div>
-            <h4 className="font-bold uppercase tracking-widest text-xs">HADE Listens</h4>
-          </div>
-          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
-            The engine monitors the world like a sensor. It notices it’s 3:00 PM, your battery is low, and a storm is rolling in.
-          </p>
-        </div>
+    {/* Sub-primary (Option 1 flow) */}
+    <span 
+  className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug max-w-xl lg:max-w-2xl text-balance"
+  style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+>
+  Deconstructing the flow from environmental telemetry to a verified strategic move.
+</span>
+  </h1> 
+</header>
 
-        <div className="relative">
-          <div className="mb-4 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center font-bold text-sm">2</div>
-            <h4 className="font-bold uppercase tracking-widest text-xs">The Expert Speaks</h4>
-          </div>
-          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
-            It scans the Field Notes library to find a strategy specifically for rainy days in your exact neighborhood.
-          </p>
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-7 space-y-12 relative">
+               {/* Vertical Trace Line */}
+              <div className="absolute left-3 top-10 bottom-10 w-[1px] bg-neutral-200 hidden md:block" aria-hidden="true" />
 
-        <div className="relative">
-          <div className="mb-4 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center font-bold text-sm text-black">3</div>
-            <h4 className="font-bold uppercase tracking-widest text-xs">You Act</h4>
-          </div>
-          <p className="text-sm text-neutral-500 leading-relaxed pl-14">
-            The system turns expert strategy into a clear button. No lists or scrolling—just the best move for right now.
-          </p>
-        </div>
-      </div>
+              {/* 01 Observation */}
+              <div className="relative md:pl-12">
+                <div className="absolute left-0 top-1.5 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold z-10">1</div>
+                <div>
+                  <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800 mb-6">Observation (The Signal)</h3>
+                  <div className="grid grid-cols-2 gap-4 bg-white p-6 rounded-2xl border border-black/5 shadow-sm">
+                    {[
+                      { l: 'Location', v: 'Chiado, Lisbon', i: <MapPin className="w-3 h-3"/> },
+                      { l: 'Weather', v: 'Heavy Rain (85%)', i: <CloudRain className="w-3 h-3"/> },
+                      { l: 'User State', v: 'Walking Exploration', i: <Zap className="w-3 h-3"/> },
+                      { l: 'Energy', v: 'Moderate (3h Active)', i: <BarChart3 className="w-3 h-3"/> }
+                    ].map(s => (
+                      <div key={s.l}>
+                        <p className="text-[9px] text-neutral-400 uppercase font-black mb-1 flex items-center gap-1">{s.i}{s.l}</p>
+                        <p className="text-sm font-bold text-neutral-800">{s.v}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-      {/* Right Side: Visual UI Result */}
-      <div className="lg:col-span-7 bg-white rounded-[3rem] p-8 md:p-12 border border-neutral-200 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="hidden md:flex flex-col gap-4">
-             <div className="p-4 bg-neutral-50 rounded-xl border border-black/5 text-center">
-                <span className="text-[9px] uppercase font-black text-blue-500 block mb-1">Live Signal</span>
-                <span className="text-xs font-medium text-neutral-900">3:15 PM • Rain</span>
-             </div>
-             <div className="flex justify-center">
-                <div className="w-px h-6 bg-neutral-200 border-dashed border-l" />
-             </div>
-             <div className="p-4 bg-neutral-50 rounded-xl border border-black/5 text-center">
-                <span className="text-[9px] uppercase font-black text-neutral-400 block mb-1">Field Note</span>
-                <span className="text-xs font-medium italic font-serif text-neutral-900">"Rainfall Loop"</span>
-             </div>
-             <div className="flex justify-center">
-                <div className="w-px h-6 bg-neutral-200 border-dashed border-l" />
-             </div>
-             <div className="p-4 bg-black rounded-xl shadow-lg text-center">
-                <span className="text-[10px] uppercase font-black text-[#FFDD00] block mb-1">Result</span>
-                <span className="text-xs font-medium text-white">Generate Move</span>
-             </div>
-          </div>
+              {/* 02 Retrieval */}
+              <div className="relative md:pl-12">
+                <div className="absolute left-0 top-1.5 w-6 h-6 bg-[#FFDD00] text-black rounded-full flex items-center justify-center text-[10px] font-bold z-10 shadow-sm">2</div>
+                <div>
+                  <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800 mb-6">Retrieval (The Archive)</h3>
+                  <div className="bg-white border-l-8 border-[#FFDD00] p-8 rounded-r-2xl shadow-xl">
+                    <div className="flex items-center gap-2 mb-4 text-[#A38D00]">
+                      <Search className="w-4 h-4" />
+                      <p className="text-[10px] font-black uppercase tracking-widest">Matched: LIS_042_STRAT</p>
+                    </div>
+                    <p className="text-neutral-900 italic font-serif text-xl leading-relaxed">
+                      &ldquo;Chiado&apos;s hills become slick and cafes overflow during sudden rain. Local movement shifts to the covered 18th-century arcades and gallery corridors.&rdquo;
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          {/* Device Mockup */}
-          <div className="relative mx-auto w-full max-w-[240px] aspect-[9/18.5] bg-white rounded-[2.5rem] shadow-2xl border-[6px] border-neutral-900 overflow-hidden">
-             <div className="p-6 pt-12">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse mb-6" />
-                <p className="font-serif italic text-xl mb-4 leading-tight text-neutral-900">Chiado is a wet mess.</p>
-                <div className="h-px bg-neutral-100 w-full mb-6" />
-                <p className="text-[11px] text-neutral-500 leading-relaxed mb-8">
-                  Skip the cafes. Use the <span className="text-black font-bold">Bertrand Loop</span> to stay dry and keep exploring.
-                </p>
-                <button className="w-full py-4 bg-[#FFDD00] text-black text-[10px] font-black uppercase tracking-widest rounded-full">
-                  Let's Go
-                </button>
-             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+              {/* 03 Synthesis */}
+              <div className="relative md:pl-12">
+                <div className="absolute left-0 top-1.5 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold z-10">3</div>
+                <div>
+                  <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800 mb-6">Synthesis (Agentic Logic)</h3>
+                  <div className="space-y-4">
+                    {[
+                      { l: "Predictive Validity", d: "Checks L1 telemetry to confirm rain will persist for 60+ minutes." },
+                      { l: "Trust Calibration", d: "Detects signal freshness—verified local checked in 45m ago." },
+                      { l: "Heuristic Filter", d: "Rejects 'Nearby Cafe' due to high-occupancy probability." }
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-4 items-center bg-white/50 p-4 rounded-xl border border-black/5">
+                        <Shield className="w-4 h-4 text-[#FFDD00] flex-shrink-0" />
+                        <p className="text-sm text-neutral-600 leading-snug"><span className="font-black text-neutral-900 uppercase text-[11px] tracking-wide mr-2">{item.l}:</span> {item.d}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-      {/* SITUATIONS GRID */}
-      <section className="border-t border-neutral-100 bg-white">
-        <div className={`${contentBounds} py-24`}>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">Framework</p>
-              <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900">Experienced travelers think in situations, not lists.</h2>
+            {/* PHONE PROTOTYPE PREVIEW */}
+            <div className="lg:col-span-5 sticky top-32 flex justify-center">
+              <div className="relative w-full max-w-[340px] aspect-[9/19] bg-neutral-900 rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] border-[10px] border-neutral-800 overflow-hidden">
+                {/* Screen Content */}
+                <div className="h-full w-full bg-white p-8 pt-14">
+                  <div className="flex items-center gap-2 mb-10">
+                    <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-widest font-black text-neutral-400">HADE Live View</span>
+                  </div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    className="bg-[#F9F7F2] rounded-[2.5rem] p-8 shadow-2xl border border-black/5"
+                  >
+                    <p className="font-serif italic text-3xl mb-4 text-neutral-900">It&apos;s pouring.</p>
+                    <p className="text-[14px] text-neutral-600 leading-relaxed mb-10">
+                      Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop</span> to stay in motion. Carlos verified seating is open.
+                    </p>
+                    <button className="w-full py-5 bg-[#FFDD00] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-lg hover:scale-105 transition-transform">
+                      Accept Strategy
+                    </button>
+                    <p className="text-center text-[9px] text-neutral-400 mt-6 uppercase tracking-widest font-bold">Not the move?</p>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </div>
-          <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-4" variants={staggerContainer} initial="hidden" whileInView="show">
+        </div>
+      </section>
+
+      {/* 03. THE COMMUNITY SIGNAL */}
+      <section className="border-t border-neutral-100 bg-white py-24">
+        <div className={contentBounds}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6">
+              <div className="flex items-center gap-3 mb-6">
+                <Users className="w-6 h-6 text-neutral-900" />
+                <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 03 // Scaling Expertise</span>
+              </div>
+              <header className="mb-20">
+              <h1 
+                className="text-3xl md:text-5xl font-bold leading-snug" 
+                style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+              >
+            {/* Primary */}
+            <span 
+              className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            >
+            The Community Signal
+            </span>
+                {/* Sub-primary (Option 1 flow) */}
+                <span 
+              className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug max-w-xl lg:max-w-2xl text-balance"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+                >
+                <p>
+                The "Editorial Handshake" helps HADE turn traveler insights into polished situational moves that keep the knowledge base growing in real time.                </p>
+                </span>
+                </h1> 
+              </header>
+             
+              <div className="mt-12 grid grid-cols-2 gap-12 border-t border-neutral-100 pt-12">
+                <div>
+                  <h4 className="font-black text-[11px] uppercase tracking-widest text-neutral-900 mb-3">Signal Ingestion</h4>
+                  <p className="text-sm text-neutral-500 leading-relaxed font-light">Raw user intent captured via geofenced triggers and biometric validation.</p>
+                </div>
+                <div>
+                  <h4 className="font-black text-[11px] uppercase tracking-widest text-neutral-900 mb-3">Agentic Refinement</h4>
+                  <p className="text-sm text-neutral-500 leading-relaxed font-light">AI synthesizes the "Move" to match the authoritative Field Note framework.</p>
+                </div>
+              </div>
+            </div>
+            <div className="lg:col-span-6">
+              <div className="bg-[#F9F7F2] p-12 rounded-[3.5rem] border border-black/5 relative overflow-hidden">
+                <div className="absolute -bottom-10 -right-10 opacity-5">
+                   <BrainCircuit className="w-64 h-64 text-black" />
+                </div>
+                <div className="flex flex-col gap-10 relative z-10">
+                  <div className="bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 transform -rotate-2">
+                    <p className="text-[9px] uppercase font-black text-neutral-400 mb-3">Input: Raw Traveler Note</p>
+                    <p className="text-base font-medium italic text-neutral-800 leading-snug">"The back room at Cafe A Brasileira is always empty during rain. Good wifi."</p>
+                  </div>
+                  <div className="flex justify-center"><div className="w-px h-12 bg-neutral-200 border-dashed border-l" /></div>
+                  <div className="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-[#FFDD00] transform rotate-1">
+                    <p className="text-[9px] uppercase font-black text-[#A38D00] mb-3">Output: Synthesized Note</p>
+                    <p className="text-lg font-serif italic text-neutral-900 leading-relaxed">
+                      "When the rain hits Chiado, bypass the storefronts. The rear gallery at A Brasileira offers a quiet retreat for deep work."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+   {/* 04. TRUST & SAFETY SUBSTRATE */}
+<section className="border-t border-neutral-100 bg-neutral-950 py-32 text-white overflow-hidden relative">
+  <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+    <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#FFDD00]/5 blur-[120px] rounded-full" />
+  </div>
+
+  <div className={`${contentBounds} relative z-10`}>
+    <header className="mb-20">
+      <div className="flex items-center gap-3 mb-8 opacity-50">
+        <Shield className="w-4 h-4 text-[#FFDD00]" />
+        <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-500" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          Integrity Layer
+        </span>
+      </div>
+
+      <h1 
+        className="text-3xl md:text-5xl font-bold leading-snug" 
+        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+      >
+        <span 
+              className="block text-[#FFDD00] max-w-xl lg:max-w-2xl text-balance"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            >
+            I am prioritizing human safety over high volume.
+            </span>
+        <span 
+          className="block mt-4 text-neutral-400 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl"
+          style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+        >
+          I am architecting the safety systems that allow you to follow automated logic with total{" "}
+          <span className="whitespace-nowrap">confidence.</span>
+        </span>
+      </h1> 
+    </header>
+
+    <div 
+      className="max-w-xl lg:max-w-2xl text-lg text-neutral-500 leading-relaxed font-light border-l border-white/10 pl-8"
+      style={{ fontFamily: "'Roboto', sans-serif" }}
+    >
+      <p>
+        Spontaneity only works when you can trust the signal. By verifying contributors and using geofenced data, I ensure the engine stays reliable so you can explore without the risk of unverified{" "}
+        <span className="whitespace-nowrap">sources.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+      {/* 05. SITUATIONS GRID */}
+      <section className="border-t border-neutral-100 bg-white py-24">
+        <div className={contentBounds}>
+          <div className="max-w-2xl mb-20">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Framework</p>
+            <header className="mb-20">
+              <h1 
+                className="text-3xl md:text-5xl font-bold leading-snug" 
+                style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+              >
+            {/* Primary */}
+            <span 
+              className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            >
+            Travelers think in situations, not lists.
+            </span>
+                </h1> 
+              </header>
+          </div>
+          <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-6" variants={staggerContainer} initial="hidden" whileInView="show">
             {situationItems.map((item) => (
-              <motion.div key={item} variants={fadeItem} className="group bg-white border border-neutral-200 p-6 hover:border-black transition-all cursor-default shadow-sm hover:shadow-none">
-                <div className="w-4 h-4 border-2 border-[#FFDD00] mb-4 group-hover:bg-[#FFDD00] transition-colors" />
-                <p className="text-sm font-bold text-neutral-800 leading-snug">{item}</p>
+              <motion.div key={item} variants={fadeItem} className="group bg-white border border-neutral-200 p-8 rounded-2xl hover:border-black hover:shadow-2xl transition-all">
+                <div className="w-5 h-5 border-2 border-[#FFDD00] mb-6 group-hover:bg-[#FFDD00] transition-colors" />
+                <p className="text-base font-black text-neutral-800 leading-snug">{item}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* EXAMPLES SECTION */}
-      <section className="border-t border-neutral-100 bg-white">
-        <div className={`${contentBounds} py-24`}>
-          <div className="max-w-3xl mb-16">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-4 font-bold">Log Examples</p>
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900">Three real-world moments.</h2>
+      {/* 06. LOG EXAMPLES */}
+      <section className="border-t border-neutral-100 bg-white py-24">
+        <div className={contentBounds}>
+          <div className="max-w-3xl mb-20">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Field Notes</p>
+            <header className="mb-20">
+              <h1 
+                className="text-3xl md:text-5xl font-bold leading-snug" 
+                style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+              >
+            {/* Primary */}
+            <span 
+              className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            >
+            Real-world example moments
+            </span>
+                </h1> 
+            </header>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {fieldNoteExamples.map((note) => (
               <FieldNoteCard key={note.situation} {...note} />
             ))}
@@ -393,15 +630,123 @@ export default function FieldNotesProjectPage() {
         </div>
       </section>
 
+   {/* 07. PRODUCT IMPACT */}
+<section className="border-t border-neutral-100 bg-[#F9F7F2] py-32">
+  <div className={contentBounds}>
+    <header className="mb-20">
+      <h2 
+        className="text-3xl md:text-5xl font-bold leading-snug" 
+        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+      >
+        {/* Primary */}
+        <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
+          System Objectives
+        </span>
+
+        {/* Sub-primary (Option 1 flow) */}
+        <span 
+          className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug max-w-xl lg:max-w-2xl text-balance"
+          style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+        >
+          Defining the core benchmarks for the discovery experience.
+        </span>
+      </h2> 
+    </header>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+      <div className="max-w-xs text-balance">
+        <p className="text-4xl font-black text-neutral-900 mb-4 font-serif italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Velocity
+        </p>
+        <p className="text-[11px] uppercase font-black text-neutral-400 tracking-[0.2em] mb-6 flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          <Zap className="w-3.5 h-3.5 text-[#FFDD00]" /> Decision Logic
+        </p>
+        <p className="text-base text-neutral-500 leading-relaxed font-light" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          I am reducing the time from problem sensed to action taken by bypassing traditional search paralysis.
+        </p>
+      </div>
+
+      <div className="max-w-xs text-balance">
+        <p className="text-4xl font-black text-neutral-900 mb-4 font-serif italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Distribution
+        </p>
+        <p className="text-[11px] uppercase font-black text-neutral-400 tracking-[0.2em] mb-6 flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          <Users className="w-3.5 h-3.5 text-[#FFDD00]" /> Urban Flow
+        </p>
+        <p className="text-base text-neutral-500 leading-relaxed font-light" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          I am shifting foot traffic away from tourist density clusters toward underutilized community gems.
+        </p>
+      </div>
+
+      <div className="max-w-xs text-balance">
+        <p className="text-4xl font-black text-neutral-900 mb-4 font-serif italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+          Equity
+        </p>
+        <p className="text-[11px] uppercase font-black text-neutral-400 tracking-[0.2em] mb-6 flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          <BarChart3 className="w-3.5 h-3.5 text-[#FFDD00]" /> Social Capital
+        </p>
+        <p className="text-base text-neutral-500 leading-relaxed font-light" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          I am converting travel history into trust assets that unlock exclusive community access and expertise.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* FINAL CTA */}
-      <section className="bg-black py-32 relative overflow-hidden">
-        <div className={`${contentBounds} text-center relative z-10`}>
-          <h2 className="text-4xl md:text-6xl font-semibold text-white mb-8 tracking-tighter">Explore the Prototype</h2>
-          <Link href="https://downloadable-travel-packs.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#FFDD00] text-black px-12 py-5 font-black uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)]">
-            Open Field Notes
-          </Link>
-        </div>
-      </section>
+<section className="bg-black py-40 relative overflow-hidden">
+  <div className="absolute inset-0 opacity-10">
+    <Image 
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/grain.png`} 
+      alt="" 
+      fill 
+      className="object-cover" 
+    />
+  </div>
+  
+  <div className={`${contentBounds} text-center relative z-10`}>
+    <h2 
+      className="text-4xl md:text-6xl text-white mb-6 tracking-tighter font-serif italic text-balance" 
+      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    >
+      The city is shifting. Ready to move?
+    </h2>
+    
+    <p 
+      className="text-neutral-400 text-lg md:text-xl mb-16 max-w-2xl mx-auto leading-relaxed"
+      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    >
+      You can check out the field notes or explore the engine that generates situational strategy in{" "}
+      <span className="whitespace-nowrap">real time.</span>
+    </p>
+
+    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+      {/* PATH A: THE ENGINE */}
+      <Link 
+        href="/projects/hade-system" 
+        className="group w-full md:w-auto bg-[#FFDD00] text-black px-12 py-6 font-black uppercase tracking-[0.2em] text-xs transition-all shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-none hover:-translate-y-1"
+      >
+        Explore HADE Engine
+      </Link>
+
+      {/* PATH B: THE CONTENT */}
+      <Link 
+        href="https://downloadable-travel-packs.vercel.app/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="group w-full md:w-auto bg-transparent border-2 border-white/20 text-white px-12 py-6 font-black uppercase tracking-[0.2em] text-xs transition-all hover:bg-white hover:text-black hover:border-white"
+      >
+        Access Field Notes
+      </Link>
+    </div>
+
+    <p className="mt-12 text-[10px] uppercase tracking-[0.4em] text-neutral-600 font-black">
+      Phase 01 Active Deployment
+    </p>
+  </div>
+</section>
+      
+
     </main>
   );
 }
