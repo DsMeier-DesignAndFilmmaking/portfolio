@@ -538,8 +538,8 @@ export default function FieldNotesProjectPage() {
               className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
               style={{ fontFamily: "'tiempos-headline-regular', serif" }}
             >
-              <span className="block text-[#FFDD00] max-w-xl lg:max-w-2xl text-balance italic mb-4">
-                I am prioritizing human safety over high volume.
+              <span className="block text-[#FFDD00] max-w-xl lg:max-w-3xl text-balance italic mb-4">
+                I am prioritizing human safet, and less phone time over high volume.
               </span>
               <span className="block text-neutral-400 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl">
                 I am architecting the safety systems that allow you to follow automated logic with total{" "}

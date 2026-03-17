@@ -26,9 +26,6 @@ export default function DesignWork() {
             <p className="text-xl text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products that adapt to real-world context.
             </p>
-            <p className="text-xl text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-              This work represents an evolution from static situational data to agentic systems—moving from "field notes" for humans to "decision engines" for autonomous travel agents.
-            </p>
           </div>
 
           {/* Agentic Discovery Stack Diagram */}
@@ -59,13 +56,16 @@ export default function DesignWork() {
                 </div>
               </div>
               <h2
-                className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900"
+                className="text-3xl md:text-3xl font-bold tracking-tight text-gray-900"
                 style={{ fontFamily: "'tiempos-headline-regular', serif" }}
               >
                 Agentic Discovery Stack
               </h2>
-              <p className="text-md text-gray-500 mt-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              Bridging situational field notes with agentic orchestration, HADE is a hyperlocal decision engine that transforms environmental context and trusted signals into confident travel actions.
+              <p 
+                className="text-base sm:text-lg text-gray-500 mt-2 leading-relaxed"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                Bridging situational field notes with agentic orchestration, HADE is a hyperlocal decision engine that transforms environmental context and trusted signals into confident travel actions.
               </p>
             </div>
 
@@ -73,8 +73,10 @@ export default function DesignWork() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
               <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between group">
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
-                  <p className="text-gray-900 font-semibold">Field Notes Intelligence</p>
+                  <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
+                  <p className="text-base sm:text-lg text-gray-900 font-semibold">
+                    Field Notes Intelligence
+                  </p>
                 </div>
                 <Link href="/projects/field-notes/" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
                   Explore Layer <span className="ml-1">→</span>
@@ -82,10 +84,12 @@ export default function DesignWork() {
               </div>
               <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between">
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Validation</p>
-                  <p className="text-gray-900 font-semibold">Trust &amp; Authenticity</p>
+                  <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Validation</p>
+                  <p className="text-base sm:text-lg text-gray-900 font-semibold">
+                  Trust &amp; Authenticity
+                </p>
                 </div>
-                <span className="mt-4 text-[10px] font-bold uppercase tracking-widest text-gray-300">Signal Processing</span>
+                <span className="mt-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">Signal Processing</span>
               </div>
             </div>
 

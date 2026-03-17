@@ -107,7 +107,7 @@ export default function HomePage() {
                       }}
                     >
                       I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br /><br />
-                      I design digital experiences shaped by a decade of product building and a global worldview informed by 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value and resonate on a universal scale.
+                      I design and craft digital experiences shaped by a decade of product building and a global worldview informed by visiting 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value.
                     </p>
                     <p 
                       className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"

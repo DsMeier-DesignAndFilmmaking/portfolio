@@ -462,19 +462,9 @@ useEffect(() => {
 
       {/* Sub-primary (Option 1 flow) */}
       <span className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
-      Cities are alive with signals — shifting weather, neighborhood energy, proximity to people and places that matter. Yet most travel tools still rely on static lists and outdated reviews.
+      I’m exploring how intelligent systems can interpret real-world signals in real time, helping travelers navigate unfamiliar places with curiosity and confidence. This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a system designed to transform the living signals of a city into spontaneous, high-confidence moments.
       </span>
     </h1>
-
-    {/* Subcopy / Description */}
-    <p 
-      className="text-gray-700 text-base md:text-lg leading-relaxed text-balance"
-      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-    >
-      I’m exploring how intelligent systems can interpret these real-world signals in real time, helping travelers navigate unfamiliar places with curiosity and confidence.
-
-This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a system designed to transform the living signals of a city into spontaneous, high-confidence moments.
-    </p>
 
     {/* Scroll / Explore Indicator */}
     <motion.div
@@ -828,7 +818,7 @@ This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a syste
             Interface Architecture & Presentation Touchpoints
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-            The same core intelligence manifests through functional touchpoints: interface layers spanning mobile apps, embedded widgets, and APIs/SDKs. Each interface layer leverages design tokens and component library patterns, orchestrated by the Spontaneity Engine and enhanced by visual hierarchy principles.          
+            The same core intelligence manifests through functional touchpoints: interface layers spanning mobile apps, embedded widgets, and APIs/SDKs.          
             </p>
           </motion.div>
 

@@ -8,7 +8,7 @@ export default function HADESystemDeepDive() {
       <div className="container mx-auto px-6">
         
         {/* --- HEADER SECTION --- */}
-        <header className="mb-24 max-w-4xl">
+        <header className="mb-12 md:mb-24 max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center shadow-sm">
               <BookOpen className="w-5 h-5 text-black" />
@@ -144,7 +144,7 @@ export default function HADESystemDeepDive() {
 </div>
 
           {/* RIGHT: TRAVELER EXPERIENCE (THE UI) */}
-          <div className="lg:col-span-5 sticky top-32 pb-24">
+          <div className="lg:col-span-5 sticky top-32 pb-12 lg:pb-24">
             <div className="relative mx-auto w-full max-w-[320px] aspect-[9/19] bg-white rounded-[3rem] shadow-2xl border-[8px] border-neutral-900 overflow-hidden">
               {/* Status Bar */}
               <div className="h-6 w-full flex justify-between px-8 pt-4 items-center">
@@ -190,7 +190,7 @@ export default function HADESystemDeepDive() {
         </div>
 
         {/* --- HUMAN CALIBRATION FOOTER --- */}
-        <footer className="mt-24 pt-24 border-t border-neutral-100 max-w-5xl">
+        <footer className="mt-12 pt-12 md:mt-24 md:pt-24 border-t border-neutral-100 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <div className="flex items-center gap-3 mb-6 text-neutral-900">
