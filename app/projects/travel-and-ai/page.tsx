@@ -11,12 +11,15 @@ import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
 
 const TAI_SECTIONS = [
-  { id: 'intro',           label: 'Intro'       },
-  { id: 'tai-system',      label: 'System'      },
-  { id: 'tai-timeline',    label: 'Timeline'    },
-  { id: 'tai-iterations',  label: 'Process'     },
-  { id: 'tai-constraints', label: 'Constraints' },
-  { id: 'tai-roadmap',     label: 'Roadmap'     },
+  { id: 'intro',            label: 'Intro'        },
+  { id: 'tai-system',       label: 'System'       },
+  { id: 'tai-timeline',     label: 'Timeline'     },
+  { id: 'tai-iterations',   label: 'Process'      },
+  { id: 'tai-constraints',  label: 'Constraints'  },
+  { id: 'tai-roadmap',      label: 'Roadmap'      },
+  // Dot 7: anchors to the top of the Core Infrastructure block which contains
+  // all three subsections — Core Infrastructure, Intelligence Modules, Interface Architecture.
+  { id: 'tai-architecture', label: 'Architecture' },
 ];
 import SystemsGraphic from "@/components/SystemsGraphic";
 
@@ -553,7 +556,8 @@ useEffect(() => {
 <div id="tai-roadmap"><HADERoadmap /></div>
 
       {/* Core Platform & Embedded Intelligence Section */}
-<section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
+{/* id="tai-architecture" anchors dot 7 "System Architecture" of the mobile dot nav */}
+<section id="tai-architecture" className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
   <div className="container mx-auto px-6">
     {/* Header Section */}
     <motion.div
