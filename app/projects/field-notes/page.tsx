@@ -30,7 +30,6 @@ const FN_SECTIONS = [
   { id: 'fn-trust',    label: 'Trust'     },
 ];
 
-// --- Constants & Variants ---
 const NAT_GEO_YELLOW = "#FFDD00"; 
 const contentBounds = "container mx-auto px-6 md:px-8";
 
@@ -110,9 +109,6 @@ function FieldNoteCard({ situation, problem, insight, moves, why }: any) {
         ].map((item) => (
           <div key={item.label} className="text-left">
             <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400 mb-2 font-black flex items-center justify-start">
-              {/* Added 'hidden md:block' to ensure the element (and its margin) 
-                  doesn't take up space on mobile.
-              */}
               <span className={`w-1.5 h-1.5 bg-[#FFDD00] mr-2 transition-opacity hidden md:block ${item.highlight ? 'opacity-100' : 'opacity-0'}`} />
               {item.label}
             </p>
@@ -133,7 +129,6 @@ export default function FieldNotesProjectPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
 
@@ -142,18 +137,16 @@ export default function FieldNotesProjectPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      try {
-        const scrollPosition = window.scrollY;
-        setIsNavbarWhite(scrollPosition > 100);
-        setAtTop(scrollPosition < 10);
-        if (isMobileMenuOpenRef.current) setIsMobileMenuOpen(false);
-        const currentScrollY = window.scrollY;
-        const previousScrollY = lastScrollYRef.current;
-        if (currentScrollY > previousScrollY) setScrollDirection('down');
-        else if (currentScrollY < previousScrollY) setScrollDirection('up');
-        lastScrollYRef.current = currentScrollY;
-        setLastScrollY(currentScrollY);
-      } catch (error) { console.debug('Scroll error:', error); }
+      const scrollPosition = window.scrollY;
+      setIsNavbarWhite(scrollPosition > 100);
+      setAtTop(scrollPosition < 10);
+      if (isMobileMenuOpenRef.current) setIsMobileMenuOpen(false);
+
+      const currentScrollY = window.scrollY;
+      const previousScrollY = lastScrollYRef.current;
+      if (currentScrollY > previousScrollY) setScrollDirection('down');
+      else if (currentScrollY < previousScrollY) setScrollDirection('up');
+      lastScrollYRef.current = currentScrollY;
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -167,10 +160,10 @@ export default function FieldNotesProjectPage() {
   return (
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-[#FFDD00]/30 overflow-x-hidden">
 
-      {/* Progress bar + section dot nav (mobile) */}
+      {/* Progress bar + section dot nav */}
       <PageNavIndicator sections={FN_SECTIONS} />
 
-      {/* Navigation - Logic Untouched */}
+      {/* Navigation */}
       <motion.nav 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -230,31 +223,32 @@ export default function FieldNotesProjectPage() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* HERO SECTION */}
-      <motion.section id="fn-hero" className={`${contentBounds} pt-32 md:pt-48 pb-16 md:pb-24 bg-white`} initial="hidden" animate="show" variants={sectionVariants}>
-        <div className="max-w-4xl">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-12 h-[3px] bg-[#FFDD00]" />
-            <p className="text-[11px] uppercase tracking-[0.4em] text-neutral-500 font-bold">Situational Framework</p>
-          </div>
-          <h1
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
-            >
-              <span className="block text-gray-900">
-              Captured Context.<span className="block italic text-gray-500">Suggested Moves.</span>
-              </span>
+{/* HERO SECTION */}
+<motion.section
+  id="fn-hero"
+  className={`${contentBounds} mt-[100px] pb-16 md:pb-24 flex flex-col space-y-6`}
+  initial="hidden"
+  animate="show"
+  variants={sectionVariants}
+>
+  <div className="max-w-2xl flex flex-col space-y-6">
+    <div className="flex items-center space-x-3">
+      <div className="w-12 h-[3px] bg-[#FFDD00]" />
+      <p className="text-[11px] uppercase tracking-[0.4em] text-neutral-500 font-bold">Situational Framework</p>
+    </div>
 
-            <span
-              className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl font-tiempos"
-            >
-              I am currently developing, prototyping, and field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban{" "}
-              <span className="whitespace-nowrap">environments.</span>
-            </span>
-          </h1> 
-        </div>
-      </motion.section>
+    <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos">
+      <span className="block text-gray-900">
+        Captured Context.<span className="block italic text-gray-500">Suggested Moves.</span>
+      </span>
+      <span className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl font-tiempos">
+        I am currently developing, prototyping, and field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban <span className="whitespace-nowrap">environments.</span>
+      </span>
+    </h1>
+  </div>
+</motion.section>
 
-      {/* SYSTEM DIAGRAM — Field Notes → HADE → Outputs */}
+      {/* SYSTEM DIAGRAM */}
       <div id="fn-system">
         <FieldNotesSystemDiagram />
       </div>
