@@ -10,8 +10,9 @@ import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import SystemsGraphic from "@/components/SystemsGraphic";
 
-import { SpontaneityHero } from './SpontaneityHero'; // Import the new file
 import HADESystemDeepDive from '../../../components//HADESystemDeepDive'; // Add this line
+import { SpontaneityHero as SystemOverview } from './SpontaneityHero';
+import { SessionTimeline } from './SessionTimeline';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -430,6 +431,24 @@ useEffect(() => {
     style={{ backgroundColor: "#E8FBF8" }}
     aria-label="Project Hero"
   >
+  {/* Ownership Label */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1.2, delay: 1.8 }}
+    className="absolute top-[5.5rem] right-6 hidden lg:block z-30"
+    aria-label="System ownership"
+  >
+    <div className="text-right space-y-0.5">
+      <span className="block text-[9px] font-mono uppercase tracking-[0.22em] text-gray-400">
+        HADE System — AI Prototype
+      </span>
+      <span className="block text-[9px] font-mono uppercase tracking-[0.22em] text-gray-400">
+        Daniel Meier / 2026
+      </span>
+    </div>
+  </motion.div>
+
   <div className="relative z-20 w-full">
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -447,7 +466,7 @@ useEffect(() => {
       className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
-      <span className="text-gray-600">Intelligent Travel Systems</span>
+      <span className="text-gray-600">Product Systems Design • Travel • AI</span>
     </div>
 
     {/* Headline */}
@@ -457,12 +476,17 @@ useEffect(() => {
     >
       {/* Primary */}
       <span className="block text-gray-900">
-      Turning Real-World Signals Into Confident Decisions
+        Designing for Movement, Not Plans
       </span>
 
-      {/* Sub-primary (Option 1 flow) */}
-      <span className="block mt-3 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
-      I’m exploring how intelligent systems can interpret real-world signals in real time, helping travelers navigate unfamiliar places with curiosity and confidence. This work evolves into the Hyperlocal Agentic Decision Engine (HADE) — a system designed to transform the living signals of a city into spontaneous, high-confidence moments.
+      {/* Sub-primary */}
+      <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
+        The first version could surface what was happening nearby in real time. It couldn’t tell you whether any of it mattered to the trip you were actually trying to have.
+      </span>
+
+      {/* Supporting paragraph */}
+      <span className="block mt-4 text-gray-600 text-base md:text-lg font-normal leading-relaxed">
+        HADE (Holistic Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from a city and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for spontaneous discovery.
       </span>
     </h1>
 
@@ -507,9 +531,9 @@ useEffect(() => {
   </div>
 </section>
 
-
+<SystemOverview />
+<SessionTimeline />
 <HADESystemDeepDive />
-
 
       {/* Core Platform & Embedded Intelligence Section */}
 <section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
@@ -947,7 +971,19 @@ useEffect(() => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            
+            <div className="border-t border-gray-200 pt-10 md:pt-14">
+              <div className="mb-3">
+                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                  [PATTERN: TRANSFERABLE_SYSTEMS]
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                The Pattern Behind the System
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed max-w-3xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
+                This system design demonstrates patterns and frameworks that are transferable across multiple travel and AI experiences, showing how real-time adaptive logic can be applied to other user contexts, destinations, and interaction types.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

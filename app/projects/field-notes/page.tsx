@@ -223,17 +223,15 @@ export default function FieldNotesProjectPage() {
             <div className="w-12 h-[3px] bg-[#FFDD00]" />
             <p className="text-[11px] uppercase tracking-[0.4em] text-neutral-500 font-bold">Situational Framework</p>
           </div>
-          <h1 
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+          <h1
+              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
             >
               <span className="block text-gray-900">
               Captured Context.<span className="block italic text-gray-500">Suggested Moves.</span>
               </span>
 
-            <span 
-              className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl"
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <span
+              className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl font-tiempos"
             >
               I am currently field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban{" "}
               <span className="whitespace-nowrap">environments.</span>
@@ -255,20 +253,18 @@ export default function FieldNotesProjectPage() {
                   <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 01 // The Archive</span>
                 </div>
                 <header className="mb-10">
-                  <h1 
-                    className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-                    style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+                  <h2
+                    className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
                   >
                     <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
                       The Editorial Handshake
                     </span>
-                    <span 
-                      className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance"
-                      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+                    <span
+                      className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance font-tiempos"
                     >
                       I am engineering an automated pipeline that synthesizes industry travel reports, my 10+ years of global travel experience, and real time telemetry into adaptive situational playbooks.
                     </span>
-                  </h1> 
+                  </h2>
                 </header>
 
                 <div 
@@ -326,9 +322,8 @@ export default function FieldNotesProjectPage() {
               </span>
             </div>
 
-            <h1 
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <h2
+              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
             >
               <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
                 How the Engine Activates Knowledge
@@ -336,7 +331,7 @@ export default function FieldNotesProjectPage() {
               <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance">
                 Deconstructing the flow from environmental telemetry to a verified strategic move.
               </span>
-            </h1> 
+            </h2>
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
@@ -475,9 +470,8 @@ export default function FieldNotesProjectPage() {
                 <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 03 // Scaling Expertise</span>
               </div>
               <header className="mb-10">
-                <h1 
-                  className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-                  style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+                <h2
+                  className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
                 >
                   <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
                     The Community Signal
@@ -485,7 +479,7 @@ export default function FieldNotesProjectPage() {
                   <span className="block mt-6 text-gray-700 text-lg md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance">
                     The "Editorial Handshake" helps HADE turn traveler insights into polished situational moves that keep the knowledge base growing in real time.
                   </span>
-                </h1> 
+                </h2>
               </header>
              
               <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 border-t border-neutral-100 pt-8 md:pt-12">
@@ -526,37 +520,144 @@ export default function FieldNotesProjectPage() {
       {/* 04. TRUST & SAFETY SUBSTRATE */}
       <section className="bg-neutral-950 py-20 md:py-32 text-white overflow-hidden relative z-10">
         <div className={`${contentBounds} relative z-10`}>
-          <header className="mb-12 md:mb-20">
-            <div className="flex items-center gap-3 mb-8 opacity-50">
-              <Shield className="w-4 h-4 text-[#FFDD00]" />
+
+          {/* Header */}
+          <motion.header
+            className="mb-12 md:mb-20"
+            initial="hidden" whileInView="show" viewport={{ once: true }} variants={sectionVariants}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center">
+                <Shield className="w-5 h-5 text-black" />
+              </div>
               <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-500" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                Integrity Layer
+                Layer 04 // Integrity Architecture
               </span>
             </div>
 
-            <h1 
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <h2
+              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
             >
               <span className="block text-[#FFDD00] max-w-xl lg:max-w-3xl text-balance italic mb-4">
-                I am prioritizing human safet, and less phone time over high volume.
+                Trust is an engineering constraint, not a feature.
               </span>
               <span className="block text-neutral-400 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl">
-                I am architecting the safety systems that allow you to follow automated logic with total{" "}
-                <span className="whitespace-nowrap">confidence.</span>
+                Every rule in the integrity layer exists because a specific failure mode was identified. These constraints shaped the architecture — they were not added afterward.
               </span>
-            </h1> 
-          </header>
+            </h2>
+          </motion.header>
 
-          <div 
-            className="max-w-xl lg:max-w-2xl text-base md:text-lg text-neutral-500 leading-relaxed font-light border-l border-white/10 pl-6 md:pl-8"
-            style={{ fontFamily: "'Roboto', sans-serif" }}
+          {/* Constraint Cards */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-20"
+            variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }}
           >
-            <p>
-              Spontaneity only works when you can trust the signal. By verifying contributors and using geofenced data, I ensure the engine stays reliable so you can explore without the risk of unverified{" "}
-              <span className="whitespace-nowrap">sources.</span>
+            {[
+              {
+                constraint: "Signal Freshness Budget",
+                rule: "Notes degrade after 3 hours",
+                detail: "Field Notes contribute to synthesis only within a 3-hour credibility window. Notes older than 24 hours are archived and excluded unless re-verified by a second contributor in the same zone.",
+                tradeoff: "Tradeoff: Reduced recall volume in slow-update areas. Accepted to prevent stale data from triggering confident recommendations.",
+                Icon: Zap,
+                badge: "Latency-Adjacent",
+              },
+              {
+                constraint: "Interaction Pacing Governor",
+                rule: "≥20 min gap between surfaces",
+                detail: "The Dopamine Governor enforces a minimum 20-minute cooldown between suggestions surfaced to any individual session. A suggestion surfaced too frequently becomes noise — and noise erodes trust faster than silence.",
+                tradeoff: "Tradeoff: Missed opportunity windows in fast-changing environments. Accepted to protect long-term engagement integrity.",
+                Icon: BrainCircuit,
+                badge: "Pacing Constraint",
+              },
+              {
+                constraint: "Local-First GPS Policy",
+                rule: "No raw coordinates transmitted",
+                detail: "Location is resolved to a named zone (e.g. 'Chiado') on-device before any server communication. Raw GPS coordinates are never stored or transmitted. This was a founding architectural constraint, not a retroactive privacy patch.",
+                tradeoff: "Tradeoff: Zone-level precision reduces hyper-local accuracy. Accepted as a non-negotiable privacy boundary.",
+                Icon: Fingerprint,
+                badge: "Privacy Boundary",
+              },
+              {
+                constraint: "Contributor Geofence Gate",
+                rule: "500m radius check-in required",
+                detail: "Check-ins must be recorded within 500m of the referenced location to count toward a Field Note's credibility score. Notes submitted outside this radius enter a 48-hour cross-verification queue and cannot trigger synthesis until resolved.",
+                tradeoff: "Tradeoff: Increased contributor friction at the point of submission. Accepted to ensure the knowledge base reflects direct, firsthand observation.",
+                Icon: MapPin,
+                badge: "Source Integrity",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeItem}
+                className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-6 md:p-8 flex flex-col gap-5"
+              >
+                {/* Card header */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#FFDD00] flex items-center justify-center flex-shrink-0">
+                      <item.Icon className="w-4 h-4 text-black" />
+                    </div>
+                    <span
+                      className="text-[9px] font-black uppercase tracking-widest text-neutral-500"
+                      style={{ fontFamily: "'Roboto', sans-serif" }}
+                    >
+                      {item.constraint}
+                    </span>
+                  </div>
+                  <span
+                    className="text-[8px] font-black uppercase tracking-wider text-[#FFDD00] bg-[#FFDD00]/10 border border-[#FFDD00]/20 px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0"
+                    style={{ fontFamily: "'Roboto', sans-serif" }}
+                  >
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Rule + detail */}
+                <div>
+                  <p
+                    className="text-base md:text-lg font-bold text-white mb-3 font-tiempos"
+                  >
+                    {item.rule}
+                  </p>
+                  <p
+                    className="text-sm text-neutral-400 leading-relaxed"
+                    style={{ fontFamily: "'Roboto', sans-serif" }}
+                  >
+                    {item.detail}
+                  </p>
+                </div>
+
+                {/* Tradeoff callout */}
+                <div className="border-t border-white/[0.08] pt-4">
+                  <p
+                    className="text-[10px] text-neutral-600 leading-relaxed font-mono"
+                  >
+                    {item.tradeoff}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Closing rationale */}
+          <motion.div
+            initial="hidden" whileInView="show" viewport={{ once: true }} variants={sectionVariants}
+            className="border-l border-white/10 pl-6 md:pl-8 max-w-2xl"
+          >
+            <p
+              className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-600 mb-4"
+              style={{ fontFamily: "'Roboto', sans-serif" }}
+            >
+              Design Rationale
             </p>
-          </div>
+            <p
+              className="text-base md:text-lg text-neutral-500 leading-relaxed font-light"
+              style={{ fontFamily: "'Roboto', sans-serif" }}
+            >
+              Each constraint above represents a deliberate tradeoff. The system does less in certain conditions to do one thing reliably: surface suggestions a traveler can act on without second-guessing the source.
+            </p>
+          </motion.div>
+
         </div>
       </section>
 
@@ -565,12 +666,11 @@ export default function FieldNotesProjectPage() {
         <div className={contentBounds}>
           <div className="max-w-2xl mb-12 md:mb-20">
             <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Framework</p>
-            <h1 
-              className="text-3xl md:text-5xl font-bold leading-tight" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <h2
+              className="text-3xl md:text-5xl font-bold leading-tight font-tiempos"
             >
               Travelers think in situations, not lists.
-            </h1>
+            </h2>
           </div>
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" variants={staggerContainer} initial="hidden" whileInView="show">
             {situationItems.map((item) => (
@@ -590,12 +690,11 @@ export default function FieldNotesProjectPage() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black text-left">
               The Field Notes
             </p>
-            <h1 
-              className="text-3xl md:text-5xl font-bold leading-tight text-left" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <h2
+              className="text-3xl md:text-5xl font-bold leading-tight text-left font-tiempos"
             >
               Real-world example moments
-            </h1>
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {fieldNoteExamples.map((note) => (
@@ -609,9 +708,8 @@ export default function FieldNotesProjectPage() {
       <section className="bg-white py-20 md:py-32 relative z-10">
         <div className={contentBounds}>
           <header className="mb-16 md:mb-20">
-            <h2 
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug" 
-              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            <h2
+              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
             >
               <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
                 System Objectives
@@ -629,7 +727,7 @@ export default function FieldNotesProjectPage() {
               { title: "Equity", icon: <BarChart3 className="w-3.5 h-3.5 text-[#FFDD00]" />, category: "Social Capital", desc: "I am converting travel history into trust assets that unlock exclusive community access and expertise." }
             ].map((impact) => (
               <div key={impact.title} className="max-w-xs">
-                <p className="text-3xl md:text-4xl font-black text-neutral-900 mb-4 font-serif italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+                <p className="text-3xl md:text-4xl font-black text-neutral-900 mb-4 font-serif italic font-tiempos">
                   {impact.title}
                 </p>
                 <p className="text-[11px] uppercase font-black text-neutral-400 tracking-[0.2em] mb-4 flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
@@ -656,16 +754,14 @@ export default function FieldNotesProjectPage() {
         </div>
         
         <div className={`${contentBounds} text-center relative z-10`}>
-          <h2 
-            className="text-4xl md:text-6xl text-white mb-6 tracking-tighter font-serif italic text-balance" 
-            style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+          <h2
+            className="text-4xl md:text-6xl text-white mb-6 tracking-tighter font-serif italic text-balance font-tiempos"
           >
             The city is shifting. Ready to move?
           </h2>
           
-          <p 
-            className="text-neutral-400 text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto leading-relaxed"
-            style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+          <p
+            className="text-neutral-400 text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto leading-relaxed font-tiempos"
           >
             You can check out the field notes or explore the engine that generates situational strategy in{" "}
             <span className="whitespace-nowrap">real time.</span>

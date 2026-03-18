@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        'tiempos': ["'tiempos-headline-regular'", 'serif'],
         'sf-pro-display': ['SF Pro Display', 'system-ui', 'sans-serif'],
         'sf-pro-text': ['SF Pro Text', 'system-ui', 'sans-serif'],
         'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
