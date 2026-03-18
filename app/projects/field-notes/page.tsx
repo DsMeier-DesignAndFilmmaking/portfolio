@@ -5,19 +5,30 @@ import { motion, Variants, AnimatePresence, easeOut } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { 
-  BookOpen, 
-  Network, 
-  Shield, 
-  Zap, 
-  Users, 
-  BarChart3, 
-  MapPin, 
-  Search, 
+import {
+  BookOpen,
+  Network,
+  Shield,
+  Zap,
+  Users,
+  BarChart3,
+  MapPin,
+  Search,
   BrainCircuit,
   CloudRain,
   Fingerprint
 } from 'lucide-react';
+import { FieldNotesSystemDiagram } from './components/FieldNotesSystemDiagram';
+import { PageNavIndicator } from '../../../components/PageNavIndicator';
+
+const FN_SECTIONS = [
+  { id: 'fn-hero',      label: 'Overview'  },
+  { id: 'fn-system',   label: 'System'    },
+  { id: 'fn-archive',  label: 'Archive'   },
+  { id: 'fn-logic',    label: 'Logic'     },
+  { id: 'fn-community',label: 'Community' },
+  { id: 'fn-trust',    label: 'Trust'     },
+];
 
 // --- Constants & Variants ---
 const NAT_GEO_YELLOW = "#FFDD00"; 
@@ -92,10 +103,10 @@ function FieldNoteCard({ situation, problem, insight, moves, why }: any) {
       <div className="space-y-6 text-left">
         {[
           { label: 'Situation', val: situation, bold: true },
-          { label: 'Problem', val: problem },
+          { label: 'Problem', val: problem, highlight: true },
           { label: 'Local Insight', val: insight, highlight: true },
-          { label: 'Suggested Moves', val: moves },
-          { label: 'Why This Works', val: why },
+          { label: 'Suggested Moves', val: moves, highlight: true },
+          { label: 'Why This Works', val: why, highlight: true },
         ].map((item) => (
           <div key={item.label} className="text-left">
             <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400 mb-2 font-black flex items-center justify-start">
@@ -155,7 +166,10 @@ export default function FieldNotesProjectPage() {
 
   return (
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-[#FFDD00]/30 overflow-x-hidden">
-      
+
+      {/* Progress bar + section dot nav (mobile) */}
+      <PageNavIndicator sections={FN_SECTIONS} />
+
       {/* Navigation - Logic Untouched */}
       <motion.nav 
         initial={{ opacity: 0 }}
@@ -217,7 +231,7 @@ export default function FieldNotesProjectPage() {
       </motion.nav>
 
       {/* HERO SECTION */}
-      <motion.section className={`${contentBounds} pt-32 md:pt-48 pb-16 md:pb-24 bg-white`} initial="hidden" animate="show" variants={sectionVariants}>
+      <motion.section id="fn-hero" className={`${contentBounds} pt-32 md:pt-48 pb-16 md:pb-24 bg-white`} initial="hidden" animate="show" variants={sectionVariants}>
         <div className="max-w-4xl">
           <div className="flex items-center space-x-3 mb-6">
             <div className="w-12 h-[3px] bg-[#FFDD00]" />
@@ -233,15 +247,20 @@ export default function FieldNotesProjectPage() {
             <span
               className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl font-tiempos"
             >
-              I am currently field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban{" "}
+              I am currently developing, prototyping, and field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban{" "}
               <span className="whitespace-nowrap">environments.</span>
             </span>
           </h1> 
         </div>
       </motion.section>
 
+      {/* SYSTEM DIAGRAM — Field Notes → HADE → Outputs */}
+      <div id="fn-system">
+        <FieldNotesSystemDiagram />
+      </div>
+
       {/* 01. THE KNOWLEDGE LAYER */}
-      <section className="py-20 md:py-32 bg-white relative z-10">
+      <section id="fn-archive" className="py-20 md:py-32 bg-white relative z-10">
         <div className={contentBounds}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6">
@@ -250,7 +269,7 @@ export default function FieldNotesProjectPage() {
                   <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center">
                     <BookOpen className="w-5 h-5 text-black" />
                   </div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 01 // The Archive</span>
+                  <span className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 01 // The Archive</span>
                 </div>
                 <header className="mb-10">
                   <h2
@@ -310,14 +329,14 @@ export default function FieldNotesProjectPage() {
       </section>
 
       {/* 02. SYSTEM DECONSTRUCTION */}
-      <section className="bg-white py-20 md:py-32 relative z-10">
+      <section id="fn-logic" className="bg-white py-20 md:py-32 relative z-10">
         <div className={contentBounds}>
           <header className="mb-12 md:mb-20">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-black" />
               </div>  
-              <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400" style={{ fontFamily: "'Roboto', sans-serif" }}>
+              <span className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 Layer 02 // Logic Handshake
               </span>
             </div>
@@ -334,15 +353,15 @@ export default function FieldNotesProjectPage() {
             </h2>
           </header>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
-            <div className="lg:col-span-7 space-y-12 relative">
-              <div className="absolute left-3 top-10 bottom-10 w-[1px] bg-neutral-200 hidden md:block" aria-hidden="true" />
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+  <div className="lg:col-span-7 space-y-12 relative">
+  <div className="absolute left-3 top-10 bottom-10 w-[1px] bg-neutral-200 hidden md:block z-0" aria-hidden="true" />
 
-             {/* Step 1 */}
+{/* Step 1 */}
 <div className="space-y-6">
   {/* Header Row: Vertically Aligned */}
-  <div className="flex items-center gap-4 md:gap-6">
-    <div className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold">
+  <div className="flex items-center gap-4 md:gap-6 relative z-10">
+    <div className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold relative z-10">
       1
     </div>
     <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800">
@@ -370,11 +389,11 @@ export default function FieldNotesProjectPage() {
   </div>
 </div>
 
-              {/* Step 2 */}
+{/* Step 2 */}
 <div className="space-y-6">
   {/* Header Row: Vertically Aligned */}
   <div className="flex items-center gap-4 md:gap-6">
-    <div className="flex-shrink-0 w-6 h-6 bg-[#FFDD00] text-black rounded-full flex items-center justify-center text-[10px] font-bold">
+    <div className="flex-shrink-0 w-6 h-6 bg-[#FFDD00] text-black rounded-full flex items-center justify-center text-[10px] font-bold relative z-10">
       2
     </div>
     <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800">
@@ -400,7 +419,7 @@ export default function FieldNotesProjectPage() {
 <div className="space-y-6">
   {/* Header Row: Vertically Aligned */}
   <div className="flex items-center gap-4 md:gap-6">
-    <div className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold">
+    <div className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-[10px] font-bold relative z-10">
       3
     </div>
     <h3 className="font-black text-sm uppercase tracking-widest text-neutral-800">
@@ -429,45 +448,78 @@ export default function FieldNotesProjectPage() {
     </div>
   </div>
 </div>
-            </div>
 
-            <div className="lg:col-span-5 lg:sticky lg:top-32 flex justify-center mt-12 lg:mt-0">
-              <div className="relative w-full max-w-[320px] md:max-w-[340px] aspect-[9/19] bg-neutral-900 rounded-[3rem] md:rounded-[3.5rem] border-[8px] md:border-[10px] border-neutral-800 overflow-hidden">
-                <div className="h-full w-full bg-white p-6 md:p-8 pt-12 md:pt-14">
-                  <div className="flex items-center gap-2 mb-8 md:mb-10">
-                    <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-                    <span className="text-[10px] uppercase tracking-widest font-black text-neutral-400">HADE Live View</span>
-                  </div>
-                  
-                  <motion.div 
-                    initial={{ opacity: 0, y: 30 }} 
-                    whileInView={{ opacity: 1, y: 0 }} 
-                    className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 border border-neutral-100"
-                  >
-                    <p className="font-serif italic text-2xl md:text-3xl mb-4 text-neutral-900">It&apos;s crowded there.</p>
-                    <p className="text-[13px] md:text-[14px] text-neutral-600 leading-relaxed mb-8 md:mb-10">
-                      Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop</span> to stay in motion. Carlos verified flow is great and seating is open.
-                    </p>
-                    <button className="w-full py-4 md:py-5 bg-[#FFDD00] rounded-xl md:rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-black">
-                      Accept Strategy
-                    </button>
-                    <p className="text-center text-[9px] text-neutral-400 mt-6 uppercase tracking-widest font-bold">Not the move?</p>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
+</div>
+
+ <div className="lg:col-span-5 lg:sticky lg:top-32 flex justify-center mt-10 lg:mt-0">
+  <div className="relative w-full max-w-[280px] md:max-w-[340px] 
+                  aspect-[9/14] md:aspect-[9/19]   /* shorter on mobile */
+                  bg-neutral-900 
+                  rounded-[2.5rem] md:rounded-[3.5rem] 
+                  border-[6px] md:border-[10px] 
+                  border-neutral-800 
+                  overflow-hidden 
+                  scale-[0.92] md:scale-100        /* subtle shrink on mobile */
+  ">
+    
+    {/* Screen */}
+    <div className="h-full w-full bg-white 
+                    p-4 md:p-8 
+                    pt-8 md:pt-14   /* reduce top dead space */
+    ">
+      
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-5 md:mb-10">
+        <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-500 animate-pulse" />
+        <span className="text-[9px] md:text-[10px] uppercase tracking-widest font-black text-neutral-400">
+          HADE Live View
+        </span>
+      </div>
+      
+      {/* Card */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        className="bg-white 
+                   rounded-[1.5rem] md:rounded-[2.5rem] 
+                   p-4 md:p-8 
+                   border border-neutral-100"
+      >
+        <p className="font-serif italic text-xl md:text-3xl mb-3 md:mb-4 text-neutral-900">
+          It&apos;s crowded there.
+        </p>
+
+        <p className="text-[12px] md:text-[14px] text-neutral-600 leading-relaxed mb-5 md:mb-10">
+          Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop</span> to stay in motion. Carlos verified flow is great and seating is open.
+        </p>
+
+        <button className="w-full py-3 md:py-5 
+                           bg-[#FFDD00] 
+                           rounded-lg md:rounded-2xl 
+                           text-[10px] md:text-[11px] 
+                           font-black uppercase tracking-[0.2em] text-black">
+          Accept Strategy
+        </button>
+
+        <p className="text-center text-[10px] md:text-[9px] text-neutral-400 mt-4 md:mt-6 uppercase tracking-widest font-bold">
+          Not the move?
+        </p>
+      </motion.div>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </section>
 
       {/* 03. THE COMMUNITY SIGNAL */}
-      <section className="bg-white py-20 md:py-32 relative z-10">
+      <section id="fn-community" className="bg-white py-20 md:py-32 relative z-10">
         <div className={contentBounds}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6">
               <div className="flex items-center gap-3 mb-6">
                 <Users className="w-6 h-6 text-neutral-900" />
-                <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 03 // Scaling Expertise</span>
+                <span className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400">Layer 03 // Scaling Expertise</span>
               </div>
               <header className="mb-10">
                 <h2
@@ -518,7 +570,7 @@ export default function FieldNotesProjectPage() {
       </section>
 
       {/* 04. TRUST & SAFETY SUBSTRATE */}
-      <section className="bg-neutral-950 py-20 md:py-32 text-white overflow-hidden relative z-10">
+      <section id="fn-trust" className="bg-neutral-950 py-20 md:py-32 text-white overflow-hidden relative z-10">
         <div className={`${contentBounds} relative z-10`}>
 
           {/* Header */}
@@ -530,7 +582,7 @@ export default function FieldNotesProjectPage() {
               <div className="w-10 h-10 rounded-full bg-[#FFDD00] flex items-center justify-center">
                 <Shield className="w-5 h-5 text-black" />
               </div>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-500" style={{ fontFamily: "'Roboto', sans-serif" }}>
+              <span className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] font-black text-neutral-500" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 Layer 04 // Integrity Architecture
               </span>
             </div>
@@ -665,82 +717,55 @@ export default function FieldNotesProjectPage() {
       <section className="bg-white py-20 md:py-32 relative z-10">
         <div className={contentBounds}>
           <div className="max-w-2xl mb-12 md:mb-20">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Framework</p>
+            <p className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Framework</p>
             <h2
               className="text-3xl md:text-5xl font-bold leading-tight font-tiempos"
             >
               Travelers think in situations, not lists.
             </h2>
           </div>
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" variants={staggerContainer} initial="hidden" whileInView="show">
-            {situationItems.map((item) => (
-              <motion.div key={item} variants={fadeItem} className="group bg-white border border-neutral-200 p-6 md:p-8 rounded-2xl transition-all">
-                <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-[#FFDD00] mb-6 transition-colors" />
-                <p className="text-base font-black text-neutral-800 leading-snug">{item}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <motion.div
+  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="show"
+>
+  {situationItems.map((item) => (
+    <motion.div
+      key={item}
+      variants={fadeItem}
+      className="group bg-white border border-neutral-200 p-6 md:p-8 rounded-2xl"
+    >
+      {/* Updated yellow block */}
+      <div className="w-4 h-4 md:w-5 md:h-5 bg-[#FFDD00] mb-6 rounded-sm" />
+
+      {/* Text */}
+      <p className="text-base font-black text-neutral-800 leading-snug">{item}</p>
+    </motion.div>
+  ))}
+</motion.div>
         </div>
       </section>
 
-     {/* 06. LOG EXAMPLES */}
-     <section className="bg-white py-20 md:py-32 relative z-10">
-        <div className={contentBounds}>
-          <div className="max-w-3xl mb-12 md:mb-20 text-left"> {/* Explicit left alignment for header container */}
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black text-left">
-              The Field Notes
-            </p>
-            <h2
-              className="text-3xl md:text-5xl font-bold leading-tight text-left font-tiempos"
-            >
-              Real-world example moments
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-            {fieldNoteExamples.map((note) => (
-              <FieldNoteCard key={note.situation} {...note} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 07. PRODUCT IMPACT */}
       <section className="bg-white py-20 md:py-32 relative z-10">
-        <div className={contentBounds}>
-          <header className="mb-16 md:mb-20">
-            <h2
-              className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos"
-            >
-              <span className="block text-gray-900 max-w-xl lg:max-w-2xl text-balance">
-                System Objectives
-              </span>
-              <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl text-balance">
-                Defining the core benchmarks for the discovery experience.
-              </span>
-            </h2> 
-          </header>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
-            {[
-              { title: "Velocity", icon: <Zap className="w-3.5 h-3.5 text-[#FFDD00]" />, category: "Decision Logic", desc: "I am reducing the time from problem sensed to action taken by bypassing traditional search paralysis." },
-              { title: "Distribution", icon: <Users className="w-3.5 h-3.5 text-[#FFDD00]" />, category: "Urban Flow", desc: "I am shifting foot traffic away from tourist density clusters toward underutilized community gems." },
-              { title: "Equity", icon: <BarChart3 className="w-3.5 h-3.5 text-[#FFDD00]" />, category: "Social Capital", desc: "I am converting travel history into trust assets that unlock exclusive community access and expertise." }
-            ].map((impact) => (
-              <div key={impact.title} className="max-w-xs">
-                <p className="text-3xl md:text-4xl font-black text-neutral-900 mb-4 font-serif italic font-tiempos">
-                  {impact.title}
-                </p>
-                <p className="text-[11px] uppercase font-black text-neutral-400 tracking-[0.2em] mb-4 flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                  {impact.icon} {impact.category}
-                </p>
-                <p className="text-base text-neutral-500 leading-relaxed font-light" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                  {impact.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  <div className={contentBounds}>
+    <div className="max-w-3xl mb-12 md:mb-20 text-left">
+      <p className="text-[11px] uppercase tracking-[0.3em] text-neutral-500 mb-6 font-black text-left">
+        The Field Notes
+      </p>
+      <h2 className="text-3xl md:text-5xl font-bold leading-tight text-left font-tiempos text-neutral-900">
+        Real-world example moments
+      </h2>
+    </div>
+    
+    {/* Grid Adjusted: 1 col on mobile, 2 cols on MacBook/Tablet, 3 only on XL Desktop */}
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12">
+      {fieldNoteExamples.map((note) => (
+        <FieldNoteCard key={note.situation} {...note} />
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* FINAL CTA */}
       <section className="bg-black py-24 md:py-40 relative z-20 overflow-hidden">

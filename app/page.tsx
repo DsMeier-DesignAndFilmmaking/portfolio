@@ -106,8 +106,8 @@ export default function HomePage() {
                         fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
                       }}
                     >
-                      I’m Dan Meier, a systems-minded product designer, creative technologist and world traveler. <br /><br />
-                      I design and craft digital experiences shaped by a decade of product building and a global worldview informed by visiting 41 countries. I’m driven by the challenge of creating systems that are as dynamic as the people using them, leveraging my background in technology and travel to build products that provide real value.
+                      I design the logic that makes experiences feel inevitable. <br /><br />
+                      I’m Dan Meier — a product designer and systems thinker who builds at the intersection of UX, technology, and human behavior. Over a decade of product work has taught me that the best experiences aren’t just well-designed surfaces; they’re coherent systems where every decision serves the whole. That’s the problem I keep coming back to.
                     </p>
                     <p 
                       className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
@@ -357,10 +357,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="text-center section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
-              <div id="world-travel-diaries-badge" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-300 text-black-800 rounded-full text-sm font-medium mb-6">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                In Development
-              </div>
+              
               <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
                 fontFamily: "'tiempos-headline-regular', serif",
                 color: '#000000'

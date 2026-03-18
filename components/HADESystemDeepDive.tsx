@@ -269,57 +269,6 @@ export default function HADESystemDeepDive() {
           </div>
         </div>
 
-      {/* --- CONSTRAINTS SECTION --- */}
-      <div className="mt-16 md:mt-24 pt-16 md:pt-24 border-t border-neutral-100 max-w-5xl">
-        <div className="mb-10">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400" style={{ fontFamily: "'Roboto', sans-serif" }}>
-            What Constrained the System
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold mt-3 text-neutral-900 italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            Design Decisions Forced by Reality
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            {
-              label: "Latency < 200ms",
-              Icon: Zap,
-              constraint: "Suggestions had to arrive in under 200ms to feel ambient rather than deliberate.",
-              tradeoff: "Longer and the suggestion becomes a decision, not a nudge. This forced pre-computation during idle state — accepting 3-minute data staleness as the tradeoff."
-            },
-            {
-              label: "No Raw GPS Storage",
-              Icon: Lock,
-              constraint: "Cannot store raw location data server-side.",
-              tradeoff: "This forced local-first processing and the ZK-proof layer for all social features. Privacy wasn't a feature — it was a constraint that shaped the entire social graph architecture."
-            },
-            {
-              label: "Dopamine Governor",
-              Icon: RefreshCcw,
-              constraint: "Suggestion frequency itself is a failure mode.",
-              tradeoff: "The Dopamine Governor hard-caps suggestion rate — without it, the system trains users to dismiss everything. Silence is a feature."
-            }
-          ].map((item, i) => (
-            <div key={i} className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-neutral-900 flex items-center justify-center flex-shrink-0">
-                  <item.Icon className="w-4 h-4 text-[#FFDD00]" />
-                </div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-neutral-900" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                  {item.label}
-                </p>
-              </div>
-              <p className="text-neutral-900 font-semibold text-sm mb-2 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                {item.constraint}
-              </p>
-              <p className="text-neutral-500 text-[13px] leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                {item.tradeoff}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* --- FOOTER: ITERATION EVIDENCE --- */}
 <footer className="mt-12 pt-12 md:mt-24 md:pt-24 border-t border-neutral-100 max-w-5xl">
   <div className="mb-10">
@@ -329,61 +278,154 @@ export default function HADESystemDeepDive() {
     <h3 className="text-2xl md:text-3xl font-bold mt-3 text-neutral-900 italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
       What Broke, and What Changed
     </h3>
+    <p className="text-sm text-neutral-500 mt-3 max-w-xl leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>
+      Early iterations showed that reducing friction and increasing clarity mattered more than increasing intelligence.
+    </p>
   </div>
-  <div className="grid md:grid-cols-3 gap-4">
-    {[
-      {
-        number: "01",
-        title: "Modal Suggestions",
-        before: "Detour suggestions surfaced as modals requiring explicit yes/no.",
-        failure: "Created decision burden at the exact moment users needed to feel free.",
-        fix: "Switched to ambient overlay with opt-out only. The question was removed — the suggestion became a permission slip.",
-        metric: "Acceptance: 12% → 61%",
-        hasMetric: true,
-      },
-      {
-        number: "02",
-        title: "Social Proximity Alerts",
-        before: "Proximity alerts fired for 2nd-degree connections without checking energy state.",
-        failure: "Users felt surveilled, not assisted. Dismissed alerts without reading.",
-        fix: "Added a gate: trust degree ≥ 2nd + energy buffer ≥ 50% + friction score < 15 min.",
-        metric: null,
-        hasMetric: false,
-      },
-      {
-        number: "03",
-        title: "Opaque AI Suggestions",
-        before: "Concierge cards had no visible reasoning — just the recommendation.",
-        failure: "Trust gap killed adoption. Users didn't know why the system was suggesting something.",
-        fix: "Built the Logic Receipt UI — every suggestion now shows the 3 data points that triggered it.",
-        metric: null,
-        hasMetric: false,
-      }
-    ].map((item, i) => (
-      <div key={i} className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>{item.number}</span>
-          {item.hasMetric && (
-            <span className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full uppercase tracking-wide border border-emerald-200" style={{ fontFamily: "'Roboto', sans-serif" }}>{item.metric}</span>
-          )}
+  <div className="grid md:grid-cols-3 gap-6 items-stretch">
+
+    {/* ── Card 01: Suggestion Delivery ── */}
+    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>01</span>
+      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Suggestion Delivery</h4>
+
+      {/* Diagram */}
+      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
+        {/* Before state */}
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
+          <div className="flex items-center gap-1.5">
+            <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Modal</div>
+            <span className="text-neutral-400 text-[11px]">→</span>
+            <div className="px-2.5 py-1 bg-white border border-neutral-200 rounded text-[10px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Decide ✕</div>
+          </div>
         </div>
-        <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>{item.title}</h4>
-        <div className="space-y-2 flex-1">
-          <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
-            <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
-            <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>{item.before}</p>
-          </div>
-          <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
-            <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
-            <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>{item.failure}</p>
-          </div>
-          <div className="bg-neutral-900 rounded-2xl p-4">
-            <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Fix</p>
-            <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>{item.fix}</p>
+        <div className="w-full h-px bg-neutral-200" />
+        {/* After state */}
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
+          <div className="flex items-center gap-1">
+            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Ambient</div>
+            <span className="text-emerald-400 text-[11px]">→</span>
+            <span className="text-emerald-400 text-[11px]">→</span>
+            <span className="text-emerald-400 text-[11px]">→</span>
+            <span className="text-[10px] text-neutral-400 italic" style={{ fontFamily: "'Roboto', sans-serif" }}>no pause</span>
           </div>
         </div>
       </div>
-    ))}
+
+      <div className="space-y-2 flex-1 flex flex-col">
+        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestions were introduced through explicit prompts that required a decision.</p>
+        </div>
+        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>This created friction during moments of movement. Users were forced to stop and evaluate instead of continuing naturally.</p>
+        </div>
+        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
+          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Shifted to a passive delivery model where suggestions appear as ambient guidance, allowing users to follow or ignore without interruption.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* ── Card 02: Context Awareness ── */}
+    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>02</span>
+      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Context Awareness</h4>
+
+      {/* Diagram */}
+      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
+        {/* Before */}
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
+          <div className="flex items-center gap-1.5">
+            <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal</div>
+            <span className="text-neutral-400 text-[11px]">→</span>
+            <div className="px-2.5 py-1 bg-white border border-neutral-200 rounded text-[10px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Trigger</div>
+          </div>
+        </div>
+        <div className="w-full h-px bg-neutral-200" />
+        {/* After */}
+        <div className="flex items-start gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0 mt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <div className="flex flex-col gap-1">
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal</div>
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>State</div>
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Effort</div>
+            </div>
+            <span className="text-neutral-400 text-[11px]">→</span>
+            <div className="px-2.5 py-1 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Filter</div>
+            <span className="text-emerald-400 text-[11px]">→</span>
+            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Trigger</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2 flex-1 flex flex-col">
+        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>System triggered suggestions based on single signals without considering broader context.</p>
+        </div>
+        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Recommendations often felt mistimed or irrelevant, especially when user energy or intent didn&apos;t align with the suggestion.</p>
+        </div>
+        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
+          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Introduced lightweight contextual filters that consider user state, effort required, and situational relevance before triggering suggestions.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* ── Card 03: Explainability ── */}
+    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>03</span>
+      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Explainability</h4>
+
+      {/* Diagram */}
+      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
+        {/* Before */}
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
+          <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestion</div>
+        </div>
+        <div className="w-full h-px bg-neutral-200" />
+        {/* After */}
+        <div className="flex items-start gap-2">
+          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0 mt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
+          <div className="flex flex-col gap-1.5">
+            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold self-start" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestion</div>
+            <div className="flex items-center gap-1 ml-2">
+              <span className="text-neutral-400 text-[11px]">↓</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal A</div>
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal B</div>
+              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal C</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2 flex-1 flex flex-col">
+        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Recommendations were presented without visible reasoning.</p>
+        </div>
+        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
+          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Users lacked confidence in the system when they couldn&apos;t understand what influenced the suggestion.</p>
+        </div>
+        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
+          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Added a minimal explanation layer that surfaces a small set of contributing signals to reinforce trust without overwhelming the interface.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </footer>
       </div>

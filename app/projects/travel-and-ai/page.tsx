@@ -8,11 +8,23 @@ import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown, Network } from 
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
+import { PageNavIndicator } from '../../../components/PageNavIndicator';
+
+const TAI_SECTIONS = [
+  { id: 'intro',           label: 'Intro'       },
+  { id: 'tai-system',      label: 'System'      },
+  { id: 'tai-timeline',    label: 'Timeline'    },
+  { id: 'tai-iterations',  label: 'Process'     },
+  { id: 'tai-constraints', label: 'Constraints' },
+  { id: 'tai-roadmap',     label: 'Roadmap'     },
+];
 import SystemsGraphic from "@/components/SystemsGraphic";
 
 import HADESystemDeepDive from '../../../components//HADESystemDeepDive'; // Add this line
 import { SpontaneityHero as SystemOverview } from './SpontaneityHero';
 import { SessionTimeline } from './SessionTimeline';
+import { ConstraintMap } from './components/ConstraintMap';
+import { HADERoadmap } from './components/HADERoadmap';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -280,7 +292,10 @@ useEffect(() => {
 
   return (
     <main className="bg-white text-black overflow-hidden">
-      
+
+      {/* Progress bar + section dot nav (mobile) */}
+      <PageNavIndicator sections={TAI_SECTIONS} />
+
       <AnimatePresence mode="wait">
         {isTransitioning && <PageTransitionOverlay key="page-transition" />}
       </AnimatePresence>
@@ -427,7 +442,7 @@ useEffect(() => {
     // 1. lg:h-[85vh] keeps desktop height
     // 2. h-auto allows mobile to shrink to content
     // 3. !pb-0 !mb-0 forces padding/margin to zero, overriding global CSS
-    className="relative w-full h-auto lg:h-[100vh] flex items-center !pb-0 !mb-0"
+    className="relative w-full h-auto lg:h-[100vh] flex items-center pb-12 lg:pb-0"
     style={{ backgroundColor: "#E8FBF8" }}
     aria-label="Project Hero"
   >
@@ -531,9 +546,11 @@ useEffect(() => {
   </div>
 </section>
 
-<SystemOverview />
-<SessionTimeline />
-<HADESystemDeepDive />
+<div id="tai-system"><SystemOverview /></div>
+<div id="tai-timeline"><SessionTimeline /></div>
+<div id="tai-iterations"><HADESystemDeepDive /></div>
+<div id="tai-constraints"><ConstraintMap /></div>
+<div id="tai-roadmap"><HADERoadmap /></div>
 
       {/* Core Platform & Embedded Intelligence Section */}
 <section className="pt-16 md:pt-20 pb-12 md:pb-16" style={{ backgroundColor: '#E8FBF8' }} aria-label="Core Platform & Embedded Intelligence">
@@ -574,7 +591,7 @@ useEffect(() => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="travel-ai-h-scroll-card group relative flex-shrink-0 w-[75vw] md:w-full snap-center select-none"
+        className="travel-ai-h-scroll-card group relative flex-shrink-0 w-[78vw] md:w-full snap-center select-none"
         style={{
           WebkitTransform: 'translate3d(0, 0, 0)',
           transform: 'translate3d(0, 0, 0)',
@@ -641,7 +658,7 @@ useEffect(() => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[75vw] md:w-full snap-center select-none"
+        className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl h-full flex flex-col flex-shrink-0 w-[78vw] md:w-full snap-center select-none"
         style={{
           isolation: 'isolate',
           WebkitTransform: 'translate3d(0, 0, 0)',
@@ -696,7 +713,7 @@ useEffect(() => {
 
       {/* Applied Systems Section */}
       {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
-      <section className="pt-12 md:pt-12 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -715,7 +732,7 @@ useEffect(() => {
 
           <div 
             ref={intelligenceModulesContainerRef}
-            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               position: 'relative',
@@ -759,7 +776,7 @@ useEffect(() => {
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       drag={false}
-      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
+      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[78vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
@@ -824,7 +841,7 @@ useEffect(() => {
 
       {/* Product Surfaces Clarifier */}
       {/* Mobile: pb-12 (48px) for better spacing; Desktop: pb-20 (80px) unchanged */}
-      <section className="pt-12 md:pt-12 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
+      <section className="pt-12 md:pt-16 pb-12 md:pb-20" style={{ backgroundColor: '#E8FBF8' }} aria-label="Applied Systems">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -848,7 +865,7 @@ useEffect(() => {
 
           <div 
             ref={productSurfacesContainerRef}
-            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-1 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
+            className="travel-ai-h-scroll flex flex-row overflow-x-auto overflow-y-hidden gap-6 -mx-6 pl-6 pr-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible w-screen md:w-auto items-stretch touch-pan-x overscroll-x-contain"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               position: 'relative',
@@ -892,7 +909,7 @@ useEffect(() => {
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       drag={false}
-      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[70vw] md:w-full touch-pan-x select-none"
+      className="travel-ai-h-scroll-card group bg-white rounded-2xl p-8 md:p-10 md:shadow-lg md:hover:shadow-xl flex flex-col flex-shrink-0 w-[78vw] md:w-full touch-pan-x select-none"
       style={{
         isolation: 'isolate',
         WebkitTransform: 'translate3d(0, 0, 0)',
