@@ -33,9 +33,10 @@ export interface NavSection {
 
 interface PageNavIndicatorProps {
   sections: NavSection[];
+  showDotsOnDesktop?: boolean;
 }
 
-export function PageNavIndicator({ sections }: PageNavIndicatorProps) {
+export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNavIndicatorProps) {
   const [progress, setProgress] = useState(0);         // 0–1
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
   const [barVisible, setBarVisible] = useState(false);
@@ -150,12 +151,12 @@ export function PageNavIndicator({ sections }: PageNavIndicatorProps) {
 
       {/* ── ② SECTION DOT NAVIGATION ────────────────────────── */}
       {/*
-       * Hidden on lg+ (desktop doesn't need it — content is fully visible).
+       * Dots can be mobile-only or all breakpoints depending on page needs.
        * Fades in/out smoothly; pointer-events-none when invisible so it never
        * intercepts touches when the page is at the very top.
        */}
       <nav
-        className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 lg:hidden
+        className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 ${showDotsOnDesktop ? '' : 'lg:hidden'}
           transition-all duration-500 ease-out
           ${dotsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-label="Page section navigation"

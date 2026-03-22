@@ -301,7 +301,7 @@ useEffect(() => {
     <main className="bg-white text-black overflow-hidden">
 
       {/* Progress bar + section dot nav (mobile) */}
-      <PageNavIndicator sections={TAI_SECTIONS} />
+      <PageNavIndicator sections={TAI_SECTIONS} showDotsOnDesktop />
 
       <AnimatePresence mode="wait">
         {isTransitioning && <PageTransitionOverlay key="page-transition" />}
