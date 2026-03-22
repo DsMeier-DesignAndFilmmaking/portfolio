@@ -115,7 +115,7 @@ export default function DesignWork() {
                       The Brain
                     </p>
                     <h3 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      Spontaneity Engine
+                      Adaptive Decision Engine
                     </h3>
                   </div>
                   <Link href="/projects/travel-and-ai" className="p-2.5 bg-slate-800 hover:bg-blue-600 rounded-xl transition-all duration-300 group/arrow">
