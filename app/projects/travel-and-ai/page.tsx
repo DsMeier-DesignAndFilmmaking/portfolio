@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
+import TravelOSExperience from '@/src/components/TravelOSExperience';
+import TravelOSSheet from '../../../components/TravelOSSheet';
 
 const TAI_SECTIONS = [
   { id: 'intro',            label: 'Intro'        },
@@ -43,6 +45,8 @@ export default function AISandboxPage() {
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [isEcosystemLogicOpen, setIsEcosystemLogicOpen] = useState(false);
+  const [isArchitectureSheetOpen, setIsArchitectureSheetOpen] = useState(false);
   
   // Scroll tracking for horizontal card containers
 // 1. All States and Refs go at the top of the component
@@ -507,6 +511,16 @@ useEffect(() => {
         HADE (Holistic Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from a city and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for spontaneous discovery.
       </span>
     </h1>
+
+    {/*<div>
+      <button
+        type="button"
+        onClick={() => setIsEcosystemLogicOpen(true)}
+        className="inline-flex items-center rounded-full border border-gray-300/90 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-gray-800 transition hover:border-gray-900 hover:bg-gray-900 hover:text-white"
+      >
+        [ EXPLORE THE ECOSYSTEM LOGIC ]
+      </button>
+    </div>*/}
 
     {/* Scroll / Explore Indicator */}
     <motion.div
@@ -1004,10 +1018,22 @@ useEffect(() => {
               <p className="text-lg text-gray-700 leading-relaxed max-w-3xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                 This system design demonstrates patterns and frameworks that are transferable across multiple travel and AI experiences, showing how real-time adaptive logic can be applied to other user contexts, destinations, and interaction types.
               </p>
+              <div className="mt-8">
+                <button
+                  type="button"
+                  onClick={() => setIsArchitectureSheetOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-gray-800 transition hover:border-gray-800 hover:bg-gray-900 hover:text-white"
+                >
+                  [ VIEW MIDDLEWARE ARCHITECTURE ]
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <TravelOSExperience isOpen={isEcosystemLogicOpen} onClose={() => setIsEcosystemLogicOpen(false)} />
+      <TravelOSSheet isOpen={isArchitectureSheetOpen} onClose={() => setIsArchitectureSheetOpen(false)} />
 
       {/* Editorial Footer Cross-Link 
       <div className="mt-24 mb-8 md:mb-10">

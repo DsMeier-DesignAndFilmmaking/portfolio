@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { FieldNotesSystemDiagram } from './components/FieldNotesSystemDiagram';
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
+import TravelOSExperience from '@/src/components/TravelOSExperience';
 
 const FN_SECTIONS = [
   { id: 'fn-hero',      label: 'Overview'  },
@@ -131,6 +132,7 @@ export default function FieldNotesProjectPage() {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [atTop, setAtTop] = useState(true);
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
+  const [isEcosystemLogicOpen, setIsEcosystemLogicOpen] = useState(false);
 
   const lastScrollYRef = useRef(0);
   const isMobileMenuOpenRef = useRef(false);
@@ -245,6 +247,16 @@ export default function FieldNotesProjectPage() {
         I am currently developing, prototyping, and field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban <span className="whitespace-nowrap">environments.</span>
       </span>
     </h1>
+
+    <div>
+      {/*<button
+        type="button"
+        onClick={() => setIsEcosystemLogicOpen(true)}
+        className="inline-flex items-center rounded-full border border-neutral-300 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-neutral-800 transition hover:border-neutral-800 hover:bg-neutral-900 hover:text-white"
+      >
+        [ EXPLORE THE ECOSYSTEM LOGIC ]
+      </button>*/}
+    </div>
   </div>
 </motion.section>
 
@@ -809,6 +821,8 @@ export default function FieldNotesProjectPage() {
           </p>
         </div>
       </section>
+
+      <TravelOSExperience isOpen={isEcosystemLogicOpen} onClose={() => setIsEcosystemLogicOpen(false)} />
     </main>
   );
 }

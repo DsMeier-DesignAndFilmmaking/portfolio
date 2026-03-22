@@ -65,7 +65,7 @@ export default function DesignWork() {
                 className="text-base sm:text-lg text-gray-500 mt-2 leading-relaxed"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                Bridging situational field notes with agentic orchestration, HADE is a hyperlocal decision engine that transforms environmental context and trusted signals into confident travel actions.
+                Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel actions.
               </p>
             </div>
 

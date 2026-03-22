@@ -24,7 +24,7 @@
  *   - Fades in after 120px of scroll; entirely pointer-events-none when hidden.
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 export interface NavSection {
   id: string;     // must match an element id in the DOM
@@ -40,40 +40,66 @@ export function PageNavIndicator({ sections }: PageNavIndicatorProps) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
   const [barVisible, setBarVisible] = useState(false);
   const [dotsVisible, setDotsVisible] = useState(false);
+  const sectionsRef = useRef(sections);
+
+  useEffect(() => {
+    sectionsRef.current = sections;
+  }, [sections]);
 
   useEffect(() => {
     /** 38% from the top of the viewport is the "active" threshold.
      *  A section becomes active when its top edge has scrolled above this line. */
     const THRESHOLD = 0.38;
+    let ticking = false;
+    let rafId: number | null = null;
 
-    const update = () => {
+    const updateScrollProgress = () => {
       const scrollTop = window.scrollY;
       const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const nextProgress = docH > 0 ? scrollTop / docH : 0;
+      const nextBarVisible = scrollTop > 80;
+      const nextDotsVisible = scrollTop > 120;
+      const sectionList = sectionsRef.current;
 
       // Progress bar fill
-      setProgress(docH > 0 ? scrollTop / docH : 0);
-      setBarVisible(scrollTop > 80);
-      setDotsVisible(scrollTop > 120);
+      setProgress((prev) => (prev === nextProgress ? prev : nextProgress));
+      setBarVisible((prev) => (prev === nextBarVisible ? prev : nextBarVisible));
+      setDotsVisible((prev) => (prev === nextDotsVisible ? prev : nextDotsVisible));
 
       // Active section detection:
       // Walk sections in order. Each section that has scrolled above the threshold
       // becomes the candidate; the last one wins (= deepest visible section).
       const cutoff = window.innerHeight * THRESHOLD;
-      let current = sections[0]?.id ?? '';
-      for (const { id } of sections) {
+      let current = sectionList[0]?.id ?? '';
+      for (const { id } of sectionList) {
         const el = document.getElementById(id);
         if (!el) continue;
         if (el.getBoundingClientRect().top <= cutoff) {
           current = id;
         }
       }
-      setActiveId(current);
+      setActiveId((prev) => (prev === current ? prev : current));
+
+      ticking = false;
+      rafId = null;
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    update(); // initialise immediately on mount
-    return () => window.removeEventListener('scroll', update);
-  }, [sections]);
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(updateScrollProgress);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateScrollProgress(); // initialize once on mount
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
 
   /** Smooth-scroll to a section by id */
   const scrollTo = useCallback((id: string) => {
