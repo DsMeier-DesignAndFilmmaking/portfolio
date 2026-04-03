@@ -57,10 +57,10 @@ export default function HADESystemDeepDive() {
 
                 <div className="grid grid-cols-2 gap-8">
                   {[
-                    { label: 'L1: Location', val: 'Chiado, Lisbon' },
-                    { label: 'L1: Weather', val: 'Sudden Heavy Rain (85%)' },
-                    { label: 'L2: User State', val: 'Walking Exploration' },
-                    { label: 'L2: Energy', val: 'Moderate (3h Active)' },
+                    { label: 'Location', val: 'Chiado, Lisbon' },
+                    { label: 'Weather', val: 'Sudden Heavy Rain (85%)' },
+                    { label: 'User State', val: 'Walking Exploration' },
+                    { label: 'Energy', val: 'Moderate (3h Active)' },
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="text-[10px] uppercase font-bold text-neutral-400 mb-1" style={{ fontFamily: "'Roboto', sans-serif" }}>
@@ -170,21 +170,21 @@ export default function HADESystemDeepDive() {
                 <div className="space-y-3 mb-6">
                   {[
                     {
-                      label: "L1 Signal",
+                      label: "Signal",
                       value: "Chiado, Lisbon — Rain onset detected (85% confidence)",
                       bg: "bg-blue-50 border border-blue-100",
                       labelColor: "text-blue-600",
                       valueColor: "text-neutral-700",
                     },
                     {
-                      label: "L3 Field Note",
+                      label: "Field Note",
                       value: "Gallery corridors remain dry — locally verified, low crowd density",
                       bg: "bg-amber-50 border border-amber-100",
                       labelColor: "text-amber-600",
                       valueColor: "text-neutral-700",
                     },
                     {
-                      label: "L4 Synthesis",
+                      label: "Synthesis",
                       value: "Bertrand Loop: 12 min walk, seating open, arrival confidence 95%+",
                       bg: "bg-neutral-900",
                       labelColor: "text-[#FFDD00]",
@@ -249,7 +249,7 @@ export default function HADESystemDeepDive() {
                     It&apos;s pouring.
                   </p>
                   <p className="text-sm text-neutral-600 leading-relaxed mb-8">
-                    Take the <span className="text-black font-bold">Bertrand Loop</span> to stay in motion. It&apos;s dry, seating verified open — seize the spontaneous moment.
+                    Take the <span className="text-black font-bold">Bertrand Loop </span> to stay in motion. It&apos;s dry, seating verified open — seize the spontaneous moment.
                   </p>
 
                   <button className="w-full py-4 bg-[#FFDD00] rounded-full text-xs font-black uppercase tracking-widest text-black shadow-lg active:scale-95 transition-transform mb-4">

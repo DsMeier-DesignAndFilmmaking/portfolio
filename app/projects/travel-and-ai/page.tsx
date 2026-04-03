@@ -498,17 +498,17 @@ useEffect(() => {
     >
       {/* Primary */}
       <span className="block text-gray-900">
-        Designing for Movement, Not Plans
+        Designing for Movement, Not&nbsp;Plans
       </span>
 
       {/* Sub-primary */}
       <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
-        The first version could surface what was happening nearby in real time. It couldn’t tell you whether any of it mattered to the trip you were actually trying to have.
+      Early versions solved for visibility, but failed at relevance. While the system could capture every local signal, it couldn't yet distinguish between a nearby event and a meaningful discovery.
       </span>
 
       {/* Supporting paragraph */}
       <span className="block mt-4 text-gray-600 text-base md:text-lg font-normal leading-relaxed">
-        HADE (Holistic Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from a city and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for spontaneous discovery.
+        HADE (Human Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from context and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for spontaneous discovery.
       </span>
     </h1>
 

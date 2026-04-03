@@ -496,7 +496,7 @@ export default function FieldNotesProjectPage() {
         </p>
 
         <p className="text-[12px] md:text-[14px] text-neutral-600 leading-relaxed mb-5 md:mb-10">
-          Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop</span> to stay in motion. Carlos verified flow is great and seating is open.
+          Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop </span> to stay in motion. Carlos verified flow is great and seating is open.
         </p>
 
         <button className="w-full py-3 md:py-5 
