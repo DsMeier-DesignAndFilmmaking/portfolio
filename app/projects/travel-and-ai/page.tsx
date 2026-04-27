@@ -375,6 +375,7 @@ useEffect(() => {
     {[
       { href: "/projects/field-notes", label: "Travel Field Notes" },
       { href: "/projects/travel-and-ai", label: "Intelligent Systems (HADE)" },
+      { href: "/projects/digital-executor", label: "Digital Executor" },
       { href: "/projects/previous", label: "Client Work" },
     ].map((item) => {
       const isActive = pathname.startsWith(item.href);

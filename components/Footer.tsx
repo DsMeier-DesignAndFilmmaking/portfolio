@@ -29,6 +29,7 @@ export default function Footer() {
               <Link href="https://dan-meier-portfolio.vercel.app/" className="text-sm text-gray-600 hover:text-black transition-colors">Home</Link>
               <Link href="https://dan-meier-portfolio.vercel.app/projects/field-notes/" className="text-sm text-gray-600 hover:text-black transition-colors">Field Notes</Link>
               <Link href="https://dan-meier-portfolio.vercel.app/projects/travel-and-ai/" className="text-sm text-gray-600 hover:text-black transition-colors">Travel & AI</Link>
+              <Link href="https://dan-meier-portfolio.vercel.app/projects/digital-executor/" className="text-sm text-gray-600 hover:text-black transition-colors">Digital Executor</Link>
               <Link href="https://dan-meier-portfolio.vercel.app/projects/previous/" className="text-sm text-gray-600 hover:text-black transition-colors">Client Work</Link>
             </nav>
           </div>

@@ -209,6 +209,7 @@ export default function PreviousProjectsPage() {
     {[
       { name: 'Travel Field Notes', href: '/projects/field-notes' },
       { name: 'Intelligent Systems (HADE)', href: '/projects/travel-and-ai' },
+      { name: 'Digital Executor', href: '/projects/digital-executor' },
       { name: 'Client Work', href: '/projects/previous' },
     ].map((link) => {
       const isActive = pathname.startsWith(link.href);

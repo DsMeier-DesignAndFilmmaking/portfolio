@@ -29,138 +29,162 @@ export default function DesignWork() {
           </div>
 
           {/* Agentic Discovery Stack Diagram */}
-          <div className="max-w-[576px] mx-auto bg-gray-50/50 border border-gray-100 rounded-2xl py-12 px-8 mb-12">
-            <div className="text-center mb-8">
-              {/* Active Project Ribbon/Tag */}
-              <div className="flex justify-center mb-6">
-                <div className="
-                  inline-flex items-center gap-2.5 
-                  px-3 py-1.5 
-                  rounded-full 
-                  bg-blue-50/50 border border-blue-100/50
-                  backdrop-blur-sm
-                  shadow-[0_2px_10px_-3px_rgba(59,130,246,0.1)]
-                ">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                  </span>
-                  <span className="
-                    text-[9px] font-bold text-blue-600/90 
-                    uppercase tracking-[0.15em] 
-                    leading-none 
-                    -mr-[0.15em]
-                  ">
-                    Current Passion Project & Build
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="text-3xl md:text-3xl font-bold tracking-tight text-gray-900"
-                style={{ fontFamily: "'tiempos-headline-regular', serif" }}
-              >
-                Agentic Discovery Stack
-              </h2>
-              <p 
-                className="text-base sm:text-lg text-gray-500 mt-2 leading-relaxed"
-                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-              >
-                Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel actions.
-              </p>
-            </div>
+<div className="max-w-[576px] mx-auto bg-gray-50/50 border border-gray-100 rounded-2xl py-12 px-8 mb-12">
+  <div className="text-center mb-8">
+    {/* Active Project Ribbon/Tag */}
+    <div className="flex justify-center mb-6">
+      <div className="
+        inline-flex items-center gap-2.5 
+        px-3 py-1.5 
+        rounded-full 
+        bg-blue-50/50 border border-blue-100/50
+        backdrop-blur-sm
+        shadow-[0_2px_10px_-3px_rgba(59,130,246,0.1)]
+      ">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+        </span>
+        <span className="
+          text-[9px] font-bold text-blue-600/90 
+          uppercase tracking-[0.15em] 
+          leading-none 
+          -mr-[0.15em]
+        ">
+          Self-Initiated Project & Build
+        </span>
+      </div>
+    </div>
+    <h2
+      className="text-3xl md:text-3xl font-bold tracking-tight text-gray-900"
+      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    >
+      Agentic Discovery Stack
+    </h2>
+    <p 
+      className="text-base sm:text-lg text-gray-500 mt-2 leading-relaxed"
+      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+    >
+      Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel actions.
+    </p>
+  </div>
 
-            {/* Inputs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between group">
-                <div>
-                  <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
-                  <p className="text-base sm:text-lg text-gray-900 font-semibold">
-                    Field Notes Intelligence
-                  </p>
-                </div>
-                <Link href="/projects/field-notes/" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
-                  Explore Layer <span className="ml-1">→</span>
-                </Link>
-              </div>
-              <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between">
-                <div>
-                  <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Validation</p>
-                  <p className="text-base sm:text-lg text-gray-900 font-semibold">
-                  Trust &amp; Authenticity
-                </p>
-                </div>
-                <span className="mt-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">Signal Processing</span>
-              </div>
-            </div>
+  {/* Inputs */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+    <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between group transition-all hover:border-blue-200">
+      <div>
+        <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
+        <p className="text-base sm:text-lg text-gray-900 font-semibold">
+          Field Notes Intelligence
+        </p>
+      </div>
+      <Link href="/projects/field-notes/" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
+        Explore Layer <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
+      </Link>
+    </div>
+    <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between">
+      <div>
+        <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Validation</p>
+        <p className="text-base sm:text-lg text-gray-900 font-semibold">
+        Trust &amp; Authenticity
+      </p>
+      </div>
+      <span className="mt-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">Signal Processing</span>
+    </div>
+  </div>
 
-            {/* Connectors */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 mb-4">
-              <div className="flex justify-center">
-                <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
-              </div>
-              <div className="flex justify-center">
-                <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
-              </div>
-            </div>
+  {/* Connectors */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 mb-4">
+    <div className="flex justify-center">
+      <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
+    </div>
+    <div className="flex justify-center">
+      <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
+    </div>
+  </div>
 
-           {/* Spontaneity Engine - Neutral Obsidian Palette */}
-            <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] group border border-slate-800">
-              {/* Subtle Ambient Glow instead of Blue Pulse */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/5 opacity-50" />
-              
-              <div className="relative flex flex-col h-full">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      The Brain
-                    </p>
-                    <h3 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      Adaptive Decision Engine
-                    </h3>
-                  </div>
-                  <Link href="/projects/travel-and-ai" className="p-2.5 bg-slate-800 hover:bg-blue-600 rounded-xl transition-all duration-300 group/arrow">
-                    <svg className="w-5 h-5 text-slate-300 group-hover/arrow:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
-                </div>
+  {/* The Brain: Adaptive Decision Engine */}
+  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] group border border-slate-800">
+    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/5 opacity-50" />
+    <div className="relative flex flex-col h-full">
+      <div className="flex justify-between items-start">
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+            The Brain
+          </p>
+          <h3 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            Adaptive Decision Engine
+          </h3>
+        </div>
+        <Link href="/projects/travel-and-ai" className="p-2.5 bg-slate-800 hover:bg-blue-600 rounded-xl transition-all duration-300 group/arrow">
+          <svg className="w-5 h-5 text-slate-300 group-hover/arrow:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
+      </div>
+      <Link 
+        href="/projects/travel-and-ai" 
+        className="mt-8 text-sm font-bold uppercase tracking-[0.1em] text-blue-400 hover:text-blue-300 transition-colors flex items-center group/link"
+      >
+        View Agentic Architecture Case Study
+        <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform">→</span>
+      </Link>
+    </div>
+  </div>
 
-                <div className="flex flex-wrap gap-2 mt-5" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                  <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-300">
-                    Context Engine
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-300">
-                    Decision Modules
-                  </span>
-                </div>
+  {/* Connector to Action Layer */}
+  <div className="flex justify-center my-6">
+    <span className="block w-px h-10 bg-gradient-to-b from-blue-400 to-sky-600" />
+  </div>
 
-                {/* Link Font-Size Increased to text-sm (14px) and tracking tightened for legibility */}
-                <Link 
-                  href="/projects/travel-and-ai" 
-                  className="mt-8 text-sm font-bold uppercase tracking-[0.1em] text-blue-400 hover:text-blue-300 transition-colors flex items-center group/link"
-                >
-                  View Agentic Architecture Case Study
-                  <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </div>
+  {/* NEW: The Hands - The Digital Executor */}
+  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-[#002244] shadow-lg group border border-sky-900/50 hover:border-sky-400 transition-all duration-500">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,163,255,0.1),transparent)]" />
+    <div className="relative flex flex-col h-full">
+      <div className="flex justify-between items-start">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-sky-400 font-bold mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+            Autonomous Execution
+          </p>
+          <h3 className="text-2xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
+            The Digital Executor
+          </h3>
+        </div>
+        <Link href="/projects/digital-executor" className="p-2.5 bg-sky-900/40 hover:bg-sky-500 rounded-xl transition-all duration-300 group/exec">
+          <svg className="w-5 h-5 text-sky-300 group-hover/exec:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
+      </div>
+      <p className="mt-3 text-sm text-sky-200/60 font-light leading-relaxed">
+        Autonomous disruption recovery securing assets via Sabre GDS and Skyfire financial settlement.
+      </p>
+      <Link 
+        href="/projects/digital-executor" 
+        className="mt-6 text-[11px] font-black uppercase tracking-[0.2em] text-white flex items-center group/link2"
+      >
+        Explore High-Stakes Recovery Logic
+        <span className="ml-2 transform group-hover/link2:translate-x-1 transition-transform">→</span>
+      </Link>
+    </div>
+  </div>
 
-            {/* Connector */}
-            <div className="flex justify-center my-6">
-              <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
-            </div>
+  {/* Connector */}
+  <div className="flex justify-center mt-6 mb-6">
+    <span className="block w-px h-10 bg-gradient-to-b from-sky-600 to-gray-300" />
+  </div>
 
-            {/* Output */}
-            <div className="w-full md:w-3/4 mx-auto bg-white border border-gray-100 rounded-xl p-6 text-center" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Interface Layer (The Glass)</p>
-              <p className="text-gray-900 font-semibold">Confident Real-World Decisions</p>
-            </div>
+  {/* Output */}
+  <div className="w-full md:w-3/4 mx-auto bg-white border border-gray-100 rounded-xl p-6 text-center" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+    <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Interface Layer (The Glass)</p>
+    <p className="text-gray-900 font-semibold">Confident Real-World Decisions</p>
+  </div>
 
-            {/* Formula */}
-            <div className="text-center mt-8 text-sm text-gray-500" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              Knowledge + Context + Trust = Spontaneity
-            </div>
-          </div>
+  {/* Formula */}
+  <div className="text-center mt-8 text-sm text-gray-500" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+    Knowledge + Context + Trust = Spontaneity
+  </div>
+</div>
         
           {/* Work Grid */}
           <div 

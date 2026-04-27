@@ -59,6 +59,12 @@ export default function StaticFooter() {
                 Intelligent Systems (HADE)
               </Link>
               <Link 
+                href="/projects/digital-executor" 
+                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
+              >
+                Digital Executor
+              </Link>
+              <Link 
                 href="/projects/previous/" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >

@@ -205,6 +205,10 @@ export default function FieldNotesProjectPage() {
                   {pathname.startsWith('/projects/travel-and-ai') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
                 <div className="relative">
+                  <Link href="/projects/digital-executor" className={linkClass(pathname.startsWith('/projects/digital-executor'))}>Digital Executor</Link>
+                  {pathname.startsWith('/projects/digital-executor') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
+                </div>
+                <div className="relative">
                   <Link href="/projects/previous" className={linkClass(pathname.startsWith('/projects/previous'))}>Client Work</Link>
                   {pathname.startsWith('/projects/previous') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
