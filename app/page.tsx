@@ -43,6 +43,12 @@ import HomepageSideNav from '@/components/HomepageSideNav';
 //   </div>
 // );
 
+function preventWidow(text) {
+  const words = text.trim().split(" ");
+  if (words.length < 2) return text;
+  return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
+}
+
 export default function HomePage() {
   // ✅ REMOVED - All hooks and runtime logic
   // const pathname = usePathname();
@@ -248,8 +254,12 @@ export default function HomePage() {
                       <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
                     </div>
                     
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
-                      My path into design began in <span className="italic text-gray-800">urban design and landscape architecture</span>, where I was trained to think about how people interact with <span className="font-semibold text-gray-800">spaces and systems</span>. Along the way, I found myself fascinated not just by what I was creating, but by the <span className="text-blue-600 font-medium">digital tools</span> I was using to create it — and the <span className="italic text-gray-800">experiences those tools could unlock</span>. That curiosity pushed me toward <span className="font-semibold text-gray-800">UX and digital product design</span>.
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700"
+                      style={{
+                        fontFamily: "'Roboto', Helvetica, sans-serif",
+                        fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
+                      }}>
+                      {preventWidow(`My path into design began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.`)}
                     </p>
                   </div>
                 </div>
@@ -270,11 +280,16 @@ export default function HomePage() {
                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                       </div>
-                    </div>
-                    
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
-                      Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and design. 
-                    </p>
+                    </div>                 
+                    <p
+                    className="text-xl md:text-2xl leading-relaxed text-gray-700"
+                    style={{
+                      fontFamily: "'Roboto', Helvetica, sans-serif",
+                      fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
+                    }}
+                  >
+                    Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and&nbsp;design.
+                  </p>
                     <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI generated photos or video.
                     </p>

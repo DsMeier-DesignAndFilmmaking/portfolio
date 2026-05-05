@@ -28,73 +28,77 @@ export default function DesignWork() {
             </p>
           </div>
 
-          {/* Agentic Discovery Stack Diagram */}
-<div className="max-w-[576px] mx-auto bg-gray-50/50 border border-gray-100 rounded-2xl py-12 px-8 mb-12">
+          <div className="max-w-[576px] mx-auto bg-gray-100 border border-gray-200 rounded-2xl py-10 px-6 sm:py-12 sm:px-8 mb-12">
+  
+  {/* Header */}
   <div className="text-center mb-8">
-    {/* Active Project Ribbon/Tag */}
+    
     <div className="flex justify-center mb-6">
-      <div className="
-        inline-flex items-center gap-2.5 
-        px-3 py-1.5 
-        rounded-full 
-        bg-blue-50/50 border border-blue-100/50
-        backdrop-blur-sm
-        shadow-[0_2px_10px_-3px_rgba(59,130,246,0.1)]
-      ">
-        <span className="relative flex h-2 w-2">
+      <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-100">
+        <span className="relative flex h-2.5 w-2.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
         </span>
-        <span className="
-          text-[9px] font-bold text-blue-600/90 
-          uppercase tracking-[0.15em] 
-          leading-none 
-          -mr-[0.15em]
-        ">
-          Self-Initiated Project & Build
+        <span className="text-xs font-semibold text-blue-700 uppercase tracking-[0.08em]">
+          Self-Initiated Project&nbsp;&amp;&nbsp;Build (Current Focus)
         </span>
       </div>
     </div>
+
     <h2
-      className="text-3xl md:text-3xl font-bold tracking-tight text-gray-900"
+      className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug"
       style={{ fontFamily: "'tiempos-headline-regular', serif" }}
     >
-      Agentic Discovery Stack
+      Agentic Discovery&nbsp;Stack
     </h2>
+
     <p 
-      className="text-base sm:text-lg text-gray-500 mt-2 leading-relaxed"
+      className="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
-      Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel actions.
+      Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel&nbsp;actions.
     </p>
   </div>
 
   {/* Inputs */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-    <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between group transition-all hover:border-blue-200">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 font-roboto">
+    
+    <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between">
       <div>
-        <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Substrate</p>
-        <p className="text-base sm:text-lg text-gray-900 font-semibold">
-          Field Notes Intelligence
+        <p className="text-xs uppercase tracking-[0.08em] text-gray-500 font-semibold mb-2">
+          Substrate
+        </p>
+        <p className="text-base sm:text-lg text-gray-900 font-semibold leading-snug">
+          Field Notes&nbsp;Intelligence
         </p>
       </div>
-      <Link href="/projects/field-notes/" className="mt-4 text-[12px] font-bold uppercase tracking-widest text-blue-500 hover:text-blue-700 transition-colors flex items-center">
-        Explore Layer <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
+
+      <Link 
+        href="/projects/field-notes/" 
+        className="mt-4 text-sm font-semibold uppercase tracking-[0.08em] text-blue-600 hover:text-blue-800 flex items-center min-h-[44px]"
+      >
+        Explore&nbsp;Layer →
       </Link>
     </div>
-    <div className="bg-white border border-gray-100 rounded-xl p-5 flex flex-col justify-between">
+
+    <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between">
       <div>
-        <p className="text-[12px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Validation</p>
-        <p className="text-base sm:text-lg text-gray-900 font-semibold">
-        Trust &amp; Authenticity
-      </p>
+        <p className="text-xs uppercase tracking-[0.08em] text-gray-500 font-semibold mb-2">
+          Validation
+        </p>
+        <p className="text-base sm:text-lg text-gray-900 font-semibold leading-snug">
+        Trust Layer Logic
+        </p>
       </div>
-      <span className="mt-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">Signal Processing</span>
+
+      <span className="mt-4 text-xs font-semibold uppercase tracking-[0.08em] text-gray-500">
+      Agentic Trust Evaluation
+      </span>
     </div>
   </div>
 
   {/* Connectors */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 mb-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-5 mb-5">
     <div className="flex justify-center">
       <span className="block w-px h-10 bg-gradient-to-b from-gray-300 to-blue-400" />
     </div>
@@ -103,138 +107,126 @@ export default function DesignWork() {
     </div>
   </div>
 
-  {/* The Brain: Adaptive Decision Engine */}
-  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] group border border-slate-800">
-    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/5 opacity-50" />
-    <div className="relative flex flex-col h-full">
-      <div className="flex justify-between items-start">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-            The Brain
-          </p>
-          <h3 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            Adaptive Decision Engine
-          </h3>
-        </div>
-        <Link href="/projects/travel-and-ai" className="p-2.5 bg-slate-800 hover:bg-blue-600 rounded-xl transition-all duration-300 group/arrow">
-          <svg className="w-5 h-5 text-slate-300 group-hover/arrow:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </Link>
-      </div>
-      <Link 
-        href="/projects/travel-and-ai" 
-        className="mt-8 text-sm font-bold uppercase tracking-[0.1em] text-blue-400 hover:text-blue-300 transition-colors flex items-center group/link"
-      >
-        View Agentic Architecture Case Study
-        <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform">→</span>
-      </Link>
+{/* Brain */}
+<div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-lg border border-slate-800">
+  
+  <div className="flex justify-between items-start gap-4">
+    <div>
+      <p className="text-xs uppercase tracking-[0.08em] text-slate-400 mb-2">
+        The Brain
+      </p>
+      <h3 className="text-xl sm:text-2xl font-bold leading-snug">
+        Adaptive Decision&nbsp;Engine
+      </h3>
     </div>
+
+    <Link 
+      href="/projects/travel-and-ai" 
+      className="p-3 bg-slate-800 hover:bg-blue-600 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+    >
+      →
+    </Link>
   </div>
 
-  {/* Connector to Action Layer */}
+  <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+  Interprets real-time context to generate adaptive, high-confidence decisions for{" "}
+  <span className="font-semibold text-white">
+    spontaneous&nbsp;discovery
+  </span>.
+</p>
+
+  <Link 
+    href="/projects/travel-and-ai" 
+    className="mt-5 text-sm font-semibold uppercase tracking-[0.08em] text-blue-400 hover:text-blue-300 min-h-[44px] flex items-center"
+  >
+    View Agentic Architecture Case&nbsp;Study →
+  </Link>
+</div>
+
+  {/* Connector */}
   <div className="flex justify-center my-6">
     <span className="block w-px h-10 bg-gradient-to-b from-blue-400 to-sky-600" />
   </div>
 
-  {/* NEW: The Hands - The Digital Executor */}
-  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-[#002244] shadow-lg group border border-sky-900/50 hover:border-sky-400 transition-all duration-500">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,163,255,0.1),transparent)]" />
-    <div className="relative flex flex-col h-full">
-      <div className="flex justify-between items-start">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-sky-400 font-bold mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-            Autonomous Execution
-          </p>
-          <h3 className="text-2xl font-bold" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            The Digital Executor
-          </h3>
-        </div>
-        <Link href="/projects/digital-executor" className="p-2.5 bg-sky-900/40 hover:bg-sky-500 rounded-xl transition-all duration-300 group/exec">
-          <svg className="w-5 h-5 text-sky-300 group-hover/exec:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </Link>
+  {/* Executor */}
+  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-[#002244] border border-sky-900/50">
+    
+    <div className="flex justify-between items-start gap-4">
+      <div>
+        <p className="text-xs uppercase tracking-[0.08em] text-sky-300 font-semibold mb-2">
+          Autonomous Execution
+        </p>
+        <h3 className="text-xl sm:text-2xl font-bold leading-snug">
+          The Digital&nbsp;Executor
+        </h3>
       </div>
-      <p className="mt-3 text-sm text-sky-200/60 font-light leading-relaxed">
-        Autonomous disruption recovery securing assets via Sabre GDS and Skyfire financial settlement.
-      </p>
+
       <Link 
         href="/projects/digital-executor" 
-        className="mt-6 text-[11px] font-black uppercase tracking-[0.2em] text-white flex items-center group/link2"
+        className="p-3 bg-sky-900/40 hover:bg-sky-500 rounded-xl min-h-[44px] min-w-[44px]"
       >
-        Explore High-Stakes Recovery Logic
-        <span className="ml-2 transform group-hover/link2:translate-x-1 transition-transform">→</span>
+        →
       </Link>
     </div>
-  </div>
 
-  {/* Connector */}
-  <div className="flex justify-center mt-6 mb-6">
-    <span className="block w-px h-10 bg-gradient-to-b from-sky-600 to-gray-300" />
+    <p className="mt-3 text-md text-sky-200 leading-relaxed">
+      Autonomous disruption recovery securing assets via Sabre GDS and Skyfire financial&nbsp;settlement.
+    </p>
+
+    <Link 
+      href="/projects/digital-executor" 
+      className="mt-5 text-sm font-semibold uppercase tracking-[0.08em] text-white min-h-[44px] flex items-center"
+    >
+      Explore High-Stakes Recovery&nbsp;Logic →
+    </Link>
   </div>
 
   {/* Output */}
-  <div className="w-full md:w-3/4 mx-auto bg-white border border-gray-100 rounded-xl p-6 text-center" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-    <p className="text-[11px] uppercase tracking-[0.22em] text-gray-400 font-semibold mb-2">Interface Layer (The Glass)</p>
-    <p className="text-gray-900 font-semibold">Confident Real-World Decisions</p>
+  <div className="w-full md:w-3/4 mx-auto bg-white border border-gray-200 rounded-xl p-6 text-center mt-6">
+    <p className="text-xs uppercase tracking-[0.08em] text-gray-500 font-semibold mb-2">
+      Interface Layer (The&nbsp;Glass)
+    </p>
+    <p className="text-base font-semibold text-gray-900">
+      Confident Real-World&nbsp;Decisions
+    </p>
   </div>
 
   {/* Formula */}
-  <div className="text-center mt-8 text-sm text-gray-500" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-    Knowledge + Context + Trust = Spontaneity
+  <div className="text-center mt-8 text-sm text-gray-600 leading-relaxed">
+    Knowledge + Context + Trust =&nbsp;Spontaneity
   </div>
 </div>
-        
-          {/* Work Grid */}
-          <div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4" 
-            style={{ maxWidth: '576px', margin: '48px auto 0 auto' }}
-          >
 
-            {/* Other 50/50 Card could go here */}
-          </div>
 
-          {/* Client Work & Previous Projects Card - Styled to match Spontaneity Engine */}
+{/* Client Work Card */}
 <div className="max-w-[576px] mx-auto mt-8">
-  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] group border border-slate-800">
-    {/* Subtle Ambient Glow overlay to match the Brain block */}
-    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/5 opacity-50" />
+  <div className="relative overflow-hidden rounded-2xl p-6 text-white bg-slate-950 shadow-lg border border-slate-800">
     
-    <div className="relative flex flex-col h-full">
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-            Partnerships
-          </p>
-          <h3 className="text-xl md:text-2xl font-bold text-white" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            Client Work
-          </h3>
-        </div>
-        
-        {/* Icon container updated to match the top-right button style */}
-        <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl">
-          <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
-        </div>
+    <div className="flex justify-between items-start mb-4">
+      <div>
+        <p className="text-xs uppercase tracking-[0.08em] text-slate-400 mb-2">
+          Partnerships
+        </p>
+        <h3 className="text-xl sm:text-2xl font-bold">
+          Client&nbsp;Work
+        </h3>
       </div>
-
-      <p className="text-sm text-slate-300 mb-8 font-roboto leading-relaxed">
-        10+ years of digital design work spanning contract, freelance, and full-time roles across a range of industries.
-      </p>
-
-      {/* Link logic updated for high-contrast visibility on dark backgrounds */}
-<div className="mt-auto">
-  <Link 
-    href="/projects/previous" 
-    className="text-[13px] font-bold uppercase tracking-widest text-blue-400 hover:text-blue-300 transition-colors flex items-center group/link"
-  >
-    View Archive 
-    <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform">→</span>
-  </Link>
-</div>
+      
+      <div className="p-3 bg-slate-800 border border-slate-700 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center">
+        <span className="text-blue-400">🏢</span>
+      </div>
     </div>
+
+    <p className="text-sm text-slate-300 mb-6 leading-relaxed">
+      10+ years of digital design work spanning contract, freelance, and full-time roles across a range of&nbsp;industries.
+    </p>
+
+    <Link 
+      href="/projects/previous" 
+      className="text-sm font-semibold uppercase tracking-[0.08em] text-blue-400 hover:text-blue-300 flex items-center min-h-[44px]"
+    >
+      View&nbsp;Archive →
+    </Link>
   </div>
 </div>
         </div>

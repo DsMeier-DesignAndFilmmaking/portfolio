@@ -489,7 +489,7 @@ useEffect(() => {
       className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium"
       style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
     >
-      <span className="text-gray-600">Product Systems Design • Travel • AI</span>
+      <span className="text-gray-600">Product Systems Design • AI</span>
     </div>
 
     {/* Headline */}
@@ -509,7 +509,7 @@ useEffect(() => {
 
       {/* Supporting paragraph */}
       <span className="block mt-4 text-gray-600 text-base md:text-lg font-normal leading-relaxed">
-        HADE (Human Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from context and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for spontaneous discovery.
+        HADE (Human Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from context and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for <strong>spontaneous discovery</strong>.
       </span>
     </h1>
 
