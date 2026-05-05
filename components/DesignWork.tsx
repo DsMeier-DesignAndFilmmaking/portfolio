@@ -32,33 +32,32 @@ export default function DesignWork() {
   
   {/* Header */}
   <div className="text-center mb-8">
-    
-    <div className="flex justify-center mb-6">
-      <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-100">
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
-        </span>
-        <span className="text-xs font-semibold text-blue-700 uppercase tracking-[0.08em]">
-          Self-Initiated Project&nbsp;&amp;&nbsp;Build (Current Focus)
-        </span>
-      </div>
+  <div className="flex justify-center mb-6">
+    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-100">
+      <span className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+      </span>
+      <span className="text-xs font-semibold text-blue-700 uppercase tracking-[0.08em]">
+        Self-Initiated Project&nbsp;&amp;&nbsp;Build (Current Focus)
+      </span>
     </div>
-
-    <h2
-      className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug"
-      style={{ fontFamily: "'tiempos-headline-regular', serif" }}
-    >
-      Agentic Discovery&nbsp;Stack
-    </h2>
-
-    <p 
-      className="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed"
-      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-    >
-      Bridging situational field notes with agentic orchestration, HADE is a Holistic Adaptive Decision Engine that transforms environmental context and trusted signals into confident travel&nbsp;actions.
-    </p>
   </div>
+
+  <h2
+    className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug"
+    style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+  >
+    Designing the Logic&nbsp;of Inevitability
+  </h2>
+
+  <p 
+  className="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed max-w-2xl mx-auto"
+  style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+>
+  Using an Agentic Discovery Stack, I transform complex environmental signals into simple, clearly presented decisions for decisive&nbsp;action.
+</p>
+</div>
 
   {/* Inputs */}
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 font-roboto">
@@ -129,9 +128,9 @@ export default function DesignWork() {
   </div>
 
   <p className="mt-3 text-sm text-slate-300 leading-relaxed">
-  Interprets real-time context to generate adaptive, high-confidence decisions for{" "}
+  The central intelligence layer that orchestrates real-time context into adaptive, high-confidence decisions for{" "}
   <span className="font-semibold text-white">
-    spontaneous&nbsp;discovery
+    autonomous&nbsp;execution
   </span>.
 </p>
 
@@ -170,8 +169,8 @@ export default function DesignWork() {
     </div>
 
     <p className="mt-3 text-md text-sky-200 leading-relaxed">
-      Autonomous disruption recovery securing assets via Sabre GDS and Skyfire financial&nbsp;settlement.
-    </p>
+  Automatically resolves disruptions to secure high-value assets through real-time logistics and automated&nbsp;settlement.
+</p>
 
     <Link 
       href="/projects/digital-executor" 

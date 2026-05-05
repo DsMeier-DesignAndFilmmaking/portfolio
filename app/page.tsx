@@ -112,8 +112,8 @@ export default function HomePage() {
                         fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
                       }}
                     >
-                      I design the logic that makes experiences feel inevitable. <br /><br />
-                      I’m Dan Meier — a product designer and systems thinker who builds at the intersection of UX, technology, and human behavior. Over a decade of product work has taught me that the best experiences aren’t just well-designed surfaces; they’re coherent systems where every decision serves the whole. That’s the problem I keep coming back to.
+                      I design systems for the world outside the glass. <br /><br />
+                      I’m Dan Meier, a Systems Product Designer specializing in agentic workflows and high-stakes logistics. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build AI-driven products that don't just move pixels—they move people, assets, and information through unpredictable environments.
                     </p>
                     <p 
                       className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
