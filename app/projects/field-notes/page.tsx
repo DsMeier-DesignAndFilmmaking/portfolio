@@ -248,7 +248,7 @@ export default function FieldNotesProjectPage() {
         Captured Context.<span className="block italic text-gray-500">Suggested Moves.</span>
       </span>
       <span className="block mt-6 text-gray-700 text-xl md:text-2xl font-medium leading-relaxed max-w-xl lg:max-w-2xl font-tiempos">
-        I am currently developing, prototyping, and field testing a system that captures real world travel telemetry and converts it into reusable decision playbooks for complex urban <span className="whitespace-nowrap">environments.</span>
+       Currently developing and field-testing Field Notes, a system that captures real-world travel signals and turns them into reusable decision playbooks, powering both a standalone product and the broader <span className="whitespace-nowrap">HADE ecosystem.</span>
       </span>
     </h1>
 
@@ -503,13 +503,16 @@ export default function FieldNotesProjectPage() {
           Take the <span className="text-black font-bold underline decoration-[#FFDD00] underline-offset-4 decoration-2">Bertrand Loop</span> to stay in motion. Carlos verified flow is great and seating is open.
         </p>
 
-        <button className="w-full py-3 md:py-5 
-                           bg-[#FFDD00] 
-                           rounded-lg md:rounded-2xl 
-                           text-[10px] md:text-[11px] 
-                           font-black uppercase tracking-[0.2em] text-black">
-          Accept Strategy
-        </button>
+        <button
+        className="w-full py-3 md:py-5 
+        bg-[#FFDD00] 
+        rounded-lg md:rounded-2xl 
+        text-[10px] md:text-[11px] 
+        font-black uppercase tracking-[0.2em] text-black
+        cursor-default pointer-events-none"
+      >
+        Accept Strategy
+      </button>
 
         <p className="text-center text-[10px] md:text-[9px] text-neutral-400 mt-4 md:mt-6 uppercase tracking-widest font-bold">
           Not the move?
@@ -707,13 +710,13 @@ export default function FieldNotesProjectPage() {
             className="border-l border-white/10 pl-6 md:pl-8 max-w-2xl"
           >
             <p
-              className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-600 mb-4"
+              className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-300 mb-4"
               style={{ fontFamily: "'Roboto', sans-serif" }}
             >
               Design Rationale
             </p>
             <p
-              className="text-base md:text-lg text-neutral-500 leading-relaxed font-light"
+              className="text-base md:text-lg text-neutral-400 leading-relaxed font-light"
               style={{ fontFamily: "'Roboto', sans-serif" }}
             >
               Each constraint above represents a deliberate tradeoff. The system does less in certain conditions to do one thing reliably: surface suggestions a traveler can act on without second-guessing the source.
@@ -726,14 +729,14 @@ export default function FieldNotesProjectPage() {
       {/* 05. SITUATIONS GRID */}
       <section className="bg-white py-20 md:py-32 relative z-10">
         <div className={contentBounds}>
-          <div className="max-w-2xl mb-12 md:mb-20">
-            <p className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">The Framework</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold leading-tight font-tiempos"
-            >
-              Travelers think in situations, not lists.
-            </h2>
-          </div>
+        <div className="max-w-2xl mb-12 md:mb-20">
+          <p className="text-[11px] md:text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-6 font-black">
+            The Framework
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight font-tiempos">
+            Travelers think in situations, not&nbsp;lists.
+          </h2>
+        </div>
           <motion.div
   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
   variants={staggerContainer}
@@ -805,7 +808,8 @@ export default function FieldNotesProjectPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
             <Link 
               href="/projects/travel-and-ai" 
-              className="group w-full sm:w-auto bg-[#FFDD00] text-black px-10 md:px-12 py-5 md:py-6 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs transition-all"
+              className="group w-full sm:w-auto bg-transparent border-2 border-white/20 text-white px-10 md:px-12 py-5 md:py-6 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs transition-all"
+
             >
               Explore HADE Engine
             </Link>
@@ -814,7 +818,7 @@ export default function FieldNotesProjectPage() {
               href="https://downloadable-travel-packs.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="group w-full sm:w-auto bg-transparent border-2 border-white/20 text-white px-10 md:px-12 py-5 md:py-6 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs transition-all"
+              className="group w-full sm:w-auto bg-[#FFDD00] text-black px-10 md:px-12 py-5 md:py-6 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs transition-all"
             >
               Access Field Notes
             </Link>

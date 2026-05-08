@@ -113,18 +113,18 @@ export default function HomePage() {
                       }}
                     >
                       I design systems for the world outside the glass. <br /><br />
-                      I’m Dan Meier, a Systems Product Designer specializing in agentic workflows and high-stakes logistics. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build AI-driven products that don't just move pixels—they move people, assets, and information through unpredictable environments.
+                      I’m Dan Meier, a Systems Product Designer. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build AI-driven products that move people, assets, and information through real-time, context-aware environments.
                     </p>
                     <p 
                       className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
                       style={{ 
                         fontFamily: "'Roboto', Helvetica, sans-serif", 
                         fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
-                        borderLeft: '2px solid #E5E7EB', // Subtle visual cue for the italic section
+                        borderLeft: '2px solid #E5E7EB',
                         paddingLeft: '1rem' 
                       }}
                     >
-                      Currently, I am exploring how systems design, AI, and real-world context create better human experiences.
+                      Currently exploring how systems design, AI, and real-world context combine to create more adaptive, human-centered&nbsp;experiences.
                     </p>
                     <div className="mt-4 mb-4">
                       <Image

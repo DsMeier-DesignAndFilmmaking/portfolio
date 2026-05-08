@@ -12,25 +12,23 @@ export const SpontaneityHero = () => {
 
         {/* HEADER */}
         <div className="max-w-2xl mb-24">
-          <p className="text-xs tracking-[0.2em] text-slate-500 uppercase">
-            System Overview
-          </p>
+        <p className="text-xs tracking-[0.2em] text-slate-500 uppercase">
+          System Overview
+        </p>
 
-          <h2
-            className="mt-4 text-4xl md:text-6xl leading-[1.1] text-white"
-            style={{ fontFamily: "'tiempos-headline-regular', serif" }}
-          >
-            Enabling Spontaneous Decisions
-            <br />
-            Through Real-Time Systems
-          </h2>
+        <h2
+          className="mt-4 text-4xl md:text-5xl leading-[1.1] text-white"
+          style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+        >
+          Enabling Spontaneous Decisions Through Real-Time&nbsp;Systems
+        </h2>
 
-          <p className="mt-6 text-slate-400 text-lg leading-relaxed">
-            HADE interprets live environmental signals, applies layered reasoning,
-            and produces context-aware recommendations that evolve as conditions change —
-            empowering travelers to act confidently and spontaneously in the moment.
-          </p>
-        </div>
+        <p className="mt-6 text-slate-400 text-lg leading-relaxed">
+          HADE interprets live environmental signals, applies layered reasoning,
+          and produces context-aware recommendations that evolve as conditions change —
+          empowering travelers to act confidently and spontaneously in the&nbsp;moment.
+        </p>
+      </div>
 
         {/* SYSTEM CORE */}
         <div className="relative flex flex-col items-center">
@@ -57,7 +55,7 @@ export const SpontaneityHero = () => {
           {/* UGC LAYER */}
           <UserSignalBubble text="John Signaled a Local Volleyball Game" x="10%" y="15%" />
           <UserSignalBubble text="Jazz show just started" x="70%" y="25%" />
-          <UserSignalBubble text="Hidden Rooftop Cafe" x="45%" y="55%" />
+          <UserSignalBubble text="Hidden Rooftop Cafe" x="52%" y="48%" />
 
           <FlowLine active />
 
@@ -65,7 +63,7 @@ export const SpontaneityHero = () => {
           <SystemNode
             label="L3 • Output"
             title="A Confident Next Move"
-            subtitle="Enabling spontaneous action for travelers"
+            subtitle="Enabling real-time decisions that lead to spontaneous action"
           />
 
           {/* L4 FEEDBACK */}
@@ -101,12 +99,18 @@ export const SpontaneityHero = () => {
 
           {/* MICRO STATEMENT */}
           <p className="text-sm md:text-base lg:text-base text-slate-500 text-center mt-10 max-w-xs leading-relaxed">
-            Designed to reduce hesitation and enable confident spontaneity as conditions evolve.
+            Designed to reduce hesitation and enable confident spontaneity as conditions&nbsp;evolve.
           </p>
         </div>
       </div>
     </section>
   );
+};
+
+const preventWidow = (text: string) => {
+  const words = text.trim().split(" ");
+  if (words.length < 2) return text;
+  return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
 };
 
 /* --- SYSTEM NODE --- */
@@ -134,13 +138,17 @@ const SystemNode = ({
       }`}
     >
       <p className="text-[10px] tracking-widest uppercase text-slate-500 mb-2">
-        {label}
+        {preventWidow(label)}
       </p>
 
-      <p className="text-lg font-semibold text-white">{title}</p>
+      <p className="text-lg font-semibold text-white">
+        {preventWidow(title)}
+      </p>
 
       {subtitle && (
-        <p className="text-sm text-slate-400 mt-1">{subtitle}</p>
+        <p className="text-sm text-slate-400 mt-1">
+          {preventWidow(subtitle)}
+        </p>
       )}
     </div>
   </div>
@@ -221,10 +229,10 @@ const UserSignalBubble = ({
   y: string;
 }) => (
   <motion.div
-    className="absolute bg-indigo-500/20 text-white px-3 py-1 rounded-full text-[10px] font-mono shadow-sm"
+    className="absolute bg-yellow-500/20 text-white px-3 py-1 rounded-full text-[10px] font-mono shadow-sm"
     style={{ top: y, left: x }}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 0.8, scale: 1 }}
     transition={{ duration: 1, repeat: Infinity, repeatType: "mirror", delay: Math.random() }}
   >
     {text}

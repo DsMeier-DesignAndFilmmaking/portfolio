@@ -286,6 +286,7 @@ body {
   overflow-x: hidden;
 }
 
+
 /* Add padding on mobile to prevent content from going under fixed navbar */
 @media (max-width: 768px) {
   body {

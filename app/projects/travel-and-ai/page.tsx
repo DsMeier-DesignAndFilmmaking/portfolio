@@ -504,7 +504,7 @@ useEffect(() => {
 
       {/* Sub-primary */}
       <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
-      Early versions solved for visibility, but failed at relevance. While the system could capture every local signal, it couldn't yet distinguish between a nearby event and a meaningful discovery.
+        Early versions focused on capturing signals at scale, but lacked contextual understanding to separate noise from meaningful patterns.
       </span>
 
       {/* Supporting paragraph */}

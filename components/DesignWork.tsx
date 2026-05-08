@@ -36,10 +36,10 @@ export default function DesignWork() {
     <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-100">
       <span className="relative flex h-2.5 w-2.5">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
       </span>
-      <span className="text-xs font-semibold text-blue-700 uppercase tracking-[0.08em]">
-        Self-Initiated Project&nbsp;&amp;&nbsp;Build (Current Focus)
+      <span className="text-xs font-semibold text-green-700 uppercase tracking-[0.08em]">
+      Active Build · Live System
       </span>
     </div>
   </div>
@@ -68,7 +68,7 @@ export default function DesignWork() {
           Substrate
         </p>
         <p className="text-base sm:text-lg text-gray-900 font-semibold leading-snug">
-          Field Notes&nbsp;Intelligence
+          Field Notes Intelligence
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export default function DesignWork() {
     
     <div className="flex justify-between items-start gap-4">
       <div>
-        <p className="text-xs uppercase tracking-[0.08em] text-sky-300 font-semibold mb-2">
+        <p className="text-xs uppercase tracking-[0.08em] text-sky-300 mb-2">
           Autonomous Execution
         </p>
         <h3 className="text-xl sm:text-2xl font-bold leading-snug">
@@ -224,7 +224,7 @@ export default function DesignWork() {
       href="/projects/previous" 
       className="text-sm font-semibold uppercase tracking-[0.08em] text-blue-400 hover:text-blue-300 flex items-center min-h-[44px]"
     >
-      View&nbsp;Archive →
+      View&nbsp;Projects →
     </Link>
   </div>
 </div>

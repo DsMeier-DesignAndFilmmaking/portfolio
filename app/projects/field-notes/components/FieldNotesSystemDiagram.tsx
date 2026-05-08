@@ -152,7 +152,7 @@ export function FieldNotesSystemDiagram() {
             </span>
           </div>
           <h2 className="font-tiempos text-2xl md:text-[2rem] font-bold text-neutral-900 leading-snug mb-3">
-            An Offline-First System, Enhanced in Real Time
+             An Adaptive System, Enhanced in Real Time
           </h2>
           <p className="text-base text-neutral-500 leading-relaxed">
             Field Notes combines structured guidance, live data, and adaptive intelligence to support decisions on the ground.

@@ -141,7 +141,7 @@ export function HADERoadmap() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
+      <div className="relative z-10 container mx-auto px-6 py-16 md:py-24">
 
         {/* ── Section header ── */}
         <motion.div

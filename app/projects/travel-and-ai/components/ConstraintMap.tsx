@@ -2,6 +2,12 @@
 
 import { motion, Variants } from 'framer-motion'; // Added Variants import
 
+const preventWidow = (text: string) => {
+  const words = text.trim().split(" ");
+  if (words.length < 3) return text;
+  return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
+};
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const constraints = [
@@ -120,7 +126,7 @@ export function ConstraintMap() {
       style={{ backgroundColor: '#0a0a0b' }}
       className="relative w-full overflow-hidden"
     >
-      {/* Subtle noise texture — matches SpontaneityHero */}
+      {/* Noise */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
@@ -128,9 +134,9 @@ export function ConstraintMap() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
+      <div className="relative z-10 container mx-auto px-6 py-16 md:py-24">
 
-        {/* ── Section header ── */}
+        {/* ── Header ── */}
         <motion.div
           className="mb-16 md:mb-20"
           variants={headerVariants}
@@ -138,55 +144,43 @@ export function ConstraintMap() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
         >
-          {/* Label */}
           <div className="flex items-center gap-3 mb-5">
             <div className="w-6 h-px bg-white/20" />
-            <span
-              className="text-xs tracking-[0.2em] uppercase text-slate-500 font-medium"
-              style={{ fontFamily: "'Roboto', sans-serif" }}
-            >
-              System Constraints
+            <span className="text-xs tracking-[0.2em] uppercase text-slate-500 font-medium">
+              {preventWidow("System Constraints")}
             </span>
           </div>
 
-          {/* Headline */}
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-5"
             style={{ fontFamily: "'tiempos-headline-regular', serif" }}
           >
-            Design Decisions Forced by Reality
+            {preventWidow("Design Decisions Forced by Reality")}
           </h2>
 
-          {/* Subtext */}
           <p
             className="text-slate-300 text-base md:text-lg max-w-xl leading-relaxed"
             style={{ fontFamily: "'Roboto', sans-serif" }}
           >
-            Every behavior in this system exists because a constraint made it
-            necessary. The logic isn&apos;t designed from preference — it&apos;s derived
-            from the conditions the system must operate inside.
+            {preventWidow(
+              "Every behavior in this system exists because a constraint made it necessary. The logic isn't designed from preference — it's derived from the conditions the system must operate inside."
+            )}
           </p>
         </motion.div>
 
-        {/* ── Column headers (desktop only) ── */}
-        {/* Uses the same 5-col template as the rows; odd children = content, even = arrow spacers */}
+        {/* ── Column headers (FIXED: no preventWidow on objects) ── */}
         <div className="hidden md:grid md:grid-cols-[1fr_40px_1fr_40px_1fr] gap-0 mb-8 px-1">
-          {/* Col 1 header */}
           <ColumnHeader col={columns[0]} />
-          {/* Arrow spacer */}
           <div />
-          {/* Col 2 header */}
           <ColumnHeader col={columns[1]} />
-          {/* Arrow spacer */}
           <div />
-          {/* Col 3 header */}
           <ColumnHeader col={columns[2]} />
         </div>
 
-        {/* ── Top rule ── */}
+        {/* ── Divider ── */}
         <div className="w-full h-px bg-white/[0.06] mb-0" />
 
-        {/* ── Constraint rows ── */}
+        {/* ── Rows ── */}
         <div>
           {constraints.map((row, i) => (
             <motion.div
@@ -197,94 +191,88 @@ export function ConstraintMap() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
             >
-              {/* Desktop: 3-col grid with arrow connectors */}
+              {/* Desktop */}
               <div className="hidden md:grid md:grid-cols-[1fr_40px_1fr_40px_1fr] gap-0 py-8 border-b border-white/[0.06]">
 
-                {/* Col 1 — Constraint */}
-                <div className="pr-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-base mt-0.5 opacity-60 select-none">{row.icon}</span>
-                    <p
-                      className="text-slate-400 text-sm md:text-[0.9375rem] leading-relaxed"
-                      style={{ fontFamily: "'Roboto', sans-serif" }}
-                    >
-                      {row.constraint}
-                    </p>
-                  </div>
+                {/* Constraint */}
+                <div className="pr-4 flex items-start gap-3">
+                  <span className="text-base mt-0.5 opacity-60 select-none">
+                    {row.icon}
+                  </span>
+                  <p className="text-slate-400 text-sm md:text-[0.9375rem] leading-relaxed">
+                    {preventWidow(row.constraint)}
+                  </p>
                 </div>
 
-                {/* Arrow 1 */}
                 <div className="flex items-center justify-center">
                   <ArrowConnector />
                 </div>
 
-                {/* Col 2 — Design Response */}
+                {/* Response */}
                 <div className="px-2">
-                  <p
-                    className="text-slate-200 text-sm md:text-[0.9375rem] leading-relaxed"
-                    style={{ fontFamily: "'Roboto', sans-serif" }}
-                  >
-                    {row.response}
+                  <p className="text-slate-200 text-sm md:text-[0.9375rem] leading-relaxed">
+                    {preventWidow(row.response)}
                   </p>
                 </div>
 
-                {/* Arrow 2 */}
                 <div className="flex items-center justify-center">
                   <ArrowConnector bright />
                 </div>
 
-                {/* Col 3 — System Behavior */}
+                {/* Behavior */}
                 <div className="pl-4">
-                  <p
-                    className="text-white text-sm md:text-[0.9375rem] leading-relaxed font-medium"
-                    style={{ fontFamily: "'Roboto', sans-serif" }}
-                  >
-                    {row.behavior}
+                  <p className="text-white text-sm md:text-[0.9375rem] leading-relaxed font-medium">
+                    {preventWidow(row.behavior)}
                   </p>
                 </div>
               </div>
 
-              {/* Mobile: stacked card */}
+              {/* Mobile */}
               <div className="md:hidden py-8 border-b border-white/[0.06] space-y-5">
-                {/* Constraint */}
+
                 <div>
-                  <MobileColumnLabel label="Constraint" sublabel="Reality" dotClass="bg-slate-600" labelClass="text-slate-600" />
+                  <MobileColumnLabel
+                    label="Constraint"
+                    sublabel="Reality"
+                    dotClass="bg-slate-600"
+                    labelClass="text-slate-600"
+                  />
+
                   <div className="flex items-start gap-2.5 mt-2">
-                    <span className="text-sm opacity-50 select-none mt-0.5">{row.icon}</span>
-                    <p
-                      className="text-slate-400 text-sm leading-relaxed"
-                      style={{ fontFamily: "'Roboto', sans-serif" }}
-                    >
-                      {row.constraint}
+                    <span className="text-sm opacity-50 select-none mt-0.5">
+                      {row.icon}
+                    </span>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {preventWidow(row.constraint)}
                     </p>
                   </div>
                 </div>
 
-                {/* Mobile arrow */}
                 <MobileArrow />
 
-                {/* Design Response */}
                 <div>
-                  <MobileColumnLabel label="Design Response" sublabel="Reasoning" dotClass="bg-white/40" labelClass="text-white/50" />
-                  <p
-                    className="text-slate-200 text-sm leading-relaxed mt-2"
-                    style={{ fontFamily: "'Roboto', sans-serif" }}
-                  >
-                    {row.response}
+                  <MobileColumnLabel
+                    label="Design Response"
+                    sublabel="Reasoning"
+                    dotClass="bg-white/40"
+                    labelClass="text-white/50"
+                  />
+                  <p className="text-slate-200 text-sm leading-relaxed mt-2">
+                    {preventWidow(row.response)}
                   </p>
                 </div>
 
-                {/* Mobile arrow */}
                 <MobileArrow bright />
 
-                {/* System Behavior */}
                 <div>
-                  <MobileColumnLabel label="System Behavior" sublabel="User Impact" dotClass="bg-[#FFDD00]" labelClass="text-[#FFDD00]/60" />
-                  <p
-                    className="text-white text-sm leading-relaxed font-medium mt-2"
-                    style={{ fontFamily: "'Roboto', sans-serif" }}
-                  >
-                    {row.behavior}
+                  <MobileColumnLabel
+                    label="System Behavior"
+                    sublabel="User Impact"
+                    dotClass="bg-[#FFDD00]"
+                    labelClass="text-[#FFDD00]/60"
+                  />
+                  <p className="text-white text-sm leading-relaxed font-medium mt-2">
+                    {preventWidow(row.behavior)}
                   </p>
                 </div>
               </div>
@@ -301,8 +289,9 @@ export function ConstraintMap() {
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true, amount: 0.6 }}
         >
-          System behavior is not designed in isolation — it emerges from constraints,
-          tradeoffs, and real-world conditions.
+          {preventWidow(
+            "System behavior is not designed in isolation — it emerges from constraints, tradeoffs, and real-world conditions."
+          )}
         </motion.p>
 
       </div>

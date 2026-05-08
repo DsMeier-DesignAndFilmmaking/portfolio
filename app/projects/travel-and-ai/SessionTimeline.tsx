@@ -23,8 +23,13 @@ interface Stage {
   annotation?: Annotation;
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+const preventWidow = (text: string) => {
+  const words = text.trim().split(" ");
+  if (words.length < 3) return text;
+  return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
+};
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
 const stages: Stage[] = [
   {
     id: 'observe',
@@ -70,7 +75,7 @@ const stages: Stage[] = [
     badgeLabel: 'ADAPT',
     annotation: {
       label: 'Implicit signal',
-      text: '"3× pause near art venues"',
+      text: '"3× pause near art&nbsp;venues"',
       side: 'right',
     },
   },
@@ -144,22 +149,22 @@ function AnnotationBubble({ annotation }: { annotation: Annotation }) {
 
 export function SessionTimeline() {
   return (
-    <section
-      className="relative w-full overflow-hidden py-24 md:py-32"
-      style={{ backgroundColor: '#0a0a0b' }}
-      aria-label="Session Timeline"
-    >
-      {/* Subtle noise texture overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
-          backgroundSize: '200px 200px',
-        }}
-      />
+<section
+  className="relative w-full overflow-hidden"
+  style={{ backgroundColor: '#0a0a0b' }}
+  aria-label="Session Timeline"
+>
+  {/* Noise */}
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.025]"
+    style={{
+      backgroundImage:
+        'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+      backgroundSize: '200px 200px',
+    }}
+  />
 
-      <div className="relative mx-auto max-w-5xl px-6 md:px-12">
+<div className="relative container mx-auto px-6 py-24 md:py-32">
 
         {/* ── Section header ── */}
         <motion.div
@@ -238,7 +243,7 @@ export function SessionTimeline() {
 
                   {/* Description */}
                   <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-                    {stage.description}
+                  {preventWidow(stage.description)}
                   </p>
                 </div>
 

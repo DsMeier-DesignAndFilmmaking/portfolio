@@ -4,6 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CloudRain, Zap, ShieldCheck, Cpu, Users, RefreshCcw, ArrowDown, MapPin, Search, BrainCircuit, BookOpen, Lock } from 'lucide-react';
 
+const preventWidow = (text: string) => {
+  const words = text.trim().split(" ");
+  if (words.length < 3) return text;
+  return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
+};
+
 export default function HADESystemDeepDive() {
   return (
     <section className="py-24 bg-white" aria-labelledby="system-design-title">
@@ -270,162 +276,206 @@ export default function HADESystemDeepDive() {
         </div>
 
       {/* --- FOOTER: ITERATION EVIDENCE --- */}
-<footer className="mt-12 pt-12 md:mt-24 md:pt-24 border-t border-neutral-100 max-w-5xl">
-  <div className="mb-10">
-    <span className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400" style={{ fontFamily: "'Roboto', sans-serif" }}>
-      Iteration Evidence
-    </span>
-    <h3 className="text-2xl md:text-3xl font-bold mt-3 text-neutral-900 italic" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-      What Broke, and What Changed
-    </h3>
-    <p className="text-sm text-neutral-500 mt-3 max-w-xl leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>
-      Early iterations showed that reducing friction and increasing clarity mattered more than increasing intelligence.
-    </p>
-  </div>
-  <div className="grid md:grid-cols-3 gap-6 items-stretch">
+<footer className="mt-12 md:mt-24 border-t border-neutral-100">
+  <div className="container mx-auto px-6 pt-12 md:pt-24">
 
-    {/* ── Card 01: Suggestion Delivery ── */}
-    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
-      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>01</span>
-      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Suggestion Delivery</h4>
+    {/* ── Header ── */}
+    <div className="mb-12 max-w-xl">
+      <span
+        className="text-[10px] uppercase tracking-[0.3em] font-black text-neutral-400"
+        style={{ fontFamily: "'Roboto', sans-serif" }}
+      >
+        {preventWidow("Iteration Evidence")}
+      </span>
 
-      {/* Diagram */}
-      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
-        {/* Before state */}
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
-          <div className="flex items-center gap-1.5">
-            <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Modal</div>
-            <span className="text-neutral-400 text-[11px]">→</span>
-            <div className="px-2.5 py-1 bg-white border border-neutral-200 rounded text-[10px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Decide ✕</div>
-          </div>
-        </div>
-        <div className="w-full h-px bg-neutral-200" />
-        {/* After state */}
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
-          <div className="flex items-center gap-1">
-            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Ambient</div>
-            <span className="text-emerald-400 text-[11px]">→</span>
-            <span className="text-emerald-400 text-[11px]">→</span>
-            <span className="text-emerald-400 text-[11px]">→</span>
-            <span className="text-[10px] text-neutral-400 italic" style={{ fontFamily: "'Roboto', sans-serif" }}>no pause</span>
-          </div>
-        </div>
-      </div>
+      <h3
+        className="text-2xl md:text-3xl font-bold mt-3 text-neutral-900 italic"
+        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+      >
+        {preventWidow("What Broke, and What Changed")}
+      </h3>
 
-      <div className="space-y-2 flex-1 flex flex-col">
-        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
-          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestions were introduced through explicit prompts that required a decision.</p>
-        </div>
-        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
-          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>This created friction during moments of movement. Users were forced to stop and evaluate instead of continuing naturally.</p>
-        </div>
-        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
-          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
-          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Shifted to a passive delivery model where suggestions appear as ambient guidance, allowing users to follow or ignore without interruption.</p>
-        </div>
-      </div>
+      <p
+        className="text-sm text-neutral-500 mt-3 leading-relaxed"
+        style={{ fontFamily: "'Roboto', sans-serif" }}
+      >
+        {preventWidow(
+          "Early iterations showed that reducing friction and increasing clarity mattered more than increasing system intelligence."
+        )}
+      </p>
     </div>
 
-    {/* ── Card 02: Context Awareness ── */}
-    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
-      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>02</span>
-      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Context Awareness</h4>
+    {/* ── Grid ── */}
+    <div className="grid md:grid-cols-3 gap-6 items-stretch">
 
-      {/* Diagram */}
-      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
-        {/* Before */}
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
-          <div className="flex items-center gap-1.5">
-            <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal</div>
-            <span className="text-neutral-400 text-[11px]">→</span>
-            <div className="px-2.5 py-1 bg-white border border-neutral-200 rounded text-[10px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Trigger</div>
-          </div>
-        </div>
-        <div className="w-full h-px bg-neutral-200" />
-        {/* After */}
-        <div className="flex items-start gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0 mt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <div className="flex flex-col gap-1">
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal</div>
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>State</div>
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Effort</div>
-            </div>
-            <span className="text-neutral-400 text-[11px]">→</span>
-            <div className="px-2.5 py-1 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Filter</div>
-            <span className="text-emerald-400 text-[11px]">→</span>
-            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Trigger</div>
-          </div>
-        </div>
-      </div>
+      {/* ── Card 01 ── */}
+      <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+        <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest">01</span>
 
-      <div className="space-y-2 flex-1 flex flex-col">
-        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
-          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>System triggered suggestions based on single signals without considering broader context.</p>
-        </div>
-        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
-          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Recommendations often felt mistimed or irrelevant, especially when user energy or intent didn&apos;t align with the suggestion.</p>
-        </div>
-        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
-          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
-          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Introduced lightweight contextual filters that consider user state, effort required, and situational relevance before triggering suggestions.</p>
-        </div>
-      </div>
-    </div>
+        <h4 className="text-base font-bold text-neutral-900">
+          {preventWidow("Suggestion Delivery")}
+        </h4>
 
-    {/* ── Card 03: Explainability ── */}
-    <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
-      <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest" style={{ fontFamily: "'Roboto', sans-serif" }}>03</span>
-      <h4 className="text-base font-bold text-neutral-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>Explainability</h4>
-
-      {/* Diagram */}
-      <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
-        {/* Before */}
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</span>
-          <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestion</div>
-        </div>
-        <div className="w-full h-px bg-neutral-200" />
-        {/* After */}
-        <div className="flex items-start gap-2">
-          <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0 mt-1" style={{ fontFamily: "'Roboto', sans-serif" }}>After</span>
-          <div className="flex flex-col gap-1.5">
-            <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold self-start" style={{ fontFamily: "'Roboto', sans-serif" }}>Suggestion</div>
-            <div className="flex items-center gap-1 ml-2">
-              <span className="text-neutral-400 text-[11px]">↓</span>
-            </div>
+        {/* Diagram */}
+        <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-4 flex flex-col gap-2.5">
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0">
+              Before
+            </span>
             <div className="flex items-center gap-1.5">
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal A</div>
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal B</div>
-              <div className="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[9px] text-neutral-500 font-semibold" style={{ fontFamily: "'Roboto', sans-serif" }}>Signal C</div>
+              <div className="px-2.5 py-1 bg-red-100 border border-red-200 rounded text-[10px] text-red-600 font-semibold">
+                Modal
+              </div>
+              <span className="text-neutral-400 text-[11px]">→</span>
+              <div className="px-2.5 py-1 bg-white border border-neutral-200 rounded text-[10px] text-neutral-500 font-semibold">
+                Decide ✕
+              </div>
             </div>
+          </div>
+
+          <div className="w-full h-px bg-neutral-200" />
+
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] uppercase tracking-widest text-neutral-400 w-10 shrink-0">
+              After
+            </span>
+            <div className="flex items-center gap-1">
+              <div className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-700 font-semibold">
+                Ambient
+              </div>
+              <span className="text-emerald-400 text-[11px]">→ → →</span>
+              <span className="text-[10px] text-neutral-400 italic">
+                {preventWidow("no pause")}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2 flex-1 flex flex-col">
+          <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+            <p className="text-[11px] font-black text-red-400 uppercase tracking-widest mb-1.5">
+              Before
+            </p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "Suggestions were introduced through explicit prompts that required an active decision."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+            <p className="text-[11px] font-black text-amber-500 uppercase tracking-widest mb-1.5">
+              Why It Failed
+            </p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "This created friction during movement, forcing users to stop and evaluate instead of continuing naturally."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+            <p className="text-[11px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5">
+              What Changed
+            </p>
+            <p className="text-[12px] text-neutral-300 leading-relaxed">
+              {preventWidow(
+                "Shifted to a passive delivery model where suggestions appear as ambient guidance, allowing users to follow or ignore without interruption."
+              )}
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="space-y-2 flex-1 flex flex-col">
-        <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
-          <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Before</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Recommendations were presented without visible reasoning.</p>
-        </div>
-        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
-          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>Why It Failed</p>
-          <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Users lacked confidence in the system when they couldn&apos;t understand what influenced the suggestion.</p>
-        </div>
-        <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
-          <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5" style={{ fontFamily: "'Roboto', sans-serif" }}>What Changed</p>
-          <p className="text-[11px] text-neutral-300 leading-relaxed" style={{ fontFamily: "'Roboto', sans-serif" }}>Added a minimal explanation layer that surfaces a small set of contributing signals to reinforce trust without overwhelming the interface.</p>
+      {/* ── Card 02 ── */}
+      <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+        <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest">02</span>
+
+        <h4 className="text-base font-bold text-neutral-900">
+          {preventWidow("Context Awareness")}
+        </h4>
+
+        <div className="space-y-2 flex-1 flex flex-col">
+          <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+            <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5">
+              Before
+            </p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "System triggered suggestions based on single signals without broader contextual awareness."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+            <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5">
+              Why It Failed
+            </p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "Recommendations felt mistimed or irrelevant when user energy or intent did not align with the suggestion."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+            <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5">
+              What Changed
+            </p>
+            <p className="text-[12px] text-neutral-300 leading-relaxed">
+              {preventWidow(
+                "Introduced contextual filters that evaluate user state, effort, and situational relevance before triggering suggestions."
+              )}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
+      {/* ── Card 03 ── */}
+      <div className="bg-neutral-50 rounded-3xl p-6 border border-neutral-100 flex flex-col gap-4 h-full">
+        <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest">03</span>
+
+        <h4 className="text-base font-bold text-neutral-900">
+          {preventWidow("Explainability")}
+        </h4>
+
+        <div className="space-y-2 flex-1 flex flex-col">
+          <div className="bg-red-50 rounded-2xl p-4 border border-red-100 flex-1">
+            <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1.5">
+              Before
+            </p>
+            <p className="text-[11px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "Recommendations were presented without visible reasoning or supporting context."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex-1">
+            <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5">
+              Why It Failed
+            </p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">
+              {preventWidow(
+                "Users lacked confidence when they could not understand what influenced the suggestion."
+              )}
+            </p>
+          </div>
+
+          <div className="bg-neutral-900 rounded-2xl p-4 flex-1">
+            <p className="text-[10px] font-black text-[#FFDD00] uppercase tracking-widest mb-1.5">
+              What Changed
+            </p>
+            <p className="text-[12px] text-neutral-300 leading-relaxed">
+              {preventWidow(
+                "Added a lightweight explanation layer that surfaces key signals, reinforcing trust without overwhelming the interface."
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </footer>
       </div>
