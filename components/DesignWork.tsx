@@ -132,6 +132,7 @@ export default function DesignWork() {
 </header>
 
 {/* Main Content Wrapper */}
+<div className="max-w-4xl mx-auto px-6 relative pt-4 mb-20 md:mb-24">
 <div className="section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
   <div className="space-y-20 md:space-y-28">
     <section aria-labelledby="hade-system-title">
@@ -158,7 +159,7 @@ export default function DesignWork() {
               className="mt-8 max-w-3xl text-xl leading-relaxed text-gray-700 md:text-2xl"
               style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
             >
-              HADE explores a different approach: a real-time system that interprets live signals from context and turns them into high-confidence travel suggestions for spontaneous discovery.
+              As an agentic discovery stack, HADE is engineered to resolve ambiguity across any high-signal environment. By orchestrating knowledge, context, and trust, the engine provides the substrate for autonomous decision-making. We are currently refining this logic within urban mobility, proving that a system-first approach can turn real-time environmental data into seamless, spontaneous human action.
             </p>
 
             <div className="mt-12">
@@ -396,6 +397,7 @@ export default function DesignWork() {
             <span>Macro philosophy to flagship application to technical proof to professional foundation</span>
           </div>
         </div>
+      </div>
       </div>
       </div>
     </section>
