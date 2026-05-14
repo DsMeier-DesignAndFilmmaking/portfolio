@@ -1,5 +1,6 @@
 // Static Work section: no client hooks, no global navigation behavior.
 import Link from 'next/link';
+import { Fragment } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -20,31 +21,37 @@ const agenticStack = [
     icon: MapPinned,
     step: '01',
     layer: 'Signal',
+    diagramLabel: 'Raw Context',
     metaphor: 'Substrate',
     functionalLabel: 'Substrate: Data Architecture',
     schematic: 'Environmental Signal Ingestion',
     title: 'Ingesting live environmental context',
     body: 'Weather shifts, local field notes, venue status, crowd patterns, and traveler state become structured inputs for the system.',
+    evidence: ['Location', 'Time', 'Intent', 'Constraints', 'Local signals'],
   },
   {
     icon: BrainCircuit,
     step: '02',
     layer: 'Logic',
+    diagramLabel: 'Adaptive Logic',
     metaphor: 'The Brain',
     functionalLabel: 'Decision Logic: Agentic Reasoning',
     schematic: 'Context Translation Engine',
     title: 'Translating signals into a confident suggestion',
     body: 'The engine evaluates timing, energy, trust thresholds, and interruption cost before deciding whether the moment is worth surfacing.',
+    evidence: ['Signal weighting', 'Ranking', 'Filtering', 'Confidence', 'Trust rationale'],
   },
   {
     icon: Sparkles,
     step: '03',
     layer: 'Action',
+    diagramLabel: 'Human Decision',
     metaphor: 'The Glass',
     functionalLabel: 'Interface Layer: Decision Surface',
     schematic: 'Real-World Action Surface',
     title: 'Enabling spontaneous real-world decisions',
     body: 'The interface presents one legible move with enough provenance to act immediately, without forcing another planning session.',
+    evidence: ['Recommendation card', 'Why this?', 'Action CTA', 'Fallback behavior'],
   },
 ];
 
@@ -53,7 +60,7 @@ const urbanLayers = [
     icon: MapPinned,
     label: 'Signal Layer',
     title: 'Urban telemetry',
-    body: 'A rainy Lisbon walk becomes a live decision state: location, weather persistence, venue availability, energy level, and local field notes.',
+    body: 'A rainy Lisbon walk becomes a live decision state: location, user generated content, weather persistence, venue availability, energy level, and local field notes.',
   },
   {
     icon: BrainCircuit,
@@ -100,6 +107,23 @@ const partnerships = [
   'Data products',
   'Brand platforms',
 ];
+
+function EvidenceLine({ items }: { items: string[] }) {
+  return (
+    <div className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold leading-relaxed text-stone-700">
+      {items.map((item, index) => (
+        <Fragment key={item}>
+          {index > 0 && (
+            <span aria-hidden="true" className="text-stone-300">
+              /
+            </span>
+          )}
+          <span className="whitespace-nowrap">{item}</span>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
 
 export default function DesignWork() {
   return (
@@ -163,76 +187,123 @@ export default function DesignWork() {
             </p>
 
             <div className="mt-12">
-              <div className="mb-5 flex items-center justify-between gap-4 border-b border-gray-200 pb-4">
+              <div className="mb-5 flex items-start justify-between gap-4 border-b border-gray-200 pb-4">
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.24em] text-gray-500">
+                  <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-700">
                     Agentic Stack
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-gray-900">
+                  <p className="mt-2 text-base font-semibold leading-relaxed text-gray-950">
                     Flagship Pilot: Urban Exploration &amp; Travel
                   </p>
                 </div>
-                <p className="hidden text-right text-xs font-semibold uppercase tracking-[0.14em] text-gray-400 sm:block">
+                <p className="hidden text-right text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 sm:block">
                   Data architecture to decision surface
                 </p>
               </div>
 
-              <div className="grid overflow-hidden rounded-lg border border-gray-200 bg-white md:grid-cols-3 md:divide-x md:divide-gray-200">
-                {agenticStack.map((item) => {
-                  const Icon = item.icon;
+              <article
+                className="overflow-hidden rounded-lg border border-stone-200/80 bg-[#fbf8f1] shadow-[0_18px_48px_rgba(56,45,28,0.07)]"
+                aria-label="Data architecture to decision surface system diagram"
+              >
+                <div className="relative p-5 sm:p-6">
+                  <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-stone-200/80 pb-4">
+                    <p className="text-xs font-black uppercase tracking-[0.1em] text-stone-700">
+                      System Translation
+                    </p>
+                    <p className="text-xs font-bold uppercase tracking-[0.08em] text-stone-600">
+                      Live context becomes one trusted move
+                    </p>
+                  </div>
 
-                  return (
-                    <div key={item.layer} className="flex flex-col border-b border-gray-200 bg-gray-50 last:border-b-0 md:border-b-0">
-                      <div className="flex items-center justify-between gap-4 bg-gray-950 px-5 py-4 text-white">
-                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-200">
-                          {item.step} // {item.layer}
-                        </p>
-                        <Icon className="h-4 w-4 text-blue-200" aria-hidden="true" />
-                      </div>
+                  <div className="relative grid gap-5">
+                    {agenticStack.map((item) => {
+                      const Icon = item.icon;
 
-                      <div className="flex flex-1 flex-col p-5">
-                        <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-gray-400">
-                          {item.metaphor}
-                        </p>
-                        <p className="mb-5 text-[11px] font-black uppercase tracking-[0.16em] text-blue-600">
-                          {item.functionalLabel}
-                        </p>
-                        <h2 className="text-lg font-bold leading-snug text-gray-950">{item.title}</h2>
-                        <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.body}</p>
-                        <div className="mt-6 border-t border-gray-200 pt-4">
-                          <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-400">
-                            Schematic
-                          </p>
-                          <p className="mt-1 text-sm font-semibold text-gray-900">{item.schematic}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                      return (
+                        <section
+                          key={item.layer}
+                          aria-labelledby={`hade-stack-${item.layer.toLowerCase()}`}
+                          className="relative overflow-hidden rounded-lg border border-stone-200/70 bg-white/[0.78] p-5 shadow-[0_12px_32px_rgba(68,54,31,0.055)] transition-transform duration-200 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-6"
+                          style={{
+                            backgroundImage: `
+                              radial-gradient(circle at 84% 18%, rgba(217,119,6,0.075), transparent 32%),
+                              linear-gradient(90deg, rgba(255,255,255,0.78), rgba(255,255,255,0.58))
+                            `,
+                          }}
+                        >
+                          <div className="relative z-10 min-w-0">
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="flex min-w-0 items-center gap-3">
+                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-[#fbf8f1] text-xs font-black text-stone-900">
+                                  {item.step}
+                                </span>
+                                <div className="min-w-0">
+                                  <p className="text-xs font-black uppercase tracking-[0.1em] text-amber-800">
+                                    {item.diagramLabel}
+                                  </p>
+                                  <p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-stone-700">
+                                    {item.layer} Layer
+                                  </p>
+                                </div>
+                              </div>
+                              <Icon className="h-4 w-4 shrink-0 text-stone-400" aria-hidden="true" />
+                            </div>
+
+                            <div className="mt-7 flex flex-col">
+                              <p className="mb-2 text-xs font-bold uppercase tracking-[0.08em] text-stone-600">
+                                {item.metaphor}
+                              </p>
+                              <p className="mb-4 text-xs font-black uppercase tracking-[0.08em] text-amber-800">
+                                {item.functionalLabel}
+                              </p>
+                              <h3 id={`hade-stack-${item.layer.toLowerCase()}`} className="text-xl font-bold leading-snug text-gray-950">
+                                {item.title}
+                              </h3>
+                              <p className="mt-3 text-base leading-7 text-gray-700">{item.body}</p>
+                              <div className="mt-5 w-full self-stretch">
+                                <EvidenceLine items={item.evidence} />
+                              </div>
+
+                              <div className="pt-5">
+                                <div className="border-t border-stone-200 pt-4">
+                                  <p className="text-xs font-black uppercase tracking-[0.08em] text-stone-600">
+                                    Schematic
+                                  </p>
+                                  <p className="mt-1 text-base font-semibold leading-relaxed text-gray-950">{item.schematic}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                      );
+                    })}
+                  </div>
+                </div>
+              </article>
             </div>
           </section>
 
           {/* Meso: flagship application */}
           <section aria-labelledby="flagship-work-title" className="space-y-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-              <div>
-                <p className="mb-4 text-[11px] font-black uppercase tracking-[0.24em] text-gray-500">
-                  Meso // Flagship Application
-                </p>
-                <h2
-                  id="flagship-work-title"
-                  className="text-3xl font-bold leading-tight text-gray-950 md:text-5xl"
-                  style={{ fontFamily: "'tiempos-headline-regular', serif" }}
-                >
-                  Urban Exploration Case Study
-                </h2>
-              </div>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="mb-4 text-[11px] font-black uppercase tracking-[0.24em] text-gray-500">
+              Meso // Flagship Application
+            </p>
 
-              <p className="text-base leading-relaxed text-gray-600 md:text-lg">
-                The flagship case study shows how HADE moves from system philosophy into a product experience: detecting urban signals, reasoning through travel constraints, and surfacing one high-confidence action at the right moment.
-              </p>
-            </div>
+            <h2
+              id="flagship-work-title"
+              className="text-3xl font-bold leading-tight text-gray-950 md:text-5xl"
+              style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+            >
+              Urban Exploration Case Study
+            </h2>
+          </div>
+
+          <p className="text-base leading-relaxed text-gray-600 md:text-lg">
+            The flagship case study shows how HADE moves from system philosophy into a product experience: detecting urban signals, reasoning through travel constraints, and surfacing one high-confidence action at the right moment.
+          </p>
+        </div>
 
             <div className="grid gap-5 md:grid-cols-3">
               {urbanLayers.map((layer) => {
@@ -261,7 +332,7 @@ export default function DesignWork() {
                     className="max-w-xl text-2xl font-bold leading-tight md:text-4xl"
                     style={{ fontFamily: "'tiempos-headline-regular', serif" }}
                   >
-                    It starts raining. The system turns uncertainty into a move.
+                    When conditions change, the system instantly turns insight into action.
                   </h3>
                   <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-300">
                     Instead of asking the traveler to re-plan, HADE checks live weather, movement state, field-note provenance, and detour viability, then offers a route that keeps exploration alive.

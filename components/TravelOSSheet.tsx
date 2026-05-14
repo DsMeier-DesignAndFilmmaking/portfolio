@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown, X } from 'lucide-react';
 
 interface TravelOSSheetProps {
@@ -102,9 +102,16 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
   const [selectedMoment, setSelectedMoment] = useState<MomentId>('arrival');
   const [hoveredMoment, setHoveredMoment] = useState<MomentId | null>(null);
   const [isSpecsOpen, setIsSpecsOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const activeMoment = moments.find((m) => m.id === selectedMoment)!;
   const hadeSpark = activeMoment.hadeSpark && !isAirplaneMode;
+  const entranceTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.24, ease: [0.22, 1, 0.36, 1] as const };
+  const quickTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.18, ease: [0.22, 1, 0.36, 1] as const };
 
   useEffect(() => {
     if (!isOpen) {
@@ -127,7 +134,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[120]" role="dialog" aria-modal="true" aria-label="Your Travel Companion — HADE × Field Notes">
+        <div className="fixed inset-0 z-[120] overflow-hidden" role="dialog" aria-modal="true" aria-label="Your Travel Companion — HADE × Field Notes">
 
           {/* Backdrop */}
           <motion.button
@@ -136,17 +143,17 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
+            transition={quickTransition}
             onClick={onClose}
           />
 
           {/* Sheet */}
           <motion.section
-            initial={{ y: '100%', opacity: 0.9 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '100%', opacity: 0.9 }}
-            transition={{ duration: 0.44, ease: [0.2, 0.9, 0.2, 1] }}
-            className="absolute inset-x-0 bottom-0 max-h-[92vh] overflow-hidden rounded-t-[2rem] text-white shadow-[0_-32px_120px_rgba(0,0,0,0.7)]"
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 16, scale: 0.985 }}
+            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.99 }}
+            transition={entranceTransition}
+            className="absolute inset-x-0 bottom-0 flex h-[90dvh] max-h-[90vh] min-h-0 flex-col overflow-hidden rounded-t-[2rem] text-white shadow-[0_-32px_120px_rgba(0,0,0,0.7)] transform-gpu will-change-transform"
             style={{
               backgroundColor: '#0a0b12',
               backgroundImage: `
@@ -156,13 +163,13 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
               backgroundSize: '52px 52px',
             }}
           >
-            <div className="relative h-full overflow-y-auto">
+            <div className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]">
 
               {/* ── Sticky Header ── */}
-              <div className="sticky top-0 z-20 border-b border-white/[0.07] px-6 py-5 backdrop-blur-xl md:px-10"
+              <div className="sticky top-0 z-20 shrink-0 border-b border-white/[0.07] px-6 py-5 backdrop-blur-xl md:px-10"
                 style={{ backgroundColor: 'rgba(10,11,18,0.94)' }}>
                 <div className="mx-auto flex w-full max-w-5xl items-start justify-between gap-6">
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-mono text-[9px] uppercase tracking-[0.38em] text-sky-400/50">HADE × Field Notes · Travel OS</p>
                     <h2 className="mt-1 text-xl font-semibold text-white md:text-2xl">Your Travel Companion, Explained</h2>
                     <p className="mt-0.5 text-sm text-zinc-400">
@@ -174,7 +181,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                     <button
                       type="button"
                       onClick={() => setIsAirplaneMode((p) => !p)}
-                      className={`flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-all duration-500 ${
+                      className={`flex min-w-[150px] items-center justify-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 ${
                         isAirplaneMode
                           ? 'border-amber-400/40 bg-amber-400/10 text-amber-200 shadow-[0_0_20px_rgba(251,191,36,0.15)]'
                           : 'border-white/12 bg-white/[0.04] text-zinc-300 hover:border-white/20 hover:text-white'
@@ -188,7 +195,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                     <button
                       type="button"
                       onClick={onClose}
-                      className="rounded-full border border-white/12 p-2 text-zinc-500 transition hover:border-white/25 hover:text-white"
+                      className="rounded-full border border-white/12 p-2 text-zinc-500 transition-[border-color,color,transform] duration-200 ease-out hover:border-white/25 hover:text-white active:scale-95 motion-reduce:transition-none motion-reduce:active:scale-100"
                       aria-label="Close"
                     >
                       <X className="h-4 w-4" />
@@ -205,13 +212,21 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                   <div className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center">
                     <motion.div
                       className="absolute inset-0 rounded-full bg-sky-400/10"
-                      animate={hadeSpark ? { scale: [1, 1.6, 1], opacity: [0.2, 0.5, 0.2] } : { scale: 0.6, opacity: 0 }}
-                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                      animate={
+                        prefersReducedMotion
+                          ? { scale: hadeSpark ? 1 : 0.6, opacity: hadeSpark ? 0.28 : 0 }
+                          : hadeSpark ? { scale: [1, 1.6, 1], opacity: [0.2, 0.5, 0.2] } : { scale: 0.6, opacity: 0 }
+                      }
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
                     />
                     <motion.div
                       className="absolute h-8 w-8 rounded-full bg-sky-400/20"
-                      animate={hadeSpark ? { scale: [1, 1.35, 1], opacity: [0.3, 0.7, 0.3] } : { scale: 0.5, opacity: 0 }}
-                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.25 }}
+                      animate={
+                        prefersReducedMotion
+                          ? { scale: hadeSpark ? 1 : 0.5, opacity: hadeSpark ? 0.45 : 0 }
+                          : hadeSpark ? { scale: [1, 1.35, 1], opacity: [0.3, 0.7, 0.3] } : { scale: 0.5, opacity: 0 }
+                      }
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.25 }}
                     />
                     <motion.div
                       className="relative z-10 h-3.5 w-3.5 rounded-full"
@@ -219,21 +234,21 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                         ? { backgroundColor: '#7dd3fc', boxShadow: '0 0 20px rgba(56,189,248,0.9)' }
                         : { backgroundColor: '#334155', boxShadow: '0 0 0px rgba(56,189,248,0)' }
                       }
-                      transition={{ duration: 0.6 }}
+                      transition={quickTransition}
                     />
                   </div>
 
                   <div className="flex-1">
                     <motion.p
                       animate={{ opacity: hadeSpark ? 1 : 0.3, color: hadeSpark ? '#bae6fd' : '#64748b' }}
-                      transition={{ duration: 0.5 }}
+                      transition={quickTransition}
                       className="text-sm font-medium"
                     >
                       {hadeSpark ? 'HADE Active — Personal Concierge Online' : 'HADE Standby'}
                     </motion.p>
                     <motion.p
                       animate={{ opacity: hadeSpark ? 0.55 : 0.2 }}
-                      transition={{ duration: 0.5 }}
+                      transition={quickTransition}
                       className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.22em] text-sky-400"
                     >
                       {hadeSpark ? activeMoment.techTooltip : 'awaiting signal ···'}
@@ -277,7 +292,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                           onClick={() => setSelectedMoment(moment.id)}
                           onMouseEnter={() => setHoveredMoment(moment.id)}
                           onMouseLeave={() => setHoveredMoment(null)}
-                          className={`relative rounded-2xl border p-4 text-left transition-all duration-300 md:p-5 ${
+                          className={`relative rounded-2xl border p-4 text-left transition-[background-color,border-color,box-shadow,transform,opacity] duration-200 ease-out hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:p-5 ${
                             isSelected
                               ? 'border-white/15 bg-white/[0.06] shadow-[0_0_40px_rgba(255,255,255,0.03)]'
                               : 'border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]'
@@ -290,7 +305,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                                 ? { backgroundColor: '#7dd3fc', boxShadow: '0 0 10px rgba(56,189,248,0.7)' }
                                 : { backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 0 0px rgba(56,189,248,0)' }
                               }
-                              transition={{ duration: 0.35 }}
+                              transition={quickTransition}
                               className="h-2 w-2 rounded-full flex-shrink-0"
                             />
                             <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-500">
@@ -301,7 +316,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                           {/* Illustrative icon */}
                           <MomentIcon
                             icon={moment.icon}
-                            className={`mb-3 h-7 w-7 transition-all duration-300 md:h-8 md:w-8 ${
+                            className={`mb-3 h-7 w-7 transition-colors duration-200 ease-out motion-reduce:transition-none md:h-8 md:w-8 ${
                               isSelected
                                 ? moment.actor === 'hade' ? 'text-sky-300' : 'text-lime-300'
                                 : 'text-zinc-600'
@@ -309,10 +324,10 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                           />
 
                           {/* Text */}
-                          <h3 className={`mb-1 text-sm font-semibold transition-colors duration-300 ${isSelected ? 'text-white' : 'text-zinc-500'}`}>
+                          <h3 className={`mb-1 text-sm font-semibold transition-colors duration-200 ease-out motion-reduce:transition-none ${isSelected ? 'text-white' : 'text-zinc-500'}`}>
                             {moment.headline}
                           </h3>
-                          <p className={`text-xs leading-relaxed transition-colors duration-300 ${isSelected ? 'text-zinc-300' : 'text-zinc-600'}`}>
+                          <p className={`text-xs leading-relaxed transition-colors duration-200 ease-out motion-reduce:transition-none ${isSelected ? 'text-zinc-300' : 'text-zinc-600'}`}>
                             {moment.tagline}
                           </p>
 
@@ -321,10 +336,10 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                             {isSelected && (
                               <motion.div
                                 key="badge"
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 4 }}
-                                transition={{ duration: 0.2 }}
+                                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 4 }}
+                                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 3 }}
+                                transition={quickTransition}
                                 className={`mt-3 inline-flex items-center gap-1.5 rounded-full border px-2 py-1 ${
                                   moment.actor === 'hade'
                                     ? 'border-sky-400/25 bg-sky-400/8 text-sky-300'
@@ -340,19 +355,16 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                           </AnimatePresence>
 
                           {/* Ghost tech tooltip on hover (unselected) */}
-                          <AnimatePresence>
-                            {isHovered && !isSelected && (
-                              <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.15 }}
-                                className="mt-2 rounded-md border border-white/[0.06] bg-black/30 px-2 py-1"
-                              >
-                                <p className="font-mono text-[8px] text-zinc-600">{moment.techTooltip}</p>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                          <div className="mt-2 min-h-[26px]">
+                            <motion.div
+                              animate={{ opacity: isHovered && !isSelected ? 1 : 0 }}
+                              transition={quickTransition}
+                              className="rounded-md border border-white/[0.06] bg-black/30 px-2 py-1"
+                              aria-hidden={!isHovered || isSelected}
+                            >
+                              <p className="font-mono text-[8px] text-zinc-600">{moment.techTooltip}</p>
+                            </motion.div>
+                          </div>
                         </button>
                       );
                     })}
@@ -363,10 +375,10 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedMoment + String(isAirplaneMode)}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.26, ease: [0.2, 0.9, 0.2, 1] }}
+                    initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 4 }}
+                    animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                    exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -3 }}
+                    transition={quickTransition}
                     className="mb-5 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5 md:p-6"
                   >
                     {isAirplaneMode ? (
@@ -422,7 +434,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                         backgroundColor: 'rgba(255,255,255,0.02)',
                       }
                   }
-                  transition={{ duration: 0.7 }}
+                  transition={quickTransition}
                   className="mb-6 rounded-2xl border p-5"
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -432,7 +444,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                       </p>
                       <motion.h3
                         animate={{ color: isAirplaneMode ? '#bef264' : '#f4f4f5' }}
-                        transition={{ duration: 0.5 }}
+                        transition={quickTransition}
                         className="mt-1 text-sm font-semibold"
                       >
                         Field Notes Foundation
@@ -445,10 +457,10 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                     </div>
                     <motion.div
                       animate={isAirplaneMode
-                        ? { scale: [1, 1.08, 1], opacity: 1 }
+                        ? prefersReducedMotion ? { scale: 1, opacity: 1 } : { scale: [1, 1.08, 1], opacity: 1 }
                         : { scale: 1, opacity: 0.45 }
                       }
-                      transition={{ duration: 1.8, repeat: isAirplaneMode ? Infinity : 0, ease: 'easeInOut' }}
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.8, repeat: isAirplaneMode ? Infinity : 0, ease: 'easeInOut' }}
                       className={`flex-shrink-0 rounded-full border px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.2em] ${
                         isAirplaneMode
                           ? 'border-lime-400/35 bg-lime-400/10 text-lime-300'
@@ -465,7 +477,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                   <button
                     type="button"
                     onClick={() => setIsSpecsOpen((p) => !p)}
-                    className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-white/[0.025]"
+                    className="flex w-full items-center justify-between px-5 py-4 text-left transition-[background-color] duration-200 ease-out hover:bg-white/[0.025] motion-reduce:transition-none"
                   >
                     <div>
                       <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600">For Technical Reviewers</p>
@@ -473,7 +485,7 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                     </div>
                     <motion.div
                       animate={{ rotate: isSpecsOpen ? 180 : 0 }}
-                      transition={{ duration: 0.25 }}
+                      transition={quickTransition}
                     >
                       <ChevronDown className="h-4 w-4 text-zinc-600" />
                     </motion.div>
@@ -482,10 +494,10 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                   <AnimatePresence initial={false}>
                     {isSpecsOpen && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.2, 0.9, 0.2, 1] }}
+                        initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -4 }}
+                        animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                        exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+                        transition={quickTransition}
                         className="overflow-hidden border-t border-white/[0.07]"
                       >
                         <div className="space-y-4 p-5">

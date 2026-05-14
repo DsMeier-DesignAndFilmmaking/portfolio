@@ -2,10 +2,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import BackToTopButton from './BackToTopButton';
+import { Mail } from "lucide-react";
+
+const COPYRIGHT_YEAR = 2026;
 
 export default function StaticFooter() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const currentYear = new Date().getFullYear();
 
   return (
     <>
@@ -116,6 +118,26 @@ export default function StaticFooter() {
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                   </svg>
                 </a>
+                <a
+                href="mailto:danielstevenmeier@outlook.com"
+                className="text-gray-400 transition-colors hover:text-[#2F2A3B]"
+                aria-label="Email"
+                title="Email"
+              >
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16v12H4V6zm0 0 8 7 8-7"
+                  />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
@@ -126,7 +148,7 @@ export default function StaticFooter() {
         <div className="mt-9 pt-6 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-xs text-gray-500">
-              © {currentYear} Dan Meier. All rights reserved.
+              © {COPYRIGHT_YEAR} Dan Meier. All rights reserved.
             </p>
             <BackToTopButton />
           </div>
