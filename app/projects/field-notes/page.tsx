@@ -101,23 +101,26 @@ function FieldNoteCard({ situation, problem, insight, moves, why }: any) {
   return (
     <div className="border border-neutral-200 rounded-2xl p-6 md:p-8 bg-white transition-all duration-300">
       <div className="space-y-6 text-left">
-        {[
-          { label: 'Situation', val: situation, bold: true },
-          { label: 'Problem', val: problem, highlight: true },
-          { label: 'Local Insight', val: insight, highlight: true },
-          { label: 'Suggested Moves', val: moves, highlight: true },
-          { label: 'Why This Works', val: why, highlight: true },
-        ].map((item) => (
-          <div key={item.label} className="text-left">
-            <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400 mb-2 font-black flex items-center justify-start">
-              <span className={`w-1.5 h-1.5 bg-[#FFDD00] mr-2 transition-opacity hidden md:block ${item.highlight ? 'opacity-100' : 'opacity-0'}`} />
-              {item.label}
-            </p>
-            <p className={`${item.bold ? 'text-neutral-900 font-bold text-lg' : item.highlight ? 'text-neutral-900 font-serif italic text-base' : 'text-neutral-600 text-sm'} leading-relaxed text-left`}>
-              {item.val}
-            </p>
-          </div>
-        ))}
+      {[
+        { label: 'Situation', val: situation, bold: true },
+        { label: 'Problem', val: problem, highlight: true },
+        { label: 'Local Insight', val: insight, highlight: true },
+        { label: 'Suggested Moves', val: moves, highlight: true },
+        { label: 'Why This Works', val: why, highlight: true },
+      ].map((item) => (
+        <div key={item.label} className="text-left">
+          <p className="text-[9px] uppercase tracking-[0.25em] -ml-[0.25em] text-neutral-400 mb-2 font-black flex items-center justify-start">
+            {/* Logic: Only render the dot if highlight is true */}
+            {item.highlight && (
+              <span className="w-1.5 h-1.5 bg-[#FFDD00] mr-2 hidden md:block" />
+            )}
+            {item.label}
+          </p>
+          <p className={`${item.bold ? 'text-neutral-900 font-bold text-lg' : item.highlight ? 'text-neutral-900 font-serif italic text-base' : 'text-neutral-600 text-sm'} leading-relaxed text-left`}>
+            {item.val}
+          </p>
+        </div>
+      ))}
       </div>
     </div>
   );

@@ -20,6 +20,19 @@ export default function PageLoader() {
     // Prevent scrolling while loading
     body.style.overflow = 'hidden';
 
+    const getFixedHeaderOffset = () => {
+      const header = Array.from(
+        document.querySelectorAll<HTMLElement>('#site-navbar, header.sticky, header.fixed')
+      ).find((element) => {
+        const position = window.getComputedStyle(element).position;
+        return position === 'fixed' || position === 'sticky';
+      });
+
+      if (header) return header.offsetHeight;
+
+      return window.innerWidth <= 768 ? 64 : 0;
+    };
+
     const waitForVideos = (): Promise<void> => {
       return new Promise((resolve) => {
         const videos = document.querySelectorAll('video');
@@ -126,9 +139,8 @@ export default function PageLoader() {
                   const targetElement = document.querySelector(hash);
                   
                   if (targetElement) {
-                    // Get navbar height for offset calculation
-                    const navbar = document.querySelector('header');
-                    const navbarHeight = navbar ? navbar.offsetHeight : 64; // Fallback to 64px (h-16)
+                    // Only use actual fixed/sticky page chrome, not in-page section headers.
+                    const navbarHeight = getFixedHeaderOffset();
                     
                     // Check if mobile (viewport width <= 768px)
                     const isMobile = window.innerWidth <= 768;

@@ -113,7 +113,7 @@ export default function HomePage() {
                       }}
                     >
                       I design systems for the world outside the glass. <br /><br />
-                      I’m Dan Meier, a Systems Product Designer. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build AI-driven products that move people, assets, and information through real-time, context-aware environments.
+                      I’m Dan Meier, a Systems Product Designer. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build products and experiences that move people, assets, and information through real-time, context-aware environments.
                     </p>
                     <p 
                       className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"

@@ -17,9 +17,21 @@ export default function ScrollCorrection() {
       const target = document.querySelector(targetSelector);
       if (!target) return;
 
-      // Get navbar height for offset calculation (h-16 = 64px)
-      const navbar = document.querySelector('header');
-      const navbarHeight = navbar ? navbar.offsetHeight : 64;
+      const getFixedHeaderOffset = () => {
+        const header = Array.from(
+          document.querySelectorAll<HTMLElement>('#site-navbar, header.sticky, header.fixed')
+        ).find((element) => {
+          const position = window.getComputedStyle(element).position;
+          return position === 'fixed' || position === 'sticky';
+        });
+
+        if (header) return header.offsetHeight;
+
+        return window.innerWidth <= 768 ? 64 : 0;
+      };
+
+      // Only use actual fixed/sticky page chrome, not in-page section headers.
+      const navbarHeight = getFixedHeaderOffset();
 
       // Check if mobile (viewport width <= 768px)
       const isMobile = window.innerWidth <= 768;

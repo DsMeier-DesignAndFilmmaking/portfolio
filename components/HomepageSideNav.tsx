@@ -170,6 +170,7 @@ export default function HomepageSideNav() {
   // CSS scroll-margin-top handles the navbar overlap automatically
   const handleAnchorClick = (sectionId: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     
     const target = document.getElementById(sectionId);
     if (!target) {
@@ -205,6 +206,7 @@ export default function HomepageSideNav() {
 
   // Backward compatibility - keep handleWorkClick as alias
   const handleWorkClick = handleAnchorClick('work');
+  const handleTravelogueClick = handleAnchorClick('travelogue');
 
   return (
     <>
@@ -253,6 +255,7 @@ export default function HomepageSideNav() {
         
         <a 
           href="#travelogue" 
+          onClick={handleTravelogueClick}
           className="group flex items-center gap-2"
           aria-label="Go to Travel section"
           aria-current={isActive('travelogue') ? 'page' : undefined}
@@ -333,6 +336,7 @@ export default function HomepageSideNav() {
             <li role="listitem">
               <a
                 href="#travelogue"
+                onClick={handleTravelogueClick}
                 className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                   isActive('travelogue') 
                     ? 'bg-gray-900 text-white' 
