@@ -197,7 +197,7 @@ export default function FieldNotesProjectPage() {
                   {pathname.startsWith('/projects/field-notes') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
                 <div className="relative">
-                  <Link href="/projects/travel-and-ai" className={linkClass(pathname.startsWith('/projects/travel-and-ai'))}>Intelligent Systems (HADE)</Link>
+                  <Link href="/projects/travel-and-ai" className={linkClass(pathname.startsWith('/projects/travel-and-ai'))}>CORE ENGINE (HADE)</Link>
                   {pathname.startsWith('/projects/travel-and-ai') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
                 <div className="relative">
@@ -217,7 +217,7 @@ export default function FieldNotesProjectPage() {
             <motion.div key="mobile-menu" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg mx-6 border border-white/10">
               <nav className="flex flex-col p-4 px-6 space-y-4">
                 <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Travel Field Notes</Link>
-                <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Intelligent Systems (HADE)</Link>
+                <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">CORE ENGINE (HADE)</Link>
                 <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Client Work</Link>
               </nav>
             </motion.div>

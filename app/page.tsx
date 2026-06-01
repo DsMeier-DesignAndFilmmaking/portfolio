@@ -259,7 +259,7 @@ export default function HomePage() {
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`My path into design began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.`)}
+                      {preventWidow(`My career path began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.`)}
                     </p>
                   </div>
                 </div>
@@ -578,7 +578,7 @@ export default function HomePage() {
               href="/projects/travel-and-ai" 
               className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
             >
-              Intelligent Systems (HADE)
+              CORE ENGINE (HADE)
             </Link>
             <Link 
               href="/projects/previous" 

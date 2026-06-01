@@ -374,7 +374,7 @@ useEffect(() => {
   <nav className="flex items-center space-x-8">
     {[
       { href: "/projects/field-notes", label: "Travel Field Notes" },
-      { href: "/projects/travel-and-ai", label: "Intelligent Systems (HADE)" },
+      { href: "/projects/travel-and-ai", label: "CORE ENGINE (HADE)" },
       { href: "/projects/digital-executor", label: "Digital Executor" },
       { href: "/projects/previous", label: "Client Work" },
     ].map((item) => {
@@ -429,7 +429,7 @@ useEffect(() => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
-            Intelligent Systems (HADE)
+            CORE ENGINE (HADE)
           </Link>
           <Link 
             href="/projects/previous" 

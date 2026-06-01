@@ -58,7 +58,7 @@ export default function StaticFooter() {
                 href="/projects/travel-and-ai" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
-                Intelligent Systems (HADE)
+                CORE ENGINE (HADE)
               </Link>
               <Link 
                 href="/projects/digital-executor" 
