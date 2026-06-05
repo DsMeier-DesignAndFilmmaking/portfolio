@@ -165,7 +165,16 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
           const isActive = activeId === id;
 
           return (
-            <div key={id} className="relative flex items-center justify-end gap-1.5">
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              aria-label={`Go to ${label}`}
+              className="
+                group relative flex items-center justify-end gap-1.5 rounded-full
+                py-2 pl-3 pr-0
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDD00]/70
+              "
+            >
 
               {/*
                * Section label pill — slides in horizontally when this section is active.
@@ -187,22 +196,38 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
                 {label}
               </span>
 
+              {!isActive && (
+                <span
+                  className="
+                    absolute right-5 top-1/2 hidden -translate-y-1/2 translate-x-1
+                    whitespace-nowrap rounded-full border border-white/10 bg-neutral-950/95 px-2.5 py-1
+                    text-[8px] font-black uppercase tracking-[0.18em] text-white shadow-lg backdrop-blur-sm
+                    opacity-0 transition-all duration-150 ease-out
+                    group-hover:translate-x-0 group-hover:opacity-100
+                    group-focus-within:translate-x-0 group-focus-within:opacity-100
+                    motion-reduce:translate-x-0 motion-reduce:transition-none
+                    lg:block
+                  "
+                  aria-hidden="true"
+                >
+                  {label}
+                </span>
+              )}
+
               {/*
                * The dot itself.
                * Active state: #FFDD00 background, 8×8px, subtle glow ring.
                * Inactive: neutral-400/50, 5×5px — legible on both white and dark sections.
                * scale-110 on hover gives touch-friendly affordance feedback.
                */}
-              <button
-                onClick={() => scrollTo(id)}
-                aria-label={`Go to ${label}`}
+              <span
+                aria-hidden="true"
                 className={`
                   rounded-full flex-shrink-0
                   transition-all duration-300 ease-out
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDD00]/70
                   ${isActive
                     ? 'w-[8px] h-[8px] scale-110'
-                    : 'w-[5px] h-[5px] bg-neutral-400/50 hover:bg-neutral-400/80 hover:scale-125 active:scale-90'
+                    : 'w-[5px] h-[5px] bg-neutral-400/50 group-hover:bg-neutral-400/80 group-hover:scale-125 group-active:scale-90'
                   }
                 `}
                 style={
@@ -216,7 +241,7 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
                     : undefined
                 }
               />
-            </div>
+            </button>
           );
         })}
       </nav>

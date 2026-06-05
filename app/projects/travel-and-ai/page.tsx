@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaBrain, FaRobot, FaChartLine, FaCode } from 'react-icons/fa';
-import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown, Network } from 'lucide-react';
+import { Sparkles, Shield, MapPin, Users, BookOpen, ChevronDown, ExternalLink, Network } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
@@ -14,8 +14,8 @@ import TravelOSSheet from '../../../components/TravelOSSheet';
 
 const TAI_SECTIONS = [
   { id: 'intro',            label: 'Intro'        },
-  { id: 'tai-system',       label: 'System'       },
-  { id: 'tai-timeline',     label: 'Timeline'     },
+  { id: 'tai-system',       label: 'System Overview' },
+  { id: 'tai-timeline',     label: 'Session Arc'  },
   { id: 'tai-iterations',   label: 'Process'      },
   { id: 'tai-constraints',  label: 'Constraints'  },
   { id: 'tai-roadmap',      label: 'Roadmap'      },
@@ -30,6 +30,7 @@ import { SpontaneityHero as SystemOverview } from './SpontaneityHero';
 import { SessionTimeline } from './SessionTimeline';
 import { ConstraintMap } from './components/ConstraintMap';
 import { HADERoadmap } from './components/HADERoadmap';
+import { HADE_DEMO_URL } from './constants';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -513,15 +514,18 @@ useEffect(() => {
       </span>
     </h1>
 
-    {/*<div>
-      <button
-        type="button"
-        onClick={() => setIsEcosystemLogicOpen(true)}
-        className="inline-flex items-center rounded-full border border-gray-300/90 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-gray-800 transition hover:border-gray-900 hover:bg-gray-900 hover:text-white"
+    <div>
+      <a
+        href={HADE_DEMO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View HADE demo in a new tab"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-gray-300/90 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-gray-800 transition hover:border-gray-900 hover:bg-gray-900 hover:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-4"
       >
-        [ EXPLORE THE ECOSYSTEM LOGIC ]
-      </button>
-    </div>*/}
+        [ View Demo ]
+        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+      </a>
+    </div>
 
     {/* Scroll / Explore Indicator */}
     <motion.div
@@ -1019,7 +1023,7 @@ useEffect(() => {
               <p className="text-lg text-gray-700 leading-relaxed max-w-3xl" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
                 This system design demonstrates patterns and frameworks that are transferable across multiple travel and AI experiences, showing how real-time adaptive logic can be applied to other user contexts, destinations, and interaction types.
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
                 <button
                   type="button"
                   onClick={() => setIsArchitectureSheetOpen(true)}
@@ -1027,6 +1031,16 @@ useEffect(() => {
                 >
                   [ VIEW MIDDLEWARE ARCHITECTURE ]
                 </button>
+                <a
+                  href={HADE_DEMO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View HADE demo in a new tab"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-gray-300/90 bg-white/70 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-gray-800 transition hover:border-gray-900 hover:bg-gray-900 hover:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-4"
+                >
+                  [ View Demo ]
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </motion.div>

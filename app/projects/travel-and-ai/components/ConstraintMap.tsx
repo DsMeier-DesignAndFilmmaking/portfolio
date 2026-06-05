@@ -87,7 +87,7 @@ const columns = [
     label: 'System Behavior',
     sublabel: 'User Impact',
     textClass: 'text-white',
-    labelClass: 'text-[#FFFFFF]/70',
+    labelClass: 'text-[#FFFFFF]/100',
     dotClass: 'bg-[#FFDD00] shadow-[0_0_8px_rgba(255,221,0,0.6)]',
     sublabelClass: 'text-[#FFDD00]/50', // Muted User Impact (tinted)
   },

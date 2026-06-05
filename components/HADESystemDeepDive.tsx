@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CloudRain, Zap, ShieldCheck, Cpu, Users, RefreshCcw, ArrowDown, MapPin, Search, BrainCircuit, BookOpen, Lock } from 'lucide-react';
+import { CloudRain, Zap, ShieldCheck, Cpu, Users, RefreshCcw, ArrowDown, MapPin, Search, BrainCircuit, BookOpen, Lock, ExternalLink } from 'lucide-react';
+import { HADE_DEMO_URL } from '@/app/projects/travel-and-ai/constants';
 
 const preventWidow = (text: string) => {
   const words = text.trim().split(" ");
@@ -475,6 +476,26 @@ export default function HADESystemDeepDive() {
         </div>
       </div>
 
+    </div>
+
+    <div className="mt-12 flex flex-col items-start gap-5 border-t border-neutral-100 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <p
+        className="max-w-lg text-sm leading-relaxed text-neutral-500"
+        style={{ fontFamily: "'Roboto', sans-serif" }}
+      >
+        See the active build after reviewing how the signal logic, confidence receipt,
+        and delivery model come together.
+      </p>
+      <a
+        href={HADE_DEMO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View HADE demo in a new tab"
+        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-neutral-900 bg-neutral-900 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.24em] text-white transition hover:border-[#FFDD00] hover:bg-[#FFDD00] hover:text-black active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-4 sm:w-auto"
+      >
+        [ View Demo ]
+        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+      </a>
     </div>
   </div>
 </footer>
