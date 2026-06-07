@@ -934,6 +934,102 @@ section *::-webkit-scrollbar,
   .spacing-md { margin: 1.5rem; } /* 24px */
   .spacing-lg { margin: 2rem; } /* 32px */
 
+  /* Homepage spacing system - scoped to avoid changing project page layouts */
+  .homepage-root {
+    --homepage-container-max: 56rem;
+    --homepage-copy-max: 36rem;
+    --homepage-section-padding-y: 4.5rem;
+    --homepage-header-gap: 2.25rem;
+    --homepage-content-gap: 1.75rem;
+    --homepage-major-gap: 3rem;
+    --homepage-module-gap: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .homepage-root {
+      --homepage-section-padding-y: 7rem;
+      --homepage-header-gap: 3rem;
+      --homepage-content-gap: 2.5rem;
+      --homepage-major-gap: 4rem;
+      --homepage-module-gap: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .homepage-root {
+      --homepage-section-padding-y: 8.75rem;
+      --homepage-header-gap: 3.5rem;
+    }
+  }
+
+  .homepage-root section.homepage-section {
+    padding-top: var(--homepage-section-padding-y);
+    padding-bottom: var(--homepage-section-padding-y);
+    scroll-margin-top: calc(env(safe-area-inset-top) + 80px);
+  }
+
+  .homepage-root section.homepage-hero-section {
+    padding-top: 6rem;
+    padding-bottom: var(--homepage-section-padding-y);
+  }
+
+  @media (min-width: 768px) {
+    .homepage-root section.homepage-hero-section {
+      padding-top: 0;
+    }
+  }
+
+  .homepage-container {
+    width: 100%;
+    max-width: var(--homepage-container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .homepage-copy-column {
+    width: 100%;
+    max-width: var(--homepage-copy-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .homepage-root .homepage-section-header {
+    margin-bottom: var(--homepage-header-gap);
+  }
+
+  .homepage-root .homepage-section-header > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .homepage-root .homepage-title-only > .hero-title {
+    margin-bottom: 0 !important;
+  }
+
+  .homepage-stack,
+  .homepage-media-stack,
+  .homepage-module-stack {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homepage-stack {
+    gap: var(--homepage-content-gap);
+  }
+
+  .homepage-media-stack {
+    gap: var(--homepage-content-gap);
+  }
+
+  .homepage-module-stack {
+    gap: var(--homepage-module-gap);
+  }
+
+  .homepage-major-gap-top {
+    margin-top: var(--homepage-major-gap);
+  }
+
   /* ===== TRUST LAYER & DESIGN EVOLUTION MOBILE SCROLL FIX ===== */
   /* Force overflow visible and height auto to prevent internal scroll traps on mobile */
   #trust-layer,

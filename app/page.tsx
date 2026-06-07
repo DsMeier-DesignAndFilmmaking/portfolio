@@ -71,18 +71,18 @@ export default function HomePage() {
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
       {/* ✅ Animated Homepage Content - Fade-in and slide-up animation */}
       <AnimatedHomePageContent>
-        <div className="relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
+        <div className="homepage-root relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section id="hero" className="intro-section bg-white relative z-10 pt-[96px] pb-[96px] md:pt-0 md:pb-[140px]" aria-label="Introduction">
+        <section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-10" aria-label="Introduction">
           {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
           <div className="relative flex items-center justify-center min-h-[85vh] md:min-h-[90vh] pt-36 md:pt-0">
-            <div className="max-w-4xl mx-auto px-6 w-full py-0">
+            <div className="homepage-container py-0">
               {/* ✅ REMOVED - Suspense and motion.div (animations) */}
               <div 
                   className="w-full text-left"
                 >
-                  <div className="mb-6 md:mb-10" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                  <div className="homepage-copy-column homepage-section-header homepage-title-only">
                     {/* Mobile Version - Simplified */}
                     <h1 
                       className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -104,7 +104,7 @@ export default function HomePage() {
                       <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
                     </h1>
                   </div>
-                  <div className="space-y-6 mb-0" style={{ maxWidth: '576px', margin: '0 auto' }}>                    
+                  <div className="homepage-copy-column space-y-6 mb-0">
                   <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
                       style={{ 
                         fontFamily: "'Roboto', Helvetica, sans-serif", 
@@ -126,7 +126,7 @@ export default function HomePage() {
                     >
                       Currently exploring how systems design, AI, and real-world context combine to create more adaptive, human-centered&nbsp;experiences.
                     </p>
-                    <div className="mt-4 mb-4">
+                    <div>
                       <Image
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
                         alt="Dan Meier signature"
@@ -142,8 +142,8 @@ export default function HomePage() {
           </div>
           
           {/* Hero Image - Moved inside hero section */}
-          <div className="max-w-4xl mx-auto px-6 mt-6 md:-mt-16 md:relative md:z-10">
-            <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+          <div className="homepage-container mt-8 md:-mt-12 md:relative md:z-10">
+            <div className="homepage-copy-column">
               <div 
                 className="w-full relative rounded-lg shadow-lg overflow-hidden" 
                 style={{ 
@@ -171,11 +171,11 @@ export default function HomePage() {
         <div className="anchor-offset" aria-hidden="true"></div>
         
         {/* About Me Section */}
-        <section id="about" className="bg-white relative pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" aria-label="About Me">
-          <div className="max-w-4xl mx-auto px-6 relative">
+        <section id="about" className="homepage-section bg-white relative" aria-label="About Me">
+          <div className="homepage-container relative">
             <div className="w-full">
               {/* Heading */}
-              <div className="section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
+              <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing">
                 {/* Mobile Version - Simplified */}
                 <h1 
                   className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
@@ -199,7 +199,7 @@ export default function HomePage() {
               </div>
 
               {/* Single Column Layout: Images and Text Stacked Vertically */}
-              <div className="w-full space-y-8" style={{ maxWidth: '576px', margin: '0 auto' }}>
+              <div className="homepage-copy-column homepage-media-stack">
                 {/* First Image */}
                 {/* ✅ REMOVED - Suspense and motion.div (animations) */}
                 <div className="w-full">
@@ -245,10 +245,10 @@ export default function HomePage() {
 </div>
 
                 {/* Design Journey Section */}
-                <div className="w-full" style={{ marginTop: '3.45rem' }}>
-                  <div className="space-y-8">
+                <div className="w-full">
+                  <div className="homepage-stack">
                     {/* Design Journey Path Marker */}
-                    <div className="flex items-center gap-3 mb-6 opacity-60">
+                    <div className="flex items-center gap-3 opacity-60">
                       <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
                       <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                       <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
@@ -266,9 +266,9 @@ export default function HomePage() {
 
                 {/* Travel Discovery Section */}
                 <div className="w-full">
-                  <div className="space-y-8">
+                  <div className="homepage-stack">
                     {/* Travel Discovery Divider */}
-                    <div className="flex items-center justify-center py-4">
+                    <div className="flex items-center justify-center py-2 md:py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
@@ -290,7 +290,7 @@ export default function HomePage() {
                   >
                     Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and&nbsp;design.
                   </p>
-                    <p className="text-sm text-gray-900 italic mt-4" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    <p className="text-sm text-gray-900 italic" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI generated photos or video.
                     </p>
                   </div>
@@ -362,31 +362,31 @@ export default function HomePage() {
         </Suspense> */}
         
         {/* Travel Photography and Stills Section */}
-        <section id="travelogue" className="relative overflow-hidden pt-[96px] pb-[96px] md:pt-[140px] md:pb-[140px]" style={{ backgroundColor: '#ffffff' }}>
+        <section id="travelogue" className="homepage-section relative overflow-hidden" style={{ backgroundColor: '#ffffff' }}>
           {/* Keep the old ID for backward compatibility */}
           <div id="world-travel-diaries" style={{ position: 'absolute', top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }} aria-hidden="true"></div>
           {/* World Map Background - This is the main target for scrolling */}
           <div id="world-travel-diaries-background" className="absolute inset-0 opacity-100" style={{ backgroundColor: '#ffffff' }}>
           </div>
           
-          <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="homepage-container relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="text-center section-header-spacing" style={{ maxWidth: '576px', margin: '0 auto' }}>
+            <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
               
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ 
+              <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight" style={{
                 fontFamily: "'tiempos-headline-regular', serif",
                 color: '#000000'
               }}>
                 World Travel Diaries
               </h2>
-              <p className="text-xl max-w-4xl mx-auto mb-8 font-medium leading-relaxed" style={{ 
+              <p className="text-xl max-w-4xl mx-auto mb-6 md:mb-8 font-medium leading-relaxed" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
                 I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
               </p>
-              <p className="text-sm max-w-4xl mx-auto mb-8 italic leading-relaxed" style={{ 
+              <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 color: '#374151'
               }}>
@@ -395,7 +395,7 @@ export default function HomePage() {
             </div>
             
             {/* Video Container */}
-            <div className="mt-8">
+            <div>
               {/* Container with aspect-ratio to prevent layout shift */}
               {/* Remove minHeight - aspect-ratio handles sizing properly on all modern browsers */}
               <div 
@@ -420,8 +420,8 @@ export default function HomePage() {
             </div>
             
             {/* Video Frames Grid */}
-            <div className="max-w-4xl mx-auto mt-12 mb-8">
-              <div className="grid grid-cols-1 gap-8">
+            <div className="max-w-4xl mx-auto mt-10 md:mt-12">
+              <div className="grid grid-cols-1 gap-6 md:gap-8">
                 {[
                   { src: 'Istanbul-frames-2.jpg', alt: 'Istanbul Video Frames' },
                   { src: 'japan-frames.jpg', alt: 'Japan Video Frames' },
@@ -455,7 +455,7 @@ export default function HomePage() {
             </div>
             
             {/* YouTube and Vimeo Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto mb-8 justify-center sm:justify-start mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto justify-center sm:justify-start mt-7 md:mt-8">
               <a
                 href="https://www.youtube.com/@dsmeier"
                 target="_blank"
@@ -478,7 +478,7 @@ export default function HomePage() {
             
             {/* Modern Coming Soon Card */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="relative" style={{ marginTop: '80px' }}>
+            <div className="relative mt-14 md:mt-20">
               <div className="relative">
                 <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
                   {/* Background Image */}
@@ -511,7 +511,7 @@ export default function HomePage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                           </div>
-                          <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+                          <div className="homepage-copy-column">
                               <h3 className="text-2xl md:text-3xl font-bold text-white">
                                Travel Photo Journal
                              </h3>
@@ -519,7 +519,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         
-                        <div className="space-y-4 mb-6" style={{ maxWidth: '576px', margin: '0 auto' }}>
+                        <div className="homepage-copy-column space-y-4 mb-6">
                           <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
                             A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
                           </p>
@@ -552,7 +552,7 @@ export default function HomePage() {
             
             {/* Tech Stack */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="mt-16 md:mt-20 text-center">
+            <div className="mt-14 md:mt-20 text-center">
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
                 <span className="text-gray-600 text-sm font-medium">Building with</span>
                 <div className="flex items-center gap-2">

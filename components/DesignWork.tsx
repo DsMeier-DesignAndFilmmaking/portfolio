@@ -217,10 +217,9 @@ export default function DesignWork() {
   const HistoricalIcon = historicalFoundation.icon;
 
   return (
-    <section id="work" className="relative bg-white pb-[96px] md:pb-[140px]" aria-label="Work">
-      <div className="max-w-4xl mx-auto px-6 relative">
-        <header className="relative pt-4 mb-8 md:mb-10">
-          <div style={{ maxWidth: '576px', margin: '0 auto' }}>
+    <section id="work" className="homepage-section relative bg-white" aria-label="Work">
+      <div className="homepage-container relative">
+        <header className="homepage-copy-column relative homepage-section-header">
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-600">
               <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -254,7 +253,7 @@ export default function DesignWork() {
             My approach is rooted in systems thinking. I focus on how people, interfaces, environments, and technology interact as part of a larger whole, designing products that adapt to real-world context.
           </p>
 
-          <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-5">
+          <div className="mt-7 rounded-lg border border-gray-200 bg-gray-50 p-5 md:mt-8">
             <p className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
               HADE Ecosystem
             </p>
@@ -266,12 +265,10 @@ export default function DesignWork() {
               <EvidenceLine items={ecosystemLayers} />
             </div>
           </div>
-          </div>
         </header>
 
         <div
-          className="section-header-spacing relative mb-20 md:mb-24"
-          style={{ maxWidth: '576px', margin: '0 auto' }}
+          className="homepage-copy-column relative"
           aria-labelledby="hade-ecosystem-title"
         >
           <article
@@ -305,10 +302,10 @@ export default function DesignWork() {
             </div>
           </article>
 
-          <div className="relative mx-auto hidden h-12 w-px bg-gray-200 md:block" aria-hidden="true" />
+          <div className="h-8 md:relative md:mx-auto md:h-12 md:w-px md:bg-gray-200" aria-hidden="true" />
 
           <section aria-labelledby="applied-modules-title" className="relative">
-            <div className="mb-6 flex flex-wrap items-end justify-between gap-4 border-b border-gray-200 pb-4">
+            <div className="mb-7 flex flex-col items-start gap-4 border-b border-gray-200 pb-5 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between md:mb-8">
               <div>
                 <p className="text-[11px] font-black uppercase tracking-[0.24em] text-gray-500">
                   Applied Modules
@@ -326,14 +323,14 @@ export default function DesignWork() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-5 md:gap-6">
               {appliedModules.map((node) => (
                 <ModuleCard key={node.title} node={node} />
               ))}
             </div>
           </section>
 
-          <div className="relative mx-auto hidden h-12 w-px bg-gray-200 md:block" aria-hidden="true" />
+          <div className="h-8 md:relative md:mx-auto md:h-12 md:w-px md:bg-gray-200" aria-hidden="true" />
 
           <section
             aria-labelledby="work-node-04"
@@ -376,7 +373,7 @@ export default function DesignWork() {
             </div>
           </section>
 
-          <div className="mx-auto mt-12 flex max-w-3xl items-center justify-center gap-3 border-t border-gray-200 pt-8 text-center text-sm font-semibold text-gray-500">
+          <div className="mx-auto mt-10 flex max-w-3xl items-center justify-center gap-3 border-t border-gray-200 pt-6 text-center text-sm font-semibold text-gray-500 md:mt-12 md:pt-8">
             <Cpu className="h-4 w-4" aria-hidden="true" />
             <span>Infrastructure to applied modules to production foundations</span>
           </div>

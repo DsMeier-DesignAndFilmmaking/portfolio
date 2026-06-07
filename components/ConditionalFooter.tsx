@@ -28,5 +28,5 @@ export default function ConditionalFooter() {
   }
   
   // Show footer on all other pages
-  return <StaticFooter />;
+  return <StaticFooter compactSpacing={pathname === '/'} />;
 }

@@ -6,18 +6,28 @@ import { Mail } from "lucide-react";
 
 const COPYRIGHT_YEAR = 2026;
 
-export default function StaticFooter() {
+type StaticFooterProps = {
+  compactSpacing?: boolean;
+};
+
+export default function StaticFooter({ compactSpacing = false }: StaticFooterProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const footerClassName = compactSpacing
+    ? 'w-full bg-white border-t border-gray-200'
+    : 'w-full bg-white border-t border-gray-200 pt-12 pb-12 md:pt-[70px] md:pb-[70px]';
+  const containerClassName = compactSpacing
+    ? 'max-w-4xl mx-auto px-6 py-12 md:py-[70px]'
+    : 'max-w-4xl mx-auto px-6 py-9 md:py-12';
 
   return (
     <>
       {/* Stable anchor target for Contact section - zero height, positioned before footer */}
       {/* Flexbox Spacer: margin-top: auto pushes footer to bottom */}
       <div id="contact" className="anchor-offset" style={{ marginTop: 'auto' }} aria-hidden="true"></div>
-      <footer id="footer" className="w-full bg-white border-t border-gray-200 pt-12 pb-12 md:pt-[70px] md:pb-[70px]">
-      <div className="max-w-4xl mx-auto px-6 py-9 md:py-12">
-        <div className="border-t border-gray-200 pt-6 mb-9"></div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+      <footer id="footer" className={footerClassName}>
+      <div className={containerClassName}>
+        <div className="mb-8 border-t border-gray-200 pt-6 md:mb-9"></div>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-16">
           
           {/* Brand Section */}
           <div className="flex flex-col">
@@ -145,7 +155,7 @@ export default function StaticFooter() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-9 pt-6 border-t border-gray-200">
+        <div className="mt-8 border-t border-gray-200 pt-6 md:mt-9">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-xs text-gray-500">
               © {COPYRIGHT_YEAR} Dan Meier. All rights reserved.
