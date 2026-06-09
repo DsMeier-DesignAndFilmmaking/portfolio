@@ -548,7 +548,7 @@ export default function HomePage() {
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Travel deepened that lens. Moving through <span className="text-amber-600 font-semibold">40+ countries</span> has shaped how I observe place, behavior, friction, wayfinding, hospitality, and decision-making in unfamiliar environments. Those experiences continue to inform how I design for people moving through real-world&nbsp;complexity.
+                    Travel deepened that lens. Moving through <span className="text-amber-600 font-semibold">40+ countries </span> has shaped how I observe place, behavior, friction, wayfinding, hospitality, and decision-making in unfamiliar environments. Those experiences continue to inform how I design for people moving through real-world&nbsp;complexity.
                   </p>
                     <p className="text-sm text-gray-900 italic" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI-generated photos or video.
