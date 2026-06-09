@@ -301,9 +301,26 @@ export default function HomePage() {
         <div className="homepage-root relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-<section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-10" aria-label="Introduction">
+<section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-[1] overflow-hidden" aria-label="Introduction">
+  {/* Field-study texture layer - Expanded to full width behind content */}
+<div className="pointer-events-none absolute inset-0 z-0 hidden select-none lg:block" aria-hidden="true">
+  {/* Left-to-right fade overlay to ensure text readability if needed (Optional, remove if unwanted) */}
+  <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+  
+  <div className="absolute inset-0 w-full h-full opacity-10 mix-blend-multiply">
+    <Image
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/field-study-sketch.png`}
+      alt=""
+      fill
+      priority
+      className="object-cover object-center"
+      sizes="100vw"
+    />
+  </div>
+</div>
+
   {/* Hero Content - Cleanly stacked content column */}
-  <div className="relative flex flex-col justify-center pt-24 md:pt-32">
+  <div className="relative z-10 flex flex-col justify-center pt-24 md:pt-32">
     <div className="homepage-container py-0">
       <div className="w-full text-left">
         
