@@ -36,7 +36,7 @@ const FIELD_NOTES_LIVE_PRODUCT_URL = 'https://downloadable-travel-packs.vercel.a
 const hadeCore: WorkNode = {
   number: '01',
   title: 'HADE Core Engine',
-  label: 'Context-Aware Decision System',
+  label: 'Context-Aware Experience System',
   description:
     'A context-aware decision system that translates live signals into clear, trusted next steps.',
   items: [
@@ -48,7 +48,7 @@ const hadeCore: WorkNode = {
   cta: 'Explore System Design',
   href: '/projects/travel-and-ai',
   secondaryCta: {
-    label: 'Open Live Build',
+    label: 'View Live Experience',
     href: HADE_DEMO_URL,
     external: true,
     ariaLabel: 'View HADE live demo in a new tab',
@@ -60,7 +60,7 @@ const appliedModules: WorkNode[] = [
   {
     number: '02',
     title: 'Field Logistics',
-    label: 'Travel + Environmental Context',
+    label: 'Travel, Place & Context',
     description:
       'Applies systems thinking to movement, weather, location, local signals, and real-world travel constraints.',
     items: [
@@ -72,7 +72,7 @@ const appliedModules: WorkNode[] = [
     cta: 'Explore System Design',
     href: '/projects/field-notes',
     secondaryCta: {
-      label: 'Open Live Build',
+      label: 'View Field Application',
       href: FIELD_NOTES_LIVE_PRODUCT_URL,
       external: true,
       ariaLabel: 'View Field Notes live product in a new tab',
@@ -82,7 +82,7 @@ const appliedModules: WorkNode[] = [
   {
     number: '03',
     title: 'Digital Executor',
-    label: 'Service Recovery + Operational Flow',
+    label: 'Service Recovery & Coordination',
     description:
       'Explores how digital systems can support service recovery, coordination, and follow-through when real-world plans break down.',
     items: [
@@ -100,7 +100,7 @@ const appliedModules: WorkNode[] = [
 const historicalFoundation: WorkNode = {
   number: '04',
   title: 'Professional Foundations',
-  label: 'SHIPPED WORK & PROFESSIONAL PRACTICE',
+  label: 'Professional Practice',
   description:
     '10+ years of client, agency, and product work across healthcare, education, enterprise, commerce, and emerging technology shaped the systems thinking behind my current practice.',
   items: [
@@ -117,7 +117,7 @@ const historicalFoundation: WorkNode = {
 
 const ecosystemLayers = [
   {
-    name: 'Core Engine',
+    name: 'Core System',
     description: 'adaptive decision infrastructure',
   },
   {
@@ -125,11 +125,11 @@ const ecosystemLayers = [
     description: 'travel and exploration systems',
   },
   {
-    name: 'Digital Executor',
+    name: 'Service Recovery',
     description: 'autonomous execution workflows',
   },
   {
-    name: 'Foundations',
+    name: 'Practice Foundations',
     description: '10+ years designing products, systems, and experiences across industries. 40+ countries explored.',
   },
 ];
@@ -165,11 +165,11 @@ function NodeHeader({ node }: { node: WorkNode }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-[#fbf8f1] text-xs font-black text-stone-900">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-[#fbf8f1] text-xs font-semibold text-stone-900">
           {node.number}
         </span>
         <div className="min-w-0">
-          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-amber-800 sm:tracking-[0.16em]">
+          <p className="text-xs font-medium leading-snug text-amber-800">
             {node.label}
           </p>
         </div>
@@ -181,14 +181,14 @@ function NodeHeader({ node }: { node: WorkNode }) {
 
 function NodeCta({ node, solid = false }: { node: WorkNode; solid?: boolean }) {
   const className = solid
-    ? 'mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2'
-    : 'mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-blue-600 transition-colors hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-4';
+    ? 'mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2'
+    : 'mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-4';
 
   if (node.secondaryCta) {
     const primaryClassName = solid
-      ? 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white/75 px-5 py-3 text-sm font-bold uppercase tracking-[0.12em] text-gray-950 transition-all duration-200 ease-out hover:border-gray-400 hover:bg-white active:translate-y-px focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2'
-      : 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white/70 px-5 py-3 text-sm font-bold uppercase tracking-[0.12em] text-blue-700 transition-all duration-200 ease-out hover:border-blue-300 hover:bg-white hover:text-blue-800 active:translate-y-px focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-4';
-    const secondaryClassName = 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 px-2 py-3 text-sm font-bold uppercase tracking-[0.12em] text-gray-500 transition-all duration-200 ease-out hover:text-gray-900 active:translate-y-px focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-4';
+      ? 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white/75 px-5 py-3 text-sm font-semibold text-gray-950 transition-all duration-200 ease-out hover:border-gray-400 hover:bg-white active:translate-y-px focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2'
+      : 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white/70 px-5 py-3 text-sm font-semibold text-blue-700 transition-all duration-200 ease-out hover:border-blue-300 hover:bg-white hover:text-blue-800 active:translate-y-px focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-4';
+    const secondaryClassName = 'group inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 px-2 py-3 text-sm font-semibold text-gray-500 transition-all duration-200 ease-out hover:text-gray-900 active:translate-y-px focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-4';
 
     return (
       <div className="mt-8 flex flex-col items-start gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
@@ -229,8 +229,8 @@ function ProofList({
     <div className={rule ? 'mt-7 border-t border-stone-200 pt-6' : ''}>
       <div className="grid gap-y-3.5">
         {node.items.map((item) => (
-          <div key={item} className="flex items-start gap-3 text-sm font-semibold leading-relaxed text-gray-800">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
+          <div key={item} className="flex items-start gap-3 text-sm font-medium leading-relaxed text-gray-800">
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-stone-400" aria-hidden="true" />
             <span>{item}</span>
           </div>
         ))}
@@ -268,13 +268,12 @@ export default function DesignWork() {
       <div className="homepage-container relative">
         <header className="homepage-copy-column relative homepage-section-header">
           <div className="mb-5 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-600">
+            <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-600">
               <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
-              Work / Systems & Experience Design
+              Experience Systems
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              DESIGNING & SHIPPING
+            <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-500">
+              Current Practice
             </span>
           </div>
 
@@ -301,8 +300,8 @@ export default function DesignWork() {
           </p>
 
           <div className="mt-7 rounded-lg border border-gray-200 bg-gray-50 p-5 md:mt-8">
-            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
-              Current Systems Work
+            <p className="mb-3 text-sm font-medium text-gray-500">
+              Current Design Direction
             </p>
             <p className="text-base leading-relaxed text-gray-700">
               HADE is a current systems initiative exploring how real-world context, AI, decision logic, and interface design can support better action across travel, service, and operational environments.
@@ -354,8 +353,8 @@ export default function DesignWork() {
           <section aria-labelledby="applied-modules-title" className="relative">
             <div className="mb-8 flex flex-col items-start gap-4 border-b border-gray-200 pb-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between md:mb-9">
               <div>
-                <p className="text-[11px] font-black uppercase tracking-[0.24em] text-gray-500">
-                  Applied Modules
+                <p className="text-sm font-medium text-gray-500">
+                  Applied Field Studies
                 </p>
                 <h3
                   id="applied-modules-title"
@@ -387,7 +386,7 @@ export default function DesignWork() {
               <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-lg bg-white text-gray-950">
                 <HistoricalIcon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <p className="mb-4 text-[11px] font-black uppercase tracking-[0.24em] text-gray-400">
+              <p className="mb-4 text-sm font-medium text-gray-400">
                 {historicalFoundation.label}
               </p>
               <h3
@@ -403,8 +402,8 @@ export default function DesignWork() {
 
               <div className="mt-7 border-t border-white/10 pt-6">
                 {historicalFoundation.items.map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm font-semibold leading-relaxed text-white [&+&]:mt-3.5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-300" aria-hidden="true" />
+                  <div key={item} className="flex items-start gap-3 text-sm font-medium leading-relaxed text-white [&+&]:mt-3.5">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" aria-hidden="true" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -412,7 +411,7 @@ export default function DesignWork() {
 
               <Link
                 href={historicalFoundation.href}
-                className="mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.12em] text-gray-950 transition-colors hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-950"
+                className="mt-8 inline-flex min-h-[44px] max-w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-gray-950 transition-colors hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-950"
               >
                 <span className="min-w-0 whitespace-normal">{historicalFoundation.cta}</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -420,10 +419,18 @@ export default function DesignWork() {
             </div>
           </section>
 
-          <div className="mx-auto mt-12 flex max-w-3xl items-center justify-center gap-3 border-t border-gray-200 pt-7 text-center text-sm font-semibold text-gray-500 md:mt-14 md:pt-9">
-            <Cpu className="h-4 w-4" aria-hidden="true" />
-            <span>Professional delivery, systems thinking, and real-world application</span>
-          </div>
+          <div className="mx-auto mt-16 flex max-w-xl flex-col items-center justify-center gap-3 border-t border-stone-200 pt-8 text-center sm:mt-24">
+  {/* A more relevant icon: Milestones/Layers/Network */}
+  <Layers3 className="h-4 w-4 text-stone-400" aria-hidden="true" />
+  
+  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500">
+    System Paradigm No. 01 // Digital × Physical Synthesis
+  </p>
+  
+  <span className="text-xs font-medium tracking-wide text-stone-600">
+    Product Architecture • Environmental Context • Operational Logic
+  </span>
+</div>
         </div>
       </div>
     </section>

@@ -405,32 +405,24 @@ export default function HomePage() {
         <div className="anchor-offset" aria-hidden="true"></div>
         
         {/* About Me Section */}
-        <section id="about" className="homepage-section bg-white relative" aria-label="About Me">
-          <div className="homepage-container relative">
-            <div className="w-full">
-              {/* Heading */}
-              <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing">
-                {/* Mobile Version - Simplified */}
-                <h1 
-                  className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-                  style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
-                >
-                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Foundations &amp; The Journey</span>
-                </h1>
-                
-                {/* Desktop Version - Original */}
-                <h1 
-                  className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
-                  style={{ 
-                    fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
-                    whiteSpace: 'normal',
-                    fontFamily: "'tiempos-headline-regular', serif",
-                    marginBottom: 'calc(1.32 * 1.5rem)'
-                  }}
-                >
-                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Foundations &amp; The Journey</span>
-                </h1>
-              </div>
+        <section id="about" className="homepage-section bg-white relative" aria-label="The Lens Behind the Work">
+        <div className="homepage-container relative">
+  <div className="w-full">
+    {/* Heading */}
+    <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing">
+      <h1 
+        className="hero-title font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left md:leading-[1.1]" 
+        style={{ 
+          fontSize: 'var(--title-size, clamp(1.75rem, 5vw, 2.25rem))', 
+          fontFamily: "'tiempos-headline-regular', serif",
+          marginBottom: 'calc(1.32 * 1.5rem)' 
+        }}
+      >
+        <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)]">
+          The Lens Behind{"\u00a0"}the{"\u00a0"}Work
+        </span>
+      </h1>
+    </div>
 
               {/* Single Column Layout: Images and Text Stacked Vertically */}
               <div className="homepage-copy-column homepage-media-stack">
@@ -483,9 +475,9 @@ export default function HomePage() {
                   <div className="homepage-stack">
                     {/* Design Journey Path Marker */}
                     <div className="flex items-center gap-3 opacity-60">
-                      <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">From Spatial Systems to Digital Products</div>
+                      <div className="w-8 h-px bg-stone-300"></div>
+                      <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
+                      <div className="text-sm font-medium text-stone-500">From Place to Product</div>
                     </div>
                     
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700"
@@ -623,7 +615,7 @@ export default function HomePage() {
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
-                Travel has been one of my strongest teachers in how people move through place, culture, uncertainty, hospitality, and environmental context. Across 41 countries, I’ve documented the moments, routes, and conditions that shape real-world experience.
+                Travel and adventure has been one of my strongest teachers in how people move through place, culture, uncertainty, hospitality, and environmental context. Across 41 countries, I’ve documented the moments, routes, and conditions that shape real-world experience.
               </p>
               <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
@@ -763,9 +755,9 @@ export default function HomePage() {
                             A developing collection of visual field notes connecting photography, place-based storytelling, and interactive experience design.
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Field Notes</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Place</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Experience</span>
+                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Field Notes</span>
+                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Place</span>
+                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Experience</span>
                           </div>
                         </div>
                         
@@ -780,7 +772,7 @@ export default function HomePage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                           </div>
-                            <h4 className="text-xl font-bold mb-2">In Progress</h4>
+                            <h4 className="text-xl font-bold mb-2">Developing Field Journal</h4>
                         </div>
                       </div>
                     </div>
@@ -792,12 +784,12 @@ export default function HomePage() {
             {/* Tech Stack */}
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="mt-14 md:mt-20 text-center">
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 rounded-full">
-                <span className="text-gray-600 text-sm font-medium">Building with</span>
+              <div className="inline-flex items-center gap-3 border-t border-gray-200 px-2 pt-4">
+                <span className="text-gray-600 text-sm font-medium">Field journal in progress</span>
                 <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Sanity CMS</span>
+                  <span className="text-gray-800 text-sm font-semibold">Visual notes</span>
                   <span className="text-gray-400">+</span>
-                  <span className="px-3 py-1 bg-white text-gray-800 rounded-full text-sm font-semibold shadow-sm">Next.js</span>
+                  <span className="text-gray-800 text-sm font-semibold">Digital archive</span>
                 </div>
               </div>
             </div>
