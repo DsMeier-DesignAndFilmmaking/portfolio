@@ -1,10 +1,12 @@
 // ✅ PURE SERVER COMPONENT - No 'use client', no hooks, no client component imports
 import Link from 'next/link';
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import DesignWork from '@/components/DesignWork';
 import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
+import SketchReveal from '@/components/SketchReveal';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -47,6 +49,231 @@ function preventWidow(text) {
   const words = text.trim().split(" ");
   if (words.length < 2) return text;
   return [...words.slice(0, -2), words.slice(-2).join("\u00A0")].join(" ");
+}
+
+function ExperienceConceptDiagram() {
+  return (
+    <div className="relative" aria-labelledby="experience-diagram-title">
+      <div
+        className="relative overflow-hidden bg-[#fbf8f1] px-4 py-6 md:px-6 md:py-8"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 24% 18%, rgba(68,64,60,0.055) 0 0.7px, transparent 0.9px), linear-gradient(rgba(120,113,108,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(120,113,108,0.035) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      >
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/75 via-transparent to-amber-100/20" aria-hidden="true" />
+        <h2 id="experience-diagram-title" className="sr-only">
+          Designing Experiences Across People, Places and Systems
+        </h2>
+
+        <SketchReveal className="experience-sketch">
+              <svg
+                className="relative z-10 hidden h-auto w-full overflow-visible text-gray-950 md:block"
+                viewBox="0 0 760 520"
+                role="img"
+                aria-labelledby="experience-sketch-title experience-sketch-desc"
+              >
+                <title id="experience-sketch-title">Hand-drawn concept sketch: Experiences at the intersection of people, places, and systems</title>
+                <desc id="experience-sketch-desc">
+                  A landscape architecture parti diagram showing Experiences as the central concept, connected to People, Places, and Systems, with Field Notes: 41 Countries as a travel annotation.
+                </desc>
+
+                <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                  <path className="experience-sketch-line experience-sketch-line-field" d="M89 83 C180 31 313 48 408 98 C534 164 665 167 714 282 C760 389 657 486 513 492 C358 498 264 453 166 468 C71 482 22 415 48 314 C69 232 22 139 89 83Z" strokeWidth="0.45" opacity="0.22" />
+                  <path className="experience-sketch-dashed" d="M116 108 C220 62 338 73 434 130 C553 201 645 203 684 298 C719 384 627 456 499 462 C371 468 285 424 178 438 C96 449 59 392 78 312 C97 230 55 151 116 108Z" strokeWidth="0.38" strokeDasharray="6 10" style={{ '--sketch-opacity': 0.18 } as CSSProperties} />
+                  <path className="experience-sketch-dashed" d="M80 280 C151 244 245 241 329 270 C420 302 511 290 620 239" strokeWidth="0.36" strokeDasharray="3 9" style={{ '--sketch-opacity': 0.2 } as CSSProperties} />
+
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M322 190 C348 212 363 226 374 240" strokeWidth="1.15" opacity="0.65" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M324 185 C350 208 365 225 379 238" strokeWidth="0.42" opacity="0.34" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M271 372 C311 332 340 302 366 282" strokeWidth="1.15" opacity="0.65" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M266 368 C306 337 337 306 361 281" strokeWidth="0.44" opacity="0.32" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M544 221 C506 234 478 247 444 263" strokeWidth="1.15" opacity="0.65" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M548 226 C508 237 481 249 446 268" strokeWidth="0.42" opacity="0.3" />
+                  <path className="experience-sketch-dashed" d="M238 290 C309 253 409 217 546 305" strokeWidth="0.72" strokeDasharray="5 8" style={{ '--sketch-opacity': 0.28 } as CSSProperties} />
+                  <path className="experience-sketch-dashed experience-sketch-dashed-travel" d="M170 419 C255 353 355 330 526 386" stroke="rgb(180 83 9)" strokeWidth="0.82" strokeDasharray="4 7" style={{ '--sketch-opacity': 0.55 } as CSSProperties} />
+
+                  <path className="experience-sketch-line experience-sketch-node" d="M213 126 C243 91 306 96 332 131 C363 173 327 231 267 225 C214 220 177 166 213 126Z" strokeWidth="1.08" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M218 120 C252 99 306 105 330 139 C357 179 318 226 264 218 C211 210 185 151 218 120Z" strokeWidth="0.55" opacity="0.3" />
+
+                  <path className="experience-sketch-line experience-sketch-node" d="M141 347 C174 308 239 313 268 354 C300 399 258 456 198 449 C142 442 103 389 141 347Z" strokeWidth="1.02" opacity="0.6" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M151 340 C186 313 244 327 266 365 C291 410 249 451 197 443 C144 434 119 373 151 340Z" strokeWidth="0.5" opacity="0.3" />
+
+                  <path className="experience-sketch-line experience-sketch-node" d="M544 146 C581 113 646 129 663 176 C681 226 633 278 579 262 C526 246 502 185 544 146Z" strokeWidth="1.08" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M552 139 C590 119 648 139 660 183 C674 231 627 267 580 255 C532 243 512 177 552 139Z" strokeWidth="0.55" opacity="0.3" />
+
+                  <path className="experience-sketch-line experience-sketch-node experience-sketch-node-central" d="M359 230 C383 201 431 208 449 238 C473 278 434 327 385 314 C337 301 325 264 359 230Z" strokeWidth="1.45" opacity="0.72" />
+                  <path className="experience-sketch-line experience-sketch-node experience-sketch-node-central" d="M352 235 C382 196 438 213 452 245 C467 281 431 321 388 310 C348 299 329 267 352 235Z" strokeWidth="0.8" opacity="0.38" />
+                  <path className="experience-sketch-line experience-sketch-node experience-sketch-node-central" d="M365 226 C398 211 434 226 444 255 C455 289 420 315 385 304 C349 293 339 247 365 226Z" strokeWidth="0.55" opacity="0.3" />
+
+                  <g className="experience-sketch-ticks" opacity="0.6">
+                    <path d="M337 228 l-13 -9" strokeWidth="0.72" />
+                    <path d="M338 231 l-12 -5" strokeWidth="0.36" />
+                    <path d="M456 241 l17 -7" strokeWidth="0.62" />
+                    <path d="M456 245 l15 -3" strokeWidth="0.34" />
+                    <path d="M334 302 l-15 11" strokeWidth="0.58" />
+                    <path d="M210 114 l-13 -12" strokeWidth="0.55" />
+                    <path d="M650 168 l18 -8" strokeWidth="0.55" />
+                    <path d="M142 371 l-18 2" strokeWidth="0.55" />
+                  </g>
+
+                  <g className="experience-sketch-hatching" opacity="0.42">
+                    <path d="M260 92 l-9 19" strokeWidth="0.32" />
+                    <path d="M275 91 l-11 23" strokeWidth="0.3" />
+                    <path d="M290 95 l-10 21" strokeWidth="0.28" />
+                    <path d="M178 342 l-15 22" strokeWidth="0.32" />
+                    <path d="M194 337 l-16 26" strokeWidth="0.3" />
+                    <path d="M211 339 l-16 25" strokeWidth="0.28" />
+                    <path d="M598 130 l-16 24" strokeWidth="0.32" />
+                    <path d="M615 135 l-16 27" strokeWidth="0.3" />
+                    <path d="M632 144 l-13 23" strokeWidth="0.28" />
+                    <path d="M384 220 l-19 30" strokeWidth="0.35" />
+                    <path d="M404 216 l-25 43" strokeWidth="0.32" />
+                    <path d="M425 225 l-28 48" strokeWidth="0.3" />
+                  </g>
+
+                  <g className="experience-sketch-markers" opacity="0.55">
+                    <path d="M197 103 c2 -2 5 -2 7 0 c-1 2 -5 3 -7 0Z" strokeWidth="0.34" />
+                    <path d="M536 221 c2 -2 5 -1 6 1 c-2 2 -5 2 -6 -1Z" strokeWidth="0.34" />
+                    <path d="M170 419 c2 -2 5 -1 6 1 c-2 2 -5 2 -6 -1Z" stroke="rgb(180 83 9)" strokeWidth="0.34" />
+                  </g>
+                </g>
+
+                <g className="experience-sketch-main-labels" fill="currentColor">
+                <text x="398" y="255" textAnchor="middle" fontSize="18" fontWeight="700" letterSpacing="1.2" transform="rotate(-1 398 255)">
+                  EXPERIENCES
+                </text>
+                <text x="198" y="104" fontSize="16" fontWeight="700" letterSpacing="1" transform="rotate(-3 198 104)">
+                  PEOPLE
+                </text>
+                <text x="119" y="333" fontSize="16" fontWeight="700" letterSpacing="1" transform="rotate(2 119 333)">
+                  PLACES
+                </text>
+                <text x="556" y="132" fontSize="16" fontWeight="700" letterSpacing="1" transform="rotate(2 556 132)">
+                  SYSTEMS
+                </text>
+              </g>
+
+              <g className="experience-sketch-annotations" fill="currentColor">
+                <text x="398" y="280" textAnchor="middle" fontSize="13" fontWeight="400" opacity="0.68" transform="rotate(-1 398 280)">
+                  products / services / destinations / journeys
+                </text>
+                <text x="198" y="128" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(-3 198 128)">
+                  human behavior
+                </text>
+                <text x="198" y="146" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(-3 198 146)">
+                  decision making
+                </text>
+                <text x="198" y="164" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(-3 198 164)">
+                  journeys
+                </text>
+                <text x="119" y="358" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 119 358)">
+                  landscape architecture
+                </text>
+                <text x="119" y="376" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 119 376)">
+                  outdoor environments
+                </text>
+                <text x="119" y="394" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 119 394)">
+                  hospitality
+                </text>
+                <text x="556" y="157" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 556 157)">
+                  UX/UI + product design
+                </text>
+                <text x="556" y="175" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 556 175)">
+                  operations
+                </text>
+                <text x="556" y="193" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(2 556 193)">
+                  AI systems
+                </text>
+              </g>
+
+              <g className="experience-sketch-note" fill="currentColor">
+                <text x="501" y="407" fontSize="14" fontWeight="700" letterSpacing="0.8" fill="rgb(146 64 14)" transform="rotate(-2 501 407)">
+                  FIELD NOTES: 41 COUNTRIES
+                </text>
+                <text x="501" y="428" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(-2 501 428)">
+                  observing how people navigate unfamiliar
+                </text>
+                <text x="501" y="446" fontSize="12.5" fontWeight="400" opacity="0.72" transform="rotate(-2 501 446)">
+                  places, cultures, systems, and decisions
+                </text>
+              </g>
+              </svg>
+
+              <svg
+                className="relative z-10 h-auto w-full overflow-visible text-gray-950 md:hidden"
+                viewBox="0 0 360 620"
+                role="img"
+                aria-labelledby="experience-sketch-mobile-title experience-sketch-mobile-desc"
+              >
+                <title id="experience-sketch-mobile-title">Hand-drawn concept sketch for mobile</title>
+                <desc id="experience-sketch-mobile-desc">
+                  Experiences sits at the center of people, places, and systems, with Field Notes: 41 Countries as a travel annotation.
+                </desc>
+
+                <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                  <path className="experience-sketch-line experience-sketch-line-field" d="M42 35 C112 7 226 24 294 92 C356 154 341 270 286 335 C230 401 126 390 68 338 C8 284 -17 171 42 35Z" strokeWidth="0.56" opacity="0.2" />
+                  <path className="experience-sketch-dashed" d="M66 72 C133 44 234 62 286 126 C337 189 313 279 260 325 C207 371 121 363 76 314 C24 257 9 136 66 72Z" strokeWidth="0.44" strokeDasharray="5 8" style={{ '--sketch-opacity': 0.18 } as CSSProperties} />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M131 152 C151 190 163 219 173 255" strokeWidth="1.1" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M116 433 C135 390 153 355 175 326" strokeWidth="1.1" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-line-connector" d="M257 204 C229 222 209 240 188 262" strokeWidth="1.1" opacity="0.62" />
+                  <path className="experience-sketch-dashed experience-sketch-dashed-travel" d="M70 526 C124 476 198 455 293 487" stroke="rgb(180 83 9)" strokeWidth="0.78" strokeDasharray="4 7" style={{ '--sketch-opacity': 0.52 } as CSSProperties} />
+
+                  <path className="experience-sketch-line experience-sketch-node" d="M83 94 C108 66 158 75 174 111 C190 150 153 187 112 178 C73 169 57 124 83 94Z" strokeWidth="1.02" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M88 91 C118 73 160 83 172 116 C185 151 150 181 112 173 C76 165 63 116 88 91Z" strokeWidth="0.52" opacity="0.3" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M58 395 C86 366 137 375 152 411 C168 449 130 488 88 477 C49 467 31 424 58 395Z" strokeWidth="1.02" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M61 391 C92 372 136 384 150 416 C164 451 127 482 88 472 C52 463 37 417 61 391Z" strokeWidth="0.52" opacity="0.3" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M236 132 C265 105 315 119 328 156 C342 198 302 234 261 222 C222 210 205 161 236 132Z" strokeWidth="1.02" opacity="0.62" />
+                  <path className="experience-sketch-line experience-sketch-node" d="M241 128 C269 112 315 127 325 161 C336 198 300 229 262 217 C227 206 211 158 241 128Z" strokeWidth="0.52" opacity="0.3" />
+                  <path className="experience-sketch-line experience-sketch-node experience-sketch-node-central" d="M137 257 C169 224 224 234 242 273 C262 316 219 362 169 349 C124 337 104 293 137 257Z" strokeWidth="1.28" opacity="0.72" />
+                  <path className="experience-sketch-line experience-sketch-node experience-sketch-node-central" d="M141 253 C173 230 222 239 239 277 C256 315 217 354 171 344 C129 334 111 287 141 253Z" strokeWidth="0.62" opacity="0.34" />
+
+                  <g className="experience-sketch-hatching" opacity="0.4">
+                    <path d="M112 78 l-10 18" strokeWidth="0.32" />
+                    <path d="M128 78 l-12 21" strokeWidth="0.3" />
+                    <path d="M87 398 l-14 24" strokeWidth="0.32" />
+                    <path d="M104 397 l-15 26" strokeWidth="0.3" />
+                    <path d="M268 131 l-14 23" strokeWidth="0.32" />
+                    <path d="M286 138 l-14 24" strokeWidth="0.3" />
+                    <path d="M169 248 l-22 38" strokeWidth="0.34" />
+                    <path d="M192 248 l-25 45" strokeWidth="0.31" />
+                    <path d="M214 260 l-25 44" strokeWidth="0.29" />
+                  </g>
+
+                  <g className="experience-sketch-markers" opacity="0.55">
+                    <path d="M82 88 c2 -2 5 -2 7 0 c-2 2 -5 3 -7 0Z" strokeWidth="0.34" />
+                    <path d="M251 204 c2 -2 5 -1 7 1 c-2 2 -6 2 -7 -1Z" strokeWidth="0.34" />
+                    <path d="M70 526 c2 -2 5 -1 6 1 c-2 2 -5 2 -6 -1Z" stroke="rgb(180 83 9)" strokeWidth="0.34" />
+                  </g>
+                </g>
+
+                <g className="experience-sketch-main-labels" fill="currentColor">
+                  <text x="188" y="288" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="1" transform="rotate(-1 188 288)">EXPERIENCES</text>
+                  <text x="81" y="89" fontSize="15" fontWeight="700" letterSpacing="0.8" transform="rotate(-4 81 89)">PEOPLE</text>
+                  <text x="54" y="393" fontSize="15" fontWeight="700" letterSpacing="0.8" transform="rotate(2 54 393)">PLACES</text>
+                  <text x="236" y="129" fontSize="15" fontWeight="700" letterSpacing="0.8" transform="rotate(3 236 129)">SYSTEMS</text>
+                </g>
+
+                <g className="experience-sketch-annotations" fill="currentColor">
+                  <text x="188" y="312" textAnchor="middle" fontSize="12" fontWeight="400" opacity="0.72">products / services / journeys</text>
+                  <text x="81" y="113" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(-4 81 113)">human behavior</text>
+                  <text x="81" y="130" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(-4 81 130)">decision-making</text>
+                  <text x="54" y="417" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(2 54 417)">landscape architecture</text>
+                  <text x="54" y="434" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(2 54 434)">travel / hospitality</text>
+                  <text x="236" y="153" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(3 236 153)">product design</text>
+                  <text x="236" y="170" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(3 236 170)">AI + operations</text>
+                </g>
+
+                <g className="experience-sketch-note" fill="currentColor">
+                  <text x="78" y="536" fontSize="13" fontWeight="700" letterSpacing="0.7" fill="rgb(146 64 14)" transform="rotate(-2 78 536)">FIELD NOTES: 41 COUNTRIES</text>
+                  <text x="78" y="557" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(-2 78 557)">real-world context across</text>
+                  <text x="78" y="574" fontSize="12" fontWeight="400" opacity="0.72" transform="rotate(-2 78 574)">places, systems, and decisions</text>
+                </g>
+              </svg>
+            </SketchReveal>
+          </div>
+    </div>
+  );
 }
 
 export default function HomePage() {
@@ -252,7 +479,7 @@ export default function HomePage() {
 </div>
 
                 {/* Design Journey Section */}
-                <div className="w-full">
+                <div className="w-full mt-8 md:mt-10">
                   <div className="homepage-stack">
                     {/* Design Journey Path Marker */}
                     <div className="flex items-center gap-3 opacity-60">
@@ -269,6 +496,11 @@ export default function HomePage() {
                       {preventWidow(`My design foundation began in urban design and landscape architecture, where I learned to think about movement, context, circulation, constraints, and how people experience space. That training became the lens I brought into UX and product design: understanding complex systems, then shaping clearer paths through them.`)}
                     </p>
                   </div>
+                </div>
+
+                {/* Experience Concept Sketch */}
+                <div className="w-full my-8 md:my-10">
+                  <ExperienceConceptDiagram />
                 </div>
 
                 {/* Travel Discovery Section */}

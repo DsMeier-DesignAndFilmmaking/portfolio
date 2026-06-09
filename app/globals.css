@@ -1030,6 +1030,158 @@ section *::-webkit-scrollbar,
     margin-top: var(--homepage-major-gap);
   }
 
+  .experience-sketch {
+    opacity: 0.08;
+    transition: opacity 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .experience-sketch[data-sketch-visible="true"] {
+    opacity: 1;
+  }
+
+  .experience-sketch-line {
+    stroke-dasharray: 920;
+    stroke-dashoffset: 920;
+    stroke-opacity: 0;
+    will-change: stroke-dashoffset, stroke-opacity;
+  }
+
+  .experience-sketch-line-field {
+    --sketch-delay: 0ms;
+    --sketch-duration: 1000ms;
+  }
+
+  .experience-sketch-line-connector {
+    --sketch-delay: 170ms;
+    --sketch-duration: 1120ms;
+  }
+
+  .experience-sketch-node {
+    --sketch-delay: 720ms;
+    --sketch-duration: 760ms;
+  }
+
+  .experience-sketch-node-central {
+    --sketch-delay: 840ms;
+  }
+
+  .experience-sketch-dashed {
+    opacity: 0;
+    transition: opacity 760ms cubic-bezier(0.22, 1, 0.36, 1) 360ms;
+  }
+
+  .experience-sketch-dashed-travel {
+    transition-delay: 1180ms;
+  }
+
+  .experience-sketch-ticks,
+  .experience-sketch-hatching,
+  .experience-sketch-markers {
+    opacity: 0;
+    transition: opacity 460ms cubic-bezier(0.22, 1, 0.36, 1) 900ms;
+  }
+
+  .experience-sketch-hatching {
+    transition-delay: 1060ms;
+  }
+
+  .experience-sketch-markers {
+    transition-delay: 1160ms;
+  }
+
+  .experience-sketch-main-labels,
+  .experience-sketch-annotations,
+  .experience-sketch-note {
+    font-family: 'Kalam', 'Bradley Hand', 'Segoe Print', cursive;
+    opacity: 0;
+    transform: translateY(8px);
+    will-change: opacity, transform;
+  }
+
+  .experience-sketch-main-labels {
+    letter-spacing: 0.02em;
+    transition:
+      opacity 440ms cubic-bezier(0.22, 1, 0.36, 1) 1240ms,
+      transform 440ms cubic-bezier(0.22, 1, 0.36, 1) 1240ms;
+  }
+
+  .experience-sketch-annotations {
+    letter-spacing: 0.005em;
+    transition:
+      opacity 620ms cubic-bezier(0.22, 1, 0.36, 1) 1480ms,
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 1480ms;
+  }
+
+  .experience-sketch-note {
+    letter-spacing: 0.01em;
+    transform: translateY(10px) rotate(-0.5deg);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 1, 0.36, 1) 1820ms,
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 1820ms;
+  }
+
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-line {
+    animation: experienceSketchDraw var(--sketch-duration, 900ms) cubic-bezier(0.22, 1, 0.36, 1) var(--sketch-delay, 0ms) forwards;
+  }
+
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-dashed {
+    opacity: var(--sketch-opacity, 0.4);
+  }
+
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-ticks,
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-hatching,
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-markers {
+    opacity: 1;
+  }
+
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-main-labels,
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-annotations,
+  .experience-sketch[data-sketch-visible="true"] .experience-sketch-note {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes experienceSketchDraw {
+    0% {
+      stroke-dashoffset: 920;
+      stroke-opacity: 0;
+    }
+
+    10% {
+      stroke-opacity: 1;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+      stroke-opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .experience-sketch,
+    .experience-sketch-main-labels,
+    .experience-sketch-annotations,
+    .experience-sketch-note,
+    .experience-sketch-ticks,
+    .experience-sketch-hatching,
+    .experience-sketch-markers {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .experience-sketch-line {
+      animation: none !important;
+      stroke-dashoffset: 0;
+      stroke-opacity: 1;
+    }
+
+    .experience-sketch-dashed {
+      opacity: var(--sketch-opacity, 0.4);
+      transition: none;
+    }
+  }
+
   /* ===== TRUST LAYER & DESIGN EVOLUTION MOBILE SCROLL FIX ===== */
   /* Force overflow visible and height auto to prevent internal scroll traps on mobile */
   #trust-layer,
