@@ -337,29 +337,28 @@ export default function HomePage() {
     <div className="homepage-container py-0">
       <div className="w-full text-left">
         
-        {/* Title Block */}
-        <div className="homepage-copy-column homepage-section-header homepage-title-only">
-          {/* Mobile Version - Simplified */}
-          <h1 
-            className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-            style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: '1.5rem' }}
-          >
-            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Designing Experiences Across People, Places, &amp; Systems</span>
-          </h1>
-          
-          {/* Desktop Version - Original */}
-          <h1 
-            className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
-            style={{ 
-              fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
-              whiteSpace: 'normal',
-              fontFamily: "'tiempos-headline-regular', serif",
-              marginBottom: '2rem'
-            }}
-          >
-            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Designing Experiences Across People, Places, &amp; Systems</span>
-          </h1>
-        </div>
+{/* Title Block - Clean Editorial Layout (Zero Gradients = Zero Banding) */}
+<div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
+  <h1 
+    className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18]" 
+    style={{ 
+      fontSize: 'clamp(1.75rem, 4.5vw, 3.75rem)', 
+      whiteSpace: 'normal',
+      fontFamily: "'tiempos-headline-regular', serif",
+      marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
+    }}
+  >
+    Designing Experiences Across{' '}
+    <span 
+      className="text-black inline-block underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px]"
+      style={{
+        textDecorationSkipInk: 'none'
+      }}
+    >
+      People, Places, &amp; Systems
+    </span>
+  </h1>
+</div>
 
         {/* Narrative Copy Stack */}
         <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
