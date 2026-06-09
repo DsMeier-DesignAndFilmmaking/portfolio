@@ -41,7 +41,7 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
               />
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Curious about systems, code, and how people experience the world.
+              Designing systems and experiences for people moving through complex digital and physical environments.
             </p>
           </div>
 

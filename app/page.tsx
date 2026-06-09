@@ -74,97 +74,104 @@ export default function HomePage() {
         <div className="homepage-root relative w-full text-[#2F2A3B] overflow-x-hidden scroll-optimized">
         
         {/* Unified Hero & Introduction Section */}
-        <section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-10" aria-label="Introduction">
-          {/* Hero Content - Viewport-positioned with content-driven bottom spacing */}
-          <div className="relative flex items-center justify-center min-h-[85vh] md:min-h-[90vh] pt-36 md:pt-0">
-            <div className="homepage-container py-0">
-              {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-              <div 
-                  className="w-full text-left"
-                >
-                  <div className="homepage-copy-column homepage-section-header homepage-title-only">
-                    {/* Mobile Version - Simplified */}
-                    <h1 
-                      className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
-                      style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
-                    >
-                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
-                    </h1>
-                    
-                    {/* Desktop Version - Original */}
-                    <h1 
-                      className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
-                      style={{ 
-                        fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
-                        whiteSpace: 'normal',
-                        fontFamily: "'tiempos-headline-regular', serif",
-                        marginBottom: 'calc(1.32 * 1.5rem)'
-                      }}
-                    >
-                      <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Welcome</span>
-                    </h1>
-                  </div>
-                  <div className="homepage-copy-column space-y-6 mb-0">
-                  <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
-                      style={{ 
-                        fontFamily: "'Roboto', Helvetica, sans-serif", 
-                        // Additive clamp ensures zoom functionality works perfectly
-                        fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
-                      }}
-                    >
-                      I design systems for the world outside the glass. <br /><br />
-                      I’m Dan Meier, a Systems Product Designer. I bridge the gap between complex digital architecture and real-world operational execution. With 10 years of systems thinking and a field-tested background navigating 40+ countries, I build products and experiences that move people, assets, and information through real-time, context-aware environments.
-                    </p>
-                    <p 
-                      className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
-                      style={{ 
-                        fontFamily: "'Roboto', Helvetica, sans-serif", 
-                        fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
-                        borderLeft: '2px solid #E5E7EB',
-                        paddingLeft: '1rem' 
-                      }}
-                    >
-                      Currently exploring how systems design, AI, and real-world context combine to create more adaptive, human-centered&nbsp;experiences.
-                    </p>
-                    <div>
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
-                        alt="Dan Meier signature"
-                        width={208}
-                        height={70}
-                        className="h-10 w-auto"
-                        style={{ maxWidth: '311px' }}
-                      />
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
+<section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-10" aria-label="Introduction">
+  {/* Hero Content - Cleanly stacked content column */}
+  <div className="relative flex flex-col justify-center pt-24 md:pt-32">
+    <div className="homepage-container py-0">
+      <div className="w-full text-left">
+        
+        {/* Title Block */}
+        <div className="homepage-copy-column homepage-section-header homepage-title-only">
+          {/* Mobile Version - Simplified */}
+          <h1 
+            className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
+            style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: '1.5rem' }}
+          >
+            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Designing Experiences Across People, Places, &amp; Systems</span>
+          </h1>
           
-          {/* Hero Image - Moved inside hero section */}
-          <div className="homepage-container mt-8 md:-mt-12 md:relative md:z-10">
-            <div className="homepage-copy-column">
-              <div 
-                className="w-full relative rounded-lg shadow-lg overflow-hidden" 
-                style={{ 
-                  background: '#f0f0f0' /* Skeleton state background */,
-                  aspectRatio: '1920 / 1080' /* Match actual hero image dimensions */
-                }}
-              >
-                <Image 
-                  id="me_heroImage-1_1.1.1"
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
-                  alt="Dan Meier"
-                  width={1920}
-                  height={1080}
-                  priority
-                  sizes="(max-width: 768px) 100vw, 576px"
-                  className="w-full h-auto block rounded-lg transition-all duration-300"
-                />
-              </div>
-            </div>
+          {/* Desktop Version - Original */}
+          <h1 
+            className="hero-title hidden md:block font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left" 
+            style={{ 
+              fontSize: 'clamp(2.5rem, 4.5vw, 3.75rem)', 
+              whiteSpace: 'normal',
+              fontFamily: "'tiempos-headline-regular', serif",
+              marginBottom: '2rem'
+            }}
+          >
+            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent font-bold">Designing Experiences Across People, Places, &amp; Systems</span>
+          </h1>
+        </div>
+
+        {/* Narrative Copy Stack */}
+        <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
+          <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
+            style={{ 
+              fontFamily: "'Roboto', Helvetica, sans-serif", 
+              fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
+            }}
+          >
+            <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design, shaped by the grit of manual labor and travel to 41 countries. No matter what I’m building, my focus is always the same: designing for scale and adaptability, instead of fixed systems or static plans.
+          </p>
+          
+          <p 
+            className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
+            style={{ 
+              fontFamily: "'Roboto', Helvetica, sans-serif", 
+              fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
+              borderLeft: '2px solid #E5E7EB',
+              paddingLeft: '1rem' 
+            }}
+          >
+            Currently building AI-enabled systems that connect real-world context, decision support, and human-centered experience&nbsp;design.
+          </p>
+          
+          {/* Dedicated Signature Frame - Tightened top spacing */}
+          <div className="pt-2 md:pt-4 block visual-signature-wrapper">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/signature-25.png`}
+              alt="Dan Meier signature"
+              width={208}
+              height={70}
+              className="w-auto"
+              style={{ 
+                height: '40px', 
+                maxWidth: '311px',
+                display: 'block'
+              }}
+            />
           </div>
-        </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  {/* Hero Image Container - Tightened gap with clean bottom margin */}
+  <div className="homepage-container mt-12 md:mt-16 mb-16 md:mb-24 relative z-10">
+    <div className="homepage-copy-column">
+      <div 
+        className="w-full relative rounded-lg shadow-lg overflow-hidden" 
+        style={{ 
+          background: '#f0f0f0',
+          aspectRatio: '1920 / 1080'
+        }}
+      >
+        <Image 
+          id="me_heroImage-1_1.1.1"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
+          alt="Dan Meier"
+          width={1920}
+          height={1080}
+          priority
+          sizes="(max-width: 768px) 100vw, 576px"
+          className="w-full h-auto block rounded-lg transition-all duration-300"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
 
         {/* Stable anchor target for About section - zero height, positioned before content */}
@@ -181,7 +188,7 @@ export default function HomePage() {
                   className="hero-title md:hidden font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left" 
                   style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', whiteSpace: 'normal', fontFamily: "'tiempos-headline-regular', serif", marginBottom: 'calc(1.32 * 1.5rem)' }}
                 >
-                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
+                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Foundations &amp; The Journey</span>
                 </h1>
                 
                 {/* Desktop Version - Original */}
@@ -194,7 +201,7 @@ export default function HomePage() {
                     marginBottom: 'calc(1.32 * 1.5rem)'
                   }}
                 >
-                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">About Me</span>
+                  <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold">Foundations &amp; The Journey</span>
                 </h1>
               </div>
 
@@ -251,7 +258,7 @@ export default function HomePage() {
                     <div className="flex items-center gap-3 opacity-60">
                       <div className="w-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"></div>
                       <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">Design Journey</div>
+                      <div className="text-sm font-medium tracking-wider text-blue-600 uppercase">From Spatial Systems to Digital Products</div>
                     </div>
                     
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700"
@@ -259,7 +266,7 @@ export default function HomePage() {
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`My career path began in urban design and landscape architecture, where I was trained to think about how people interact with spaces and systems. Along the way, I found myself fascinated not just by what I was creating, but by the digital tools I was using to create it — and the experiences those tools could unlock. That curiosity pushed me toward UX and digital product design.`)}
+                      {preventWidow(`My design foundation began in urban design and landscape architecture, where I learned to think about movement, context, circulation, constraints, and how people experience space. That training became the lens I brought into UX and product design: understanding complex systems, then shaping clearer paths through them.`)}
                     </p>
                   </div>
                 </div>
@@ -288,10 +295,10 @@ export default function HomePage() {
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Everything shifted when I had the chance to <span className="italic text-gray-800">study abroad</span>. Experiencing new cultures and environments first-hand opened my eyes to the value of <span className="font-semibold text-gray-800">travel, connection, and perspective</span>. I've now visited over <span className="text-amber-600 font-semibold">40 countries</span>, and those experiences have shaped how I think about people and&nbsp;design.
+                    Travel deepened that lens. Moving through <span className="text-amber-600 font-semibold">40+ countries</span> has shaped how I observe place, behavior, friction, wayfinding, hospitality, and decision-making in unfamiliar environments. Those experiences continue to inform how I design for people moving through real-world&nbsp;complexity.
                   </p>
                     <p className="text-sm text-gray-900 italic" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-                      *All visuals captured through my lens, no AI generated photos or video.
+                      *All visuals captured through my lens, no AI-generated photos or video.
                     </p>
                   </div>
                 </div>
@@ -373,24 +380,24 @@ export default function HomePage() {
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
               
-              <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight" style={{
-                fontFamily: "'tiempos-headline-regular', serif",
-                color: '#000000'
-              }}>
-                World Travel Diaries
-              </h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-pretty" style={{
+              fontFamily: "'tiempos-headline-regular', serif",
+              color: '#000000'
+            }}>
+              Field Notes From <br></br> the World
+            </h2>
               <p className="text-xl max-w-4xl mx-auto mb-6 md:mb-8 font-medium leading-relaxed" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
-                I've been lucky enough to travel to 41 countries. Documenting these experiences and encounters with a camera has been a true joy of mine.
+                Travel has been one of my strongest teachers in how people move through place, culture, uncertainty, hospitality, and environmental context. Across 41 countries, I’ve documented the moments, routes, and conditions that shape real-world experience.
               </p>
               <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 color: '#374151'
               }}>
-                *All visuals captured through my lens, no AI generated photos or video.
+                *All visuals captured through my lens, no AI-generated photos or video.
               </p>
             </div>
             
@@ -463,7 +470,7 @@ export default function HomePage() {
                 className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                My YouTube
+                YouTube
               </a>
               <a
                 href="https://vimeo.com/user94578264"
@@ -472,7 +479,7 @@ export default function HomePage() {
                 className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                My Vimeo
+                Vimeo
               </a>
             </div>
             
@@ -513,20 +520,20 @@ export default function HomePage() {
                           </div>
                           <div className="homepage-copy-column">
                               <h3 className="text-2xl md:text-3xl font-bold text-white">
-                               Travel Photo Journal
+                               Travel Field Journal
                              </h3>
-                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>Interactive Travel Stories</p>
+                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>Place-Based Stories</p>
                           </div>
                         </div>
                         
                         <div className="homepage-copy-column space-y-4 mb-6">
                           <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
-                            A curated collection of visual narratives of my travels, blending photography, storytelling, and interactive experiences.
+                            A developing collection of visual field notes connecting photography, place-based storytelling, and interactive experience design.
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Photography</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Travel Stories</span>
-                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Interactive</span>
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Field Notes</span>
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Place</span>
+                            <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">Experience</span>
                           </div>
                         </div>
                         
@@ -541,7 +548,7 @@ export default function HomePage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                           </div>
-                            <h4 className="text-xl font-bold mb-2">Coming Soon</h4>
+                            <h4 className="text-xl font-bold mb-2">In Progress</h4>
                         </div>
                       </div>
                     </div>

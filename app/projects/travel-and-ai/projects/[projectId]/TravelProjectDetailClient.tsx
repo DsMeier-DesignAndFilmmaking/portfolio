@@ -3312,7 +3312,7 @@ const variables: Record<string, { title: string; desc: string }> = {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 min-h-[48px] text-center"
-            aria-label="View Live Demo"
+            aria-label="Open Live Build"
           >
             Explore Active Build
             <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
