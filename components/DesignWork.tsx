@@ -36,14 +36,14 @@ const FIELD_NOTES_LIVE_PRODUCT_URL = 'https://downloadable-travel-packs.vercel.a
 const hadeCore: WorkNode = {
   number: '01',
   title: 'HADE Core Engine',
-  label: 'Context-Aware Experience System',
+  label: 'AI Decision Support',
   description:
-    'A context-aware decision system that translates live signals into clear, trusted next steps.',
+    'Interprets live context signals and adaptive logic to turn changing conditions into clear, trusted next steps.',
   items: [
-    'Live context signals',
+    'Context interpretation',
     'Adaptive decision logic',
-    'Trust and confidence layer',
-    'Human action surface',
+    'Trust cues',
+    'Clear next steps',
   ],
   cta: 'Explore System Design',
   href: '/projects/travel-and-ai',
@@ -60,14 +60,14 @@ const appliedModules: WorkNode[] = [
   {
     number: '02',
     title: 'Field Logistics',
-    label: 'Travel, Place & Context',
+    label: 'Place-Aware Product Design',
     description:
-      'Applies systems thinking to movement, weather, location, local signals, and real-world travel constraints.',
+      'Interprets movement, weather, location, and local signals to support adaptive travel decisions in changing conditions.',
     items: [
-      'Travel context',
-      'Local signals',
-      'Route viability',
-      'Real-time adaptation',
+      'Movement patterns',
+      'Weather signals',
+      'Travel conditions',
+      'Environmental awareness',
     ],
     cta: 'Explore System Design',
     href: '/projects/field-notes',
@@ -82,14 +82,14 @@ const appliedModules: WorkNode[] = [
   {
     number: '03',
     title: 'Digital Executor',
-    label: 'Service Recovery & Coordination',
+    label: 'Operational Workflow Design',
     description:
-      'Explores how digital systems can support service recovery, coordination, and follow-through when real-world plans break down.',
+      'Coordinates service recovery, vendor handoffs, workflow design, and resolution paths when real-world plans break down.',
     items: [
       'Service recovery',
       'Vendor coordination',
-      'Multi-step workflows',
-      'Resolution logic',
+      'Workflow design',
+      'Resolution paths',
     ],
     cta: 'Explore Case Study',
     href: '/projects/digital-executor',
@@ -100,15 +100,15 @@ const appliedModules: WorkNode[] = [
 const historicalFoundation: WorkNode = {
   number: '04',
   title: 'Professional Foundations',
-  label: 'Professional Practice',
+  label: 'Shipped Client & Product Work',
   description:
-    '10+ years of client, agency, and product work across healthcare, education, enterprise, commerce, and emerging technology shaped the systems thinking behind my current practice.',
+    '10+ years delivering UX, product, and interface work across healthcare, education, enterprise, commerce, and emerging technology.',
   items: [
-    'Healthcare',
-    'Higher education',
+    'Healthcare products',
+    'Education platforms',
     'Enterprise tools',
-    'Commerce and data products',
-    'Cross-industry product delivery',
+    'Commerce systems',
+    'Data products',
   ],
   cta: 'View Previous Work',
   href: '/projects/previous',
@@ -117,20 +117,20 @@ const historicalFoundation: WorkNode = {
 
 const ecosystemLayers = [
   {
-    name: 'Core System',
-    description: 'adaptive decision infrastructure',
+    name: 'AI Decision Support',
+    description: 'context interpretation and trusted next steps',
   },
   {
-    name: 'Field Logistics',
-    description: 'travel and exploration systems',
+    name: 'Place-Aware Products',
+    description: 'movement, weather, and travel conditions',
   },
   {
-    name: 'Service Recovery',
-    description: 'autonomous execution workflows',
+    name: 'Workflow Design',
+    description: 'service recovery and resolution paths',
   },
   {
-    name: 'Practice Foundations',
-    description: '10+ years designing products, systems, and experiences across industries. 40+ countries explored.',
+    name: 'Shipped Work',
+    description: '10+ years delivering products across complex industries',
   },
 ];
 
@@ -270,10 +270,10 @@ export default function DesignWork() {
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-600">
               <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
-              Experience Systems
+              Evidence of Practice
             </span>
             <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-500">
-              Current Practice
+              Built Work
             </span>
           </div>
 
@@ -296,15 +296,15 @@ export default function DesignWork() {
             className="text-xl text-gray-700 leading-relaxed"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
           >
-            My work connects product design, systems thinking, and real-world experience. I focus on how people, interfaces, environments, and operations interact, then design products and workflows that help people understand context, make decisions, and move forward.
+            The work below shows that lens in practice: AI decision systems, place-aware products, service recovery workflows, and shipped client work across healthcare, education, enterprise, commerce, and emerging technology.
           </p>
 
           <div className="mt-7 rounded-lg border border-gray-200 bg-gray-50 p-5 md:mt-8">
             <p className="mb-3 text-sm font-medium text-gray-500">
-              Current Design Direction
+              AI Decision Systems
             </p>
             <p className="text-base leading-relaxed text-gray-700">
-              HADE is a current systems initiative exploring how real-world context, AI, decision logic, and interface design can support better action across travel, service, and operational environments.
+              HADE demonstrates how real-world context, AI reasoning, decision logic, and interface design can support clearer action across travel, service, and operational environments.
               
             </p>
             <div className="mt-5">
@@ -354,7 +354,7 @@ export default function DesignWork() {
             <div className="mb-8 flex flex-col items-start gap-4 border-b border-gray-200 pb-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between md:mb-9">
               <div>
                 <p className="text-sm font-medium text-gray-500">
-                  Applied Field Studies
+                  Applied Products
                 </p>
                 <h3
                   id="applied-modules-title"
@@ -365,7 +365,7 @@ export default function DesignWork() {
                 </h3>
               </div>
               <p className="max-w-sm text-sm font-semibold leading-relaxed text-gray-600">
-                Two applied modules showing how the HADE system moves from decision logic into real-world use.
+                Two applied products showing how decision logic moves into real-world travel and service use.
               </p>
             </div>
 
@@ -424,11 +424,11 @@ export default function DesignWork() {
   <Layers3 className="h-4 w-4 text-stone-400" aria-hidden="true" />
   
   <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500">
-    System Paradigm No. 01 // Digital × Physical Synthesis
+    Evidence across AI products, field tools, service workflows, and shipped client work
   </p>
   
   <span className="text-xs font-medium tracking-wide text-stone-600">
-    Product Architecture • Environmental Context • Operational Logic
+    Decision support • Place-aware products • Operational workflows
   </span>
 </div>
         </div>
