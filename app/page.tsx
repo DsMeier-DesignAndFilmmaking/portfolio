@@ -302,18 +302,31 @@ export default function HomePage() {
         
         {/* Unified Hero & Introduction Section */}
 <section id="hero" className="homepage-section homepage-hero-section intro-section bg-white relative z-[1] overflow-hidden" aria-label="Introduction">
-  {/* Field-study texture layer - Expanded to full width behind content */}
-<div className="pointer-events-none absolute inset-0 z-0 hidden select-none lg:block" aria-hidden="true">
-  {/* Left-to-right fade overlay to ensure text readability if needed (Optional, remove if unwanted) */}
-  <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+{/* Field-study texture layer - Hard breakout of any parent margins */}
+<div 
+  className="pointer-events-none absolute top-0 z-0 hidden select-none lg:block" 
+  style={{ 
+    width: '100vw', 
+    left: '50%', 
+    right: '50%', 
+    marginLeft: '-50vw', 
+    marginRight: '-50vw' 
+  }}
+  aria-hidden="true"
+>
+  {/* Gradient overlay to protect text legibility */}
+  <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-white/10 to-white"></div>
   
-  <div className="absolute inset-0 w-full h-full opacity-10 mix-blend-multiply">
+  <div 
+    className="w-full opacity-10 mix-blend-multiply relative"
+    style={{ aspectRatio: '1408 / 768' }}
+  >
     <Image
       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/field-study-sketch.png`}
       alt=""
       fill
       priority
-      className="object-cover object-center"
+      className="w-full h-full object-fill"
       sizes="100vw"
     />
   </div>
