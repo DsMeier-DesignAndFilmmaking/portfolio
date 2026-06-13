@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, Variants, easeOut } from 'framer-motion';
+import { motion, Variants, easeOut } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   AlertTriangle,
@@ -27,6 +26,7 @@ import {
   Users,
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
+import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 
 const AOC_SECTIONS = [
   { id: 'aoc-hero', label: '01 Hero' },
@@ -63,14 +63,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.08 },
   },
 };
-
-const peerLinks = [
-  { href: '/projects/field-notes', label: 'Travel Field Notes' },
-  { href: '/projects/travel-and-ai', label: 'CORE ENGINE (HADE)' },
-  { href: '/projects/architecture-of-confidence', label: 'Architecture of Confidence' },
-  { href: '/projects/digital-executor', label: 'Digital Executor' },
-  { href: '/projects/previous', label: 'Client Work' },
-];
 
 const uncertaintyCards = [
   {
@@ -1002,53 +994,13 @@ function ProjectNav({
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
 }) {
-  const linkClass = (isActive: boolean) =>
-    `text-[11pt] transition-colors duration-500 ${
-      isNavbarWhite ? (isActive ? 'text-blue-500' : 'text-black') : isActive ? 'text-blue-500' : 'text-gray-700'
-    }`;
-
   return (
-    <>
-      <div className="hidden lg:block px-6 py-4">
-        <nav className="flex items-center space-x-8">
-          {peerLinks.map((link) => {
-            const isActive = pathname.startsWith(link.href);
-            return (
-              <div key={link.href} className="relative">
-                <Link href={link.href} className={linkClass(isActive)}>
-                  {link.label}
-                </Link>
-                {isActive && <span className="absolute left-0 -bottom-1 h-[2px] w-full rounded-full bg-blue-400" />}
-              </div>
-            );
-          })}
-        </nav>
-      </div>
-      <AnimatePresence mode="wait">
-        {isMobileMenuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 right-0 mt-2 rounded-lg border border-white/10 bg-black/95 mx-6 backdrop-blur-sm"
-          >
-            <nav className="flex flex-col space-y-4 p-4 px-6">
-              {peerLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[11pt] text-gray-300 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <ProjectPracticeNavDropdown
+      pathname={pathname}
+      isNavbarWhite={isNavbarWhite}
+      isMobileMenuOpen={isMobileMenuOpen}
+      setIsMobileMenuOpen={setIsMobileMenuOpen}
+    />
   );
 }
 
@@ -1116,6 +1068,10 @@ export default function ArchitectureOfConfidencePage() {
             </div>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              data-project-nav-trigger
+              aria-haspopup="menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
               className={`lg:hidden flex items-center justify-end py-2 pl-4 transition-colors duration-500 ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}
               aria-label="Toggle mobile menu"
             >

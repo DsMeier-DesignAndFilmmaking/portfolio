@@ -31,6 +31,7 @@ import { SessionTimeline } from './SessionTimeline';
 import { ConstraintMap } from './components/ConstraintMap';
 import { HADERoadmap } from './components/HADERoadmap';
 import { HADE_DEMO_URL } from './constants';
+import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -358,6 +359,10 @@ useEffect(() => {
       {/* Mobile Menu Button - Hamburger */}
       <button
         onClick={toggleMobileMenu}
+        data-project-nav-trigger
+        aria-haspopup="menu"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
         className={`lg:hidden pl-4 py-2 rounded-lg flex items-center justify-end transition-colors duration-500 ${
           isNavbarWhite ? 'text-black' : 'text-gray-700'
         }`}
@@ -370,87 +375,14 @@ useEffect(() => {
         </div>
       </button>
 
-     {/* Desktop Navigation */}
-     <div className="hidden lg:block rounded-lg px-6 py-4">
-  <nav className="flex items-center space-x-8">
-    {[
-      { href: "/projects/field-notes", label: "Travel Field Notes" },
-      { href: "/projects/travel-and-ai", label: "CORE ENGINE (HADE)" },
-      { href: "/projects/architecture-of-confidence", label: "Architecture of Confidence" },
-      { href: "/projects/digital-executor", label: "Digital Executor" },
-      { href: "/projects/previous", label: "Client Work" },
-    ].map((item) => {
-      const isActive = pathname.startsWith(item.href);
-
-      return (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`text-[11pt] transition-colors duration-500 relative ${
-            isNavbarWhite
-              ? "text-black hover:text-blue-400"
-              : "text-gray-700 hover:text-blue-400"
-          }`}
-        >
-          {item.label}
-
-          {isActive && (
-            <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>
-          )}
-        </Link>
-      );
-    })}
-  </nav>
-</div>
+      <ProjectPracticeNavDropdown
+        pathname={pathname}
+        isNavbarWhite={isNavbarWhite}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
     </div>
   </div>
-
-  {/* Mobile Menu Dropdown */}
-  <AnimatePresence mode="wait">
-    {isMobileMenuOpen && (
-      <motion.div
-        key="mobile-menu"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.2 }}
-        className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg shadow-lg mx-6 border border-white/10"
-      >
-        <nav className="flex flex-col p-4 px-6 space-y-4">
-        <a
-            href="/projects/field-notes"
-            
-            rel="noopener noreferrer"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-          >
-            Travel Field Notes
-          </a>
-          <Link 
-            href="/projects/travel-and-ai" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-          >
-            CORE ENGINE (HADE)
-          </Link>
-          <Link
-            href="/projects/architecture-of-confidence"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-          >
-            Architecture of Confidence
-          </Link>
-          <Link 
-            href="/projects/previous" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
-          >
-            Client Work
-          </Link>
-        </nav>
-      </motion.div>
-    )}
-  </AnimatePresence>
 </motion.nav>
 
 {/* Hero Section */}

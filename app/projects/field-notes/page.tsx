@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, Variants, AnimatePresence, easeOut } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -21,6 +21,7 @@ import {
 import { FieldNotesSystemDiagram } from './components/FieldNotesSystemDiagram';
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
 import TravelOSExperience from '@/src/components/TravelOSExperience';
+import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 
 const FN_SECTIONS = [
   { id: 'fn-hero' ,      label: 'Overview'  },
@@ -160,7 +161,6 @@ export default function FieldNotesProjectPage() {
 
   const handleBackHome = () => router.push('/');
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-  const linkClass = (isActive: boolean) => `text-[11pt] transition-colors duration-500 ${isNavbarWhite ? (isActive ? 'text-blue-500' : 'text-black') : (isActive ? 'text-blue-500' : 'text-gray-700')}`;
 
   return (
     <main className="min-h-screen bg-white text-neutral-900 selection:bg-[#FFDD00]/30 overflow-x-hidden">
@@ -190,51 +190,29 @@ export default function FieldNotesProjectPage() {
                 <span className={`ml-3 text-xs md:text-sm font-medium transition-colors duration-500 whitespace-nowrap ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}>Work</span>
               </div>
             </div>
-            <button onClick={toggleMobileMenu} className={`lg:hidden pl-4 py-2 flex items-center justify-end transition-colors duration-500 ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}>
+            <button
+              onClick={toggleMobileMenu}
+              data-project-nav-trigger
+              aria-haspopup="menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
+              aria-label="Toggle mobile menu"
+              className={`lg:hidden pl-4 py-2 flex items-center justify-end transition-colors duration-500 ${isNavbarWhite ? 'text-black' : 'text-gray-700'}`}
+            >
               <div className="w-6 h-5 relative flex flex-col justify-between items-center">
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
                 <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
               </div>
             </button>
-            <div className="hidden lg:block px-6 py-4">
-              <nav className="flex items-center space-x-8">
-                <div className="relative">
-                  <Link href="/projects/field-notes" className={linkClass(pathname.startsWith('/projects/field-notes'))}>Travel Field Notes</Link>
-                  {pathname.startsWith('/projects/field-notes') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
-                </div>
-                <div className="relative">
-                  <Link href="/projects/travel-and-ai" className={linkClass(pathname.startsWith('/projects/travel-and-ai'))}>CORE ENGINE (HADE)</Link>
-                  {pathname.startsWith('/projects/travel-and-ai') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
-                </div>
-                <div className="relative">
-                  <Link href="/projects/architecture-of-confidence" className={linkClass(pathname.startsWith('/projects/architecture-of-confidence'))}>Architecture of Confidence</Link>
-                  {pathname.startsWith('/projects/architecture-of-confidence') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
-                </div>
-                <div className="relative">
-                  <Link href="/projects/digital-executor" className={linkClass(pathname.startsWith('/projects/digital-executor'))}>Digital Executor</Link>
-                  {pathname.startsWith('/projects/digital-executor') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
-                </div>
-                <div className="relative">
-                  <Link href="/projects/previous" className={linkClass(pathname.startsWith('/projects/previous'))}>Client Work</Link>
-                  {pathname.startsWith('/projects/previous') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
-                </div>
-              </nav>
-            </div>
+            <ProjectPracticeNavDropdown
+              pathname={pathname}
+              isNavbarWhite={isNavbarWhite}
+              isMobileMenuOpen={isMobileMenuOpen}
+              setIsMobileMenuOpen={setIsMobileMenuOpen}
+            />
           </div>
         </div>
-        <AnimatePresence mode="wait">
-          {isMobileMenuOpen && (
-            <motion.div key="mobile-menu" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-sm rounded-lg mx-6 border border-white/10">
-              <nav className="flex flex-col p-4 px-6 space-y-4">
-                <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Travel Field Notes</Link>
-                <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">CORE ENGINE (HADE)</Link>
-                <Link href="/projects/architecture-of-confidence" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Architecture of Confidence</Link>
-                <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Client Work</Link>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.nav>
 
 {/* HERO SECTION */}

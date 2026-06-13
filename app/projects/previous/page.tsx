@@ -1,10 +1,11 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter, usePathname } from 'next/navigation';
 import { allProjects } from '../../../utils/projectUtils';
+import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '../../../components/ProjectPracticeNavDropdown';
 import { useState, useEffect } from 'react';
 
 export default function PreviousProjectsPage() {
@@ -193,6 +194,10 @@ export default function PreviousProjectsPage() {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
+        data-project-nav-trigger
+        aria-haspopup="menu"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
         className="lg:hidden pl-4 py-2 flex items-center justify-end text-white/80 hover:text-white"
         aria-label="Toggle mobile menu"
       >
@@ -203,67 +208,14 @@ export default function PreviousProjectsPage() {
         </div>
       </button>
 
-      {/* Desktop Navigation */}
-<div className="hidden lg:block px-6 py-4">
-  <nav className="flex items-center space-x-8">
-    {[
-      { name: 'Travel Field Notes', href: '/projects/field-notes' },
-      { name: 'CORE ENGINE (HADE)', href: '/projects/travel-and-ai' },
-      { name: 'Architecture of Confidence', href: '/projects/architecture-of-confidence' },
-      { name: 'Digital Executor', href: '/projects/digital-executor' },
-      { name: 'Client Work', href: '/projects/previous' },
-    ].map((link) => {
-      const isActive = pathname.startsWith(link.href);
-
-      return (
-        <Link
-          key={link.name}
-          href={link.href}
-          className={`text-[11pt] transition-colors duration-500 relative ${
-            isActive ? 'text-white' : 'text-white/60 hover:text-white'
-          }`}
-        >
-          {link.name}
-
-          {isActive && (
-            <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white/80 rounded-full"></span>
-          )}
-        </Link>
-      );
-    })}
-  </nav>
-</div>
+      <ProjectPracticeNavDropdown
+        pathname={pathname}
+        tone="dark"
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
     </div>
   </div>
-
-  {/* Mobile Menu Dropdown */}
-  <AnimatePresence mode="wait">
-    {isMobileMenuOpen && (
-      <motion.div
-        key="mobile-menu"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.2 }}
-        className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-md rounded-lg shadow-lg mx-6 border border-white/10"
-      >
-        <nav className="flex flex-col p-4 px-6 space-y-4">
-        <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
-            Travel Field Notes
-          </Link>
-          <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
-          CORE ENGINE (HADE)
-          </Link>
-          <Link href="/projects/architecture-of-confidence" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
-            Architecture of Confidence
-          </Link>
-          <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
-            Client Work
-          </Link>
-        </nav>
-      </motion.div>
-    )}
-  </AnimatePresence>
 </motion.nav>
 
       {/* Hero Section */}
