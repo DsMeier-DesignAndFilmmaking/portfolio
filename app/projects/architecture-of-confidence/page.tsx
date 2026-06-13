@@ -29,16 +29,15 @@ import {
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 
 const AOC_SECTIONS = [
-  { id: 'aoc-hero', label: 'Hero' },
-  { id: 'aoc-why', label: 'Why' },
-  { id: 'aoc-research', label: 'Research' },
-  { id: 'aoc-synthesis', label: 'Synthesis' },
-  { id: 'aoc-insights', label: 'Insights' },
-  { id: 'aoc-model', label: 'Model' },
-  { id: 'aoc-architecture', label: 'System' },
-  { id: 'aoc-scenario', label: 'Scenario' },
-  { id: 'aoc-applications', label: 'Apply' },
-  { id: 'aoc-future', label: 'Future' },
+  { id: 'aoc-hero', label: '01 Hero' },
+  { id: 'aoc-why', label: '02 Why' },
+  { id: 'aoc-research', label: '03 Research' },
+  { id: 'aoc-synthesis', label: '04 Synthesis' },
+  { id: 'aoc-insights', label: '05 Insights' },
+  { id: 'aoc-model', label: '06 Model' },
+  { id: 'aoc-architecture', label: '07 Architecture' },
+  { id: 'aoc-applications', label: '08 Applications' },
+  { id: 'aoc-future', label: '09 Future' },
 ];
 
 const contentBounds = 'container mx-auto px-6 md:px-8';
@@ -1085,7 +1084,7 @@ export default function ArchitectureOfConfidencePage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-neutral-900 selection:bg-cyan-200/50">
-      <PageNavIndicator sections={AOC_SECTIONS} />
+      <PageNavIndicator sections={AOC_SECTIONS} showDotsOnDesktop />
 
       <motion.nav
         initial={{ opacity: 0 }}

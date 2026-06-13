@@ -12,9 +12,9 @@
  *   - Small glowing cap dot rides the leading edge.
  *   - Fades in after 80px of scroll to avoid flashing at the top.
  *
- * ② VERTICAL SECTION DOT NAV (right side, mobile/tablet only)
+ * ② VERTICAL SECTION DOT NAV (right side, mobile/tablet by default)
  *   - Fixed at mid-viewport, right edge, z-[55].
- *   - Hidden on lg+ (desktop has enough context from content itself).
+ *   - Hidden on lg+ unless showDotsOnDesktop is enabled.
  *   - IntersectionObserver-equivalent: scroll listener walks sections,
  *     finds the one whose top has passed 38% down the viewport.
  *   - Active dot: yellow (#FFDD00), enlarged, glowing ring.
@@ -42,6 +42,9 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
   const [barVisible, setBarVisible] = useState(false);
   const [dotsVisible, setDotsVisible] = useState(false);
   const sectionsRef = useRef(sections);
+  const dotNavVisibility = showDotsOnDesktop
+    ? `${dotsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} lg:opacity-100 lg:pointer-events-auto`
+    : `${dotsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`;
 
   useEffect(() => {
     sectionsRef.current = sections;
@@ -156,9 +159,9 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
        * intercepts touches when the page is at the very top.
        */}
       <nav
-        className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 ${showDotsOnDesktop ? '' : 'lg:hidden'}
+        className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 lg:right-6 lg:gap-2.5 ${showDotsOnDesktop ? 'lg:rounded-2xl lg:border lg:border-neutral-200/70 lg:bg-white/75 lg:px-2 lg:py-3 lg:shadow-sm lg:backdrop-blur-md' : 'lg:hidden'}
           transition-all duration-500 ease-out
-          ${dotsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+          ${dotNavVisibility}`}
         aria-label="Page section navigation"
       >
         {sections.map(({ id, label }) => {
