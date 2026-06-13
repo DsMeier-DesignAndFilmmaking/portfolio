@@ -376,6 +376,7 @@ useEffect(() => {
     {[
       { href: "/projects/field-notes", label: "Travel Field Notes" },
       { href: "/projects/travel-and-ai", label: "CORE ENGINE (HADE)" },
+      { href: "/projects/architecture-of-confidence", label: "Architecture of Confidence" },
       { href: "/projects/digital-executor", label: "Digital Executor" },
       { href: "/projects/previous", label: "Client Work" },
     ].map((item) => {
@@ -431,6 +432,13 @@ useEffect(() => {
             className="text-[11pt] text-gray-300 hover:text-white transition-colors"
           >
             CORE ENGINE (HADE)
+          </Link>
+          <Link
+            href="/projects/architecture-of-confidence"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-[11pt] text-gray-300 hover:text-white transition-colors"
+          >
+            Architecture of Confidence
           </Link>
           <Link 
             href="/projects/previous" 

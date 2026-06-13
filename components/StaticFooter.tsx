@@ -70,6 +70,12 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
               >
                 CORE ENGINE (HADE)
               </Link>
+              <Link
+                href="/projects/architecture-of-confidence"
+                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
+              >
+                Architecture of Confidence
+              </Link>
               <Link 
                 href="/projects/digital-executor" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"

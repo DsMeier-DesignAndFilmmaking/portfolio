@@ -11,6 +11,7 @@ import {
   Cpu,
   Layers3,
   MapPinned,
+  ShieldCheck,
   Zap,
 } from 'lucide-react';
 
@@ -59,6 +60,22 @@ const hadeCore: WorkNode = {
 const appliedModules: WorkNode[] = [
   {
     number: '02',
+    title: 'Architecture of Confidence',
+    label: 'Systems Design Framework',
+    description:
+      'Explains how context, timing, cognitive load, human validation, and recovery paths help people act confidently in unfamiliar environments.',
+    items: [
+      'Context interpretation',
+      'Confidence principles',
+      'Autonomy preservation',
+      'Recovery loops',
+    ],
+    cta: 'Explore Framework',
+    href: '/projects/architecture-of-confidence',
+    icon: ShieldCheck,
+  },
+  {
+    number: '03',
     title: 'Field Logistics',
     label: 'Place-Aware Product Design',
     description:
@@ -80,7 +97,7 @@ const appliedModules: WorkNode[] = [
     icon: MapPinned,
   },
   {
-    number: '03',
+    number: '04',
     title: 'Digital Executor',
     label: 'Operational Workflow Design',
     description:
@@ -98,7 +115,7 @@ const appliedModules: WorkNode[] = [
 ];
 
 const historicalFoundation: WorkNode = {
-  number: '04',
+  number: '05',
   title: 'Professional Foundations',
   label: 'Shipped Client & Product Work',
   description:
@@ -119,6 +136,10 @@ const ecosystemLayers = [
   {
     name: 'AI Decision Support',
     description: 'context interpretation and trusted next steps',
+  },
+  {
+    name: 'Confidence Architecture',
+    description: 'context, timing, autonomy, and recovery loops',
   },
   {
     name: 'Place-Aware Products',
@@ -365,7 +386,7 @@ export default function DesignWork() {
                 </h3>
               </div>
               <p className="max-w-sm text-sm font-semibold leading-relaxed text-gray-600">
-                Two applied products showing how decision logic moves into real-world travel and service use.
+                Three applied systems showing how decision logic moves into confidence, travel, and service use.
               </p>
             </div>
 

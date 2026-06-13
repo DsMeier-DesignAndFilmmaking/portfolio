@@ -209,6 +209,7 @@ export default function PreviousProjectsPage() {
     {[
       { name: 'Travel Field Notes', href: '/projects/field-notes' },
       { name: 'CORE ENGINE (HADE)', href: '/projects/travel-and-ai' },
+      { name: 'Architecture of Confidence', href: '/projects/architecture-of-confidence' },
       { name: 'Digital Executor', href: '/projects/digital-executor' },
       { name: 'Client Work', href: '/projects/previous' },
     ].map((link) => {
@@ -252,6 +253,9 @@ export default function PreviousProjectsPage() {
           </Link>
           <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
           CORE ENGINE (HADE)
+          </Link>
+          <Link href="/projects/architecture-of-confidence" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
+            Architecture of Confidence
           </Link>
           <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-white/70 hover:text-white transition-colors">
             Client Work

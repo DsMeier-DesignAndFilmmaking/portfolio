@@ -201,6 +201,10 @@ export default function FieldNotesProjectPage() {
                   {pathname.startsWith('/projects/travel-and-ai') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
                 <div className="relative">
+                  <Link href="/projects/architecture-of-confidence" className={linkClass(pathname.startsWith('/projects/architecture-of-confidence'))}>Architecture of Confidence</Link>
+                  {pathname.startsWith('/projects/architecture-of-confidence') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
+                </div>
+                <div className="relative">
                   <Link href="/projects/digital-executor" className={linkClass(pathname.startsWith('/projects/digital-executor'))}>Digital Executor</Link>
                   {pathname.startsWith('/projects/digital-executor') && <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-400 rounded-full"></span>}
                 </div>
@@ -218,6 +222,7 @@ export default function FieldNotesProjectPage() {
               <nav className="flex flex-col p-4 px-6 space-y-4">
                 <Link href="/projects/field-notes" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Travel Field Notes</Link>
                 <Link href="/projects/travel-and-ai" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">CORE ENGINE (HADE)</Link>
+                <Link href="/projects/architecture-of-confidence" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Architecture of Confidence</Link>
                 <Link href="/projects/previous" onClick={() => setIsMobileMenuOpen(false)} className="text-[11pt] text-gray-300 transition-colors">Client Work</Link>
               </nav>
             </motion.div>
