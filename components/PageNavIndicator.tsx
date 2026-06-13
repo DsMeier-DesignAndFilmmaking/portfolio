@@ -158,12 +158,13 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
        * Fades in/out smoothly; pointer-events-none when invisible so it never
        * intercepts touches when the page is at the very top.
        */}
-      <nav
-        className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 lg:right-6 lg:gap-2.5 ${showDotsOnDesktop ? 'lg:rounded-2xl lg:border lg:border-neutral-200/70 lg:bg-white/75 lg:px-2 lg:py-3 lg:shadow-sm lg:backdrop-blur-md' : 'lg:hidden'}
-          transition-all duration-500 ease-out
-          ${dotNavVisibility}`}
-        aria-label="Page section navigation"
-      >
+<nav
+  className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 lg:right-6 lg:gap-2.5
+    ${showDotsOnDesktop ? '' : 'lg:hidden'}
+    transition-all duration-500 ease-out
+    ${dotNavVisibility}`}
+  aria-label="Page section navigation"
+>
         {sections.map(({ id, label }) => {
           const isActive = activeId === id;
 
