@@ -55,6 +55,21 @@ const systemsDesignCards: LinkedWorkCard[] = [
     featured: true,
   },
   {
+    title: 'Adaptive Ranch Experience Companion',
+    label: 'Systems Concept',
+    description:
+      'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
+    tags: ['Hospitality', 'Stewardship', 'Recovery'],
+    tagLinks: {
+      Hospitality: '/projects/adaptive-ranch-experience-companion#problem',
+      Stewardship: '/projects/adaptive-ranch-experience-companion#signals',
+      Recovery: '/projects/adaptive-ranch-experience-companion#recovery',
+    },
+    cta: 'Explore Concept',
+    href: '/projects/adaptive-ranch-experience-companion',
+    icon: Compass,
+  },
+  {
     title: 'HADE',
     label: 'Core Engine',
     description:
@@ -125,15 +140,6 @@ const professionalPractice: LinkedWorkCard = {
 };
 
 const explorationCards: StaticWorkCard[] = [
-  {
-    title: 'Adaptive Ranch Experience Companion',
-    label: 'Concept Direction',
-    description:
-      'A future-facing companion concept for helping guests understand activities, confidence levels, timing, etiquette, and recovery options in ranch environments.',
-    tags: ['Hospitality', 'Guest confidence', 'Activities'],
-    icon: Compass,
-    status: 'Concept in development',
-  },
   {
     title: 'Future Environmental Systems',
     label: 'Exploratory',

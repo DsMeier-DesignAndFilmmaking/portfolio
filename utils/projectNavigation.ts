@@ -31,6 +31,11 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
         group: 'Systems Design',
       },
       {
+        label: 'Adaptive Ranch Experience Companion',
+        href: '/projects/adaptive-ranch-experience-companion',
+        group: 'Systems Design',
+      },
+      {
         label: 'HADE',
         href: '/projects/travel-and-ai',
         group: 'Systems Design',
@@ -50,12 +55,6 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
   {
     label: 'Explorations',
     items: [
-      {
-        label: 'Adaptive Ranch Experience Companion',
-        group: 'Explorations',
-        status: 'Concept in development',
-        disabled: true,
-      },
       {
         label: 'Future Environmental Systems',
         group: 'Explorations',
