@@ -27,20 +27,18 @@ import RecoveryPathDiagram from '@/components/adaptive-ranch/diagrams/RecoveryPa
 import WeatherScenarioWalkthrough from '@/components/adaptive-ranch/diagrams/WeatherScenarioWalkthrough';
 
 const ADAPTIVE_RANCH_SECTIONS = [
-  { id: 'hero', label: '01 Hero' },
-  { id: 'problem', label: '02 Problem' },
-  { id: 'research', label: '03 Research' },
-  { id: 'architecture', label: '04 Architecture' },
-  { id: 'scenario', label: '05 Scenario' },
-  { id: 'signals', label: '06 Signals' },
-  { id: 'activity', label: '07 Activity' },
-  { id: 'confidence', label: '08 Confidence' },
-  { id: 'recovery', label: '09 Recovery' },
-  { id: 'guidance', label: '10 Guidance' },
-  { id: 'operations', label: '11 Operations' },
-  { id: 'applications', label: '12 Applications' },
-  { id: 'evidence', label: '13 Evidence' },
-  { id: 'future', label: '14 Future' },
+  { id: 'hero', label: 'Overview' },
+  { id: 'problem', label: 'Problem' },
+  { id: 'research', label: 'Research' },
+  { id: 'architecture', label: 'System' },
+  { id: 'scenario', label: 'Scenario' },
+  { id: 'signals', label: 'Signals' },
+  { id: 'confidence', label: 'Confidence' },
+  { id: 'recovery', label: 'Recovery' },
+  { id: 'operations', label: 'Operations' },
+  { id: 'applications', label: 'Applications' },
+  { id: 'evidence', label: 'Evidence' },
+  { id: 'future', label: 'Future' },
 ];
 
 const contentBounds = 'container mx-auto px-6 md:px-8';
