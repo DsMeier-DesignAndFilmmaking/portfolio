@@ -348,9 +348,9 @@ export default function HomePage() {
       marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
     }}
   >
-    Designing Experiences Across{' '}
+    Designing Experiences Across&nbsp;
     <span 
-      className="text-black inline-block underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px]"
+      className="text-black inline underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px]"
       style={{
         textDecorationSkipInk: 'none'
       }}
@@ -514,7 +514,7 @@ export default function HomePage() {
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`As I mentioned, my design foundation began in urban design and landscape architecture, where I learned to think about movement, context, circulation, constraints, and how people experience space. That training became the lens I brought into UX and product design: understanding complex systems, then shaping clearer paths through them.`)}
+                      {preventWidow(`As I mentioned, my design foundation began in urban design and landscape architecture, where I learned to think about movement, context, circulation, constraints, and how people experience space. That training became the lens I brought into UX and product design: understanding complex systems, then fostering the fluid choreography where human behavior and environmental context naturally co-adapt.`)}
                     </p>
                   </div>
                 </div>
