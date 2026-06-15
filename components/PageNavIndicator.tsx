@@ -13,7 +13,8 @@
  *   - Fades in after 80px of scroll to avoid flashing at the top.
  *
  * ② VERTICAL SECTION DOT NAV (right side, mobile/tablet by default)
- *   - Fixed at mid-viewport, right edge, z-[55].
+ *   - Fixed below the mobile navbar trigger zone, right edge, z-[45].
+ *   - Returns to mid-viewport on lg+ where the project nav trigger is not competing for the same corner.
  *   - Hidden on lg+ unless showDotsOnDesktop is enabled.
  *   - IntersectionObserver-equivalent: scroll listener walks sections,
  *     finds the one whose top has passed 38% down the viewport.
@@ -159,7 +160,7 @@ export function PageNavIndicator({ sections, showDotsOnDesktop = false }: PageNa
        * intercepts touches when the page is at the very top.
        */}
 <nav
-  className={`fixed right-3 top-1/2 -translate-y-1/2 z-[55] flex flex-col gap-3 lg:right-6 lg:gap-2.5
+  className={`fixed right-3 top-[60%] -translate-y-1/2 z-[45] flex flex-col gap-3 sm:top-[58%] lg:right-6 lg:top-1/2 lg:z-[55] lg:gap-2.5
     ${showDotsOnDesktop ? '' : 'lg:hidden'}
     transition-all duration-500 ease-out
     ${dotNavVisibility}`}

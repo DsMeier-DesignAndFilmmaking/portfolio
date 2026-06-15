@@ -32,12 +32,9 @@ const ADAPTIVE_RANCH_SECTIONS = [
   { id: 'research', label: 'Research' },
   { id: 'architecture', label: 'System' },
   { id: 'scenario', label: 'Scenario' },
-  { id: 'signals', label: 'Signals' },
   { id: 'confidence', label: 'Confidence' },
   { id: 'recovery', label: 'Recovery' },
   { id: 'operations', label: 'Operations' },
-  { id: 'applications', label: 'Applications' },
-  { id: 'evidence', label: 'Evidence' },
   { id: 'future', label: 'Future' },
 ];
 

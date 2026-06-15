@@ -55,21 +55,6 @@ const systemsDesignCards: LinkedWorkCard[] = [
     featured: true,
   },
   {
-    title: 'Adaptive Ranch Experience Companion',
-    label: 'Systems Concept',
-    description:
-      'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
-    tags: ['Hospitality', 'Stewardship', 'Recovery'],
-    tagLinks: {
-      Hospitality: '/projects/adaptive-ranch-experience-companion#problem',
-      Stewardship: '/projects/adaptive-ranch-experience-companion#signals',
-      Recovery: '/projects/adaptive-ranch-experience-companion#recovery',
-    },
-    cta: 'Explore Concept',
-    href: '/projects/adaptive-ranch-experience-companion',
-    icon: Compass,
-  },
-  {
     title: 'HADE',
     label: 'Core Engine',
     description:
@@ -114,6 +99,21 @@ const systemsDesignCards: LinkedWorkCard[] = [
     cta: 'Explore Case Study',
     href: '/projects/digital-executor',
     icon: Zap,
+  },
+  {
+    title: 'Adaptive Ranch Experience Companion',
+    label: 'Systems Concept',
+    description:
+      'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
+    tags: ['Hospitality', 'Stewardship', 'Recovery'],
+    tagLinks: {
+      Hospitality: '/projects/adaptive-ranch-experience-companion#problem',
+      Stewardship: '/projects/adaptive-ranch-experience-companion#signals',
+      Recovery: '/projects/adaptive-ranch-experience-companion#recovery',
+    },
+    cta: 'Explore Concept',
+    href: '/projects/adaptive-ranch-experience-companion',
+    icon: Compass,
   },
 ];
 
@@ -444,7 +444,7 @@ export default function DesignWork() {
               eyebrow="Flagship Public Work"
               title="Systems Design"
               titleId="systems-design-title"
-              intro="Public case studies showing how context, decision logic, recovery paths, and interface design can help people act with more confidence."
+              intro="Public case studies, applications, and concepts showing how context, decision logic, recovery paths, and interface design can help people act with more confidence."
             />
             <div className="mt-5 grid grid-cols-1 gap-5 md:mt-7 md:gap-6">
               {systemsDesignCards.map((card) => (

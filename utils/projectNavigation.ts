@@ -31,17 +31,17 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
         group: 'Systems Design',
       },
       {
-        label: 'Adaptive Ranch Experience Companion',
+        label: 'Adaptive Ranch Companion',
         href: '/projects/adaptive-ranch-experience-companion',
         group: 'Systems Design',
       },
       {
-        label: 'HADE',
+        label: 'Human Adaptive Decision Engine',
         href: '/projects/travel-and-ai',
         group: 'Systems Design',
       },
       {
-        label: 'Field Notes',
+        label: 'Travel Field Notes',
         href: '/projects/field-notes',
         group: 'Systems Design',
       },

@@ -362,14 +362,23 @@ export default function HomePage() {
 
         {/* Narrative Copy Stack */}
         <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
-          <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
-            style={{ 
-              fontFamily: "'Roboto', Helvetica, sans-serif", 
-              fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
-            }}
-          >
-            <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design, shaped by the grit of manual labor and travel to 41 countries. No matter what I’m building, my focus is always the same: designing for scale and adaptability, instead of fixed systems or static plans.
-          </p>
+        <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
+  style={{ 
+    fontFamily: "'Roboto', Helvetica, sans-serif", 
+    fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
+  }}
+>
+  <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design (read my{' '}
+  <a 
+    href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-600 hover:text-blue-800 underline transition-colors duration-200"
+  >
+    Master’s Thesis
+  </a>
+  ), shaped by the grit of manual labor and travel to 41 countries. No matter what I’m building, my focus is always the same: designing for scale and adaptability, instead of fixed systems or static plans.
+</p>
           
           <p 
             className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"

@@ -145,21 +145,21 @@ export function DiagramCard({
     <article className={cn('rounded-2xl border p-5 md:p-6', toneClass.card, className)}>
       <div className="flex items-start gap-3">
         <span className={cn('mt-1 h-2 w-2 shrink-0 rounded-full', toneClass.accent)} aria-hidden="true" />
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className={cn('font-mono text-[10px] font-black uppercase tracking-[0.22em]', toneClass.label)}>
             {label}
           </p>
           <h3 className="mt-2 font-tiempos text-xl font-bold leading-tight text-neutral-950">
             {title}
           </h3>
+          {description && (
+            <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+              {description}
+            </p>
+          )}
+          {children && <div className="mt-5">{children}</div>}
         </div>
       </div>
-      {description && (
-        <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-          {description}
-        </p>
-      )}
-      {children && <div className="mt-5">{children}</div>}
     </article>
   );
 }
