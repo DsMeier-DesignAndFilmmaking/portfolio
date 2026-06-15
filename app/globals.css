@@ -18,6 +18,18 @@
   body {
     @apply bg-white text-[#2F2A3B];
   }
+
+  h1 {
+    font-family: 'tiempos-headline-regular', serif !important;
+    font-size: clamp(1.5rem, 4vw, 3.25rem) !important;
+    font-weight: 900 !important;
+    line-height: 1.15 !important;
+    letter-spacing: normal !important;
+    text-align: left !important;
+    color: #151B18 !important;
+    white-space: normal !important;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem) !important;
+  }
 }
 
 :root {

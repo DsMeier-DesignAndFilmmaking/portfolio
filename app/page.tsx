@@ -342,7 +342,7 @@ export default function HomePage() {
   <h1 
     className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18]" 
     style={{ 
-      fontSize: 'clamp(1.75rem, 4.5vw, 3.75rem)', 
+      fontSize: 'clamp(1.5rem, 4vw, 3.25rem)', 
       whiteSpace: 'normal',
       fontFamily: "'tiempos-headline-regular', serif",
       marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
