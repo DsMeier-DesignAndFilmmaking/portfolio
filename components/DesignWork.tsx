@@ -141,13 +141,31 @@ const professionalPractice: LinkedWorkCard = {
 
 const explorationCards: StaticWorkCard[] = [
   {
-    title: 'Future Environmental Systems',
+    title: 'Responsive Ecologies',
     label: 'Exploratory',
     description:
-      'A broader exploration of how decision-support principles could transfer into parks, destinations, service ecosystems, and place-based operations.',
-    tags: ['Destinations', 'Operations', 'Recovery'],
+      'A multi-agent AI land stewardship platform for backcountry outfitters and luxury eco-lodges. It processes edge-sensor telemetry (soil, fuel load, hydrology) to autonomously generate adaptive trail maintenance schedules and wildlife-safe guiding corridors.',
+    tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
     icon: Route,
-    status: 'Exploratory direction',
+    status: 'Currently Exploring',
+  },
+  {
+    title: 'The Wayfinding Matrix',
+    label: 'Exploratory',
+    description:
+      `An ambient, non-screen navigation framework for remote adventure parks and wilderness reserves. It matches a guest's real-time physical endurance data with changing weather patterns to deliver low-friction safety nets, allowing true off-grid spontaneity.`,
+    tags: ['Ambient Intelligence', 'Intentional Spontaneity', 'Hushpitality'],
+    icon: Compass,
+    status: 'Currently Exploring',
+  },
+  {
+    title: 'The Intention Engine',
+    label: 'Exploratory',
+    description:
+      `A semantic discovery and service recovery engine built for luxury ecotourism. It translates abstract human psychological states (burnout, transition) into highly specific spatial Blueprints and multi-sensory arrival-to-departure guest journeys.`,
+    tags: ['Zero-Search Discovery', 'Psychological Blueprints', 'Whycations'],
+    icon: BrainCircuit,
+    status: 'Currently Exploring',
   },
 ];
 
@@ -486,7 +504,7 @@ export default function DesignWork() {
               eyebrow="Future Concepts"
               title="Explorations"
               titleId="explorations-title"
-              intro="Early concept directions extending the same decision-support lens into hospitality, land-based experiences, and environmental service systems."
+              intro="Early concept directions extending the same decision-support lens into travel, adventure, hospitality, land-based experiences, and environmental service systems."
               compact
             />
             <div className="mt-5 grid grid-cols-1 gap-4 md:mt-7 md:gap-5">
