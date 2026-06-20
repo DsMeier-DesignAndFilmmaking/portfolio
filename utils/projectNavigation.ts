@@ -1,7 +1,7 @@
 export type TopLevelProjectNavItem = {
   label: string;
   href?: string;
-  group: 'Systems Design' | 'Explorations' | 'Professional Practice';
+  group: 'Systems Design' | 'Ideas & Concepts' | 'Professional Practice';
   external?: boolean;
   status?: string;
   disabled?: boolean;
@@ -53,13 +53,22 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
     ],
   },
   {
-    label: 'Explorations',
+    label: 'Ideas & Concepts',
     items: [
       {
-        label: 'Future Environmental Systems',
-        group: 'Explorations',
-        status: 'Exploratory direction',
-        disabled: true,
+        label: 'Responsive Ecologies',
+        href: '/projects/responsive-ecologies',
+        group: 'Ideas & Concepts',
+      },
+      {
+        label: 'The Wayfinding Matrix',
+        href: '/projects/wayfinding-matrix',
+        group: 'Ideas & Concepts',
+      },
+      {
+        label: 'The Intention Engine',
+        href: '/projects/intention-engine',
+        group: 'Ideas & Concepts',
       },
     ],
   },
