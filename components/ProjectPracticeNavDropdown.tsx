@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { topLevelProjectNavGroups } from '@/utils/projectNavigation';
+import { ChevronDown } from 'lucide-react';
 
 type ProjectPracticeNavDropdownProps = {
   pathname: string;
@@ -41,7 +42,8 @@ export default function ProjectPracticeNavDropdown({
 
     const handlePointerDown = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node;
-      const isMobileTrigger = target instanceof Element && Boolean(target.closest('[data-project-nav-trigger]'));
+      const isMobileTrigger =
+        target instanceof Element && Boolean(target.closest('[data-project-nav-trigger]'));
 
       if (isMobileTrigger) return;
       if (desktopRef.current?.contains(target)) return;
@@ -155,15 +157,18 @@ export default function ProjectPracticeNavDropdown({
   const desktopHeadingClass = isDark ? 'text-white/35' : 'text-gray-400';
   const desktopDisabledClass = isDark ? 'text-white/35' : 'text-gray-400/80';
   const desktopStatusClass = isDark ? 'text-white/30' : 'text-gray-400/70';
+
   const desktopLinkClass = (isActive: boolean) =>
     isDark
-      ? `relative min-h-[34px] text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+      ? `relative min-h-[34px] whitespace-nowrap text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
           isActive ? 'text-white' : 'text-white/65 hover:text-white'
         }`
-      : `relative min-h-[34px] text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+      : `relative min-h-[34px] whitespace-nowrap text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
           isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
         }`;
+
   const activeIndicatorClass = isDark ? 'bg-white/80' : 'bg-blue-400';
+
   const mobilePanel = (
     <AnimatePresence mode="wait">
       {isMobileMenuOpen && (
@@ -199,13 +204,19 @@ export default function ProjectPracticeNavDropdown({
             <nav className="flex flex-col space-y-7 py-8" aria-label="Project practice navigation">
               {topLevelProjectNavGroups.map((group) => (
                 <div key={group.label} className="flex flex-col space-y-3">
-                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gray-500">{group.label}</p>
+                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+                    {group.label}
+                  </p>
+
                   {group.items.map((item) => {
                     const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
 
                     if (!item.href || item.disabled) {
                       return (
-                        <span key={item.label} className="flex min-h-[44px] cursor-default flex-col justify-center text-[11pt] text-gray-500">
+                        <span
+                          key={item.label}
+                          className="flex min-h-[44px] cursor-default flex-col justify-center text-[11pt] text-gray-500"
+                        >
                           {item.label}
                           {item.status && (
                             <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.12em] text-gray-600">
@@ -227,7 +238,9 @@ export default function ProjectPracticeNavDropdown({
                           className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                         >
                           {item.label}
-                          <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.12em] text-gray-500">External</span>
+                          <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.12em] text-gray-500">
+                            External
+                          </span>
                         </a>
                       );
                     }
@@ -241,10 +254,7 @@ export default function ProjectPracticeNavDropdown({
                           isActive ? 'text-white' : 'text-gray-300 hover:text-white'
                         }`}
                       >
-                        <span className="relative">
-                          {item.label}
-                          {isActive && <span className="absolute left-0 -bottom-1 h-[2px] w-full rounded-full bg-white/80" />}
-                        </span>
+                        {item.label}
                       </Link>
                     );
                   })}
@@ -259,56 +269,69 @@ export default function ProjectPracticeNavDropdown({
 
   return (
     <>
-      <div
-        ref={desktopRef}
-        className="relative hidden lg:block px-6 py-4"
-        onBlur={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-            setIsDesktopOpen(false);
-          }
-        }}
-      >
-        <button
-          type="button"
-          aria-haspopup="menu"
-          aria-expanded={isDesktopOpen}
-          aria-controls={menuId}
-          className={desktopTriggerClass}
-          onClick={() => setIsDesktopOpen((open) => !open)}
-        >
-          Work
-          <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.12em]" aria-hidden="true">
-            {isDesktopOpen ? 'Close' : 'Menu'}
-          </span>
-        </button>
+      <div ref={desktopRef} className="relative hidden lg:block">
+      <button
+  type="button"
+  onClick={() => setIsDesktopOpen((open) => !open)}
+  className={`
+    ${desktopTriggerClass}
+    inline-flex
+    min-h-[44px]
+    items-center
+    gap-1.5
+    rounded-md
+    px-2
+    py-1
+  `}
+  aria-expanded={isDesktopOpen}
+  aria-controls={menuId}
+>
+  <span>Projects</span>
+
+  <ChevronDown
+    aria-hidden="true"
+    className={`h-4 w-4 transition-transform duration-200 ${
+      isDesktopOpen ? 'rotate-180' : ''
+    }`}
+  />
+</button>
 
         <AnimatePresence>
           {isDesktopOpen && (
             <motion.div
               id={menuId}
-              role="menu"
+              key="desktop-project-nav"
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.16 }}
-              className={`absolute right-0 top-full z-50 mt-2 max-h-[min(72vh,36rem)] w-[min(88vw,46rem)] overflow-y-auto rounded-lg border p-5 backdrop-blur-md ${desktopMenuClass}`}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className={`absolute right-0 top-full z-50 mt-2 max-h-[min(72vh,36rem)] w-[min(94vw,64rem)] overflow-y-auto rounded-lg border p-6 backdrop-blur-md ${desktopMenuClass}`}
             >
-              <nav className="grid gap-5 md:grid-cols-[1.3fr_1fr_1fr]" aria-label="Project practice navigation">
+              <nav
+                className="grid gap-7 md:grid-cols-[1.8fr_1.1fr_1.1fr]"
+                aria-label="Project practice navigation"
+              >
                 {topLevelProjectNavGroups.map((group) => (
-                  <div key={group.label} className="flex flex-col gap-2">
-                    <p className={`font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}>
+                  <div key={group.label} className="min-w-0">
+                    <p
+                      className={`mb-3 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}
+                    >
                       {group.label}
                     </p>
-                    <div className="flex flex-col gap-1.5">
+
+                    <div className="flex flex-col gap-2">
                       {group.items.map((item) => {
                         const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
 
                         if (!item.href || item.disabled) {
                           return (
-                            <span key={item.label} className={`cursor-default text-[11pt] ${desktopDisabledClass}`}>
+                            <span
+                              key={item.label}
+                              className={`flex min-h-[34px] cursor-default flex-col justify-center whitespace-nowrap text-[11pt] ${desktopDisabledClass}`}
+                            >
                               {item.label}
                               {item.status && (
-                                <span className={`block font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
+                                <span className={`mt-1 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
                                   {item.status}
                                 </span>
                               )}
@@ -323,12 +346,11 @@ export default function ProjectPracticeNavDropdown({
                               href={item.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              role="menuitem"
-                              className={desktopLinkClass(false)}
                               onClick={closeMenus}
+                              className={desktopLinkClass(false)}
                             >
                               {item.label}
-                              <span className={`ml-1 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
+                              <span className={`ml-2 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
                                 External
                               </span>
                             </a>
@@ -339,14 +361,16 @@ export default function ProjectPracticeNavDropdown({
                           <Link
                             key={item.href}
                             href={item.href}
-                            role="menuitem"
-                            className={desktopLinkClass(isActive)}
                             onClick={closeMenus}
+                            className={desktopLinkClass(isActive)}
                           >
-                            {item.label}
                             {isActive && (
-                              <span className={`absolute left-0 -bottom-0.5 h-[2px] w-full rounded-full ${activeIndicatorClass}`} />
+                              <span
+                                aria-hidden="true"
+                                className={`absolute -left-3 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${activeIndicatorClass}`}
+                              />
                             )}
+                            {item.label}
                           </Link>
                         );
                       })}

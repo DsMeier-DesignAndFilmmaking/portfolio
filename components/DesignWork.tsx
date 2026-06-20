@@ -121,9 +121,9 @@ const systemsDesignCards: LinkedWorkCard[] = [
 const researchFrameworkCards: StaticWorkCard[] = [
   {
     title: 'Environmental Systems Design OS',
-    label: 'Internal Research Studio',
+    label: 'Research Environment',
     description:
-      'A working research environment for turning observations from products, services, and environments into reusable design frameworks.',
+      'A working environment for capturing observations, identifying patterns, and developing reusable design frameworks.',
     tags: ['Audits', 'Patterns', 'Projects & Concepts', 'Portfolio Assets'],
     icon: Layers3,
   },
@@ -133,7 +133,7 @@ const professionalPractice: LinkedWorkCard = {
   title: 'Selected Client Work',
   label: 'Professional Portfolio',
   description:
-    'Client and product work spanning UX, interface design, information architecture, product strategy, and digital experience delivery.',
+    'Over a decade designing digital products and services across healthcare, education, enterprise, commerce, and emerging technology.',
   tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
   cta: 'View Selected Client Work',
   href: '/projects/previous',
@@ -230,33 +230,22 @@ function TagList({
   );
 }
 
-function GroupHeader({
-  eyebrow,
-  title,
-  intro,
-  titleId,
-  compact = false,
+function SectionEyebrow({
+  id,
+  children,
 }: {
-  eyebrow: string;
-  title: string;
-  intro: string;
-  titleId: string;
-  compact?: boolean;
+  id: string;
+  children: React.ReactNode;
 }) {
   return (
-    <header>
-      <p className="text-sm font-medium text-gray-500">{eyebrow}</p>
-      <h2
-        id={titleId}
-        className={`${compact ? 'mt-2 text-2xl md:text-3xl' : 'mt-3 text-3xl md:text-4xl'} font-bold leading-tight text-gray-950`}
-        style={{ fontFamily: "'tiempos-headline-regular', serif" }}
+    <div className="mb-5 md:mb-7">
+      <p
+        id={id}
+        className="text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500"
       >
-        {title}
-      </h2>
-      <p className={`${compact ? 'mt-3 max-w-2xl text-sm' : 'mt-4 max-w-2xl text-base'} leading-relaxed text-gray-600`}>
-        {intro}
+        {children}
       </p>
-    </header>
+    </div>
   );
 }
 
@@ -466,34 +455,29 @@ export default function DesignWork() {
             className="text-xl text-gray-700 leading-relaxed"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
           >
-            A portfolio of public systems design work, internal research methods, shipped professional practice, and future-facing concepts. The common thread is helping people make clearer decisions in complex contexts.
+            Selected work exploring how people navigate complexity across products, services, and environments.
           </p>
         </header>
 
         <div className="homepage-copy-column relative mt-12 md:mt-16" aria-labelledby="work-title">
-          <section aria-labelledby="systems-design-title">
-            <GroupHeader
-              eyebrow="Flagship Public Work"
-              title="Systems Design"
-              titleId="systems-design-title"
-              intro="Public case studies, applications, and concepts showing how context, decision logic, recovery paths, and interface design can help people act with more confidence."
-            />
-            <div className="mt-5 grid grid-cols-1 gap-5 md:mt-7 md:gap-6">
+          <section aria-labelledby="flagship-public-work-title">
+            <SectionEyebrow id="flagship-public-work-title">
+              Flagship Public Work
+            </SectionEyebrow>
+
+            <div className="grid grid-cols-1 gap-5 md:gap-6">
               {systemsDesignCards.map((card) => (
                 <SystemDesignCard key={card.title} card={card} />
               ))}
             </div>
           </section>
 
-          <section aria-labelledby="research-frameworks-title" className="mt-14 md:mt-20">
-            <GroupHeader
-              eyebrow="Method Layer"
-              title="Research & Frameworks"
-              titleId="research-frameworks-title"
-              intro="Internal tools for observing environments, extracting patterns, and turning research into reusable design principles."
-              compact
-            />
-            <div className="mt-5 grid grid-cols-1 gap-4 md:mt-7 md:gap-5">
+          <section aria-labelledby="research-environment-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="research-environment-title">
+              Research Environment
+            </SectionEyebrow>
+
+            <div className="grid grid-cols-1 gap-4 md:gap-5">
               {researchFrameworkCards.map((card) => (
                 <MethodCard key={card.title} card={card} />
               ))}
@@ -501,27 +485,21 @@ export default function DesignWork() {
           </section>
 
           <section aria-labelledby="professional-practice-title" className="mt-14 md:mt-20">
-            <GroupHeader
-              eyebrow="Shipped Work"
-              title="Professional Practice"
-              titleId="professional-practice-title"
-              intro="10+ years designing digital products and experiences across healthcare, higher education, enterprise, commerce, and emerging technology."
-              compact
-            />
-            <div className="mt-5 md:mt-7">
+            <SectionEyebrow id="professional-practice-title">
+              Professional Practice
+            </SectionEyebrow>
+
+            <div>
               <ProfessionalPracticeCallout card={professionalPractice} />
             </div>
           </section>
 
-          <section aria-labelledby="explorations-title" className="mt-14 md:mt-20">
-            <GroupHeader
-              eyebrow="Ideas & Concepts"
-              title="Explorations"
-              titleId="explorations-title"
-              intro="Early concept directions extending the same decision-support lens into travel, adventure, hospitality, land-based experiences, and environmental service systems."
-              compact
-            />
-            <div className="mt-5 grid grid-cols-1 gap-4 md:mt-7 md:gap-5">
+          <section aria-labelledby="exploratory-systems-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="exploratory-systems-title">
+              Ideas & Concepts
+            </SectionEyebrow>
+
+            <div className="grid grid-cols-1 gap-4 md:gap-5">
               {explorationCards.map((card) => (
                 <ExplorationCard key={card.title} card={card} />
               ))}
@@ -529,11 +507,11 @@ export default function DesignWork() {
           </section>
 
           <div className="mx-auto mt-14 flex max-w-xl flex-col items-center justify-center gap-3 border-t border-stone-200 pt-8 text-center md:mt-20">
-        <Sparkles className="h-4 w-4 text-stone-400" aria-hidden="true" />
-        <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 text-balance">
-          Public case studies, research methods, shipped work, and future-facing concepts
-        </p>
-      </div>
+            <Sparkles className="h-4 w-4 text-stone-400" aria-hidden="true" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 text-balance">
+              Public systems work, research environments, professional practice, and exploratory concepts
+            </p>
+          </div>
         </div>
       </div>
     </section>
