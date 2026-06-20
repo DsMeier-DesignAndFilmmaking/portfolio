@@ -19,12 +19,9 @@ import TravelOSExperience from '@/src/components/TravelOSExperience';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 
 const FN_SECTIONS = [
-  { id: 'fn-hero' ,      label: 'Overview'  },
-  { id: 'fn-system',   label: 'System'    },
-  { id: 'fn-archive',  label: 'Archive'   },
-  { id: 'fn-logic',    label: 'Logic'     },
-  { id: 'fn-community',label: 'Community' },
-  { id: 'fn-trust',    label: 'Trust'     },
+  { id: 'fn-hero', label: 'Overview' },
+  { id: 'fn-archive', label: 'Recovery' },
+  { id: 'fn-logic', label: 'Architecture' },
 ];
 
 const NAT_GEO_YELLOW = "#FFDD00"; 

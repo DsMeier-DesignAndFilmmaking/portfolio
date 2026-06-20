@@ -29,10 +29,8 @@ import WeatherScenarioWalkthrough from '@/components/adaptive-ranch/diagrams/Wea
 const ADAPTIVE_RANCH_SECTIONS = [
   { id: 'hero', label: 'Overview' },
   { id: 'problem', label: 'Problem' },
-  { id: 'research', label: 'Research' },
   { id: 'architecture', label: 'System' },
   { id: 'scenario', label: 'Scenario' },
-  { id: 'confidence', label: 'Confidence' },
   { id: 'recovery', label: 'Recovery' },
   { id: 'operations', label: 'Operations' },
   { id: 'future', label: 'Future' },

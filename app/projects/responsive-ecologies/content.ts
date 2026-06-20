@@ -654,15 +654,10 @@ export const relatedProjects: RelatedProject[] = [
 
 export const sectionNavigation = [
   { id: 'responsive-ecologies-hero', label: 'Overview' },
-  { id: 'project-frame', label: 'Frame' },
-  { id: 'artifact-origins', label: 'Origins' },
+  { id: 'artifact-origins', label: 'Context' },
   { id: 'decision-problem', label: 'Problem' },
-  { id: 'decision-hierarchy', label: 'Decisions' },
-  { id: 'stewardship-principles', label: 'Principles' },
   { id: 'system-loop', label: 'System' },
-  { id: 'domain-atlas', label: 'Domains' },
-  { id: 'confidence-model', label: 'Confidence' },
-  { id: 'recovery-model', label: 'Recovery' },
-  { id: 'evidence-lineage', label: 'Evidence' },
-  { id: 'project-footer', label: 'Next' },
+  { id: 'domain-atlas', label: 'Operations' },
+  { id: 'confidence-model', label: 'Evidence' },
+  { id: 'project-footer', label: 'Future' },
 ] as const;

@@ -53,21 +53,12 @@ export type ValidationArea = {
 };
 
 export const sectionNavigation = [
-  { id: 'intention-hero', label: 'Hero' },
-  { id: 'project-frame', label: 'Frame' },
+  { id: 'intention-hero', label: 'Overview' },
   { id: 'discovery-problem', label: 'Problem' },
   { id: 'meaning-translation', label: 'Translation' },
   { id: 'transformation-blueprint', label: 'Blueprint' },
-  { id: 'environmental-affordances', label: 'Landscape' },
-  { id: 'blueprint-library', label: 'Library' },
-  { id: 'spatial-sensory', label: 'Composition' },
-  { id: 'guest-journey', label: 'Journey' },
-  { id: 'service-recovery', label: 'Recovery' },
-  { id: 'operating-model', label: 'Operating' },
-  { id: 'evidence-ethics', label: 'Ethics' },
-  { id: 'related-hade', label: 'HADE' },
-  { id: 'future-validation', label: 'Validation' },
-  { id: 'closing-reflection', label: 'Reflection' },
+  { id: 'guest-journey', label: 'Experience' },
+  { id: 'evidence-ethics', label: 'Future' },
 ] as const;
 
 export const projectMetadata: ProjectMetadata = {

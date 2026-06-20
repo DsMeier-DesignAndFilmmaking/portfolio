@@ -29,15 +29,13 @@ import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 
 const AOC_SECTIONS = [
-  { id: 'aoc-hero', label: '01 Hero' },
-  { id: 'aoc-why', label: '02 Why' },
-  { id: 'aoc-research', label: '03 Research' },
-  { id: 'aoc-synthesis', label: '04 Synthesis' },
-  { id: 'aoc-insights', label: '05 Insights' },
-  { id: 'aoc-model', label: '06 Model' },
-  { id: 'aoc-architecture', label: '07 Architecture' },
-  { id: 'aoc-applications', label: '08 Applications' },
-  { id: 'aoc-future', label: '09 Future' },
+  { id: 'aoc-hero', label: 'Overview' },
+  { id: 'aoc-why', label: 'Problem' },
+  { id: 'aoc-research', label: 'Research' },
+  { id: 'aoc-synthesis', label: 'Framework' },
+  { id: 'aoc-model', label: 'Model' },
+  { id: 'aoc-applications', label: 'Applications' },
+  { id: 'aoc-future', label: 'Future' },
 ];
 
 const contentBounds = 'container mx-auto px-6 md:px-8';

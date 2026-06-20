@@ -1,4 +1,5 @@
 import { ArrowDown, Compass, Footprints, Leaf, Waves } from 'lucide-react';
+import Image from 'next/image';
 import { projectMetadata } from '../content';
 import { contentBounds, Tag } from './shared';
 
@@ -42,42 +43,61 @@ export default function HeroLandscape() {
           </div>
         </div>
 
-        <figure className="overflow-hidden rounded-[2rem] border border-stone-200 bg-[#eee9dc] shadow-sm" aria-describedby="intention-landscape-summary">
+        <figure
+          className="overflow-hidden rounded-[2rem] border border-stone-200 bg-[#eee9dc] shadow-sm lg:col-span-6"
+          aria-describedby="intention-landscape-summary"
+        >
           <p id="intention-landscape-summary" className="sr-only">
-            A layered landscape sequence transforms a guest intention into spatial,
-            sensory, social, and service conditions across an environmental journey.
+            An expansive view across Garden of the Gods represents perspective as an
+            environmental affordance. The supporting framework connects landscape,
+            movement, senses, and service to a desired transformation.
           </p>
-          <div className="relative min-h-[460px] overflow-hidden p-5 sm:p-7" aria-hidden="true">
-            <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_center,transparent_0,transparent_24px,#58715f_25px,transparent_26px)] [background-size:72px_48px]" />
-            <div className="absolute inset-x-[-15%] bottom-[-7rem] h-72 rotate-[-6deg] rounded-[50%] bg-[#71866b]" />
-            <div className="absolute inset-x-[-8%] bottom-[-10rem] h-60 rotate-[5deg] rounded-[50%] bg-[#435d4d]" />
-            <div className="relative z-10">
-              <p className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-emerald-950/70">
-                Transformation sequence
+
+          <div className="relative aspect-[4/3] min-h-[300px] overflow-hidden sm:aspect-[3/2] lg:aspect-[4/3]">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/GardenOfTheGods.jpg`}
+              alt="Expansive view across the rock formations, forest, and distant mountains at Garden of the Gods"
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/75" aria-hidden="true" />
+
+            <div className="absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-2 p-5 sm:p-6">
+              <p className="font-mono text-[9px] font-black uppercase tracking-[0.18em] text-white">
+                Environmental affordance // Perspective
               </p>
-              <div className="mt-5 rounded-2xl border border-stone-900/10 bg-white/90 p-4 shadow-sm">
-                <p className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-stone-600">Self-described intention</p>
-                <p className="mt-2 font-tiempos text-xl font-bold text-neutral-950">“I need perspective.”</p>
-              </div>
-              <div className="flex justify-center py-3"><ArrowDown className="h-4 w-4 text-emerald-900/50" /></div>
-              <div className="grid grid-cols-2 gap-3">
-                {experienceLayers.map(({ label, Icon, value }) => {
-                  return (
-                    <div key={label} className="rounded-2xl border border-white/50 bg-white/80 p-3 shadow-sm">
-                      <Icon className="h-4 w-4 text-emerald-800" aria-hidden="true" />
-                      <p className="mt-3 font-mono text-[9px] font-black uppercase tracking-[0.13em] text-stone-700">{label}</p>
-                      <p className="mt-1 text-xs font-bold text-neutral-900">{value}</p>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex justify-center py-3"><ArrowDown className="h-4 w-4 text-amber-900/50" /></div>
-              <div className="rounded-2xl border border-amber-300 bg-amber-50/95 p-4 shadow-sm">
-                <p className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-amber-900">Desired transformation</p>
-                <p className="mt-2 font-tiempos text-xl font-bold text-neutral-950">Narrowed → expansive</p>
+              <span className="rounded-full border border-white/30 bg-black/20 px-3 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                Elevated view
+              </span>
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
+              <p className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-amber-100">
+                Self-described intention
+              </p>
+              <p className="mt-2 font-tiempos text-2xl font-bold sm:text-3xl">“I need perspective.”</p>
+              <div className="mt-3 flex items-center gap-2 text-sm font-semibold text-white/90">
+                <span>Narrowed</span>
+                <ArrowDown className="h-4 w-4 -rotate-90" aria-hidden="true" />
+                <span>Expansive</span>
               </div>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 gap-px border-t border-stone-200 bg-stone-200 sm:grid-cols-4">
+            {experienceLayers.map(({ label, Icon, value }) => (
+              <div key={label} className="bg-white p-4">
+                <Icon className="h-4 w-4 text-emerald-800" aria-hidden="true" />
+                <p className="mt-3 font-mono text-[9px] font-black uppercase tracking-[0.13em] text-stone-700">
+                  {label}
+                </p>
+                <p className="mt-1 text-xs font-bold leading-relaxed text-neutral-900">{value}</p>
+              </div>
+            ))}
+          </div>
+
           <figcaption className="border-t border-stone-200 bg-white/85 p-5 text-sm leading-relaxed text-neutral-600 md:p-6">
             The project treats landscape, hospitality, and sensory composition as materials
             for supporting a desired change—not as inventory to be filtered.

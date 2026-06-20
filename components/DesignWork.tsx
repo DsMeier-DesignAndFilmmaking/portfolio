@@ -33,6 +33,7 @@ type StaticWorkCard = {
   tags: string[];
   icon: LucideIcon;
   status?: string;
+  href?: string;
 };
 
 const NOTION_OS_URL = 'https://app.notion.com/p/Environmental-Systems-Design-OS-37defa67177f80fcb70dc324c03e2e7d?source=copy_link';
@@ -148,6 +149,7 @@ const explorationCards: StaticWorkCard[] = [
     tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
     icon: Route,
     status: 'Currently Exploring',
+    href: '/projects/responsive-ecologies',
   },
   {
     title: 'The Wayfinding Matrix',
@@ -157,6 +159,7 @@ const explorationCards: StaticWorkCard[] = [
     tags: ['Ambient Intelligence', 'Intentional Spontaneity', 'Hushpitality'],
     icon: Compass,
     status: 'Currently Exploring',
+    href: '/projects/wayfinding-matrix',
   },
   {
     title: 'The Intention Engine',
@@ -166,6 +169,7 @@ const explorationCards: StaticWorkCard[] = [
     tags: ['Zero-Search Discovery', 'Psychological Blueprints', 'Whycations'],
     icon: BrainCircuit,
     status: 'Currently Exploring',
+    href: '/projects/intention-engine',
   },
 ];
 
@@ -411,11 +415,21 @@ function ExplorationCard({ card }: { card: StaticWorkCard }) {
           <TagList tags={card.tags} compact />
         </div>
 
-        <div className="mt-6 border-t border-amber-100 pt-4">
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-amber-700">
-            {card.status}
-          </p>
-        </div>
+        {card.href && (
+          <div className="mt-4 pt-2">
+            <a
+              href={card.href}
+              aria-label={`Explore ${card.title}`}
+              className="group -ml-3 inline-flex min-h-[44px] items-center justify-start gap-2 rounded-lg px-3 text-sm font-semibold text-emerald-700 transition-all hover:bg-emerald-50/60 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+            >
+              <span>Explore Project</span>
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1"
+              />
+            </a>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -501,7 +515,7 @@ export default function DesignWork() {
 
           <section aria-labelledby="explorations-title" className="mt-14 md:mt-20">
             <GroupHeader
-              eyebrow="Future Concepts"
+              eyebrow="Ideas & Concepts"
               title="Explorations"
               titleId="explorations-title"
               intro="Early concept directions extending the same decision-support lens into travel, adventure, hospitality, land-based experiences, and environmental service systems."
@@ -515,11 +529,11 @@ export default function DesignWork() {
           </section>
 
           <div className="mx-auto mt-14 flex max-w-xl flex-col items-center justify-center gap-3 border-t border-stone-200 pt-8 text-center md:mt-20">
-            <Sparkles className="h-4 w-4 text-stone-400" aria-hidden="true" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500">
-              Public case studies, research methods, shipped work, and future-facing concepts
-            </p>
-          </div>
+        <Sparkles className="h-4 w-4 text-stone-400" aria-hidden="true" />
+        <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 text-balance">
+          Public case studies, research methods, shipped work, and future-facing concepts
+        </p>
+      </div>
         </div>
       </div>
     </section>
