@@ -1,11 +1,15 @@
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ResponsiveEcologiesProjectHeader from './ProjectHeader';
 import ArtifactOrigins from './components/ArtifactOrigins';
+import ConfidenceModel from './components/ConfidenceModel';
 import DecisionHierarchy from './components/DecisionHierarchy';
 import DecisionProblem from './components/DecisionProblem';
 import DomainAtlas from './components/DomainAtlas';
+import EvidenceLineage from './components/EvidenceLineage';
 import HeroLandscape from './components/HeroLandscape';
+import ProjectFooter from './components/ProjectFooter';
 import ProjectFrame from './components/ProjectFrame';
+import RecoveryModel from './components/RecoveryModel';
 import StewardshipPrinciples from './components/StewardshipPrinciples';
 import SystemLoop from './components/SystemLoop';
 import { sectionNavigation } from './content';
@@ -40,6 +44,10 @@ export default function ResponsiveEcologiesPage() {
       <StewardshipPrinciples />
       <SystemLoop />
       <DomainAtlas />
+      <ConfidenceModel />
+      <RecoveryModel />
+      <EvidenceLineage />
+      <ProjectFooter />
     </div>
   );
 }

@@ -70,6 +70,56 @@ export type DecisionDomain = {
   icon: 'terrain' | 'water' | 'habitat' | 'fire' | 'access' | 'operations';
 };
 
+export type ConfidenceDimension = {
+  id: string;
+  name: string;
+  weight: number;
+  question: string;
+  evidence: string;
+};
+
+export type ConfidenceBand = {
+  id: 'low' | 'medium' | 'high';
+  label: string;
+  range: string;
+  response: string;
+  authority: string;
+};
+
+export type RecoveryStep = {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  owner: string;
+};
+
+export type RecoveryTrigger = {
+  id: string;
+  trigger: string;
+  systemResponse: string;
+};
+
+export type EvidenceLineageRecord = {
+  id: string;
+  claim: string;
+  evidenceType: string;
+  source: string;
+  confidence: 'medium' | 'high';
+  maturity: string;
+  supports: string[];
+  limitation: string;
+  traceabilityReference: string;
+};
+
+export type RelatedProject = {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  relationship: string;
+};
+
 export const projectMetadata: ProjectMetadata = {
   id: 'responsive-ecologies',
   title: 'Responsive Ecologies',
@@ -386,6 +436,222 @@ export const decisionDomains: DecisionDomain[] = [
   },
 ];
 
+export const confidenceDimensions: ConfidenceDimension[] = [
+  {
+    id: 'freshness',
+    name: 'Signal freshness',
+    weight: 20,
+    question: 'Is the observation current enough for this decision window?',
+    evidence: 'Timestamp, expected update cadence, and stale-state threshold',
+  },
+  {
+    id: 'source-quality',
+    name: 'Source quality',
+    weight: 20,
+    question: 'How reliable and spatially representative is the source?',
+    evidence: 'Source type, calibration status, field validation, and known limitations',
+  },
+  {
+    id: 'cross-signal-agreement',
+    name: 'Cross-signal agreement',
+    weight: 25,
+    question: 'Do independent observations describe the same environmental change?',
+    evidence: 'Telemetry, field reports, weather context, and operational observations',
+  },
+  {
+    id: 'evidence-strength',
+    name: 'Evidence strength',
+    weight: 20,
+    question: 'How strongly does research support the proposed relationship?',
+    evidence: 'Research record, artifact lineage, assumptions, and validation status',
+  },
+  {
+    id: 'authority-readiness',
+    name: 'Authority readiness',
+    weight: 15,
+    question: 'Is an accountable human available to review the recommendation?',
+    evidence: 'Named role, escalation path, operational readiness, and decision ownership',
+  },
+];
+
+export const confidenceBands: ConfidenceBand[] = [
+  {
+    id: 'low',
+    label: 'Low confidence',
+    range: '0–49',
+    response: 'Continue observing, request inspection, or escalate uncertainty.',
+    authority: 'No consequential action is prepared.',
+  },
+  {
+    id: 'medium',
+    label: 'Qualified confidence',
+    range: '50–74',
+    response: 'Recommend with caveats and identify the missing evidence.',
+    authority: 'Human review is required before preparation.',
+  },
+  {
+    id: 'high',
+    label: 'Action-ready confidence',
+    range: '75–100',
+    response: 'Prepare a reversible response path for accountable approval.',
+    authority: 'The system still does not authorize itself.',
+  },
+];
+
+export const confidenceSuppressionRules = [
+  'A critical environmental signal is stale or unavailable.',
+  'Independent sources conflict without a field explanation.',
+  'The proposed action is difficult to reverse.',
+  'The accountable human owner is unavailable.',
+];
+
+export const recoverySteps: RecoveryStep[] = [
+  {
+    id: 'detect',
+    number: '01',
+    title: 'Detect the break',
+    description:
+      'Identify the changed condition, failed assumption, rejected recommendation, or unavailable authority.',
+    owner: 'Monitoring and field observation',
+  },
+  {
+    id: 'stabilize',
+    number: '02',
+    title: 'Stabilize the decision',
+    description:
+      'Pause irreversible action, preserve safety, and keep the current landscape state visible.',
+    owner: 'Field lead and operational protocol',
+  },
+  {
+    id: 'reframe',
+    number: '03',
+    title: 'Reframe the options',
+    description:
+      'Reduce the response set to reversible alternatives that preserve the original stewardship intent.',
+    owner: 'Decision support and stewardship lead',
+  },
+  {
+    id: 'authorize-recovery',
+    number: '04',
+    title: 'Route recovery authority',
+    description:
+      'Send the revised path to the role accountable for approving, modifying, or rejecting it.',
+    owner: 'Named human authority',
+  },
+  {
+    id: 'learn',
+    number: '05',
+    title: 'Record what changed',
+    description:
+      'Return the outcome, field explanation, and confidence change to the evidence and artifact record.',
+    owner: 'Stewardship learning loop',
+  },
+];
+
+export const recoveryTriggers: RecoveryTrigger[] = [
+  {
+    id: 'conditions-shift',
+    trigger: 'Conditions change after a plan is prepared',
+    systemResponse: 'Re-evaluate fit and surface a reversible alternative.',
+  },
+  {
+    id: 'confidence-drops',
+    trigger: 'Signal confidence falls below the required band',
+    systemResponse: 'Suppress action preparation and request stronger evidence.',
+  },
+  {
+    id: 'authority-unavailable',
+    trigger: 'The accountable decision owner is unavailable',
+    systemResponse: 'Hold the recommendation or route the defined escalation path.',
+  },
+  {
+    id: 'field-contradiction',
+    trigger: 'Field observation contradicts the model',
+    systemResponse: 'Prioritize the observed condition and document the model mismatch.',
+  },
+];
+
+export const evidenceLineage: EvidenceLineageRecord[] = [
+  {
+    id: 'confidence-architecture',
+    claim:
+      'Environmental guidance should expose confidence, uncertainty, and recovery rather than present one opaque answer.',
+    evidenceType: 'Framework synthesis',
+    source: 'The Architecture of Confidence',
+    confidence: 'high',
+    maturity: 'Established portfolio framework',
+    supports: ['Confidence Model', 'Recovery Model', 'Authority routing'],
+    limitation:
+      'Environmental thresholds still require domain-specific validation.',
+    traceabilityReference: 'Portfolio:AOC/confidence-architecture',
+  },
+  {
+    id: 'operational-stewardship',
+    claim:
+      'Credible environmental guidance depends on operational capacity, staff knowledge, and explicit handoffs.',
+    evidenceType: 'Service-system synthesis',
+    source: 'Adaptive Ranch Experience Companion',
+    confidence: 'high',
+    maturity: 'Modeled service architecture',
+    supports: ['Decision Hierarchy', 'Domain Atlas', 'Recovery ownership'],
+    limitation:
+      'The source model has not been piloted in a live ranch environment.',
+    traceabilityReference: 'Portfolio:AdaptiveRanch/operations-blueprint',
+  },
+  {
+    id: 'environmental-signals',
+    claim:
+      'Landscape decisions should combine environmental observations with source quality, freshness, and spatial context.',
+    evidenceType: 'Environmental systems research',
+    source: 'Environmental Systems Design OS',
+    confidence: 'medium',
+    maturity: 'Research-backed hypothesis',
+    supports: ['System Loop', 'Domain Atlas', 'Confidence dimensions'],
+    limitation:
+      'Site-specific signals and thresholds remain assumptions until field validation.',
+    traceabilityReference: 'OS:Evidence/environmental-signal-quality',
+  },
+  {
+    id: 'human-authority',
+    claim:
+      'Consequential stewardship actions require visible human authority even when agents prepare recommendations.',
+    evidenceType: 'Cross-project design principle',
+    source: 'System Artifacts registry',
+    confidence: 'high',
+    maturity: 'Synthesis principle',
+    supports: ['Decision Hierarchy', 'Confidence bands', 'Recovery escalation'],
+    limitation:
+      'Exact authority structures will vary by property, jurisdiction, and operating model.',
+    traceabilityReference: 'OS:SystemArtifacts/authority-routing',
+  },
+];
+
+export const nextValidationSteps = [
+  'Review decision domains and authority boundaries with land stewards and field operators.',
+  'Validate signal quality and confidence assumptions against one real property.',
+  'Walk recovery paths through realistic weather, access, and habitat disruptions.',
+  'Define which artifacts are ready for scenario prototyping and which remain research hypotheses.',
+];
+
+export const relatedProjects: RelatedProject[] = [
+  {
+    id: 'architecture-of-confidence',
+    title: 'The Architecture of Confidence',
+    description:
+      'The framework for context interpretation, confidence communication, human agency, and recovery.',
+    href: '/projects/architecture-of-confidence',
+    relationship: 'Framework origin',
+  },
+  {
+    id: 'adaptive-ranch',
+    title: 'Adaptive Ranch Experience Companion',
+    description:
+      'The place-based service system connecting environmental conditions, operations, and stewardship.',
+    href: '/projects/adaptive-ranch-experience-companion',
+    relationship: 'Applied system origin',
+  },
+];
+
 export const sectionNavigation = [
   { id: 'responsive-ecologies-hero', label: 'Overview' },
   { id: 'project-frame', label: 'Frame' },
@@ -395,4 +661,8 @@ export const sectionNavigation = [
   { id: 'stewardship-principles', label: 'Principles' },
   { id: 'system-loop', label: 'System' },
   { id: 'domain-atlas', label: 'Domains' },
+  { id: 'confidence-model', label: 'Confidence' },
+  { id: 'recovery-model', label: 'Recovery' },
+  { id: 'evidence-lineage', label: 'Evidence' },
+  { id: 'project-footer', label: 'Next' },
 ] as const;
