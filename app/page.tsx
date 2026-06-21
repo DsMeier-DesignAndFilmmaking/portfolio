@@ -355,7 +355,7 @@ export default function HomePage() {
         textDecorationSkipInk: 'none'
       }}
     >
-      People, Places, &amp; Systems
+      People, Places, &amp;&nbsp;Systems
     </span>
   </h1>
 </div>
