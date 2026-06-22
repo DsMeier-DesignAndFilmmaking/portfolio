@@ -173,7 +173,7 @@ export const artifactOrigins: ArtifactOrigin[] = [
   },
   {
     id: 'adaptive-ranch',
-    project: 'Adaptive Ranch Experience Companion',
+    project: 'Adaptive Ranch Experience\u00a0Companion',
     projectHref: '/projects/adaptive-ranch-experience-companion',
     contribution:
       'A place-based service system connecting environmental conditions, operational capacity, stewardship constraints, and human handoffs.',
@@ -220,7 +220,7 @@ export const decisionProblems: DecisionProblem[] = [
     description:
       'Ecologists, field crews, guides, operators, and landowners interpret the same landscape through different responsibilities and constraints.',
     consequence:
-      'A locally reasonable action can create downstream ecological, operational, or guest-experience costs.',
+      'A locally reasonable action can create downstream ecological, operational, or guest-experience\u00a0costs.',
     icon: 'coordination',
   },
   {
@@ -329,7 +329,7 @@ export const systemLoop: SystemLoopStep[] = [
   {
     id: 'sense',
     label: '01 / Sense',
-    title: 'Observe the landscape',
+    title: 'Observe the\u00a0landscape',
     description:
       'Combine field reports, environmental telemetry, operational conditions, and patterns of use.',
     output: 'Typed, time-aware signals',
@@ -356,7 +356,7 @@ export const systemLoop: SystemLoopStep[] = [
   {
     id: 'authorize',
     label: '04 / Authorize',
-    title: 'Route accountable judgment',
+    title: 'Route accountable\u00a0judgment',
     description:
       'Match the recommendation to the human role permitted to approve, reject, revise, or escalate it.',
     output: 'Authorized action',
@@ -512,7 +512,7 @@ export const recoverySteps: RecoveryStep[] = [
     title: 'Detect the break',
     description:
       'Identify the changed condition, failed assumption, rejected recommendation, or unavailable authority.',
-    owner: 'Monitoring and field observation',
+    owner: 'Monitoring and field\u00a0observation',
   },
   {
     id: 'stabilize',
@@ -590,7 +590,7 @@ export const evidenceLineage: EvidenceLineageRecord[] = [
     claim:
       'Credible environmental guidance depends on operational capacity, staff knowledge, and explicit handoffs.',
     evidenceType: 'Service-system synthesis',
-    source: 'Adaptive Ranch Experience Companion',
+    source: 'Adaptive Ranch Experience\u00a0Companion',
     confidence: 'high',
     maturity: 'Modeled service architecture',
     supports: ['Decision Hierarchy', 'Domain Atlas', 'Recovery ownership'],
@@ -644,7 +644,7 @@ export const relatedProjects: RelatedProject[] = [
   },
   {
     id: 'adaptive-ranch',
-    title: 'Adaptive Ranch Experience Companion',
+    title: 'Adaptive Ranch Experience\u00a0Companion',
     description:
       'The place-based service system connecting environmental conditions, operations, and stewardship.',
     href: '/projects/adaptive-ranch-experience-companion',

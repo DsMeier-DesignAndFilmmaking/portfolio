@@ -638,7 +638,7 @@ useEffect(() => {
             <Shield className="w-6 h-6 text-white flex-shrink-0" />
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-            Integrity & Verification Layer
+            Integrity &amp; Verification&nbsp;Layer
           </h3>
         </div>
         <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 flex-grow" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
@@ -705,14 +705,14 @@ useEffect(() => {
   {[
     {
       icon: MapPin,
-      title: "Contextual Decision Logic (CATDS)",
+      title: "Contextual Decision Logic\u00a0(CATDS)",
       description: "An environmental sensing engine that converts geospatial variables, such as weather, terrain, and availability into real-time travel feasibility signals.",
       gradient: "from-blue-500 to-cyan-600",
       link: "/projects/travel-and-ai/projects/context-aware-travel-decision-system-logic"
     },
     {
       icon: Users,
-      title: "Relational Heuristics Engine",
+      title: "Relational Heuristics\u00a0Engine",
       description: "A logic module that calculates 'social friction' and affinity weight to determine if a nearby connection warrants a system-level intervention.",
       gradient: "from-purple-800 to-pink-900",
       link: "/projects/travel-and-ai/projects/social-opportunity-matching-module-logic"
@@ -726,7 +726,7 @@ useEffect(() => {
     },
     {
       icon: BookOpen,
-      title: "Semantic Translation Module",
+      title: "Semantic Translation\u00a0Module",
       description: "An LLM-driven synthesis layer that transforms raw algorithmic outputs into human-centric narratives and actionable 'Moment' contexts.",
       gradient: "from-amber-500 to-orange-600",
       link: "/projects/travel-and-ai/projects/narrative-driven-travel-experience-generator-logic"
@@ -845,7 +845,7 @@ useEffect(() => {
     },
     {
       icon: Users,
-      title: "Social Proximity Alerts",
+      title: "Social Proximity\u00a0Alerts",
       description: "The 'Who' of spontaneity. A relational heuristic engine that surfaces low-friction social matches based on network trust and shared physical proximity.",
       gradient: "from-purple-800 to-pink-900",
       link: "/projects/travel-and-ai/projects/social-opportunity-matching-module"

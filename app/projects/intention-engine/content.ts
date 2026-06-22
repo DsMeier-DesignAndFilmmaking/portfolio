@@ -196,7 +196,7 @@ export const compositionDimensions = [
   ['Sound', 'Design what recedes as carefully as what becomes audible.'],
   ['Temperature', 'Use warmth, shade, air movement, and water as experiential transitions.'],
   ['Human contact', 'Stage welcome, guidance, witness, and withdrawal intentionally.'],
-  ['Pacing', 'Protect dwell, recovery, and unprogrammed time from operational compression.'],
+  ['Pacing', 'Protect dwell, recovery, and unprogrammed time from operational\u00a0compression.'],
 ];
 
 export const journeyStages: JourneyStage[] = [
@@ -232,7 +232,7 @@ export const validationAreas: ValidationArea[] = [
   { title: 'Guest language studies', question: 'Can people describe desired change without adopting system vocabulary?' },
   { title: 'Blueprint testing', question: 'Do different teams create coherent experiences from the same intention?' },
   { title: 'Cross-cultural interpretation', question: 'Which meanings and spatial assumptions fail to transfer?' },
-  { title: 'Service recovery evaluation', question: 'Does meaning-preserving recovery feel equivalent rather than merely compensatory?' },
+  { title: 'Service recovery evaluation', question: 'Does meaning-preserving recovery feel equivalent rather than merely\u00a0compensatory?' },
   { title: 'Environmental fit validation', question: 'Are proposed affordances ecologically and operationally appropriate?' },
   { title: 'HADE handoff experiments', question: 'Can adaptive delivery preserve the blueprint without absorbing its role?' },
 ];

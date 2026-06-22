@@ -451,7 +451,7 @@ export default function AdaptiveRanchExperienceCompanionPage() {
       >
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ['Established', 'A reusable system architecture, confidence model, and service-design thesis.'],
+            ['Established', 'A reusable system architecture, confidence model, and service-design\u00a0thesis.'],
             ['Informed By', 'Hospitality audits, environmental research, scenario modeling, and operational assumptions.'],
             ['Not Yet Validated', 'Live guest, staff, operational, and stewardship outcomes.'],
           ].map(([label, body]) => (

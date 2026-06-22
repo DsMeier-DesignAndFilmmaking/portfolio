@@ -4,7 +4,7 @@ const recoverySteps = [
   ['Preserve Intent', 'Identify what the guest hoped to experience.'],
   ['Explain Change', 'Make the reason for the disruption clear.'],
   ['Validate Alternative', 'Use staff judgment to confirm the better-fit path.'],
-  ['Restore Agency', 'Let the guest adapt without feeling downgraded.'],
+  ['Restore Agency', 'Let the guest adapt without feeling\u00a0downgraded.'],
 ];
 
 export default function RecoveryPathDiagram() {
@@ -62,7 +62,7 @@ export default function RecoveryPathDiagram() {
                 Better-fit alternative
               </p>
               <p className="mt-2 font-tiempos text-2xl font-bold text-neutral-950">
-                Covered Horsemanship Experience
+                Covered Horsemanship&nbsp;Experience
               </p>
             </div>
           </div>

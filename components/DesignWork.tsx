@@ -102,7 +102,7 @@ const systemsDesignCards: LinkedWorkCard[] = [
     icon: Zap,
   },
   {
-    title: 'Adaptive Ranch Experience Companion',
+    title: 'Adaptive Ranch Experience\u00a0Companion',
     label: 'Systems Concept',
     description:
       'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',

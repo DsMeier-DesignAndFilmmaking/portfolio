@@ -43,8 +43,8 @@ export const projectRegistry = {
       outcome: "A UI that offers 'Low-Stress Detours' only when the system has 95%+ confidence in arrival times."
     },
     "social-opportunity-matching-module": {
-      title: "Social Proximity Alerts",
-      subtitle: "Relational Heuristics for Real-World Connection",
+      title: "Social Proximity\u00a0Alerts",
+      subtitle: "Relational Heuristics for Real-World\u00a0Connection",
       color: "#8b5cf6",
       isAISystem: true,
       proximitySignal: "High-Value",

@@ -289,7 +289,9 @@ export default function SphereSoftwareProjectPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Sphere Software Whitepaper</h3>
+                  <h3 className="text-lg font-semibold text-white mb-1">
+                    Sphere Software&nbsp;Whitepaper
+                  </h3>
                   <p className="text-gray-400 text-sm">Technical whitepaper outlining Sphere Software's architecture and solutions.</p>
                 </div>
               </div>
@@ -352,4 +354,4 @@ export default function SphereSoftwareProjectPage() {
       />
     </main>
   );
-} 
+}

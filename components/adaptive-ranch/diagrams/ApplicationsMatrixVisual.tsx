@@ -4,12 +4,12 @@ const applications = [
   ['Resort', 'Choice overload', 'Narrow a large activity set to options that fit now.'],
   ['Lodge / Ranch', 'Activity fit', 'Match guest readiness with conditions and local support.'],
   [
-    'Park / Conservation Property',
+    'Park / Conservation\u00a0Property',
     'Access and stewardship',
     'Guide visitors toward responsible, viable paths.',
   ],
   [
-    'Guided Adventure Operator',
+    'Guided Adventure\u00a0Operator',
     'Readiness and recovery',
     'Clarify challenge fit and preserve trust when plans change.',
   ],

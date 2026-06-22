@@ -389,7 +389,7 @@ export default function HomePage() {
               paddingLeft: '1rem' 
             }}
           >
-            Currently building AI-enabled systems that connect real-world context, decision support, and human-centered experience&nbsp;design.
+            Currently exploring how AI can augment human decision-making in dynamic environments, from digital products to physical&nbsp;places.
           </p>
           
           {/* Dedicated Signature Frame - Tightened top spacing */}

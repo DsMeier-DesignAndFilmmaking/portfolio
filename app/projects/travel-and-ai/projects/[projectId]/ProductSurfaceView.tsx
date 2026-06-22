@@ -3033,7 +3033,9 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
                                   <FaCloudSun className="w-5 h-5 text-white" />
                                 </div>
                                 <div className="flex-1">
-                                  <h4 className="text-white font-bold text-sm mb-1">Context Change Detected</h4>
+                                  <h4 className="text-white font-bold text-sm mb-1">
+                                    Context Change&nbsp;Detected
+                                  </h4>
                                   <p className="text-white/90 text-sm md:text-xs leading-relaxed">
                                     Heavy Rain Detected. High crowd density at Fushimi Inari. Suggesting indoor alternative.
                                   </p>
@@ -3233,8 +3235,12 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
                             <div className="bg-white rounded-xl p-5 shadow-sm">
                               <div className="flex items-center justify-between mb-4">
                                 <div className="flex-1">
-                                  <h3 className="font-semibold text-gray-900 mb-1">Energy Conservation Mode</h3>
-                                  <p className="text-sm md:text-xs text-gray-500">Prioritize low-intensity activities</p>
+                                  <h3 className="font-semibold text-gray-900 mb-1">
+                                    Energy Conservation&nbsp;Mode
+                                  </h3>
+                                  <p className="text-sm md:text-xs text-gray-500">
+                                    Prioritize low-intensity&nbsp;activities
+                                  </p>
                                 </div>
                                 <motion.button
                                   whileTap={{ scale: 0.95 }}
@@ -3249,7 +3255,7 @@ export default function ProductSurfaceView({ projectId }: { projectId: string })
                                 </motion.button>
                               </div>
                               <p className="text-sm md:text-xs text-gray-400 mt-2">
-                                {true ? 'Active' : 'Inactive'} • System will filter high-energy activities
+                                {true ? 'Active' : 'Inactive'} • System will filter high-energy&nbsp;activities
                               </p>
                             </div>
                             

@@ -1754,7 +1754,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Travelers
+                        Impact for&nbsp;Travelers
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
@@ -1771,7 +1771,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        Impact for Local Communities
+                        Impact for Local&nbsp;Communities
                       </h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed text-lg">
@@ -3105,7 +3105,7 @@ const variables: Record<string, { title: string; desc: string }> = {
     },
     {
       step: "02. Synthesize",
-      title: "Code → Deployment",
+      title: "Code →\u00a0Deployment",
       desc: "Moving from simulation to Swift. Implementing CoreML and SQLite to test how data behaves in an offline-first environment.",
       color: "text-blue-400"
     },
@@ -4479,7 +4479,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                   </div>
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Learning 03</span>
-                    <h3 className="font-bold text-gray-900 italic">The 15-Minute Threshold</h3>
+                    <h3 className="font-bold text-gray-900 italic">
+                      The 15‑Minute&nbsp;Threshold
+                    </h3>
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     15 minutes is identified as the optimal commitment window to bypass planning friction.
@@ -4753,7 +4755,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">Architectural Constraint</span>
-                      <p className="text-sm text-gray-700 font-medium italic leading-snug">Privacy-first data ingestion (zero-knowledge proof).</p>
+                      <p className="text-sm text-gray-700 font-medium italic leading-snug">
+                        Privacy-first data ingestion (zero-knowledge&nbsp;proof).
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -5319,7 +5323,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 uppercase tracking-wider mb-3">
                         Interface 01
                       </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Global Map (Macro-Discovery)</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        The Global Map&nbsp;(Macro-Discovery)
+                      </h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
@@ -5387,7 +5393,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-700 uppercase tracking-wider mb-3">
                         Interface 02
                       </span>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">The Intent Table (Micro-Matching)</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        The Intent Table&nbsp;(Micro-Matching)
+                      </h3>
                     </div>
                     <div className="space-y-4 text-gray-700">
                       <div>
@@ -7105,7 +7113,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
               <UserCheck className="text-amber-600 w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Curated Pivots over Full Automation</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">
+              Curated Pivots over Full&nbsp;Automation
+            </h3>
           </div>
           
           <div className="flex-1 space-y-4">
@@ -7125,7 +7135,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
               <Zap className="text-cyan-600 w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Bridging the API Impedance Mismatch</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">
+              Bridging the API Impedance&nbsp;Mismatch
+            </h3>
           </div>
           
           <div className="flex-1 space-y-4">
@@ -7145,7 +7157,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 mb-6">
               <Link2 className="text-emerald-600 w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">Tools as Connective Tissue</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 italic leading-tight">
+              Tools as Connective&nbsp;Tissue
+            </h3>
           </div>
           
           <div className="flex-1 space-y-4">
@@ -7313,7 +7327,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             Phase 01
           </div>
           <div className="h-full bg-slate-50 rounded-[2rem] p-8 pt-12 border border-transparent hover:border-amber-200 transition-all flex flex-col">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Modular SDK Expansion</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              Modular SDK&nbsp;Expansion
+            </h3>
             <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
               Exposing decision vectors and trust signals via a modular SDK to help platforms like <strong className="text-gray-900">Expedia or Airbnb</strong> transform static itineraries into context-aware experiences without a complete rebuild.
             </p>
@@ -7347,7 +7363,9 @@ const variables: Record<string, { title: string; desc: string }> = {
             Phase 03
           </div>
           <div className="h-full bg-slate-50 rounded-[2rem] p-8 pt-12 border border-transparent hover:border-emerald-200 transition-all flex flex-col">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">The "Liability Shield"</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              The “Liability&nbsp;Shield”
+            </h3>
             <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
               Establishing a cross-platform standard for <strong className="text-gray-900">Verified AI Reasoning</strong>. This reduces the noise and risk of outdated travel data decay globally through a shared provenance layer.
             </p>
@@ -7465,7 +7483,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded">Paradox 03</span>
-                      <h3 className="font-bold text-gray-900 italic">The Privacy Binary</h3>
+                      <h3 className="font-bold text-gray-900 italic">The Privacy&nbsp;Binary</h3>
                     </div>
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">
@@ -7520,7 +7538,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                         <span className="px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold">
                           Signal 82%
                         </span>
-                        <h4 className="text-xl font-bold text-gray-900">The Authenticity Gap</h4>
+                        <h4 className="text-xl font-bold text-gray-900">
+                          The Authenticity&nbsp;Gap
+                        </h4>
                       </div>
                       <p className="text-gray-700 leading-relaxed text-base mb-6">
                         Travelers want local/expert advice but find traditional forums <strong className="text-gray-900">"unvetted" and high-noise</strong>. The challenge isn't finding information—it's finding <strong className="text-gray-900">trustworthy expertise</strong> within their extended network.
@@ -7823,7 +7843,10 @@ const variables: Record<string, { title: string; desc: string }> = {
                             {/* Gate Description */}
                             <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
                               <p className="text-sm text-slate-300 leading-relaxed">
-                                Prioritizing <strong className="text-white">1st & 2nd-degree connections</strong> using <code className="text-indigo-400 font-mono text-xs bg-slate-900/50 px-1.5 py-0.5 rounded">$1/d^2$</code>
+                                Prioritizing <strong className="text-white">1st & 2nd-degree connections</strong>{' '}
+                                <span className="whitespace-nowrap">
+                                  using <code className="text-indigo-400 font-mono text-xs bg-slate-900/50 px-1.5 py-0.5 rounded">$1/d^2$</code>
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -8774,7 +8797,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded">Metric 01</span>
-                      <h3 className="font-bold text-gray-900 italic">Identity Matching Accuracy</h3>
+                      <h3 className="font-bold text-gray-900 italic">
+                        Identity Matching&nbsp;Accuracy
+                      </h3>
                     </div>
                     <div className="mb-4">
                       <div className="text-4xl font-bold text-slate-700 mb-2">[01]</div>
@@ -8797,7 +8822,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                     </div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded">Metric 02</span>
-                      <h3 className="font-bold text-gray-900 italic">Privacy Control Granularity</h3>
+                      <h3 className="font-bold text-gray-900 italic">
+                        Privacy Control&nbsp;Granularity
+                      </h3>
                     </div>
                     <div className="mb-4">
                       <div className="text-4xl font-bold text-emerald-700 mb-2">[02]</div>
@@ -8981,7 +9008,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                         3
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white mb-2">Phase 3: Trust-Layered Transactions</h3>
+                        <h3 className="text-lg font-bold text-white mb-2">
+                          Phase 3: Trust‑Layered&nbsp;Transactions
+                        </h3>
                         <p className="text-gray-300 leading-relaxed">
                           Deep OTA/Booking API integration for verified group coordination. Connecting the Trust Layer directly to OTA (Online Travel Agency) APIs for seamless, verified group bookings, enabling verified group coordination at the point of booking.
                         </p>
@@ -10289,7 +10318,7 @@ const variables: Record<string, { title: string; desc: string }> = {
                       <div className="h-[1px] flex-grow bg-amber-200" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
-                      The Living Archive
+                      The Living&nbsp;Archive
                     </h3>
                     <p className="text-gray-700 leading-relaxed mb-6 text-sm">
                       Historical layers revealed through spatial audio and narrative footprints. The system connects present location to past events, creating depth of connection.
@@ -10352,7 +10381,9 @@ const variables: Record<string, { title: string; desc: string }> = {
                       </div>
                       <div className="flex items-center gap-2 mb-3">
                         <span className="text-[10px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Learning 01</span>
-                        <h3 className="font-bold text-gray-900 italic">Narrative as Infrastructure</h3>
+                        <h3 className="font-bold text-gray-900 italic">
+                          Narrative as&nbsp;Infrastructure
+                        </h3>
                       </div>
                       <p className="text-sm text-gray-600 leading-relaxed">
                         The Narrative-Driven Travel Experience Generator demonstrates that narrative architecture can function as foundational infrastructure, not just decorative overlay. By embedding emotional arcs into the system's core logic, the architecture creates travel experiences that adapt to how travelers feel, not just where they are.

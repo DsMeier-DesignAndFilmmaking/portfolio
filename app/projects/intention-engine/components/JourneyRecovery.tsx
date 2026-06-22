@@ -88,7 +88,9 @@ export default function ServiceRecovery() {
           </div>
           <div className="rounded-[1.5rem] border border-amber-300/20 bg-amber-300/[0.08] p-6 lg:col-span-7 md:p-8">
             <p className="font-mono text-[10px] font-black uppercase tracking-[0.18em] text-amber-200">Meaning-preserving alternatives</p>
-            <h3 className="mt-4 font-tiempos text-3xl font-bold text-white">Different logistics. Same experiential intention.</h3>
+            <h3 className="mt-4 font-tiempos text-3xl font-bold text-white">
+              Different logistics. Same experiential&nbsp;intention.
+            </h3>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {alternatives.map(([item, mechanism], index) => (
                 <div key={item} className={`rounded-xl border border-white/10 bg-black/15 p-4 ${index === alternatives.length - 1 ? 'sm:col-span-2' : ''}`}>

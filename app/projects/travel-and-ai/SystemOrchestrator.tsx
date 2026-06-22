@@ -320,7 +320,8 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                             </span>
                           </div>
                           <h2 className="text-lg font-bold text-blue-300 font-mono">
-                            {logicData[0].title} // SYSTEM_AUDIT_LOG
+                            {logicData[0].title}{' '}
+                            <span className="whitespace-nowrap">// SYSTEM_AUDIT_LOG</span>
                           </h2>
                         </div>
 
@@ -501,7 +502,8 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                             </span>
                           </div>
                           <h2 className="text-xl font-bold text-blue-300 font-mono">
-                            {logicData[1].title} // SYSTEM_AUDIT_LOG
+                            {logicData[1].title}{' '}
+                            <span className="whitespace-nowrap">// SYSTEM_AUDIT_LOG</span>
                           </h2>
                         </div>
 
@@ -677,7 +679,8 @@ const SystemOrchestrator: React.FC<SystemOrchestratorProps> = ({ hideHeader = fa
                             </span>
                           </div>
                           <h2 className="text-xl font-bold text-cyan-300 font-mono">
-                            {logicData[2].title} // SYSTEM_AUDIT_LOG
+                            {logicData[2].title}{' '}
+                            <span className="whitespace-nowrap">// SYSTEM_AUDIT_LOG</span>
                           </h2>
                         </div>
 

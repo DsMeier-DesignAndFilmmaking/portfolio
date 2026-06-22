@@ -286,7 +286,7 @@ const applications = [
   {
     number: '01',
     environment: 'International Travel',
-    uncertainty: 'Unfamiliar places. High uncertainty.',
+    uncertainty: 'Unfamiliar places. High\u00a0uncertainty.',
     breakdown: 'Local signals are present, but the traveler cannot tell which ones matter now.',
     signals: ['Intent', 'location', 'weather', 'time', 'source freshness'],
     mechanism: 'Context interpretation',
@@ -320,7 +320,7 @@ const applications = [
   {
     number: '03',
     environment: 'National Parks',
-    uncertainty: 'Dynamic conditions. Safety uncertain.',
+    uncertainty: 'Dynamic conditions. Safety\u00a0uncertain.',
     breakdown: 'Popularity and distance can hide weather, terrain, closure, or capacity risk.',
     signals: ['Weather', 'daylight', 'trail state', 'skill level', 'ranger guidance'],
     mechanism: 'Risk-aware guidance',
@@ -337,7 +337,7 @@ const applications = [
   {
     number: '04',
     environment: 'Guest Ranches',
-    uncertainty: 'New activities. Social and skill uncertainty.',
+    uncertainty: 'New activities. Social and skill\u00a0uncertainty.',
     breakdown: 'Participation can feel risky when etiquette, ability, safety, and pacing are unclear.',
     signals: ['Guest confidence', 'activity intensity', 'weather', 'staff availability'],
     mechanism: 'Confidence-building participation guidance',
@@ -372,7 +372,7 @@ const applications = [
     number: '06',
     environment: 'HADE',
     uncertainty: 'Context ambiguity. Decision fatigue.',
-    breakdown: 'Too many weak signals can make adaptive guidance feel generic, opaque, or over-directive.',
+    breakdown: 'Too many weak signals can make adaptive guidance feel generic, opaque, or\u00a0over-directive.',
     signals: ['Decision moment', 'intent', 'risk', 'timing', 'cognitive load'],
     mechanism: 'Decision framing',
     action: 'Act with confidence.',

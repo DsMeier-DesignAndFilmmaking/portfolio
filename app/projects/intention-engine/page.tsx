@@ -236,7 +236,7 @@ export default function IntentionEnginePage() {
         <div className={contentBounds}>
           <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-emerald-800">15 // Closing Reflection</p>
           <h2 id="closing-reflection-title" className="mt-5 max-w-4xl font-tiempos text-4xl font-bold leading-tight text-neutral-950 md:text-6xl">
-            Designing for Transformation.
+            Designing for&nbsp;Transformation.
           </h2>
           <p className="mt-7 max-w-4xl text-lg leading-relaxed text-neutral-700 md:text-2xl">
             Most travel systems optimize for transactions. This concept explores whether

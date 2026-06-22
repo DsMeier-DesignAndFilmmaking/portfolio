@@ -188,7 +188,7 @@ export default function McDonaldsKioskProjectPage() {
             </div>
             <div className="min-h-[60px] flex flex-col justify-start">
               <p className="text-sm text-gray-400">Project Goal:</p>
-              <p>Enhance kiosk UX with upsell and cross-sell opportunities</p>
+              <p>Enhance kiosk UX with upsell and cross-sell&nbsp;opportunities</p>
             </div>
           </div>
         </div>
@@ -436,4 +436,4 @@ export default function McDonaldsKioskProjectPage() {
       />
     </main>
   );
-} 
+}

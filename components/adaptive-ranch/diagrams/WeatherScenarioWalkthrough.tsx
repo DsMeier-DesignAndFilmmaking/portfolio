@@ -3,7 +3,7 @@ import { DiagramShell } from './primitives';
 const scenarioSteps = [
   {
     title: 'Original Intent',
-    description: 'The guest plans a guided riding experience.',
+    description: 'The guest plans a guided riding\u00a0experience.',
     takeaway: 'Spend meaningful time outdoors with family.',
   },
   {

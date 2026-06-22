@@ -26,14 +26,14 @@ export const allProjects: Project[] = [
   {
     id: 'healthcare',
     title: "Healthcare",
-    description: "A digital platform designed to connect healthcare professionals and patients across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and patients across developing\u00a0nations.",
     imageUrl: `${basePath}/images/healthcare-card.jpg`,
     year: "IA & UI"
   },
   {
     id: 'mcdonalds-kiosk',
     title: "McDonalds Kiosk",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/mcDonalds-card.jpg`,
     year: "Product Design"
   },
@@ -47,14 +47,14 @@ export const allProjects: Project[] = [
   {
     id: 'nodalytics',
     title: "Nodalytics",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/Nodalytics_heroGraphic-3.jpg`,
     year: "Product Design"
   },
   {
     id: 'newdea',
     title: "Newdea",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/newdea_hero_containerGraphic-5.jpg`,
     year: "Product Design"
   },
@@ -68,28 +68,28 @@ export const allProjects: Project[] = [
   {
     id: 'advisestream',
     title: "AdviseStream",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/Advistestream_mockup-createReport.jpg`,
     year: "Product Design"
   },
   {
     id: 'sphere-software',
     title: "Sphere Software",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/chairliftAllScreens.png`,
     year: "Product & Web Design"
   },
   {
     id: 'havas-agency',
     title: "Havas Agency",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/havas-card.jpg`,
     year: "UX & Web Design"
   },
   {
     id: 'rich-products',
     title: "Rich Products",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing nations.",
+    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
     imageUrl: `${basePath}/images/websiteCards_template.png`,
     year: "IA & Web Design"
   }
@@ -110,4 +110,4 @@ export function getNextProjects(currentProjectId: string, count: number = 4): Pr
   }
   
   return nextProjects;
-} 
+}

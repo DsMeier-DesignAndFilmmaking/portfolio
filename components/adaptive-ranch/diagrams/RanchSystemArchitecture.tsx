@@ -14,7 +14,7 @@ export default function RanchSystemArchitecture() {
   return (
     <DiagramShell
       eyebrow="Confidence Loop"
-      title="Changing context becomes confidence-preserving guidance."
+      title={'Changing context becomes confidence\u2011preserving\u00a0guidance.'}
       description="One operating model connects environmental signals, guest confidence, human judgment, recovery, and learning."
       className="bg-neutral-50/60"
     >

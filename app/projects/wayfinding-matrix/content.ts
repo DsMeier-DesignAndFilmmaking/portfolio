@@ -112,21 +112,21 @@ export const projectMetadata: ProjectMetadata = {
 
 export const projectFrame = [
   {
-    title: 'Designed for variable landscapes',
+    title: 'Designed for variable\u00a0landscapes',
     description:
       'Weather, terrain, route capacity, daylight, and guest readiness can shift faster than a fixed itinerary can respond.',
     implication:
       'The framework treats place as a changing operational condition rather than a static map.',
   },
   {
-    title: 'Ambient before app-centric',
+    title: 'Ambient before\u00a0app-centric',
     description:
       'Guidance can move through trail markers, wearables, lighting, sound, staff handoffs, or physical thresholds.',
     implication:
       'A screen may support preparation and recovery, but it is not the primary field interface.',
   },
   {
-    title: 'Autonomy with visible safeguards',
+    title: 'Autonomy with visible\u00a0safeguards',
     description:
       'Guests retain choice while the system clarifies risk, recovery paths, and moments requiring operator attention.',
     implication:
@@ -142,7 +142,7 @@ export const problemCards = [
     implication: 'Route availability is not the same as route suitability.',
   },
   {
-    title: 'Critical signals remain fragmented.',
+    title: 'Critical signals remain\u00a0fragmented.',
     description:
       'Guest pace, elevation gain, storm movement, surface condition, daylight, and staff observations often live in separate systems.',
     implication: 'No shared layer interprets how conditions combine.',
@@ -430,12 +430,12 @@ export const futureValidation = [
     proof: 'Protocol review, tabletop exercises, and false-positive analysis.',
   },
   {
-    title: 'Guest Autonomy Research',
+    title: 'Guest Autonomy\u00a0Research',
     question: 'When does ambient guidance feel supportive rather than controlling?',
     proof: 'Field interviews, behavioral observation, and opt-out studies.',
   },
   {
-    title: 'Field Simulation Testing',
+    title: 'Field Simulation\u00a0Testing',
     question: 'Does the whole system remain understandable as conditions compound?',
     proof: 'Scenario trials across weather, fatigue, route, and staffing variables.',
   },

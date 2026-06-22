@@ -26,7 +26,10 @@ export default function ProjectPracticeNavDropdown({
 }: ProjectPracticeNavDropdownProps) {
   const [isDesktopOpen, setIsDesktopOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  
   const desktopRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
@@ -36,6 +39,18 @@ export default function ProjectPracticeNavDropdown({
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Monitor inner view panel to shift custom visual scroll capsule
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
+    const totalScrollable = scrollHeight - clientHeight;
+    if (totalScrollable <= 0) {
+      setScrollPercentage(0);
+    } else {
+      setScrollPercentage(scrollTop / totalScrollable);
+    }
+  };
 
   useEffect(() => {
     if (!isDesktopOpen && !isMobileMenuOpen) return;
@@ -138,6 +153,13 @@ export default function ProjectPracticeNavDropdown({
       document.body.style.overflow = previousOverflow;
     };
   }, [isMobileMenuOpen]);
+
+  // Reset indicator when dropdown closes/opens
+  useEffect(() => {
+    if (isDesktopOpen) {
+      setTimeout(handleScroll, 50);
+    }
+  }, [isDesktopOpen]);
 
   const closeMenus = () => {
     setIsDesktopOpen(false);
@@ -268,34 +290,38 @@ export default function ProjectPracticeNavDropdown({
     </AnimatePresence>
   );
 
+  // Constants mapping the explicit pill dimension layout
+  const thumbHeightPercent = 30; 
+  const maxTopPercent = 100 - thumbHeightPercent;
+  const currentTopPosition = scrollPercentage * maxTopPercent;
+
   return (
     <>
       <div ref={desktopRef} className="relative hidden lg:block">
-      <button
-  type="button"
-  onClick={() => setIsDesktopOpen((open) => !open)}
-  className={`
-    ${desktopTriggerClass}
-    inline-flex
-    min-h-[44px]
-    items-center
-    gap-1.5
-    rounded-md
-    px-2
-    py-1
-  `}
-  aria-expanded={isDesktopOpen}
-  aria-controls={menuId}
->
-  <span>Projects</span>
-
-  <ChevronDown
-    aria-hidden="true"
-    className={`h-4 w-4 transition-transform duration-200 ${
-      isDesktopOpen ? 'rotate-180' : ''
-    }`}
-  />
-</button>
+        <button
+          type="button"
+          onClick={() => setIsDesktopOpen((open) => !open)}
+          className={`
+            ${desktopTriggerClass}
+            inline-flex
+            min-h-[44px]
+            items-center
+            gap-1.5
+            rounded-md
+            px-2
+            py-1
+          `}
+          aria-expanded={isDesktopOpen}
+          aria-controls={menuId}
+        >
+          <span>Projects</span>
+          <ChevronDown
+            aria-hidden="true"
+            className={`h-4 w-4 transition-transform duration-200 ${
+              isDesktopOpen ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
 
         <AnimatePresence>
           {isDesktopOpen && (
@@ -306,84 +332,118 @@ export default function ProjectPracticeNavDropdown({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className={`absolute right-0 top-full z-50 mt-2 max-h-[min(78vh,44rem)] w-[min(94vw,38rem)] overflow-y-auto rounded-lg border px-7 py-6 backdrop-blur-md ${desktopMenuClass}`}
+              className={`
+                absolute right-0 top-full z-50 mt-2 
+                h-[26rem] w-[min(94vw,38rem)] 
+                rounded-lg border backdrop-blur-md flex overflow-hidden
+                ${desktopMenuClass}
+              `}
             >
-              <nav
-                className="flex flex-col"
-                aria-label="Project practice navigation"
+              {/* Main Scrollable View Panel */}
+              <div 
+                ref={scrollContainerRef}
+                onScroll={handleScroll}
+                className="flex-1 overflow-y-auto overscroll-contain px-7 py-6 pr-2 h-full"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {topLevelProjectNavGroups.map((group, groupIndex) => (
-                  <div
-                    key={group.label}
-                    className={`min-w-0 py-5 first:pt-1 last:pb-1 ${
-                      groupIndex > 0 ? `border-t ${desktopDividerClass}` : ''
-                    }`}
-                  >
-                    <p
-                      className={`mb-3 px-4 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}
+                <nav
+                  className="flex flex-col"
+                  aria-label="Project practice navigation"
+                >
+                  {topLevelProjectNavGroups.map((group, groupIndex) => (
+                    <div
+                      key={group.label}
+                      className={`min-w-0 py-5 first:pt-1 last:pb-1 ${
+                        groupIndex > 0 ? `border-t ${desktopDividerClass}` : ''
+                      }`}
                     >
-                      {group.label}
-                    </p>
+                      <p
+                        className={`mb-3 px-4 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}
+                      >
+                        {group.label}
+                      </p>
 
-                    <div className="flex flex-col gap-1">
-                      {group.items.map((item) => {
-                        const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
+                      <div className="flex flex-col gap-1">
+                        {group.items.map((item) => {
+                          const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
 
-                        if (!item.href || item.disabled) {
-                          return (
-                            <span
-                              key={item.label}
-                              className={`flex min-h-[46px] cursor-default flex-col justify-center rounded-lg px-4 text-[11pt] ${desktopDisabledClass}`}
-                            >
-                              {item.label}
-                              {item.status && (
-                                <span className={`mt-1 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
-                                  {item.status}
+                          if (!item.href || item.disabled) {
+                            return (
+                              <span
+                                key={item.label}
+                                className={`flex min-h-[46px] cursor-default flex-col justify-center rounded-lg px-4 text-[11pt] ${desktopDisabledClass}`}
+                              >
+                                {item.label}
+                                {item.status && (
+                                  <span className={`mt-1 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
+                                    {item.status}
+                                  </span>
+                                )}
+                              </span>
+                            );
+                          }
+
+                          if (item.external) {
+                            return (
+                              <a
+                                key={item.href}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={closeMenus}
+                                className={desktopLinkClass(false)}
+                              >
+                                {item.label}
+                                <span className={`ml-2 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
+                                  External
                                 </span>
-                              )}
-                            </span>
-                          );
-                        }
+                              </a>
+                            );
+                          }
 
-                        if (item.external) {
                           return (
-                            <a
+                            <Link
                               key={item.href}
                               href={item.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
                               onClick={closeMenus}
-                              className={desktopLinkClass(false)}
+                              className={desktopLinkClass(isActive)}
                             >
+                              {isActive && (
+                                <span
+                                  aria-hidden="true"
+                                  className={`absolute left-1.5 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${activeIndicatorClass}`}
+                                />
+                              )}
                               {item.label}
-                              <span className={`ml-2 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
-                                External
-                              </span>
-                            </a>
+                            </Link>
                           );
-                        }
-
-                        return (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            onClick={closeMenus}
-                            className={desktopLinkClass(isActive)}
-                          >
-                            {isActive && (
-                              <span
-                                aria-hidden="true"
-                                className={`absolute left-1.5 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${activeIndicatorClass}`}
-                              />
-                            )}
-                            {item.label}
-                          </Link>
-                        );
-                      })}
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </nav>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Dynamic Visual Scrollbar Track */}
+              <div className="w-1.5 my-4 mr-2 flex flex-col relative h-[calc(100%-2rem)]">
+                <div 
+                  className={`w-full h-full rounded-full transition-colors ${
+                    isDark ? 'bg-white/5' : 'bg-neutral-200/50'
+                  }`}
+                >
+                  {/* Dynamic absolute handle Capsule */}
+                  <div 
+                    className={`w-full rounded-full absolute left-0 transition-colors duration-150 ${
+                      isDark ? 'bg-white/30' : 'bg-neutral-400'
+                    }`}
+                    style={{ 
+                      height: `${thumbHeightPercent}%`,
+                      top: `${currentTopPosition}%`
+                    }}
+                  />
+                </div>
+              </div>
+
             </motion.div>
           )}
         </AnimatePresence>

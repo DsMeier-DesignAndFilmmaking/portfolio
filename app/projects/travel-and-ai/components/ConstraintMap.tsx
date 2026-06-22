@@ -31,7 +31,7 @@ const constraints = [
   },
   {
     icon: '🔒',
-    constraint: 'User data privacy limits persistent cross-session tracking.',
+    constraint: 'User data privacy limits persistent cross-session\u00a0tracking.',
     response: 'Local-first processing with ephemeral session memory. The system learns fast and forgets cleanly.',
     behavior: 'Adapts in-session without long-term profiling. Privacy is a design constraint, not a disclaimer.',
   },

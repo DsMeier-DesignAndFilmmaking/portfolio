@@ -71,7 +71,7 @@ export default function WayfindingMatrixPage() {
           <SectionHeading
             id="project-frame-title"
             eyebrow="02 // Project Frame"
-            title="A navigation framework for attention-scarce, condition-rich environments."
+            title={'A navigation framework for attention-scarce, condition-rich\u00a0environments.'}
             intro={projectMetadata.thesis}
             dark
           />

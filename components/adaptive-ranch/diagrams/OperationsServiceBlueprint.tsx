@@ -1,7 +1,7 @@
 import { DiagramShell } from './primitives';
 
 const operationalFoundations = [
-  ['Live Readiness', 'What is available and ready now', 'Capacity · access · equipment'],
+  ['Live Readiness', 'What is available and ready now', 'Capacity · access ·\u00a0equipment'],
   ['Human Knowledge', 'What local staff and guides know', 'Judgment · reassurance · nuance'],
   ['Stewardship Constraints', 'What responsible participation allows', 'Safety · land · animals · place'],
 ];

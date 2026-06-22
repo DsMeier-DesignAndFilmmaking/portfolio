@@ -41,7 +41,8 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
               />
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Designing systems and experiences for people moving through complex digital and physical environments.
+              Designing systems and experiences for people moving through complex digital and
+              physical&nbsp;environments.
             </p>
           </div>
 
