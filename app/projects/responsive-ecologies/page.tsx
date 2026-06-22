@@ -9,6 +9,7 @@ import EvidenceLineage from './components/EvidenceLineage';
 import HeroLandscape from './components/HeroLandscape';
 import ProjectFooter from './components/ProjectFooter';
 import ProjectFrame from './components/ProjectFrame';
+import ProductExperience from './components/ProductExperience';
 import RecoveryModel from './components/RecoveryModel';
 import StewardshipPrinciples from './components/StewardshipPrinciples';
 import SystemLoop from './components/SystemLoop';
@@ -43,6 +44,7 @@ export default function ResponsiveEcologiesPage() {
       <DecisionHierarchy />
       <StewardshipPrinciples />
       <SystemLoop />
+      <ProductExperience />
       <DomainAtlas />
       <ConfidenceModel />
       <RecoveryModel />

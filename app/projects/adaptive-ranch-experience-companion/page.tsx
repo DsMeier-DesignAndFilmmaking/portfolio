@@ -29,10 +29,14 @@ import WeatherScenarioWalkthrough from '@/components/adaptive-ranch/diagrams/Wea
 const ADAPTIVE_RANCH_SECTIONS = [
   { id: 'hero', label: 'Overview' },
   { id: 'problem', label: 'Problem' },
-  { id: 'architecture', label: 'System' },
+  { id: 'architecture', label: 'Architecture' },
   { id: 'scenario', label: 'Scenario' },
+  { id: 'signals', label: 'Signals' },
+  { id: 'confidence', label: 'Confidence' },
   { id: 'recovery', label: 'Recovery' },
   { id: 'operations', label: 'Operations' },
+  { id: 'applications', label: 'Applications' },
+  { id: 'evidence', label: 'Evidence' },
   { id: 'future', label: 'Future' },
 ];
 
@@ -67,28 +71,28 @@ const problemFrames = [
 
 const researchInputs = [
   {
-    label: 'Hospitality audits',
-    body: 'Patterns from destination hospitality, activity choice, guest orientation, service recovery, and operational handoffs.',
+    label: 'Outdoor hospitality',
+    body: 'Patterns from resorts, lodges, ranches, parks, retreats, guided experiences, guest orientation, and service recovery.',
   },
   {
-    label: 'Environmental systems research',
-    body: 'Signals from weather, terrain, route state, stewardship thresholds, and place-based decision support.',
+    label: 'Environmental uncertainty',
+    body: 'Signals from weather, terrain, access, route state, stewardship thresholds, and changing place conditions.',
   },
   {
-    label: 'Service-design methods',
-    body: 'Blueprinting, confidence breakdown modeling, recovery paths, and human validation moments.',
+    label: 'Guest confidence',
+    body: 'Confidence breakdown modeling, decision support, recovery paths, and the moments when human confirmation matters.',
   },
   {
-    label: 'Operational modeling',
-    body: 'Capacity, staffing, equipment readiness, guide knowledge, and the invisible work behind guest-facing guidance.',
+    label: 'Operational systems',
+    body: 'Capacity, staffing, equipment readiness, local staff knowledge, handoffs, and the invisible work behind credible guidance.',
   },
 ];
 
 const futureDirections = [
-  'Validate signal groups with ranch operators, guides, and guest-facing staff.',
-  'Prototype guidance language for activity choice, weather shifts, stewardship cues, and recovery.',
-  'Test recovery paths against real operational constraints before designing any interface.',
-  'Define measurement criteria for guest confidence, staff usefulness, and stewardship quality.',
+  'Places — validate signal groups across resorts, lodges, ranches, parks, retreats, and guided operations.',
+  'People — test the model with operators, guides, guest-services teams, land stewards, and visitors.',
+  'Conditions — prototype guidance for weather shifts, access changes, stewardship cues, and recovery.',
+  'Operations — test ownership, source-of-truth requirements, and cross-context adaptability before interface design.',
 ];
 
 function SectionKicker({
@@ -309,13 +313,13 @@ export default function AdaptiveRanchExperienceCompanionPage() {
               </p>
             </div>
             <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
-              Adaptive Ranch Experience Companion.
+              Adaptive Outdoor Hospitality Companion.
               <span className="mt-4 block italic text-gray-500">
-                Confidence-centered outdoor hospitality.
+                A confidence-centered operating model for outdoor hospitality.
               </span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-              A concept case study for interpreting ranch conditions, guest readiness, stewardship needs, operations, and recovery paths before guidance is surfaced.
+              A reusable service-system concept for interpreting changing conditions, guest needs, operational realities, and stewardship responsibilities before guidance is surfaced.
             </p>
           </div>
 
@@ -325,16 +329,15 @@ export default function AdaptiveRanchExperienceCompanionPage() {
                 Concept Status
               </p>
               <h2 className="mt-4 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
-                Not a finished product. Not a deployed ranch app.
+                A systems concept, not a deployed hospitality product.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-                The work is framed as environmental systems design: how hospitality operations, staff knowledge, live conditions, and guest confidence can be modeled before any interface is built.
+                The ranch use case is the originating exploration for a broader outdoor hospitality operating model.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <ConceptBadge>Concept</ConceptBadge>
                 <ConceptBadge>Service System</ConceptBadge>
-                <ConceptBadge>Stewardship</ConceptBadge>
-                <ConceptBadge>Recovery</ConceptBadge>
+                <ConceptBadge>Origin: Ranch Use Case</ConceptBadge>
               </div>
             </div>
           </div>
@@ -343,50 +346,41 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <CaseStudySection
         id="problem"
-        eyebrow="01 // Problem"
-        title="Ranch guests do not just need options. They need confidence in context."
-        intro="Outdoor hospitality decisions sit inside changing conditions: weather, activity readiness, staff capacity, animal welfare, trail state, family dynamics, and social comfort. The companion concept treats those as system signals, not app features."
+        eyebrow="01 // The Decision Problem"
+        title="Outdoor guests do not just need options. They need confidence when conditions change."
+        intro="Outdoor hospitality decisions depend on changing conditions, not static activity menus."
       >
-        <div className="grid gap-5 md:grid-cols-3">
-          {problemFrames.map(({ title, body, Icon }) => (
-            <article key={title} className="rounded-2xl border border-neutral-200 bg-white p-6">
-              <Icon className="h-6 w-6 text-emerald-700" aria-hidden="true" />
-              <h3 className="mt-8 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
-                {title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-600">{body}</p>
-            </article>
-          ))}
-        </div>
-      </CaseStudySection>
-
-      <CaseStudySection
-        id="research"
-        eyebrow="02 // Research Foundation"
-        title="The research frame connects hospitality, environment, service recovery, and operations."
-        intro="The case study is built from a systems lens rather than an app-first product brief. Research inputs focus on where guest confidence breaks down and what operational evidence is needed to restore it."
-        tone="dark"
-      >
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {researchInputs.map((item) => (
-            <article key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300">
-                Research Input
-              </p>
-              <h3 className="mt-4 font-tiempos text-2xl font-bold leading-tight text-white">
-                {item.label}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-400">{item.body}</p>
-            </article>
-          ))}
+        <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+          <div className="grid gap-3 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center">
+            {[
+              ['Guest Intent', 'What the guest hopes to experience'],
+              ['Live Conditions', 'What the place allows right now'],
+              ['Operational Capacity', 'What the team can credibly deliver'],
+            ].map(([label, description], index) => (
+              <div key={label} className="contents">
+                <article className="rounded-2xl border border-neutral-200 bg-white p-5">
+                  <h3 className="font-tiempos text-2xl font-bold text-neutral-950">{label}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-600">{description}</p>
+                </article>
+                {index < 2 && (
+                  <span className="text-2xl font-light text-emerald-600" aria-hidden="true">
+                    ×
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-base font-semibold text-neutral-900 md:text-lg">
+            A good option can become a poor fit when any one of these changes.
+          </p>
         </div>
       </CaseStudySection>
 
       <CaseStudySection
         id="architecture"
-        eyebrow="03 // System Architecture"
-        title="A signal-to-guidance architecture for confidence-centered ranch hospitality."
-        intro="The architecture separates sensing from interpretation, confidence assessment, guidance, human action, recovery, and learning."
+        eyebrow="02 // Companion System"
+        title="A signal-to-guidance architecture for dynamic outdoor experiences."
+        intro="The companion turns changing context into confidence-preserving guidance."
         tone="muted"
       >
         <RanchSystemArchitecture />
@@ -394,37 +388,28 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <CaseStudySection
         id="scenario"
-        eyebrow="04 // Weather-Shifted Scenario"
-        title="The concept becomes tangible when a plan changes."
-        intro="A weather-shifted horseback riding scenario shows how the system preserves intent, validates with staff, and offers a better-fit path without turning guidance into a command."
+        eyebrow="03 // Scenario Walkthrough"
+        title="The system becomes tangible when the original plan stops fitting."
+        intro="A family books a guided horseback ride. Before the activity begins, weather conditions change. Instead of focusing on the activity itself, the companion focuses on the guest’s underlying intent."
       >
         <WeatherScenarioWalkthrough />
       </CaseStudySection>
 
       <CaseStudySection
         id="signals"
-        eyebrow="05 // Ranch Signal Map"
-        title="The companion interprets a signal ecosystem, not a menu."
-        intro="Guest comfort, environmental conditions, operations, stewardship, and staff knowledge all shape whether guidance feels trustworthy."
+        eyebrow="04 // Signal Ecosystem"
+        title="Trustworthy guidance depends on more than weather data."
+        intro="Guest, place, operational, stewardship, and human context must be interpreted together."
         tone="muted"
       >
         <RanchSignalMap />
       </CaseStudySection>
 
       <CaseStudySection
-        id="activity"
-        eyebrow="06 // Activity Confidence"
-        title="Different activities require different confidence support."
-        intro="The matrix compares ranch activities by skill, intensity, weather sensitivity, social demand, recovery flexibility, and support need."
-      >
-        <ActivityConfidenceMatrix />
-      </CaseStudySection>
-
-      <CaseStudySection
         id="confidence"
-        eyebrow="07 // Confidence Breakdown"
-        title="Confidence breaks down at recognizable points in the guest journey."
-        intro="The model identifies where guests lose clarity and which restoration mechanisms can rebuild trust without removing choice."
+        eyebrow="05 // Confidence Breakdown"
+        title="Guest confidence breaks down at predictable decision points."
+        intro="Four moments expose where support matters most."
         tone="muted"
       >
         <GuestConfidenceBreakdownModel />
@@ -432,37 +417,27 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <CaseStudySection
         id="recovery"
-        eyebrow="08 // Recovery Architecture"
-        title="Recovery is designed before the disruption happens."
-        intro="When the original plan no longer fits, recovery should preserve the guest's intent, reduce options, route human validation, and return learning signals to the system."
+        eyebrow="06 // Experience Recovery"
+        title="Recovery begins by preserving intent, not merely replacing an activity."
+        intro="The goal is continuity of meaning, not continuity of itinerary."
       >
         <RecoveryPathDiagram />
       </CaseStudySection>
 
       <CaseStudySection
-        id="guidance"
-        eyebrow="09 // Guidance Architecture"
-        title="Guidance supports agency instead of automating the guest."
-        intro="The concept frames guidance as orientation, tradeoff explanation, alternative surfacing, and human escalation where lived context matters."
-        tone="muted"
-      >
-        <GuidanceArchitectureDiagram />
-      </CaseStudySection>
-
-      <CaseStudySection
         id="operations"
-        eyebrow="10 // Operations Blueprint"
-        title="The system is only credible if operations can carry the promise."
-        intro="The blueprint connects guest experience to frontstage staff, backstage coordination, stewardship constraints, companion guidance, and recovery ownership."
+        eyebrow="07 // Operational Service System"
+        title="The companion is only credible when operations can fulfill its guidance."
+        intro="Guidance must reflect what staff and operations can actually deliver."
       >
         <OperationsServiceBlueprint />
       </CaseStudySection>
 
       <CaseStudySection
         id="applications"
-        eyebrow="11 // Applications Beyond Ranches"
-        title="The framework is about environmental hospitality systems, not ranches alone."
-        intro="The transferability matrix shows how uncertainty, guidance, confidence, and recovery recur across lodges, parks, resorts, conservation properties, and adventure hospitality."
+        eyebrow="08 // Hospitality Applications"
+        title="One confidence framework can adapt across outdoor hospitality environments."
+        intro="The same decision pattern appears across different place-based settings."
         tone="muted"
       >
         <ApplicationsMatrixVisual />
@@ -470,52 +445,48 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <CaseStudySection
         id="evidence"
-        eyebrow="12 // Evidence & Limitations"
-        title="The concept is intentionally honest about its evidence boundary."
-        intro="The current work establishes a system model, visual architecture, and service-design thesis. It does not claim live deployment or measured ranch outcomes."
+        eyebrow="09 // Evidence & Boundaries"
+        title="The concept establishes a reusable system thesis—not validated outcomes."
+        intro="The model is grounded in research and operational reasoning, but has not been tested live."
       >
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          <article className="rounded-2xl border border-amber-200 bg-amber-50 p-6 md:p-8">
-            <AlertTriangle className="h-6 w-6 text-amber-700" aria-hidden="true" />
-            <h3 className="mt-6 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
-              Required limitation statement
-            </h3>
-            <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-              This is a systems-design concept informed by hospitality audits, environmental systems research, service-design methods, and operational modeling. It has not yet been piloted within a live ranch environment.
-            </p>
-          </article>
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              ['Evidence used', 'Audits, pattern synthesis, service blueprinting, confidence modeling, and operational assumptions.'],
-              ['Evidence not claimed', 'No live deployment, no ranch staff pilot, no guest outcome data, and no production integration.'],
-              ['Best use now', 'A concept architecture for discussion, validation planning, and future prototype design.'],
-              ['Next proof point', 'Operator interviews and scenario walkthroughs with real constraints, roles, and recovery ownership.'],
-            ].map(([label, body]) => (
-              <article key={label} className="rounded-2xl border border-neutral-200 bg-white p-5">
-                <p className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-neutral-400">
-                  {label}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">{body}</p>
-              </article>
-            ))}
-          </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            ['Established', 'A reusable system architecture, confidence model, and service-design thesis.'],
+            ['Informed By', 'Hospitality audits, environmental research, scenario modeling, and operational assumptions.'],
+            ['Not Yet Validated', 'Live guest, staff, operational, and stewardship outcomes.'],
+          ].map(([label, body]) => (
+            <article key={label} className="rounded-2xl border border-neutral-200 bg-white p-6">
+              <p className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-emerald-700">
+                {label}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-600">{body}</p>
+            </article>
+          ))}
         </div>
+        <p className="mt-5 max-w-3xl text-sm leading-relaxed text-neutral-500">
+          This is a systems-design concept, not a deployed product or a claim of measured outcomes.
+        </p>
       </CaseStudySection>
 
       <CaseStudySection
         id="future"
-        eyebrow="13 // Future Direction"
-        title="The next step is validation before interface design."
-        intro="Future work should test the model with operators and staff, then narrow it into prototype guidance patterns only where the system evidence is strong enough."
+        eyebrow="10 // Validation Roadmap"
+        title="The next step is testing the system across real places, roles, and conditions."
+        intro="Validate the model before designing the product."
         tone="dark"
       >
-        <div className="grid gap-5 md:grid-cols-2">
-          {futureDirections.map((item, index) => (
-            <article key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-              <p className="font-mono text-xl font-bold text-emerald-300">
-                {String(index + 1).padStart(2, '0')}
+        <div className="grid gap-4 md:grid-cols-4">
+          {[
+            ['Places', 'Does the framework transfer?'],
+            ['People', 'Is the guidance useful?'],
+            ['Conditions', 'Does it respond appropriately?'],
+            ['Operations', 'Can teams fulfill it?'],
+          ].map(([label, question]) => (
+            <article key={label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+              <p className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-emerald-300">
+                {label}
               </p>
-              <p className="mt-5 text-sm leading-relaxed text-neutral-300">{item}</p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-300">{question}</p>
             </article>
           ))}
         </div>
@@ -527,7 +498,7 @@ export default function AdaptiveRanchExperienceCompanionPage() {
                 Concept thesis
               </h3>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-300">
-                A ranch companion should not start as an app. It should start as a service system that understands uncertainty, operational reality, stewardship responsibility, and the human moments where confidence is restored.
+                An outdoor hospitality companion should not begin as an app. It should begin as a service system that understands changing conditions, guest intent, operational reality, stewardship responsibility, and the human moments where confidence is restored.
               </p>
             </div>
           </div>

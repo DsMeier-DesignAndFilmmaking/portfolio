@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Adaptive Ranch Experience Companion - Daniel Meier',
+  title: 'Adaptive Outdoor Hospitality Companion - Daniel Meier',
   description:
-    'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery.',
+    'A confidence-centered operating model for changing conditions, guest guidance, operations, stewardship, and recovery across outdoor hospitality.',
 };
 
 export default function AdaptiveRanchExperienceCompanionLayout({

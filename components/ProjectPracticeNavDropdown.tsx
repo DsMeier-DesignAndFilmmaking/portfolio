@@ -157,14 +157,15 @@ export default function ProjectPracticeNavDropdown({
   const desktopHeadingClass = isDark ? 'text-white/35' : 'text-gray-400';
   const desktopDisabledClass = isDark ? 'text-white/35' : 'text-gray-400/80';
   const desktopStatusClass = isDark ? 'text-white/30' : 'text-gray-400/70';
+  const desktopDividerClass = isDark ? 'border-white/10' : 'border-neutral-200/80';
 
   const desktopLinkClass = (isActive: boolean) =>
     isDark
-      ? `relative min-h-[34px] whitespace-nowrap text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-          isActive ? 'text-white' : 'text-white/65 hover:text-white'
+      ? `relative flex min-h-[46px] items-center rounded-lg px-4 text-[11pt] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+          isActive ? 'bg-white/10 text-white' : 'text-white/65 hover:bg-white/[0.06] hover:text-white'
         }`
-      : `relative min-h-[34px] whitespace-nowrap text-[11pt] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
-          isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
+      : `relative flex min-h-[46px] items-center rounded-lg px-4 text-[11pt] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+          isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-neutral-100 hover:text-blue-600'
         }`;
 
   const activeIndicatorClass = isDark ? 'bg-white/80' : 'bg-blue-400';
@@ -305,21 +306,26 @@ export default function ProjectPracticeNavDropdown({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className={`absolute right-0 top-full z-50 mt-2 max-h-[min(72vh,36rem)] w-[min(94vw,64rem)] overflow-y-auto rounded-lg border p-6 backdrop-blur-md ${desktopMenuClass}`}
+              className={`absolute right-0 top-full z-50 mt-2 max-h-[min(78vh,44rem)] w-[min(94vw,38rem)] overflow-y-auto rounded-lg border px-7 py-6 backdrop-blur-md ${desktopMenuClass}`}
             >
               <nav
-                className="grid gap-7 md:grid-cols-[1.8fr_1.1fr_1.1fr]"
+                className="flex flex-col"
                 aria-label="Project practice navigation"
               >
-                {topLevelProjectNavGroups.map((group) => (
-                  <div key={group.label} className="min-w-0">
+                {topLevelProjectNavGroups.map((group, groupIndex) => (
+                  <div
+                    key={group.label}
+                    className={`min-w-0 py-5 first:pt-1 last:pb-1 ${
+                      groupIndex > 0 ? `border-t ${desktopDividerClass}` : ''
+                    }`}
+                  >
                     <p
-                      className={`mb-3 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}
+                      className={`mb-3 px-4 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${desktopHeadingClass}`}
                     >
                       {group.label}
                     </p>
 
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-1">
                       {group.items.map((item) => {
                         const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
 
@@ -327,7 +333,7 @@ export default function ProjectPracticeNavDropdown({
                           return (
                             <span
                               key={item.label}
-                              className={`flex min-h-[34px] cursor-default flex-col justify-center whitespace-nowrap text-[11pt] ${desktopDisabledClass}`}
+                              className={`flex min-h-[46px] cursor-default flex-col justify-center rounded-lg px-4 text-[11pt] ${desktopDisabledClass}`}
                             >
                               {item.label}
                               {item.status && (
@@ -367,7 +373,7 @@ export default function ProjectPracticeNavDropdown({
                             {isActive && (
                               <span
                                 aria-hidden="true"
-                                className={`absolute -left-3 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${activeIndicatorClass}`}
+                                className={`absolute left-1.5 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${activeIndicatorClass}`}
                               />
                             )}
                             {item.label}

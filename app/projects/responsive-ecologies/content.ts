@@ -657,6 +657,7 @@ export const sectionNavigation = [
   { id: 'artifact-origins', label: 'Context' },
   { id: 'decision-problem', label: 'Problem' },
   { id: 'system-loop', label: 'System' },
+  { id: 'product-experience', label: 'Product' },
   { id: 'domain-atlas', label: 'Operations' },
   { id: 'confidence-model', label: 'Evidence' },
   { id: 'project-footer', label: 'Future' },

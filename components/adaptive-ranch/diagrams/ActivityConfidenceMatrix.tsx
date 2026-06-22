@@ -68,8 +68,10 @@ function ActivityMobileCard({
       <div className="mt-5 grid gap-2">
         <MatrixValue label="Skill Level" value={activity.skillLevel} />
         <MatrixValue label="Physical Intensity" value={activity.intensity} />
+        <MatrixValue label="Exposure" value={activity.exposure} />
         <MatrixValue label="Weather Sensitivity" value={activity.weatherSensitivity} />
         <MatrixValue label="Social Demand" value={activity.socialDemand} />
+        <MatrixValue label="Logistical Complexity" value={activity.logisticalComplexity} />
         <MatrixValue label="Recovery Flexibility" value={activity.recoveryFlexibility} />
       </div>
     </DiagramCard>
@@ -120,7 +122,7 @@ function DesktopMatrix() {
             </MatrixCell>
             <MatrixCell
               title={activity.supportNeed}
-              description={activity.primaryUncertainty}
+              description={`Exposure: ${activity.exposure} · Logistics: ${activity.logisticalComplexity}`}
               tone="ranch"
               className="min-h-[132px] bg-white"
             />
@@ -148,12 +150,12 @@ export default function ActivityConfidenceMatrix() {
     <DiagramShell
       eyebrow="Activity Confidence Matrix"
       title="How activity types change the confidence support a guest needs."
-      description="A compact comparison of ranch experiences by skill level, physical intensity, weather sensitivity, social demand, recovery flexibility, and support strategy."
+      description="A compact comparison of outdoor hospitality experiences by skill, intensity, exposure, weather sensitivity, social demand, logistical complexity, recovery flexibility, and support strategy."
       className="bg-neutral-50/60"
     >
       <figure aria-labelledby="activity-confidence-matrix-summary">
         <p id="activity-confidence-matrix-summary" className="sr-only">
-          This matrix compares ranch activities by skill level, intensity, weather sensitivity, social demand, recovery flexibility, and support need.
+          This matrix compares riding, hiking, paddling, wildlife viewing, guided tours, wellness experiences, and conservation activities by skill, intensity, exposure, weather sensitivity, social demand, logistical complexity, recovery flexibility, and support need.
         </p>
 
         <div className="mb-5 grid gap-4 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] md:items-center">

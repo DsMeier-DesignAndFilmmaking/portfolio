@@ -21,7 +21,7 @@ const guidanceStrategies = [
   'Offer Alternatives',
   'Reduce Options',
   'Delay Decision',
-  'Escalate to Human Support',
+  'Request Human Validation',
   'Reframe Situation',
 ];
 
@@ -129,13 +129,13 @@ export default function GuidanceArchitectureDiagram() {
   return (
     <DiagramShell
       eyebrow="Guidance Architecture"
-      title="How ranch signals become guidance without becoming commands."
+      title="How place and operational signals become guidance without becoming commands."
       description="A guidance model for interpreting context, choosing the right strategy, preserving guest agency, and learning from outcomes."
       className="bg-neutral-50/60"
     >
       <figure aria-labelledby="guidance-architecture-summary">
         <p id="guidance-architecture-summary" className="sr-only">
-          This guidance architecture diagram shows how ranch signals become interpreted guidance strategies that preserve guest choice and support confident action.
+          This guidance architecture diagram shows how place and operational signals become guidance strategies that communicate uncertainty, preserve guest choice, and bring in human validation when local judgment matters.
         </p>
 
         <div className="space-y-6">

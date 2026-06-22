@@ -31,7 +31,7 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
         group: 'Systems Design',
       },
       {
-        label: 'Adaptive Ranch Companion',
+        label: 'Adaptive Outdoor Hospitality Companion',
         href: '/projects/adaptive-ranch-experience-companion',
         group: 'Systems Design',
       },
