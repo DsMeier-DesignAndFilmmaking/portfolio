@@ -1179,6 +1179,15 @@ export default function ArchitectureOfConfidencePage() {
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-300">
               Internal research and synthesis workspace for audit notes, environmental patterns, confidence mechanisms, and transferable design principles.
             </p>
+            <p className="mt-3 text-sm text-neutral-400">
+              This framework emerged from research structured inside the{' '}
+              <a
+                href="/projects/environmental-systems-design-os"
+                className="text-cyan-300 underline underline-offset-2 transition-colors hover:text-cyan-200"
+              >
+                Environmental Systems Design OS →
+              </a>
+            </p>
           </div>
         </div>
       </section>

@@ -278,6 +278,11 @@ export default function ProjectPracticeNavDropdown({
                         }`}
                       >
                         {item.label}
+                        {item.status && (
+                          <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.12em] text-gray-500">
+                            {item.status}
+                          </span>
+                        )}
                       </Link>
                     );
                   })}
@@ -415,6 +420,11 @@ export default function ProjectPracticeNavDropdown({
                                 />
                               )}
                               {item.label}
+                              {item.status && (
+                                <span className={`ml-2 font-mono text-[9px] uppercase tracking-[0.12em] ${desktopStatusClass}`}>
+                                  {item.status}
+                                </span>
+                              )}
                             </Link>
                           );
                         })}

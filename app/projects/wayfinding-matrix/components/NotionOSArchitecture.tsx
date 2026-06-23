@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowDown, Database, GitBranch, Layers3 } from 'lucide-react';
 import { osModules } from '../content';
 
@@ -78,7 +79,13 @@ export default function NotionOSArchitecture() {
 
           <figcaption className="mt-5 text-sm leading-relaxed text-neutral-600">
             The architecture can begin as a research workspace and mature toward governed
-            operational infrastructure only as field evidence warrants it.
+            operational infrastructure only as field evidence warrants it.{' '}
+            <Link
+              href="/projects/environmental-systems-design-os"
+              className="text-emerald-700 underline underline-offset-2 transition-colors hover:text-emerald-600"
+            >
+              Signal matrix and risk thresholds developed in the Environmental Systems Design OS →
+            </Link>
           </figcaption>
         </figure>
       </div>

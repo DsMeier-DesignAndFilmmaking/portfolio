@@ -368,7 +368,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design (read my{' '}
+  <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design, test, and ship digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design (read my{' '}
   <a 
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"

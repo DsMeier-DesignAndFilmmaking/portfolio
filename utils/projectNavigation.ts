@@ -1,7 +1,7 @@
 export type TopLevelProjectNavItem = {
   label: string;
   href?: string;
-  group: 'Systems Design' | 'Ideas & Concepts' | 'Professional Practice';
+  group: 'Research & Frameworks' | 'Applied Systems' | 'Field Practice';
   external?: boolean;
   status?: string;
   disabled?: boolean;
@@ -17,68 +17,68 @@ export const ENVIRONMENTAL_SYSTEMS_DESIGN_OS_URL =
 
 export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
   {
-    label: 'Systems Design',
+    label: 'Research & Frameworks',
     items: [
       {
         label: 'Environmental Systems Design OS',
-        href: ENVIRONMENTAL_SYSTEMS_DESIGN_OS_URL,
-        group: 'Systems Design',
-        external: true,
+        href: '/projects/environmental-systems-design-os',
+        group: 'Research & Frameworks',
       },
       {
         label: 'Architecture of Confidence',
         href: '/projects/architecture-of-confidence',
-        group: 'Systems Design',
-      },
-      {
-        label: 'Adaptive Outdoor Hospitality Companion',
-        href: '/projects/adaptive-ranch-experience-companion',
-        group: 'Systems Design',
-      },
-      {
-        label: 'Human Adaptive Decision Engine',
-        href: '/projects/travel-and-ai',
-        group: 'Systems Design',
-      },
-      {
-        label: 'Travel Field Notes',
-        href: '/projects/field-notes',
-        group: 'Systems Design',
-      },
-      {
-        label: 'Digital Executor',
-        href: '/projects/digital-executor',
-        group: 'Systems Design',
-      },
-    ],
-  },
-  {
-    label: 'Ideas & Concepts',
-    items: [
-      {
-        label: 'Responsive Ecologies',
-        href: '/projects/responsive-ecologies',
-        group: 'Ideas & Concepts',
+        group: 'Research & Frameworks',
       },
       {
         label: 'The Wayfinding Matrix',
         href: '/projects/wayfinding-matrix',
-        group: 'Ideas & Concepts',
+        group: 'Research & Frameworks',
       },
       {
         label: 'The Intention Engine',
         href: '/projects/intention-engine',
-        group: 'Ideas & Concepts',
+        group: 'Research & Frameworks',
       },
     ],
   },
   {
-    label: 'Professional Practice',
+    label: 'Applied Systems',
     items: [
+      {
+        label: 'Responsive Ecologies',
+        href: '/projects/responsive-ecologies',
+        group: 'Applied Systems',
+        status: 'Flagship Synthesis',
+      },
+      {
+        label: 'Adaptive Outdoor Hospitality Companion',
+        href: '/projects/adaptive-ranch-experience-companion',
+        group: 'Applied Systems',
+      },
+      {
+        label: 'Human Adaptive Decision Engine',
+        href: '/projects/travel-and-ai',
+        group: 'Applied Systems',
+      },
+      {
+        label: 'Digital Executor',
+        href: '/projects/digital-executor',
+        group: 'Applied Systems',
+      },
+    ],
+  },
+  {
+    label: 'Field Practice',
+    items: [
+      {
+        label: 'Travel Field Notes',
+        href: '/projects/field-notes',
+        group: 'Field Practice',
+      },
       {
         label: 'Selected Client Work',
         href: '/projects/previous',
-        group: 'Professional Practice',
+        group: 'Field Practice',
       },
     ],
   },

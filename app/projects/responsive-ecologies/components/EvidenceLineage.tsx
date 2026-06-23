@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FileSearch, Link2, ShieldCheck } from 'lucide-react';
 import { evidenceLineage, type EvidenceLineageRecord } from '../content';
 import { SectionHeading, contentBounds } from './shared';
@@ -104,7 +105,13 @@ export default function EvidenceLineage() {
 
           <figcaption className="mt-6 text-sm leading-relaxed text-neutral-500">
             These records are a curated portfolio snapshot of the Environmental Systems
-            Design OS, not a live workspace integration.
+            Design OS, not a live workspace integration.{' '}
+            <Link
+              href="/projects/environmental-systems-design-os"
+              className="text-emerald-700 underline underline-offset-2 transition-colors hover:text-emerald-600"
+            >
+              Evidence records and artifact lineage maintained in the Environmental Systems Design OS →
+            </Link>
           </figcaption>
         </figure>
       </div>

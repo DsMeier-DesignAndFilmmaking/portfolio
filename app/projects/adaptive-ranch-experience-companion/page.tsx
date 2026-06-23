@@ -466,6 +466,15 @@ export default function AdaptiveRanchExperienceCompanionPage() {
         <p className="mt-5 max-w-3xl text-sm leading-relaxed text-neutral-500">
           This is a systems-design concept, not a deployed product or a claim of measured outcomes.
         </p>
+        <p className="mt-4 text-sm text-neutral-500">
+          Signal taxonomy and confidence models sourced from the{' '}
+          <a
+            href="/projects/environmental-systems-design-os"
+            className="text-emerald-700 underline underline-offset-2 transition-colors hover:text-emerald-600"
+          >
+            Environmental Systems Design OS →
+          </a>
+        </p>
       </CaseStudySection>
 
       <CaseStudySection

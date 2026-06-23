@@ -34,6 +34,7 @@ type StaticWorkCard = {
   icon: LucideIcon;
   status?: string;
   href?: string;
+  internalLink?: string;
 };
 
 const NOTION_OS_URL = 'https://app.notion.com/p/Environmental-Systems-Design-OS-37defa67177f80fcb70dc324c03e2e7d?source=copy_link';
@@ -126,6 +127,7 @@ const researchFrameworkCards: StaticWorkCard[] = [
       'A working environment for capturing observations, identifying patterns, and developing reusable design frameworks.',
     tags: ['Audits', 'Patterns', 'Projects & Concepts', 'Portfolio Assets'],
     icon: Layers3,
+    internalLink: '/projects/environmental-systems-design-os',
   },
 ];
 
@@ -315,16 +317,26 @@ function MethodCard({ card }: { card: StaticWorkCard }) {
         </div>
       </div>
       <div className="mt-6 flex">
-        <a
-          href={NOTION_OS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Explore Environmental Systems Design OS in Notion"
-          className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
-        >
-          Explore Notion OS
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </a>
+        {card.internalLink ? (
+          <Link
+            href={card.internalLink}
+            className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+          >
+            Explore Research OS
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        ) : (
+          <a
+            href={NOTION_OS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Explore Environmental Systems Design OS in Notion"
+            className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+          >
+            Explore Notion OS
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+        )}
       </div>
     </article>
   );
@@ -496,7 +508,7 @@ export default function DesignWork() {
 
           <section aria-labelledby="exploratory-systems-title" className="mt-14 md:mt-20">
             <SectionEyebrow id="exploratory-systems-title">
-              Ideas & Concepts
+            Research Frameworks
             </SectionEyebrow>
 
             <div className="grid grid-cols-1 gap-4 md:gap-5">
