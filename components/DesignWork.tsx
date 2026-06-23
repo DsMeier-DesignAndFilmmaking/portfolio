@@ -19,7 +19,6 @@ type LinkedWorkCard = {
   label: string;
   description: string;
   tags: string[];
-  tagLinks?: Record<string, string>;
   cta: string;
   href: string;
   icon: LucideIcon;
@@ -37,89 +36,52 @@ type StaticWorkCard = {
   internalLink?: string;
 };
 
+type CardTone = 'violet' | 'teal';
+
+// All color tokens written as full Tailwind class strings for correct purging
+const TONE = {
+  violet: {
+    cardBorder: 'border-violet-100',
+    cardBorderFeatured: 'border-violet-200',
+    cardBorderDashed: 'border-violet-200',
+    iconContainer: 'border-violet-100 bg-violet-50 text-violet-700',
+    label: 'text-violet-700/65',
+    cta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
+    ctaHoverBg: 'hover:bg-violet-50/60 hover:text-violet-800',
+    tagLinkTone: 'violet' as const,
+    methodCta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
+  },
+  teal: {
+    cardBorder: 'border-teal-100',
+    cardBorderFeatured: 'border-teal-200',
+    cardBorderDashed: 'border-teal-200',
+    iconContainer: 'border-teal-100 bg-teal-50 text-teal-700',
+    label: 'text-teal-700/65',
+    cta: 'text-teal-700 hover:text-teal-800 focus:ring-teal-700',
+    ctaHoverBg: 'hover:bg-teal-50/60 hover:text-teal-800',
+    tagLinkTone: 'teal' as const,
+    methodCta: 'text-teal-700 hover:text-teal-800 focus:ring-teal-700',
+  },
+} as const;
+
 const NOTION_OS_URL = 'https://app.notion.com/p/Environmental-Systems-Design-OS-37defa67177f80fcb70dc324c03e2e7d?source=copy_link';
 
-const systemsDesignCards: LinkedWorkCard[] = [
+// Research & Frameworks section
+const researchLinkedCards: LinkedWorkCard[] = [
   {
     title: 'The Architecture of Confidence',
     label: 'Framework',
     description:
       'A transferable framework for designing decision support that reduces uncertainty, preserves agency, and helps people recover when conditions change.',
     tags: ['Decision support', 'Confidence', 'Recovery'],
-    tagLinks: {
-      'Decision support': '/projects/architecture-of-confidence#aoc-architecture',
-      Confidence: '/projects/architecture-of-confidence#aoc-model',
-      Recovery: '/projects/architecture-of-confidence#aoc-scenario',
-    },
     cta: 'Explore Framework',
     href: '/projects/architecture-of-confidence',
     icon: ShieldCheck,
     featured: true,
   },
-  {
-    title: 'HADE',
-    label: 'Core Engine',
-    description:
-      'An adaptive decision-support engine that interprets live context signals and turns changing conditions into clearer next steps.',
-    tags: ['AI reasoning', 'Context', 'Guidance'],
-    tagLinks: {
-      'AI reasoning': '/projects/travel-and-ai#tai-system',
-      Context: '/projects/travel-and-ai#tai-constraints',
-      Guidance: '/projects/travel-and-ai#tai-roadmap',
-    },
-    cta: 'Explore HADE',
-    href: '/projects/travel-and-ai',
-    icon: BrainCircuit,
-    featured: true,
-  },
-  {
-    title: 'Field Notes',
-    label: 'Field Tool',
-    description:
-      'A place-aware product for capturing travel signals, environmental context, and local knowledge that can support better decisions in the moment.',
-    tags: ['Travel signals', 'Place-aware', 'Field data'],
-    tagLinks: {
-      'Travel signals': '/projects/field-notes#fn-archive',
-      'Place-aware': '/projects/field-notes#fn-system',
-      'Field data': '/projects/field-notes#fn-archive',
-    },
-    cta: 'Explore Field Notes',
-    href: '/projects/field-notes',
-    icon: MapPinned,
-  },
-  {
-    title: 'Digital Executor',
-    label: 'Workflow Design',
-    description:
-      'A service recovery and coordination concept for helping people move forward when plans break, vendors hand off, or next steps become unclear.',
-    tags: ['Recovery', 'Operations', 'Handoffs'],
-    tagLinks: {
-      Recovery: '/projects/digital-executor#fn-archive',
-      Operations: '/projects/digital-executor#fn-logic',
-      Handoffs: '/projects/digital-executor',
-    },
-    cta: 'Explore Case Study',
-    href: '/projects/digital-executor',
-    icon: Zap,
-  },
-  {
-    title: 'Adaptive Ranch Experience\u00a0Companion',
-    label: 'Systems Concept',
-    description:
-      'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
-    tags: ['Hospitality', 'Stewardship', 'Recovery'],
-    tagLinks: {
-      Hospitality: '/projects/adaptive-ranch-experience-companion#problem',
-      Stewardship: '/projects/adaptive-ranch-experience-companion#signals',
-      Recovery: '/projects/adaptive-ranch-experience-companion#recovery',
-    },
-    cta: 'Explore Concept',
-    href: '/projects/adaptive-ranch-experience-companion',
-    icon: Compass,
-  },
 ];
 
-const researchFrameworkCards: StaticWorkCard[] = [
+const researchMethodCards: StaticWorkCard[] = [
   {
     title: 'Environmental Systems Design OS',
     label: 'Research Environment',
@@ -131,28 +93,7 @@ const researchFrameworkCards: StaticWorkCard[] = [
   },
 ];
 
-const professionalPractice: LinkedWorkCard = {
-  title: 'Selected Client Work',
-  label: 'Professional Portfolio',
-  description:
-    'Over a decade designing digital products and services across healthcare, education, enterprise, commerce, and emerging technology.',
-  tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
-  cta: 'View Selected Client Work',
-  href: '/projects/previous',
-  icon: Building2,
-};
-
-const explorationCards: StaticWorkCard[] = [
-  {
-    title: 'Responsive Ecologies',
-    label: 'Exploratory',
-    description:
-      'A multi-agent AI land stewardship platform for backcountry outfitters and luxury eco-lodges. It processes edge-sensor telemetry (soil, fuel load, hydrology) to autonomously generate adaptive trail maintenance schedules and wildlife-safe guiding corridors.',
-    tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
-    icon: Route,
-    status: 'Currently Exploring',
-    href: '/projects/responsive-ecologies',
-  },
+const researchExploratoryCards: StaticWorkCard[] = [
   {
     title: 'The Wayfinding Matrix',
     label: 'Exploratory',
@@ -175,6 +116,75 @@ const explorationCards: StaticWorkCard[] = [
   },
 ];
 
+// Applied Systems section
+const appliedExploratoryCards: StaticWorkCard[] = [
+  {
+    title: 'Responsive Ecologies',
+    label: 'Exploratory',
+    description:
+      'A multi-agent AI land stewardship platform for backcountry outfitters and luxury eco-lodges. It processes edge-sensor telemetry (soil, fuel load, hydrology) to autonomously generate adaptive trail maintenance schedules and wildlife-safe guiding corridors.',
+    tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
+    icon: Route,
+    status: 'Currently Exploring',
+    href: '/projects/responsive-ecologies',
+  },
+];
+
+const appliedLinkedCards: LinkedWorkCard[] = [
+  {
+    title: 'Adaptive Outdoor Hospitality Companion',
+    label: 'Systems Concept',
+    description:
+      'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
+    tags: ['Hospitality', 'Stewardship', 'Recovery'],
+    cta: 'Explore Concept',
+    href: '/projects/adaptive-ranch-experience-companion',
+    icon: Compass,
+  },
+  {
+    title: 'HADE',
+    label: 'Core Engine',
+    description:
+      'An adaptive decision-support engine that interprets live context signals and turns changing conditions into clearer next steps.',
+    tags: ['AI reasoning', 'Context', 'Guidance'],
+    cta: 'Explore HADE',
+    href: '/projects/travel-and-ai',
+    icon: BrainCircuit,
+    featured: true,
+  },
+  {
+    title: 'Digital Executor',
+    label: 'Workflow Design',
+    description:
+      'A service recovery and coordination concept for helping people move forward when plans break, vendors hand off, or next steps become unclear.',
+    tags: ['Recovery', 'Operations', 'Handoffs'],
+    cta: 'Explore Case Study',
+    href: '/projects/digital-executor',
+    icon: Zap,
+  },
+  {
+    title: 'Field Notes',
+    label: 'Field Tool',
+    description:
+      'A place-aware product for capturing travel signals, environmental context, and local knowledge that can support better decisions in the moment.',
+    tags: ['Travel signals', 'Place-aware', 'Field data'],
+    cta: 'Explore Field Notes',
+    href: '/projects/field-notes',
+    icon: MapPinned,
+  },
+];
+
+const professionalPractice: LinkedWorkCard = {
+  title: 'Selected Client Work',
+  label: 'Professional Portfolio',
+  description:
+    'Over a decade designing digital products and services across healthcare, education, enterprise, commerce, and emerging technology.',
+  tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
+  cta: 'View Selected Client Work',
+  href: '/projects/previous',
+  icon: Building2,
+};
+
 function TagList({
   tags,
   dark = false,
@@ -186,14 +196,18 @@ function TagList({
   dark?: boolean;
   compact?: boolean;
   links?: Record<string, string>;
-  linkTone?: 'blue' | 'neutral' | 'stone';
+  linkTone?: 'blue' | 'neutral' | 'stone' | 'violet' | 'teal';
 }) {
   const interactiveClasses =
     linkTone === 'blue'
       ? 'border-blue-100 bg-blue-50 text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2'
       : linkTone === 'neutral'
         ? 'border-neutral-200 bg-neutral-50 text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2'
-        : 'border-stone-200 bg-stone-50 text-stone-600 transition-colors hover:border-stone-300 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-700 focus:ring-offset-2';
+        : linkTone === 'violet'
+          ? 'border-violet-100 bg-violet-50 text-violet-700 transition-colors hover:border-violet-300 hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-700 focus:ring-offset-2'
+          : linkTone === 'teal'
+            ? 'border-teal-100 bg-teal-50 text-teal-700 transition-colors hover:border-teal-300 hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:ring-offset-2'
+            : 'border-stone-200 bg-stone-50 text-stone-600 transition-colors hover:border-stone-300 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-700 focus:ring-offset-2';
 
   const staticClasses = dark
     ? 'border-white/10 bg-white/5 text-white/70'
@@ -201,7 +215,11 @@ function TagList({
       ? 'border-stone-200 bg-white/70 text-stone-500'
       : linkTone === 'neutral'
         ? 'border-neutral-200 bg-neutral-50 text-neutral-700'
-        : 'border-stone-200 bg-stone-50 text-stone-600';
+        : linkTone === 'violet'
+          ? 'border-violet-100 bg-violet-50/70 text-violet-600'
+          : linkTone === 'teal'
+            ? 'border-teal-100 bg-teal-50/70 text-teal-600'
+            : 'border-stone-200 bg-stone-50 text-stone-600';
 
   return (
     <ul className={`flex flex-wrap ${compact ? 'gap-1.5' : 'gap-2'}`} aria-label="Tags">
@@ -251,22 +269,23 @@ function SectionEyebrow({
   );
 }
 
-function SystemDesignCard({ card }: { card: LinkedWorkCard }) {
+function SystemDesignCard({ card, tone }: { card: LinkedWorkCard; tone: CardTone }) {
   const Icon = card.icon;
+  const t = TONE[tone];
 
   return (
     <article
       className={`rounded-lg border bg-white px-6 py-6 shadow-sm md:px-7 md:py-7 ${
-        card.featured ? 'border-blue-200' : 'border-blue-100'
+        card.featured ? t.cardBorderFeatured : t.cardBorder
       }`}
     >
       <div className="min-w-0">
         <div className="flex items-center gap-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 text-blue-700">
+          <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
             <Icon className="h-5 w-5" aria-hidden="true" />
           </div>
           <div className="min-w-0">
-            <p className="font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] text-blue-700/65">{card.label}</p>
+            <p className={`font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] ${t.label}`}>{card.label}</p>
             <h3
               className="mt-1 text-2xl font-bold leading-tight text-gray-950"
               style={{ fontFamily: "'tiempos-headline-regular', serif" }}
@@ -279,14 +298,14 @@ function SystemDesignCard({ card }: { card: LinkedWorkCard }) {
         <p className="mt-4 text-sm leading-relaxed text-gray-700 md:text-base">{card.description}</p>
 
         <div className="mt-4">
-          <TagList tags={card.tags} links={card.tagLinks} linkTone="blue" />
+          <TagList tags={card.tags} linkTone={t.tagLinkTone} />
         </div>
       </div>
 
       <div className="mt-6 flex">
         <Link
           href={card.href}
-          className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-4"
+          className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.cta}`}
         >
           {card.cta}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -296,18 +315,19 @@ function SystemDesignCard({ card }: { card: LinkedWorkCard }) {
   );
 }
 
-function MethodCard({ card }: { card: StaticWorkCard }) {
+function MethodCard({ card, tone }: { card: StaticWorkCard; tone: CardTone }) {
   const Icon = card.icon;
+  const t = TONE[tone];
 
   return (
-    <article className="rounded-lg border border-emerald-100 bg-white p-5 shadow-sm">
+    <article className={`rounded-lg border bg-white p-5 shadow-sm ${t.cardBorder}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-emerald-50 text-emerald-700">
+          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
             <Icon className="h-4 w-4" aria-hidden="true" />
           </div>
           <div className="min-w-0">
-            <p className="font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] text-emerald-700/65">{card.label}</p>
+            <p className={`font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] ${t.label}`}>{card.label}</p>
             <h3 className="mt-1 text-xl font-bold leading-tight text-gray-950">{card.title}</h3>
           </div>
         </div>
@@ -320,7 +340,7 @@ function MethodCard({ card }: { card: StaticWorkCard }) {
         {card.internalLink ? (
           <Link
             href={card.internalLink}
-            className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+            className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.methodCta}`}
           >
             Explore Research OS
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -331,7 +351,7 @@ function MethodCard({ card }: { card: StaticWorkCard }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Explore Environmental Systems Design OS in Notion"
-            className="inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+            className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.methodCta}`}
           >
             Explore Notion OS
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -387,19 +407,20 @@ function ProfessionalPracticeCallout({ card }: { card: LinkedWorkCard }) {
   );
 }
 
-function ExplorationCard({ card }: { card: StaticWorkCard }) {
+function ExplorationCard({ card, tone }: { card: StaticWorkCard; tone: CardTone }) {
   const Icon = card.icon;
+  const t = TONE[tone];
 
   return (
-    <article className="rounded-lg border border-dashed border-amber-200 bg-white p-5">
+    <article className={`rounded-lg border border-dashed bg-white p-5 ${t.cardBorderDashed}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-amber-100 bg-amber-50 text-amber-700">
+          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
             <Icon className="h-4 w-4" aria-hidden="true" />
           </div>
 
           <div className="min-w-0">
-            <p className="font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] text-amber-700/65">
+            <p className={`font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] ${t.label}`}>
               {card.label}
             </p>
             <h3 className="mt-1 text-xl font-bold leading-tight text-gray-950">
@@ -421,7 +442,7 @@ function ExplorationCard({ card }: { card: StaticWorkCard }) {
             <a
               href={card.href}
               aria-label={`Explore ${card.title}`}
-              className="group -ml-3 inline-flex min-h-[44px] items-center justify-start gap-2 rounded-lg px-3 text-sm font-semibold text-emerald-700 transition-all hover:bg-emerald-50/60 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-4"
+              className={`group -ml-3 inline-flex min-h-[44px] items-center justify-start gap-2 rounded-lg px-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.cta} ${t.ctaHoverBg}`}
             >
               <span>Explore Project</span>
               <ArrowRight
@@ -472,30 +493,42 @@ export default function DesignWork() {
         </header>
 
         <div className="homepage-copy-column relative mt-12 md:mt-16" aria-labelledby="work-title">
-          <section aria-labelledby="flagship-public-work-title">
-            <SectionEyebrow id="flagship-public-work-title">
-              Flagship Public Work
+          {/* Research & Frameworks — violet */}
+          <section aria-labelledby="research-frameworks-title">
+            <SectionEyebrow id="research-frameworks-title">
+              Research &amp; Frameworks
             </SectionEyebrow>
 
             <div className="grid grid-cols-1 gap-5 md:gap-6">
-              {systemsDesignCards.map((card) => (
-                <SystemDesignCard key={card.title} card={card} />
+              {researchLinkedCards.map((card) => (
+                <SystemDesignCard key={card.title} card={card} tone="violet" />
+              ))}
+              {researchMethodCards.map((card) => (
+                <MethodCard key={card.title} card={card} tone="violet" />
+              ))}
+              {researchExploratoryCards.map((card) => (
+                <ExplorationCard key={card.title} card={card} tone="violet" />
               ))}
             </div>
           </section>
 
-          <section aria-labelledby="research-environment-title" className="mt-14 md:mt-20">
-            <SectionEyebrow id="research-environment-title">
-              Research Environment
+          {/* Applied Systems — teal */}
+          <section aria-labelledby="applied-systems-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="applied-systems-title">
+              Applied Systems
             </SectionEyebrow>
 
-            <div className="grid grid-cols-1 gap-4 md:gap-5">
-              {researchFrameworkCards.map((card) => (
-                <MethodCard key={card.title} card={card} />
+            <div className="grid grid-cols-1 gap-5 md:gap-6">
+              {appliedExploratoryCards.map((card) => (
+                <ExplorationCard key={card.title} card={card} tone="teal" />
+              ))}
+              {appliedLinkedCards.map((card) => (
+                <SystemDesignCard key={card.title} card={card} tone="teal" />
               ))}
             </div>
           </section>
 
+          {/* Professional Practice — neutral (unchanged) */}
           <section aria-labelledby="professional-practice-title" className="mt-14 md:mt-20">
             <SectionEyebrow id="professional-practice-title">
               Professional Practice
@@ -503,18 +536,6 @@ export default function DesignWork() {
 
             <div>
               <ProfessionalPracticeCallout card={professionalPractice} />
-            </div>
-          </section>
-
-          <section aria-labelledby="exploratory-systems-title" className="mt-14 md:mt-20">
-            <SectionEyebrow id="exploratory-systems-title">
-            Research Frameworks
-            </SectionEyebrow>
-
-            <div className="grid grid-cols-1 gap-4 md:gap-5">
-              {explorationCards.map((card) => (
-                <ExplorationCard key={card.title} card={card} />
-              ))}
             </div>
           </section>
 

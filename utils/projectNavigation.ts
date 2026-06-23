@@ -1,7 +1,7 @@
 export type TopLevelProjectNavItem = {
   label: string;
   href?: string;
-  group: 'Research & Frameworks' | 'Applied Systems' | 'Field Practice';
+  group: 'Research & Frameworks' | 'Applied Systems' | 'Professional Practice';
   external?: boolean;
   status?: string;
   disabled?: boolean;
@@ -65,20 +65,20 @@ export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
         href: '/projects/digital-executor',
         group: 'Applied Systems',
       },
-    ],
-  },
-  {
-    label: 'Field Practice',
-    items: [
       {
         label: 'Travel Field Notes',
         href: '/projects/field-notes',
-        group: 'Field Practice',
+        group: 'Professional Practice',
       },
+    ],
+  },
+  {
+    label: 'Professional Practice',
+    items: [
       {
         label: 'Selected Client Work',
         href: '/projects/previous',
-        group: 'Field Practice',
+        group: 'Professional Practice',
       },
     ],
   },

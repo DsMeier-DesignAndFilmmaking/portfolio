@@ -134,7 +134,7 @@ export default async function EnvironmentalSystemsDesignOsPage() {
         <div className={CONTENT_BOUNDS}>
           <SectionKicker
             eyebrow="02 // OS Architecture"
-            title="How the OS converts observations into portfolio output."
+            title="How the OS converts observations into output."
           >
             <p>One traceable evidence path connects field observation to published work.</p>
           </SectionKicker>
