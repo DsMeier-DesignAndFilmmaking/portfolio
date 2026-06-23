@@ -36,7 +36,7 @@ type StaticWorkCard = {
   internalLink?: string;
 };
 
-type CardTone = 'violet' | 'teal';
+type CardTone = 'teal' | 'violet' | 'amber' | 'blue';
 
 // All color tokens written as full Tailwind class strings for correct purging
 const TONE = {
@@ -48,7 +48,7 @@ const TONE = {
     label: 'text-violet-700/65',
     cta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
     ctaHoverBg: 'hover:bg-violet-50/60 hover:text-violet-800',
-    tagLinkTone: 'violet' as const,
+    tagLinkTone: 'stone' as const,
     methodCta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
   },
   teal: {
@@ -62,12 +62,47 @@ const TONE = {
     tagLinkTone: 'teal' as const,
     methodCta: 'text-teal-700 hover:text-teal-800 focus:ring-teal-700',
   },
+  amber: {
+    cardBorder: 'border-amber-100',
+    cardBorderFeatured: 'border-amber-200',
+    cardBorderDashed: 'border-amber-200',
+    iconContainer: 'border-amber-100 bg-amber-50 text-amber-700',
+    label: 'text-amber-700/65',
+    cta: 'text-amber-700 hover:text-amber-800 focus:ring-amber-700',
+    ctaHoverBg: 'hover:bg-amber-50/60 hover:text-amber-800',
+    tagLinkTone: 'amber' as const,
+    methodCta: 'text-amber-700 hover:text-amber-800 focus:ring-amber-700',
+  },
+  blue: {
+    cardBorder: 'border-blue-100',
+    cardBorderFeatured: 'border-blue-200',
+    cardBorderDashed: 'border-blue-200',
+    iconContainer: 'border-blue-100 bg-blue-50 text-blue-700',
+    label: 'text-blue-700/65',
+    cta: 'text-blue-700 hover:text-blue-800 focus:ring-blue-700',
+    ctaHoverBg: 'hover:bg-blue-50/60 hover:text-blue-800',
+    tagLinkTone: 'blue' as const,
+    methodCta: 'text-blue-700 hover:text-blue-800 focus:ring-blue-700',
+  },
 } as const;
 
 const NOTION_OS_URL = 'https://app.notion.com/p/Environmental-Systems-Design-OS-37defa67177f80fcb70dc324c03e2e7d?source=copy_link';
 
-// Research & Frameworks section
-const researchLinkedCards: LinkedWorkCard[] = [
+// Research section (teal)
+const researchCards: StaticWorkCard[] = [
+  {
+    title: 'Environmental Systems Design OS',
+    label: 'Research OS',
+    description:
+      'A working environment for capturing observations, identifying patterns, and developing reusable design frameworks.',
+    tags: ['Audits', 'Patterns', 'Projects & Concepts', 'Portfolio Assets'],
+    icon: Layers3,
+    internalLink: '/projects/environmental-systems-design-os',
+  },
+];
+
+// Frameworks section (violet)
+const frameworkCards: LinkedWorkCard[] = [
   {
     title: 'The Architecture of Confidence',
     label: 'Framework',
@@ -77,98 +112,80 @@ const researchLinkedCards: LinkedWorkCard[] = [
     cta: 'Explore Framework',
     href: '/projects/architecture-of-confidence',
     icon: ShieldCheck,
-    featured: true,
+    
   },
 ];
 
-const researchMethodCards: StaticWorkCard[] = [
-  {
-    title: 'Environmental Systems Design OS',
-    label: 'Research Environment',
-    description:
-      'A working environment for capturing observations, identifying patterns, and developing reusable design frameworks.',
-    tags: ['Audits', 'Patterns', 'Projects & Concepts', 'Portfolio Assets'],
-    icon: Layers3,
-    internalLink: '/projects/environmental-systems-design-os',
-  },
-];
-
-const researchExploratoryCards: StaticWorkCard[] = [
+// Concepts section (amber)
+const conceptCards: StaticWorkCard[] = [
   {
     title: 'The Wayfinding Matrix',
-    label: 'Exploratory',
+    label: 'Concept',
     description:
       `An ambient, non-screen navigation framework for remote adventure parks and wilderness reserves. It matches a guest's real-time physical endurance data with changing weather patterns to deliver low-friction safety nets, allowing true off-grid spontaneity.`,
     tags: ['Ambient Intelligence', 'Intentional Spontaneity', 'Hushpitality'],
     icon: Compass,
-    status: 'Currently Exploring',
     href: '/projects/wayfinding-matrix',
   },
   {
     title: 'The Intention Engine',
-    label: 'Exploratory',
+    label: 'Concept',
     description:
       `A semantic discovery and service recovery engine built for luxury ecotourism. It translates abstract human psychological states (burnout, transition) into highly specific spatial Blueprints and multi-sensory arrival-to-departure guest journeys.`,
     tags: ['Zero-Search Discovery', 'Psychological Blueprints', 'Whycations'],
     icon: BrainCircuit,
-    status: 'Currently Exploring',
     href: '/projects/intention-engine',
   },
-];
-
-// Applied Systems section
-const appliedExploratoryCards: StaticWorkCard[] = [
   {
     title: 'Responsive Ecologies',
-    label: 'Exploratory',
+    label: 'Concept',
     description:
       'A multi-agent AI land stewardship platform for backcountry outfitters and luxury eco-lodges. It processes edge-sensor telemetry (soil, fuel load, hydrology) to autonomously generate adaptive trail maintenance schedules and wildlife-safe guiding corridors.',
     tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
     icon: Route,
-    status: 'Currently Exploring',
     href: '/projects/responsive-ecologies',
   },
-];
-
-const appliedLinkedCards: LinkedWorkCard[] = [
   {
-    title: 'Adaptive Outdoor Hospitality Companion',
-    label: 'Systems Concept',
+    title: 'Adaptive Outdoor Hospitality Companion',
+    label: 'Concept',
     description:
       'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
     tags: ['Hospitality', 'Stewardship', 'Recovery'],
-    cta: 'Explore Concept',
-    href: '/projects/adaptive-ranch-experience-companion',
     icon: Compass,
+    href: '/projects/adaptive-ranch-experience-companion',
   },
+];
+
+// Builds & Implementation section (blue)
+const buildsLinkedCards: LinkedWorkCard[] = [
   {
-    title: 'HADE',
-    label: 'Core Engine',
+    title: 'Human Adaptive Decision Engine (HADE)',
+    label: 'Experimental Build',
     description:
       'An adaptive decision-support engine that interprets live context signals and turns changing conditions into clearer next steps.',
     tags: ['AI reasoning', 'Context', 'Guidance'],
-    cta: 'Explore HADE',
+    cta: 'Explore Build',
     href: '/projects/travel-and-ai',
     icon: BrainCircuit,
     featured: true,
   },
   {
     title: 'Digital Executor',
-    label: 'Workflow Design',
+    label: 'Experimental Build',
     description:
       'A service recovery and coordination concept for helping people move forward when plans break, vendors hand off, or next steps become unclear.',
     tags: ['Recovery', 'Operations', 'Handoffs'],
-    cta: 'Explore Case Study',
+    cta: 'Explore Build',
     href: '/projects/digital-executor',
     icon: Zap,
   },
   {
     title: 'Field Notes',
-    label: 'Field Tool',
+    label: 'Experimental Build',
     description:
       'A place-aware product for capturing travel signals, environmental context, and local knowledge that can support better decisions in the moment.',
     tags: ['Travel signals', 'Place-aware', 'Field data'],
-    cta: 'Explore Field Notes',
+    cta: 'Explore Build',
     href: '/projects/field-notes',
     icon: MapPinned,
   },
@@ -196,7 +213,7 @@ function TagList({
   dark?: boolean;
   compact?: boolean;
   links?: Record<string, string>;
-  linkTone?: 'blue' | 'neutral' | 'stone' | 'violet' | 'teal';
+  linkTone?: 'blue' | 'neutral' | 'stone' | 'violet' | 'teal' | 'amber';
 }) {
   const interactiveClasses =
     linkTone === 'blue'
@@ -207,7 +224,9 @@ function TagList({
           ? 'border-violet-100 bg-violet-50 text-violet-700 transition-colors hover:border-violet-300 hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-700 focus:ring-offset-2'
           : linkTone === 'teal'
             ? 'border-teal-100 bg-teal-50 text-teal-700 transition-colors hover:border-teal-300 hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:ring-offset-2'
-            : 'border-stone-200 bg-stone-50 text-stone-600 transition-colors hover:border-stone-300 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-700 focus:ring-offset-2';
+            : linkTone === 'amber'
+              ? 'border-amber-100 bg-amber-50 text-amber-700 transition-colors hover:border-amber-300 hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2'
+              : 'border-stone-200 bg-stone-50 text-stone-600 transition-colors hover:border-stone-300 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-700 focus:ring-offset-2';
 
   const staticClasses = dark
     ? 'border-white/10 bg-white/5 text-white/70'
@@ -219,7 +238,9 @@ function TagList({
           ? 'border-violet-100 bg-violet-50/70 text-violet-600'
           : linkTone === 'teal'
             ? 'border-teal-100 bg-teal-50/70 text-teal-600'
-            : 'border-stone-200 bg-stone-50 text-stone-600';
+            : linkTone === 'amber'
+              ? 'border-amber-100 bg-amber-50/70 text-amber-600'
+              : 'border-stone-200 bg-stone-50 text-stone-600';
 
   return (
     <ul className={`flex flex-wrap ${compact ? 'gap-1.5' : 'gap-2'}`} aria-label="Tags">
@@ -493,48 +514,45 @@ export default function DesignWork() {
         </header>
 
         <div className="homepage-copy-column relative mt-12 md:mt-16" aria-labelledby="work-title">
-          {/* Research & Frameworks — violet */}
-          <section aria-labelledby="research-frameworks-title">
-            <SectionEyebrow id="research-frameworks-title">
-              Research &amp; Frameworks
-            </SectionEyebrow>
-
+          {/* Research — teal */}
+          <section aria-labelledby="research-title">
+            <SectionEyebrow id="research-title">Research</SectionEyebrow>
             <div className="grid grid-cols-1 gap-5 md:gap-6">
-              {researchLinkedCards.map((card) => (
+              {researchCards.map((card) => (
+                <MethodCard key={card.title} card={card} tone="teal" />
+              ))}
+            </div>
+          </section>
+
+          {/* Frameworks — violet */}
+          <section aria-labelledby="frameworks-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="frameworks-title">Frameworks</SectionEyebrow>
+            <div className="grid grid-cols-1 gap-5 md:gap-6">
+              {frameworkCards.map((card) => (
                 <SystemDesignCard key={card.title} card={card} tone="violet" />
               ))}
-              {researchMethodCards.map((card) => (
-                <MethodCard key={card.title} card={card} tone="violet" />
-              ))}
-              {researchExploratoryCards.map((card) => (
-                <ExplorationCard key={card.title} card={card} tone="violet" />
-              ))}
             </div>
           </section>
 
-          {/* Applied Systems — teal */}
-          <section aria-labelledby="applied-systems-title" className="mt-14 md:mt-20">
-            <SectionEyebrow id="applied-systems-title">
-              Applied Systems
-            </SectionEyebrow>
-
+          {/* Concepts — amber */}
+          <section aria-labelledby="concepts-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="concepts-title">Concepts</SectionEyebrow>
             <div className="grid grid-cols-1 gap-5 md:gap-6">
-              {appliedExploratoryCards.map((card) => (
-                <ExplorationCard key={card.title} card={card} tone="teal" />
-              ))}
-              {appliedLinkedCards.map((card) => (
-                <SystemDesignCard key={card.title} card={card} tone="teal" />
+              {conceptCards.map((card) => (
+                <ExplorationCard key={card.title} card={card} tone="amber" />
               ))}
             </div>
           </section>
 
-          {/* Professional Practice — neutral (unchanged) */}
-          <section aria-labelledby="professional-practice-title" className="mt-14 md:mt-20">
-            <SectionEyebrow id="professional-practice-title">
-              Professional Practice
-            </SectionEyebrow>
-
-            <div>
+          {/* Builds & Implementation — blue */}
+          <section aria-labelledby="builds-title" className="mt-14 md:mt-20">
+            <SectionEyebrow id="builds-title">Builds & Implementation</SectionEyebrow>
+            <div className="grid grid-cols-1 gap-5 md:gap-6">
+              {buildsLinkedCards.map((card) => (
+                <SystemDesignCard key={card.title} card={card} tone="blue" />
+              ))}
+            </div>
+            <div className="mt-5">
               <ProfessionalPracticeCallout card={professionalPractice} />
             </div>
           </section>
@@ -542,7 +560,7 @@ export default function DesignWork() {
           <div className="mx-auto mt-14 flex max-w-xl flex-col items-center justify-center gap-3 border-t border-stone-200 pt-8 text-center md:mt-20">
             <Sparkles className="h-4 w-4 text-stone-400" aria-hidden="true" />
             <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 text-balance">
-              Public systems work, research environments, professional practice, and exploratory concepts
+              Research, frameworks, concepts, and professional practice
             </p>
           </div>
         </div>

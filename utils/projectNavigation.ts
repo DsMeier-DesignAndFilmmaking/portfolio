@@ -1,7 +1,7 @@
 export type TopLevelProjectNavItem = {
   label: string;
   href?: string;
-  group: 'Research & Frameworks' | 'Applied Systems' | 'Professional Practice';
+  group: 'Research' | 'Frameworks' | 'Concepts' | 'Builds & Implementation';
   external?: boolean;
   status?: string;
   disabled?: boolean;
@@ -17,69 +17,58 @@ export const ENVIRONMENTAL_SYSTEMS_DESIGN_OS_URL =
 
 export const topLevelProjectNavGroups: TopLevelProjectNavGroup[] = [
   {
-    label: 'Research & Frameworks',
+    label: 'Research',
     items: [
       {
         label: 'Environmental Systems Design OS',
         href: '/projects/environmental-systems-design-os',
-        group: 'Research & Frameworks',
-      },
-      {
-        label: 'Architecture of Confidence',
-        href: '/projects/architecture-of-confidence',
-        group: 'Research & Frameworks',
-      },
-      {
-        label: 'The Wayfinding Matrix',
-        href: '/projects/wayfinding-matrix',
-        group: 'Research & Frameworks',
-      },
-      {
-        label: 'The Intention Engine',
-        href: '/projects/intention-engine',
-        group: 'Research & Frameworks',
+        group: 'Research',
       },
     ],
   },
   {
-    label: 'Applied Systems',
+    label: 'Frameworks',
     items: [
+      {
+        label: 'Architecture of Confidence',
+        href: '/projects/architecture-of-confidence',
+        group: 'Frameworks',
+      },
+    ],
+  },
+  {
+    label: 'Concepts',
+    items: [
+      {
+        label: 'The Wayfinding Matrix',
+        href: '/projects/wayfinding-matrix',
+        group: 'Concepts',
+      },
+      {
+        label: 'The Intention Engine',
+        href: '/projects/intention-engine',
+        group: 'Concepts',
+      },
       {
         label: 'Responsive Ecologies',
         href: '/projects/responsive-ecologies',
-        group: 'Applied Systems',
+        group: 'Concepts',
         status: 'Flagship Synthesis',
       },
       {
         label: 'Adaptive Outdoor Hospitality Companion',
         href: '/projects/adaptive-ranch-experience-companion',
-        group: 'Applied Systems',
-      },
-      {
-        label: 'Human Adaptive Decision Engine',
-        href: '/projects/travel-and-ai',
-        group: 'Applied Systems',
-      },
-      {
-        label: 'Digital Executor',
-        href: '/projects/digital-executor',
-        group: 'Applied Systems',
-      },
-      {
-        label: 'Travel Field Notes',
-        href: '/projects/field-notes',
-        group: 'Professional Practice',
+        group: 'Concepts',
       },
     ],
   },
   {
-    label: 'Professional Practice',
+    label: 'Builds & Implementation',
     items: [
-      {
-        label: 'Selected Client Work',
-        href: '/projects/previous',
-        group: 'Professional Practice',
-      },
+      { label: 'Human Adaptive Decision Engine (HADE)', href: '/projects/travel-and-ai', group: 'Builds & Implementation' },
+      { label: 'Digital Executor', href: '/projects/digital-executor', group: 'Builds & Implementation' },
+      { label: 'Field Notes', href: '/projects/field-notes', group: 'Builds & Implementation' },
+      { label: 'Selected Client Work', href: '/projects/previous', group: 'Builds & Implementation' },
     ],
   },
 ];
