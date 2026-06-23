@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -284,8 +285,31 @@ export default function NewdeaProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="Building blockchain infrastructure for economic development meant designing two interlocking systems at once: a brand identity and a full screen architecture serving multiple stakeholder roles — in two months."
+        decisionPoints={[
+          'Brand system definition (identity, tokens)',
+          'Screen architecture mapped to stakeholder roles',
+          'Cross-check: brand decisions vs. functional screen system, kept in sync weekly',
+        ]}
+        metrics={[
+          { value: '2 months', label: 'Build Timeline', isPlaceholder: false },
+          { value: '24', label: 'Screens Designed', isPlaceholder: true },
+          { value: '18', label: 'Brand System Components Defined', isPlaceholder: true },
+          { value: '3', label: 'Primary User Roles Mapped End-to-End', isPlaceholder: true },
+        ]}
+        feedbackLoop="Brand guidelines and screen architecture were developed in parallel and cross-checked weekly so visual identity stayed consistent as the functional system grew."
+        systemMap={[
+          { label: 'Brand System (identity, tokens)' },
+          { label: 'Screen Architecture (24 screens)' },
+          { label: 'Role-Based Flows (3 primary roles)' },
+          { label: 'Interactive Prototype' },
+        ]}
+      />
+
       {/* Next Project Section */}
-      <ViewMoreWorkSection 
+      <ViewMoreWorkSection
         currentProjectId="newdea"
         title="More Design Work"
         bgColor="bg-black"

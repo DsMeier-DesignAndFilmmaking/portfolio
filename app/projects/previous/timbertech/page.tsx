@@ -30,6 +30,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 import { getImagePath } from '../../../../utils/imagePath';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -222,7 +223,7 @@ export default function TimberTechProjectPage() {
       </section>
 
       {/* Process Overview Section for TimberTech */}
-      <section className="pt-20 pb-40 bg-black">
+      <section className="pt-20 pb-20 bg-black">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-12 text-white text-center">Process Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto">
@@ -254,18 +255,42 @@ export default function TimberTechProjectPage() {
               <p className="text-gray-400">Guided junior designers toward ownership and smarter use of the design system.</p>
             </div>
           </div>
-          <div className="text-center mt-12">
-            <a 
-              href="https://www.timbertech.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block bg-transparent hover:bg-white hover:text-black border border-white text-white font-bold py-3 px-8 rounded-lg transition-colors"
-            >
-              View Live Site
-            </a>
-          </div>
         </div>
       </section>
+
+      <SystemsModule
+        heading="Systems Approach"
+        introText="With 300+ URLs running off one component library, every redundant component was multiplied across the whole site. The 19% reduction wasn't a cleanup task — it was a systems decision about what the library should and shouldn't contain going forward."
+        decisionPoints={[
+          'Component audit → flag redundant/near-duplicate components',
+          'Consolidate or deprecate → map surviving components to page templates',
+          'Sprint rollout → junior designer adoption check',
+        ]}
+        metrics={[
+          { value: '19%', label: 'Reduction in Component Library', isPlaceholder: false },
+          { value: '1:14', label: 'Component-to-Page Reuse Ratio', isPlaceholder: true },
+          { value: '~35%', label: 'Design-to-Dev Handoff Time Reduced', isPlaceholder: true },
+        ]}
+        feedbackLoop="Junior designers' component usage was tracked sprint over sprint — wherever a one-off style appeared instead of a shared component, that gap became the next sprint's consolidation target."
+        systemMap={[
+          { label: 'Component Audit (flag redundant components)' },
+          { label: 'Consolidate / Deprecate' },
+          { label: 'Map to Page Templates (300+ URLs)' },
+          { label: '2-Week Sprint Rollout' },
+          { label: 'Adoption Check (mentorship loop)' },
+        ]}
+      />
+
+      <div className="bg-black py-12 text-center">
+        <a
+          href="https://www.timbertech.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-transparent hover:bg-white hover:text-black border border-white text-white font-bold py-3 px-8 rounded-lg transition-colors"
+        >
+          View Live Site
+        </a>
+      </div>
 
       {/* View More Work Section */}
       <ViewMoreWorkSection 

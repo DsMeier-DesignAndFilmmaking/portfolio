@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -251,8 +252,31 @@ export default function HavasAgencyProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="The program flow chart wasn't decoration — it mapped how a participant actually moved through contest phases, and the functional spec defined what had to be true at each phase boundary for someone to advance."
+        decisionPoints={[
+          'Entry/submission → eligibility check',
+          'Eligibility → judging phase',
+          'Judging → results → winner announcement',
+        ]}
+        metrics={[
+          { value: '6 mo', label: 'Contract Engagement Length', isPlaceholder: false },
+          { value: '5', label: 'Program Phases Mapped', isPlaceholder: true },
+          { value: '32', label: 'Functional Requirements Specified', isPlaceholder: true },
+        ]}
+        feedbackLoop="The flow chart exposed gaps in phase transitions (e.g., an undefined exit condition between submission and judging) that got a defined rule before development started — not after launch."
+        systemMap={[
+          { label: 'Entry/Submission' },
+          { label: 'Eligibility Check' },
+          { label: 'Judging Phase' },
+          { label: 'Results Phase' },
+          { label: 'Winner Announcement' },
+        ]}
+      />
+
       {/* Next Project Section */}
-      <ViewMoreWorkSection 
+      <ViewMoreWorkSection
         currentProjectId="havas-agency"
         title="More Design Work"
         bgColor="bg-black"

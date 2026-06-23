@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -271,8 +272,31 @@ export default function DoubleGoodProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="A two-week sprint to improve mobile fundraising browsing meant the catalog's category-and-filter logic had to work cleanly on a small screen — every filter combination had to actually return results, or the system would dead-end shoppers."
+        decisionPoints={[
+          'Category taxonomy depth',
+          'Filter combination logic — which filters can stack',
+          'Empty-state handling when filters return nothing',
+        ]}
+        metrics={[
+          { value: '2 weeks', label: 'Build Timeline', isPlaceholder: false },
+          { value: '12', label: 'Filter Combinations Supported', isPlaceholder: true },
+          { value: '4 → 2', label: 'Browse-to-Product Steps Reduced', isPlaceholder: true },
+        ]}
+        feedbackLoop="Filter combinations were tested against real catalog data to confirm no pairing returned an empty state — a constraint that shaped what shipped in the two-week window."
+        systemMap={[
+          { label: 'Catalog' },
+          { label: 'Category Selection' },
+          { label: 'Filter Layer (e.g. Sweet + price range)' },
+          { label: 'Filtered Results (checked against empty-state risk)' },
+          { label: 'Product Selection' },
+        ]}
+      />
+
       {/* Next Project Section */}
-      <ViewMoreWorkSection 
+      <ViewMoreWorkSection
         currentProjectId="doublegood"
         title="More Design Work"
         bgColor="bg-black"

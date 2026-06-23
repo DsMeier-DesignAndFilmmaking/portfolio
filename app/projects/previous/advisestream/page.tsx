@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -253,8 +254,34 @@ export default function AdviseStreamProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="The application flow isn't one screen — it's a multi-stage funnel where every step transition is a checkpoint that either carries an applicant forward or quietly loses them. The redesign treated drop-off as a systems problem: where does the funnel create friction, and how do you reduce decision load without stripping out information applicants need."
+        decisionPoints={[
+          'Account creation → applicant-type branch',
+          'Document upload → validation state (success / error / retry)',
+          'Report builder → multi-section state that has to persist across devices',
+          'Submission → confirmation + TCR tracking',
+        ]}
+        metrics={[
+          { value: '25%', label: 'Reduction in User Drop-Off', isPlaceholder: false },
+          { value: '22%', label: 'Increase in Total Completed Reports', isPlaceholder: false },
+          { value: '6.5k+', label: 'Applications Processed', isPlaceholder: false },
+          { value: '8 → 5', label: 'Avg. Steps to Completion', isPlaceholder: true },
+          { value: '94%', label: 'Mobile/Desktop Completion Parity', isPlaceholder: true },
+        ]}
+        feedbackLoop="Each sprint targeted whichever funnel stage showed the highest measured drop-off — not the stage that simply looked unfinished."
+        systemMap={[
+          { label: 'Create Account' },
+          { label: 'Applicant-Type Branch' },
+          { label: 'Document Upload (validation loop)' },
+          { label: 'Report Builder (persists across device)' },
+          { label: 'Review → Submit → Confirmation' },
+        ]}
+      />
+
       {/* Next Project Section */}
-      <ViewMoreWorkSection 
+      <ViewMoreWorkSection
         currentProjectId="advisestream"
         title="More Design Work"
         bgColor="bg-black"

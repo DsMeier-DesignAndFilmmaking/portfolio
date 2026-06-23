@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowRight, FaChartLine, FaUsers, FaClock, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
+import SystemsModule from './SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -63,7 +64,7 @@ export default function PurdueProjectPage() {
           >
             <div className="inline-flex items-center gap-2 text-[#e6cfa3] text-sm font-medium mb-6">
               <div className="w-1 h-4 bg-[#e6cfa3]"></div>
-              <span>Current Project</span>
+              <span>On-going Client</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-[#e6cfa3]">
@@ -349,6 +350,31 @@ export default function PurdueProjectPage() {
           </div>
         </div>
       </section>
+
+      <SystemsModule
+        heading="Systems Approach"
+        introText="Purdue's web presence isn't one site — it's dozens of department sites that drift into duplicate pages and orphaned content over time. The Sitebulb crawl and duplicate-content graph weren't QA tools after the fact, they were how the actual shape of the system got diagnosed before any screen was redesigned."
+        decisionPoints={[
+          'Crawl & audit → flag duplicate/orphaned pages',
+          'Stakeholder alignment (Admissions, Recruitment, OGA, Fellowships) → which pages merge vs. stay separate',
+          'IA restructure → modular CMS template assignment',
+          'URL migration → redirect mapping',
+        ]}
+        metrics={[
+          { value: '1,500+', label: 'Enhanced & Migrated URLs', isPlaceholder: false },
+          { value: '340 → 12', label: 'Duplicate Page Clusters Resolved', isPlaceholder: true },
+          { value: '6 → 3', label: 'Clicks to Reach Key Content (Crawl Depth)', isPlaceholder: true },
+        ]}
+        feedbackLoop="Post-launch, the site was re-crawled with Sitebulb to confirm duplicate content actually dropped and migrated URLs resolved correctly — audit, redesign, re-audit."
+        systemMap={[
+          { label: 'Crawl & Audit (Sitebulb)' },
+          { label: 'Identify Duplicate/Orphaned Pages' },
+          { label: 'Stakeholder Alignment', branch: ['Admissions', 'Recruitment', 'OGA', 'Fellowships'] },
+          { label: 'IA Restructure → Modular CMS Templates' },
+          { label: 'URL Migration' },
+          { label: 'Re-Crawl to Validate' },
+        ]}
+      />
 
       {/* View More Work Section */}
       <section className="py-20 bg-white">
