@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { FaArrowRight, FaChartLine, FaUsers, FaClock, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import SystemsModule from './SystemsModule';
+import ViewMoreWorkSection from './ViewMoreWorkSection';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -318,6 +319,32 @@ export default function PurdueProjectPage() {
         </div>
       </section>
 
+
+      <SystemsModule
+        heading="Systems Approach"
+        introText="Purdue's web presence isn't one site — it's dozens of department sites that drift into duplicate pages and orphaned content over time. The Sitebulb crawl and duplicate-content graph weren't QA tools after the fact, they were how the actual shape of the system got diagnosed before any screen was redesigned."
+        decisionPoints={[
+          'Crawl & audit → flag duplicate/orphaned pages',
+          'Stakeholder alignment (Admissions, Recruitment, OGA, Fellowships) → which pages merge vs. stay separate',
+          'IA restructure → modular CMS template assignment',
+          'URL migration → redirect mapping',
+        ]}
+        metrics={[
+          { value: '1,500+', label: 'Enhanced & Migrated URLs', isPlaceholder: false },
+          { value: '340 → 12', label: 'Duplicate Page Clusters Resolved', isPlaceholder: true },
+          { value: '6 → 3', label: 'Clicks to Reach Key Content (Crawl Depth)', isPlaceholder: true },
+        ]}
+        feedbackLoop="Post-launch, the site was re-crawled with Sitebulb to confirm duplicate content actually dropped and migrated URLs resolved correctly — audit, redesign, re-audit."
+        systemMap={[
+          { label: 'Crawl & Audit (Sitebulb)' },
+          { label: 'Identify Duplicate/Orphaned Pages' },
+          { label: 'Stakeholder Alignment', branch: ['Admissions', 'Recruitment', 'OGA', 'Fellowships'] },
+          { label: 'IA Restructure → Modular CMS Templates' },
+          { label: 'URL Migration' },
+          { label: 'Re-Crawl to Validate' },
+        ]}
+      />
+
       {/* Design in Progress */}
       <section id="design" className="py-20 bg-white/5">
         <div className="container mx-auto px-6">
@@ -351,106 +378,11 @@ export default function PurdueProjectPage() {
         </div>
       </section>
 
-      <SystemsModule
-        heading="Systems Approach"
-        introText="Purdue's web presence isn't one site — it's dozens of department sites that drift into duplicate pages and orphaned content over time. The Sitebulb crawl and duplicate-content graph weren't QA tools after the fact, they were how the actual shape of the system got diagnosed before any screen was redesigned."
-        decisionPoints={[
-          'Crawl & audit → flag duplicate/orphaned pages',
-          'Stakeholder alignment (Admissions, Recruitment, OGA, Fellowships) → which pages merge vs. stay separate',
-          'IA restructure → modular CMS template assignment',
-          'URL migration → redirect mapping',
-        ]}
-        metrics={[
-          { value: '1,500+', label: 'Enhanced & Migrated URLs', isPlaceholder: false },
-          { value: '340 → 12', label: 'Duplicate Page Clusters Resolved', isPlaceholder: true },
-          { value: '6 → 3', label: 'Clicks to Reach Key Content (Crawl Depth)', isPlaceholder: true },
-        ]}
-        feedbackLoop="Post-launch, the site was re-crawled with Sitebulb to confirm duplicate content actually dropped and migrated URLs resolved correctly — audit, redesign, re-audit."
-        systemMap={[
-          { label: 'Crawl & Audit (Sitebulb)' },
-          { label: 'Identify Duplicate/Orphaned Pages' },
-          { label: 'Stakeholder Alignment', branch: ['Admissions', 'Recruitment', 'OGA', 'Fellowships'] },
-          { label: 'IA Restructure → Modular CMS Templates' },
-          { label: 'URL Migration' },
-          { label: 'Re-Crawl to Validate' },
-        ]}
+      <ViewMoreWorkSection
+        currentProjectId="purdue"
+        bgColor="bg-black"
+        textColor="text-gray-400"
       />
-
-      {/* View More Work Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-base font-normal mb-12 text-center text-gray-400">
-            View More Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Next Project Card */}
-            <Link href="/projects/travel-and-ai" className="group">
-              <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/travelApp-card.jpg`}
-                  alt="Travel & AI Project"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Travel & AI</h3>
-                  <p className="text-gray-200 mb-4">Currently, I am building a travel application using AI tools.</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Project
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Previous Project Card */}
-            <Link href="/projects/previous" className="group">
-              <div className="group relative w-full h-[480px] overflow-hidden rounded-xl">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/timbertech-card.jpg`}
-                  alt="TimberTech Project"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Client Work</h3>
-                  <p className="text-gray-200 mb-4">View work samples from previous projects I have worked on.</p>
-                  <div className="inline-flex items-center font-medium text-white hover:text-gray-300 transition-colors">
-                    View Projects
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 } 

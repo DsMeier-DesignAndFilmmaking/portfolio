@@ -225,6 +225,29 @@ export default function NodalyticsProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="A 3-week pitch deadline meant the dashboard had to be modeled backward from what investors needed to grasp instantly — not every blockchain data dimension could be surfaced, so the design problem was choosing which ones earned a place in the hierarchy."
+        decisionPoints={[
+          'Which data dimensions surface vs. stay hidden for pitch clarity',
+          'Dashboard hierarchy: headline metric → supporting detail',
+          'Component system scoped for speed, not exhaustiveness',
+        ]}
+        metrics={[
+          { value: '3 weeks', label: 'Build Timeline', isPlaceholder: false },
+          { value: '5', label: 'Dashboard Data Modules Built', isPlaceholder: true },
+          { value: '80%', label: 'Investor-Deck Screens Built from Reusable Components', isPlaceholder: true },
+        ]}
+        feedbackLoop="Pitch rehearsals surfaced which dashboard module investors didn't immediately understand — that module got redesigned next, not the whole deck."
+        systemMap={[
+          { label: 'Raw Blockchain Data' },
+          { label: 'Data Modeling (select dimensions for clarity)' },
+          { label: 'Dashboard Hierarchy (headline → supporting detail)' },
+          { label: 'Component System (UI Style Guide)' },
+          { label: 'Investor-Ready Prototype' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -257,29 +280,6 @@ export default function NodalyticsProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="A 3-week pitch deadline meant the dashboard had to be modeled backward from what investors needed to grasp instantly — not every blockchain data dimension could be surfaced, so the design problem was choosing which ones earned a place in the hierarchy."
-        decisionPoints={[
-          'Which data dimensions surface vs. stay hidden for pitch clarity',
-          'Dashboard hierarchy: headline metric → supporting detail',
-          'Component system scoped for speed, not exhaustiveness',
-        ]}
-        metrics={[
-          { value: '3 weeks', label: 'Build Timeline', isPlaceholder: false },
-          { value: '5', label: 'Dashboard Data Modules Built', isPlaceholder: true },
-          { value: '80%', label: 'Investor-Deck Screens Built from Reusable Components', isPlaceholder: true },
-        ]}
-        feedbackLoop="Pitch rehearsals surfaced which dashboard module investors didn't immediately understand — that module got redesigned next, not the whole deck."
-        systemMap={[
-          { label: 'Raw Blockchain Data' },
-          { label: 'Data Modeling (select dimensions for clarity)' },
-          { label: 'Dashboard Hierarchy (headline → supporting detail)' },
-          { label: 'Component System (UI Style Guide)' },
-          { label: 'Investor-Ready Prototype' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

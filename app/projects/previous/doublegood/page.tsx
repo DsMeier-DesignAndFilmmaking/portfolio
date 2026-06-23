@@ -239,6 +239,29 @@ export default function DoubleGoodProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="A two-week sprint to improve mobile fundraising browsing meant the catalog's category-and-filter logic had to work cleanly on a small screen — every filter combination had to actually return results, or the system would dead-end shoppers."
+        decisionPoints={[
+          'Category taxonomy depth',
+          'Filter combination logic — which filters can stack',
+          'Empty-state handling when filters return nothing',
+        ]}
+        metrics={[
+          { value: '2 weeks', label: 'Build Timeline', isPlaceholder: false },
+          { value: '12', label: 'Filter Combinations Supported', isPlaceholder: true },
+          { value: '4 → 2', label: 'Browse-to-Product Steps Reduced', isPlaceholder: true },
+        ]}
+        feedbackLoop="Filter combinations were tested against real catalog data to confirm no pairing returned an empty state — a constraint that shaped what shipped in the two-week window."
+        systemMap={[
+          { label: 'Catalog' },
+          { label: 'Category Selection' },
+          { label: 'Filter Layer (e.g. Sweet + price range)' },
+          { label: 'Filtered Results (checked against empty-state risk)' },
+          { label: 'Product Selection' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -271,29 +294,6 @@ export default function DoubleGoodProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="A two-week sprint to improve mobile fundraising browsing meant the catalog's category-and-filter logic had to work cleanly on a small screen — every filter combination had to actually return results, or the system would dead-end shoppers."
-        decisionPoints={[
-          'Category taxonomy depth',
-          'Filter combination logic — which filters can stack',
-          'Empty-state handling when filters return nothing',
-        ]}
-        metrics={[
-          { value: '2 weeks', label: 'Build Timeline', isPlaceholder: false },
-          { value: '12', label: 'Filter Combinations Supported', isPlaceholder: true },
-          { value: '4 → 2', label: 'Browse-to-Product Steps Reduced', isPlaceholder: true },
-        ]}
-        feedbackLoop="Filter combinations were tested against real catalog data to confirm no pairing returned an empty state — a constraint that shaped what shipped in the two-week window."
-        systemMap={[
-          { label: 'Catalog' },
-          { label: 'Category Selection' },
-          { label: 'Filter Layer (e.g. Sweet + price range)' },
-          { label: 'Filtered Results (checked against empty-state risk)' },
-          { label: 'Product Selection' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

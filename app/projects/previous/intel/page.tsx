@@ -222,6 +222,29 @@ export default function IntelProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="Seven concepts, ten participants, one month — the design problem was building a pipeline fast enough to turn raw interviews into roadmap-ready signal before the research window closed."
+        decisionPoints={[
+          'Concept selection logic → which 7 ideas were worth prototyping',
+          'Interview structure → open-ended vs. targeted per concept',
+          'Synthesis → which insights graduate to roadmap input vs. get parked',
+        ]}
+        metrics={[
+          { value: '7', label: 'Product Design Concepts', isPlaceholder: false },
+          { value: '10', label: 'Research Participants', isPlaceholder: false },
+          { value: '<3 wks', label: 'Insight-to-Decision Time', isPlaceholder: true },
+          { value: '3 / 4', label: 'Concepts Validated / Deprioritized', isPlaceholder: true },
+        ]}
+        feedbackLoop="The synthesis deck's findings directly decided which concepts moved forward — a fast filter loop rather than one big final readout."
+        systemMap={[
+          { label: '7 Concept Prototypes' },
+          { label: 'Participant Interviews (10)' },
+          { label: 'Synthesis Deck (pattern clustering)' },
+          { label: 'Roadmap-Ready Insights', branch: ['3 concepts carried forward', '4 deprioritized'] },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -276,29 +299,6 @@ export default function IntelProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="Seven concepts, ten participants, one month — the design problem was building a pipeline fast enough to turn raw interviews into roadmap-ready signal before the research window closed."
-        decisionPoints={[
-          'Concept selection logic → which 7 ideas were worth prototyping',
-          'Interview structure → open-ended vs. targeted per concept',
-          'Synthesis → which insights graduate to roadmap input vs. get parked',
-        ]}
-        metrics={[
-          { value: '7', label: 'Product Design Concepts', isPlaceholder: false },
-          { value: '10', label: 'Research Participants', isPlaceholder: false },
-          { value: '<3 wks', label: 'Insight-to-Decision Time', isPlaceholder: true },
-          { value: '3 / 4', label: 'Concepts Validated / Deprioritized', isPlaceholder: true },
-        ]}
-        feedbackLoop="The synthesis deck's findings directly decided which concepts moved forward — a fast filter loop rather than one big final readout."
-        systemMap={[
-          { label: '7 Concept Prototypes' },
-          { label: 'Participant Interviews (10)' },
-          { label: 'Synthesis Deck (pattern clustering)' },
-          { label: 'Roadmap-Ready Insights', branch: ['3 concepts carried forward', '4 deprioritized'] },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

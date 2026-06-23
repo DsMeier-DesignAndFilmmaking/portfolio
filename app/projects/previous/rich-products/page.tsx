@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
+import SystemsModule from '../../../../components/SystemsModule';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -185,6 +186,28 @@ export default function RichProductsProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="FarmRich's IA had to hold multiple product lines under one global nav while keeping a high-intent path — Where to Buy — reachable from anywhere on the site, regardless of how the catalog grew."
+        decisionPoints={[
+          'Global nav taxonomy depth',
+          'Product line grouping logic',
+          'Where to Buy placement: persistent vs. contextual',
+        ]}
+        metrics={[
+          { value: '8 mo', label: 'Contract Engagement Length', isPlaceholder: false },
+          { value: '4 → 2', label: 'Nav Taxonomy Depth Reduced', isPlaceholder: true },
+          { value: '1-click', label: 'Where to Buy Access from Any Page', isPlaceholder: true },
+          { value: '75%', label: 'Cross-Brand Template Reuse', isPlaceholder: true },
+        ]}
+        feedbackLoop="Wireframes were stress-tested against real product-line counts to confirm the nav wouldn't break as new products were added — IA built for growth, not just the current catalog."
+        systemMap={[
+          { label: 'Global Nav' },
+          { label: 'Product Line Grouping (2-level taxonomy)' },
+          { label: 'Where to Buy (1-click access from any page)' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -263,7 +286,7 @@ export default function RichProductsProjectPage() {
       </section>
 
       {/* Next Project Section */}
-      <ViewMoreWorkSection 
+      <ViewMoreWorkSection
         currentProjectId="rich-products"
         title="More Design Work"
         bgColor="bg-black"

@@ -219,6 +219,29 @@ export default function HavasAgencyProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="The program flow chart wasn't decoration — it mapped how a participant actually moved through contest phases, and the functional spec defined what had to be true at each phase boundary for someone to advance."
+        decisionPoints={[
+          'Entry/submission → eligibility check',
+          'Eligibility → judging phase',
+          'Judging → results → winner announcement',
+        ]}
+        metrics={[
+          { value: '6 mo', label: 'Contract Engagement Length', isPlaceholder: false },
+          { value: '5', label: 'Program Phases Mapped', isPlaceholder: true },
+          { value: '32', label: 'Functional Requirements Specified', isPlaceholder: true },
+        ]}
+        feedbackLoop="The flow chart exposed gaps in phase transitions (e.g., an undefined exit condition between submission and judging) that got a defined rule before development started — not after launch."
+        systemMap={[
+          { label: 'Entry/Submission' },
+          { label: 'Eligibility Check' },
+          { label: 'Judging Phase' },
+          { label: 'Results Phase' },
+          { label: 'Winner Announcement' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -251,29 +274,6 @@ export default function HavasAgencyProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="The program flow chart wasn't decoration — it mapped how a participant actually moved through contest phases, and the functional spec defined what had to be true at each phase boundary for someone to advance."
-        decisionPoints={[
-          'Entry/submission → eligibility check',
-          'Eligibility → judging phase',
-          'Judging → results → winner announcement',
-        ]}
-        metrics={[
-          { value: '6 mo', label: 'Contract Engagement Length', isPlaceholder: false },
-          { value: '5', label: 'Program Phases Mapped', isPlaceholder: true },
-          { value: '32', label: 'Functional Requirements Specified', isPlaceholder: true },
-        ]}
-        feedbackLoop="The flow chart exposed gaps in phase transitions (e.g., an undefined exit condition between submission and judging) that got a defined rule before development started — not after launch."
-        systemMap={[
-          { label: 'Entry/Submission' },
-          { label: 'Eligibility Check' },
-          { label: 'Judging Phase' },
-          { label: 'Results Phase' },
-          { label: 'Winner Announcement' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

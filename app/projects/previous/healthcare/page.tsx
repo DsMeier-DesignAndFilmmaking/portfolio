@@ -243,6 +243,30 @@ export default function HealthcareProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="Across XYWAV, Northera, and other healthcare clients, the real design problem wasn't any single screen — it was a rules engine: forms that have to branch correctly based on a patient's relationship status and eligibility, while staying compliant and accessible on every branch. A wrong branch here isn't just bad UX, it's a compliance risk."
+        decisionPoints={[
+          'Parent/caregiver status branch',
+          'Tax-dependent status branch',
+          'Valid path vs. error state per branch',
+          'Accessibility compliance gate at every component',
+        ]}
+        metrics={[
+          { value: '30%+', label: 'Avg. Increase in Patient Engagement', isPlaceholder: false },
+          { value: '500+', label: 'Components Updated or Created', isPlaceholder: false },
+          { value: '6', label: 'Conditional Form Branches Mapped', isPlaceholder: true },
+          { value: '70%', label: 'Component Reuse Across Clients', isPlaceholder: true },
+        ]}
+        feedbackLoop="Error states were iterated directly from real input mismatches — each new edge case (e.g., a caregiver who's also a tax dependent) became a new branch in the rules engine, not a one-off screen patch."
+        systemMap={[
+          { label: 'Personal Info Entry' },
+          { label: 'Parent/Caregiver? (Y/N)' },
+          { label: 'Tax Dependent? (Y/N)', branch: ['Valid combination → continue', 'Invalid combination → error state'] },
+          { label: 'Compliance Gate (applied at every branch exit)' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -319,30 +343,6 @@ export default function HealthcareProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="Across XYWAV, Northera, and other healthcare clients, the real design problem wasn't any single screen — it was a rules engine: forms that have to branch correctly based on a patient's relationship status and eligibility, while staying compliant and accessible on every branch. A wrong branch here isn't just bad UX, it's a compliance risk."
-        decisionPoints={[
-          'Parent/caregiver status branch',
-          'Tax-dependent status branch',
-          'Valid path vs. error state per branch',
-          'Accessibility compliance gate at every component',
-        ]}
-        metrics={[
-          { value: '30%+', label: 'Avg. Increase in Patient Engagement', isPlaceholder: false },
-          { value: '500+', label: 'Components Updated or Created', isPlaceholder: false },
-          { value: '6', label: 'Conditional Form Branches Mapped', isPlaceholder: true },
-          { value: '70%', label: 'Component Reuse Across Clients', isPlaceholder: true },
-        ]}
-        feedbackLoop="Error states were iterated directly from real input mismatches — each new edge case (e.g., a caregiver who's also a tax dependent) became a new branch in the rules engine, not a one-off screen patch."
-        systemMap={[
-          { label: 'Personal Info Entry' },
-          { label: 'Parent/Caregiver? (Y/N)' },
-          { label: 'Tax Dependent? (Y/N)', branch: ['Valid combination → continue', 'Invalid combination → error state'] },
-          { label: 'Compliance Gate (applied at every branch exit)' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

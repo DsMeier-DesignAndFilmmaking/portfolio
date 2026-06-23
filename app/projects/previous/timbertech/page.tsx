@@ -222,6 +222,29 @@ export default function TimberTechProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="With 300+ URLs running off one component library, every redundant component was multiplied across the whole site. The 19% reduction wasn't a cleanup task — it was a systems decision about what the library should and shouldn't contain going forward."
+        decisionPoints={[
+          'Component audit → flag redundant/near-duplicate components',
+          'Consolidate or deprecate → map surviving components to page templates',
+          'Sprint rollout → junior designer adoption check',
+        ]}
+        metrics={[
+          { value: '19%', label: 'Reduction in Component Library', isPlaceholder: false },
+          { value: '1:14', label: 'Component-to-Page Reuse Ratio', isPlaceholder: true },
+          { value: '~35%', label: 'Design-to-Dev Handoff Time Reduced', isPlaceholder: true },
+        ]}
+        feedbackLoop="Junior designers' component usage was tracked sprint over sprint — wherever a one-off style appeared instead of a shared component, that gap became the next sprint's consolidation target."
+        systemMap={[
+          { label: 'Component Audit (flag redundant components)' },
+          { label: 'Consolidate / Deprecate' },
+          { label: 'Map to Page Templates (300+ URLs)' },
+          { label: '2-Week Sprint Rollout' },
+          { label: 'Adoption Check (mentorship loop)' },
+        ]}
+      />
+
       {/* Process Overview Section for TimberTech */}
       <section className="pt-20 pb-20 bg-black">
         <div className="container mx-auto px-6">
@@ -257,29 +280,6 @@ export default function TimberTechProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="With 300+ URLs running off one component library, every redundant component was multiplied across the whole site. The 19% reduction wasn't a cleanup task — it was a systems decision about what the library should and shouldn't contain going forward."
-        decisionPoints={[
-          'Component audit → flag redundant/near-duplicate components',
-          'Consolidate or deprecate → map surviving components to page templates',
-          'Sprint rollout → junior designer adoption check',
-        ]}
-        metrics={[
-          { value: '19%', label: 'Reduction in Component Library', isPlaceholder: false },
-          { value: '1:14', label: 'Component-to-Page Reuse Ratio', isPlaceholder: true },
-          { value: '~35%', label: 'Design-to-Dev Handoff Time Reduced', isPlaceholder: true },
-        ]}
-        feedbackLoop="Junior designers' component usage was tracked sprint over sprint — wherever a one-off style appeared instead of a shared component, that gap became the next sprint's consolidation target."
-        systemMap={[
-          { label: 'Component Audit (flag redundant components)' },
-          { label: 'Consolidate / Deprecate' },
-          { label: 'Map to Page Templates (300+ URLs)' },
-          { label: '2-Week Sprint Rollout' },
-          { label: 'Adoption Check (mentorship loop)' },
-        ]}
-      />
 
       <div className="bg-black py-12 text-center">
         <a

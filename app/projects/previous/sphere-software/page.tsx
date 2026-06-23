@@ -248,6 +248,29 @@ export default function SphereSoftwareProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="The HR suite is a network of modules reading and writing the same employee data: org structure feeds OKR check-ins, check-ins feed the employee dashboard, and the dashboard surfaces it back to the people who set the goals. Design work here meant defining how data moved between modules as much as how each screen looked — the Chairlift data map was a working artifact for exactly that."
+        decisionPoints={[
+          'Org structure changes → who reports to whom → whose goals roll up to whose dashboard',
+          'Check-in cadence → dashboard state (on-track / at-risk / overdue)',
+          'Manager view vs. employee view of the same underlying data',
+        ]}
+        metrics={[
+          { value: '18 mo', label: 'Engagement Length, Bi-Weekly Sprint Cadence', isPlaceholder: false },
+          { value: '4', label: 'Core Modules Unified Under One Data Model', isPlaceholder: true },
+          { value: '~12', label: 'Shipped Feature Increments', isPlaceholder: true },
+          { value: '65%', label: 'Cross-Module Component Reuse', isPlaceholder: true },
+        ]}
+        feedbackLoop="The data map itself evolved sprint over sprint — early assumptions about reporting hierarchy got revised once real edge cases (matrixed reporting, contractor roles) surfaced in review."
+        systemMap={[
+          { label: 'Org Structure (employee, manager, team)' },
+          { label: 'OKR Module (goal, owner, check-in cadence)' },
+          { label: 'Check-In State', branch: ['On-track', 'At-risk', 'Overdue'] },
+          { label: 'Employee Dashboard (my goals / my team / manager view)' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -345,29 +368,6 @@ export default function SphereSoftwareProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="The HR suite is a network of modules reading and writing the same employee data: org structure feeds OKR check-ins, check-ins feed the employee dashboard, and the dashboard surfaces it back to the people who set the goals. Design work here meant defining how data moved between modules as much as how each screen looked — the Chairlift data map was a working artifact for exactly that."
-        decisionPoints={[
-          'Org structure changes → who reports to whom → whose goals roll up to whose dashboard',
-          'Check-in cadence → dashboard state (on-track / at-risk / overdue)',
-          'Manager view vs. employee view of the same underlying data',
-        ]}
-        metrics={[
-          { value: '18 mo', label: 'Engagement Length, Bi-Weekly Sprint Cadence', isPlaceholder: false },
-          { value: '4', label: 'Core Modules Unified Under One Data Model', isPlaceholder: true },
-          { value: '~12', label: 'Shipped Feature Increments', isPlaceholder: true },
-          { value: '65%', label: 'Cross-Module Component Reuse', isPlaceholder: true },
-        ]}
-        feedbackLoop="The data map itself evolved sprint over sprint — early assumptions about reporting hierarchy got revised once real edge cases (matrixed reporting, contractor roles) surfaced in review."
-        systemMap={[
-          { label: 'Org Structure (employee, manager, team)' },
-          { label: 'OKR Module (goal, owner, check-in cadence)' },
-          { label: 'Check-In State', branch: ['On-track', 'At-risk', 'Overdue'] },
-          { label: 'Employee Dashboard (my goals / my team / manager view)' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection

@@ -266,6 +266,31 @@ export default function McDonaldsKioskProjectPage() {
         </div>
       </section>
 
+      <SystemsModule
+        heading="Systems Approach"
+        introText="The kiosk isn't a static menu — it's a state machine where the entry path determines the logic that fires next. Direct-add from a tile skips upsell; browsing triggers it. That single branch explains most of what users found confusing or acceptable in testing."
+        decisionPoints={[
+          'Entry path: direct-add vs. browse → different upsell trigger logic',
+          'Personalization boundary: correlation-based suggestions accepted, weather-based rejected as invasive',
+          'Cross-sell drawer: single-select shipped, multi-select requested',
+          'Beverage upsell placement inside the meal loop (visibility failure)',
+        ]}
+        metrics={[
+          { value: '7', label: 'Prototypes Created', isPlaceholder: false },
+          { value: '20', label: 'User Research Participants', isPlaceholder: false },
+          { value: '78% vs 22%', label: 'Correlation-Based vs. Weather-Based Suggestion Acceptance', isPlaceholder: true },
+          { value: '85%', label: 'Upsell Module Comprehension Rate', isPlaceholder: true },
+        ]}
+        feedbackLoop="Each usability finding was mapped back to a specific trigger condition or component, not treated as a one-off visual fix — e.g., the illegible beverage tiles became a sizing/contrast rule, not just a redraw."
+        systemMap={[
+          { label: 'Home Screen' },
+          { label: 'Direct-Add from Tile → Skip Upsell' },
+          { label: 'Browse Flow → Item Selected → Upsell Triggered', branch: ['Correlation-based suggestion (accepted)', 'Weather-based suggestion (rejected — privacy boundary)'] },
+          { label: 'Cross-Sell Drawer (single-select; multi-select requested)' },
+          { label: 'Order Complete' },
+        ]}
+      />
+
       {/* Sample Deliverables Section */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-6">
@@ -427,31 +452,6 @@ export default function McDonaldsKioskProjectPage() {
           </div>
         </div>
       </section>
-
-      <SystemsModule
-        heading="Systems Approach"
-        introText="The kiosk isn't a static menu — it's a state machine where the entry path determines the logic that fires next. Direct-add from a tile skips upsell; browsing triggers it. That single branch explains most of what users found confusing or acceptable in testing."
-        decisionPoints={[
-          'Entry path: direct-add vs. browse → different upsell trigger logic',
-          'Personalization boundary: correlation-based suggestions accepted, weather-based rejected as invasive',
-          'Cross-sell drawer: single-select shipped, multi-select requested',
-          'Beverage upsell placement inside the meal loop (visibility failure)',
-        ]}
-        metrics={[
-          { value: '7', label: 'Prototypes Created', isPlaceholder: false },
-          { value: '20', label: 'User Research Participants', isPlaceholder: false },
-          { value: '78% vs 22%', label: 'Correlation-Based vs. Weather-Based Suggestion Acceptance', isPlaceholder: true },
-          { value: '85%', label: 'Upsell Module Comprehension Rate', isPlaceholder: true },
-        ]}
-        feedbackLoop="Each usability finding was mapped back to a specific trigger condition or component, not treated as a one-off visual fix — e.g., the illegible beverage tiles became a sizing/contrast rule, not just a redraw."
-        systemMap={[
-          { label: 'Home Screen' },
-          { label: 'Direct-Add from Tile → Skip Upsell' },
-          { label: 'Browse Flow → Item Selected → Upsell Triggered', branch: ['Correlation-based suggestion (accepted)', 'Weather-based suggestion (rejected — privacy boundary)'] },
-          { label: 'Cross-Sell Drawer (single-select; multi-select requested)' },
-          { label: 'Order Complete' },
-        ]}
-      />
 
       {/* Next Project Section */}
       <ViewMoreWorkSection
