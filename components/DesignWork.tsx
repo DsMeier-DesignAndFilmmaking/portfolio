@@ -46,9 +46,11 @@ function TrackCard({ meta }: { meta: TrackMeta }) {
           {meta.subtext}
         </p>
 
-        <div className="mt-4">
-          <TagRow tags={meta.tags} />
-        </div>
+        {!meta.hideTags && meta.tags.length > 0 && (
+          <div className="mt-4">
+            <TagRow tags={meta.tags} />
+          </div>
+        )}
 
         <div className="mt-6 flex flex-1 items-end">
           <Link
@@ -95,7 +97,7 @@ export default function DesignWork() {
             className="text-xl text-gray-700 leading-relaxed text-pretty"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
           >
-            Two bodies of work: a self-directed research practice exploring decision-making and systems design in outdoor and environmental contexts, and a decade of professional work across industries — each engagement research-driven in its own right.
+            Two bodies of work: a self-directed research practice exploring decision-making and systems design in environmental contexts, and a decade of professional work across industries.
           </p>
         </header>
 

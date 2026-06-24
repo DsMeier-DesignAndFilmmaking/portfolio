@@ -369,7 +369,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>I’m Dan Meier.</strong> a systems designer shaping how people experience complex environments. My practice began in landscape architecture and urban design—where ecology, movement, and human behavior are treated as a single system. <br></br><br></br>Over a 15-year trajectory, that lens has evolved from physical spaces to digital products, and now, to the convergence of both. (read my{' '}
+  <strong>I’m Dan Meier.</strong> a systems designer shaping how people experience complex products, websites, and environments. My practice began in landscape architecture and urban design—where ecology, movement, and human behavior are treated as a single system. <br></br><br></br>Over a 15-year trajectory, that lens has evolved from physical spaces to digital products, and now, to the convergence of both. (read my{' '}
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
@@ -730,7 +730,7 @@ export default function HomePage() {
                 href="https://www.youtube.com/@dsmeier"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 YouTube
@@ -739,7 +739,7 @@ export default function HomePage() {
                 href="https://vimeo.com/user94578264"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 text-black border border-black/30 rounded-lg font-medium hover:border-white/50 transition-all duration-200"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 Vimeo

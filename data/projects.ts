@@ -291,6 +291,7 @@ export interface TrackMeta {
   cta: string;
   image: string;
   imageAlt: string;
+  hideTags?: boolean;
 }
 
 export const TRACK_META: TrackMeta[] = [
@@ -299,8 +300,9 @@ export const TRACK_META: TrackMeta[] = [
     order: 1,
     label: 'Independent Research Practice',
     subtext:
-      'Self-directed systems design research — audits, frameworks, concepts, and experimental builds exploring decision-making, hospitality, and environmental complexity.',
+      'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],
+    hideTags: true,
     href: '/projects/research-practice',
     cta: 'Explore the Research Practice',
     image: `${basePath}/images/earth-map.jpg`,
@@ -313,10 +315,12 @@ export const TRACK_META: TrackMeta[] = [
     subtext:
       'Over a decade designing digital products and services across healthcare, education, enterprise, commerce, and emerging technology.',
     tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
+    hideTags: true,
     href: '/projects/previous',
     cta: 'View Selected Client Work',
     image: `${basePath}/images/chairliftAllScreens.png`,
-    imageAlt: 'Responsive product screens across desktop, tablet, and mobile from client engagements.',
+    imageAlt:
+      'Responsive product screens across desktop, tablet, and mobile from client engagements.',
   },
 ];
 

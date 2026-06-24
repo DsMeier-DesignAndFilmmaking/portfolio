@@ -6,7 +6,7 @@ import { independentResearchProjects } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Independent Research Practice | Dan Meier',
   description:
-    'A self-directed research practice exploring systems design across outdoor, environmental, and hospitality contexts — frameworks, concepts, and experimental builds.',
+    'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
 };
 
 export default function ResearchPracticePage() {

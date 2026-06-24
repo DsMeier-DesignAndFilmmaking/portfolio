@@ -236,20 +236,20 @@ export default function ProjectPracticeNavDropdown({
                 >
                   Home
                 </Link>
-                <Link
+                <a
                   href="/#about"
                   onClick={closeMenus}
                   className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   About
-                </Link>
-                <Link
+                </a>
+                <a
                   href="/#contact"
                   onClick={closeMenus}
                   className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Contact
-                </Link>
+                </a>
               </div>
               {topLevelProjectNavGroups.map((group) => (
                 <div key={group.label} className="flex flex-col space-y-3">
@@ -329,18 +329,18 @@ export default function ProjectPracticeNavDropdown({
   return (
     <>
       <div className="relative hidden lg:flex lg:items-center">
-        <Link
+        <a
           href="/#about"
           className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
         >
           About
-        </Link>
-        <Link
+        </a>
+        <a
           href="/#contact"
           className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
         >
           Contact
-        </Link>
+        </a>
         <div ref={desktopRef} className="relative">
         <button
           type="button"

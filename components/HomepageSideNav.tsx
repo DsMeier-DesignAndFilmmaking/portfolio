@@ -8,6 +8,8 @@ export default function HomepageSideNav() {
   const [activeSection, setActiveSection] = useState<string>('hero');
   const isInitialLoadRef = useRef(true);
   const pageLoadedRef = useRef(false);
+  const clickedSectionRef = useRef<string | null>(null);
+  const clickedSectionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Track when page is fully loaded
   useEffect(() => {
@@ -92,8 +94,14 @@ export default function HomepageSideNav() {
     const offset = 150; // Offset from top to trigger active state
 
     const checkActiveSection = () => {
+      // Don't override a manually-clicked section during the lock window
+      if (clickedSectionRef.current) {
+        setActiveSection(clickedSectionRef.current);
+        return;
+      }
+
       const scrollPosition = window.scrollY + offset;
-      
+
       // If near top, set hero as active
       if (scrollPosition < 200) {
         setActiveSection('hero');
@@ -102,13 +110,13 @@ export default function HomepageSideNav() {
 
       // Find the section currently in view
       let currentSection = 'hero';
-      
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
         if (element) {
           const rect = element.getBoundingClientRect();
           const elementTop = rect.top + window.scrollY;
-          
+
           // Check if section is above the scroll threshold
           if (scrollPosition >= elementTop - 100) {
             currentSection = sections[i];
@@ -116,7 +124,7 @@ export default function HomepageSideNav() {
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
 
@@ -166,45 +174,35 @@ export default function HomepageSideNav() {
     return `${baseClasses} text-neutral-500 opacity-0 group-hover:opacity-100`;
   };
 
-  // Generic mobile anchor scroll handler - uses CSS scroll-margin-top for offset
-  // CSS scroll-margin-top handles the navbar overlap automatically
   const handleAnchorClick = (sectionId: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const target = document.getElementById(sectionId);
     if (!target) {
       window.location.href = `#${sectionId}`;
       return;
     }
 
-    // Update URL hash
+    // Lock active state immediately — prevents scroll detection from overriding
+    if (clickedSectionTimeoutRef.current) clearTimeout(clickedSectionTimeoutRef.current);
+    clickedSectionRef.current = sectionId;
+    setActiveSection(sectionId);
+
     window.history.pushState(null, '', `#${sectionId}`);
 
-    const scrollToSection = () => {
-      // Use scrollIntoView which respects CSS scroll-margin-top
-      // This is more reliable than manual calculations
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-
-      // Update active section after scroll
-      setTimeout(() => {
-        setActiveSection(sectionId);
-        window.dispatchEvent(new Event('scroll'));
-      }, 100);
-    };
-
-    // Small delay to ensure DOM is ready
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        scrollToSection();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Release lock after smooth scroll completes (~1s)
+        clickedSectionTimeoutRef.current = setTimeout(() => {
+          clickedSectionRef.current = null;
+        }, 1500);
       });
     });
   };
 
-  // Backward compatibility - keep handleWorkClick as alias
   const handleWorkClick = handleAnchorClick('work');
   const handleTravelogueClick = handleAnchorClick('travelogue');
 
@@ -266,8 +264,9 @@ export default function HomepageSideNav() {
           </span>
         </a>
         
-        <a 
-          href="#contact" 
+        <a
+          href="#contact"
+          onClick={handleAnchorClick('contact')}
           className="group flex items-center gap-2"
           aria-label="Go to Contact section"
           aria-current={isActive('contact') ? 'page' : undefined}
@@ -351,9 +350,10 @@ export default function HomepageSideNav() {
             <li role="listitem">
               <a
                 href="#contact"
+                onClick={handleAnchorClick('contact')}
                 className={`group relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  isActive('contact') 
-                    ? 'bg-gray-900 text-white' 
+                  isActive('contact')
+                    ? 'bg-gray-900 text-white'
                     : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 }`}
                 aria-label="Go to Contact section"
