@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const AOC_SECTIONS = [
   { id: 'aoc-hero', label: 'Overview' },
@@ -1100,7 +1101,7 @@ export default function ArchitectureOfConfidencePage() {
           <div className="lg:col-span-6">
             <div className="mb-6 flex items-center gap-3">
               <div className="h-[3px] w-12 bg-cyan-500" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-neutral-500">Systems Design Framework</p>
+              <ProjectBreadcrumb projectId="architecture-of-confidence" />
             </div>
             <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
               The Architecture of Confidence.

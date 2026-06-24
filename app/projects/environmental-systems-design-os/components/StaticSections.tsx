@@ -67,13 +67,17 @@ export function EvidenceBoundarySection() {
   );
 }
 
-// 10 // Explore the OS (CTA)
 export function ExploreCtaSection() {
   return (
-    <section id="osds-explore" className="bg-white py-16 md:py-28">
-      <div className={CONTENT_BOUNDS}>
-        <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-8 text-center md:p-14">
-          <SectionKicker eyebrow="10 // Explore the OS" title="The OS is a living research environment." />
+    <section id="osds-explore" className="bg-white py-16 md:py-28 flex flex-col items-center">
+      <div className={`${CONTENT_BOUNDS} w-full`}>
+        <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-8 text-center md:p-14 flex flex-col items-center">
+          
+          {/* Force any internal flex container inside SectionKicker to center its items */}
+<div className="w-full flex justify-center [&_div]:justify-center [&_header]:justify-center">
+  <SectionKicker eyebrow="10 // Explore the OS" title="The OS is a living research environment." />
+</div>
+
           <div className="mx-auto -mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
             <p>
               What appears in this portfolio represents its published outputs and curated artifacts. The working

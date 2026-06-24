@@ -13,6 +13,7 @@ import {
   Sprout,
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 import ProjectPracticeNavDropdown, {
   PROJECT_NAV_MOBILE_MENU_ID,
 } from '@/components/ProjectPracticeNavDropdown';
@@ -308,9 +309,7 @@ export default function AdaptiveRanchExperienceCompanionPage() {
           <div className="lg:col-span-7">
             <div className="mb-6 flex items-center gap-3">
               <div className="h-[3px] w-12 bg-emerald-600" aria-hidden="true" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-neutral-500">
-                Systems Design Concept
-              </p>
+              <ProjectBreadcrumb projectId="adaptive-ranch-experience-companion" />
             </div>
             <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
               Adaptive Outdoor Hospitality Companion.

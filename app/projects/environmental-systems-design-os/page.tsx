@@ -26,6 +26,7 @@ import {
   CrossProjectFooter,
 } from './components/StaticSections';
 import { CONTENT_BOUNDS, sectionNavigation, whatTheOsIs } from './content';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 /**
  * Static export (`output: 'export'`): this async Server Component runs at BUILD
@@ -59,6 +60,9 @@ export default async function EnvironmentalSystemsDesignOsPage() {
       <section id="osds-hero" className={`${CONTENT_BOUNDS} mt-[100px] pb-16 md:pb-24`}>
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
+            <div className="mb-3">
+              <ProjectBreadcrumb projectId="environmental-systems-design-os" />
+            </div>
             <div className="mb-6 flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-amber-700">
                 Research Infrastructure

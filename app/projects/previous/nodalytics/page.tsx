@@ -30,6 +30,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import PageTransitionOverlay from '../../../../components/PageTransitionOverlay';
 import ViewMoreWorkSection from '../../../../components/ViewMoreWorkSection';
 import SystemsModule from '../../../../components/SystemsModule';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -156,8 +157,8 @@ export default function NodalyticsProjectPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl pt-20 md:pt-0 md:mt-[100px]"
           >
-            <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6">
-              <span className="text-gray-400">{project.year}</span>
+            <div className="mb-6">
+              <ProjectBreadcrumb projectId="nodalytics" onDark />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-white">

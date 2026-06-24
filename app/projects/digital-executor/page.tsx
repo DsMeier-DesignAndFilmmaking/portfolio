@@ -17,6 +17,7 @@ import {
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
 import TravelOSExperience from '@/src/components/TravelOSExperience';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const FN_SECTIONS = [
   { id: 'fn-hero', label: 'Overview' },
@@ -215,7 +216,7 @@ export default function FieldNotesProjectPage() {
   <div className="max-w-2xl flex flex-col space-y-6">
     <div className="flex items-center space-x-3">
       <div className="w-12 h-[3px] bg-[#0EA5E9]" /> {/* Blue accent for high-tech/finance */}
-      <p className="text-[11px] uppercase tracking-[0.4em] text-neutral-500 font-bold">Strategic Architecture</p>
+      <ProjectBreadcrumb projectId="digital-executor" />
     </div>
 
     <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug font-tiempos">

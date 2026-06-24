@@ -32,6 +32,7 @@ import { ConstraintMap } from './components/ConstraintMap';
 import { HADERoadmap } from './components/HADERoadmap';
 import { HADE_DEMO_URL } from './constants';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -426,12 +427,7 @@ useEffect(() => {
     transition={{ duration: 0.8, delay: 0.3 }}
   >
     {/* Category / Tagline */}
-    <div 
-      className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium"
-      style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-    >
-      <span className="text-gray-600">Product Systems Design • AI</span>
-    </div>
+    <ProjectBreadcrumb projectId="travel-and-ai" />
 
     {/* Headline */}
     <h1 

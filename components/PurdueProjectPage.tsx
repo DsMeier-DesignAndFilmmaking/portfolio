@@ -7,6 +7,7 @@ import { FaArrowRight, FaChartLine, FaUsers, FaClock, FaCheckCircle, FaArrowLeft
 import Link from 'next/link';
 import SystemsModule from './SystemsModule';
 import ViewMoreWorkSection from './ViewMoreWorkSection';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const StatCard = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -63,9 +64,9 @@ export default function PurdueProjectPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl mt-[120px] md:mt-[100px]"
           >
-            <div className="inline-flex items-center gap-2 text-[#e6cfa3] text-sm font-medium mb-6">
-              <div className="w-1 h-4 bg-[#e6cfa3]"></div>
-              <span>On-going Client</span>
+            <div className="mb-6 flex items-center gap-2">
+              <div className="w-1 h-4 bg-[#e6cfa3]" aria-hidden="true"></div>
+              <ProjectBreadcrumb projectId="purdue" onDark />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-[#e6cfa3]">

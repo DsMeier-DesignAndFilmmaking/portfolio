@@ -339,8 +339,9 @@ export default function HomePage() {
         
 {/* Title Block - Clean Editorial Layout (Zero Gradients = Zero Banding) */}
 <div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
-  <h1 
-    className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18]" 
+  <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500 mb-4">Multidisciplinary Designer</p>
+  <h1
+    className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
     style={{ 
       fontSize: 'clamp(1.5rem, 4vw, 3.25rem)', 
       whiteSpace: 'normal',
@@ -350,7 +351,7 @@ export default function HomePage() {
   >
     Designing Experiences Across&nbsp;
     <span 
-      className="text-black inline underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px]"
+      className="text-black inline underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px] text-balance"
       style={{
         textDecorationSkipInk: 'none'
       }}
@@ -362,14 +363,14 @@ export default function HomePage() {
 
         {/* Narrative Copy Stack */}
         <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
-        <p className="text-gray-900 leading-relaxed tracking-normal text-left" 
+        <p className="text-gray-900 leading-relaxed tracking-normal text-left text-pretty"
   style={{ 
     fontFamily: "'Roboto', Helvetica, sans-serif", 
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>I’m Dan Meier.</strong> For 15+ years, I’ve worked with teams to design, test, and ship digital products, human experiences, and systems architecture. My design and build process started in landscape architecture and urban design (read my{' '}
-  <a 
+  <strong>I’m Dan Meier.</strong> a systems designer shaping how people experience complex environments. My practice began in landscape architecture and urban design—where ecology, movement, and human behavior are treated as a single system. <br></br><br></br>Over a 15-year trajectory, that lens has evolved from physical spaces to digital products, and now, to the convergence of both. (read my{' '}
+  <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
     rel="noopener noreferrer"
@@ -377,11 +378,11 @@ export default function HomePage() {
   >
     Master’s Thesis
   </a>
-  ), shaped by the grit of manual labor and travel to 41 countries. No matter what I’m building, my focus is always the same: designing for scale and adaptability, instead of fixed systems or static plans.
+  ). That lens has shaped everything since: a 15-year trajectory across physical environments, digital systems, and the increasingly blurred space between them.
 </p>
           
           <p 
-            className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal"
+            className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal text-pretty"
             style={{ 
               fontFamily: "'Roboto', Helvetica, sans-serif", 
               fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
@@ -389,7 +390,7 @@ export default function HomePage() {
               paddingLeft: '1rem' 
             }}
           >
-            Currently exploring how AI can augment human decision-making in dynamic environments, from digital products to physical&nbsp;places.
+            Currently exploring how AI can support human decision-making across dynamic&nbsp;systems.
           </p>
           
           {/* Dedicated Signature Frame - Tightened top spacing */}
@@ -449,14 +450,14 @@ export default function HomePage() {
     {/* Heading */}
     <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing">
       <h1 
-        className="hero-title font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left md:leading-[1.1]" 
+        className="hero-title font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left md:leading-[1.1] text-balance" 
         style={{ 
           fontSize: 'var(--title-size, clamp(1.75rem, 5vw, 2.25rem))', 
           fontFamily: "'tiempos-headline-regular', serif",
           marginBottom: 'calc(1.32 * 1.5rem)' 
         }}
       >
-        <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)]">
+        <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)] text-balance">
           The Lens Behind{"\u00a0"}the{"\u00a0"}Work
         </span>
       </h1>
@@ -515,15 +516,15 @@ export default function HomePage() {
                     <div className="flex items-center gap-3 opacity-60">
                       <div className="w-8 h-px bg-stone-300"></div>
                       <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-                      <div className="text-sm font-medium text-stone-500">From Place to Product</div>
+                      <div className="text-sm font-medium text-stone-500">A practice built across environments</div>
                     </div>
                     
-                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700"
+                    <p className="text-xl md:text-2xl leading-relaxed text-gray-700 text-pretty"
                       style={{
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`As I mentioned, my design foundation began in urban design and landscape architecture, where I learned to think about movement, context, circulation, constraints, and how people experience space. That training became the lens I brought into UX and product design: understanding complex systems, then fostering the fluid choreography where human behavior and environmental context naturally co-adapt.`)}
+                      {preventWidow(`Landscape architecture and urban design trained me to read environments before designing them — to understand how people orient themselves in space, how circulation patterns form, how environmental conditions shape behavior before a single decision is made. That way of seeing carried directly into a decade of digital systems work: information architecture, service design, enterprise products, and complex operational experiences. The two disciplines are not a before-and-after. They are the same practice applied at different scales.`)}
                     </p>
                   </div>
                 </div>
@@ -551,15 +552,15 @@ export default function HomePage() {
                       </div>
                     </div>                 
                     <p
-                    className="text-xl md:text-2xl leading-relaxed text-gray-700"
+                    className="text-xl md:text-2xl leading-relaxed text-gray-700 text-pretty"
                     style={{
                       fontFamily: "'Roboto', Helvetica, sans-serif",
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Travel deepened that lens. Moving through <span className="text-amber-600 font-semibold">40+ countries </span> has shaped how I observe place, behavior, friction, wayfinding, hospitality, and decision-making in unfamiliar environments. Those experiences continue to inform how I design for people moving through real-world&nbsp;complexity.
+                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to — before a visitor knows what they need. How wayfinding breaks under pressure. Where hospitality systems succeed or fail at the seam between the physical and the operational. Those observations are not travel stories. They are primary research into how real-world experience systems&nbsp;work.
                   </p>
-                    <p className="text-sm text-gray-900 italic" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                    <p className="text-sm text-gray-900 italic text-pretty" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI-generated photos or video.
                     </p>
                   </div>
@@ -642,20 +643,20 @@ export default function HomePage() {
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
               
-            <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-pretty" style={{
+            <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance" style={{
               fontFamily: "'tiempos-headline-regular', serif",
               color: '#000000'
             }}>
               Field Notes From <br></br> the World
             </h2>
-              <p className="text-xl max-w-4xl mx-auto mb-6 md:mb-8 font-medium leading-relaxed" style={{
+              <p className="text-xl max-w-4xl mx-auto mb-6 md:mb-8 font-medium leading-relaxed text-pretty" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
-                Travel and adventure has been one of my strongest teachers in how people move through place, culture, uncertainty, hospitality, and environmental context. Across 41 countries, I’ve documented the moments, routes, and conditions that shape real-world experience.
+                Forty-one countries of deliberate field observation — not tourism, but systems research conducted in environments I don't control. How people orient themselves when signage fails. How hospitality breaks down between the front-of-house and the operational layer behind it. How informal systems emerge when designed ones fall short. All of it documented through my own lens.
               </p>
-              <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed" style={{
+              <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed text-pretty" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 color: '#374151'
               }}>
@@ -745,94 +746,15 @@ export default function HomePage() {
               </a>
             </div>
             
-            {/* Modern Coming Soon Card */}
-            {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="relative mt-14 md:mt-20">
-              <div className="relative">
-                <div className="relative rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
-                  {/* Background Image */}
-                  <div 
-                    className="absolute inset-0 rounded-3xl overflow-hidden"
-                    style={{
-                      background: '#f0f0f0' /* Skeleton state background */
-                    }}
-                  >
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Morocco_girlsBike_Natgeo.webp`}
-                      alt="Morocco Travel"
-                      fill
-                      className="object-cover object-center"
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, 896px"
-                    />
-                  </div>
-                  {/* Dark overlay for better text readability */}
-                  <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                      {/* Left Content */}
-                      <div className="flex-1 text-left">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                          <div className="homepage-copy-column">
-                              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                               Travel Field Journal
-                             </h3>
-                            <p className="text-gray-200 font-semibold" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>Place-Based Stories</p>
-                          </div>
-                        </div>
-                        
-                        <div className="homepage-copy-column space-y-4 mb-6">
-                          <p className="text-gray-200 text-lg leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)' }}>
-                            A developing collection of visual field notes connecting photography, place-based storytelling, and interactive experience design.
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Field Notes</span>
-                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Place</span>
-                            <span className="border-b border-white/35 pb-0.5 text-sm font-medium text-white/85">Experience</span>
-                          </div>
-                        </div>
-                        
-
-                      </div>
-                      
-                      {/* Right Content */}
-                      <div className="flex-shrink-0">
-                        <div className="bg-white rounded-2xl p-8 text-center text-black shadow-xl">
-                          <div className="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                          </div>
-                            <h4 className="text-xl font-bold mb-2">Developing Field Journal</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Tech Stack */}
-            {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
             <div className="mt-14 md:mt-20 text-center">
               <div className="inline-flex items-center gap-3 border-t border-gray-200 px-2 pt-4">
-                <span className="text-gray-600 text-sm font-medium">Field journal in progress</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-800 text-sm font-semibold">Visual notes</span>
-                  <span className="text-gray-400">+</span>
-                  <span className="text-gray-800 text-sm font-semibold">Digital archive</span>
-                </div>
+                <span className="text-gray-600 text-sm font-medium italic">A structured field journal — observations, routes, and environmental notes — is in development.</span>
               </div>
             </div>
           </div>
         </section>
+
+        
 
         {/* Mobile Navigation Links */}
         <div className="hidden flex flex-col p-4 pl-[30px] space-y-4">

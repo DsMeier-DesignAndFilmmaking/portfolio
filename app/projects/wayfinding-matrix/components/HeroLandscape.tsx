@@ -1,5 +1,6 @@
 import { Compass, MapPin, Mountain, Route, Wind } from 'lucide-react';
 import { projectMetadata } from '../content';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const contentBounds = 'container mx-auto px-6 md:px-8';
 
@@ -15,9 +16,7 @@ export default function HeroLandscape() {
         <div className="lg:col-span-6">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-700" aria-hidden="true" />
-            <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-neutral-500">
-              {projectMetadata.classification}
-            </p>
+            <ProjectBreadcrumb projectId="wayfinding-matrix" />
           </div>
 
           <h1

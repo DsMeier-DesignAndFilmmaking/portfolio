@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { projectMetadata } from '../content';
 import { contentBounds, ConceptTag } from './shared';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 // Appended non-breaking spaces (\u00A0) between the final two words of each string 
 const SIGNALS = [
@@ -51,9 +52,7 @@ export default function HeroLandscape() {
         <div className="lg:col-span-6">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-800" aria-hidden="true" />
-            <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-neutral-600">
-              {projectMetadata.classification}
-            </p>
+            <ProjectBreadcrumb projectId="responsive-ecologies" />
           </div>
 
           <h1 

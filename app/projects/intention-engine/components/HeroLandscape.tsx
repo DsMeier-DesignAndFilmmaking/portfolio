@@ -2,6 +2,7 @@ import { ArrowDown, Compass, Footprints, Leaf, Waves } from 'lucide-react';
 import Image from 'next/image';
 import { projectMetadata } from '../content';
 import { contentBounds, Tag } from './shared';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const experienceLayers = [
   { label: 'Landscape', Icon: Compass, value: 'Elevation + horizon' },
@@ -22,9 +23,7 @@ export default function HeroLandscape() {
         <div className="lg:col-span-6">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-800" aria-hidden="true" />
-            <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-neutral-600">
-              {projectMetadata.classification}
-            </p>
+            <ProjectBreadcrumb projectId="intention-engine" />
           </div>
           <h1 id="intention-title" className="font-tiempos text-4xl font-bold leading-tight text-neutral-950 md:text-6xl md:leading-tight">
             Designing Experiences

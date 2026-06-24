@@ -1,3 +1,5 @@
+import { clientWorkProjects } from '@/data/projects';
+
 export interface Project {
   id: string;
   title: string;
@@ -6,108 +8,25 @@ export interface Project {
   year: string;
 }
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-
-export const allProjects: Project[] = [
-  {
-    id: 'purdue',
-    title: "Purdue University",
-    description: "Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.",
-    imageUrl: `${basePath}/images/PU-Memorial-Mall-DJI.jpg`,
-    year: "Web Design"
-  },
-  {
-    id: 'timbertech',
-    title: "TimberTech",
-    description: "A full redesign for TimberTech.com and their existing design system.",
-    imageUrl: `${basePath}/images/timbertech-card.jpg`,
-    year: "Web Design"
-  },
-  {
-    id: 'healthcare',
-    title: "Healthcare",
-    description: "A digital platform designed to connect healthcare professionals and patients across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/healthcare-card.jpg`,
-    year: "IA & UI"
-  },
-  {
-    id: 'mcdonalds-kiosk',
-    title: "McDonalds Kiosk",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/mcDonalds-card.jpg`,
-    year: "Product Design"
-  },
-  {
-    id: 'intel',
-    title: "Intel",
-    description: "A sustainability tracking application helping businesses monitor and reduce their environmental impact.",
-    imageUrl: `${basePath}/images/heroGraphic.jpg`,
-    year: "Market Research"
-  },
-  {
-    id: 'nodalytics',
-    title: "Nodalytics",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/Nodalytics_heroGraphic-3.jpg`,
-    year: "Product Design"
-  },
-  {
-    id: 'newdea',
-    title: "Newdea",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/newdea_hero_containerGraphic-5.jpg`,
-    year: "Product Design"
-  },
-  {
-    id: 'doublegood',
-    title: "DoubleGood",
-    description: "Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.",
-    imageUrl: `${basePath}/images/doubleGoodImage.webp`,
-    year: "Web Design (Mobile)"
-  },
-  {
-    id: 'advisestream',
-    title: "AdviseStream",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/Advistestream_mockup-createReport.jpg`,
-    year: "Product Design"
-  },
-  {
-    id: 'sphere-software',
-    title: "Sphere Software",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/chairliftAllScreens.png`,
-    year: "Product & Web Design"
-  },
-  {
-    id: 'havas-agency',
-    title: "Havas Agency",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/havas-card.jpg`,
-    year: "UX & Web Design"
-  },
-  {
-    id: 'rich-products',
-    title: "Rich Products",
-    description: "A digital platform designed to connect healthcare professionals and resources across developing\u00a0nations.",
-    imageUrl: `${basePath}/images/websiteCards_template.png`,
-    year: "IA & Web Design"
-  }
-];
+export const allProjects: Project[] = clientWorkProjects.map((p) => ({
+  id: p.id,
+  title: p.title,
+  description: p.summary,
+  imageUrl: p.imageUrl ?? '',
+  year: p.legacyLabel ?? p.type,
+}));
 
 export function getNextProjects(currentProjectId: string, count: number = 4): Project[] {
-  const currentIndex = allProjects.findIndex(project => project.id === currentProjectId);
+  const currentIndex = allProjects.findIndex((project) => project.id === currentProjectId);
   if (currentIndex === -1) {
-    // If current project not found, return first 4 projects
     return allProjects.slice(0, count);
   }
-  
-  // Get the next projects, wrapping around to the beginning if needed
+
   const nextProjects: Project[] = [];
   for (let i = 1; i <= count; i++) {
     const nextIndex = (currentIndex + i) % allProjects.length;
     nextProjects.push(allProjects[nextIndex]);
   }
-  
+
   return nextProjects;
 }

@@ -225,6 +225,32 @@ export default function ProjectPracticeNavDropdown({
             </div>
 
             <nav className="flex flex-col space-y-7 py-8" aria-label="Project practice navigation">
+              <div className="flex flex-col space-y-3">
+                <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+                  Site
+                </p>
+                <Link
+                  href="/"
+                  onClick={closeMenus}
+                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/#about"
+                  onClick={closeMenus}
+                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/#contact"
+                  onClick={closeMenus}
+                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  Contact
+                </Link>
+              </div>
               {topLevelProjectNavGroups.map((group) => (
                 <div key={group.label} className="flex flex-col space-y-3">
                   <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gray-500">
@@ -302,7 +328,20 @@ export default function ProjectPracticeNavDropdown({
 
   return (
     <>
-      <div ref={desktopRef} className="relative hidden lg:block">
+      <div className="relative hidden lg:flex lg:items-center">
+        <Link
+          href="/#about"
+          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
+        >
+          About
+        </Link>
+        <Link
+          href="/#contact"
+          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
+        >
+          Contact
+        </Link>
+        <div ref={desktopRef} className="relative">
         <button
           type="button"
           onClick={() => setIsDesktopOpen((open) => !open)}
@@ -457,6 +496,7 @@ export default function ProjectPracticeNavDropdown({
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
 
       {isMounted ? createPortal(mobilePanel, document.body) : null}
