@@ -4,6 +4,7 @@ import ArtifactOrigins from './components/ArtifactOrigins';
 import ConfidenceModel from './components/ConfidenceModel';
 import DecisionHierarchy from './components/DecisionHierarchy';
 import DecisionProblem from './components/DecisionProblem';
+import EcologicalFoundation from './components/EcologicalFoundation';
 import DomainAtlas from './components/DomainAtlas';
 import EvidenceLineage from './components/EvidenceLineage';
 import HeroLandscape from './components/HeroLandscape';
@@ -40,6 +41,7 @@ export default function ResponsiveEcologiesPage() {
       <HeroLandscape />
       <ProjectFrame />
       <ArtifactOrigins />
+      <EcologicalFoundation />
       <DecisionProblem />
       <DecisionHierarchy />
       <StewardshipPrinciples />

@@ -4,7 +4,7 @@ import PipelineSection from './PipelineSection';
 import { independentResearchProjects } from '@/data/projects';
 
 export const metadata: Metadata = {
-  title: 'Independent Research Practice | Dan Meier',
+  title: 'Systems Design Practice | Dan Meier',
   description:
     'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
 };
@@ -22,7 +22,7 @@ export default function ResearchPracticePage() {
         >
           <div className="mx-auto max-w-4xl">
             <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
-              Independent Research Practice
+            Systems Design Practice
             </p>
 
             <h1

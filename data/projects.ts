@@ -298,7 +298,7 @@ export const TRACK_META: TrackMeta[] = [
   {
     track: 'independent-research-practice',
     order: 1,
-    label: 'Independent Research Practice',
+    label: 'Systems Design Practice',
     subtext:
       'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],

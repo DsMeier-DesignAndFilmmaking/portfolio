@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 940" width="1220" height="940" role="img" aria-labelledby="esm-title esm-desc">
+  <title id="esm-title">Ecological Stewardship Systems Map</title>
+  <desc id="esm-desc">A systems diagram showing four interconnected feedback loops: Small Water Cycle, Soil Carbon Cycle, Visitor Stewardship Loop, and Adaptive Management Loop, connecting 23 nodes across five ecological zones.</desc>
+  <defs>
+    <style>
+      .esm-zone-lbl { font: 700 8.5px/1 -apple-system,'Inter',sans-serif; fill:#94A3B8; letter-spacing:.07em; }
+      .esm-node-lbl { font: 500 10.5px/1 -apple-system,'Inter',sans-serif; fill:#1E293B; letter-spacing:.003em; }
+      .esm-badge-t  { font: 700 9.5px/1 -apple-system,'Inter',sans-serif; letter-spacing:.01em; }
+      .esm-badge-s  { font: 400 8.5px/1 -apple-system,'Inter',sans-serif; letter-spacing:.005em; }
+      .esm-leg-lbl  { font: 500 9px/1 -apple-system,'Inter',sans-serif; fill:#374151; }
+      .esm-leg-hdg  { font: 700 7.5px/1 -apple-system,'Inter',sans-serif; fill:#94A3B8; letter-spacing:.06em; }
+    </style>
+    <marker id="arr-gray" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#94A3B8"/>
+    </marker>
+    <marker id="arr-blue" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#3B82F6"/>
+    </marker>
+    <marker id="arr-earth" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#7C5C2E"/>
+    </marker>
+    <marker id="arr-green" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#059669"/>
+    </marker>
+    <marker id="arr-amber" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#D97706"/>
+    </marker>
+    <marker id="arr-purple" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0 10 3.5 0 7" fill="#7C3AED"/>
+    </marker>
+  </defs>
+  <rect width="1220" height="940" fill="#F8FAFC"/>
+  <g id="esm-zones" aria-hidden="true">
+    <rect x="42" y="44" width="536" height="196" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="52" y="58" class="esm-zone-lbl">ATMOSPHERIC · WATER INPUT</text>
+    <rect x="42" y="258" width="630" height="432" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="52" y="272" class="esm-zone-lbl">SOIL SYSTEM</text>
+    <rect x="670" y="252" width="304" height="318" rx="10" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="680" y="266" class="esm-zone-lbl">ECOLOGICAL OUTCOMES</text>
+    <rect x="836" y="136" width="368" height="504" rx="10" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="846" y="150" class="esm-zone-lbl">VISITOR OUTCOMES</text>
+    <rect x="260" y="676" width="668" height="212" rx="10" fill="#FAF5FF" stroke="#DDD6FE" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="270" y="690" class="esm-zone-lbl">ADAPTIVE MANAGEMENT</text>
+  </g>
+  <g id="esm-edges" aria-hidden="true">
+    <path d="M 168 82 L 222 82" stroke="#94A3B8" stroke-width="1.6" fill="none" marker-end="url(#arr-gray)"/>
+    <path d="M 342 82 L 392 82" stroke="#94A3B8" stroke-width="1.6" fill="none" marker-end="url(#arr-gray)"/>
+    <path d="M 438.5 456 L 291.5 208" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 307.9 176 L 434.1 98" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 460 98 L 460 176" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 460 208 L 460 302" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 427.3 334 L 300.7 396" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 316 428 L 400 456" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-blue)" opacity=".9"/>
+    <path d="M 408.4 488 L 284.5 538" stroke="#7C5C2E" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-earth)" opacity=".9"/>
+    <path d="M 281.2 582 L 390.7 629" stroke="#7C5C2E" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-earth)" opacity=".9"/>
+    <path d="M 459.3 629 L 586.7 564" stroke="#7C5C2E" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-earth)" opacity=".9"/>
+    <path d="M 607 532 L 471 334" stroke="#7C5C2E" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-earth)" opacity=".9"/>
+    <path d="M 518 457.2 L 667 425.7" stroke="#059669" stroke-width="1.6" fill="none" marker-end="url(#arr-green)"/>
+    <path d="M 752.5 396 L 867.5 306" stroke="#059669" stroke-width="1.6" fill="none" marker-end="url(#arr-green)"/>
+    <path d="M 756.2 428 L 863.8 499" stroke="#059669" stroke-width="1.6" fill="none" marker-end="url(#arr-green)"/>
+    <path d="M 471.5 456 L 861.5 191" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 919.4 191 L 1035.5 245" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 1085 291 L 1085 362" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 1085 394 L 1085 468" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 1052.1 500 L 920.3 564" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 845.3 608 L 726.6 696" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-amber)" opacity=".9"/>
+    <path d="M 661.9 728 L 565.1 764" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-purple)" opacity=".9"/>
+    <path d="M 450 780 L 388 780" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-purple)" opacity=".9"/>
+    <path d="M 341.5 796 L 408.5 835" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-purple)" opacity=".9"/>
+    <path d="M 502.5 835 Q 870 680 740.2 428" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="5.5 3.5" fill="none" marker-end="url(#arr-purple)" opacity=".9"/>
+  </g>
+  <g id="esm-nodes">
+    <g id="node-SE">
+      <rect x="41" y="65" width="128" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="41" y="65" width="3" height="34" rx="2" fill="#3B82F6" aria-hidden="true"/>
+      <text x="107" y="82" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Solar Energy</text>
+    </g>
+    <g id="node-EV">
+      <rect x="221" y="65" width="122" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="221" y="65" width="3" height="34" rx="2" fill="#3B82F6" aria-hidden="true"/>
+      <text x="284" y="82" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Evaporation</text>
+    </g>
+    <g id="node-CF">
+      <rect x="391" y="65" width="138" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="391" y="65" width="3" height="34" rx="2" fill="#3B82F6" aria-hidden="true"/>
+      <text x="462" y="82" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Cloud Formation</text>
+    </g>
+    <g id="node-TR">
+      <rect x="219" y="175" width="126" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="219" y="175" width="3" height="34" rx="2" fill="#3B82F6" aria-hidden="true"/>
+      <text x="284" y="192" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Transpiration</text>
+    </g>
+    <g id="node-PR">
+      <rect x="397" y="175" width="126" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="397" y="175" width="3" height="34" rx="2" fill="#3B82F6" aria-hidden="true"/>
+      <text x="462" y="192" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Precipitation</text>
+    </g>
+    <g id="node-SI">
+      <rect x="391" y="301" width="138" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="391" y="301" width="3" height="34" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="462" y="318" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Soil Infiltration</text>
+    </g>
+    <g id="node-SM">
+      <rect x="205" y="395" width="126" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="205" y="395" width="3" height="34" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="270" y="412" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Soil Moisture</text>
+    </g>
+    <g id="node-VH">
+      <rect x="377" y="455" width="142" height="34" rx="5" fill="#fff" stroke="#16A34A" stroke-width="1.75"/>
+      <rect x="377" y="455" width="3" height="34" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="450" y="472" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Vegetation Health</text>
+    </g>
+    <g id="node-SOC">
+      <rect x="156" y="537" width="148" height="46" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="156" y="537" width="3" height="46" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="232" y="553" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Soil Organic</text>
+      <text x="232" y="567" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Carbon</text>
+    </g>
+    <g id="node-SMM">
+      <rect x="353" y="628" width="150" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="353" y="628" width="3" height="34" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="430" y="645" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Soil Microbial Mass</text>
+    </g>
+    <g id="node-SS">
+      <rect x="555" y="531" width="126" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="555" y="531" width="3" height="34" rx="2" fill="#16A34A" aria-hidden="true"/>
+      <text x="620" y="548" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Soil Structure</text>
+    </g>
+    <g id="node-HQ">
+      <rect x="666" y="395" width="132" height="34" rx="5" fill="#fff" stroke="#059669" stroke-width="1.75"/>
+      <rect x="666" y="395" width="3" height="34" rx="2" fill="#059669" aria-hidden="true"/>
+      <text x="734" y="412" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Habitat Quality</text>
+    </g>
+    <g id="node-BD">
+      <rect x="830" y="273" width="116" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="830" y="273" width="3" height="34" rx="2" fill="#059669" aria-hidden="true"/>
+      <text x="890" y="290" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Biodiversity</text>
+    </g>
+    <g id="node-WA">
+      <rect x="814" y="498" width="148" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="814" y="498" width="3" height="34" rx="2" fill="#059669" aria-hidden="true"/>
+      <text x="890" y="515" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Wildlife Abundance</text>
+    </g>
+    <g id="node-CS">
+      <rect x="807.5" y="158" width="155" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="807.5" y="158" width="3" height="34" rx="2" fill="#D97706" aria-hidden="true"/>
+      <text x="887" y="175" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Cultural Significance</text>
+    </g>
+    <g id="node-EC">
+      <rect x="1006" y="244" width="158" height="48" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="1006" y="244" width="3" height="48" rx="2" fill="#D97706" aria-hidden="true"/>
+      <text x="1087" y="261" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Emotional Connection</text>
+      <text x="1087" y="275" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">(Sense of Place)</text>
+    </g>
+    <g id="node-VE">
+      <rect x="1012.5" y="361" width="145" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="1012.5" y="361" width="3" height="34" rx="2" fill="#D97706" aria-hidden="true"/>
+      <text x="1087" y="378" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Visitor Experience</text>
+    </g>
+    <g id="node-STH">
+      <rect x="1014" y="467" width="142" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="1014" y="467" width="3" height="34" rx="2" fill="#D97706" aria-hidden="true"/>
+      <text x="1087" y="484" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Stewardship Ethic</text>
+    </g>
+    <g id="node-PPS">
+      <rect x="802.5" y="563" width="145" height="46" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="802.5" y="563" width="3" height="46" rx="2" fill="#D97706" aria-hidden="true"/>
+      <text x="877" y="579" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Public / Political</text>
+      <text x="877" y="593" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Support</text>
+    </g>
+    <g id="node-FN">
+      <rect x="656" y="695" width="98" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="656" y="695" width="3" height="34" rx="2" fill="#7C3AED" aria-hidden="true"/>
+      <text x="707" y="712" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Funding</text>
+    </g>
+    <g id="node-MS">
+      <rect x="449" y="763" width="146" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="449" y="763" width="3" height="34" rx="2" fill="#7C3AED" aria-hidden="true"/>
+      <text x="524" y="780" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Monitoring Signals</text>
+    </g>
+    <g id="node-DT">
+      <rect x="239" y="763" width="150" height="34" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="239" y="763" width="3" height="34" rx="2" fill="#7C3AED" aria-hidden="true"/>
+      <text x="316" y="780" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Decision Triggers</text>
+    </g>
+    <g id="node-AMI">
+      <rect x="367" y="834" width="162" height="48" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="367" y="834" width="3" height="48" rx="2" fill="#7C3AED" aria-hidden="true"/>
+      <text x="450" y="851" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Adaptive Mgmt</text>
+      <text x="450" y="865" text-anchor="middle" dominant-baseline="central" class="esm-node-lbl">Interventions</text>
+    </g>
+  </g>
+  <g id="esm-badges" aria-hidden="true">
+    <rect x="58" y="284" width="132" height="32" rx="4" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1"/>
+    <text x="123.9" y="296" text-anchor="middle" class="esm-badge-t" fill="#3B82F6">① Small Water Cycle</text>
+    <text x="123.9" y="308" text-anchor="middle" class="esm-badge-s" fill="#3B82F6" opacity=".75">Reinforcing ⟲</text>
+    <rect x="58" y="608" width="132" height="32" rx="4" fill="#F0FDF4" stroke="#16A34A" stroke-width="1"/>
+    <text x="123.9" y="620" text-anchor="middle" class="esm-badge-t" fill="#16A34A">② Soil Carbon Cycle</text>
+    <text x="123.9" y="632" text-anchor="middle" class="esm-badge-s" fill="#16A34A" opacity=".75">Reinforcing ⟲</text>
+    <rect x="848" y="126" width="144" height="32" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+    <text x="920" y="138" text-anchor="middle" class="esm-badge-t" fill="#D97706">③ Visitor Stewardship</text>
+    <text x="920" y="150" text-anchor="middle" class="esm-badge-s" fill="#D97706" opacity=".75">Reinforcing ⟲</text>
+    <rect x="272" y="836" width="138" height="32" rx="4" fill="#FAF5FF" stroke="#7C3AED" stroke-width="1"/>
+    <text x="341" y="848" text-anchor="middle" class="esm-badge-t" fill="#7C3AED">④ Adaptive Mgmt Loop</text>
+    <text x="341" y="860" text-anchor="middle" class="esm-badge-s" fill="#7C3AED" opacity=".75">Adaptive ⇌</text>
+  </g>
+  <g id="esm-legend" aria-hidden="true">
+    <text x="42" y="915" class="esm-leg-hdg">FEEDBACK LOOPS</text>
+    <line x1="168" y1="914" x2="190" y2="914" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="194" y="918" class="esm-leg-lbl">Small Water Cycle (Reinforcing)</text>
+    <line x1="396.9" y1="914" x2="418.9" y2="914" stroke="#7C5C2E" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="422.9" y="918" class="esm-leg-lbl">Soil Carbon Cycle (Reinforcing)</text>
+    <line x1="625.8" y1="914" x2="647.8" y2="914" stroke="#D97706" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="651.8" y="918" class="esm-leg-lbl">Visitor Stewardship (Reinforcing)</text>
+    <line x1="866.5" y1="914" x2="888.5" y2="914" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="892.5" y="918" class="esm-leg-lbl">Adaptive Mgmt (Adaptive)</text>
+    <line x1="1054.1" y1="914" x2="1076.1" y2="914" stroke="#059669" stroke-width="2"/>
+    <text x="1080.1" y="918" class="esm-leg-lbl">Ecological primary connections</text>
+  </g>
+</svg>
