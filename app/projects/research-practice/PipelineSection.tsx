@@ -342,69 +342,6 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
 
   return (
     <div className="max-w-4xl mx-auto px-6 pb-24">
-      {/* ── Pipeline visual ───────────────────────────────────────────────── */}
-      <div className="pt-12 pb-10">
-        <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
-          The pipeline
-        </p>
-
-        {/* Horizontal flow: boxes + SVG arrows */}
-        <div
-          className="flex items-stretch gap-0 overflow-x-auto pb-1"
-          role="navigation"
-          aria-label="Pipeline stages"
-        >
-          {STAGES.map((stage, i) => {
-            const count = byType(stage.type).length;
-            const isExpanded = expanded.has(stage.key);
-            return (
-              <div key={stage.key} className="flex items-center">
-                {i > 0 && (
-                  <div className="shrink-0 px-1 text-neutral-300" aria-hidden="true">
-                    <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
-                      <path
-                        d="M1 8h16M12 2l7 6-7 6"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                )}
-                <button
-                  onClick={() => toggle(stage.key)}
-                  aria-expanded={isExpanded}
-                  aria-controls={`stage-panel-${stage.key}`}
-                  className={`flex min-w-[100px] shrink-0 flex-col items-start gap-1.5 rounded-lg border px-3.5 py-2.5 text-left transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 ${
-                    isExpanded
-                      ? stage.activePill
-                      : 'border-neutral-200 bg-white text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50'
-                  }`}
-                >
-                  <span className="text-xs font-semibold leading-tight">{stage.label}</span>
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className={`inline-flex h-4 min-w-[16px] items-center justify-center rounded-full px-1 text-[9px] font-bold ${
-                        isExpanded ? stage.countBubble : 'bg-neutral-100 text-neutral-500'
-                      }`}
-                    >
-                      {count}
-                    </span>
-                    <ChevronDown
-                      aria-hidden="true"
-                      className={`h-3 w-3 transition-transform duration-200 ${
-                        isExpanded ? `rotate-180 ${stage.chevron}` : 'text-neutral-400'
-                      }`}
-                    />
-                  </div>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
       {/* ── Stage sections ────────────────────────────────────────────────── */}
       <div className="space-y-10">
         {STAGES.map((stage, idx) => {
