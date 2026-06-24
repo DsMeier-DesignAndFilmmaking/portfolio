@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import ProjectPracticeNavDropdown from '@/components/ProjectPracticeNavDropdown';
+import ProjectPracticeNavDropdown, {
+  PROJECT_NAV_MOBILE_MENU_ID,
+} from '@/components/ProjectPracticeNavDropdown';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
@@ -58,6 +60,35 @@ export default function HubNav() {
               Independent Research Practice
             </span>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            data-project-nav-trigger
+            aria-haspopup="menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
+            className="flex min-h-[44px] items-center justify-end py-2 pl-4 text-neutral-700 transition-colors duration-300 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 lg:hidden"
+            aria-label="Toggle mobile menu"
+          >
+            <span className="relative flex h-5 w-6 flex-col items-center justify-between" aria-hidden="true">
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 ${
+                  isMobileMenuOpen ? 'translate-y-2 rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 ${
+                  isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''
+                }`}
+              />
+            </span>
+          </button>
 
           <ProjectPracticeNavDropdown
             pathname={pathname ?? ''}

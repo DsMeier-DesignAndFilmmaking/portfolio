@@ -211,7 +211,7 @@ export default function ProjectPracticeNavDropdown({
           <div className="flex min-h-[100dvh] flex-col px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))]">
             <div className="flex min-h-[44px] items-center justify-between border-b border-white/10 pb-4">
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                Work Navigation
+                Navigation
               </p>
               <button
                 ref={closeButtonRef}
