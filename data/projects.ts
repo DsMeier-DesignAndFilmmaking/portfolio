@@ -290,7 +290,11 @@ export interface TrackMeta {
   href: string;
   cta: string;
   image: string;
+  imageWidth: number;
+  imageHeight: number;
   imageAlt: string;
+  imageBlurDataURL?: string;
+  imagePriority?: boolean;
   hideTags?: boolean;
 }
 
@@ -305,8 +309,12 @@ export const TRACK_META: TrackMeta[] = [
     hideTags: true,
     href: '/projects/research-practice',
     cta: 'Explore the Research Practice',
-    image: `${basePath}/images/earth-map.jpg`,
+    image: `${basePath}/images/optimized/earth-map-xl.webp`,
+    imageWidth: 1280,
+    imageHeight: 640,
     imageAlt: 'A world map representing systems design research across environmental contexts.',
+    imageBlurDataURL:
+      'data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoQAAgAA8BgJbACdAELTLaVciAA3mUCMhdHxwnbMwTKbah3ga+uq29xpB0G9fTlTtjuBoAA',
   },
   {
     track: 'client-work',
@@ -319,6 +327,8 @@ export const TRACK_META: TrackMeta[] = [
     href: '/projects/previous',
     cta: 'View Selected Client Work',
     image: `${basePath}/images/chairliftAllScreens.png`,
+    imageWidth: 1400,
+    imageHeight: 800,
     imageAlt:
       'Responsive product screens across desktop, tablet, and mobile from client engagements.',
   },

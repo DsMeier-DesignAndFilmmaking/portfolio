@@ -17,6 +17,7 @@ import {
   Zap,
 } from 'lucide-react';
 import type { ProjectRecord } from '@/data/projects';
+import { CONTENT_BOUNDS, COPY_MAX_WIDTH } from './layoutClasses';
 
 // ── Card types ────────────────────────────────────────────────────────────────
 type CardTone = 'teal' | 'violet' | 'amber' | 'blue';
@@ -117,7 +118,7 @@ function LinkedProjectCard({ card, tone }: { card: LinkedCard; tone: CardTone })
   const t = TONE[tone];
   return (
     <article
-      className={`rounded-lg border bg-white px-6 py-6 shadow-sm md:px-7 md:py-7 ${
+      className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-white px-6 py-6 shadow-sm md:px-7 md:py-7 ${
         card.featured ? t.cardBorderFeatured : t.cardBorder
       }`}
     >
@@ -161,7 +162,7 @@ function ResearchOSCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
   const Icon = card.icon;
   const t = TONE[tone];
   return (
-    <article className={`rounded-lg border bg-white p-5 shadow-sm ${t.cardBorder}`}>
+    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-white p-5 shadow-sm ${t.cardBorder}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
           <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
@@ -197,7 +198,7 @@ function ConceptCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
   const Icon = card.icon;
   const t = TONE[tone];
   return (
-    <article className={`rounded-lg border border-dashed bg-white p-5 ${t.cardBorderDashed}`}>
+    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border border-dashed bg-white p-5 ${t.cardBorderDashed}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
           <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
@@ -341,7 +342,7 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-6 pb-24">
+    <div className={`${CONTENT_BOUNDS} pb-24`}>
       {/* ── Stage sections ────────────────────────────────────────────────── */}
       <div className="space-y-10">
         {STAGES.map((stage, idx) => {

@@ -27,9 +27,13 @@ function TrackCard({ meta }: { meta: TrackMeta }) {
           <Image
             src={meta.image}
             alt={meta.imageAlt}
-            fill
+            width={meta.imageWidth}
+            height={meta.imageHeight}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            priority={meta.imagePriority}
+            placeholder={meta.imageBlurDataURL ? 'blur' : 'empty'}
+            blurDataURL={meta.imageBlurDataURL}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
         </div>
       </Link>

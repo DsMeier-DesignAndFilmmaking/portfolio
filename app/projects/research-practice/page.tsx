@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import HubNav from './HubNav';
 import PipelineSection from './PipelineSection';
+import { CONTENT_BOUNDS, COPY_MAX_WIDTH } from './layoutClasses';
 import { independentResearchProjects } from '@/data/projects';
 
 export const metadata: Metadata = {
@@ -17,10 +18,10 @@ export default function ResearchPracticePage() {
       <main>
         {/* ── Hero / thesis ────────────────────────────────────────────── */}
         <section
-          className="border-b border-neutral-100 bg-white px-6 pb-16 pt-32"
+          className="bg-white pb-16 pt-32"
           aria-labelledby="hub-headline"
         >
-          <div className="mx-auto max-w-4xl">
+          <div className={CONTENT_BOUNDS}>
             <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
             Systems Design Practice
             </p>
@@ -35,7 +36,7 @@ export default function ResearchPracticePage() {
               This one starts earlier.
             </h1>
 
-            <div className="mt-7 max-w-2xl space-y-4 text-[1.05rem] leading-relaxed text-gray-700 text-pretty">
+            <div className={`mt-7 ${COPY_MAX_WIDTH} space-y-4 text-[1.05rem] leading-relaxed text-gray-700 text-pretty`}>
               <p>
                 I study environments that guide people through complexity: wayfinding systems,
                 hospitality services, high-stakes decision support in the field. Not to describe

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { decisionDomains, type DecisionDomain } from '../content';
 import { ConceptTag, SectionHeading, contentBounds } from './shared';
+import EnvironmentalSignalMap from './EnvironmentalSignalMap';
 
 const domainIcons = {
   terrain: Mountain,
@@ -33,6 +34,13 @@ export default function DomainAtlas() {
           title="One landscape contains several interdependent decision domains."
           intro="Responsive Ecologies organizes the system around stewardship objectives, not software features. Each domain names the signals, decisions, and human stewards needed to care for a living place."
         />
+
+        <p className="-mt-4 mb-6 max-w-3xl text-base leading-relaxed text-neutral-600 md:-mt-8 md:mb-8 md:text-lg">
+          Before signals become recommendations, they need to be interpreted across
+          ecological, visitor, and operational conditions.
+        </p>
+
+        <EnvironmentalSignalMap />
 
         <div className="mb-7 flex flex-wrap gap-2" aria-label="Atlas legend">
           <ConceptTag>Signals describe conditions</ConceptTag>

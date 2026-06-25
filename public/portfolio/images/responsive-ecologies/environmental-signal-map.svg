@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="environmental-signal-map-title environmental-signal-map-desc">
+  <title id="environmental-signal-map-title">Environmental Signal Map for Responsive Ecologies</title>
+  <desc id="environmental-signal-map-desc">A systems diagram showing weather, terrain, water, habitat, and human use signals moving through evidence checks, interpretation, authority routing, and stewardship execution.</desc>
+  <defs>
+    <style>
+      .label{font:700 10px/1 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase}
+      .title{font:700 24px/1.15 Georgia,"Times New Roman",serif}
+      .nodeTitle{font:700 17px/1.2 Georgia,"Times New Roman",serif}
+      .body{font:500 12.5px/1.35 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif}
+      .small{font:700 9.5px/1 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+      .caption{font:500 11px/1.35 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif}
+    </style>
+    <marker id="arrow-neutral" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 10 4 0 8Z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 10 4 0 8Z" fill="#047857"/>
+    </marker>
+  </defs>
+
+  <g id="environmental-signal-map--responsive-ecologies">
+    <rect width="1200" height="760" fill="#FFFFFF"/>
+
+    <g id="asset-header">
+      <text x="64" y="64" class="label" fill="#047857">Responsive Ecologies · Environmental Signal Map</text>
+      <text x="64" y="102" class="title" fill="#0F172A">Signals become decisions only after evidence, context, and authority are visible.</text>
+      <text x="64" y="132" class="body" fill="#475569">The map separates observation from interpretation so field teams can see what changed, how fresh the signal is, and who owns the response.</text>
+    </g>
+
+    <g id="signal-inputs" aria-label="Environmental signal inputs">
+      <g id="signal-weather">
+        <rect x="64" y="190" width="192" height="172" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+        <circle cx="160" cy="224" r="16" fill="#ECFEFF" stroke="#A5F3FC"/>
+        <path d="M89 222a7 7 0 1 0 14 0 7 7 0 0 0-14 0Zm18 0h11M74 222h11M96 200v11M96 233v11M82 208l8 8M110 236l8 8M110 208l-8 8M82 236l8-8" transform="translate(64 2)" fill="none" stroke="#0E7490" stroke-width="1.7" stroke-linecap="round"/>
+        <text x="160" y="266" class="small" fill="#0E7490" text-anchor="middle">Meteoric Delta</text>
+        <text x="160" y="294" class="nodeTitle" fill="#0F172A" text-anchor="middle">Weather</text>
+        <text x="160" y="326" class="body" fill="#475569" text-anchor="middle">
+          <tspan x="160" dy="0">Microclimate, exposure,</tspan>
+          <tspan x="160" dy="17">and thermal thresholds.</tspan>
+        </text>
+      </g>
+
+      <g id="signal-terrain">
+        <rect x="284" y="190" width="192" height="172" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+        <circle cx="380" cy="224" r="16" fill="#F7FEE7" stroke="#D9F99D"/>
+        <path d="M286 232h26l-8-20-7 13-5-8-6 15Z" transform="translate(82 2)" fill="none" stroke="#4D7C0F" stroke-width="1.8" stroke-linejoin="round"/>
+        <text x="380" y="266" class="small" fill="#4D7C0F" text-anchor="middle">Kinematic Shift</text>
+        <text x="380" y="294" class="nodeTitle" fill="#0F172A" text-anchor="middle">Terrain</text>
+        <text x="380" y="326" class="body" fill="#475569" text-anchor="middle">
+          <tspan x="380" dy="0">Structural displacement</tspan>
+          <tspan x="380" dy="17">and stabilization priority.</tspan>
+        </text>
+      </g>
+
+      <g id="signal-water">
+        <rect x="504" y="190" width="192" height="172" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+        <circle cx="600" cy="224" r="16" fill="#EFF6FF" stroke="#BFDBFE"/>
+        <path d="M500 207c8 10 12 17 12 22a12 12 0 0 1-24 0c0-5 4-12 12-22Z" transform="translate(100 2)" fill="none" stroke="#1D4ED8" stroke-width="1.7" stroke-linejoin="round"/>
+        <text x="600" y="266" class="small" fill="#1D4ED8" text-anchor="middle">Hydrology Array</text>
+        <text x="600" y="294" class="nodeTitle" fill="#0F172A" text-anchor="middle">Water</text>
+        <text x="600" y="326" class="body" fill="#475569" text-anchor="middle">
+          <tspan x="600" dy="0">Water boundaries and</tspan>
+          <tspan x="600" dy="17">saturation warning limits.</tspan>
+        </text>
+      </g>
+
+      <g id="signal-habitat">
+        <rect x="724" y="190" width="192" height="172" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+        <circle cx="820" cy="224" r="16" fill="#ECFDF5" stroke="#BBF7D0"/>
+        <path d="M702 238v-20M702 218c-10-7-12-14-7-20 10 2 14 8 7 20Zm0 0c10-7 12-14 7-20-10 2-14 8-7 20Z" transform="translate(118 2)" fill="none" stroke="#047857" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="820" y="266" class="small" fill="#047857" text-anchor="middle">Biotic Matrix</text>
+        <text x="820" y="294" class="nodeTitle" fill="#0F172A" text-anchor="middle">Habitat</text>
+        <text x="820" y="326" class="body" fill="#475569" text-anchor="middle">
+          <tspan x="820" dy="0">Migration paths and</tspan>
+          <tspan x="820" dy="17">buffer enforcement.</tspan>
+        </text>
+      </g>
+
+      <g id="signal-human-use">
+        <rect x="944" y="190" width="192" height="172" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+        <circle cx="1040" cy="224" r="16" fill="#FFF7ED" stroke="#FED7AA"/>
+        <path d="M904 219a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm-13 18c2-9 7-14 13-14s11 5 13 14" transform="translate(136 2)" fill="none" stroke="#C2410C" stroke-width="1.7" stroke-linecap="round"/>
+        <text x="1040" y="266" class="small" fill="#C2410C" text-anchor="middle">Spatial Density</text>
+        <text x="1040" y="294" class="nodeTitle" fill="#0F172A" text-anchor="middle">Human Use</text>
+        <text x="1040" y="326" class="body" fill="#475569" text-anchor="middle">
+          <tspan x="1040" dy="0">Trail routing constraints</tspan>
+          <tspan x="1040" dy="17">from pedestrian density.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <g id="signal-flow" aria-hidden="true">
+      <path d="M160 362v28c0 22 18 40 40 40h255" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M380 362v16c0 22 18 40 40 40h55" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M600 362v36" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M820 362v16c0 22-18 40-40 40h-55" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M1040 362v28c0 22-18 40-40 40H725" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+    </g>
+
+    <g id="interpretation-layer" aria-label="Interpretation layer">
+      <rect x="475" y="398" width="250" height="114" rx="18" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1.4"/>
+      <text x="507" y="432" class="small" fill="#047857">Shared Interpretation</text>
+      <text x="507" y="461" class="nodeTitle" fill="#0F172A">Decision Context</text>
+      <text x="507" y="479" class="body" fill="#475569">
+        <tspan x="507" dy="0">Source quality · freshness</tspan>
+        <tspan x="507" dy="16">spatial context</tspan>
+      </text>
+    </g>
+
+    <g id="quality-checks" aria-label="Evidence checks">
+      <rect x="174" y="540" width="212" height="88" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="202" y="574" class="small" fill="#475569">Evidence Check</text>
+      <text x="202" y="602" class="nodeTitle" fill="#0F172A">Signal freshness</text>
+
+      <rect x="494" y="540" width="212" height="88" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="522" y="574" class="small" fill="#475569">Model Check</text>
+      <text x="522" y="602" class="nodeTitle" fill="#0F172A">Confidence band</text>
+
+      <rect x="814" y="540" width="212" height="88" rx="16" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="842" y="574" class="small" fill="#475569">Authority Check</text>
+      <text x="842" y="602" class="nodeTitle" fill="#0F172A">Human steward</text>
+    </g>
+
+    <g id="execution-flow" aria-hidden="true">
+      <path d="M600 512v28" fill="none" stroke="#047857" stroke-width="1.8" marker-end="url(#arrow-emerald)"/>
+      <path d="M386 584h108" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M706 584h108" fill="none" stroke="#64748B" stroke-width="1.4" marker-end="url(#arrow-neutral)"/>
+      <path d="M920 628v34c0 18-14 32-32 32H312c-18 0-32-14-32-32v-34" fill="none" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5 5"/>
+    </g>
+
+    <g id="map-caption">
+      <rect x="64" y="682" width="1072" height="38" rx="12" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="88" y="706" class="caption" fill="#475569">Recovery loop: stale evidence, changed conditions, rejected recommendations, and field contradictions return to interpretation before action changes.</text>
+    </g>
+  </g>
+</svg>
