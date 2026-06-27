@@ -5,6 +5,43 @@ export type ProjectTrack = 'independent-research-practice' | 'client-work';
 export type IndependentResearchType = 'Research OS' | 'Framework' | 'Concept' | 'Experimental Build';
 export type ClientWorkType = 'Higher Education' | 'Commerce' | 'Healthcare' | 'Enterprise' | 'Emerging Tech';
 export type ProjectType = IndependentResearchType | ClientWorkType;
+export type ProjectVisibility = 'public' | 'hidden' | 'draft' | 'deprecated';
+export type PracticeOSCategory =
+  | 'vision'
+  | 'strategy'
+  | 'research-program'
+  | 'framework-library'
+  | 'field-studies'
+  | 'concepts'
+  | 'consulting'
+  | 'products'
+  | 'marketing'
+  | 'business-development'
+  | 'career-strategy'
+  | 'roadmap'
+  | 'resources';
+export type PracticeDomainTrack =
+  | 'environmental-systems'
+  | 'experience-design'
+  | 'service-design'
+  | 'outdoor-hospitality'
+  | 'destination-development'
+  | 'field-studies'
+  | 'stewardship'
+  | 'operations'
+  | 'digital-products'
+  | 'professional-validation';
+export type PracticeAssetType =
+  | 'research-os'
+  | 'framework'
+  | 'concept'
+  | 'experimental-build'
+  | 'case-study'
+  | 'field-study'
+  | 'resource';
+export type ProjectMaturity = 'early' | 'developing' | 'strong' | 'operational' | 'archived';
+export type EvidenceLevel = 'conceptual' | 'prototype' | 'case-study' | 'field-informed' | 'operational';
+export type ProjectStatus = 'active' | 'in-development' | 'published' | 'archived';
 
 export interface ProjectRecord {
   id: string;
@@ -18,6 +55,15 @@ export interface ProjectRecord {
   navStatus?: string;  // e.g. 'Flagship Synthesis'
   imageUrl?: string;   // client-work representative image
   legacyLabel?: string; // backward-compat: the `year` display value used by previous/page.tsx
+  canonicalHref?: string;
+  visibility?: ProjectVisibility;
+  osCategory?: PracticeOSCategory | PracticeOSCategory[];
+  practiceTrack?: PracticeDomainTrack | PracticeDomainTrack[];
+  projectType?: PracticeAssetType;
+  maturity?: ProjectMaturity;
+  evidenceLevel?: EvidenceLevel;
+  status?: ProjectStatus;
+  redirectFrom?: string[];
 }
 
 export const PROJECTS: ProjectRecord[] = [
@@ -29,6 +75,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/environmental-systems-design-os',
     track: 'independent-research-practice',
     type: 'Research OS',
+    canonicalHref: '/projects/environmental-systems-design-os',
+    visibility: 'public',
+    osCategory: ['research-program', 'framework-library', 'roadmap', 'resources'],
+    practiceTrack: ['environmental-systems', 'stewardship', 'operations'],
+    projectType: 'research-os',
+    maturity: 'strong',
+    evidenceLevel: 'field-informed',
+    status: 'published',
     summary:
       'A working environment for capturing observations, identifying patterns, and developing reusable design frameworks.',
     tags: ['Audits', 'Patterns', 'Projects & Concepts', 'Portfolio Assets'],
@@ -40,6 +94,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/architecture-of-confidence',
     track: 'independent-research-practice',
     type: 'Framework',
+    canonicalHref: '/projects/architecture-of-confidence',
+    visibility: 'public',
+    osCategory: ['framework-library', 'strategy', 'consulting'],
+    practiceTrack: ['experience-design', 'service-design', 'operations'],
+    projectType: 'framework',
+    maturity: 'strong',
+    evidenceLevel: 'field-informed',
+    status: 'published',
     summary:
       'A transferable framework for designing decision support that reduces uncertainty, preserves agency, and helps people recover when conditions change.',
     tags: ['Decision support', 'Confidence', 'Recovery'],
@@ -51,6 +113,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/wayfinding-matrix',
     track: 'independent-research-practice',
     type: 'Concept',
+    canonicalHref: '/projects/wayfinding-matrix',
+    visibility: 'public',
+    osCategory: ['concepts', 'framework-library', 'products'],
+    practiceTrack: ['environmental-systems', 'experience-design', 'outdoor-hospitality'],
+    projectType: 'concept',
+    maturity: 'developing',
+    evidenceLevel: 'conceptual',
+    status: 'published',
     navTitle: 'Wayfinding Matrix',
     summary:
       "An ambient, non-screen navigation framework for remote adventure parks and wilderness reserves. It matches a guest's real-time physical endurance data with changing weather patterns to deliver low-friction safety nets, allowing true off-grid spontaneity.",
@@ -62,6 +132,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/intention-engine',
     track: 'independent-research-practice',
     type: 'Concept',
+    canonicalHref: '/projects/intention-engine',
+    visibility: 'public',
+    osCategory: ['concepts', 'framework-library', 'products'],
+    practiceTrack: ['experience-design', 'service-design', 'destination-development'],
+    projectType: 'concept',
+    maturity: 'developing',
+    evidenceLevel: 'conceptual',
+    status: 'published',
     navTitle: 'Intention Engine',
     summary:
       'A semantic discovery and service recovery engine built for luxury ecotourism. It translates abstract human psychological states (burnout, transition) into highly specific spatial Blueprints and multi-sensory arrival-to-departure guest journeys.',
@@ -73,6 +151,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/responsive-ecologies',
     track: 'independent-research-practice',
     type: 'Concept',
+    canonicalHref: '/projects/responsive-ecologies',
+    visibility: 'public',
+    osCategory: ['concepts', 'products', 'consulting'],
+    practiceTrack: ['environmental-systems', 'stewardship', 'operations'],
+    projectType: 'concept',
+    maturity: 'strong',
+    evidenceLevel: 'field-informed',
+    status: 'published',
     summary:
       'A multi-agent AI land stewardship platform for backcountry outfitters and luxury eco-lodges. It processes edge-sensor telemetry (soil, fuel load, hydrology) to autonomously generate adaptive trail maintenance schedules and wildlife-safe guiding corridors.',
     tags: ['Predictive Agentic Modeling', 'Soft Adventure', 'Climate Resilience'],
@@ -84,6 +170,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/adaptive-ranch-experience-companion',
     track: 'independent-research-practice',
     type: 'Concept',
+    canonicalHref: '/projects/adaptive-ranch-experience-companion',
+    visibility: 'public',
+    osCategory: ['concepts', 'consulting', 'products'],
+    practiceTrack: ['outdoor-hospitality', 'service-design', 'operations', 'stewardship'],
+    projectType: 'concept',
+    maturity: 'strong',
+    evidenceLevel: 'field-informed',
+    status: 'published',
     summary:
       'A systems design concept for confidence-centered outdoor hospitality, ranch operations, stewardship, guest guidance, and recovery. It is framed as a concept, not a shipped product.',
     tags: ['Hospitality', 'Stewardship', 'Recovery'],
@@ -94,6 +188,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/travel-and-ai',
     track: 'independent-research-practice',
     type: 'Experimental Build',
+    canonicalHref: '/projects/travel-and-ai',
+    visibility: 'public',
+    osCategory: ['products', 'concepts', 'framework-library'],
+    practiceTrack: ['digital-products', 'destination-development', 'experience-design'],
+    projectType: 'experimental-build',
+    maturity: 'strong',
+    evidenceLevel: 'prototype',
+    status: 'published',
     navTitle: 'HADE',
     summary:
       'An adaptive decision-support engine that interprets live context signals and turns changing conditions into clearer next steps.',
@@ -105,6 +207,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/digital-executor',
     track: 'independent-research-practice',
     type: 'Experimental Build',
+    canonicalHref: '/projects/digital-executor',
+    visibility: 'public',
+    osCategory: ['concepts', 'products'],
+    practiceTrack: ['service-design', 'operations', 'digital-products'],
+    projectType: 'experimental-build',
+    maturity: 'early',
+    evidenceLevel: 'conceptual',
+    status: 'in-development',
     summary:
       'A service recovery and coordination concept for helping people move forward when plans break, vendors hand off, or next steps become unclear.',
     tags: ['Recovery', 'Operations', 'Handoffs'],
@@ -115,6 +225,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/field-notes',
     track: 'independent-research-practice',
     type: 'Experimental Build',
+    canonicalHref: '/projects/field-notes',
+    visibility: 'public',
+    osCategory: ['field-studies', 'research-program', 'products'],
+    practiceTrack: ['field-studies', 'environmental-systems', 'digital-products'],
+    projectType: 'experimental-build',
+    maturity: 'developing',
+    evidenceLevel: 'prototype',
+    status: 'published',
     summary:
       'A place-aware product for capturing travel signals, environmental context, and local knowledge that can support better decisions in the moment.',
     tags: ['Travel signals', 'Place-aware', 'Field data'],
@@ -128,6 +246,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/purdue',
     track: 'client-work',
     type: 'Higher Education',
+    canonicalHref: '/projects/purdue',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.',
     tags: ['Higher Education'],
@@ -140,6 +266,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/timbertech',
     track: 'client-work',
     type: 'Commerce',
+    canonicalHref: '/projects/previous/timbertech',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary: 'A full redesign for TimberTech.com and their existing design system.',
     tags: ['Commerce'],
     imageUrl: `${basePath}/images/timbertech-card.jpg`,
@@ -151,6 +285,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/healthcare',
     track: 'client-work',
     type: 'Healthcare',
+    canonicalHref: '/projects/previous/healthcare',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'service-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and patients across developing nations.',
     tags: ['Healthcare'],
@@ -163,6 +305,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/mcdonalds-kiosk',
     track: 'client-work',
     type: 'Commerce',
+    canonicalHref: '/projects/previous/mcdonalds-kiosk',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     navTitle: "McDonald's Kiosk",
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
@@ -176,6 +326,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/intel',
     track: 'client-work',
     type: 'Enterprise',
+    canonicalHref: '/projects/previous/intel',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A sustainability tracking application helping businesses monitor and reduce their environmental impact.',
     tags: ['Enterprise'],
@@ -188,6 +346,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/nodalytics',
     track: 'client-work',
     type: 'Emerging Tech',
+    canonicalHref: '/projects/previous/nodalytics',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Emerging Tech'],
@@ -200,6 +366,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/newdea',
     track: 'client-work',
     type: 'Enterprise',
+    canonicalHref: '/projects/previous/newdea',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Enterprise'],
@@ -212,6 +386,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/doublegood',
     track: 'client-work',
     type: 'Commerce',
+    canonicalHref: '/projects/previous/doublegood',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.',
     tags: ['Commerce'],
@@ -224,6 +406,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/advisestream',
     track: 'client-work',
     type: 'Enterprise',
+    canonicalHref: '/projects/previous/advisestream',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Enterprise'],
@@ -236,6 +426,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/sphere-software',
     track: 'client-work',
     type: 'Emerging Tech',
+    canonicalHref: '/projects/previous/sphere-software',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Emerging Tech'],
@@ -248,6 +446,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/havas-agency',
     track: 'client-work',
     type: 'Enterprise',
+    canonicalHref: '/projects/previous/havas-agency',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Enterprise'],
@@ -260,6 +466,14 @@ export const PROJECTS: ProjectRecord[] = [
     href: '/projects/previous/rich-products',
     track: 'client-work',
     type: 'Enterprise',
+    canonicalHref: '/projects/previous/rich-products',
+    visibility: 'public',
+    osCategory: 'career-strategy',
+    practiceTrack: ['professional-validation', 'experience-design'],
+    projectType: 'case-study',
+    maturity: 'archived',
+    evidenceLevel: 'case-study',
+    status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
     tags: ['Enterprise'],
@@ -304,7 +518,7 @@ export const TRACK_META: TrackMeta[] = [
     order: 1,
     label: 'Systems Design Practice',
     subtext:
-      'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
+      'The research-through-build core: a structural substrate that converts field observation into agentic, component-driven frameworks — then tests them in modeled systems and working builds.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],
     hideTags: true,
     href: '/projects/research-practice',
@@ -319,9 +533,9 @@ export const TRACK_META: TrackMeta[] = [
   {
     track: 'client-work',
     order: 2,
-    label: 'Professional / Client Work',
+    label: 'Verified Enterprise Delivery',
     subtext:
-      'Over a decade designing digital products and services across healthcare, education, enterprise, commerce, and emerging technology.',
+      'A decade resolving operational friction in shipped products across higher education, healthcare, enterprise, commerce, and emerging tech — the implementation record the frameworks are validated against.',
     tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
     hideTags: true,
     href: '/projects/previous',

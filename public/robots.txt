@@ -1,0 +1,16 @@
+User-agent: *
+Disallow: /favicon-generator/
+Disallow: /sandbox/
+Disallow: /mockups/
+Disallow: /projects/timbertech/details/
+Disallow: /projects/travel-and-ai/system-orchestrator/
+Disallow: /favicon-converter.html
+Disallow: /favicon-generator.html
+Disallow: /favicon-generator-simple.html
+Disallow: /favicon-png-generator.html
+Disallow: /favicon-preview.html
+Disallow: /favicon-preview-comparison.html
+Disallow: /favicon.html
+Disallow: /generate-favicons.html
+Disallow: /square-favicon-generator.html
+Disallow: /dm-favicon-generator.html

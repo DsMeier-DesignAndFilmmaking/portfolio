@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Travel & AI - Daniel Meier',
-  description: 'AI-powered travel companion that combines real-time context awareness, cultural intelligence, and personalized recommendations to transform how people experience new destinations.',
+  title: 'Travel & AI',
+  description:
+    'A systems design and digital product concept for context-aware travel, cultural intelligence, and adaptive destination experiences.',
 };
 
 export default function TravelAndAILayout({
@@ -12,4 +13,3 @@ export default function TravelAndAILayout({
 }) {
   return <>{children}</>;
 }
-

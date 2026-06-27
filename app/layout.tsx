@@ -33,10 +33,56 @@ const roboto = Roboto({
 });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const siteTitle = 'Dan Meier — Systems Design Practice';
+const siteDescription =
+  'A systems design practice that turns field research across operational, digital, and environmental contexts into agentic, component-driven frameworks — tested in builds, proven across a decade of enterprise delivery.';
+const siteUrl = 'https://dan-meier-portfolio.vercel.app';
+const ogImage = `${basePath}/images/optimized/earth-map-xl.webp`;
 
 export const metadata: Metadata = {
-  title: 'Daniel Meier - Digital Designer & Developer',
-  description: 'Portfolio showcasing digital design, development, and creative work.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: '%s — Dan Meier · Systems Design Practice',
+  },
+  description: siteDescription,
+  applicationName: 'Dan Meier · Systems Design Practice',
+  authors: [{ name: 'Dan Meier' }],
+  keywords: [
+    'systems design',
+    'systems architect',
+    'operational infrastructure',
+    'AI workflows',
+    'agentic frameworks',
+    'design systems',
+    'service design',
+    'decision support',
+    'enterprise UX',
+  ],
+  openGraph: {
+    title: siteTitle,
+    description:
+      'Researches complex operational, digital, and environmental contexts; converts field observation into structured evidence; builds agentic, component-driven frameworks — tested in builds, proven in enterprise delivery.',
+    url: '/',
+    siteName: 'Dan Meier · Systems Design Practice',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: ogImage,
+        width: 1280,
+        height: 640,
+        alt: 'Systems design practice operating across operational, digital, and environmental contexts.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description:
+      'Field research → structured evidence → agentic, component-driven frameworks. Tested in builds, proven in enterprise delivery.',
+    images: [ogImage],
+  },
   icons: {
     icon: [
       { url: `${basePath}/favicon.ico` },

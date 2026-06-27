@@ -1,5 +1,9 @@
 'use client';
 
+// Deprecated: unique TimberTech proof assets have been folded into
+// /projects/previous/timbertech. Safe to remove after the Vercel redirect
+// validates successfully in the static export deployment.
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';

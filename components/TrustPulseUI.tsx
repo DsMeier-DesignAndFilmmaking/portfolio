@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, AlertCircle, Clock, MapPin, Activity, Info, FileText, Download, Briefcase, CheckCircle2, FileCheck } from 'lucide-react';
+import { ShieldCheck, AlertCircle, Clock, Activity, Info, FileText, Briefcase, CheckCircle2, FileCheck } from 'lucide-react';
+
+const TRUST_FRAMEWORK_HREF = '/projects/travel-and-ai/projects/trust-framework-ai-travel/';
 
 const TrustPulseUI = () => {
   const [pulseScale, setPulseScale] = useState(1);
@@ -24,11 +26,6 @@ const TrustPulseUI = () => {
     { time: "1.8s", event: "Resolution: Social activity + OSM update overrides stale Google cache.", type: "logic" },
     { time: "2.1s", event: "Integrity Score: 98% (High Confidence)", type: "success" }
   ];
-
-  const handleDownload = () => {
-    // Simulating a route that renders the VerificationPDFMockup component
-    window.open('/mockups/trust-verification-report', '_blank', 'width=850,height=1100');
-  };
 
   return (
     <div className="w-full max-w-5xl mx-auto py-12 px-4 space-y-8 font-sans">
@@ -174,13 +171,13 @@ const TrustPulseUI = () => {
                     Export this verification chain as a certified document for client itineraries and liability protection.
                   </p>
                 </div>
-                <button 
-                  onClick={handleDownload}
+                <a
+                  href={TRUST_FRAMEWORK_HREF}
                   className="flex items-center gap-2 bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 px-4 py-2 rounded-lg text-xs font-bold text-slate-700 transition-all shadow-sm shrink-0"
                 >
                   <FileText size={14} />
                   Export .PDF
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -194,7 +191,10 @@ const TrustPulseUI = () => {
         </p>
         
         <div className="inline-block p-1 bg-gradient-to-tr from-slate-200 to-slate-50 rounded-lg shadow-sm">
-          <div className="bg-white rounded-md p-4 flex items-center gap-6 border border-slate-200 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" onClick={handleDownload}>
+          <a
+            href={TRUST_FRAMEWORK_HREF}
+            className="bg-white rounded-md p-4 flex items-center gap-6 border border-slate-200 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-left"
+          >
             <div className="bg-red-50 p-2 rounded text-red-500">
               <FileCheck size={32} />
             </div>
@@ -203,9 +203,9 @@ const TrustPulseUI = () => {
               <p className="text-[10px] text-slate-400">Liability Shield Report: ID REF-PRO-8829-X</p>
             </div>
             <div className="ml-4 text-[9px] bg-slate-900 text-white px-2 py-1 rounded font-bold uppercase">
-              Open Preview
+              View Canonical
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

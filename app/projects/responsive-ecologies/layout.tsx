@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Responsive Ecologies - Daniel Meier',
+  title: 'Responsive Ecologies',
   description:
     'A flagship Environmental Systems Design concept for turning landscape signals into traceable, authority-aware stewardship decisions.',
 };

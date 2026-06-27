@@ -81,6 +81,27 @@ const project = {
   overview: "Redesigned the TimberTech website to improve user experience, product discovery, and conversion rates."
 };
 
+const evidenceImages = [
+  {
+    src: getImagePath("images/TimberTech-Figma_1.jpg"),
+    alt: "TimberTech product navigation and sample ordering pathways",
+    caption: "Product navigation and sample-order pathways",
+    context: "Product mega-nav, audience segmentation, conversion paths.",
+  },
+  {
+    src: getImagePath("images/TimberTech-Figma_2.jpg"),
+    alt: "TimberTech sustainability content hierarchy and proof-point layout",
+    caption: "Sustainability content hierarchy and proof-point layout",
+    context: "Sustainability storytelling and content systems.",
+  },
+  {
+    src: getImagePath("images/timbertech-figma-components.jpg"),
+    alt: "TimberTech Figma component library evidence",
+    caption: "Component library consolidation evidence",
+    context: "Reusable Figma components supporting the component-library reduction claim.",
+  },
+];
+
 export default function TimberTechProjectPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
@@ -278,6 +299,44 @@ export default function TimberTechProjectPage() {
               <h3 className="text-xl font-bold text-white mb-2">Team Mentorship</h3>
               <p className="text-gray-400">Guided junior designers toward ownership and smarter use of the design system.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Information Architecture & Content System Evidence */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-6">
+          <div className="mb-12 max-w-3xl">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              Information Architecture & Content System Evidence
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              Supporting artifacts from the design system and page architecture work, preserved from
+              the former TimberTech detail route.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+            {evidenceImages.map((image, index) => (
+              <figure
+                key={image.src}
+                className={index === evidenceImages.length - 1 ? 'lg:col-span-2' : undefined}
+              >
+                <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-white">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-contain object-top"
+                  />
+                </div>
+                <figcaption className="mt-4">
+                  <p className="font-semibold text-white">{image.caption}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-gray-400">{image.context}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>

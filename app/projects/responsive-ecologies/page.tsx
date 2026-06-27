@@ -1,4 +1,5 @@
 import { PageNavIndicator } from '@/components/PageNavIndicator';
+import PracticeAnchor from '@/components/PracticeAnchor';
 import ResponsiveEcologiesProjectHeader from './ProjectHeader';
 import ArtifactOrigins from './components/ArtifactOrigins';
 import ConfidenceModel from './components/ConfidenceModel';
@@ -51,6 +52,7 @@ export default function ResponsiveEcologiesPage() {
       <ConfidenceModel />
       <RecoveryModel />
       <EvidenceLineage />
+      <PracticeAnchor />
       <ProjectFooter />
     </div>
   );

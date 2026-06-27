@@ -5,7 +5,7 @@ import { CONTENT_BOUNDS, COPY_MAX_WIDTH } from './layoutClasses';
 import { independentResearchProjects } from '@/data/projects';
 
 export const metadata: Metadata = {
-  title: 'Systems Design Practice | Dan Meier',
+  title: 'Systems Design Practice',
   description:
     'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
 };
@@ -38,9 +38,9 @@ export default function ResearchPracticePage() {
 
             <div className={`mt-7 ${COPY_MAX_WIDTH} space-y-4 text-[1.05rem] leading-relaxed text-gray-700 text-pretty`}>
               <p>
-                I study environments that guide people through complexity: wayfinding systems,
-                hospitality services, high-stakes decision support in the field. Not to describe
-                them — to pull out the patterns that repeat underneath the surface variation.
+              I study how people navigate complex environments—from landscapes and hospitality to digital products, wayfinding, and field operations.
+
+              Each project begins with research, develops into a systems framework, and evolves into a working concept or prototype. Together, they form an independent systems design practice where every project builds on the last.
               </p>
               <p>
                 What comes out is a connected pipeline. Observations become frameworks. Frameworks

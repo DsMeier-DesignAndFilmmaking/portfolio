@@ -339,7 +339,7 @@ export default function HomePage() {
         
 {/* Title Block - Clean Editorial Layout (Zero Gradients = Zero Banding) */}
 <div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
-  <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500 mb-4">Multidisciplinary Designer</p>
+  <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500 mb-4">Systems Design Practice</p>
   <h1
     className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
     style={{ 
@@ -369,7 +369,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>I’m Dan Meier.</strong> a systems designer shaping how people experience complex products, websites, and environments. My practice began in landscape architecture and urban design—where ecology, movement, and human behavior are treated as a single system. <br></br><br></br>Over a 15-year trajectory, that lens has evolved from physical spaces to digital products, and now, to the convergence of both. (read my{' '}
+  <strong>I’m Dan Meier.</strong> I run a systems design practice that reads complex environments before redesigning them. The method started in landscape architecture and urban design—where ecology, circulation, and human behavior resolve as one system (documented in my{' '}
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
@@ -378,7 +378,7 @@ export default function HomePage() {
   >
     Master’s Thesis
   </a>
-  ). That lens has shaped everything since: a 15-year trajectory across physical environments, digital systems, and the increasingly blurred space between them.
+  ). <br></br><br></br>Over fifteen years that method carried into digital products, enterprise operations, and the AI layer now binding them together.
 </p>
           
           <p 
@@ -390,7 +390,7 @@ export default function HomePage() {
               paddingLeft: '1rem' 
             }}
           >
-            Currently exploring how AI can support human decision-making across dynamic&nbsp;systems.
+            I build AI and component-driven systems that hold their logic where conditions don’t—logistics, landscape, and operational&nbsp;friction.
           </p>
           
           {/* Dedicated Signature Frame - Tightened top spacing */}

@@ -31,16 +31,16 @@ export async function generateMetadata({ params }: { params: Promise<{ projectId
   const cleanId = isLogic ? rawId.replace('-logic', '') : rawId;
 
   const titleOverrides: Record<string, string> = {
-    'spontaneous-travel-companion': 'Spontaneous Travel Engine - Daniel Meier',
-    'trust-framework-ai-travel': 'A Trust Framework for AI-Driven Travel Experiences - Daniel Meier',
-    'context-aware-travel-decision-system': 'Context-Aware Travel Decision System - Daniel Meier',
-    'social-graph-driven-travel-network': 'Social Graph-Driven Travel Network - Daniel Meier',
-    'social-opportunity-matching-module': 'Spontaneous Social Opportunity Matching - Daniel Meier',
-    'narrative-driven-travel-experience-generator': 'Narrative-Driven Travel Experience Generator - Daniel Meier'
+    'spontaneous-travel-companion': 'Spontaneous Travel Engine — Dan Meier',
+    'trust-framework-ai-travel': 'A Trust Framework for AI-Driven Travel Experiences — Dan Meier',
+    'context-aware-travel-decision-system': 'Context-Aware Travel Decision System — Dan Meier',
+    'social-graph-driven-travel-network': 'Social Graph-Driven Travel Network — Dan Meier',
+    'social-opportunity-matching-module': 'Spontaneous Social Opportunity Matching — Dan Meier',
+    'narrative-driven-travel-experience-generator': 'Narrative-Driven Travel Experience Generator — Dan Meier'
   };
 
   const registryProject = projectRegistry[cleanId as keyof typeof projectRegistry];
-  const registryTitle = registryProject?.title ? `${registryProject.title} - Daniel Meier` : undefined;
+  const registryTitle = registryProject?.title ? `${registryProject.title} — Dan Meier` : undefined;
   const baseTitle = titleOverrides[cleanId] || registryTitle || 'Travel & AI Project';
   return {
     title: isLogic ? `${baseTitle} (System Logic)` : baseTitle,

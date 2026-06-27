@@ -101,7 +101,7 @@ export default function DesignWork() {
             className="text-xl text-gray-700 leading-relaxed text-pretty"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
           >
-            Two bodies of work: a self-directed research practice exploring decision-making and systems design in environmental contexts, and a decade of professional work across industries.
+            Two bodies of work: a self-directed research practice that engineers decision-making and structural logic for environmental contexts, and a decade of verified enterprise delivery across industries.
           </p>
         </header>
 

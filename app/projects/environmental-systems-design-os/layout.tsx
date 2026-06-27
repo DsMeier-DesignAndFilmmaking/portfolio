@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Environmental Systems Design OS — Daniel Meier',
+  title: 'Environmental Systems Design OS',
   description:
     'A structured research environment for capturing environmental observations, identifying patterns, and developing the reusable artifacts and frameworks that appear across this portfolio.',
 };

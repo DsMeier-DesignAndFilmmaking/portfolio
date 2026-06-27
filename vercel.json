@@ -4,6 +4,83 @@
   "outputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/favicon-generator",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/sandbox/systems-module",
+      "destination": "/projects/previous/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/timbertech/details",
+      "destination": "/projects/previous/timbertech/",
+      "permanent": true
+    },
+    {
+      "source": "/mockups/trust-verification-report",
+      "destination": "/projects/travel-and-ai/projects/trust-framework-ai-travel/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/travel-and-ai/system-orchestrator",
+      "destination": "/projects/travel-and-ai/projects/spontaneous-travel-companion/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-converter.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-generator.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-generator-simple.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-png-generator.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-preview.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-preview-comparison.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/favicon.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/generate-favicons.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/square-favicon-generator.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    },
+    {
+      "source": "/dm-favicon-generator.html",
+      "destination": "/projects/research-practice/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",
@@ -55,4 +132,3 @@
     }
   ]
 }
-
