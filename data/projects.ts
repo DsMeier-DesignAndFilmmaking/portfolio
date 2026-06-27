@@ -64,6 +64,7 @@ export interface ProjectRecord {
   evidenceLevel?: EvidenceLevel;
   status?: ProjectStatus;
   redirectFrom?: string[];
+  proofLabel?: string;
 }
 
 export const PROJECTS: ProjectRecord[] = [
@@ -256,6 +257,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.',
+    proofLabel: 'What this proves: institutional information architecture and scalable CMS delivery.',
     tags: ['Higher Education'],
     imageUrl: `${basePath}/images/PU-Memorial-Mall-DJI.jpg`,
     legacyLabel: 'Web Design',
@@ -275,6 +277,7 @@ export const PROJECTS: ProjectRecord[] = [
     evidenceLevel: 'case-study',
     status: 'archived',
     summary: 'A full redesign for TimberTech.com and their existing design system.',
+    proofLabel: 'What this proves: commerce IA, content systems, design systems, and conversion pathways.',
     tags: ['Commerce'],
     imageUrl: `${basePath}/images/timbertech-card.jpg`,
     legacyLabel: 'Web Design',
@@ -295,6 +298,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and patients across developing nations.',
+    proofLabel: 'What this proves: high-stakes service access, complex information flows, and trust-sensitive UX.',
     tags: ['Healthcare'],
     imageUrl: `${basePath}/images/healthcare-card.jpg`,
     legacyLabel: 'IA & UI',
@@ -316,6 +320,7 @@ export const PROJECTS: ProjectRecord[] = [
     navTitle: "McDonald's Kiosk",
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
+    proofLabel: 'What this proves: service interaction design, kiosk decision flows, and operational upsell logic.',
     tags: ['Commerce'],
     imageUrl: `${basePath}/images/mcDonalds-card.jpg`,
     legacyLabel: 'Product Design',
@@ -336,6 +341,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A sustainability tracking application helping businesses monitor and reduce their environmental impact.',
+    proofLabel: 'What this proves: enterprise research, sustainability concepts, and future-facing product strategy.',
     tags: ['Enterprise'],
     imageUrl: `${basePath}/images/heroGraphic.jpg`,
     legacyLabel: 'Market Research',
@@ -518,7 +524,7 @@ export const TRACK_META: TrackMeta[] = [
     order: 1,
     label: 'Systems Design Practice',
     subtext:
-      'The research-through-build core: a structural substrate that converts field observation into agentic, component-driven frameworks — then tests them in modeled systems and working builds.',
+      'Field observations become adaptive, component-driven frameworks that are rigorously tested through advanced modeling and real-world construction.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],
     hideTags: true,
     href: '/projects/research-practice',
@@ -533,9 +539,9 @@ export const TRACK_META: TrackMeta[] = [
   {
     track: 'client-work',
     order: 2,
-    label: 'Verified Enterprise Delivery',
+    label: 'Shipped Projects & Client Work',
     subtext:
-      'A decade resolving operational friction in shipped products across higher education, healthcare, enterprise, commerce, and emerging tech — the implementation record the frameworks are validated against.',
+      '15+ years of design and resolving operational friction across higher education, healthcare, enterprise, and emerging tech.',
     tags: ['Healthcare', 'Higher education', 'Enterprise', 'Commerce', 'Emerging tech'],
     hideTags: true,
     href: '/projects/previous',

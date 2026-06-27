@@ -65,6 +65,12 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
               >
                 Field Notes
               </Link>
+              <Link
+                href="/projects/research-practice"
+                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
+              >
+                Systems Design Practice
+              </Link>
               <Link 
                 href="/projects/travel-and-ai" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
@@ -156,6 +162,12 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
                 </svg>
               </a>
               </div>
+              <Link
+                href="/services"
+                className="self-start whitespace-nowrap rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition-all duration-200 ease-in-out hover:bg-black hover:text-white"
+              >
+                Services & Engagements
+              </Link>
             </div>
           </div>
 

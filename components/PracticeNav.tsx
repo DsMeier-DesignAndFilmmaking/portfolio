@@ -1,5 +1,11 @@
 'use client';
 
+// Shared practice navigation header.
+// Fixed, transparent at the top of the page and tinting white on scroll, with the
+// signature logo, a "Work" label, and the shared ProjectPracticeNavDropdown trigger.
+// Used by the practice front door (/projects/research-practice) and the
+// engagements page (/services) so both wear the same nav as the project pages.
+
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -9,7 +15,7 @@ import ProjectPracticeNavDropdown, {
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-export default function HubNav() {
+export default function PracticeNav() {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -101,8 +101,22 @@ export default function DesignWork() {
             className="text-xl text-gray-700 leading-relaxed text-pretty"
             style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
           >
-            Two bodies of work: a self-directed research practice that engineers decision-making and structural logic for environmental contexts, and a decade of verified enterprise delivery across industries.
+            Two distinct tracks: a self-directed practice designing and engineering decision-making logic for complex environments, paired with over a decade of verified digital product delivery across enterprise industries.
           </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/services"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
+            >
+              Work With Me
+            </Link>
+            <Link
+              href="/projects/research-practice"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
+            >
+              Explore Practice System
+            </Link>
+          </div>
         </header>
 
         <div className="homepage-copy-column relative mt-12 md:mt-16" aria-labelledby="work-title">

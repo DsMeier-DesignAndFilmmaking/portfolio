@@ -6,6 +6,7 @@ export interface Project {
   description: string;
   imageUrl: string;
   year: string;
+  proofLabel?: string;
 }
 
 export const allProjects: Project[] = clientWorkProjects.map((p) => ({
@@ -14,6 +15,7 @@ export const allProjects: Project[] = clientWorkProjects.map((p) => ({
   description: p.summary,
   imageUrl: p.imageUrl ?? '',
   year: p.legacyLabel ?? p.type,
+  proofLabel: p.proofLabel,
 }));
 
 export function getNextProjects(currentProjectId: string, count: number = 4): Project[] {

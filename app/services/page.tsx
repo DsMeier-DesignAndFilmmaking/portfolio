@@ -1,7 +1,9 @@
 // Statically-rendered services route. Composes sections; all copy lives in ./content.
-// Global navbar + footer come from the root layout (shown on all non-home routes).
+// Uses the shared practice nav (PracticeNav) so the header matches the practice/project
+// pages; the global footer still comes from the root layout (ConditionalFooter).
 import Link from 'next/link';
 import { ArrowRight, Check, X } from 'lucide-react';
+import PracticeNav from '@/components/PracticeNav';
 import {
   hero,
   engagements,
@@ -34,30 +36,34 @@ export default function ServicesPage() {
         Skip to services content
       </a>
 
+      <PracticeNav />
+
       {/* HERO — Claim */}
       <section
         id="services-hero"
         aria-labelledby="services-hero-title"
-        className="border-b border-neutral-100 pb-16 pt-28 md:pb-24 md:pt-36"
+        className="mt-[100px] border-b border-neutral-100 pb-16 md:pb-24"
       >
-        <div className={`${contentBounds} max-w-3xl`}>
-          <Eyebrow>{hero.kicker}</Eyebrow>
-          <h1 className="mt-4 font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl">
-            {hero.title}
-          </h1>
-          <p className="mt-5 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
-            {hero.deck}
-          </p>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
-            {hero.lede}
-          </p>
-          <a
-            href={hero.ctaHref}
-            className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
-          >
-            {hero.ctaLabel}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+        <div className={contentBounds}>
+          <div className="max-w-3xl">
+            <Eyebrow>{hero.kicker}</Eyebrow>
+            <h1 className="mt-4 font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl">
+              {hero.title}
+            </h1>
+            <p className="mt-5 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
+              {hero.deck}
+            </p>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
+              {hero.lede}
+            </p>
+            <a
+              href={hero.ctaHref}
+              className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
+            >
+              {hero.ctaLabel}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -161,20 +167,22 @@ export default function ServicesPage() {
         aria-labelledby="proof-title"
         className="py-16 md:py-28"
       >
-        <div className={`${contentBounds} max-w-3xl`}>
-          <Eyebrow>03 // The Record</Eyebrow>
-          <h2
-            id="proof-title"
-            className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
-          >
-            The method is not theoretical.
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-            The frameworks come from a self-directed research practice, and the
-            implementation record comes from a decade of shipped enterprise work.
-            Both are on this site.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className={contentBounds}>
+          <div className="max-w-3xl">
+            <Eyebrow>03 // The Record</Eyebrow>
+            <h2
+              id="proof-title"
+              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+            >
+              The method is not theoretical.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+              The frameworks come from a self-directed research practice, and the
+              implementation record comes from a decade of shipped enterprise work.
+              Both are on this site.
+            </p>
+          </div>
+          <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             <Link
               href="/projects/research-practice"
               className="group rounded-2xl border border-neutral-200 p-6 transition-colors hover:border-amber-300 hover:bg-amber-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
@@ -195,7 +203,7 @@ export default function ServicesPage() {
                 Where they are validated
               </p>
               <span className="mt-3 flex items-center justify-between gap-3 font-tiempos text-xl font-bold text-neutral-950">
-                Verified Enterprise Delivery
+              Shipped Projects & Client Work
                 <ArrowRight className="h-5 w-5 shrink-0 text-amber-700 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
               </span>
             </Link>
@@ -257,24 +265,26 @@ export default function ServicesPage() {
         aria-labelledby="start-title"
         className="bg-neutral-950 py-16 text-neutral-100 md:py-28"
       >
-        <div className={`${contentBounds} max-w-3xl`}>
-          <Eyebrow dark>05 // Start Here</Eyebrow>
-          <h2
-            id="start-title"
-            className="mt-4 font-tiempos text-3xl font-bold leading-[1.05] text-white md:text-5xl"
-          >
-            {closer.title}
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
-            {closer.body}
-          </p>
-          <a
-            href={closer.ctaHref}
-            className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-neutral-950 transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
-          >
-            {closer.ctaLabel}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+        <div className={contentBounds}>
+          <div className="max-w-3xl">
+            <Eyebrow dark>05 // Start Here</Eyebrow>
+            <h2
+              id="start-title"
+              className="mt-4 font-tiempos text-3xl font-bold leading-[1.05] text-white md:text-5xl"
+            >
+              {closer.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
+              {closer.body}
+            </p>
+            <a
+              href={closer.ctaHref}
+              className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-neutral-950 transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
+            >
+              {closer.ctaLabel}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

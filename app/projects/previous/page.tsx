@@ -232,16 +232,30 @@ export default function PreviousProjectsPage() {
             className="max-w-2xl pt-20 md:pt-0 md:mt-[100px]"
           >
             <div className="inline-flex items-center gap-2 text-white text-sm font-medium mb-6" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
-              <span className="text-gray-400">UX / UI / Web / Product Design</span>
+              <span className="text-gray-400">Professional Validation / Enterprise Delivery</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>
               <span className="text-white">
-                Client Work
+              Shipped Projects & Client Work
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
-               A collection of digital design work spanning contract, freelance, and full-time roles across a range of industries.
+              Professional case studies that validate the practice through shipped work across commerce, healthcare, higher education, enterprise, and emerging technology.
             </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/services"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
+              >
+                Work With Me
+              </Link>
+              <Link
+                href="/projects/research-practice"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
+              >
+                Explore Practice Method
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -271,6 +285,11 @@ export default function PreviousProjectsPage() {
                   <div className="p-4">
                     <p className="text-xs text-gray-400" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>{project.year}</p>
                     <h3 className="text-sm font-normal text-white mt-1" style={{ fontFamily: "'tiempos-headline-regular', serif" }}>{project.title}</h3>
+                    {project.proofLabel && (
+                      <p className="mt-3 border-t border-white/10 pt-3 text-[11px] leading-relaxed text-gray-300">
+                        {project.proofLabel}
+                      </p>
+                    )}
                   </div>
                 </Link>
               </motion.div>
