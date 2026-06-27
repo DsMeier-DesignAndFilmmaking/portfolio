@@ -339,7 +339,12 @@ export default function HomePage() {
         
 {/* Title Block - Clean Editorial Layout (Zero Gradients = Zero Banding) */}
 <div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
-  <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500 mb-4">Systems Design Practice</p>
+  <div className="mb-4 flex items-center gap-2">
+    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" aria-hidden="true" />
+    <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500">
+      Practice Overview // Real-World Infrastructure
+    </p>
+  </div>
   <h1
     className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
     style={{ 
@@ -349,15 +354,7 @@ export default function HomePage() {
       marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
     }}
   >
-    Designing Experiences Across&nbsp;
-    <span 
-      className="text-black inline underline decoration-[#8AA399] decoration-[3px] md:decoration-[4px] underline-offset-[6px] md:underline-offset-[8px] text-balance"
-      style={{
-        textDecorationSkipInk: 'none'
-      }}
-    >
-      People, Places, &amp;&nbsp;Systems
-    </span>
+    Designing systems that harmonize physical spaces, digital software, and human experiences.
   </h1>
 </div>
 
@@ -365,32 +362,31 @@ export default function HomePage() {
         <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
         <p className="text-gray-900 leading-relaxed tracking-normal text-left text-pretty"
   style={{ 
-    fontFamily: "'Roboto', Helvetica, sans-serif", 
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>I’m Dan Meier.</strong> I run a systems design practice that reads complex environments before redesigning them. The method started in landscape architecture and urban design—where ecology, circulation, and human behavior resolve as one system (documented in my{' '}
+  <strong>I'm Dan Meier.</strong> I bridge the gap between physical places and digital spaces. Over the past 15 years, my path has wound through landscape architecture{' '}(
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-blue-600 hover:text-blue-800 underline transition-colors duration-200"
+    className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
   >
-    Master’s Thesis
-  </a>
-  ). <br></br><br></br>Over fifteen years that method carried into digital products, enterprise operations, and the AI layer now binding them together.
+    my Master’s thesis
+  </a>), digital product and web design, and software development. It’s a career built on bridging the gap between physical and digital spaces, a perspective that has continuously been refined by traveling to over 40 countries. Today, I build context-aware digital systems designed to thrive amid the unpredictable realities of everyday life.
 </p>
           
           <p 
             className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal text-pretty"
             style={{ 
-              fontFamily: "'Roboto', Helvetica, sans-serif", 
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
               borderLeft: '2px solid #E5E7EB',
               paddingLeft: '1rem' 
             }}
           >
-            I build AI and component-driven systems that hold their logic where conditions don’t—logistics, landscape, and operational&nbsp;friction.
+            Currently exploring how to combine environmental systems with adaptive software, building tools designed to navigate the messy realities of human interaction.
           </p>
           
           {/* Dedicated Signature Frame - Tightened top spacing */}
@@ -418,21 +414,19 @@ export default function HomePage() {
   <div className="homepage-container mt-12 md:mt-16 mb-16 md:mb-24 relative z-10">
     <div className="homepage-copy-column">
       <div 
-        className="w-full relative rounded-lg shadow-lg overflow-hidden" 
+        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)] transition-transform duration-700 hover:scale-[1.01]" 
         style={{ 
-          background: '#f0f0f0',
-          aspectRatio: '1920 / 1080'
+          aspectRatio: '16 / 9'
         }}
       >
         <Image 
           id="me_heroImage-1_1.1.1"
           src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
           alt="Dan Meier"
-          width={1920}
-          height={1080}
+          fill
           priority
-          sizes="(max-width: 768px) 100vw, 576px"
-          className="w-full h-auto block rounded-lg transition-all duration-300"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 800px"
+          className="object-cover"
         />
       </div>
     </div>
