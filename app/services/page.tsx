@@ -53,14 +53,14 @@ export default function ServicesPage() {
             <Eyebrow>{hero.kicker}</Eyebrow>
             <h1
               id="services-hero-title"
-              className="mt-4 font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
+              className="mt-4 text-balance font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
             >
               {hero.title}
             </h1>
-            <p className="mt-5 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
+            <p className="mt-5 text-pretty font-tiempos text-xl italic text-neutral-500 md:text-2xl">
               {hero.deck}
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-neutral-600">
               {hero.lede}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -92,11 +92,11 @@ export default function ServicesPage() {
           <div className="max-w-3xl">
             <h2
               id="typical-problems-title"
-              className="font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
+              className="text-balance font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
             >
               {typicalProblems.title}
             </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base">
+            <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-neutral-600 md:text-base">
               {typicalProblems.intro}
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function ServicesPage() {
             {typicalProblems.items.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border border-neutral-200 bg-white/80 px-4 py-3 text-sm font-medium leading-snug text-neutral-700"
+                className="text-pretty rounded-xl border border-neutral-200 bg-white/80 px-4 py-3 text-sm font-medium leading-snug text-neutral-700"
               >
                 {item}
               </li>
@@ -125,7 +125,7 @@ export default function ServicesPage() {
             <Eyebrow>01 // The Engagements</Eyebrow>
             <h2
               id="engagements-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               Three ways the practice resolves a systems problem.
             </h2>
@@ -140,10 +140,10 @@ export default function ServicesPage() {
                 <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-amber-700">
                   {e.no}
                 </span>
-                <h3 className="mt-3 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
+                <h3 className="mt-3 text-balance font-tiempos text-2xl font-bold leading-tight text-neutral-950">
                   {e.title}
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+                <p className="mt-4 text-pretty text-sm leading-relaxed text-neutral-700">
                   {e.outcome}
                 </p>
                 <dl className="mt-5 space-y-4 border-t border-neutral-100 pt-5 text-sm">
@@ -156,7 +156,7 @@ export default function ServicesPage() {
                         {e.bestFor.map((item) => (
                           <li key={item} className="flex gap-2">
                             <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber-600" aria-hidden="true" />
-                            <span>{item}</span>
+                            <span className="text-pretty">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -198,7 +198,7 @@ export default function ServicesPage() {
               <Eyebrow>02 // Useful When</Eyebrow>
               <h2
                 id="best-for-title"
-                className="mt-3 font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
+                className="mt-3 text-balance font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
               >
                 The work is strongest across boundaries.
               </h2>
@@ -207,7 +207,7 @@ export default function ServicesPage() {
               {bestFor.map((item) => (
                 <li
                   key={item}
-                  className="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold leading-snug text-neutral-800"
+                  className="text-pretty rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold leading-snug text-neutral-800"
                 >
                   {item}
                 </li>
@@ -228,11 +228,11 @@ export default function ServicesPage() {
             <Eyebrow>03 // How We Work</Eyebrow>
             <h2
               id="process-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               How We Work
             </h2>
-            <p className="mt-4 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
+            <p className="mt-4 text-pretty font-tiempos text-xl italic text-neutral-500 md:text-2xl">
               Scope, read, frame, hand off.
             </p>
           </header>
@@ -246,10 +246,10 @@ export default function ServicesPage() {
                 <p className="font-mono text-sm font-black text-amber-700">
                   {step.no}
                 </p>
-                <h3 className="mt-3 font-tiempos text-xl font-bold leading-tight text-neutral-950">
+                <h3 className="mt-3 text-balance font-tiempos text-xl font-bold leading-tight text-neutral-950">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-2 text-pretty text-sm leading-relaxed text-neutral-600">
                   {step.body}
                 </p>
               </li>
@@ -269,11 +269,11 @@ export default function ServicesPage() {
             <Eyebrow>04 // Why This Practice</Eyebrow>
             <h2
               id="proof-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               {proof.title}
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+            <p className="mt-6 text-pretty text-lg leading-relaxed text-neutral-600">
               {proof.body}
             </p>
           </div>
@@ -281,7 +281,7 @@ export default function ServicesPage() {
             {proof.points.map((point) => (
               <li
                 key={point}
-                className="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm leading-relaxed text-neutral-700"
+                className="text-pretty rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm leading-relaxed text-neutral-700"
               >
                 {point}
               </li>
@@ -318,7 +318,7 @@ export default function ServicesPage() {
             <Eyebrow>05 // Fit</Eyebrow>
             <h2
               id="fit-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               Is This the Right Fit?
             </h2>
@@ -333,7 +333,7 @@ export default function ServicesPage() {
                 {fit.good.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-neutral-700">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
-                    <span>{item}</span>
+                    <span className="text-pretty">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -346,7 +346,7 @@ export default function ServicesPage() {
                 {fit.notYet.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-neutral-600">
                     <X className="mt-0.5 h-4 w-4 shrink-0 text-neutral-400" aria-hidden="true" />
-                    <span>{item}</span>
+                    <span className="text-pretty">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -366,7 +366,7 @@ export default function ServicesPage() {
             <Eyebrow>06 // Questions</Eyebrow>
             <h2
               id="faq-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               {faq.title}
             </h2>
@@ -378,10 +378,10 @@ export default function ServicesPage() {
                 key={item.question}
                 className="rounded-xl border border-neutral-200 bg-white p-5 md:p-6"
               >
-                <h3 className="text-sm font-semibold leading-snug text-neutral-950">
+                <h3 className="text-balance text-sm font-semibold leading-snug text-neutral-950">
                   {item.question}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-3 text-pretty text-sm leading-relaxed text-neutral-600">
                   {item.answer}
                 </p>
               </article>
@@ -401,11 +401,11 @@ export default function ServicesPage() {
             <Eyebrow dark>07 // Start Here</Eyebrow>
             <h2
               id="start-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-[1.05] text-white md:text-5xl"
+              className="mt-4 text-balance font-tiempos text-3xl font-bold leading-[1.05] text-white md:text-5xl"
             >
               {closer.title}
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-neutral-400">
               {closer.body}
             </p>
             <Link
@@ -415,7 +415,7 @@ export default function ServicesPage() {
               {closer.ctaLabel}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-500">
+            <p className="mt-5 max-w-xl text-pretty text-sm leading-relaxed text-neutral-500">
               {closer.support}
             </p>
           </div>
