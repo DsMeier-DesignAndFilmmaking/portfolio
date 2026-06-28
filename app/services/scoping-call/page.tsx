@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Share a project inquiry for environmental systems design, experiential strategy, service design, or digital product systems work.',
 };
 
-const contentBounds = 'container mx-auto px-6 md:px-8';
+const contentBounds = 'max-w-4xl mx-auto px-6';
 
 export default function ScopingCallPage() {
   return (
@@ -39,23 +39,22 @@ export default function ScopingCallPage() {
               Back to Services
             </Link>
 
-            <div className="max-w-2xl">
+            <div className="mx-auto max-w-2xl">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
-                00 // Start a Scoping Call
+                00 // Contact Form
               </p>
               <h1
                 id="scoping-call-title"
                 className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
               >
-                Start a Scoping Call
+                Get in Touch
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-neutral-600">
                 Share what you are trying to understand, improve, or build. I'll review the context
                 and follow up with next steps if the project is a fit.
               </p>
+              <ServiceContactForm />
             </div>
-
-            <ServiceContactForm />
           </div>
         </section>
       </main>
