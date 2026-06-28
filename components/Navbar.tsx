@@ -73,13 +73,19 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
-          {['About', 'Work', 'Travelogue', 'Contact'].map((item) => (
-            <Link 
-              key={item}
-              href={item === 'Work' ? '/#black-section' : `/#${item.toLowerCase()}`}
+          {[
+            { label: 'About', href: '/#about' },
+            { label: 'Work', href: '/#black-section' },
+            { label: 'Services', href: '/services/' },
+            { label: 'Travelogue', href: '/#travelogue' },
+            { label: 'Contact', href: '/services/scoping-call/' },
+          ].map(({ label, href }) => (
+            <Link
+              key={label}
+              href={href}
               className={`text-sm font-medium ${textColor} hover:text-blue-500 transition-colors`}
             >
-              {item}
+              {label}
             </Link>
           ))}
         </div>

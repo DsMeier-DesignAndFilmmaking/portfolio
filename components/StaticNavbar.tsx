@@ -56,6 +56,14 @@ export default function StaticNavbar({ isMobileVisible = true }: StaticNavbarPro
           </li>
           <li>
             <Link
+              href="/services/"
+              className="text-sm font-medium text-[#2F2A3B]/80 hover:text-[#2F2A3B] hover:underline underline-offset-4 transition-colors"
+            >
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link
               href="#travelogue"
               className="text-sm font-medium text-[#2F2A3B]/80 hover:text-[#2F2A3B] hover:underline underline-offset-4 transition-colors"
             >
@@ -64,7 +72,7 @@ export default function StaticNavbar({ isMobileVisible = true }: StaticNavbarPro
           </li>
           <li>
             <Link
-              href="#contact"
+              href="/services/scoping-call/"
               className="text-sm font-medium text-[#2F2A3B]/80 hover:text-[#2F2A3B] hover:underline underline-offset-4 transition-colors"
             >
               Contact
