@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import '@/styles/globals.css';
-import ConditionalNavbar from '@/components/ConditionalNavbar';
 import ConditionalFooter from '@/components/ConditionalFooter';
 import BodyKeyWrapper from '@/components/BodyKeyWrapper';
 import ScrollCorrection from '@/components/ScrollCorrection';
@@ -124,9 +123,6 @@ export default function RootLayout({
         {/* ✅ DO NOT put key on <html> or <body> - only on content wrapper inside body */}
         <BodyKeyWrapper>
           <div id="__next" suppressHydrationWarning className="flex flex-col min-h-screen">
-            {/* ✅ Conditional Navbar - Hidden on homepage only, shown on all other pages */}
-            <ConditionalNavbar />
-            
             {/* ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access) */}
             {/* <RouteChangeCleanup /> */}
             

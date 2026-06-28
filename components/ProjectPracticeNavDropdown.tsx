@@ -243,13 +243,20 @@ export default function ProjectPracticeNavDropdown({
                 >
                   About
                 </a>
-                <a
-                  href="/#contact"
+                <Link
+                  href="/services/"
+                  onClick={closeMenus}
+                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/services/scoping-call/"
                   onClick={closeMenus}
                   className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Contact
-                </a>
+                </Link>
               </div>
               {topLevelProjectNavGroups.map((group) => (
                 <div key={group.label} className="flex flex-col space-y-3">
@@ -335,12 +342,18 @@ export default function ProjectPracticeNavDropdown({
         >
           About
         </a>
-        <a
-          href="/#contact"
+        <Link
+          href="/services/"
+          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
+        >
+          Services
+        </Link>
+        <Link
+          href="/services/scoping-call/"
           className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
         >
           Contact
-        </a>
+        </Link>
         <div ref={desktopRef} className="relative">
         <button
           type="button"
