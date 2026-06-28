@@ -101,7 +101,7 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
           {/* Contact Column */}
           <div className="flex flex-col">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
-              Contact
+              Learn More
             </h3>
             <div className="flex flex-col space-y-3">
               <div className="flex items-center space-x-5">
@@ -167,6 +167,12 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
                 className="self-start whitespace-nowrap rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition-all duration-200 ease-in-out hover:bg-black hover:text-white"
               >
                 Services & Engagements
+              </Link>
+              <Link
+                href="/services/scoping-call"
+                className="self-start whitespace-nowrap rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition-all duration-200 ease-in-out hover:bg-black hover:text-white"
+              >
+                Book A Scoping Call
               </Link>
             </div>
           </div>
