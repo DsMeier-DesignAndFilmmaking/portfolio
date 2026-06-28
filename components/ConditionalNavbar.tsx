@@ -10,23 +10,34 @@
  */
 
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import StaticNavbar from '@/components/StaticNavbar';
+
+function shouldHideNavbar(pathname: string | null): boolean {
+  return (
+    pathname === '/' ||
+    Boolean(pathname?.startsWith('/projects/')) ||
+    Boolean(pathname?.startsWith('/mockups/')) ||
+    Boolean(pathname?.startsWith('/services'))
+  );
+}
 
 export default function ConditionalNavbar() {
   const pathname = usePathname();
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  // Hide navbar on homepage, project pages, mockups, and the services/engagements page.
-  // Homepage uses HomepageSideNav (left side navigation); project pages and /services
-  // render the shared practice nav (PracticeNav) instead.
-  if (
-    pathname === '/' ||
-    (pathname && pathname.startsWith('/projects/')) ||
-    (pathname && pathname.startsWith('/mockups/')) ||
-    (pathname && pathname.startsWith('/services'))
-  ) {
-    return null;
-  }
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
   
-  // Show navbar on all other pages
-  return <StaticNavbar />;
+  const hideNavbar = isHydrated && shouldHideNavbar(pathname);
+
+  // Keep a stable layout sibling before <main>. The server and first client
+  // render both include StaticNavbar; hidden routes remove it only after the
+  // client pathname is available, avoiding a header/main hydration mismatch.
+  return (
+    <div data-global-navbar-slot="">
+      {hideNavbar ? null : <StaticNavbar />}
+    </div>
+  );
 }

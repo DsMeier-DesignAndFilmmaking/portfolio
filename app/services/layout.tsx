@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Engagements',
+  title: 'Services & Engagements | Dan Meier',
   description:
-    'Three engagements from a systems design practice: systems audits, adaptive logic framing, and structural design strategy — resolving operational friction where digital logic meets the physical world.',
+    'Independent systems design for products, AI, and operational complexity. Systems audits, adaptive logic framing, and structural design strategy for teams working across digital, operational, and physical systems.',
   openGraph: {
-    title: 'Engagements — Dan Meier · Systems Design Practice',
+    title: 'Services & Engagements | Dan Meier',
     description:
-      'Systems audits, adaptive logic framing, and structural design strategy. The practice, offered as work.',
+      'Independent systems design for products, AI, and operational complexity. Systems audits, adaptive logic framing, and structural design strategy for teams working across digital, operational, and physical systems.',
     url: '/services',
   },
 };

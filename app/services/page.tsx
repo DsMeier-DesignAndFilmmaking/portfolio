@@ -4,11 +4,17 @@
 import Link from 'next/link';
 import { ArrowRight, Check, X } from 'lucide-react';
 import PracticeNav from '@/components/PracticeNav';
+import ServiceContactForm from '@/components/ServiceContactForm';
 import {
   hero,
+  typicalProblems,
   engagements,
+  bestFor,
   process,
+  proof,
   fit,
+  faq,
+  contact,
   closer,
 } from './content';
 
@@ -47,7 +53,10 @@ export default function ServicesPage() {
         <div className={contentBounds}>
           <div className="max-w-3xl">
             <Eyebrow>{hero.kicker}</Eyebrow>
-            <h1 className="mt-4 font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl">
+            <h1
+              id="services-hero-title"
+              className="mt-4 font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
+            >
               {hero.title}
             </h1>
             <p className="mt-5 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
@@ -56,14 +65,54 @@ export default function ServicesPage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
               {hero.lede}
             </p>
-            <a
-              href={hero.ctaHref}
-              className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
-            >
-              {hero.ctaLabel}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href={hero.ctaHref}
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
+              >
+                {hero.ctaLabel}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href="#engagements"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
+              >
+                Explore Engagements
+              </a>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Typical problems — recognition band */}
+      <section
+        id="typical-problems"
+        aria-labelledby="typical-problems-title"
+        className="border-b border-neutral-100 bg-neutral-50/70 py-12 md:py-16"
+      >
+        <div className={contentBounds}>
+          <div className="max-w-3xl">
+            <h2
+              id="typical-problems-title"
+              className="font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
+            >
+              {typicalProblems.title}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base">
+              {typicalProblems.intro}
+            </p>
+          </div>
+
+          <ul className="mt-7 grid max-w-5xl gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {typicalProblems.items.map((item) => (
+              <li
+                key={item}
+                className="rounded-xl border border-neutral-200 bg-white/80 px-4 py-3 text-sm font-medium leading-snug text-neutral-700"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -96,24 +145,40 @@ export default function ServicesPage() {
                 <h3 className="mt-3 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
                   {e.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  {e.body}
+                <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+                  {e.outcome}
                 </p>
-                <dl className="mt-6 space-y-4 border-t border-neutral-100 pt-5 text-sm">
+                <dl className="mt-5 space-y-4 border-t border-neutral-100 pt-5 text-sm">
                   <div>
                     <dt className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-neutral-400">
-                      When you need it
+                      Best for
                     </dt>
-                    <dd className="mt-1 leading-relaxed text-neutral-600">
-                      {e.whenYouNeedIt}
+                    <dd className="mt-2">
+                      <ul className="space-y-1.5 leading-relaxed text-neutral-600">
+                        {e.bestFor.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber-600" aria-hidden="true" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </dd>
                   </div>
                   <div>
                     <dt className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-neutral-400">
-                      You get
+                      Deliverables
                     </dt>
-                    <dd className="mt-1 leading-relaxed text-neutral-600">
-                      {e.youGet}
+                    <dd className="mt-2">
+                      <ul className="flex flex-wrap gap-2">
+                        {e.deliverables.map((item) => (
+                          <li
+                            key={item}
+                            className="rounded-full border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-[11px] font-semibold text-neutral-700"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
                     </dd>
                   </div>
                 </dl>
@@ -123,21 +188,55 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 02 — Mechanism: how an engagement runs */}
+      {/* 02 — Useful when */}
+      <section
+        id="best-for"
+        aria-labelledby="best-for-title"
+        className="border-y border-neutral-100 bg-neutral-50 py-8 md:py-10"
+      >
+        <div className={contentBounds}>
+          <div className="grid max-w-5xl gap-5 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)] md:items-center">
+            <div className="max-w-2xl">
+              <Eyebrow>02 // Useful When</Eyebrow>
+              <h2
+                id="best-for-title"
+                className="mt-3 font-tiempos text-2xl font-bold leading-tight text-neutral-950 md:text-3xl"
+              >
+                The work is strongest across boundaries.
+              </h2>
+            </div>
+            <ul className="grid gap-2.5 sm:grid-cols-3">
+              {bestFor.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold leading-snug text-neutral-800"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 — Mechanism: how we work */}
       <section
         id="process"
         aria-labelledby="process-title"
-        className="border-y border-neutral-100 bg-neutral-50 py-16 md:py-28"
+        className="py-16 md:py-28"
       >
         <div className={contentBounds}>
           <header className="mb-10 max-w-3xl md:mb-14">
-            <Eyebrow>02 // How An Engagement Runs</Eyebrow>
+            <Eyebrow>03 // How We Work</Eyebrow>
             <h2
               id="process-title"
               className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
-              Scope, read, frame, hand off.
+              How We Work
             </h2>
+            <p className="mt-4 font-tiempos text-xl italic text-neutral-500 md:text-2xl">
+              Scope, read, frame, hand off.
+            </p>
           </header>
 
           <ol className="grid gap-6 md:grid-cols-4">
@@ -161,75 +260,74 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 03 — Evidence: the record behind the offer */}
+      {/* 04 — Evidence: the record behind the offer */}
       <section
         id="proof"
         aria-labelledby="proof-title"
-        className="py-16 md:py-28"
+        className="border-y border-neutral-100 bg-neutral-50 py-16 md:py-28"
       >
         <div className={contentBounds}>
           <div className="max-w-3xl">
-            <Eyebrow>03 // The Record</Eyebrow>
+            <Eyebrow>04 // Why This Practice</Eyebrow>
             <h2
               id="proof-title"
               className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
-              The method is not theoretical.
+              {proof.title}
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-              The frameworks come from a self-directed research practice, and the
-              implementation record comes from a decade of shipped enterprise work.
-              Both are on this site.
+              {proof.body}
             </p>
           </div>
+          <ul className="mt-8 grid max-w-4xl gap-3 md:grid-cols-2">
+            {proof.points.map((point) => (
+              <li
+                key={point}
+                className="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm leading-relaxed text-neutral-700"
+              >
+                {point}
+              </li>
+            ))}
+          </ul>
           <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
-            <Link
-              href="/projects/research-practice"
-              className="group rounded-2xl border border-neutral-200 p-6 transition-colors hover:border-amber-300 hover:bg-amber-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
-            >
-              <p className="font-mono text-[9px] font-black uppercase tracking-[0.18em] text-amber-700">
-                Where the frameworks come from
-              </p>
-              <span className="mt-3 flex items-center justify-between gap-3 font-tiempos text-xl font-bold text-neutral-950">
-                Systems Design Practice
-                <ArrowRight className="h-5 w-5 shrink-0 text-amber-700 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
-              </span>
-            </Link>
-            <Link
-              href="/projects/previous"
-              className="group rounded-2xl border border-neutral-200 p-6 transition-colors hover:border-amber-300 hover:bg-amber-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
-            >
-              <p className="font-mono text-[9px] font-black uppercase tracking-[0.18em] text-amber-700">
-                Where they are validated
-              </p>
-              <span className="mt-3 flex items-center justify-between gap-3 font-tiempos text-xl font-bold text-neutral-950">
-              Shipped Projects & Client Work
-                <ArrowRight className="h-5 w-5 shrink-0 text-amber-700 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
-              </span>
-            </Link>
+            {proof.links.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-2xl border border-neutral-200 bg-white p-6 transition-colors hover:border-amber-300 hover:bg-amber-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
+              >
+                <p className="font-mono text-[9px] font-black uppercase tracking-[0.18em] text-amber-700">
+                  {item.eyebrow}
+                </p>
+                <span className="mt-3 flex items-center justify-between gap-3 font-tiempos text-xl font-bold text-neutral-950">
+                  {item.title}
+                  <ArrowRight className="h-5 w-5 shrink-0 text-amber-700 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 04 — Honesty: fit boundary */}
+      {/* 05 — Honesty: fit boundary */}
       <section
         id="fit"
         aria-labelledby="fit-title"
-        className="border-y border-neutral-100 bg-neutral-50 py-16 md:py-28"
+        className="py-14 md:py-20"
       >
         <div className={contentBounds}>
-          <header className="mb-10 max-w-3xl md:mb-14">
-            <Eyebrow>04 // Fit</Eyebrow>
+          <header className="mb-8 max-w-3xl md:mb-10">
+            <Eyebrow>05 // Fit</Eyebrow>
             <h2
               id="fit-title"
               className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
-              A good fit, and a not-yet.
+              Is This the Right Fit?
             </h2>
           </header>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6 md:p-8">
+            <div className="rounded-xl border border-neutral-200 bg-white p-5 md:p-6">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-emerald-700">
                 Good fit
               </p>
@@ -242,7 +340,7 @@ export default function ServicesPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8">
+            <div className="rounded-xl border border-neutral-200 bg-white p-5 md:p-6">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
                 Not yet a fit
               </p>
@@ -259,7 +357,42 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 05 — Invitation: CTA */}
+      {/* 06 — FAQ */}
+      <section
+        id="faq"
+        aria-labelledby="faq-title"
+        className="border-t border-neutral-100 bg-neutral-50 py-14 md:py-20"
+      >
+        <div className={contentBounds}>
+          <div className="max-w-3xl">
+            <Eyebrow>06 // Questions</Eyebrow>
+            <h2
+              id="faq-title"
+              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+            >
+              {faq.title}
+            </h2>
+          </div>
+
+          <div className="mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
+            {faq.items.map((item) => (
+              <article
+                key={item.question}
+                className="rounded-xl border border-neutral-200 bg-white p-5 md:p-6"
+              >
+                <h3 className="text-sm font-semibold leading-snug text-neutral-950">
+                  {item.question}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                  {item.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 07 — Invitation: CTA */}
       <section
         id="start"
         aria-labelledby="start-title"
@@ -267,7 +400,7 @@ export default function ServicesPage() {
       >
         <div className={contentBounds}>
           <div className="max-w-3xl">
-            <Eyebrow dark>05 // Start Here</Eyebrow>
+            <Eyebrow dark>07 // Start Here</Eyebrow>
             <h2
               id="start-title"
               className="mt-4 font-tiempos text-3xl font-bold leading-[1.05] text-white md:text-5xl"
@@ -284,7 +417,33 @@ export default function ServicesPage() {
               {closer.ctaLabel}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-500">
+              {closer.support}
+            </p>
           </div>
+        </div>
+      </section>
+
+      {/* 08 — Contact form */}
+      <section
+        id="contact-form"
+        aria-labelledby="contact-form-title"
+        className="scroll-mt-24 py-16 md:py-28"
+      >
+        <div className={contentBounds}>
+          <div className="max-w-2xl">
+            <Eyebrow>{contact.kicker}</Eyebrow>
+            <h2
+              id="contact-form-title"
+              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+            >
+              {contact.title}
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+              {contact.body}
+            </p>
+          </div>
+          <ServiceContactForm />
         </div>
       </section>
     </div>

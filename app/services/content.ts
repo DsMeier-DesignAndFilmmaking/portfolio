@@ -3,52 +3,92 @@
 
 export const hero = {
   kicker: 'Engagements',
-  title: 'Systems audits, adaptive logic framing, and structural design strategy.',
-  deck: 'The practice, offered as work.',
+  title: 'Independent systems design for products, AI, and operational complexity.',
+  deck:
+    'I help teams diagnose complex systems, define adaptive decision logic, and create the structural frameworks products can grow on.',
   lede:
-    'Most teams do not have a design problem. They have a systems problem wearing a design problem’s clothes — information lost between steps, logic that breaks when conditions change, friction at the seam between the digital and the operational. These three engagements name and resolve that.',
-  ctaLabel: 'Book a scoping call',
-  ctaHref:
-    'mailto:danielstevenmeier@gmail.com?subject=Systems%20design%20engagement&body=A%20few%20lines%20on%20the%20system%2C%20the%20friction%2C%20and%20your%20timeline%3A',
+    'Most teams do not have a design problem. They have a systems problem: information disappears between steps, logic breaks when conditions change, and products become harder to evolve.',
+  ctaLabel: 'Start a Scoping Call',
+  ctaHref: '#contact-form',
+} as const;
+
+export const typicalProblems = {
+  title: 'Typical Problems',
+  intro:
+    'This work is useful when the visible issue is only a symptom of a deeper system problem.',
+  items: [
+    'AI initiatives without clear decision logic',
+    'Products becoming harder to evolve',
+    'Operations disconnected from digital tools',
+    'Teams solving symptoms instead of structure',
+    'Experience breakdowns across physical and digital touchpoints',
+    'Complex systems no one fully understands anymore',
+  ],
 } as const;
 
 export interface Engagement {
   no: string;
   title: string;
-  body: string;
-  whenYouNeedIt: string;
-  youGet: string;
+  outcome: string;
+  bestFor: string[];
+  deliverables: string[];
 }
 
 export const engagements: Engagement[] = [
   {
     no: '01 /',
     title: 'Systems Audit',
-    body: 'A structured read of how the current system loses information, agency, or recovery — across the digital, operational, and physical layers it actually spans.',
-    whenYouNeedIt:
-      'Something works on paper but breaks in the field, and no one can name where.',
-    youGet:
-      'A mapped system with the failure points located, ranked, and traced to cause.',
+    outcome: 'Find where information, decisions, and operations break down.',
+    bestFor: [
+      'Products that feel increasingly complex',
+      'Disconnected teams or workflows',
+      'Operational friction across digital and physical touchpoints',
+    ],
+    deliverables: [
+      'System map',
+      'Failure-point analysis',
+      'Prioritized opportunities',
+    ],
   },
   {
     no: '02 /',
     title: 'Adaptive Logic Framing',
-    body: 'The decision logic for how AI workflows, state tracking, and semantic rules should behave when conditions change — written before anyone builds it.',
-    whenYouNeedIt:
-      'You are about to build automation or AI and the rules for “what happens when reality shifts” are undefined.',
-    youGet:
-      'A logic specification: states, signals, fallbacks, and the recovery path when the system is wrong.',
+    outcome:
+      'Define how AI workflows, state tracking, and decision rules should behave when conditions change.',
+    bestFor: [
+      'AI or automation initiatives before build',
+      'Undefined decision logic',
+      'Systems that need fallbacks, recovery paths, or confidence states',
+    ],
+    deliverables: [
+      'Logic specification',
+      'State and signal model',
+      'Fallback and recovery paths',
+    ],
   },
   {
     no: '03 /',
     title: 'Structural Design Strategy',
-    body: 'The component and decision architecture a team builds against — the structure that keeps the product coherent as it scales past its first version.',
-    whenYouNeedIt:
-      'The product is growing faster than its structure and every new feature costs more than the last.',
-    youGet:
-      'A component and information architecture, with the governing rules that hold it together.',
+    outcome:
+      'Create the component, information, and decision architecture a product can scale against.',
+    bestFor: [
+      'Products growing past their first version',
+      'Design systems without governing logic',
+      'Teams adding features faster than structure can support',
+    ],
+    deliverables: [
+      'Component architecture',
+      'Information architecture',
+      'Governing design rules',
+    ],
   },
 ];
+
+export const bestFor = [
+  'Physical and digital systems',
+  'AI or automation logic',
+  'Service and operations friction',
+] as const;
 
 export interface ProcessStep {
   no: string;
@@ -59,44 +99,102 @@ export interface ProcessStep {
 export const process: ProcessStep[] = [
   {
     no: '01',
-    title: 'Scope',
-    body: 'A call to locate the real system and the friction inside it. No charge — it is how we both decide there is a fit.',
+    title: 'Scoping Call',
+    body: 'A focused conversation to locate the system, the friction, and whether there is a fit.',
   },
   {
     no: '02',
-    title: 'Read',
-    body: 'Field and artifact research: how the system behaves in use, not in the deck. Observation becomes structured evidence.',
+    title: 'System Read',
+    body: 'Research across artifacts, workflows, user behavior, operational realities, and field conditions.',
   },
   {
     no: '03',
-    title: 'Frame',
-    body: 'The evidence becomes a framework — the audit, the logic spec, or the architecture — traceable back to what was observed.',
+    title: 'Framework',
+    body: 'The evidence becomes a system map, logic specification, or structural architecture.',
   },
   {
     no: '04',
-    title: 'Hand off',
-    body: 'A structure your team builds against, with the governing rules written down so it survives contact with the next decision.',
+    title: 'Handoff',
+    body: 'Your team receives a clear structure, governing rules, and recommended next decisions.',
   },
 ];
+
+export const proof = {
+  title: 'Why This Practice',
+  body:
+    'The method combines independent systems research with a decade of shipped digital work.',
+  points: [
+    '10+ years designing digital products, enterprise systems, and complex information architectures',
+    'Independent research practice focused on systems, decision logic, and adaptive experience design',
+    'Published frameworks across AI, environmental systems, outdoor hospitality, and operational complexity',
+    'Implementation experience across higher education, healthcare, enterprise, e-commerce, and service systems',
+  ],
+  links: [
+    {
+      eyebrow: 'Method source',
+      title: 'Systems Design Practice',
+      href: '/projects/research-practice',
+    },
+    {
+      eyebrow: 'Delivery validation',
+      title: 'Shipped Projects & Client Work',
+      href: '/projects/previous',
+    },
+  ],
+} as const;
 
 export const fit = {
   good: [
     'You own a system that spans digital, operational, and physical layers.',
-    'You are about to commit engineering to AI or automation and want the logic right first.',
-    'A product works in demos but loses coherence as it scales.',
-    'You want the structure and the reasoning, not just screens.',
+    'You are planning AI, automation, or adaptive workflows and need the logic clarified first.',
+    'Your product works in demos but loses coherence as it scales.',
+    'You want structure, reasoning, and decision rules — not just screens.',
   ],
   notYet: [
-    'You need production visual design or a marketing site built.',
+    'You need production visual design only.',
+    'You need a marketing website built.',
     'You want headcount augmentation rather than a bounded engagement.',
-    'The decision is already made and you need execution, not framing.',
-    'There is no system yet — only an idea looking for validation.',
+    'The idea has not been validated enough to identify a real system.',
   ],
 } as const;
 
+export const faq = {
+  title: 'Questions Before We Talk',
+  items: [
+    {
+      question: 'What kind of teams is this for?',
+      answer:
+        'Product teams, founders, operators, innovation groups, and organizations working across digital, operational, and physical systems.',
+    },
+    {
+      question: 'Do you implement the work?',
+      answer:
+        'The core engagement is strategy, structure, and documentation. Depending on scope, I can also support implementation planning or collaborate with existing product, design, and engineering teams.',
+    },
+    {
+      question: 'How long does an engagement take?',
+      answer:
+        'Most engagements are scoped as bounded projects. The timeline depends on system complexity, research access, and the level of documentation needed.',
+    },
+    {
+      question: 'What if I am not sure which engagement fits?',
+      answer:
+        'Start with a scoping call. The first conversation is used to identify the real system, the friction inside it, and whether one of the engagements is appropriate.',
+    },
+  ],
+} as const;
+
+export const contact = {
+  kicker: '08 // Start a Scoping Call',
+  title: 'Tell me about the system.',
+  body: 'Share the system, where it is breaking down, and your timeline. The first conversation is a scoping call to find the real problem — not a sales pitch. I read every inquiry before responding.',
+} as const;
+
 export const closer = {
-  title: 'Start with the system, not the scope.',
-  body: 'Send a few lines on the system, the friction, and your timeline. The first call is a scoping conversation — we use it to find the real problem and decide whether an engagement fits.',
-  ctaLabel: 'Book a scoping call',
+  title: 'Start with the system.',
+  body: 'Send a few lines about the system, where it is breaking down, and what timeline you are working against. The first call is a scoping conversation, not a sales pitch.',
+  ctaLabel: 'Book a Scoping Call',
   ctaHref: hero.ctaHref,
+  support:
+    'If there is a clear fit, we will define the right engagement. If not, I will tell you directly.',
 } as const;
