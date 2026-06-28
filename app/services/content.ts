@@ -9,7 +9,7 @@ export const hero = {
   lede:
     'Most teams do not have a design problem. They have a systems problem: information disappears between steps, logic breaks when conditions change, and products become harder to evolve.',
   ctaLabel: 'Start a Scoping Call',
-  ctaHref: '#contact-form',
+  ctaHref: '/services/scoping-call/',
 } as const;
 
 export const typicalProblems = {

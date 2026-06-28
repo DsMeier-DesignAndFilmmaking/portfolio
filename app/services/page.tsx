@@ -4,7 +4,6 @@
 import Link from 'next/link';
 import { ArrowRight, Check, X } from 'lucide-react';
 import PracticeNav from '@/components/PracticeNav';
-import ServiceContactForm from '@/components/ServiceContactForm';
 import {
   hero,
   typicalProblems,
@@ -14,7 +13,6 @@ import {
   proof,
   fit,
   faq,
-  contact,
   closer,
 } from './content';
 
@@ -66,13 +64,13 @@ export default function ServicesPage() {
               {hero.lede}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
+              <Link
                 href={hero.ctaHref}
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
               >
                 {hero.ctaLabel}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
+              </Link>
               <a
                 href="#engagements"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2"
@@ -410,13 +408,13 @@ export default function ServicesPage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
               {closer.body}
             </p>
-            <a
+            <Link
               href={closer.ctaHref}
               className="mt-9 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-neutral-950 transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
             >
               {closer.ctaLabel}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </Link>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-500">
               {closer.support}
             </p>
@@ -424,28 +422,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 08 — Contact form */}
-      <section
-        id="contact-form"
-        aria-labelledby="contact-form-title"
-        className="scroll-mt-24 py-16 md:py-28"
-      >
-        <div className={contentBounds}>
-          <div className="max-w-2xl">
-            <Eyebrow>{contact.kicker}</Eyebrow>
-            <h2
-              id="contact-form-title"
-              className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
-            >
-              {contact.title}
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-              {contact.body}
-            </p>
-          </div>
-          <ServiceContactForm />
-        </div>
-      </section>
     </div>
   );
 }
