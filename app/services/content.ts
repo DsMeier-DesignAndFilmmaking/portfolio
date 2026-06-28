@@ -2,7 +2,7 @@
 // No published pricing by design — engagements open with a scoping call.
 
 export const hero = {
-  kicker: 'Engagements',
+  kicker: 'Services',
   title: 'Independent systems design for products, AI, and operational complexity.',
   deck:
     'I help teams diagnose complex systems, define adaptive decision logic, and create the structural frameworks products can grow on.',

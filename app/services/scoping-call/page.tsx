@@ -41,7 +41,7 @@ export default function ScopingCallPage() {
 
             <div className="max-w-2xl">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
-                08 // Start a Scoping Call
+                00 // Start a Scoping Call
               </p>
               <h1
                 id="scoping-call-title"
