@@ -39,21 +39,23 @@ export default function ScopingCallPage() {
               Back to Services
             </Link>
 
-            <div className="mx-auto max-w-2xl">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
-                00 // Contact Form
-              </p>
-              <h1
-                id="scoping-call-title"
-                className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
-              >
-                Get in Touch
-              </h1>
-              <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-                Share what you are trying to understand, improve, or build. I'll review the context
-                and follow up with next steps if the project is a fit.
-              </p>
-              <ServiceContactForm />
+            <div className="rounded-2xl border border-neutral-100 bg-neutral-50 px-8 py-10 md:px-12 md:py-14">
+              <div className="mx-auto max-w-2xl">
+                <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
+                  00 // Contact Form
+                </p>
+                <h1
+                  id="scoping-call-title"
+                  className="mt-4 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
+                >
+                  Get in Touch
+                </h1>
+                <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+                  Share what you are trying to understand, improve, or build. I'll review the context
+                  and follow up with next steps if the project is a fit.
+                </p>
+                <ServiceContactForm />
+              </div>
             </div>
           </div>
         </section>
