@@ -2,42 +2,27 @@
 
 // Services inquiry form for /services (#contact-form).
 //
-// Submission strategy (static-export safe):
-// The site is built with `output: 'export'`, so there is no server runtime in
-// production to receive a POST. Rather than fake a send, the form posts to a
-// configurable static-form endpoint read from NEXT_PUBLIC_CONTACT_ENDPOINT
-// (e.g. a Formspree form URL like https://formspree.io/f/abcdwxyz). That value
-// is a public form id, not a secret, so the NEXT_PUBLIC_ prefix is correct.
+// Submission strategy: @formspree/react useForm hook posting to form ID
+// 'mkolbanb'. The form ID is a public identifier (not a secret) — it is safe
+// to commit directly. No environment variable or server runtime required.
 //
-// ── To make this form actually send email ──────────────────────────────────
-// 1. Create a form at a static-form provider (Formspree, Web3Forms, Basin, or
-//    Netlify Forms if you deploy to Netlify) with the recipient set to
-//    danielstevenmeier@outlook.com.
-// 2. Add the provider's POST endpoint to your environment:
-//       NEXT_PUBLIC_CONTACT_ENDPOINT=https://formspree.io/f/xxxxxxxx
-//    (set it in .env.local for dev and in the host's env settings for prod).
-// 3. Rebuild. No code change needed — the form will POST JSON and show the
-//    success state on a 2xx response.
-// Until the env var is set, submitting shows the error state with a fallback
-// email link; the form does not silently pretend to deliver.
+// Provider dashboard: https://formspree.io → Forms → mkolbanb
 
 import { useId, useState } from 'react';
+import { useForm } from '@formspree/react';
 import { ArrowRight, Check, AlertCircle } from 'lucide-react';
 
-const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '';
+const FORM_ID = 'mkolbanb';
 const FALLBACK_EMAIL = 'danielstevenmeier@outlook.com';
 
 const SUCCESS_MESSAGE =
   "Thanks — your inquiry has been sent. I'll review the system, friction, and timeline before responding.";
-const ERROR_MESSAGE = `Something went wrong. Please try again or email ${FALLBACK_EMAIL} directly.`;
 
 type FieldName = 'name' | 'email' | 'organization' | 'system' | 'friction' | 'timeline' | 'budget';
 
 const REQUIRED_FIELDS: FieldName[] = ['name', 'email', 'system', 'friction'];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const initialValues: Record<FieldName, string> = {
   name: '',
@@ -51,18 +36,25 @@ const initialValues: Record<FieldName, string> = {
 
 export default function ServiceContactForm() {
   const fid = useId();
+
+  // Formspree state machine — handles fetch, loading, success, and server errors.
+  const [state, formspreeSubmit] = useForm(FORM_ID);
+
+  // Local controlled field state (values + client-side validation errors).
   const [values, setValues] = useState<Record<FieldName, string>>(initialValues);
-  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
-  const [status, setStatus] = useState<Status>('idle');
-  const [honeypot, setHoneypot] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
+
+  // Local flag for honeypot hits — lets us show the success UI without
+  // actually posting to Formspree and polluting the inbox with bot submissions.
+  const [botTrap, setBotTrap] = useState(false);
 
   const fieldId = (name: FieldName) => `${fid}-${name}`;
   const errorId = (name: FieldName) => `${fid}-${name}-error`;
 
   const update = (name: FieldName, value: string) => {
     setValues((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => {
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => {
         const next = { ...prev };
         delete next[name];
         return next;
@@ -73,9 +65,7 @@ export default function ServiceContactForm() {
   const validate = (vals: Record<FieldName, string>) => {
     const next: Partial<Record<FieldName, string>> = {};
     for (const field of REQUIRED_FIELDS) {
-      if (!vals[field].trim()) {
-        next[field] = 'This field is required.';
-      }
+      if (!vals[field].trim()) next[field] = 'This field is required.';
     }
     if (vals.email.trim() && !EMAIL_RE.test(vals.email.trim())) {
       next.email = 'Enter a valid email address.';
@@ -86,9 +76,11 @@ export default function ServiceContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Honeypot: a real user never fills this. Treat as a silent success.
-    if (honeypot.trim()) {
-      setStatus('success');
+    // Honeypot — read the uncontrolled _gotcha field directly from the DOM.
+    // Real users never see or fill it; bots typically do.
+    const gotchaEl = e.currentTarget.elements.namedItem('_gotcha') as HTMLInputElement | null;
+    if (gotchaEl?.value?.trim()) {
+      setBotTrap(true);
       return;
     }
 
@@ -96,40 +88,23 @@ export default function ServiceContactForm() {
       (Object.keys(values) as FieldName[]).map((k) => [k, values[k].trim()]),
     ) as Record<FieldName, string>;
 
-    const nextErrors = validate(trimmed);
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      // Move focus to the first invalid field for accessibility.
-      const firstInvalid = REQUIRED_FIELDS.find((f) => nextErrors[f]) ?? 'email';
+    const errs = validate(trimmed);
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
+      const firstInvalid = REQUIRED_FIELDS.find((f) => errs[f]) ?? 'name';
       document.getElementById(fieldId(firstInvalid as FieldName))?.focus();
       return;
     }
 
-    setErrors({});
-    setStatus('submitting');
+    setFieldErrors({});
 
-    // No endpoint configured → cannot deliver. Be honest: show the error state
-    // with the fallback email rather than claiming a send.
-    if (!CONTACT_ENDPOINT) {
-      setStatus('error');
-      return;
-    }
-
-    try {
-      const res = await fetch(CONTACT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...trimmed, _subject: 'New services inquiry' }),
-      });
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
-      setStatus('success');
-      setValues(initialValues);
-    } catch {
-      setStatus('error');
-    }
+    // Delegate the HTTP submission to Formspree's handler. It reads the form
+    // fields from the DOM via FormData, which includes the hidden _subject input.
+    await formspreeSubmit(e);
   };
 
-  if (status === 'success') {
+  // ── Success state ─────────────────────────────────────────────────────────
+  if (state.succeeded || botTrap) {
     return (
       <div
         role="status"
@@ -145,28 +120,33 @@ export default function ServiceContactForm() {
     );
   }
 
+  const hasSubmitError = !state.submitting && state.errors !== null;
+
   const inputClass = (name: FieldName) =>
     `mt-2 block w-full rounded-xl border bg-white px-4 py-3 text-base text-neutral-900 placeholder:text-neutral-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2 ${
-      errors[name] ? 'border-red-400' : 'border-neutral-300 hover:border-neutral-400'
+      fieldErrors[name] ? 'border-red-400' : 'border-neutral-300 hover:border-neutral-400'
     }`;
 
   const labelClass = 'block text-sm font-semibold text-neutral-900';
 
   return (
     <form onSubmit={handleSubmit} noValidate className="mt-8 max-w-2xl">
-      {/* Honeypot — visually hidden, off the tab order, ignored by real users. */}
-      <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor={fieldId('name') + '-company'}>Company (leave blank)</label>
-        <input
-          id={fieldId('name') + '-company'}
-          type="text"
-          name="company"
-          tabIndex={-1}
-          autoComplete="off"
-          value={honeypot}
-          onChange={(e) => setHoneypot(e.target.value)}
-        />
-      </div>
+      {/*
+        Honeypot field — off-screen and hidden from real users; bots often fill it.
+        Uses Formspree's conventional name (_gotcha) so the server also treats
+        non-empty submissions as spam independently of our client-side check.
+      */}
+      {/* Honeypot — hidden from real users, Formspree also discards non-empty _gotcha submissions server-side */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden opacity-0"
+      />
+      {/* Subject line for the incoming email */}
+      <input type="hidden" name="_subject" value="New services inquiry" />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -181,13 +161,13 @@ export default function ServiceContactForm() {
             required
             value={values.name}
             onChange={(e) => update('name', e.target.value)}
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? errorId('name') : undefined}
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? errorId('name') : undefined}
             className={inputClass('name')}
           />
-          {errors.name && (
+          {fieldErrors.name && (
             <p id={errorId('name')} className="mt-1.5 text-sm text-red-600">
-              {errors.name}
+              {fieldErrors.name}
             </p>
           )}
         </div>
@@ -204,13 +184,13 @@ export default function ServiceContactForm() {
             required
             value={values.email}
             onChange={(e) => update('email', e.target.value)}
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? errorId('email') : undefined}
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? errorId('email') : undefined}
             className={inputClass('email')}
           />
-          {errors.email && (
+          {fieldErrors.email && (
             <p id={errorId('email')} className="mt-1.5 text-sm text-red-600">
-              {errors.email}
+              {fieldErrors.email}
             </p>
           )}
         </div>
@@ -245,13 +225,13 @@ export default function ServiceContactForm() {
           rows={3}
           value={values.system}
           onChange={(e) => update('system', e.target.value)}
-          aria-invalid={Boolean(errors.system)}
-          aria-describedby={`${fieldId('system')}-help${errors.system ? ' ' + errorId('system') : ''}`}
+          aria-invalid={Boolean(fieldErrors.system)}
+          aria-describedby={`${fieldId('system')}-help${fieldErrors.system ? ' ' + errorId('system') : ''}`}
           className={inputClass('system')}
         />
-        {errors.system && (
+        {fieldErrors.system && (
           <p id={errorId('system')} className="mt-1.5 text-sm text-red-600">
-            {errors.system}
+            {fieldErrors.system}
           </p>
         )}
       </div>
@@ -270,13 +250,13 @@ export default function ServiceContactForm() {
           rows={3}
           value={values.friction}
           onChange={(e) => update('friction', e.target.value)}
-          aria-invalid={Boolean(errors.friction)}
-          aria-describedby={`${fieldId('friction')}-help${errors.friction ? ' ' + errorId('friction') : ''}`}
+          aria-invalid={Boolean(fieldErrors.friction)}
+          aria-describedby={`${fieldId('friction')}-help${fieldErrors.friction ? ' ' + errorId('friction') : ''}`}
           className={inputClass('friction')}
         />
-        {errors.friction && (
+        {fieldErrors.friction && (
           <p id={errorId('friction')} className="mt-1.5 text-sm text-red-600">
-            {errors.friction}
+            {fieldErrors.friction}
           </p>
         )}
       </div>
@@ -312,7 +292,7 @@ export default function ServiceContactForm() {
         </div>
       </div>
 
-      {status === 'error' && (
+      {hasSubmitError && (
         <div
           role="alert"
           aria-live="assertive"
@@ -335,11 +315,11 @@ export default function ServiceContactForm() {
       <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          disabled={status === 'submitting'}
+          disabled={state.submitting}
           className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-neutral-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === 'submitting' ? 'Sending…' : 'Send Inquiry'}
-          {status !== 'submitting' && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+          {state.submitting ? 'Sending…' : 'Send Inquiry'}
+          {!state.submitting && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
         </button>
         <p className="text-sm text-neutral-500">
           Required fields are marked <span className="text-amber-700">*</span>.
