@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
@@ -45,7 +45,7 @@ type StaticCard = {
   icon: LucideIcon;
 };
 
-// ── Tone map — identical to original DesignWork.tsx ──────────────────────────
+// ── Tone map ──────────────────────────────────────────────────────────────────
 const TONE = {
   teal: {
     cardBorder: 'border-teal-100',
@@ -110,7 +110,7 @@ function TagList({ tags, compact = false }: { tags: string[]; compact?: boolean 
   );
 }
 
-// ── Card components (relocated from original DesignWork.tsx) ─────────────────
+// ── Card components ───────────────────────────────────────────────────────────
 
 /** Used for: Framework, Experimental Build */
 function LinkedProjectCard({ card, tone }: { card: LinkedCard; tone: CardTone }) {
@@ -234,18 +234,22 @@ function ConceptCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
 }
 
 // ── Stage config ──────────────────────────────────────────────────────────────
+// Full Tailwind class strings — required so JIT includes them at build time.
 const STAGES = [
   {
     key: 'research',
     label: 'Research',
     type: 'Research OS',
     tone: 'teal' as CardTone,
-    // Full Tailwind strings so JIT includes them
     activePill: 'border-teal-200 bg-teal-50 text-teal-700',
     countBubble: 'bg-teal-100 text-teal-700',
     chevron: 'text-teal-500',
     stageLabel: 'text-teal-600',
     divider: 'border-teal-100',
+    // Interaction design tokens
+    openRowBg: 'bg-teal-50/60',
+    openChevronContainer: 'border-teal-200 bg-teal-100',
+    openChevronIcon: 'text-teal-600',
   },
   {
     key: 'frameworks',
@@ -257,6 +261,9 @@ const STAGES = [
     chevron: 'text-violet-500',
     stageLabel: 'text-violet-600',
     divider: 'border-violet-100',
+    openRowBg: 'bg-violet-50/60',
+    openChevronContainer: 'border-violet-200 bg-violet-100',
+    openChevronIcon: 'text-violet-600',
   },
   {
     key: 'concepts',
@@ -268,10 +275,13 @@ const STAGES = [
     chevron: 'text-amber-500',
     stageLabel: 'text-amber-600',
     divider: 'border-amber-100',
+    openRowBg: 'bg-amber-50/60',
+    openChevronContainer: 'border-amber-200 bg-amber-100',
+    openChevronIcon: 'text-amber-600',
   },
   {
     key: 'builds',
-    label: 'Experimental Builds',
+    label: 'Experimental Builds',
     type: 'Experimental Build',
     tone: 'blue' as CardTone,
     activePill: 'border-blue-200 bg-blue-50 text-blue-700',
@@ -279,6 +289,9 @@ const STAGES = [
     chevron: 'text-blue-500',
     stageLabel: 'text-blue-600',
     divider: 'border-blue-100',
+    openRowBg: 'bg-blue-50/60',
+    openChevronContainer: 'border-blue-200 bg-blue-100',
+    openChevronIcon: 'text-blue-600',
   },
 ] as const;
 
@@ -304,10 +317,13 @@ const CTA_BY_TYPE: Record<string, string> = {
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function PipelineSection({ projects }: { projects: ProjectRecord[] }) {
-  // All stages expanded by default — visitors see the full picture on first load
-  const [expanded, setExpanded] = useState<Set<string>>(
-    () => new Set(STAGES.map((s) => s.key)),
-  );
+  // Stage 1 open by default — establishes the accordion pattern immediately.
+  // Visitors see one stage revealed and three collapsed, so the interaction is
+  // obvious without explanation.
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set(['research']));
+
+  // Respect the OS/browser reduced-motion preference for panel animations.
+  const prefersReducedMotion = useReducedMotion();
 
   const toggle = (key: string) =>
     setExpanded((prev) => {
@@ -342,38 +358,64 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
   });
 
   return (
-    <div className={`${CONTENT_BOUNDS} pb-24`}>
-      {/* ── Stage sections ────────────────────────────────────────────────── */}
-      <div className="space-y-10">
+    <div className={`${CONTENT_BOUNDS} pt-16 pb-24`}>
+      <div className="space-y-3">
         {STAGES.map((stage, idx) => {
           const isExpanded = expanded.has(stage.key);
           const stageProjects = byType(stage.type);
 
           return (
             <section key={stage.key} aria-labelledby={`stage-heading-${stage.key}`}>
-              {/* Section header — also acts as toggle */}
+              {/* ── Toggle row ──────────────────────────────────────────────── */}
               <button
                 id={`stage-heading-${stage.key}`}
                 onClick={() => toggle(stage.key)}
                 aria-expanded={isExpanded}
                 aria-controls={`stage-panel-${stage.key}`}
-                className="group mb-5 flex w-full items-center justify-between rounded focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+                className={`group flex w-full min-h-[56px] cursor-pointer items-center justify-between rounded-xl py-3 px-4 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 ${
+                  isExpanded
+                    ? stage.openRowBg
+                    : 'hover:bg-neutral-50'
+                }`}
               >
                 <div className="text-left">
                   <p className={`font-mono text-[10px] font-semibold uppercase tracking-[0.22em] ${stage.stageLabel}`}>
                     Stage {idx + 1}
                   </p>
-                  <h2 className="mt-0.5 text-lg font-semibold text-gray-900">{stage.label}</h2>
+                  <div className="mt-0.5 flex items-baseline gap-2">
+                    <h2
+                      className={`text-lg font-semibold transition-colors duration-200 ${
+                        isExpanded ? 'text-gray-950' : 'text-gray-900 group-hover:text-gray-950'
+                      }`}
+                    >
+                      {stage.label}
+                    </h2>
+                    <span className="font-mono text-[10px] text-neutral-400" aria-label={`${stageProjects.length} projects`}>
+                      · {stageProjects.length}
+                    </span>
+                  </div>
                 </div>
-                <ChevronDown
+
+                {/* Chevron in a contained icon box — makes the control unambiguous */}
+                <span
                   aria-hidden="true"
-                  className={`h-5 w-5 shrink-0 transition-transform duration-200 ${stage.chevron} ${
-                    isExpanded ? 'rotate-180' : ''
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
+                    isExpanded
+                      ? stage.openChevronContainer
+                      : 'border-neutral-200 bg-neutral-100 group-hover:border-neutral-300 group-hover:bg-neutral-200'
                   }`}
-                />
+                >
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 motion-reduce:transition-none ${
+                      isExpanded
+                        ? `${stage.openChevronIcon} rotate-180`
+                        : 'text-neutral-500 group-hover:text-neutral-700'
+                    }`}
+                  />
+                </span>
               </button>
 
-              {/* Animated card grid */}
+              {/* ── Animated card grid ──────────────────────────────────────── */}
               <AnimatePresence initial={false}>
                 {isExpanded && (
                   <motion.div
@@ -382,24 +424,21 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.25,
+                      ease: 'easeInOut',
+                    }}
                     className="overflow-hidden"
                   >
-                    <div className="grid grid-cols-1 gap-5 pb-2 md:gap-6">
+                    <div className="mt-3 grid grid-cols-1 gap-5 pb-4 md:gap-6">
                       {stageProjects.map((p) => {
                         if (p.type === 'Research OS') {
-                          return (
-                            <ResearchOSCard key={p.id} card={toStatic(p)} tone={stage.tone} />
-                          );
+                          return <ResearchOSCard key={p.id} card={toStatic(p)} tone={stage.tone} />;
                         }
                         if (p.type === 'Concept') {
-                          return (
-                            <ConceptCard key={p.id} card={toStatic(p)} tone={stage.tone} />
-                          );
+                          return <ConceptCard key={p.id} card={toStatic(p)} tone={stage.tone} />;
                         }
-                        return (
-                          <LinkedProjectCard key={p.id} card={toLinked(p)} tone={stage.tone} />
-                        );
+                        return <LinkedProjectCard key={p.id} card={toLinked(p)} tone={stage.tone} />;
                       })}
                     </div>
                   </motion.div>
@@ -408,7 +447,7 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
 
               {/* Stage divider */}
               {idx < STAGES.length - 1 && (
-                <div className={`mt-10 border-t ${stage.divider}`} aria-hidden="true" />
+                <div className={`mt-3 border-t ${stage.divider}`} aria-hidden="true" />
               )}
             </section>
           );

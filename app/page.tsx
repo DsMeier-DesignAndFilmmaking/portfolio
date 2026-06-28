@@ -341,8 +341,9 @@ export default function HomePage() {
 <div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
   <div className="mb-4 flex items-center gap-2">
     <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" aria-hidden="true" />
-    <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500">
-      Independent Systems Design Practice // Real-World Infrastructure
+    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.16em] text-stone-500 sm:text-[11px] sm:tracking-[0.22em]">
+      <span className="whitespace-nowrap">Systems Design Practice</span>
+      <span className="whitespace-nowrap">// Multidisciplinary Designer</span>
     </p>
   </div>
   <h1
@@ -366,15 +367,15 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  My path connects landscape architecture, the foundational design and build process of my career, with an end-to-end digital practice spanning branding, UX/UI product design, and front-end development{' '}(
+  My path connects landscape architecture, the design-and-build foundation of my career (
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
     rel="noopener noreferrer"
     className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
   >
-    Explore my Master’s thesis
-  </a>). Refined by traveling to over 40 countries, this perspective allows me to design resilient, adaptive systems that utilize context-aware technology to thrive in the real world.
+    explore my Master’s thesis
+  </a>), with an end-to-end digital practice spanning branding, UX/UI product design, and front-end development. Refined by traveling to over 40 countries, this perspective allows me to design resilient, adaptive systems that use context-aware technology to thrive in the real world.
 </p>
           
           <p 
@@ -390,12 +391,6 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-            <Link
-              href="/services"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
-            >
-              Work With Me
-            </Link>
             <Link
               href="/projects/research-practice"
               className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-stone-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"

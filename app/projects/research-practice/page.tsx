@@ -11,42 +11,24 @@ export const metadata: Metadata = {
     'An independent systems design practice developing frameworks, concepts, and experimental products that explore decision-making, outdoor hospitality, stewardship, and environmental complexity.',
 };
 
-const CAPABILITY_LIBRARY = [
+// High-level vocabulary of the practice. Intentionally project-agnostic — the
+// specific projects live (and only live) inside the pipeline stages below.
+const PRACTICE_CAPABILITIES = [
   {
-    label: 'Signature framework',
-    title: 'Architecture of Confidence',
-    body: 'Decision support, trust, recovery, and confidence-building in complex service environments.',
-    href: '/projects/architecture-of-confidence',
+    title: 'Systems Infrastructure',
+    body: 'Turning raw field observations into reusable pattern libraries and operational frameworks.',
   },
   {
-    label: 'Research infrastructure',
-    title: 'Environmental Systems Design OS',
-    body: 'A working system for turning field observation into patterns, frameworks, concepts, and resources.',
-    href: '/projects/environmental-systems-design-os',
+    title: 'Decision Support & Wayfinding',
+    body: 'Designing ambient, low-friction guidance systems that reduce uncertainty and preserve human agency.',
   },
   {
-    label: 'Environmental systems',
-    title: 'Responsive Ecologies',
-    body: 'Adaptive stewardship, land operations, climate signals, and ecological decision support.',
-    href: '/projects/responsive-ecologies',
+    title: 'Adaptive Stewardship',
+    body: 'Building telemetry-driven, multi-agent AI concepts for land management and remote operations.',
   },
   {
-    label: 'Outdoor hospitality',
-    title: 'Adaptive Outdoor Hospitality Companion',
-    body: 'Guest guidance, operational recovery, stewardship, and confidence-centered hospitality systems.',
-    href: '/projects/adaptive-ranch-experience-companion',
-  },
-  {
-    label: 'AI trust layer',
-    title: 'Trust Framework for AI Travel',
-    body: 'Verification, provenance, and auditable recommendations inside adaptive AI product systems.',
-    href: '/projects/travel-and-ai/projects/trust-framework-ai-travel',
-  },
-  {
-    label: 'Wayfinding logic',
-    title: 'Wayfinding Matrix',
-    body: 'Environmental cues, timing, safety signals, and low-friction guidance in physical places.',
-    href: '/projects/wayfinding-matrix',
+    title: 'Service Recovery',
+    body: 'Creating frameworks and digital tools that help operations and guests pivot gracefully when conditions break.',
   },
 ] as const;
 
@@ -78,16 +60,8 @@ export default function ResearchPracticePage() {
 
             <div className={`mt-7 ${COPY_MAX_WIDTH} space-y-4 text-[1.05rem] leading-relaxed text-gray-700 text-pretty`}>
               <p>
-                This is the public operating layer for my independent systems design practice:
-                the place where field observation becomes frameworks, frameworks become applied
-                concepts, and concepts become prototypes, audits, resources, or consulting
-                engagements.
-              </p>
-              <p>
-                The focus is where physical environments, service operations, digital products,
-                and adaptive technology meet. The work is organized so a visitor can understand
-                the thesis, inspect the methods, review the proof, and move toward a concrete
-                engagement.
+              The public canvas for an independent systems design practice.
+              This is where field observations are built into frameworks, prototypes, and applied strategies. The focus is the convergence of physical environments, service operations, digital products, and adaptive technology—designed for clear inspection and direct collaboration.
               </p>
               <div className="flex flex-col gap-3 pt-3 sm:flex-row">
                 <Link
@@ -107,52 +81,41 @@ export default function ResearchPracticePage() {
           </div>
         </section>
 
-        {/* ── Capability library ───────────────────────────────────────────── */}
+        {/* ── Practice capabilities overview ───────────────────────────────── */}
         <section
           className="border-y border-neutral-100 bg-neutral-50 py-16"
-          aria-labelledby="capability-library-title"
+          aria-labelledby="practice-capabilities-title"
         >
           <div className={CONTENT_BOUNDS}>
             <div className={`${COPY_MAX_WIDTH} mb-8`}>
               <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
-                Framework / Capability Library
+                Practice Capabilities
               </p>
               <h2
-                id="capability-library-title"
+                id="practice-capabilities-title"
                 className="text-3xl font-bold leading-tight text-gray-950 md:text-4xl"
                 style={{ fontFamily: "'tiempos-headline-regular', serif" }}
               >
-                Reusable methods behind the practice.
+                The vocabulary of the practice.
               </h2>
               <p className="mt-4 text-[1.02rem] leading-relaxed text-gray-700 text-pretty">
-                These are the clearest current capabilities: the frameworks, systems concepts,
-                and product layers that can become audits, workshops, reports, prototypes, or
-                client engagements.
+                Four capabilities run through every framework, concept, and build below —
+                the through-lines the pipeline turns into applied work.
               </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {CAPABILITY_LIBRARY.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-900 hover:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
-                >
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
-                    {item.label}
-                  </p>
-                  <h3 className="mt-2 text-xl font-semibold leading-tight text-neutral-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                    {item.body}
-                  </p>
-                  <span className="mt-4 inline-flex text-sm font-semibold text-neutral-950 underline-offset-4 group-hover:underline">
-                    Explore capability
-                  </span>
-                </Link>
+            <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {PRACTICE_CAPABILITIES.map((cap) => (
+                <div key={cap.title}>
+                  <dt className="text-lg font-semibold leading-tight text-neutral-950">
+                    {cap.title}
+                  </dt>
+                  <dd className="mt-2 text-[1.02rem] leading-relaxed text-gray-700 text-pretty">
+                    {cap.body}
+                  </dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
         </section>
 
