@@ -26,7 +26,21 @@ export default function ConditionalFooter() {
   if (pathname && pathname.startsWith('/mockups/')) {
     return null;
   }
+
+  const normalizedPathname = pathname?.replace(/\/+$/, '') || '/';
+  const usesInternalFooterWidth =
+    normalizedPathname === '/practice' ||
+    normalizedPathname === '/projects' ||
+    normalizedPathname === '/services' ||
+    normalizedPathname.startsWith('/practice/') ||
+    normalizedPathname.startsWith('/projects/') ||
+    normalizedPathname.startsWith('/services/');
   
   // Show footer on all other pages
-  return <StaticFooter compactSpacing={pathname === '/'} />;
+  return (
+    <StaticFooter
+      compactSpacing={normalizedPathname === '/'}
+      containerVariant={usesInternalFooterWidth ? 'internal' : 'home'}
+    />
+  );
 }

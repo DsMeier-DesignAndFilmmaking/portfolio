@@ -166,11 +166,47 @@ export default function ProjectPracticeNavDropdown({
     setIsMobileMenuOpen(false);
   };
 
+  const normalizePath = (value: string) => {
+    if (!value || value === '/') return '/';
+    return value.replace(/\/+$/, '');
+  };
+
+  const currentPath = normalizePath(pathname);
+  const isExactPath = (target: string) => currentPath === normalizePath(target);
+  const isPathGroupActive = (targets: string[]) =>
+    targets.some((target) => {
+      const normalizedTarget = normalizePath(target);
+      return currentPath === normalizedTarget || currentPath.startsWith(`${normalizedTarget}/`);
+    });
+
+  const isHomeActive = isExactPath('/');
+  const isPracticeActive = isPathGroupActive(['/practice']);
+  const isWorkActive = isPathGroupActive(['/projects', '/work']);
+  const isWorkIndexActive = isExactPath('/projects') || isExactPath('/work');
+  const isServicesActive = isPathGroupActive(['/services']);
+  const isContactActive = isPathGroupActive(['/contact']);
+
   const desktopTriggerClass = isDark
     ? 'text-[11pt] text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-4 focus-visible:ring-offset-black'
     : `text-[11pt] transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4 ${
         isNavbarWhite ? 'text-black hover:text-blue-400' : 'text-gray-700 hover:text-blue-400'
       }`;
+
+  const desktopTopItemClass = (isActive: boolean) =>
+    `${desktopTriggerClass} relative inline-flex min-h-[44px] items-center rounded-md px-2 py-1 ${
+      isActive
+        ? isDark
+          ? '!text-white after:absolute after:inset-x-2 after:bottom-1 after:h-px after:bg-white/70'
+          : '!text-neutral-950 after:absolute after:inset-x-2 after:bottom-1 after:h-px after:bg-amber-700/70'
+        : ''
+    }`;
+
+  const mobileSiteItemClass = (isActive: boolean) =>
+    `relative flex min-h-[44px] items-center text-[11pt] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+      isActive
+        ? 'text-white after:absolute after:bottom-1 after:left-0 after:h-px after:w-8 after:bg-amber-300/80'
+        : 'text-gray-300 hover:text-white'
+    }`;
 
   const desktopMenuClass = isDark
     ? 'border-white/10 bg-black/95 text-white shadow-2xl'
@@ -232,28 +268,31 @@ export default function ProjectPracticeNavDropdown({
                 <Link
                   href="/"
                   onClick={closeMenus}
-                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  aria-current={isHomeActive ? 'page' : undefined}
+                  className={mobileSiteItemClass(isHomeActive)}
                 >
                   Home
                 </Link>
-                <a
-                  href="/#about"
-                  onClick={closeMenus}
-                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  About
-                </a>
                 <Link
+                  href="/practice/"
+                  onClick={closeMenus}
+                  aria-current={isExactPath('/practice') ? 'page' : undefined}
+                  className={mobileSiteItemClass(isPracticeActive)}
+                >
+                  Practice
+                </Link>
+                <a
                   href="/services/"
                   onClick={closeMenus}
-                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  aria-current={isExactPath('/services') ? 'page' : undefined}
+                  className={mobileSiteItemClass(isServicesActive)}
                 >
                   Services
-                </Link>
+                </a>
                 <Link
                   href="/services/scoping-call/"
                   onClick={closeMenus}
-                  className="flex min-h-[44px] items-center text-[11pt] text-gray-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className={mobileSiteItemClass(isContactActive)}
                 >
                   Contact
                 </Link>
@@ -265,7 +304,8 @@ export default function ProjectPracticeNavDropdown({
                   </p>
 
                   {group.items.map((item) => {
-                    const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
+                    const isActive = Boolean(item.href && !item.external && isPathGroupActive([item.href]));
+                    const isCurrentPage = Boolean(item.href && !item.external && isExactPath(item.href));
 
                     if (!item.href || item.disabled) {
                       return (
@@ -306,6 +346,7 @@ export default function ProjectPracticeNavDropdown({
                         key={item.href}
                         href={item.href}
                         onClick={closeMenus}
+                        aria-current={isCurrentPage ? 'page' : undefined}
                         className={`flex min-h-[44px] items-center text-[11pt] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                           isActive ? 'text-white' : 'text-gray-300 hover:text-white'
                         }`}
@@ -336,42 +377,24 @@ export default function ProjectPracticeNavDropdown({
   return (
     <>
       <div className="relative hidden lg:flex lg:items-center">
-        <a
-          href="/#about"
-          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
-        >
-          About
-        </a>
         <Link
-          href="/services/"
-          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
+          href="/practice/"
+          aria-current={isExactPath('/practice') ? 'page' : undefined}
+          className={desktopTopItemClass(isPracticeActive)}
         >
-          Services
-        </Link>
-        <Link
-          href="/services/scoping-call/"
-          className={`${desktopTriggerClass} inline-flex min-h-[44px] items-center rounded-md px-2 py-1`}
-        >
-          Contact
+          Practice
         </Link>
         <div ref={desktopRef} className="relative">
         <button
           type="button"
           onClick={() => setIsDesktopOpen((open) => !open)}
-          className={`
-            ${desktopTriggerClass}
-            inline-flex
-            min-h-[44px]
-            items-center
-            gap-1.5
-            rounded-md
-            px-2
-            py-1
-          `}
+          className={`${desktopTopItemClass(isWorkActive)} gap-1.5`}
           aria-expanded={isDesktopOpen}
           aria-controls={menuId}
+          aria-current={isWorkIndexActive ? 'page' : undefined}
+          aria-label={isWorkActive ? 'Work navigation, current section' : 'Work navigation'}
         >
-          <span>Projects</span>
+          <span>Work</span>
           <ChevronDown
             aria-hidden="true"
             className={`h-4 w-4 transition-transform duration-200 ${
@@ -422,7 +445,8 @@ export default function ProjectPracticeNavDropdown({
 
                       <div className="flex flex-col gap-1">
                         {group.items.map((item) => {
-                          const isActive = Boolean(item.href && !item.external && pathname.startsWith(item.href));
+                          const isActive = Boolean(item.href && !item.external && isPathGroupActive([item.href]));
+                          const isCurrentPage = Boolean(item.href && !item.external && isExactPath(item.href));
 
                           if (!item.href || item.disabled) {
                             return (
@@ -463,6 +487,7 @@ export default function ProjectPracticeNavDropdown({
                               key={item.href}
                               href={item.href}
                               onClick={closeMenus}
+                              aria-current={isCurrentPage ? 'page' : undefined}
                               className={desktopLinkClass(isActive)}
                             >
                               {isActive && (
@@ -510,6 +535,19 @@ export default function ProjectPracticeNavDropdown({
           )}
         </AnimatePresence>
         </div>
+        <a
+          href="/services/"
+          aria-current={isExactPath('/services') ? 'page' : undefined}
+          className={desktopTopItemClass(isServicesActive)}
+        >
+          Services
+        </a>
+        <Link
+          href="/services/scoping-call/"
+          className={desktopTopItemClass(isContactActive)}
+        >
+          Contact
+        </Link>
       </div>
 
       {isMounted ? createPortal(mobilePanel, document.body) : null}

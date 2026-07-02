@@ -52,7 +52,7 @@ export default function ScopingCallPage() {
                 </h1>
                 <p className="mt-6 text-lg leading-relaxed text-neutral-600">
                   Share what you are trying to understand, improve, or build. I'll review the context
-                  and follow up with next steps if the project is a fit.
+                  and follow up with next steps.
                 </p>
                 <ServiceContactForm />
               </div>

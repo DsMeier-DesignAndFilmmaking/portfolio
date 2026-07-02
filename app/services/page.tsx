@@ -225,12 +225,12 @@ export default function ServicesPage() {
       >
         <div className={contentBounds}>
           <header className="mb-10 max-w-3xl md:mb-14">
-            <Eyebrow>03 // How We Work</Eyebrow>
+            <Eyebrow>03 // Process</Eyebrow>
             <h2
               id="process-title"
               className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
-              How We Work
+              Work and Collaboration
             </h2>
             <p className="mt-4 text-pretty font-tiempos text-xl italic text-neutral-500 md:text-2xl">
               Scope, read, frame, hand off.
@@ -266,27 +266,19 @@ export default function ServicesPage() {
       >
         <div className={contentBounds}>
           <div className="max-w-3xl">
-            <Eyebrow>04 // Why This Practice</Eyebrow>
+            <Eyebrow>04 // Where This Comes From</Eyebrow>
             <h2
               id="proof-title"
               className="mt-4 text-balance font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl"
             >
               {proof.title}
             </h2>
-            <p className="mt-6 text-pretty text-lg leading-relaxed text-neutral-600">
-              {proof.body}
-            </p>
+            {proof.body ? (
+              <p className="mt-6 text-pretty text-lg leading-relaxed text-neutral-600">
+                {proof.body}
+              </p>
+            ) : null}
           </div>
-          <ul className="mt-8 grid max-w-4xl gap-3 md:grid-cols-2">
-            {proof.points.map((point) => (
-              <li
-                key={point}
-                className="text-pretty rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm leading-relaxed text-neutral-700"
-              >
-                {point}
-              </li>
-            ))}
-          </ul>
           <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             {proof.links.map((item) => (
               <Link

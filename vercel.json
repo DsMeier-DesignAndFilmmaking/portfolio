@@ -6,8 +6,13 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/projects/research-practice",
+      "destination": "/practice/",
+      "permanent": true
+    },
+    {
       "source": "/favicon-generator",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
@@ -32,52 +37,52 @@
     },
     {
       "source": "/favicon-converter.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon-generator.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon-generator-simple.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon-png-generator.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon-preview.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon-preview-comparison.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/favicon.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/generate-favicons.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/square-favicon-generator.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     },
     {
       "source": "/dm-favicon-generator.html",
-      "destination": "/projects/research-practice/",
+      "destination": "/practice/",
       "permanent": true
     }
   ],

@@ -7,6 +7,7 @@ import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
 import SketchReveal from '@/components/SketchReveal';
+import { ArrowRight } from 'lucide-react';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -367,7 +368,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  My path connects landscape architecture, the design-and-build foundation of my career (
+  <strong>Hi, I&apos;m Dan.</strong> My path connects landscape architecture, the design-and-build foundation of my career (
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
@@ -390,15 +391,6 @@ export default function HomePage() {
             Currently exploring how to combine environmental systems with adaptive software, building tools designed to navigate the messy realities of human interaction.
           </p>
 
-          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-            <Link
-              href="/projects/research-practice"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-stone-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
-            >
-              Explore the Practice
-            </Link>
-          </div>
-          
           {/* Dedicated Signature Frame - Tightened top spacing */}
           <div className="pt-2 md:pt-4 block visual-signature-wrapper">
             <Image
@@ -728,26 +720,42 @@ export default function HomePage() {
               </div>
             </div>
             
-            {/* YouTube and Vimeo Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto justify-center sm:justify-start mt-7 md:mt-8">
-              <a
-                href="https://www.youtube.com/@dsmeier"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+            {/* Forward handoff → Services. Channel links demoted to a quiet
+                secondary row so the section hands off to the next stage instead
+                of leaking the funnel to two competing external CTAs. */}
+            <div className="max-w-4xl mx-auto mt-7 md:mt-8">
+              <Link
+                href="/services"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                YouTube
-              </a>
-              <a
-                href="https://vimeo.com/user94578264"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+                See how we work together
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <p
+                className="mt-4 text-sm text-gray-500"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                Vimeo
-              </a>
+                More field footage on{' '}
+                <a
+                  href="https://www.youtube.com/@dsmeier"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  YouTube
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://vimeo.com/user94578264"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  Vimeo
+                </a>
+                .
+              </p>
             </div>
             
             <div className="mt-14 md:mt-20 text-center">
@@ -760,29 +768,6 @@ export default function HomePage() {
 
         
 
-        {/* Mobile Navigation Links */}
-        <div className="hidden flex flex-col p-4 pl-[30px] space-y-4">
-          <div className="flex items-center justify-between">
-            <Link 
-              href="/projects/purdue" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              Purdue University
-            </Link>
-            <Link 
-              href="/projects/travel-and-ai" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              CORE ENGINE (HADE)
-            </Link>
-            <Link 
-              href="/projects/previous" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              Previous Projects
-            </Link>
-          </div>
-          </div>
         </div>
       </AnimatedHomePageContent>
       {/* ✅ COMMENTED OUT - HomePageWebGL (WebGL/Three.js client component) */}

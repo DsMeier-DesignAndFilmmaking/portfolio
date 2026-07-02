@@ -9,8 +9,6 @@ import ScrollCorrection from '@/components/ScrollCorrection';
 import PageLoader from '@/components/PageLoader';
 // ✅ REMOVED - NavigationWrapper (client component with hooks)
 // import NavigationWrapper from '@/components/NavigationWrapper';
-// ✅ REMOVED - Footer (client component - replaced with StaticFooter)
-// import Footer from '@/components/Footer';
 // ✅ REMOVED - PageTransition (client component with animations)
 // import PageTransition from '@/components/PageTransition';
 // ✅ REMOVED - RouteChangeCleanup (client component with hooks and document access)

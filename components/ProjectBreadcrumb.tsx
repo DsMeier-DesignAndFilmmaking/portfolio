@@ -3,8 +3,8 @@ import { PROJECTS } from '@/data/projects';
 
 const TRACK_HUB: Record<string, { label: string; href: string }> = {
   'independent-research-practice': {
-    label: 'Independent Research Practice',
-    href: '/projects/research-practice',
+    label: 'Systems Design Practice',
+    href: '/practice',
   },
   'client-work': {
     label: 'Client Work',

@@ -247,10 +247,10 @@ export default function PreviousProjectsPage() {
                 href="/services"
                 className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
               >
-                Work With Me
+                View Services
               </Link>
               <Link
-                href="/projects/research-practice"
+                href="/practice"
                 className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
               >
                 Explore Practice Method

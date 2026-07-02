@@ -14,7 +14,7 @@ export type TopLevelProjectNavGroup = {
 };
 
 const TRACK_GROUPS = [
-  { label: 'Independent Research Practice', track: 'independent-research-practice' as const },
+  { label: 'Systems Design Practice', track: 'independent-research-practice' as const },
   { label: 'Professional / Client Work', track: 'client-work' as const },
 ] as const;
 

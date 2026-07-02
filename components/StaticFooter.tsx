@@ -8,16 +8,24 @@ const COPYRIGHT_YEAR = 2026;
 
 type StaticFooterProps = {
   compactSpacing?: boolean;
+  containerVariant?: 'home' | 'internal';
 };
 
-export default function StaticFooter({ compactSpacing = false }: StaticFooterProps) {
+export default function StaticFooter({
+  compactSpacing = false,
+  containerVariant = 'home',
+}: StaticFooterProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const footerClassName = compactSpacing
     ? 'w-full bg-white border-t border-gray-200'
     : 'w-full bg-white border-t border-gray-200 pt-12 pb-12 md:pt-[70px] md:pb-[70px]';
+  const containerWidthClassName =
+    containerVariant === 'internal'
+      ? 'container mx-auto px-6 md:px-8'
+      : 'max-w-4xl mx-auto px-6';
   const containerClassName = compactSpacing
-    ? 'max-w-4xl mx-auto px-6 py-12 md:py-[70px]'
-    : 'max-w-4xl mx-auto px-6 py-9 md:py-12';
+    ? `${containerWidthClassName} py-12 md:py-[70px]`
+    : `${containerWidthClassName} py-9 md:py-12`;
 
   return (
     <>
@@ -66,7 +74,7 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
                 Field Notes
               </Link>
               <Link
-                href="/projects/research-practice"
+                href="/practice"
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
                 Systems Design Practice
@@ -162,12 +170,12 @@ export default function StaticFooter({ compactSpacing = false }: StaticFooterPro
                 </svg>
               </a>
               </div>
-              <Link
-                href="/services"
+              <a
+                href="/services/"
                 className="self-start whitespace-nowrap rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition-all duration-200 ease-in-out hover:bg-black hover:text-white"
               >
                 Services & Engagements
-              </Link>
+              </a>
               <Link
                 href="/services/scoping-call"
                 className="self-start whitespace-nowrap rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition-all duration-200 ease-in-out hover:bg-black hover:text-white"

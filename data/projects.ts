@@ -527,7 +527,7 @@ export const TRACK_META: TrackMeta[] = [
       'Field observations become adaptive, component-driven frameworks that are rigorously tested through advanced modeling and real-world construction.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],
     hideTags: true,
-    href: '/projects/research-practice',
+    href: '/practice',
     cta: 'Explore the Practice',
     image: `${basePath}/images/optimized/earth-map-xl.webp`,
     imageWidth: 1280,

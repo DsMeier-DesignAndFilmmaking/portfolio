@@ -7,7 +7,7 @@ export const hero = {
   deck:
     'I help teams diagnose complex systems, define adaptive decision logic, and create the structural frameworks products can grow on.',
   lede:
-    'Most teams do not have a design problem. They have a systems problem: information disappears between steps, logic breaks when conditions change, and products become harder to evolve.',
+    'Each engagement is a bounded project that opens with a short scoping call — no retainers, no published rate card. You leave with structure your team can build on.',
   ctaLabel: 'Start a Scoping Call',
   ctaHref: '/services/scoping-call/',
 } as const;
@@ -119,24 +119,19 @@ export const process: ProcessStep[] = [
   },
 ];
 
+// The method, thinking, and track record are NOT restated here — they live on
+// the Practice page. This block is a lean hand-off, not a credibility pitch.
 export const proof = {
-  title: 'Why This Practice',
-  body:
-    'The method combines independent systems research with a decade of shipped digital work.',
-  points: [
-    '10+ years designing digital products, enterprise systems, and complex information architectures',
-    'Independent research practice focused on systems, decision logic, and adaptive experience design',
-    'Published frameworks across AI, environmental systems, outdoor hospitality, and operational complexity',
-    'Implementation experience across higher education, healthcare, enterprise, e-commerce, and service systems',
-  ],
+  title: 'The practice behind the work',
+  body: 'The method, the frameworks, and the delivery record behind these engagements live on the Practice — not restated here.',
   links: [
     {
-      eyebrow: 'Method source',
+      eyebrow: 'The method',
       title: 'Systems Design Practice',
-      href: '/projects/research-practice',
+      href: '/practice',
     },
     {
-      eyebrow: 'Delivery validation',
+      eyebrow: 'The delivery record',
       title: 'Shipped Projects & Client Work',
       href: '/projects/previous',
     },
