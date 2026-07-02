@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import BackToTopButton from './BackToTopButton';
 import { Mail } from "lucide-react";
+import { footerFeaturedProjectItems } from '@/utils/projectNavigation';
 
 const COPYRIGHT_YEAR = 2026;
 
@@ -67,36 +68,21 @@ export default function StaticFooter({
               >
                 Home
               </Link>
-              <Link 
-                href="/projects/field-notes" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                Field Notes
-              </Link>
               <Link
                 href="/practice"
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
               >
                 Systems Design Practice
               </Link>
-              <Link 
-                href="/projects/travel-and-ai" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                CORE ENGINE (HADE)
-              </Link>
-              <Link
-                href="/projects/architecture-of-confidence"
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                Architecture of Confidence
-              </Link>
-              <Link 
-                href="/projects/digital-executor" 
-                className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
-              >
-                Digital Executor
-              </Link>
+              {footerFeaturedProjectItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link 
                 href="/projects/previous/" 
                 className="text-sm text-gray-600 hover:text-[#2F2A3B] transition-colors"
