@@ -1,6 +1,6 @@
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import PracticeAnchor from '@/components/PracticeAnchor';
-import ResponsiveEcologiesProjectHeader from './ProjectHeader';
+import ProjectHeader from '@/components/ProjectHeader';
 import ArtifactOrigins from './components/ArtifactOrigins';
 import ConfidenceModel from './components/ConfidenceModel';
 import DecisionHierarchy from './components/DecisionHierarchy';
@@ -38,7 +38,7 @@ export default function ResponsiveEcologiesPage() {
         Skip to Responsive Ecologies content
       </a>
       <PageNavIndicator sections={[...sectionNavigation]} showDotsOnDesktop />
-      <ResponsiveEcologiesProjectHeader />
+      <ProjectHeader focusRingClassName="focus-visible:ring-emerald-700" />
       <HeroLandscape />
       <ProjectFrame />
       <ArtifactOrigins />

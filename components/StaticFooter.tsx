@@ -30,9 +30,9 @@ export default function StaticFooter({
 
   return (
     <>
-      {/* Stable anchor target for Contact section - zero height, positioned before footer */}
-      {/* Flexbox Spacer: margin-top: auto pushes footer to bottom */}
-      <div id="contact" className="anchor-offset" style={{ marginTop: 'auto' }} aria-hidden="true"></div>
+      {/* Flexbox spacer: margin-top: auto pushes the footer to the bottom.
+          The #contact scroll target now lives in the homepage contact section. */}
+      <div className="anchor-offset" style={{ marginTop: 'auto' }} aria-hidden="true"></div>
       <footer id="footer" className={footerClassName}>
       <div className={containerClassName}>
         <div className="mb-8 border-t border-gray-200 pt-6 md:mb-9"></div>

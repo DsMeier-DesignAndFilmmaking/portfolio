@@ -5,6 +5,17 @@
 // signature logo, a "Work" label, and the shared ProjectPracticeNavDropdown trigger.
 // Used by the practice front door (/practice) and the
 // engagements page (/services) so both wear the same nav as the project pages.
+//
+// NAVIGATION TIERS (intentional — do not "unify" without a deliberate decision):
+//   1. Homepage (/)         → no global navbar by design (removed to end WebGL/
+//                             hydration crashes). HomepageSideNav handles in-page
+//                             section scrolling; a static top-right wayfinding nav
+//                             in app/page.tsx handles /practice + /services.
+//   2. Flagship + services  → this PracticeNav (the full mega-nav).
+//   3. Legacy client work   → thin nav only (ProjectBreadcrumb + "Back to
+//      (/projects/previous/*)  Projects"), intentionally NOT this header. Accepted
+//                             decision — see app/projects/previous/layout.tsx.
+//                             Don't re-flag it or extend the mega-nav to them.
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';

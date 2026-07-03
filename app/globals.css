@@ -1031,6 +1031,12 @@ section *::-webkit-scrollbar,
     margin-bottom: 0 !important;
   }
 
+  @media (max-width: 767px) {
+    .homepage-root .homepage-hero-headline {
+      font-size: clamp(2rem, 8.8vw, 2.75rem) !important;
+    }
+  }
+
   .homepage-stack,
   .homepage-media-stack,
   .homepage-module-stack {

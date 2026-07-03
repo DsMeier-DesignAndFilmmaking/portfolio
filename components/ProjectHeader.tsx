@@ -1,5 +1,16 @@
 'use client';
 
+// Shared, scroll-aware header for the flagship practice/concept project pages.
+// Consolidates the header shell that was previously duplicated ~10× (four local
+// ProjectHeader.tsx files + six inline copies in page.tsx): a fixed bar that
+// tints white on scroll, hides on scroll-down / reappears on scroll-up (mobile
+// only; always visible on desktop), the logo-as-home button, the intentional
+// "Work" label, the animated hamburger, and the shared ProjectPracticeNavDropdown.
+//
+// NOTE: PracticeNav is a separate, simpler header (no hide-on-scroll) used by
+// /practice, /services, /services/scoping-call — intentionally NOT merged here
+// (see the tier note in PracticeNav.tsx).
+
 import { useEffect, useRef, useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import Image from 'next/image';
@@ -8,7 +19,17 @@ import ProjectPracticeNavDropdown, {
   PROJECT_NAV_MOBILE_MENU_ID,
 } from '@/components/ProjectPracticeNavDropdown';
 
-export default function ResponsiveEcologiesProjectHeader() {
+type ProjectHeaderProps = {
+  /** Label shown next to the logo. Defaults to the intentional "Work". */
+  label?: string;
+  /** focus-visible ring color for the logo-home button (per-page accent). */
+  focusRingClassName?: string;
+};
+
+export default function ProjectHeader({
+  label = 'Work',
+  focusRingClassName = 'focus-visible:ring-neutral-900',
+}: ProjectHeaderProps = {}) {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,17 +48,9 @@ export default function ResponsiveEcologiesProjectHeader() {
       const currentScrollY = window.scrollY;
       setIsNavbarWhite(currentScrollY > 100);
       setAtTop(currentScrollY < 10);
-
-      if (isMobileMenuOpenRef.current) {
-        setIsMobileMenuOpen(false);
-      }
-
-      if (currentScrollY > lastScrollYRef.current) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollYRef.current) {
-        setScrollDirection('up');
-      }
-
+      if (isMobileMenuOpenRef.current) setIsMobileMenuOpen(false);
+      if (currentScrollY > lastScrollYRef.current) setScrollDirection('down');
+      else if (currentScrollY < lastScrollYRef.current) setScrollDirection('up');
       lastScrollYRef.current = currentScrollY;
     };
 
@@ -65,7 +78,7 @@ export default function ResponsiveEcologiesProjectHeader() {
               <button
                 type="button"
                 onClick={() => router.push('/')}
-                className="m-0 flex h-fit w-fit items-center p-0 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-4"
+                className={`m-0 flex h-fit w-fit items-center p-0 py-4 focus-visible:outline-none focus-visible:ring-2 ${focusRingClassName} focus-visible:ring-offset-4`}
                 aria-label="Return to home page"
               >
                 <Image
@@ -84,7 +97,7 @@ export default function ResponsiveEcologiesProjectHeader() {
                     isNavbarWhite ? 'text-black' : 'text-gray-700'
                   }`}
                 >
-                  Work
+                  {label}
                 </span>
               </div>
             </div>

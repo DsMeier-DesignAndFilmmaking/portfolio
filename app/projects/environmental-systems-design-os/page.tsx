@@ -9,7 +9,7 @@ import {
   getPortfolioAssets,
 } from '@/lib/notion-os';
 
-import EnvironmentalSystemsOsProjectHeader from './ProjectHeader';
+import ProjectHeader from '@/components/ProjectHeader';
 import { SectionKicker } from './components/SectionKicker';
 import { OsArchitectureDiagram } from './components/OsArchitectureDiagram';
 import {
@@ -54,7 +54,7 @@ export default async function EnvironmentalSystemsDesignOsPage() {
       </a>
 
       <PageNavIndicator sections={sectionNavigation} showDotsOnDesktop />
-      <EnvironmentalSystemsOsProjectHeader />
+      <ProjectHeader focusRingClassName="focus-visible:ring-amber-600" />
 
       {/* HERO */}
       <section id="osds-hero" className={`${CONTENT_BOUNDS} mt-[100px] pb-16 md:pb-24`}>

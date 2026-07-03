@@ -7,7 +7,7 @@ import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
 import SketchReveal from '@/components/SketchReveal';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -348,7 +348,7 @@ export default function HomePage() {
     </p>
   </div>
   <h1
-    className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
+    className="hero-title homepage-hero-headline font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
     style={{ 
       fontSize: 'clamp(1.5rem, 4vw, 3.25rem)', 
       whiteSpace: 'normal',
@@ -416,7 +416,7 @@ export default function HomePage() {
   <div className="homepage-container mt-12 md:mt-16 mb-16 md:mb-24 relative z-10">
     <div className="homepage-copy-column">
       <div 
-        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)] transition-transform duration-700 hover:scale-[1.01]" 
+        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)]" 
         style={{ 
           aspectRatio: '16 / 9'
         }}
@@ -767,6 +767,54 @@ export default function HomePage() {
         </section>
 
         
+
+        {/* Contact — a real, low-friction destination for the side-nav #contact
+            anchor (previously an empty spacer div in the footer). */}
+        <section id="contact" className="homepage-section relative bg-white" aria-label="Contact">
+          <div className="homepage-container relative z-10">
+            <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
+              <h2
+                className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance"
+                style={{ fontFamily: "'tiempos-headline-regular', serif", color: '#000000' }}
+              >
+                Start a Conversation
+              </h2>
+              <p
+                className="text-xl mx-auto mb-8 md:mb-10 max-w-2xl font-medium leading-relaxed text-pretty"
+                style={{
+                  fontFamily: "'Roboto', Helvetica, sans-serif",
+                  fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
+                  color: '#374151',
+                }}
+              >
+                Have a systems problem worth untangling — or want to think one through
+                out loud before committing to anything? A direct note is the fastest
+                way to reach me.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-5">
+              <a
+                href="mailto:danielstevenmeier@outlook.com"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                danielstevenmeier@outlook.com
+              </a>
+              <p className="text-sm text-gray-500" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                Prefer something structured?{' '}
+                <Link
+                  href="/services/scoping-call"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  Book a scoping call
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
 
         </div>
       </AnimatedHomePageContent>

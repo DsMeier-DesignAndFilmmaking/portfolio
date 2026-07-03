@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
-import WayfindingMatrixProjectHeader from './ProjectHeader';
+import ProjectHeader from '@/components/ProjectHeader';
 import AmbientGuidanceDiagram from './components/AmbientGuidanceDiagram';
 import HeroLandscape from './components/HeroLandscape';
 import NotionOSArchitecture from './components/NotionOSArchitecture';
@@ -63,7 +63,7 @@ export default function WayfindingMatrixPage() {
       </a>
 
       <PageNavIndicator sections={[...sectionNavigation]} showDotsOnDesktop />
-      <WayfindingMatrixProjectHeader />
+      <ProjectHeader focusRingClassName="focus-visible:ring-emerald-700" />
       <HeroLandscape />
 
       <section id="project-frame" aria-labelledby="project-frame-title" className="scroll-mt-20 bg-neutral-950 py-16 text-white md:py-24">

@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
-import IntentionEngineProjectHeader from './ProjectHeader';
+import ProjectHeader from '@/components/ProjectHeader';
 import BlueprintLibrary, { EnvironmentalAffordances } from './components/EnvironmentalLibrary';
 import HeroLandscape from './components/HeroLandscape';
 import ServiceRecovery, { GuestJourney } from './components/JourneyRecovery';
@@ -55,7 +55,7 @@ export default function IntentionEnginePage() {
         Skip to The Intention Engine content
       </a>
       <PageNavIndicator sections={[...sectionNavigation]} showDotsOnDesktop />
-      <IntentionEngineProjectHeader />
+      <ProjectHeader focusRingClassName="focus-visible:ring-emerald-700" />
       <HeroLandscape />
 
       <section id="project-frame" aria-labelledby="project-frame-title" className="scroll-mt-20 bg-neutral-950 py-16 text-white md:py-24">
