@@ -76,7 +76,7 @@ export default function PurdueProjectPage() {
               <span className="text-white">Website Audits & Redesigns</span>
             </h1>
             <p className="text-lg md:text-xl text-white leading-relaxed">
-              Lead design for multiple high-visibility Purdue University web and digital projects across various departments.
+              Lead UX & Information Architecture for multiple high-visibility Purdue University web and digital projects across various departments.
             </p>
           </motion.div>
         </div>
@@ -106,11 +106,11 @@ export default function PurdueProjectPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
-                  <span>Website Audit & Analysis</span>
+                  <span>Information architecture & content taxonomy</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
-                  <span>Information architecture restructuring</span>
+                  <span>Website audit & content inventory</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
@@ -195,6 +195,7 @@ export default function PurdueProjectPage() {
             </blockquote>
             <div className="mt-6 text-gray-400">
               <p className="font-medium">Purdue Graduate School Leadership Team</p>
+              <p className="mt-1 text-sm text-gray-500">Six departments, one shared taxonomy</p>
             </div>
           </div>
         </div>
@@ -207,7 +208,7 @@ export default function PurdueProjectPage() {
             Old Website
           </h2>
           <p className="text-gray-300 mb-12 max-w-[calc(50%-1rem)]">
-            Many of Purdue University's websites are cluttered, hard to navigate, and stuck in an outdated design. Users often struggle to find key information, and the overall experience felt behind the times.
+            Many of Purdue University's websites had no shared content structure — cluttered, hard to navigate, and stuck in an outdated design. Users often struggled to find key information, and the overall experience felt behind the times.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Navigation */}
@@ -316,7 +317,7 @@ export default function PurdueProjectPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <FaArrowRight className="text-[#cfb991]" />
-                  <span className="text-gray-300">Navigation structure causing user confusion</span>
+                  <span className="text-gray-300">Navigation structure causing user confusion — the core structural problem the redesign had to solve</span>
                 </div>
               </div>
             </div>
@@ -331,7 +332,7 @@ export default function PurdueProjectPage() {
         decisionPoints={[
           'Crawl & audit → flag duplicate/orphaned pages',
           'Stakeholder alignment (Admissions, Recruitment, OGA, Fellowships) → which pages merge vs. stay separate',
-          'IA restructure → modular CMS template assignment',
+          'IA restructure → modular, governance-aware CMS templates',
           'URL migration → redirect mapping',
         ]}
         metrics={[
@@ -355,15 +356,15 @@ export default function PurdueProjectPage() {
         <div className="container mx-auto px-6">
           <div className="border-t border-white/10 pt-16">
             <div className="mb-4 whitespace-nowrap font-mono text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
-              [ SYSTEM ARTIFACTS & BLUEPRINTS ]
+              [ INFORMATION ARCHITECTURE ARTIFACTS ]
             </div>
 
             <h2 id="system-artifacts-heading" className="mb-6 text-2xl font-bold text-white md:text-3xl">
-              Mapping Institutional Policy onto Modular Infrastructure
+              Mapping Institutional Policy onto a Unified Content Architecture
             </h2>
 
             <p className="mb-12 max-w-3xl text-sm leading-relaxed text-gray-300">
-              To satisfy the cross-departmental requirements of the Purdue Graduate School Leadership Team, the redesign abandoned isolated page layout construction. Instead, we developed a series of multi-tenant system blueprints to align Admissions, OGA, and Postdoctoral pipelines into a single, cohesive interface engine that handles user routing exceptions programmatically.
+              To satisfy the cross-departmental requirements of the Purdue Graduate School Leadership Team, the redesign abandoned isolated page layout construction in favor of one shared content architecture. What follows are its three structural layers — an identity taxonomy, a routing logic, and a publishing template system — aligning Admissions, OGA, and Postdoctoral pipelines into one cohesive system instead of three disconnected ones.
             </p>
 
             <div className="space-y-8">
@@ -373,11 +374,11 @@ export default function PurdueProjectPage() {
                   [ LAYER 01 // SUBSTRATE ]
                 </div>
                 <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
-                  Cross-Departmental ERD Schema
+                  Institutional Identity Architecture
                 </h3>
 
 	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
-	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="Institutional identity graph connecting admissions and graduate school ecosystems">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="Institutional identity architecture linking admissions and graduate-school ecosystems through a shared taxonomy">
 	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
 	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
 	                        Admissions ecosystem
@@ -395,7 +396,7 @@ export default function PurdueProjectPage() {
                       <div aria-hidden="true" className="h-7 w-px bg-white/15 md:h-px md:w-8" />
 	                      <div className="relative rounded-full border border-[#cfb991]/30 bg-[#cfb991]/10 px-6 py-5 text-center shadow-[0_0_0_1px_rgba(207,185,145,0.04)]">
 	                        <div className="text-sm font-semibold leading-tight text-[#cfb991] md:text-base">Institutional Identity</div>
-	                        <div className="mt-1 text-xs leading-tight text-neutral-500 md:text-sm">Person / Institution ID</div>
+	                        <div className="mt-1 text-xs leading-tight text-neutral-500 md:text-sm">Shared Taxonomy · Person / Institution ID</div>
 	                      </div>
 	                      <div aria-hidden="true" className="h-7 w-px bg-white/15 md:h-px md:w-8" />
 	                    </div>
@@ -416,10 +417,10 @@ export default function PurdueProjectPage() {
                 </div>
 
                 <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
-                  Engine: Relational Taxonomy Map
+                  Model: Institutional Identity Taxonomy
                 </div>
                 <p className="mt-4 max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
-                  A baseline taxonomy resolves the point where admissions data and postdoctoral records describe the same person, allowing one institutional identity to move cleanly across departmental systems.
+                  A shared taxonomy models the point where admissions data and postdoctoral records describe the same person — resolving identity and mapping the content relationships that connect them across departmental systems.
                 </p>
               </article>
 
@@ -429,14 +430,14 @@ export default function PurdueProjectPage() {
                   [ LAYER 02 // LOGIC ]
                 </div>
                 <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
-                  Multi-Tenant Routing Matrix
+                  Intent Routing Architecture
                 </h3>
 
 	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
-	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="Decision routing diagram from audiences through a central decision engine to institutional pathways">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="User pathway architecture routing distinct audiences to their correct institutional destination">
 	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
 	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
-	                        Audience inputs
+	                        Audience Segments
 	                      </div>
 	                      <div className="space-y-2.5">
 	                        {['Prospective Student', 'Current Student', 'Faculty', 'Postdoctoral Scholar'].map((audience) => (
@@ -450,7 +451,7 @@ export default function PurdueProjectPage() {
                     <div className="flex flex-col items-center justify-center md:h-full md:flex-row">
                       <div aria-hidden="true" className="h-6 w-px bg-white/15 md:h-px md:w-7" />
 	                      <div className="rounded-lg border border-[#cfb991]/25 bg-[#cfb991]/10 p-4 text-center md:p-5">
-	                        <div className="text-sm font-semibold leading-tight text-[#cfb991] md:text-base">Intent Routing Engine</div>
+	                        <div className="text-sm font-semibold leading-tight text-[#cfb991] md:text-base">Routing Logic</div>
 	                        <div className="mt-4 grid grid-cols-2 gap-2">
 	                          {['Intent', 'Dept', 'Status', 'Program', 'Funding', 'Eligibility'].map((node) => (
 	                            <div key={node} className="rounded border border-white/10 bg-neutral-950/70 px-2 py-1.5 text-xs font-normal uppercase tracking-[0.08em] text-neutral-500">
@@ -464,7 +465,7 @@ export default function PurdueProjectPage() {
 
 	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
 	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
-	                        Destination pathways
+	                        Destination Pathways
 	                      </div>
 	                      <div className="space-y-2.5">
 	                        {['Admissions', 'OGA', 'Funding', 'Postdoctoral'].map((pathway) => (
@@ -478,10 +479,10 @@ export default function PurdueProjectPage() {
                 </div>
 
                 <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
-                  Logic: Contextual Flow State
+                  Architecture: User Pathway & Routing Logic
                 </div>
                 <p className="mt-4 max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
-                  Programmatic routing parses intent and department-specific metadata before sending each user segment to the correct Purdue Graduate School pathway, eliminating duplicate loops across OGA requirements, fellowships, and recruitment pipelines.
+                  Audience segmentation and department-specific metadata drive each routing decision, sending every user segment to the correct Purdue Graduate School pathway and eliminating duplicate loops across OGA requirements, fellowships, and recruitment pipelines.
                 </p>
               </article>
 
@@ -491,14 +492,14 @@ export default function PurdueProjectPage() {
                   [ LAYER 03 // INTERFACE ]
                 </div>
                 <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
-                  Unified Tokenized Framework
+                  Modular Publishing Architecture
                 </h3>
 
 	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
-	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.2fr)] md:gap-6" aria-label="Design system blueprint connecting reusable components to Purdue department page compositions">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.2fr)] md:gap-6" aria-label="Modular publishing architecture connecting reusable content components to governed department page templates">
 	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
 	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
-	                        Component library
+	                        Publishing Primitives
 	                      </div>
 	                      <div className="grid grid-cols-2 gap-2.5">
 	                        {['Hero', 'Section Header', 'Editorial Block', 'Table', 'Accordion', 'Callout', 'CTA', 'Sidebar'].map((component) => (
@@ -546,14 +547,14 @@ export default function PurdueProjectPage() {
                 </div>
 
                 <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
-                  Interface: Component Architecture
+                  Framework: Content Governance & Templates
                 </div>
                 <div className="mt-4 space-y-3">
                   <p className="max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
-                    Modular WordPress layout primitives gave Purdue teams repeatable publishing structures for high-density tables, editorial content, and department-specific page patterns without breaking the shared visual system.
+                    Modular WordPress publishing primitives gave Purdue teams repeatable, governed page structures for high-density tables, editorial content, and department-specific patterns — without breaking the shared visual system.
                   </p>
                   <p className="max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
-                    Scalable component primitives handle complex tabular university data while preserving layout-safe spacing, reusable color tokens, and long-term maintainability across multi-departmental publishing workflows.
+                    These same structures handle complex tabular university data while preserving layout-safe spacing, reusable color tokens, and long-term maintainability across multi-departmental publishing workflows.
                   </p>
                 </div>
               </article>
@@ -569,7 +570,10 @@ export default function PurdueProjectPage() {
             New Design
           </h2>
           <p className="text-gray-300 mb-12 max-w-2xl mx-auto text-center">
-            Along with improving information hierarchy and user experience, the redesign delivers a modern, accessible interface and a modular CMS design system that allows Purdue's teams to manage and scale content with ease.
+            Along with strengthening the site's content hierarchy and navigation architecture, the redesign delivers a modern, accessible interface and a modular CMS publishing system that allows Purdue's teams to manage and scale content with ease.
+          </p>
+          <p className="mb-12 max-w-2xl mx-auto text-center text-sm font-medium text-[#cfb991]">
+            What this proves: institutional information architecture and scalable CMS delivery.
           </p>
           <div className="space-y-4">
             <div className="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-black/20 shadow-xl">
