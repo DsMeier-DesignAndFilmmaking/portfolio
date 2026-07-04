@@ -57,55 +57,53 @@ export default async function EnvironmentalSystemsDesignOsPage() {
       <ProjectHeader focusRingClassName="focus-visible:ring-amber-600" />
 
       {/* HERO */}
-      <section id="osds-hero" className={`${CONTENT_BOUNDS} mt-[100px] pb-16 md:pb-24`}>
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-7">
-            <div className="mb-3">
-              <ProjectBreadcrumb projectId="environmental-systems-design-os" />
-            </div>
-            <div className="mb-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-amber-700">
-                Research Infrastructure
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-emerald-700">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-                Active
-              </span>
-            </div>
-            <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
-              Environmental Systems Design OS
-            </h1>
-            <p className="mt-5 font-tiempos text-xl italic text-gray-500 md:text-2xl">
-              The research and synthesis environment behind the practice.
-            </p>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-              A structured research environment for capturing observations, identifying patterns across environmental
-              systems, and developing the reusable artifacts, confidence models, and evidence records that appear across
-              this portfolio. Not a project. The engine behind the projects.
-            </p>
+      <section id="osds-hero" className={`${CONTENT_BOUNDS} mt-[100px] pb-10 md:pb-12`}>
+        <div className="max-w-3xl">
+          <div className="mb-3">
+            <ProjectBreadcrumb projectId="environmental-systems-design-os" />
           </div>
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-amber-700">
+              Research Infrastructure
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-emerald-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+              Active
+            </span>
+          </div>
+          <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
+            Environmental Systems Design OS
+          </h1>
+          <p className="mt-5 font-tiempos text-xl italic text-gray-500 md:text-2xl">
+            The research and synthesis environment behind the practice.
+          </p>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
+            A structured research environment for capturing observations, identifying patterns across environmental
+            systems, and developing the reusable artifacts, confidence models, and evidence records that appear across
+            this portfolio. Not a project. The engine behind the projects.
+          </p>
+        </div>
+      </section>
 
-          <div className="lg:col-span-5">
-            <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">
-                Evidence path
-              </p>
-              <div className="mt-5 space-y-3">
-                {['Observation', 'Evidence', 'Artifact', 'Framework'].map((step, i, arr) => (
-                  <React.Fragment key={step}>
-                    <div className="rounded-2xl border border-neutral-200 bg-white px-5 py-4">
-                      <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-600">
-                        {String(i + 1).padStart(2, '0')}
-                      </p>
-                      <p className="mt-2 text-sm font-bold text-neutral-900">{step}</p>
-                    </div>
-                    {i < arr.length - 1 && (
-                      <ArrowRight className="mx-auto h-4 w-4 rotate-90 text-neutral-300" aria-hidden="true" />
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
+      <section className={`${CONTENT_BOUNDS} pb-16 md:pb-24`} aria-label="Environmental Systems Design OS evidence path">
+        <div className="max-w-3xl rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+          <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">
+            Evidence path
+          </p>
+          <div className="mt-5 space-y-3">
+            {['Observation', 'Evidence', 'Artifact', 'Framework'].map((step, i, arr) => (
+              <React.Fragment key={step}>
+                <div className="rounded-2xl border border-neutral-200 bg-white px-5 py-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-600">
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <p className="mt-2 text-sm font-bold text-neutral-900">{step}</p>
+                </div>
+                {i < arr.length - 1 && (
+                  <ArrowRight className="mx-auto h-4 w-4 rotate-90 text-neutral-300" aria-hidden="true" />
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>

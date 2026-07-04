@@ -300,45 +300,49 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <motion.section
         id="hero"
-        className={`${contentBounds} mt-[100px] pb-16 md:pb-24`}
+        className={`${contentBounds} mt-[100px] pb-10 md:pb-12`}
         initial="hidden"
         animate="show"
         variants={sectionVariants}
       >
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-7">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-[3px] w-12 bg-emerald-600" aria-hidden="true" />
-              <ProjectBreadcrumb projectId="adaptive-ranch-experience-companion" />
-            </div>
-            <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
-              Adaptive Outdoor Hospitality Companion.
-              <span className="mt-4 block italic text-gray-500">
-                A confidence-centered operating model for outdoor hospitality.
-              </span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-              A reusable service-system concept for interpreting changing conditions, guest needs, operational realities, and stewardship responsibilities before guidance is surfaced.
-            </p>
+        <div className="max-w-3xl">
+          <div className="mb-6 flex items-center gap-3">
+            <div className="h-[3px] w-12 bg-emerald-600" aria-hidden="true" />
+            <ProjectBreadcrumb projectId="adaptive-ranch-experience-companion" />
           </div>
+          <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
+            Adaptive Outdoor Hospitality Companion.
+            <span className="mt-4 block italic text-gray-500">
+              A confidence-centered operating model for outdoor hospitality.
+            </span>
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
+            A reusable service-system concept for interpreting changing conditions, guest needs, operational realities, and stewardship responsibilities before guidance is surfaced.
+          </p>
+        </div>
+      </motion.section>
 
-          <div className="lg:col-span-5">
-            <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-emerald-700">
-                Concept Status
-              </p>
-              <h2 className="mt-4 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
-                A systems concept, not a deployed hospitality product.
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-                The ranch use case is the originating exploration for a broader outdoor hospitality operating model.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                <ConceptBadge>Concept</ConceptBadge>
-                <ConceptBadge>Service System</ConceptBadge>
-                <ConceptBadge>Origin: Ranch Use Case</ConceptBadge>
-              </div>
-            </div>
+      <motion.section
+        className={`${contentBounds} pb-16 md:pb-24`}
+        aria-label="Adaptive Outdoor Hospitality Companion concept status"
+        initial="hidden"
+        animate="show"
+        variants={sectionVariants}
+      >
+        <div className="max-w-3xl rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+          <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-emerald-700">
+            Concept Status
+          </p>
+          <h2 className="mt-4 font-tiempos text-2xl font-bold leading-tight text-neutral-950">
+            A systems concept, not a deployed hospitality product.
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+            The ranch use case is the originating exploration for a broader outdoor hospitality operating model.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <ConceptBadge>Concept</ConceptBadge>
+            <ConceptBadge>Service System</ConceptBadge>
+            <ConceptBadge>Origin: Ranch Use Case</ConceptBadge>
           </div>
         </div>
       </motion.section>

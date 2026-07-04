@@ -39,17 +39,14 @@ export default function HeroLandscape() {
   };
 
   return (
-    <section 
-      id="responsive-ecologies-hero" 
-      aria-labelledby="responsive-ecologies-title"
-      tabIndex={-1}
-      className={`${contentBounds} mt-[100px] scroll-mt-20 pb-16 md:pb-24`}
-    >
-      {/* 50/50 Grid Balance via twin lg:col-span-6 configuration */}
-      <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
-        
-        {/* Editorial Narrative Column (Left 50%) */}
-        <div className="lg:col-span-6">
+    <>
+      <section 
+        id="responsive-ecologies-hero" 
+        aria-labelledby="responsive-ecologies-title"
+        tabIndex={-1}
+        className={`${contentBounds} mt-[100px] scroll-mt-20 pb-10 md:pb-12`}
+      >
+        <div className="max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-800" aria-hidden="true" />
             <ProjectBreadcrumb projectId="responsive-ecologies" />
@@ -79,9 +76,10 @@ export default function HeroLandscape() {
             <ConceptTag>{projectMetadata.maturity}</ConceptTag>
           </div>
         </div>
+      </section>
 
-        {/* Structured Programmatic Engine Visual (Right 50%) */}
-        <div className="lg:col-span-6 lg:pt-14">
+      <section className={`${contentBounds} pb-16 md:pb-24`} aria-label="Responsive Ecologies signal engine artifact">
+        <div>
           <div className="rounded-2xl border border-neutral-200/80 bg-neutral-50/50 p-6 md:p-8 space-y-6 shadow-sm">
             
             {/* Input Module Block */}
@@ -171,8 +169,7 @@ export default function HeroLandscape() {
 
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -13,14 +13,14 @@ const experienceLayers = [
 
 export default function HeroLandscape() {
   return (
-    <section
-      id="intention-hero"
-      aria-labelledby="intention-title"
-      tabIndex={-1}
-      className={`${contentBounds} mt-[100px] scroll-mt-20 pb-16 md:pb-24`}
-    >
-      <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-6">
+    <>
+      <section
+        id="intention-hero"
+        aria-labelledby="intention-title"
+        tabIndex={-1}
+        className={`${contentBounds} mt-[100px] scroll-mt-20 pb-10 md:pb-12`}
+      >
+        <div className="max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-800" aria-hidden="true" />
             <ProjectBreadcrumb projectId="intention-engine" />
@@ -41,9 +41,11 @@ export default function HeroLandscape() {
             <Tag>{projectMetadata.maturity}</Tag>
           </div>
         </div>
+      </section>
 
+      <section className={`${contentBounds} pb-16 md:pb-24`} aria-label="Intention Engine landscape artifact">
         <figure
-          className="overflow-hidden rounded-[2rem] border border-stone-200 bg-[#eee9dc] shadow-sm lg:col-span-6"
+          className="overflow-hidden rounded-[2rem] border border-stone-200 bg-[#eee9dc] shadow-sm"
           aria-describedby="intention-landscape-summary"
         >
           <p id="intention-landscape-summary" className="sr-only">
@@ -102,7 +104,7 @@ export default function HeroLandscape() {
             for supporting a desired change—not as inventory to be filtered.
           </figcaption>
         </figure>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1092,51 +1092,55 @@ export default function ArchitectureOfConfidencePage() {
 
       <motion.section
         id="aoc-hero"
-        className={`${contentBounds} mt-[100px] pb-16 md:pb-24`}
+        className={`${contentBounds} mt-[100px] pb-10 md:pb-12`}
         initial="hidden"
         animate="show"
         variants={sectionVariants}
       >
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-6">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-[3px] w-12 bg-cyan-500" />
-              <ProjectBreadcrumb projectId="architecture-of-confidence" />
-            </div>
-            <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
-              The Architecture of Confidence.
-              <span className="mt-4 block italic text-gray-500">Clear action in unfamiliar places.</span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-              A systems design framework for helping people act confidently in unfamiliar, dynamic environments by interpreting context, reducing uncertainty, and preserving autonomy.
-            </p>
+        <div className="max-w-3xl">
+          <div className="mb-6 flex items-center gap-3">
+            <div className="h-[3px] w-12 bg-cyan-500" />
+            <ProjectBreadcrumb projectId="architecture-of-confidence" />
           </div>
+          <h1 className="font-tiempos text-4xl font-bold leading-tight text-gray-950 md:text-6xl md:leading-tight">
+            The Architecture of Confidence.
+            <span className="mt-4 block italic text-gray-500">Clear action in unfamiliar places.</span>
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
+            A systems design framework for helping people act confidently in unfamiliar, dynamic environments by interpreting context, reducing uncertainty, and preserving autonomy.
+          </p>
+        </div>
+      </motion.section>
 
-          <div className="lg:col-span-6">
-            <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-              <MiniFlow
-                items={[
-                  'Unfamiliar Context',
-                  'Interpreted Signals',
-                  'Confidence Assessment',
-                ]}
-              />
-              <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto_1fr] md:items-center">
-                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">04</p>
-                  <p className="mt-3 text-sm font-bold leading-snug text-neutral-900">Trusted Guidance</p>
-                </div>
-                <ArrowRight className="mx-auto hidden h-5 w-5 text-neutral-300 md:block" aria-hidden="true" />
-                <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-5">
-                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-700">05</p>
-                  <p className="mt-3 text-sm font-bold leading-snug text-neutral-900">Human Action</p>
-                </div>
-              </div>
-              <p className="mt-6 border-t border-neutral-200 pt-5 text-sm leading-relaxed text-neutral-500">
-                The goal is not to automate decisions. The goal is to help people understand enough of the moment to act with confidence.
-              </p>
+      <motion.section
+        className={`${contentBounds} pb-16 md:pb-24`}
+        aria-label="Architecture of Confidence hero model"
+        initial="hidden"
+        animate="show"
+        variants={sectionVariants}
+      >
+        <div className="max-w-4xl rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+          <MiniFlow
+            items={[
+              'Unfamiliar Context',
+              'Interpreted Signals',
+              'Confidence Assessment',
+            ]}
+          />
+          <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto_1fr] md:items-center">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">04</p>
+              <p className="mt-3 text-sm font-bold leading-snug text-neutral-900">Trusted Guidance</p>
+            </div>
+            <ArrowRight className="mx-auto hidden h-5 w-5 text-neutral-300 md:block" aria-hidden="true" />
+            <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-700">05</p>
+              <p className="mt-3 text-sm font-bold leading-snug text-neutral-900">Human Action</p>
             </div>
           </div>
+          <p className="mt-6 border-t border-neutral-200 pt-5 text-sm leading-relaxed text-neutral-500">
+            The goal is not to automate decisions. The goal is to help people understand enough of the moment to act with confidence.
+          </p>
         </div>
       </motion.section>
 

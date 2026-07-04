@@ -11,6 +11,16 @@ import PageTransitionOverlay from '../../../components/PageTransitionOverlay';
 import { PageNavIndicator } from '../../../components/PageNavIndicator';
 import TravelOSExperience from '@/src/components/TravelOSExperience';
 import TravelOSSheet from '../../../components/TravelOSSheet';
+import SystemsGraphic from "@/components/SystemsGraphic";
+
+import HADESystemDeepDive from '../../../components//HADESystemDeepDive'; // Add this line
+import { SpontaneityHero as SystemOverview } from './SpontaneityHero';
+import { SessionTimeline } from './SessionTimeline';
+import { ConstraintMap } from './components/ConstraintMap';
+import { HADERoadmap } from './components/HADERoadmap';
+import { HADE_DEMO_URL } from './constants';
+import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
+import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 
 const TAI_SECTIONS = [
   { id: 'intro',            label: 'Intro'        },
@@ -23,16 +33,8 @@ const TAI_SECTIONS = [
   // all three subsections — Core Infrastructure, Intelligence Modules, Interface Architecture.
   { id: 'tai-architecture', label: 'Architecture' },
 ];
-import SystemsGraphic from "@/components/SystemsGraphic";
-
-import HADESystemDeepDive from '../../../components//HADESystemDeepDive'; // Add this line
-import { SpontaneityHero as SystemOverview } from './SpontaneityHero';
-import { SessionTimeline } from './SessionTimeline';
-import { ConstraintMap } from './components/ConstraintMap';
-import { HADERoadmap } from './components/HADERoadmap';
-import { HADE_DEMO_URL } from './constants';
-import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
-import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+const contentBounds = 'container mx-auto px-6';
+const heroSpacing = 'mt-[100px] pb-10 md:pb-12';
 
 export default function AISandboxPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -389,11 +391,7 @@ useEffect(() => {
 {/* Hero Section */}
   <section
     id="intro"
-    // 1. lg:h-[85vh] keeps desktop height
-    // 2. h-auto allows mobile to shrink to content
-    // 3. !pb-0 !mb-0 forces padding/margin to zero, overriding global CSS
-    className="relative w-full h-auto lg:h-[100vh] flex items-center pb-12 lg:pb-0"
-    style={{ backgroundColor: "#E8FBF8" }}
+    className={`relative w-full ${heroSpacing}`}
     aria-label="Project Hero"
   >
   {/* Ownership Label */}
@@ -401,7 +399,7 @@ useEffect(() => {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 1.2, delay: 1.8 }}
-    className="absolute top-[5.5rem] right-6 hidden lg:block z-30"
+    className="absolute right-6 top-0 z-30 hidden lg:block"
     aria-label="System ownership"
   >
     <div className="text-right space-y-0.5">
@@ -415,19 +413,19 @@ useEffect(() => {
   </motion.div>
 
   <div className="relative z-20 w-full">
-    <div className="container mx-auto px-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-   {/* Left: Hero Content */}
-<div className="relative z-20 text-left md:text-left">
+    <div className={contentBounds}>
+      <div className="relative z-20 text-left md:text-left">
   <motion.div
-    className="max-w-2xl mt-[100px] flex flex-col space-y-6"
+    className="max-w-3xl"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, delay: 0.3 }}
   >
     {/* Category / Tagline */}
-    <ProjectBreadcrumb projectId="travel-and-ai" />
+    <div className="mb-6 flex items-center gap-3">
+      <div className="h-[3px] w-12 bg-cyan-500" aria-hidden="true" />
+      <ProjectBreadcrumb projectId="travel-and-ai" />
+    </div>
 
     {/* Headline */}
     <h1 
@@ -443,14 +441,13 @@ useEffect(() => {
       <span className="block mt-4 text-gray-700 text-lg md:text-2xl font-medium leading-snug">
         Early versions focused on capturing signals at scale, but lacked contextual understanding to separate noise from meaningful patterns.
       </span>
-
-      {/* Supporting paragraph */}
-      <span className="block mt-4 text-gray-600 text-base md:text-lg font-normal leading-relaxed">
-        HADE (Human Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from context and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for <strong>spontaneous discovery</strong>.
-      </span>
     </h1>
 
-    <div>
+    <p className="mt-8 max-w-2xl text-base font-normal leading-relaxed text-gray-600 md:text-lg">
+      HADE (Human Adaptive Decision Engine) explores a different approach: a real-time system that interprets live signals from context and helps people decide what to do next — not through rigid plans, but through adaptive, high-confidence suggestions designed for <strong>spontaneous discovery</strong>.
+    </p>
+
+    <div className="mt-7">
       <a
         href={HADE_DEMO_URL}
         target="_blank"
@@ -468,7 +465,7 @@ useEffect(() => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: showScrollIndicator ? 1 : 0, y: showScrollIndicator ? 0 : 10 }}
       transition={{ duration: 0.5, delay: 1.2 }}
-      className="hidden lg:flex flex-col items-start"
+      className="mt-7 hidden flex-col items-start lg:flex"
     >
       <div className="flex items-center gap-2 group">
         <span 
@@ -488,18 +485,17 @@ useEffect(() => {
     </motion.div>
   </motion.div>
 </div>
-        
-        {/* Right: Systems Graphic */}
-        <div className="hidden lg:flex justify-center items-center">
-          <SystemsGraphic />
-        </div>
+    </div>
+  </div>
+</section>
 
-      </div>
-      
-      {/* Mobile: Systems Graphic below hero copy */}
-      <div className="lg:hidden mt-0">
-        <SystemsGraphic />
-      </div>
+<section
+  className="relative w-full pb-16 md:pb-24"
+  aria-label="HADE system graphic"
+>
+  <div className={contentBounds}>
+    <div className="flex justify-center">
+      <SystemsGraphic />
     </div>
   </div>
 </section>

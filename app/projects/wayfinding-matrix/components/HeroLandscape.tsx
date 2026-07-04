@@ -6,14 +6,14 @@ const contentBounds = 'container mx-auto px-6 md:px-8';
 
 export default function HeroLandscape() {
   return (
-    <section
-      id="wayfinding-hero"
-      className={`${contentBounds} mt-[100px] scroll-mt-20 pb-16 md:pb-24`}
-      aria-labelledby="wayfinding-title"
-      tabIndex={-1}
-    >
-      <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-6">
+    <>
+      <section
+        id="wayfinding-hero"
+        className={`${contentBounds} mt-[100px] scroll-mt-20 pb-10 md:pb-12`}
+        aria-labelledby="wayfinding-title"
+        tabIndex={-1}
+      >
+        <div className="max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-700" aria-hidden="true" />
             <ProjectBreadcrumb projectId="wayfinding-matrix" />
@@ -49,7 +49,9 @@ export default function HeroLandscape() {
             ))}
           </div>
         </div>
+      </section>
 
+      <section className={`${contentBounds} pb-16 md:pb-24`} aria-label="Wayfinding Matrix landscape guidance artifact">
         <div className="lg:col-span-6">
           <figure
             className="overflow-hidden rounded-[2rem] border border-emerald-950/10 bg-[#edf0e5] shadow-sm shadow-emerald-950/10"
@@ -190,7 +192,7 @@ export default function HeroLandscape() {
             </figcaption>
           </figure>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
