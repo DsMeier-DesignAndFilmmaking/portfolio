@@ -127,11 +127,15 @@ export default function PurdueProjectPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-[#cfb991] rounded-full"></div>
-                    <span>Figma (AI)</span>
+                    <span>Figma</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-[#cfb991] rounded-full"></div>
                     <span>Sitebulb</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#cfb991] rounded-full"></div>
+                    <span>Github</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-[#cfb991] rounded-full"></div>
@@ -345,6 +349,218 @@ export default function PurdueProjectPage() {
           { label: 'Re-Crawl to Validate' },
         ]}
       />
+
+      {/* Systems Architecture Deliverables Section */}
+      <section aria-labelledby="system-artifacts-heading" className="bg-black pb-20 pt-0">
+        <div className="container mx-auto px-6">
+          <div className="border-t border-white/10 pt-16">
+            <div className="mb-4 whitespace-nowrap font-mono text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+              [ SYSTEM ARTIFACTS & BLUEPRINTS ]
+            </div>
+
+            <h2 id="system-artifacts-heading" className="mb-6 text-2xl font-bold text-white md:text-3xl">
+              Mapping Institutional Policy onto Modular Infrastructure
+            </h2>
+
+            <p className="mb-12 max-w-3xl text-sm leading-relaxed text-gray-300">
+              To satisfy the cross-departmental requirements of the Purdue Graduate School Leadership Team, the redesign abandoned isolated page layout construction. Instead, we developed a series of multi-tenant system blueprints to align Admissions, OGA, and Postdoctoral pipelines into a single, cohesive interface engine that handles user routing exceptions programmatically.
+            </p>
+
+            <div className="space-y-8">
+              {/* Layer 01 // Substrate */}
+              <article className="group flex flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-200 hover:border-white/25">
+                <div className="mb-3 whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#cfb991]">
+                  [ LAYER 01 // SUBSTRATE ]
+                </div>
+                <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
+                  Cross-Departmental ERD Schema
+                </h3>
+
+	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="Institutional identity graph connecting admissions and graduate school ecosystems">
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Admissions ecosystem
+	                      </div>
+	                      <div className="space-y-3">
+	                        {['Application', 'Recruitment', 'Program Interest'].map((node) => (
+	                          <div key={node} className="rounded border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-sm font-medium leading-snug text-neutral-300 md:text-[15px]">
+	                            {node}
+	                          </div>
+	                        ))}
+	                      </div>
+	                    </div>
+
+                    <div className="flex flex-col items-center justify-center md:h-full md:flex-row">
+                      <div aria-hidden="true" className="h-7 w-px bg-white/15 md:h-px md:w-8" />
+	                      <div className="relative rounded-full border border-[#cfb991]/30 bg-[#cfb991]/10 px-6 py-5 text-center shadow-[0_0_0_1px_rgba(207,185,145,0.04)]">
+	                        <div className="text-sm font-semibold leading-tight text-[#cfb991] md:text-base">Institutional Identity</div>
+	                        <div className="mt-1 text-xs leading-tight text-neutral-500 md:text-sm">Person / Institution ID</div>
+	                      </div>
+	                      <div aria-hidden="true" className="h-7 w-px bg-white/15 md:h-px md:w-8" />
+	                    </div>
+
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Graduate + postdoc
+	                      </div>
+	                      <div className="space-y-3">
+	                        {['Funding', 'Appointment', 'Fellowship'].map((node) => (
+	                          <div key={node} className="rounded border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-sm font-medium leading-snug text-neutral-300 md:text-[15px]">
+	                            {node}
+	                          </div>
+	                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
+                  Engine: Relational Taxonomy Map
+                </div>
+                <p className="mt-4 max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
+                  A baseline taxonomy resolves the point where admissions data and postdoctoral records describe the same person, allowing one institutional identity to move cleanly across departmental systems.
+                </p>
+              </article>
+
+              {/* Layer 02 // Logic */}
+              <article className="group flex flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-200 hover:border-white/25">
+                <div className="mb-3 whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#cfb991]">
+                  [ LAYER 02 // LOGIC ]
+                </div>
+                <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
+                  Multi-Tenant Routing Matrix
+                </h3>
+
+	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6" aria-label="Decision routing diagram from audiences through a central decision engine to institutional pathways">
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Audience inputs
+	                      </div>
+	                      <div className="space-y-2.5">
+	                        {['Prospective Student', 'Current Student', 'Faculty', 'Postdoctoral Scholar'].map((audience) => (
+	                          <div key={audience} className="rounded border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-sm font-medium leading-snug text-neutral-300 md:text-[15px]">
+	                            {audience}
+	                          </div>
+	                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center md:h-full md:flex-row">
+                      <div aria-hidden="true" className="h-6 w-px bg-white/15 md:h-px md:w-7" />
+	                      <div className="rounded-lg border border-[#cfb991]/25 bg-[#cfb991]/10 p-4 text-center md:p-5">
+	                        <div className="text-sm font-semibold leading-tight text-[#cfb991] md:text-base">Intent Routing Engine</div>
+	                        <div className="mt-4 grid grid-cols-2 gap-2">
+	                          {['Intent', 'Dept', 'Status', 'Program', 'Funding', 'Eligibility'].map((node) => (
+	                            <div key={node} className="rounded border border-white/10 bg-neutral-950/70 px-2 py-1.5 text-xs font-normal uppercase tracking-[0.08em] text-neutral-500">
+	                              {node}
+	                            </div>
+	                          ))}
+                        </div>
+                      </div>
+                      <div aria-hidden="true" className="h-6 w-px bg-white/15 md:h-px md:w-7" />
+                    </div>
+
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Destination pathways
+	                      </div>
+	                      <div className="space-y-2.5">
+	                        {['Admissions', 'OGA', 'Funding', 'Postdoctoral'].map((pathway) => (
+	                          <div key={pathway} className="rounded border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-sm font-medium leading-snug text-neutral-300 md:text-[15px]">
+	                            {pathway}
+	                          </div>
+	                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
+                  Logic: Contextual Flow State
+                </div>
+                <p className="mt-4 max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
+                  Programmatic routing parses intent and department-specific metadata before sending each user segment to the correct Purdue Graduate School pathway, eliminating duplicate loops across OGA requirements, fellowships, and recruitment pipelines.
+                </p>
+              </article>
+
+              {/* Layer 03 // Interface */}
+              <article className="group flex flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-200 hover:border-white/25">
+                <div className="mb-3 whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#cfb991]">
+                  [ LAYER 03 // INTERFACE ]
+                </div>
+                <h3 className="mb-6 border-b border-white/5 pb-2 text-base font-medium text-white">
+                  Unified Tokenized Framework
+                </h3>
+
+	                <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-5 font-mono text-xs md:min-h-[420px]">
+	                  <div className="grid w-full max-w-full grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.2fr)] md:gap-6" aria-label="Design system blueprint connecting reusable components to Purdue department page compositions">
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Component library
+	                      </div>
+	                      <div className="grid grid-cols-2 gap-2.5">
+	                        {['Hero', 'Section Header', 'Editorial Block', 'Table', 'Accordion', 'Callout', 'CTA', 'Sidebar'].map((component) => (
+	                          <div key={component} className="rounded border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-sm font-medium leading-snug text-neutral-300 md:text-[15px]">
+	                            {component}
+	                          </div>
+	                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center md:h-full md:flex-row">
+                      <div aria-hidden="true" className="h-5 w-px bg-white/15 md:h-px md:w-6" />
+	                      <div className="rounded-full border border-[#cfb991]/25 bg-[#cfb991]/10 px-5 py-3 text-center text-sm font-semibold leading-tight text-[#cfb991] md:text-base">
+	                        Tokens / Grid / Rules
+	                      </div>
+	                      <div aria-hidden="true" className="h-5 w-px bg-white/15 md:h-px md:w-6" />
+	                    </div>
+
+	                    <div className="rounded-lg border border-white/5 bg-white/[0.015] p-4 md:p-5">
+	                      <div className="mb-4 text-center text-[11px] uppercase tracking-[0.14em] text-neutral-600 md:text-xs">
+	                        Page assemblies
+	                      </div>
+	                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3">
+                        {[
+                          { name: 'Admissions', layout: ['w-full', 'w-2/3', 'w-full', 'w-1/2'] },
+                          { name: 'OGA', layout: ['w-3/4', 'w-full', 'w-1/2', 'w-full'] },
+                          { name: 'Postdoctoral', layout: ['w-full', 'w-1/2', 'w-3/4', 'w-full'] },
+                        ].map((page) => (
+	                          <div key={page.name} className="rounded border border-white/10 bg-white/[0.015] p-3">
+	                            <div className="mb-3 text-xs font-medium uppercase tracking-[0.08em] text-neutral-500">{page.name}</div>
+                            <div className="space-y-1.5">
+                              {page.layout.map((width, index) => (
+                                <div
+                                  key={`${page.name}-${index}`}
+                                  aria-hidden="true"
+                                  className={`${width} h-1.5 rounded bg-white/10 ${index === 0 ? 'bg-[#cfb991]/30' : ''}`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-wider text-gray-500">
+                  Interface: Component Architecture
+                </div>
+                <div className="mt-4 space-y-3">
+                  <p className="max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
+                    Modular WordPress layout primitives gave Purdue teams repeatable publishing structures for high-density tables, editorial content, and department-specific page patterns without breaking the shared visual system.
+                  </p>
+                  <p className="max-w-[60ch] font-sans text-xs leading-relaxed text-gray-400">
+                    Scalable component primitives handle complex tabular university data while preserving layout-safe spacing, reusable color tokens, and long-term maintainability across multi-departmental publishing workflows.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Design in Progress */}
       <section id="design" className="py-20 bg-white/5">

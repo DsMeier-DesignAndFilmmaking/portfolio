@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import FadeInSection from './FadeInSection';
-import { isCurrentlyAnchorScrolling } from '@/utils/scrollUtils';
 import VideoSection from './VideoSection';
 import StatsSection from './StatsSection';
 
@@ -29,13 +28,6 @@ export default function VideoProjectsSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Don't trigger video loading if we're currently anchor scrolling
-            if (isCurrentlyAnchorScrolling()) {
-              if (process.env.NODE_ENV === 'development') {
-                console.log('Skipping video load during anchor scroll');
-              }
-              return;
-            }
             setIsVisible(true);
             sectionObserver.disconnect();
           }
