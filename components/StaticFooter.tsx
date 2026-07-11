@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import BackToTopButton from './BackToTopButton';
 import { Mail } from "lucide-react";
-import { footerFeaturedProjectItems } from '@/utils/projectNavigation';
+import { topLevelProjectNavItems } from '@/utils/projectNavigation';
 
 const COPYRIGHT_YEAR = 2026;
 
@@ -74,7 +74,7 @@ export default function StaticFooter({
               >
                 Systems Design Practice
               </Link>
-              {footerFeaturedProjectItems.map((item) => (
+              {topLevelProjectNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

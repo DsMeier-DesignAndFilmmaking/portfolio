@@ -242,20 +242,7 @@ export default function PreviousProjectsPage() {
             <p className="text-lg md:text-xl text-white leading-relaxed" style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}>
               Professional case studies that validate the practice through shipped work across commerce, healthcare, higher education, enterprise, and emerging technology.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/services"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
-              >
-                View Services
-              </Link>
-              <Link
-                href="/practice"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-black"
-              >
-                Explore Practice Method
-              </Link>
-            </div>
+            
           </motion.div>
         </div>
       </section>

@@ -545,20 +545,20 @@ export default function TravelOSSheet({ isOpen, onClose }: TravelOSSheetProps) {
                               style={{ fontFamily: '"JetBrains Mono", monospace' }}
                             >
                               <code className="text-zinc-600">{`/** @module TravelContext.h
- *  Compiled by Dan Meier / Solo Founder
- *  Shared contract: HADE ↔ Field Notes
- */\n\n`}</code>
-                              <code className="text-cyan-200/60">{`interface TravelContext {
-  identity: "Anonymous" | "Verified";
-  location: { lat: number; lng: number; altitude: number };
-  environment: {
-    weather: string;
-    uv_index: number;
-    time_bucket: "morning" | "noon" | "night";
-  };
-  // null → Environmental Pivot logic
-  social_graph: string[] | null;
-}`}</code>
+                          *  Compiled by Dan Meier / Solo Founder
+                          *  Shared contract: HADE ↔ Field Notes
+                          */\n\n`}</code>
+                                                        <code className="text-cyan-200/60">{`interface TravelContext {
+                            identity: "Anonymous" | "Verified";
+                            location: { lat: number; lng: number; altitude: number };
+                            environment: {
+                              weather: string;
+                              uv_index: number;
+                              time_bucket: "morning" | "noon" | "night";
+                            };
+                            // null → Environmental Pivot logic
+                            social_graph: string[] | null;
+                          }`}</code>
                             </pre>
                           </div>
 
