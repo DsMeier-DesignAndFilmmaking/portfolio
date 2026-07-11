@@ -7,6 +7,7 @@ import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
 import SketchReveal from '@/components/SketchReveal';
+import { ArrowRight, Mail } from 'lucide-react';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -339,9 +340,15 @@ export default function HomePage() {
         
 {/* Title Block - Clean Editorial Layout (Zero Gradients = Zero Banding) */}
 <div className="homepage-copy-column homepage-section-header homepage-title-only relative z-10">
-  <p className="font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.22em] text-stone-500 mb-4">Welcome,</p>
+  <div className="mb-4 flex items-center gap-2">
+    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" aria-hidden="true" />
+    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.16em] text-stone-500 sm:text-[11px] sm:tracking-[0.22em]">
+      <span className="whitespace-nowrap">Systems Design Practice</span>
+      <span className="whitespace-nowrap">// Multidisciplinary Designer</span>
+    </p>
+  </div>
   <h1
-    className="hero-title font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
+    className="hero-title homepage-hero-headline font-sf-pro-display font-black leading-[1.15] tracking-normal text-left text-[#151B18] text-balance" 
     style={{ 
       fontSize: 'clamp(1.5rem, 4vw, 3.25rem)', 
       whiteSpace: 'normal',
@@ -349,35 +356,41 @@ export default function HomePage() {
       marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
     }}
   >
-    I am a spatial and digital systems designer.
-    I design environments for human interaction.
-    Landscapes, cities, and software.
-      </h1>
-    </div>
+    Designing systems that harmonize physical spaces, technology, and human experiences.
+  </h1>
+</div>
 
         {/* Narrative Copy Stack */}
         <div className="homepage-copy-column space-y-6 md:space-y-8 mb-0">
         <p className="text-gray-900 leading-relaxed tracking-normal text-left text-pretty"
-          style={{ 
-            fontFamily: "'Roboto', Helvetica, sans-serif", 
-            fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
-          }}
-        >
-          <strong>I’m Dan Meier,</strong>. My practice is the culmination of a 15-year convergence. I began my career mapping topographies and urban constraints in landscape architecture, spent a decade engineering complex digital products and AI workflows, and field-tested it all across 41 countries. Today, I build context-aware digital systems built to withstand the often unpredictable realities of the physical world.
-        </p>
+  style={{ 
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
+  }}
+>
+  <strong>Hi, I&apos;m Dan.</strong> My path connects landscape architecture, the design-and-build foundation of my career (
+  <a
+    href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
+  >
+    explore my Master’s thesis
+  </a>), with an end-to-end digital practice spanning branding, UX/UI product design, and front-end development. Refined by traveling to over 40 countries, this perspective allows me to design resilient, adaptive systems that use context-aware technology to thrive in the real world.
+</p>
           
           <p 
             className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal text-pretty"
             style={{ 
-              fontFamily: "'Roboto', Helvetica, sans-serif", 
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
               borderLeft: '2px solid #E5E7EB',
               paddingLeft: '1rem' 
             }}
           >
-            Exploring how systems design, AI, and real-world context create better human experiences.
+            Currently exploring how to combine environmental systems with adaptive software, building tools designed to navigate the messy realities of human interaction.
           </p>
-          
+
           {/* Dedicated Signature Frame - Tightened top spacing */}
           <div className="pt-2 md:pt-4 block visual-signature-wrapper">
             <Image
@@ -403,21 +416,19 @@ export default function HomePage() {
   <div className="homepage-container mt-12 md:mt-16 mb-16 md:mb-24 relative z-10">
     <div className="homepage-copy-column">
       <div 
-        className="w-full relative rounded-lg shadow-lg overflow-hidden" 
+        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)]" 
         style={{ 
-          background: '#f0f0f0',
-          aspectRatio: '1920 / 1080'
+          aspectRatio: '16 / 9'
         }}
       >
         <Image 
           id="me_heroImage-1_1.1.1"
           src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
           alt="Dan Meier"
-          width={1920}
-          height={1080}
+          fill
           priority
-          sizes="(max-width: 768px) 100vw, 576px"
-          className="w-full h-auto block rounded-lg transition-all duration-300"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 800px"
+          className="object-cover"
         />
       </div>
     </div>
@@ -709,26 +720,42 @@ export default function HomePage() {
               </div>
             </div>
             
-            {/* YouTube and Vimeo Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-4xl mx-auto justify-center sm:justify-start mt-7 md:mt-8">
-              <a
-                href="https://www.youtube.com/@dsmeier"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+            {/* Forward handoff → Services. Channel links demoted to a quiet
+                secondary row so the section hands off to the next stage instead
+                of leaking the funnel to two competing external CTAs. */}
+            <div className="max-w-4xl mx-auto mt-7 md:mt-8">
+              <Link
+                href="/services"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                YouTube
-              </a>
-              <a
-                href="https://vimeo.com/user94578264"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-900 transition-colors duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+                See how we work together
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <p
+                className="mt-4 text-sm text-gray-500"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
-                Vimeo
-              </a>
+                More field footage on{' '}
+                <a
+                  href="https://www.youtube.com/@dsmeier"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  YouTube
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://vimeo.com/user94578264"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  Vimeo
+                </a>
+                .
+              </p>
             </div>
             
             <div className="mt-14 md:mt-20 text-center">
@@ -741,29 +768,54 @@ export default function HomePage() {
 
         
 
-        {/* Mobile Navigation Links */}
-        <div className="hidden flex flex-col p-4 pl-[30px] space-y-4">
-          <div className="flex items-center justify-between">
-            <Link 
-              href="/projects/purdue" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              Purdue University
-            </Link>
-            <Link 
-              href="/projects/travel-and-ai" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              CORE ENGINE (HADE)
-            </Link>
-            <Link 
-              href="/projects/previous" 
-              className="block pl-[30px] py-3 text-white hover:bg-white/10 transition-colors"
-            >
-              Previous Projects
-            </Link>
+        {/* Contact — a real, low-friction destination for the side-nav #contact
+            anchor (previously an empty spacer div in the footer). */}
+        <section id="contact" className="homepage-section relative bg-white" aria-label="Contact">
+          <div className="homepage-container relative z-10">
+            <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
+              <h2
+                className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance"
+                style={{ fontFamily: "'tiempos-headline-regular', serif", color: '#000000' }}
+              >
+                Start a Conversation
+              </h2>
+              <p
+                className="text-xl mx-auto mb-8 md:mb-10 max-w-2xl font-medium leading-relaxed text-pretty"
+                style={{
+                  fontFamily: "'Roboto', Helvetica, sans-serif",
+                  fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
+                  color: '#374151',
+                }}
+              >
+                Have a systems problem worth untangling — or want to think one through
+                out loud before committing to anything? A direct note is the fastest
+                way to reach me.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-5">
+              <a
+                href="mailto:danielstevenmeier@outlook.com"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                danielstevenmeier@outlook.com
+              </a>
+              <p className="text-sm text-gray-500" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
+                Prefer something structured?{' '}
+                <Link
+                  href="/services/scoping-call"
+                  className="font-medium text-gray-700 underline underline-offset-2 transition-colors hover:text-gray-900"
+                >
+                  Book a scoping call
+                </Link>
+                .
+              </p>
+            </div>
           </div>
-          </div>
+        </section>
+
         </div>
       </AnimatedHomePageContent>
       {/* ✅ COMMENTED OUT - HomePageWebGL (WebGL/Three.js client component) */}
