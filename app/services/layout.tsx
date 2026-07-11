@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import RouteFadeIn from '@/components/RouteFadeIn';
 
 export const metadata: Metadata = {
   title: 'Services & Engagements | Dan Meier',
@@ -17,5 +18,5 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <RouteFadeIn>{children}</RouteFadeIn>;
 }

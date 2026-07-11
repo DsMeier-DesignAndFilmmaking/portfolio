@@ -1,3 +1,9 @@
+import RouteFadeIn from '@/components/RouteFadeIn';
+
 export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
-  return <div className="project-copy">{children}</div>;
+  return (
+    <RouteFadeIn>
+      <div className="project-copy">{children}</div>
+    </RouteFadeIn>
+  );
 }

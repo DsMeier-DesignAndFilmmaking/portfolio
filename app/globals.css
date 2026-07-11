@@ -1331,3 +1331,23 @@ body.loading {
     scrollbar-width: none;  /* Firefox */
   }
 }
+
+/* Route entry fade for /projects, /practice, /services (see components/RouteFadeIn.tsx) */
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.route-fade-in {
+  animation: routeFadeIn 320ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fade-in {
+    animation: none;
+  }
+}
