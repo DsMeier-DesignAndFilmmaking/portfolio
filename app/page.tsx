@@ -554,7 +554,7 @@ export default function HomePage() {
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to — before a visitor knows what they need. How wayfinding breaks under pressure. Where hospitality systems succeed or fail at the seam between the physical and the operational. Those observations are not travel stories. They are primary research into how real-world experience systems&nbsp;work.
+                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to — before a visitor knows what they need. How wayfinding breaks under pressure. Where hospitality systems succeed or fail at the seam between the physical and the operational. Those observations are not just travel stories. They are primary research into how real-world experience systems&nbsp;work.
                   </p>
                     <p className="text-sm text-gray-900 italic text-pretty" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI-generated photos or video.
