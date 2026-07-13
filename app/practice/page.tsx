@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import PracticeNav from '@/components/PracticeNav';
 import PipelineSection from './PipelineSection';
 import { CONTENT_BOUNDS, COPY_MAX_WIDTH } from './layoutClasses';
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
 const PRINCIPLES = [
   {
     title: 'Read the system before designing it.',
-    body: 'Most visible problems are symptoms. The work begins by mapping where information, decisions, and operations actually break down — the discipline of reading an environment before changing it.',
+    body: 'Most visible problems are symptoms. The work begins by mapping where information, decisions, and operations actually break down.',
   },
   {
     title: 'Structure is the real product.',
-    body: 'Screens change; structure endures. The practice designs the component, information, and decision architecture a product or operation can grow against without losing coherence.',
+    body: 'The practice designs the component, information, and decision architecture a product or operation can grow against without losing coherence.',
   },
   {
     title: 'Design for the moment conditions break.',
-    body: 'Real systems degrade. The practice designs the fallback, recovery, and adaptive logic that keep people oriented — and in control — when conditions shift.',
+    body: 'The practice designs the fallback, recovery, and adaptive logic that keep people oriented — and in control — when conditions shift.',
   },
 ] as const;
 
@@ -35,19 +35,19 @@ const PRINCIPLES = [
 // project below demonstrates one or more of them in a domain.
 const CAPABILITIES = [
   {
-    verb: 'See it',
+    verb: 'Signal',
     title: 'Systems Diagnosis',
-    body: 'Reading a system — physical, digital, or operational — to locate where information, decisions, and hand-offs break down.',
+    body: 'Auditing uncooperative environments—physical topography, complex data pipelines, or legacy operations—to isolate failure states.',
   },
   {
-    verb: 'Decide it',
-    title: 'Adaptive Logic',
-    body: 'Defining how a system decides and behaves as conditions change: decision rules, state, AI and agent workflows, fallback and recovery.',
+    verb: 'Logic',
+    title: 'Contextual Intelligence',
+    body: 'Governing how an ecosystem computes, behaves, and adapts. Designing state machines, edge-case logic, algorithmic workflows, and policy rules.',
   },
   {
-    verb: 'Build it',
+    verb: 'Build',
     title: 'Structural Architecture',
-    body: 'Designing the component, information, and decision architecture — and the governing rules — a system can scale against.',
+    body: 'Translating abstract logic into production-ready reality: from deployable codebases and UI systems to spatial layouts and physical prototypes',
   },
 ] as const;
 
@@ -83,54 +83,50 @@ export default function PracticePage() {
 
       <main>
         {/* ── Hero / manifesto ─────────────────────────────────────────── */}
-        <section id="practice-hero" className="bg-white mt-[100px] pb-16 md:pb-24" aria-labelledby="practice-headline">
-          <div className={CONTENT_BOUNDS}>
-            <div className="max-w-3xl">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
-                Systems Design Practice
-              </p>
+<section id="practice-hero" className="bg-white mt-[100px] pb-16 md:pb-24" aria-labelledby="practice-headline">
+  <div className={CONTENT_BOUNDS}>
+    <div className="max-w-3xl">
+      <p className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
+        Systems Design Practice
+      </p>
 
-              <h1
-                id="practice-headline"
-                className="mt-4 text-balance font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
-              >
-                Designing the systems beneath products, places, and decisions.
-              </h1>
+      <h1
+        id="practice-headline"
+        className="mt-4 text-balance font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
+      >
+        Designing the logic beneath interfaces, environments, and autonomous decisions.
+      </h1>
 
-              <p className="mt-5 text-pretty font-tiempos text-xl italic text-neutral-500 md:text-2xl">
-                An independent systems design practice — where field observation becomes frameworks, prototypes, and proof.
-              </p>
+      <p className="mt-6 text-pretty font-tiempos text-xl italic text-neutral-600 md:text-2xl leading-relaxed">
+      <strong>Product design isolates screens and features.</strong> This practice orchestrates the systemic underpinnings behind physical spaces, digital platforms, and operations. This methodology translates erratic environmental signals into rigid frameworks, structural protocols, and resilient builds."
+      </p>
 
-              <div className={`mt-6 ${COPY_MAX_WIDTH} space-y-4 text-pretty text-lg leading-relaxed text-neutral-600`}>
-                <p>
-                  Most teams do not have a design problem; they have a systems problem. This is the working home for how that problem is read, structured, and resolved — a body of frameworks, concepts, and builds kept open for inspection.
-                </p>
-                <div className="flex flex-col gap-3 pt-3 sm:flex-row">
-                  <a
-                    href="#capabilities"
-                    className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
-                  >
-                    Explore the practice
-                  </a>
-                  <Link
-                    href="/services"
-                    className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
-                  >
-                    View Services
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a 
+  href="#howItThinks" 
+  className="mt-12 inline-flex items-center gap-2 select-none text-neutral-400 hover:text-neutral-600 transition-colors focus:outline-none focus:text-neutral-950"
+>
+  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">
+    Explore the practice
+  </span>
+  <div className="flex items-center animate-[bounce_2s_infinite]">
+    <ChevronDown className="w-4 h-4" strokeWidth={1.5} />
+  </div>
+</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* ── Principles / how it thinks (manifesto) ───────────────────── */}
         <section
-          className="border-t border-neutral-100 bg-white pb-16 md:pb-20"
-          aria-labelledby="principles-title"
+          id="howItThinks"
+          className="scroll-mt-24 border-y border-neutral-100 bg-neutral-50 py-16"
+          aria-labelledby="capabilities-title"
         >
           <div className={CONTENT_BOUNDS}>
-            <div className={`${COPY_MAX_WIDTH} mb-10 pt-16`}>
+            <div className={`${COPY_MAX_WIDTH} mb-10`}>
               <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
                 How It Thinks
               </p>
@@ -169,7 +165,7 @@ export default function PracticePage() {
           aria-labelledby="capabilities-title"
         >
           <div className={CONTENT_BOUNDS}>
-            <div className={`${COPY_MAX_WIDTH} mb-8`}>
+            <div className={`${COPY_MAX_WIDTH} mb-10`}>
               <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
                 Capability Map
               </p>
@@ -177,10 +173,10 @@ export default function PracticePage() {
                 id="capabilities-title"
                 className="text-balance font-tiempos text-3xl font-bold leading-tight text-gray-950 md:text-4xl"
               >
-                See it. Decide it. Build it.
+                Signal. Logic. Build.
               </h2>
               <p className="mt-4 text-pretty text-[1.02rem] leading-relaxed text-gray-700">
-                Three durable capabilities run through every framework, concept, and build — and every engagement derives from them.
+              The work is anchored by three durable operational layers. Every diagnostic framework, structural system, and live prototype is driven by this sequence.
               </p>
             </div>
 
@@ -211,15 +207,13 @@ export default function PracticePage() {
                 {DOMAINS.map((domain) => (
                   <li
                     key={domain}
-                    className="rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-sm font-medium text-neutral-700"
+                    className="rounded-full border border-amber-100 bg-white px-3.5 py-1.5 text-sm font-medium text-neutral-700"
                   >
                     {domain}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 max-w-2xl text-pretty text-[1.02rem] leading-relaxed text-gray-700">
-                The same three capabilities travel across every domain — which is why environmental systems and AI systems are neighbors in this practice, not separate disciplines.
-              </p>
+              
             </div>
           </div>
         </section>
@@ -253,11 +247,11 @@ export default function PracticePage() {
 
         {/* ── Validation / how ideas are proven ────────────────────────── */}
         <section
-          className="border-y border-neutral-100 bg-neutral-50 py-16"
+          className="section-padding scroll-mt-24 bg-white"
           aria-labelledby="validation-title"
         >
           <div className={CONTENT_BOUNDS}>
-            <div className={`${COPY_MAX_WIDTH} mb-8`}>
+            <div className={`${COPY_MAX_WIDTH} mb-10`}>
               <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.3em] text-amber-700">
                 Validation
               </p>
@@ -285,21 +279,13 @@ export default function PracticePage() {
               ))}
             </dl>
 
-            <div className="mt-8">
-              <Link
-                href="/projects/previous"
-                className="inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-amber-700 transition-colors hover:text-amber-800 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-4"
-              >
-                See the delivery record
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
+            
           </div>
         </section>
 
         {/* ── Work with the practice (educational-first close) ─────────── */}
         <section
-          className="bg-white py-16 md:py-20"
+          className="section-padding bg-white"
           aria-labelledby="work-with-title"
         >
           <div className={CONTENT_BOUNDS}>
@@ -328,7 +314,7 @@ export default function PracticePage() {
                   href="/services"
                   className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-4"
                 >
-                  See Services
+                  View Engagement Models
                 </Link>
               </div>
             </div>

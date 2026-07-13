@@ -358,7 +358,7 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
   });
 
   return (
-    <div className={`${CONTENT_BOUNDS} pt-16 pb-24`}>
+    <div className={`${CONTENT_BOUNDS} pt-8 pb-16 md:pb-20`}>
       <div className="space-y-3">
         {STAGES.map((stage, idx) => {
           const isExpanded = expanded.has(stage.key);
