@@ -257,7 +257,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'Web and digital design projects focusing on enhancing UX, UI, and streamlining content management and information architecture.',
-    proofLabel: 'What this proves: institutional information architecture and scalable CMS delivery.',
+    proofLabel: 'Institutional information architecture and scalable CMS delivery.',
     tags: ['Higher Education'],
     imageUrl: `${basePath}/images/PU-Memorial-Mall-DJI.jpg`,
     legacyLabel: 'Web Design',
@@ -277,7 +277,7 @@ export const PROJECTS: ProjectRecord[] = [
     evidenceLevel: 'case-study',
     status: 'archived',
     summary: 'A full redesign for TimberTech.com and their existing design system.',
-    proofLabel: 'What this proves: commerce IA, content systems, design systems, and conversion pathways.',
+    proofLabel: 'Commerce IA, content systems, design systems, and conversion pathways.',
     tags: ['Commerce'],
     imageUrl: `${basePath}/images/timbertech-card.jpg`,
     legacyLabel: 'Web Design',
@@ -298,7 +298,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and patients across developing nations.',
-    proofLabel: 'What this proves: high-stakes service access, complex information flows, and trust-sensitive UX.',
+    proofLabel: 'High-stakes service access, complex information flows, and trust-sensitive UX.',
     tags: ['Healthcare'],
     imageUrl: `${basePath}/images/healthcare-card.jpg`,
     legacyLabel: 'IA & UI',
@@ -320,7 +320,7 @@ export const PROJECTS: ProjectRecord[] = [
     navTitle: "McDonald's Kiosk",
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    proofLabel: 'What this proves: service interaction design, kiosk decision flows, and operational upsell logic.',
+    proofLabel: 'Service interaction design, kiosk decision flows, and operational upsell logic.',
     tags: ['Commerce'],
     imageUrl: `${basePath}/images/mcDonalds-card.jpg`,
     legacyLabel: 'Product Design',
@@ -341,7 +341,7 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A sustainability tracking application helping businesses monitor and reduce their environmental impact.',
-    proofLabel: 'What this proves: enterprise research, sustainability concepts, and future-facing product strategy.',
+    proofLabel: 'Enterprise research, sustainability concepts, and future-facing product strategy.',
     tags: ['Enterprise'],
     imageUrl: `${basePath}/images/heroGraphic.jpg`,
     legacyLabel: 'Market Research',
@@ -362,7 +362,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Emerging Tech'],
+      proofLabel: 'Blockchain data, dashboard UX UI, Product Prototypes.',
+      tags: ['Emerging Tech'],
     imageUrl: `${basePath}/images/Nodalytics_heroGraphic-3.jpg`,
     legacyLabel: 'Product Design',
   },
@@ -382,7 +383,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Enterprise'],
+      proofLabel: 'Blockchain-based digital infrastructure tool, Interation design prototypes.',
+      tags: ['Enterprise'],
     imageUrl: `${basePath}/images/newdea_hero_containerGraphic-5.jpg`,
     legacyLabel: 'Product Design',
   },
@@ -402,7 +404,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'Worked on UX and UI enhancements for a Chicago-based inner-city fundraising platform.',
-    tags: ['Commerce'],
+      proofLabel: 'Mobile Web UX and UI design for fundraising platform.',
+      tags: ['Commerce'],
     imageUrl: `${basePath}/images/doubleGoodImage.webp`,
     legacyLabel: 'Web Design (Mobile)',
   },
@@ -422,7 +425,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Enterprise'],
+      proofLabel: 'Multi-stage funnel design, Rsponsive UI frameworks.',
+      tags: ['Enterprise'],
     imageUrl: `${basePath}/images/Advistestream_mockup-createReport.jpg`,
     legacyLabel: 'Product Design',
   },
@@ -442,7 +446,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Emerging Tech'],
+      proofLabel: 'Human Resources Application Suite, Digital Design, Product Leadership and Vision.',
+      tags: ['Emerging Tech'],
     imageUrl: `${basePath}/images/chairliftAllScreens.png`,
     legacyLabel: 'Product & Web Design',
   },
@@ -462,7 +467,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Enterprise'],
+      proofLabel: 'Consumer Branding, UX leadership, Specifications.',
+      tags: ['Enterprise'],
     imageUrl: `${basePath}/images/havas-card.jpg`,
     legacyLabel: 'UX & Web Design',
   },
@@ -482,7 +488,8 @@ export const PROJECTS: ProjectRecord[] = [
     status: 'archived',
     summary:
       'A digital platform designed to connect healthcare professionals and resources across developing nations.',
-    tags: ['Enterprise'],
+      proofLabel: 'UX and UI Consulting, Design leadership, Informatiom Architecture.',
+      tags: ['Enterprise'],
     imageUrl: `${basePath}/images/websiteCards_template.png`,
     legacyLabel: 'IA & Web Design',
   },
