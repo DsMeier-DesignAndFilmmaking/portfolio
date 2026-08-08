@@ -7,12 +7,24 @@ import Link from 'next/link';
 import { topLevelProjectNavGroups } from '@/utils/projectNavigation';
 import { ChevronDown } from 'lucide-react';
 
+type ProjectPracticeNavDropdownItem = {
+  label: string;
+  href: string;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+};
+
 type ProjectPracticeNavDropdownProps = {
   pathname: string;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
   tone?: 'light' | 'dark';
   isNavbarWhite?: boolean;
+  /**
+   * Flat menu content (e.g. homepage section anchors) that replaces the default
+   * Site + project-groups content, and suppresses the desktop dropdown entirely.
+   * Omit for the standard practice/services/work behavior.
+   */
+  items?: ProjectPracticeNavDropdownItem[];
 };
 
 export const PROJECT_NAV_MOBILE_MENU_ID = 'project-practice-mobile-menu';
@@ -23,6 +35,7 @@ export default function ProjectPracticeNavDropdown({
   setIsMobileMenuOpen,
   tone = 'light',
   isNavbarWhite = true,
+  items,
 }: ProjectPracticeNavDropdownProps) {
   const [isDesktopOpen, setIsDesktopOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -228,6 +241,8 @@ export default function ProjectPracticeNavDropdown({
 
   const activeIndicatorClass = isDark ? 'bg-white/80' : 'bg-blue-400';
 
+  const navAriaLabel = items ? 'Homepage section navigation' : 'Project practice navigation';
+
   const mobilePanel = (
     <AnimatePresence mode="wait">
       {isMobileMenuOpen && (
@@ -237,7 +252,7 @@ export default function ProjectPracticeNavDropdown({
           ref={mobilePanelRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Project practice navigation"
+          aria-label={navAriaLabel}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -260,7 +275,25 @@ export default function ProjectPracticeNavDropdown({
               </button>
             </div>
 
-            <nav className="flex flex-col space-y-7 py-8" aria-label="Project practice navigation">
+            <nav className="flex flex-col space-y-7 py-8" aria-label={navAriaLabel}>
+              {items ? (
+                <div className="flex flex-col space-y-3">
+                  {items.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={(event) => {
+                        item.onClick?.(event);
+                        closeMenus();
+                      }}
+                      className={mobileSiteItemClass(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <>
               <div className="flex flex-col space-y-3">
                 <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gray-500">
                   Site
@@ -362,6 +395,8 @@ export default function ProjectPracticeNavDropdown({
                   })}
                 </div>
               ))}
+                </>
+              )}
             </nav>
           </div>
         </motion.div>
@@ -376,6 +411,7 @@ export default function ProjectPracticeNavDropdown({
 
   return (
     <>
+      {!items && (
       <div className="relative hidden lg:flex lg:items-center">
         <Link
           href="/practice/"
@@ -549,6 +585,7 @@ export default function ProjectPracticeNavDropdown({
           Contact
         </Link>
       </div>
+      )}
 
       {isMounted ? createPortal(mobilePanel, document.body) : null}
     </>

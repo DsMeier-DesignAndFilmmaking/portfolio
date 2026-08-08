@@ -7,10 +7,18 @@
 // engagements page (/services) so both wear the same nav as the project pages.
 //
 // NAVIGATION TIERS (intentional — do not "unify" without a deliberate decision):
-//   1. Homepage (/)         → no global navbar by design (removed to end WebGL/
-//                             hydration crashes). HomepageSideNav handles in-page
-//                             section scrolling; a static top-right wayfinding nav
-//                             in app/page.tsx handles /practice + /services.
+//   1. Homepage (/)         → desktop: HomepageSideNav's left-side section dots,
+//                             untouched, not this component. Mobile: HomepageMobileNav
+//                             (components/HomepageMobileNav.tsx) mirrors this header's
+//                             fixed-top-bar + hamburger + slide-in pattern via
+//                             ProjectPracticeNavDropdown's `items` flat-list mode, but
+//                             with the homepage's 5 section anchors instead of page
+//                             links, and no "Work" page-level item. (Previously the
+//                             homepage had no fixed header at all, removed to end
+//                             WebGL/hydration crashes; that WebGL scene is now fully
+//                             disabled and the old persistent global Navbar that
+//                             caused those crashes no longer exists, so the mobile
+//                             header was reintroduced as a deliberate decision.)
 //   2. Flagship + services  → this PracticeNav (the full mega-nav).
 //   3. Legacy client work   → thin nav only (ProjectBreadcrumb + "Back to
 //      (/projects/previous/*)  Projects"), intentionally NOT this header. Accepted

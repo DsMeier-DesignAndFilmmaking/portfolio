@@ -6,6 +6,7 @@ import DesignWork from '@/components/DesignWork';
 import HomePageBodyReset from '@/components/HomePageBodyReset';
 import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
+import HomepageMobileNav from '@/components/HomepageMobileNav';
 import SketchReveal from '@/components/SketchReveal';
 import { ArrowRight, Mail } from 'lucide-react';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
@@ -296,6 +297,8 @@ export default function HomePage() {
       <HomePageBodyReset />
       {/* ✅ Side Navigation - Fixed left side, desktop only */}
       <HomepageSideNav />
+      {/* ✅ Mobile Navigation - Fixed top bar + hamburger, matches site-wide mobile nav pattern */}
+      <HomepageMobileNav />
       {/* ✅ REMOVED - ErrorBoundary wrapper (client component) */}
       {/* ✅ Animated Homepage Content - Fade-in and slide-up animation */}
       <AnimatedHomePageContent>
@@ -368,7 +371,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-  <strong>Hi, I&apos;m Dan.</strong> My path connects landscape architecture, the design-and-build foundation of my career (
+<strong>Hi, I&apos;m Dan.</strong> After earning my Master’s in Landscape Architecture and practicing for a few years (
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
@@ -376,20 +379,20 @@ export default function HomePage() {
     className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
   >
     explore my Master’s thesis
-  </a>), with an end-to-end digital practice spanning branding, UX/UI product design, and front-end development. Refined by traveling to over 40 countries, this perspective allows me to design resilient, adaptive systems that use context-aware technology to thrive in the real world.
+  </a>), I caught the tech bug. For the past 10+ years, I&apos;ve worked as a User Experience and Product Designer. Shaped by travel across 40+ countries, my practice is coming full circle as I build context-aware systems that link digital tools with dynamic physical environments.
 </p>
           
-          <p 
-            className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal text-pretty"
-            style={{ 
-              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
-              borderLeft: '2px solid #E5E7EB',
-              paddingLeft: '1rem' 
-            }}
-          >
-            Currently exploring how to combine environmental systems with adaptive software, building tools designed to navigate the messy realities of human interaction.
-          </p>
+<p 
+  className="italic text-gray-800 leading-relaxed tracking-normal text-left font-normal text-pretty"
+  style={{ 
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)',
+    borderLeft: '2px solid #E5E7EB',
+    paddingLeft: '1rem' 
+  }}
+>
+  <strong>Current Focus:</strong> Designing, building, and deploying systems frameworks, operational models, and context-aware tools engineered for complex outdoor environments.
+</p>
 
           {/* Dedicated Signature Frame - Tightened top spacing */}
           <div className="pt-2 md:pt-4 block visual-signature-wrapper">

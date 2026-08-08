@@ -1,0 +1,131 @@
+'use client';
+
+// Homepage's mobile-only top nav — mirrors the fixed header + hamburger +
+// slide-in menu pattern used by PracticeNav/ProjectHeader on every other page
+// (see components/PracticeNav.tsx), so the homepage belongs to the same
+// mobile navigation system as the rest of the site. Desktop is untouched:
+// this component renders nothing at the `lg` breakpoint and up — desktop
+// navigation stays exclusively HomepageSideNav's left-side section nav.
+//
+// Menu content is the same five section anchors as HomepageSideNav's desktop
+// nav (Intro/About/Work/Travel/Contact), not the page-level Practice/Work/
+// Services/Contact links used elsewhere — the homepage isn't a work page.
+
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import ProjectPracticeNavDropdown, {
+  PROJECT_NAV_MOBILE_MENU_ID,
+} from '@/components/ProjectPracticeNavDropdown';
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+const HOMEPAGE_SECTIONS = [
+  { id: 'hero', label: 'Intro' },
+  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'travelogue', label: 'Travel' },
+  { id: 'contact', label: 'Contact' },
+];
+
+export default function HomepageMobileNav() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isMobileMenuOpenRef = useRef(false);
+
+  useEffect(() => {
+    isMobileMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+      if (isMobileMenuOpenRef.current) setIsMobileMenuOpen(false);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    window.history.pushState(null, '', `#${sectionId}`);
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
+  const items = HOMEPAGE_SECTIONS.map(({ id, label }) => ({
+    label,
+    href: `#${id}`,
+    onClick: scrollToSection(id),
+  }));
+
+  return (
+    <header
+      className={`lg:hidden fixed inset-x-0 top-0 z-50 transition-all duration-500 motion-reduce:transition-none ${
+        isScrolled ? 'border-b border-neutral-100 bg-white/95 backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
+      <div className="container relative z-20 mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <a
+            href="#hero"
+            onClick={scrollToSection('hero')}
+            className="m-0 flex h-fit w-fit items-center p-0 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-4"
+            aria-label="Return to top of page"
+          >
+            <Image
+              src={`${basePath}/images/signature-25.png`}
+              alt="Dan Meier"
+              width={150}
+              height={37}
+              priority
+              className="h-9 w-auto brightness-0"
+            />
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            data-project-nav-trigger
+            aria-haspopup="menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
+            className={`flex min-h-[44px] items-center justify-end py-2 pl-4 transition-colors duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 ${
+              isScrolled ? 'text-black' : 'text-gray-700'
+            }`}
+            aria-label="Toggle mobile menu"
+          >
+            <span className="relative flex h-5 w-6 flex-col items-center justify-between" aria-hidden="true">
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 motion-reduce:transition-none ${
+                  isMobileMenuOpen ? 'translate-y-2 rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 motion-reduce:transition-none ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-all duration-300 motion-reduce:transition-none ${
+                  isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''
+                }`}
+              />
+            </span>
+          </button>
+
+          <ProjectPracticeNavDropdown
+            pathname="/"
+            isMobileMenuOpen={isMobileMenuOpen}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
+            items={items}
+          />
+        </div>
+      </div>
+    </header>
+  );
+}
