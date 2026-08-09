@@ -74,8 +74,8 @@ export default function DesignWork() {
   return (
     <section id="work" className="homepage-section relative bg-white" aria-label="Work">
       <div className="homepage-container relative">
-      <header className="homepage-copy-column relative flex flex-col items-center text-center">
-  <div className="mb-5 flex flex-wrap items-center justify-center gap-3">
+      <header className="homepage-copy-column relative">
+  <div className="mb-5 flex flex-wrap items-center gap-3">
     <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-600">
       <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
       Work
@@ -84,7 +84,7 @@ export default function DesignWork() {
 
   <h1
     id="work-title"
-    className="hero-title font-sf-pro-display font-bold leading-[1.1] tracking-tight text-center text-balance"
+    className="hero-title font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left text-balance"
     style={{
       fontSize: 'clamp(2.125rem, 4.5vw, 3.75rem)',
       whiteSpace: 'normal',
@@ -92,13 +92,13 @@ export default function DesignWork() {
       marginBottom: 'calc(1.32 * 1.5rem)',
     }}
   >
-    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold text-balance inline-block text-center">
+    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)] text-balance">
       A practice built to understand systems before improving them.
     </span>
   </h1>
 
   <p
-    className="text-xl text-gray-700 leading-relaxed text-pretty text-center"
+    className="text-xl text-gray-700 leading-relaxed text-pretty text-left"
     style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
   >
     Two distinct tracks: a self-directed practice designing and engineering decision-making logic for complex environments, paired with over a decade of verified digital product delivery across enterprise industries.
@@ -114,6 +114,19 @@ export default function DesignWork() {
               <TrackCard key={meta.track} meta={meta} />
             ))}
           </div>
+        </div>
+
+        {/* Forward handoff → Services. Centered under the two cards regardless
+            of their left-aligned surroundings. */}
+        <div className="mt-10 text-center md:mt-12">
+          <Link
+            href="/services"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
+            style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
+          >
+            See how we work together
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

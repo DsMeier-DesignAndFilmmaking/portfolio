@@ -8,7 +8,7 @@ import AnimatedHomePageContent from '@/components/AnimatedHomePageContent';
 import HomepageSideNav from '@/components/HomepageSideNav';
 import HomepageMobileNav from '@/components/HomepageMobileNav';
 import SketchReveal from '@/components/SketchReveal';
-import { ArrowRight, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 // ✅ REMOVED - ErrorBoundary (client component with 'use client')
 // import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -672,22 +672,22 @@ Grounded in a Master’s in Landscape Architecture (
           
           <div className="homepage-container relative z-10">
             {/* ✅ REMOVED - Suspense and FadeInSection (animations) */}
-            <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
-              
-            <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance" style={{
+            <div className="homepage-copy-column text-left homepage-section-header section-header-spacing">
+
+            <h2 className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance text-left" style={{
               fontFamily: "'tiempos-headline-regular', serif",
               color: '#000000'
             }}>
               Field Notes From <br></br> the World
             </h2>
-              <p className="text-xl max-w-4xl mx-auto mb-6 md:mb-8 font-medium leading-relaxed text-pretty" style={{
+              <p className="text-xl max-w-4xl mb-6 md:mb-8 font-medium leading-relaxed text-pretty text-left" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
                 Forty-one countries of deliberate field observation — not tourism, but systems research conducted in environments I don't control. How people orient themselves when signage fails. How hospitality breaks down between the front-of-house and the operational layer behind it. How informal systems emerge when designed ones fall short. All of it documented through my own lens.
               </p>
-              <p className="text-sm max-w-4xl mx-auto mb-6 md:mb-8 italic leading-relaxed text-pretty" style={{
+              <p className="text-sm max-w-4xl mb-6 md:mb-8 italic leading-relaxed text-pretty text-left" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 color: '#374151'
               }}>
@@ -755,20 +755,11 @@ Grounded in a Master’s in Landscape Architecture (
               </div>
             </div>
             
-            {/* Forward handoff → Services. Channel links demoted to a quiet
-                secondary row so the section hands off to the next stage instead
-                of leaking the funnel to two competing external CTAs. */}
+            {/* Channel links — the "See how we work together" CTA now lives at
+                the bottom of the Work section (see components/DesignWork.tsx). */}
             <div className="max-w-4xl mx-auto mt-7 md:mt-8">
-              <Link
-                href="/services"
-                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
-                style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-              >
-                See how we work together
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
               <p
-                className="mt-4 text-sm text-gray-500"
+                className="text-sm text-gray-500"
                 style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
               >
                 More field footage on{' '}
@@ -807,15 +798,15 @@ Grounded in a Master’s in Landscape Architecture (
             anchor (previously an empty spacer div in the footer). */}
         <section id="contact" className="homepage-section relative bg-white" aria-label="Contact">
           <div className="homepage-container relative z-10">
-            <div className="homepage-copy-column text-center homepage-section-header section-header-spacing">
+            <div className="homepage-copy-column text-left homepage-section-header section-header-spacing">
               <h2
-                className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance"
+                className="text-5xl md:text-6xl font-bold mb-5 md:mb-6 tracking-tight text-balance text-left"
                 style={{ fontFamily: "'tiempos-headline-regular', serif", color: '#000000' }}
               >
                 Start a Conversation
               </h2>
               <p
-                className="text-xl mx-auto mb-8 md:mb-10 max-w-2xl font-medium leading-relaxed text-pretty"
+                className="text-xl mb-8 md:mb-10 max-w-2xl font-medium leading-relaxed text-pretty text-left"
                 style={{
                   fontFamily: "'Roboto', Helvetica, sans-serif",
                   fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
@@ -828,7 +819,7 @@ Grounded in a Master’s in Landscape Architecture (
               </p>
             </div>
 
-            <div className="flex flex-col items-center gap-5">
+            <div className="homepage-copy-column flex flex-col items-start gap-5">
               <a
                 href="mailto:danielstevenmeier@outlook.com"
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
