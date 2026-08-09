@@ -210,7 +210,7 @@ export default function HomepageSideNav() {
     <>
       {/* Desktop Navigation - Left Side, positioned closer to content */}
       <nav 
-        className="hidden lg:flex fixed top-1/2 -translate-y-1/2 flex-col gap-4 z-40"
+        className="hidden min-[1080px]:flex fixed top-1/2 -translate-y-1/2 flex-col gap-4 z-40"
         style={{ left: 'calc((100% - 896px) / 2 - 80px)' }}
         aria-label="Page sections navigation"
       >

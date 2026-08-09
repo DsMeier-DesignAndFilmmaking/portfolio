@@ -921,8 +921,14 @@ section *::-webkit-scrollbar,
   }
 
   /* Section containers that should maintain height */
-  /* Exclude #work (Design Work section) to allow custom Tailwind padding */
-  section[id]:not(#work) {
+  /* Exclude #work (Design Work section) to allow custom Tailwind padding.
+     Also exclude .homepage-section: its own token-driven padding
+     (--homepage-section-padding-y, applied via .homepage-root section.homepage-section)
+     was otherwise being silently overridden here, since :not(#work) carries
+     ID-level specificity that beats that two-class selector. This rule remains
+     the fallback for any other page's <section id> that doesn't set its own
+     padding (e.g. /practice's #method). */
+  section[id]:not(#work):not(.homepage-section) {
     min-height: fit-content;
     /* Apply standardized vertical rhythm */
     padding-top: clamp(5rem, 10vh, 10rem); /* 80px mobile → 160px desktop */
@@ -1017,6 +1023,26 @@ section *::-webkit-scrollbar,
     max-width: var(--homepage-copy-max);
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* Lets a child escape a narrower .homepage-copy-column ancestor and match
+     .homepage-container's width instead — for media (images) interleaved with
+     text inside a shared .homepage-copy-column, where only the media (not the
+     text) should widen. Uses the same full-bleed technique already used for the
+     hero's decorative texture layer (width:100vw + negative 50vw margins).
+     Wrap the breakout content in an inner .homepage-container for the actual
+     cap+padding, mirroring the World Travel Diaries video container's own
+     structure (a plain .homepage-container, no narrower wrapper inside):
+       <div className="homepage-media-breakout">
+         <div className="homepage-container">...media...</div>
+       </div> */
+  .homepage-media-breakout {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   .homepage-root .homepage-section-header {

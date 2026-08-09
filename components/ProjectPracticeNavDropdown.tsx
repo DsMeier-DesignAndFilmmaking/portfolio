@@ -257,7 +257,13 @@ export default function ProjectPracticeNavDropdown({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[120] h-[100dvh] overflow-y-auto overscroll-contain bg-black/95 text-white backdrop-blur-md lg:hidden"
+          className={`fixed inset-0 z-[120] h-[100dvh] overflow-y-auto overscroll-contain bg-black/95 text-white backdrop-blur-md ${
+            // Homepage's mobile/desktop nav cutover is 1079/1080 (not the default
+            // `lg` 1024px interior pages use) — see components/HomepageMobileNav.tsx
+            // and components/HomepageSideNav.tsx. `items` is only ever passed by the
+            // homepage instance, so it's the signal to use the matching breakpoint here.
+            items ? 'hidden max-[1079px]:block' : 'lg:hidden'
+          }`}
         >
           <div className="flex min-h-[100dvh] flex-col px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))]">
             <div className="flex min-h-[44px] items-center justify-between border-b border-white/10 pb-4">

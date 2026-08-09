@@ -221,7 +221,7 @@ export default function PracticePage() {
         {/* ── Method / how ideas are developed ─────────────────────────── */}
         <section
           id="method"
-          className="scroll-mt-24 bg-white pt-16"
+          className="scroll-mt-24 bg-white pt-16 pb-16"
           aria-labelledby="method-title"
         >
           <div className={CONTENT_BOUNDS}>

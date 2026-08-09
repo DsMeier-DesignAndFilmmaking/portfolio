@@ -359,7 +359,7 @@ export default function HomePage() {
       marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
     }}
   >
-    Designing systems that harmonize physical spaces, technology, and human experiences.
+    Hi, I'm Dan.
   </h1>
 </div>
 
@@ -371,7 +371,7 @@ export default function HomePage() {
     fontSize: 'clamp(1.1rem, 1.05rem + 0.25vw, 1.2rem)' 
   }}
 >
-<strong>Hi, I&apos;m Dan.</strong> After earning my Master’s in Landscape Architecture and practicing for a few years (
+Grounded in a Master’s in Landscape Architecture (
   <a
     href="https://etd.ohiolink.edu/acprod/odb_etd/etd/r/1501/10?clear=10&p10_accession_num=osu1338355682"
     target="_blank"
@@ -379,7 +379,7 @@ export default function HomePage() {
     className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
   >
     explore my Master’s thesis
-  </a>), I caught the tech bug. For the past 10+ years, I&apos;ve worked as a User Experience and Product Designer. Shaped by travel across 40+ countries, my practice is coming full circle as I build context-aware systems that link digital tools with dynamic physical environments.
+  </a>) and 15+ years leading Digital Product & UX Design, my practice brings technical craftsmanship to complex physical settings. This perspective has been refined across 40+ countries.
 </p>
           
 <p 
@@ -391,7 +391,7 @@ export default function HomePage() {
     paddingLeft: '1rem' 
   }}
 >
-  <strong>Current Focus:</strong> Designing, building, and deploying systems frameworks, operational models, and context-aware tools engineered for complex outdoor environments.
+  <strong>Current Focus:</strong> Designing, building and deploying operational models, digital applications, and spatial frameworks for complex properties.
 </p>
 
           {/* Dedicated Signature Frame - Tightened top spacing */}
@@ -415,16 +415,22 @@ export default function HomePage() {
     </div>
   </div>
   
-  {/* Hero Image Container - Tightened gap with clean bottom margin */}
-  <div className="homepage-container mt-12 md:mt-16 mb-16 md:mb-24 relative z-10">
-    <div className="homepage-copy-column">
-      <div 
-        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)]" 
-        style={{ 
+  {/* Hero Image Container */}
+  {/* No .homepage-copy-column wrapper here (unlike text blocks) — this image is
+      the section's only content, so it fills .homepage-container's full content
+      width directly, matching the World Travel Diaries video container's width
+      system (see #world-travel-diaries-background / .travelogue-video-container).
+      No bottom margin: this is the section's last element, so it relies on
+      the section's own padding-bottom (--homepage-section-padding-y) instead of
+      stacking a redundant margin on top of it. */}
+  <div className="homepage-container mt-12 md:mt-16 relative z-10">
+      <div
+        className="w-full relative overflow-hidden rounded-lg border border-stone-200/60 bg-stone-100 shadow-[0_24px_70px_rgba(41,37,36,0.14)]"
+        style={{
           aspectRatio: '16 / 9'
         }}
       >
-        <Image 
+        <Image
           id="me_heroImage-1_1.1.1"
           src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me_heroImage-1_1.1.1.webp`}
           alt="Dan Meier"
@@ -434,7 +440,6 @@ export default function HomePage() {
           className="object-cover"
         />
       </div>
-    </div>
   </div>
 </section>
 
@@ -447,13 +452,13 @@ export default function HomePage() {
         <div className="homepage-container relative">
   <div className="w-full">
     {/* Heading */}
-    <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing">
-      <h1 
-        className="hero-title font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-left md:leading-[1.1] text-balance" 
-        style={{ 
-          fontSize: 'var(--title-size, clamp(1.75rem, 5vw, 2.25rem))', 
+    <div className="homepage-copy-column homepage-section-header homepage-title-only section-header-spacing text-center">
+      <h1
+        className="hero-title font-sf-pro-display font-bold leading-[1.05] tracking-tight w-full text-center md:leading-[1.1] text-balance"
+        style={{
+          fontSize: 'var(--title-size, clamp(1.75rem, 5vw, 2.25rem))',
           fontFamily: "'tiempos-headline-regular', serif",
-          marginBottom: 'calc(1.32 * 1.5rem)' 
+          marginBottom: 'calc(1.32 * 1.5rem)'
         }}
       >
         <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)] text-balance">
@@ -462,57 +467,12 @@ export default function HomePage() {
       </h1>
     </div>
 
-              {/* Single Column Layout: Images and Text Stacked Vertically */}
-              <div className="homepage-copy-column homepage-media-stack">
-                {/* First Image */}
-                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
-                <div className="w-full">
-                  <div 
-                    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-                    style={{
-                      background: '#f0f0f0' /* Skeleton state background */,
-                      aspectRatio: '2129 / 1383' /* Match actual image dimensions (2129x1383) */
-                    }}
-                  >
-                    <Image 
-                      id="me_heroImage-1_1.1.1-about"
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
-                      alt="Dan Meier"
-                      width={2129}
-                      height={1383}
-                      className="w-full h-auto rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 576px"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-               {/* Second Image (Portrait) */}
-<div className="w-full">
-  <div 
-    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-    style={{
-      background: '#f0f0f0' /* Maintains the placeholder color while loading */
-    }}
-  >
-    <Image 
-      id="me_heroImage-1_1.1.1-about-2"
-      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
-      alt="Dan Meier"
-      width={576} // The intrinsic width of the file
-      height={768} // The intrinsic height of the file
-      className="w-full h-auto block rounded-lg" // h-auto is key for auto-fitting
-      sizes="(max-width: 768px) 100vw, 576px"
-      loading="lazy"
-    />
-  </div>
-</div>
-
-                {/* Design Journey Section */}
-                <div className="w-full mt-8 md:mt-10">
+{/* Design Journey Section */}
+<div className="homepage-copy-column space-y-6 md:space-y-8 mb-12 md:mb-16">
+        <div className="w-full mt-8 md:mt-10">
                   <div className="homepage-stack">
                     {/* Design Journey Path Marker */}
-                    <div className="flex items-center gap-3 opacity-60">
+                    <div className="flex items-center gap-3 opacity-60 mb-3 md:mb-4">
                       <div className="w-8 h-px bg-stone-300"></div>
                       <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
                       <div className="text-sm font-medium text-stone-500">A practice built across environments</div>
@@ -523,15 +483,82 @@ export default function HomePage() {
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`Landscape architecture and urban design trained me to read environments before designing them — to understand how people orient themselves in space, how circulation patterns form, how environmental conditions shape behavior before a single decision is made. That way of seeing carried directly into a decade of digital systems work: information architecture, service design, enterprise products, and complex operational experiences. The two disciplines are not a before-and-after. They are the same practice applied at different scales.`)}
+                      {preventWidow(`Landscape architecture and urban design trained me to read environments before designing them — to understand how people orient themselves in space, how circulation patterns form, how environmental conditions shape behavior before a single decision is made. That way of seeing carried directly into a decade plus of digital design work: information architecture, service design, enterprise products, and complex operational experiences. The two disciplines are not a before-and-after. They are the same practice applied at different scales.`)}
                     </p>
                   </div>
                 </div>
+        </div>
 
-                {/* Experience Concept Sketch */}
-                <div className="w-full my-8 md:my-10">
+              {/* Single Column Layout: Images and Text Stacked Vertically */}
+              <div className="homepage-copy-column homepage-media-stack">
+                {/* First Image */}
+                {/* ✅ REMOVED - Suspense and motion.div (animations) */}
+                {/* Breaks out of the narrow .homepage-copy-column to match the
+                    World Travel Diaries video container's width — text siblings
+                    in this stack stay at the narrow width, only media widens. */}
+                <div className="homepage-media-breakout">
+                  <div className="homepage-container">
+                    <div
+                      className="w-full relative rounded-lg shadow-lg overflow-hidden"
+                      style={{
+                        background: '#f0f0f0' /* Skeleton state background */,
+                        aspectRatio: '2129 / 1383' /* Match actual image dimensions (2129x1383) */
+                      }}
+                    >
+                      <Image
+                        id="me_heroImage-1_1.1.1-about"
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/me-arches-wine.jpg`}
+                        alt="Dan Meier"
+                        width={2129}
+                        height={1383}
+                        className="w-full h-auto rounded-lg"
+                        sizes="(max-width: 768px) 100vw, 848px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+               {/* Second Image (Portrait) */}
+{/* Breaks out of the narrow .homepage-copy-column to match the World Travel
+    Diaries video container's width — see .homepage-media-breakout in globals.css. */}
+<div className="homepage-media-breakout">
+<div className="homepage-container">
+<div className="w-full">
+  <div
+    className="w-full relative rounded-lg shadow-lg overflow-hidden"
+    style={{
+      background: '#f0f0f0' /* Maintains the placeholder color while loading */
+    }}
+  >
+    <Image
+      id="me_heroImage-1_1.1.1-about-2"
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_2.jpg`}
+      alt="Dan Meier"
+      width={576} // The intrinsic width of the file
+      height={768} // The intrinsic height of the file
+      className="w-full h-auto block rounded-lg" // h-auto is key for auto-fitting
+      sizes="(max-width: 768px) 100vw, 848px"
+      loading="lazy"
+    />
+  </div>
+</div>
+</div>
+</div>
+
+  {/* Second Image (Portrait) */}
+{/* Breaks out of the narrow .homepage-copy-column to match the World Travel
+    Diaries video container's width — see .homepage-media-breakout in globals.css. */}
+<div className="homepage-media-breakout">
+<div className="homepage-container">
+<div className="w-full">
+  {/* Experience Concept Sketch */}
+  <div className="w-full my-8 md:my-10">
                   <ExperienceConceptDiagram />
                 </div>
+</div>
+</div>
+</div>
 
                 {/* Travel Discovery Section */}
                 <div className="w-full">
@@ -539,15 +566,15 @@ export default function HomePage() {
                     {/* Travel Discovery Divider */}
                     <div className="flex items-center justify-center py-2 md:py-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
                       </div>
                     </div>                 
                     <p
@@ -557,7 +584,7 @@ export default function HomePage() {
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to — before a visitor knows what they need. How wayfinding breaks under pressure. Where hospitality systems succeed or fail at the seam between the physical and the operational. Those observations are not just travel stories. They are primary research into how real-world experience systems&nbsp;work.
+                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to. From wayfinding under pressure to the seams where hospitality meets physical land operations, these insights serve as primary research for building seamless real-world&nbsp;systems.
                   </p>
                     <p className="text-sm text-gray-900 italic text-pretty" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI-generated photos or video.
@@ -565,49 +592,54 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="w-full">
-                <div 
-                  className="w-full relative rounded-lg shadow-lg overflow-hidden"
-                  style={{
-                    background: '#f0f0f0', 
-                    /* We remove the hardcoded aspectRatio style here */
-                  }}
-                >
-                  <Image 
-                    id="me_heroImage-1_1.1.1-about-3"
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
-                    alt="Dan Meier"
-                    // Providing these tells Next.js the intrinsic ratio
-                    width={576} 
-                    height={768}
-                    // h-auto ensures the height adjusts based on the width of the container
-                    className="w-full h-auto block rounded-lg"
-                    sizes="(max-width: 768px) 100vw, 576px"
-                    priority={true} // Optional: use if this is "above the fold"
-                  />
-                </div>
-              </div>
+                {/* Portrait image pair */}
+<div className="homepage-media-breakout">
+  <div className="homepage-container">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
 
-                {/* Fourth Image (Portrait) */}
-<div className="w-full">
-  <div 
-    className="w-full relative rounded-lg shadow-lg overflow-hidden"
-    style={{
-      background: '#f0f0f0' /* Skeleton state remains for the initial box */
-    }}
-  >
-    <Image 
-      id="me_heroImage-1_1.1.1-about-4"
-      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
-      alt="Dan Meier"
-      // Provide the natural dimensions of the file to preserve ratio
-      width={576} 
-      height={768}
-      // w-full makes it responsive; h-auto lets the file ratio define the height
-      className="w-full h-auto block rounded-lg"
-      sizes="(max-width: 768px) 100vw, 576px"
-      loading="lazy"
-    />
+      {/* Third Image */}
+      <div className="w-full">
+        <div
+          className="w-full relative rounded-lg shadow-lg overflow-hidden"
+          style={{
+            background: '#f0f0f0',
+          }}
+        >
+          <Image
+            id="me_heroImage-1_1.1.1-about-3"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_1.jpg`}
+            alt="Dan Meier"
+            width={576}
+            height={768}
+            className="w-full h-auto block rounded-lg"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            priority={true}
+          />
+        </div>
+      </div>
+
+      {/* Fourth Image */}
+      <div className="w-full">
+        <div
+          className="w-full relative rounded-lg shadow-lg overflow-hidden"
+          style={{
+            background: '#f0f0f0',
+          }}
+        >
+          <Image
+            id="me_heroImage-1_1.1.1-about-4"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/portrait-4shots_3.jpg`}
+            alt="Dan Meier"
+            width={576}
+            height={768}
+            className="w-full h-auto block rounded-lg"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
               </div>

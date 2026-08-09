@@ -74,38 +74,41 @@ export default function DesignWork() {
   return (
     <section id="work" className="homepage-section relative bg-white" aria-label="Work">
       <div className="homepage-container relative">
-        <header className="homepage-copy-column relative">
-          <div className="mb-5 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-600">
-              <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
-              Work
-            </span>
-          </div>
+      <header className="homepage-copy-column relative flex flex-col items-center text-center">
+  <div className="mb-5 flex flex-wrap items-center justify-center gap-3">
+    <span className="inline-flex items-center gap-2 border-b border-gray-200 pb-1 text-sm font-medium text-gray-600">
+      <Layers3 className="h-3.5 w-3.5" aria-hidden="true" />
+      Work
+    </span>
+  </div>
 
-          <h1
-            id="work-title"
-            className="hero-title font-sf-pro-display font-bold leading-[1.1] tracking-tight text-left text-balance"
-            style={{
-              fontSize: 'clamp(2.125rem, 4.5vw, 3.75rem)',
-              whiteSpace: 'normal',
-              fontFamily: "'tiempos-headline-regular', serif",
-              marginBottom: 'calc(1.32 * 1.5rem)',
-            }}
-          >
-            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold text-balance">
-            A practice built to understand systems before improving them.
-            </span>
-          </h1>
+  <h1
+    id="work-title"
+    className="hero-title font-sf-pro-display font-bold leading-[1.1] tracking-tight text-center text-balance"
+    style={{
+      fontSize: 'clamp(2.125rem, 4.5vw, 3.75rem)',
+      whiteSpace: 'normal',
+      fontFamily: "'tiempos-headline-regular', serif",
+      marginBottom: 'calc(1.32 * 1.5rem)',
+    }}
+  >
+    <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold text-balance inline-block text-center">
+      A practice built to understand systems before improving them.
+    </span>
+  </h1>
 
-          <p
-            className="text-xl text-gray-700 leading-relaxed text-pretty"
-            style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
-          >
-            Two distinct tracks: a self-directed practice designing and engineering decision-making logic for complex environments, paired with over a decade of verified digital product delivery across enterprise industries.
-          </p>
-        </header>
+  <p
+    className="text-xl text-gray-700 leading-relaxed text-pretty text-center"
+    style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
+  >
+    Two distinct tracks: a self-directed practice designing and engineering decision-making logic for complex environments, paired with over a decade of verified digital product delivery across enterprise industries.
+  </p>
+</header>
 
-        <div className="homepage-copy-column relative mt-12 md:mt-16" aria-labelledby="work-title">
+        {/* Direct child of .homepage-container (no .homepage-copy-column) so the
+            cards grid matches the World Travel Diaries video container's width
+            system instead of the narrower text-reading column. */}
+        <div className="relative mt-12 md:mt-16" aria-labelledby="work-title">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
             {orderedTracks.map(({ meta }) => (
               <TrackCard key={meta.track} meta={meta} />
