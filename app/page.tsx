@@ -685,7 +685,7 @@ Grounded in a Master’s in Landscape Architecture (
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
-                Forty-one countries of deliberate field observation — not tourism, but systems research conducted in environments I don't control. How people orient themselves when signage fails. How hospitality breaks down between the front-of-house and the operational layer behind it. How informal systems emerge when designed ones fall short. All of it documented through my own lens.
+                Forty-one countries of deliberate field observation—not tourism, but learning how to read unfamiliar environments and cultures. Observing how people navigate when signage fails, where hospitality breaks down behind the scenes, and how informal systems emerge when design falls short.
               </p>
               <p className="text-sm max-w-4xl mb-6 md:mb-8 italic leading-relaxed text-pretty text-left" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
