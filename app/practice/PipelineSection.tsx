@@ -46,46 +46,47 @@ type StaticCard = {
 };
 
 // ── Tone map ──────────────────────────────────────────────────────────────────
+// Dark-surface tones — tuned for WCAG-AA contrast against the slate-900/800 card system.
 const TONE = {
   teal: {
-    cardBorder: 'border-teal-100',
-    cardBorderFeatured: 'border-teal-200',
-    cardBorderDashed: 'border-teal-200',
-    iconContainer: 'border-teal-100 bg-teal-50 text-teal-700',
-    label: 'text-teal-700/65',
-    cta: 'text-teal-700 hover:text-teal-800 focus:ring-teal-700',
-    ctaHoverBg: 'hover:bg-teal-50/60 hover:text-teal-800',
-    methodCta: 'text-teal-700 hover:text-teal-800 focus:ring-teal-700',
+    cardBorder: 'border-white/5',
+    cardBorderFeatured: 'border-teal-400/30',
+    cardBorderDashed: 'border-teal-400/25',
+    iconContainer: 'border-teal-400/25 bg-teal-400/10 text-teal-300',
+    label: 'text-teal-300/80',
+    cta: 'text-teal-300 hover:text-teal-200 focus:ring-teal-300',
+    ctaHoverBg: 'hover:bg-teal-400/10 hover:text-teal-200',
+    methodCta: 'text-teal-300 hover:text-teal-200 focus:ring-teal-300',
   },
   violet: {
-    cardBorder: 'border-violet-100',
-    cardBorderFeatured: 'border-violet-200',
-    cardBorderDashed: 'border-violet-200',
-    iconContainer: 'border-violet-100 bg-violet-50 text-violet-700',
-    label: 'text-violet-700/65',
-    cta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
-    ctaHoverBg: 'hover:bg-violet-50/60 hover:text-violet-800',
-    methodCta: 'text-violet-700 hover:text-violet-800 focus:ring-violet-700',
+    cardBorder: 'border-white/5',
+    cardBorderFeatured: 'border-violet-400/30',
+    cardBorderDashed: 'border-violet-400/25',
+    iconContainer: 'border-violet-400/25 bg-violet-400/10 text-violet-300',
+    label: 'text-violet-300/80',
+    cta: 'text-violet-300 hover:text-violet-200 focus:ring-violet-300',
+    ctaHoverBg: 'hover:bg-violet-400/10 hover:text-violet-200',
+    methodCta: 'text-violet-300 hover:text-violet-200 focus:ring-violet-300',
   },
   amber: {
-    cardBorder: 'border-amber-100',
-    cardBorderFeatured: 'border-amber-200',
-    cardBorderDashed: 'border-amber-200',
-    iconContainer: 'border-amber-100 bg-amber-50 text-amber-700',
-    label: 'text-amber-700/65',
-    cta: 'text-amber-700 hover:text-amber-800 focus:ring-amber-700',
-    ctaHoverBg: 'hover:bg-amber-50/60 hover:text-amber-800',
-    methodCta: 'text-amber-700 hover:text-amber-800 focus:ring-amber-700',
+    cardBorder: 'border-white/5',
+    cardBorderFeatured: 'border-amber-400/30',
+    cardBorderDashed: 'border-amber-400/25',
+    iconContainer: 'border-amber-400/25 bg-amber-400/10 text-amber-300',
+    label: 'text-amber-300/80',
+    cta: 'text-amber-300 hover:text-amber-200 focus:ring-amber-300',
+    ctaHoverBg: 'hover:bg-amber-400/10 hover:text-amber-200',
+    methodCta: 'text-amber-300 hover:text-amber-200 focus:ring-amber-300',
   },
   blue: {
-    cardBorder: 'border-blue-100',
-    cardBorderFeatured: 'border-blue-200',
-    cardBorderDashed: 'border-blue-200',
-    iconContainer: 'border-blue-100 bg-blue-50 text-blue-700',
-    label: 'text-blue-700/65',
-    cta: 'text-blue-700 hover:text-blue-800 focus:ring-blue-700',
-    ctaHoverBg: 'hover:bg-blue-50/60 hover:text-blue-800',
-    methodCta: 'text-blue-700 hover:text-blue-800 focus:ring-blue-700',
+    cardBorder: 'border-white/5',
+    cardBorderFeatured: 'border-blue-400/30',
+    cardBorderDashed: 'border-blue-400/25',
+    iconContainer: 'border-blue-400/25 bg-blue-400/10 text-blue-300',
+    label: 'text-blue-300/80',
+    cta: 'text-blue-300 hover:text-blue-200 focus:ring-blue-300',
+    ctaHoverBg: 'hover:bg-blue-400/10 hover:text-blue-200',
+    methodCta: 'text-blue-300 hover:text-blue-200 focus:ring-blue-300',
   },
 } as const;
 
@@ -98,8 +99,8 @@ function TagList({ tags, compact = false }: { tags: string[]; compact?: boolean 
           <span
             className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${
               compact
-                ? 'border-stone-200 bg-white/70 text-stone-500'
-                : 'border-stone-200 bg-stone-50 text-stone-600'
+                ? 'border-white/10 bg-white/5 text-slate-400'
+                : 'border-white/10 bg-white/5 text-slate-300'
             }`}
           >
             {tag}
@@ -118,7 +119,7 @@ function LinkedProjectCard({ card, tone }: { card: LinkedCard; tone: CardTone })
   const t = TONE[tone];
   return (
     <article
-      className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-white px-6 py-6 shadow-sm md:px-7 md:py-7 ${
+      className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-slate-800/60 px-6 py-6 shadow-sm shadow-black/20 md:px-7 md:py-7 ${
         card.featured ? t.cardBorderFeatured : t.cardBorder
       }`}
     >
@@ -132,14 +133,14 @@ function LinkedProjectCard({ card, tone }: { card: LinkedCard; tone: CardTone })
               {card.label}
             </p>
             <h3
-              className="mt-1 text-2xl font-bold leading-tight text-gray-950 text-balance"
+              className="mt-1 text-2xl font-bold leading-tight text-white text-balance"
               style={{ fontFamily: "'tiempos-headline-regular', serif" }}
             >
               {card.title}
             </h3>
           </div>
         </div>
-        <p className="mt-4 text-sm leading-relaxed text-gray-700 md:text-base text-pretty">{card.description}</p>
+        <p className="mt-4 text-sm leading-relaxed text-slate-300 md:text-base text-pretty">{card.description}</p>
         <div className="mt-4">
           <TagList tags={card.tags} />
         </div>
@@ -147,7 +148,7 @@ function LinkedProjectCard({ card, tone }: { card: LinkedCard; tone: CardTone })
       <div className="mt-6 flex">
         <Link
           href={card.href}
-          className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.cta}`}
+          className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-800 ${t.cta}`}
         >
           {card.cta}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -162,7 +163,7 @@ function ResearchOSCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
   const Icon = card.icon;
   const t = TONE[tone];
   return (
-    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-white p-5 shadow-sm ${t.cardBorder}`}>
+    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border bg-slate-800/60 p-5 shadow-sm shadow-black/20 ${t.cardBorder}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
           <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
@@ -172,10 +173,10 @@ function ResearchOSCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
             <p className={`font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] ${t.label}`}>
               {card.label}
             </p>
-            <h3 className="mt-1 text-xl font-bold leading-tight text-gray-950 text-balance">{card.title}</h3>
+            <h3 className="mt-1 text-xl font-bold leading-tight text-white text-balance">{card.title}</h3>
           </div>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-gray-600 text-pretty">{card.description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-300 text-pretty">{card.description}</p>
         <div className="mt-4">
           <TagList tags={card.tags} compact />
         </div>
@@ -183,7 +184,7 @@ function ResearchOSCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
       <div className="mt-6 flex">
         <Link
           href={card.href}
-          className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.methodCta}`}
+          className={`inline-flex min-h-[44px] items-center justify-start gap-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-800 ${t.methodCta}`}
         >
           Explore Research OS
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -198,7 +199,7 @@ function ConceptCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
   const Icon = card.icon;
   const t = TONE[tone];
   return (
-    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border border-dashed bg-white p-5 ${t.cardBorderDashed}`}>
+    <article className={`w-full ${COPY_MAX_WIDTH} rounded-lg border border-dashed bg-slate-800/30 p-5 ${t.cardBorderDashed}`}>
       <div className="min-w-0">
         <div className="flex items-center gap-3">
           <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${t.iconContainer}`}>
@@ -208,10 +209,10 @@ function ConceptCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
             <p className={`font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] ${t.label}`}>
               {card.label}
             </p>
-            <h3 className="mt-1 text-xl font-bold leading-tight text-gray-950 text-balance">{card.title}</h3>
+            <h3 className="mt-1 text-xl font-bold leading-tight text-white text-balance">{card.title}</h3>
           </div>
         </div>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-gray-600 text-pretty">{card.description}</p>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 text-pretty">{card.description}</p>
         <div className="mt-5">
           <TagList tags={card.tags} compact />
         </div>
@@ -219,7 +220,7 @@ function ConceptCard({ card, tone }: { card: StaticCard; tone: CardTone }) {
           <Link
             href={card.href}
             aria-label={`Explore ${card.title}`}
-            className={`group -ml-3 inline-flex min-h-[44px] items-center justify-start gap-2 rounded-lg px-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-4 ${t.cta} ${t.ctaHoverBg}`}
+            className={`group -ml-3 inline-flex min-h-[44px] items-center justify-start gap-2 rounded-lg px-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-900 ${t.cta} ${t.ctaHoverBg}`}
           >
             <span>Explore Project</span>
             <ArrowRight
@@ -244,12 +245,11 @@ const STAGES = [
     activePill: 'border-teal-200 bg-teal-50 text-teal-700',
     countBubble: 'bg-teal-100 text-teal-700',
     chevron: 'text-teal-500',
-    stageLabel: 'text-teal-600',
-    divider: 'border-teal-100',
+    stageLabel: 'text-teal-300/80',
     // Interaction design tokens
-    openRowBg: 'bg-teal-50/60',
-    openChevronContainer: 'border-teal-200 bg-teal-100',
-    openChevronIcon: 'text-teal-600',
+    openRowBg: 'bg-teal-400/10',
+    openChevronContainer: 'border-teal-400/30 bg-teal-400/15',
+    openChevronIcon: 'text-teal-300',
   },
   {
     key: 'frameworks',
@@ -259,11 +259,10 @@ const STAGES = [
     activePill: 'border-violet-200 bg-violet-50 text-violet-700',
     countBubble: 'bg-violet-100 text-violet-700',
     chevron: 'text-violet-500',
-    stageLabel: 'text-violet-600',
-    divider: 'border-violet-100',
-    openRowBg: 'bg-violet-50/60',
-    openChevronContainer: 'border-violet-200 bg-violet-100',
-    openChevronIcon: 'text-violet-600',
+    stageLabel: 'text-violet-300/80',
+    openRowBg: 'bg-violet-400/10',
+    openChevronContainer: 'border-violet-400/30 bg-violet-400/15',
+    openChevronIcon: 'text-violet-300',
   },
   {
     key: 'concepts',
@@ -273,11 +272,10 @@ const STAGES = [
     activePill: 'border-amber-200 bg-amber-50 text-amber-700',
     countBubble: 'bg-amber-100 text-amber-700',
     chevron: 'text-amber-500',
-    stageLabel: 'text-amber-600',
-    divider: 'border-amber-100',
-    openRowBg: 'bg-amber-50/60',
-    openChevronContainer: 'border-amber-200 bg-amber-100',
-    openChevronIcon: 'text-amber-600',
+    stageLabel: 'text-amber-300/80',
+    openRowBg: 'bg-amber-400/10',
+    openChevronContainer: 'border-amber-400/30 bg-amber-400/15',
+    openChevronIcon: 'text-amber-300',
   },
   {
     key: 'builds',
@@ -287,11 +285,10 @@ const STAGES = [
     activePill: 'border-blue-200 bg-blue-50 text-blue-700',
     countBubble: 'bg-blue-100 text-blue-700',
     chevron: 'text-blue-500',
-    stageLabel: 'text-blue-600',
-    divider: 'border-blue-100',
-    openRowBg: 'bg-blue-50/60',
-    openChevronContainer: 'border-blue-200 bg-blue-100',
-    openChevronIcon: 'text-blue-600',
+    stageLabel: 'text-blue-300/80',
+    openRowBg: 'bg-blue-400/10',
+    openChevronContainer: 'border-blue-400/30 bg-blue-400/15',
+    openChevronIcon: 'text-blue-300',
   },
 ] as const;
 
@@ -359,23 +356,27 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
 
   return (
     <div className={`${CONTENT_BOUNDS} pt-8 pb-16 md:pb-20`}>
-      <div className="space-y-3">
+      <div className="space-y-5">
         {STAGES.map((stage, idx) => {
           const isExpanded = expanded.has(stage.key);
           const stageProjects = byType(stage.type);
 
           return (
-            <section key={stage.key} aria-labelledby={`stage-heading-${stage.key}`}>
+            <section
+              key={stage.key}
+              aria-labelledby={`stage-heading-${stage.key}`}
+              className="overflow-hidden rounded-2xl bg-slate-900 shadow-lg shadow-slate-950/30 ring-1 ring-white/[0.06]"
+            >
               {/* ── Toggle row ──────────────────────────────────────────────── */}
               <button
                 id={`stage-heading-${stage.key}`}
                 onClick={() => toggle(stage.key)}
                 aria-expanded={isExpanded}
                 aria-controls={`stage-panel-${stage.key}`}
-                className={`group flex w-full min-h-[56px] cursor-pointer items-center justify-between rounded-xl py-3 px-4 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 ${
+                className={`group flex w-full min-h-[56px] cursor-pointer items-center justify-between py-4 px-5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80 md:px-7 ${
                   isExpanded
                     ? stage.openRowBg
-                    : 'hover:bg-neutral-50'
+                    : 'hover:bg-white/[0.03]'
                 }`}
               >
                 <div className="text-left">
@@ -385,12 +386,12 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
                   <div className="mt-0.5 flex items-baseline gap-2">
                     <h2
                       className={`text-lg font-semibold transition-colors duration-200 ${
-                        isExpanded ? 'text-gray-950' : 'text-gray-900 group-hover:text-gray-950'
+                        isExpanded ? 'text-white' : 'text-slate-100 group-hover:text-white'
                       }`}
                     >
                       {stage.label}
                     </h2>
-                    <span className="font-mono text-[10px] text-neutral-400" aria-label={`${stageProjects.length} projects`}>
+                    <span className="font-mono text-[10px] text-slate-500" aria-label={`${stageProjects.length} projects`}>
                       · {stageProjects.length}
                     </span>
                   </div>
@@ -402,14 +403,14 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
                     isExpanded
                       ? stage.openChevronContainer
-                      : 'border-neutral-200 bg-neutral-100 group-hover:border-neutral-300 group-hover:bg-neutral-200'
+                      : 'border-white/10 bg-white/5 group-hover:border-white/20 group-hover:bg-white/10'
                   }`}
                 >
                   <ChevronDown
                     className={`h-4 w-4 transition-transform duration-200 motion-reduce:transition-none ${
                       isExpanded
                         ? `${stage.openChevronIcon} rotate-180`
-                        : 'text-neutral-500 group-hover:text-neutral-700'
+                        : 'text-slate-400 group-hover:text-slate-200'
                     }`}
                   />
                 </span>
@@ -430,7 +431,7 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
                     }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-3 grid grid-cols-1 gap-5 pb-4 md:gap-6">
+                    <div className="grid grid-cols-1 gap-5 border-t border-white/5 px-5 pt-5 pb-6 md:gap-6 md:px-7 md:pb-7">
                       {stageProjects.map((p) => {
                         if (p.type === 'Research OS') {
                           return <ResearchOSCard key={p.id} card={toStatic(p)} tone={stage.tone} />;
@@ -444,11 +445,6 @@ export default function PipelineSection({ projects }: { projects: ProjectRecord[
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Stage divider */}
-              {idx < STAGES.length - 1 && (
-                <div className={`mt-3 border-t ${stage.divider}`} aria-hidden="true" />
-              )}
             </section>
           );
         })}
