@@ -391,7 +391,7 @@ Grounded in a Master’s in Landscape Architecture (
     paddingLeft: '1rem' 
   }}
 >
-  <strong>Current Focus:</strong> Designing, building and deploying operational models, digital applications, and spatial frameworks for complex properties.
+  <strong>Current Focus:</strong> Designing, building and deploying operational models, digital applications, and spatial frameworks for complex environments.
 </p>
 
           {/* Dedicated Signature Frame - Tightened top spacing */}
