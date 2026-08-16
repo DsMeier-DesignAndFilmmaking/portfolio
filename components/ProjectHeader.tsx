@@ -24,12 +24,23 @@ type ProjectHeaderProps = {
   label?: string;
   /** focus-visible ring color for the logo-home button (per-page accent). */
   focusRingClassName?: string;
+  /**
+   * Surface the header sits on. 'light' (default) is the established behavior
+   * for every white-canvas project page and is unchanged. 'dark' inverts the
+   * logo, label, divider, and hamburger, and hands `tone="dark"` to the
+   * dropdown — needed by dark-canvas routes (e.g. the Rock Creek Experience OS
+   * operations view) so the shared nav stays legible instead of being
+   * re-implemented locally.
+   */
+  tone?: 'light' | 'dark';
 };
 
 export default function ProjectHeader({
   label = 'Work',
   focusRingClassName = 'focus-visible:ring-neutral-900',
+  tone = 'light',
 }: ProjectHeaderProps = {}) {
+  const isDark = tone === 'dark';
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -63,7 +74,11 @@ export default function ProjectHeader({
     <MotionConfig reducedMotion="user">
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 motion-reduce:transition-none ${
-          isNavbarWhite ? 'border-b border-neutral-100 bg-white/95 backdrop-blur-md' : 'bg-transparent'
+          isNavbarWhite
+            ? isDark
+              ? 'border-b border-white/10 bg-neutral-950/95 backdrop-blur-md'
+              : 'border-b border-neutral-100 bg-white/95 backdrop-blur-md'
+            : 'bg-transparent'
         } ${
           atTop
             ? 'translate-y-0'
@@ -87,14 +102,23 @@ export default function ProjectHeader({
                   width={150}
                   height={37}
                   priority
-                  className="h-9 w-auto brightness-0"
+                  className={`h-9 w-auto ${isDark ? 'brightness-0 invert' : 'brightness-0'}`}
                 />
               </button>
               <div className="ml-3 flex flex-shrink-0 items-center">
-                <div className="h-5 w-px flex-shrink-0 bg-slate-300" aria-hidden="true" />
+                <div
+                  className={`h-5 w-px flex-shrink-0 ${isDark ? 'bg-white/25' : 'bg-slate-300'}`}
+                  aria-hidden="true"
+                />
                 <span
                   className={`ml-3 whitespace-nowrap text-xs font-medium transition-colors duration-500 motion-reduce:transition-none md:text-sm ${
-                    isNavbarWhite ? 'text-black' : 'text-gray-700'
+                    isDark
+                      ? isNavbarWhite
+                        ? 'text-white'
+                        : 'text-neutral-300'
+                      : isNavbarWhite
+                        ? 'text-black'
+                        : 'text-gray-700'
                   }`}
                 >
                   {label}
@@ -110,7 +134,13 @@ export default function ProjectHeader({
               aria-expanded={isMobileMenuOpen}
               aria-controls={PROJECT_NAV_MOBILE_MENU_ID}
               className={`flex min-h-[44px] items-center justify-end py-2 pl-4 transition-colors duration-500 motion-reduce:transition-none lg:hidden ${
-                isNavbarWhite ? 'text-black' : 'text-gray-700'
+                isDark
+                  ? isNavbarWhite
+                    ? 'text-white'
+                    : 'text-neutral-300'
+                  : isNavbarWhite
+                    ? 'text-black'
+                    : 'text-gray-700'
               }`}
               aria-label="Toggle mobile menu"
             >
@@ -135,6 +165,7 @@ export default function ProjectHeader({
 
             <ProjectPracticeNavDropdown
               pathname={pathname}
+              tone={tone}
               isNavbarWhite={isNavbarWhite}
               isMobileMenuOpen={isMobileMenuOpen}
               setIsMobileMenuOpen={setIsMobileMenuOpen}

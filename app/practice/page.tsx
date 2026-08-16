@@ -94,11 +94,11 @@ export default function PracticePage() {
         id="practice-headline"
         className="mt-4 text-balance font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
       >
-        Designing the logic beneath interfaces, environments, and autonomous decisions.
+        Designing environmental, digital, and human systems for complex, adaptive landscapes.
       </h1>
 
-      <p className="mt-6 text-pretty font-tiempos text-xl italic text-neutral-600 md:text-2xl leading-relaxed">
-      <strong>Product design isolates screens and features.</strong> This practice orchestrates the systemic underpinnings behind physical spaces, digital platforms, and operations. This methodology translates erratic environmental signals into rigid frameworks, structural protocols, and resilient builds."
+      <p className="mt-6 text-pretty font-tiempos text-xl text-neutral-600 md:text-2xl leading-relaxed">
+      What started as a career in landscape architecture evolved over 15+ years of digital design systems work. I now bridge technology and the physical land to build resilient spatial operations, ecological stewardship, and seamless guest journeys.
       </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -1,0 +1,10 @@
+{
+  "description": "An interactive dashboard concept visualizing environmental resilience, guest experience, and operational systems for luxury remote ranch stewardship and design exploration.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
