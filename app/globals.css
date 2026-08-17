@@ -38,6 +38,44 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+/* ───────────────────────────────────────────────────────────────────────────
+   Shared offset tokens for `components/ProjectHeader.tsx` — the fixed header
+   on every flagship project page — and for anything that has to pin directly
+   beneath it (currently the Rock Creek `ExperienceNav` section rail, and that
+   route's dashboard shell padding). Single source of truth, so no consumer
+   has to hardcode the header's height again.
+
+   `--project-header-height` is republished at runtime by ProjectHeader from a
+   ResizeObserver on its own element, so it tracks the real rendered box at
+   every breakpoint instead of a guessed number. The 68px here is only the
+   pre-hydration / no-header fallback. It is deliberately the header's CONTENT
+   box, not its border box: the header grows a 1px `border-b` once it tints
+   past 100px of scroll, and consumers that use this token for *layout*
+   (padding) would otherwise shift content by a pixel mid-scroll. The header
+   paints above the rail (z-50 vs z-40), so that border simply overlaps the
+   rail's first pixel rather than leaving a seam.
+
+   `--project-header-shift` mirrors the header's own hide-on-scroll transform.
+   ProjectHeader hides itself on scroll-down via `-translate-y-full
+   lg:translate-y-0` — i.e. ONLY below `lg`; on desktop it is always on
+   screen. Keeping the breakpoint half of that rule here in CSS (rather than
+   re-deriving it in JS with matchMedia) means Tailwind's `lg` and this rule
+   can't drift apart: JS only reports whether the header wants to be hidden,
+   CSS decides whether that applies at this width. Pinned consumers add this
+   shift as a transform, so they travel with the header instead of floating a
+   header-height gap below a header that is no longer there.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --project-header-height: 68px;
+  --project-header-shift: 0px;
+}
+
+@media (max-width: 1023.98px) {
+  :root[data-project-header='hidden'] {
+    --project-header-shift: calc(-1 * var(--project-header-height));
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4rem;

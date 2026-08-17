@@ -51,7 +51,9 @@ export function EnvironmentalExperienceDashboard() {
   const [twinLayer, setTwinLayer] = useState<TwinLayer>('experience');
 
   return (
-    <div className="flex min-h-screen flex-col bg-neutral-950 pt-[68px] text-neutral-100 selection:bg-rockcreek-500/30">
+    // Header clearance comes from the shared token rather than a second copy
+    // of the header's height (see the token block in app/globals.css).
+    <div className="flex min-h-screen flex-col bg-neutral-950 pt-[var(--project-header-height)] text-neutral-100 selection:bg-rockcreek-500/30">
       {/* Shared portfolio project nav — dark tone so it stays legible on this canvas. */}
       <ProjectHeader tone="dark" focusRingClassName="focus-visible:ring-rockcreek-400" />
       {/* Sticky section rail: a direct child of this flex-col shell (sibling to
@@ -60,9 +62,9 @@ export function EnvironmentalExperienceDashboard() {
           full scroll depth, so `position: sticky` would run out of room to
           stay pinned within a few screenfuls. Mounted here, its containing
           block is this whole shell, which spans the entire page. The outer
-          shell already carries `pt-[68px]` to clear the fixed header for
-          everything in it, so this only needs a small nudge (`mt-3`) beyond
-          that, not the header height again. */}
+          shell already clears the fixed header for everything in it via
+          `--project-header-height`, so this only needs a small nudge (`mt-3`)
+          beyond that, not the header height again. */}
       <ExperienceNav
         tone="dark"
         outerClassName="mx-auto w-full max-w-[1600px] px-4 md:px-6"

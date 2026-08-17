@@ -1,6 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -49,19 +52,65 @@ import { usePathname } from 'next/navigation';
 // glance. A pill treatment would encode state almost entirely in fill color and
 // would add the heaviest enclosed shape on the page directly above the H1.
 //
+// TWO VARIANTS, split at `sm` (640px). The rail above is the `sm:`-and-up
+// presentation. Below that it is replaced by a disclosure picker, because the
+// rail does not merely get tight on a phone — the fourth section becomes
+// completely invisible. Measured at 375px: the rail is 327px wide with 547px of
+// content, "Systems Atlas" ends at 325px, and "Environmental Experience OS"
+// starts at 349px. So there is a 22px blank gutter and then nothing — no
+// partial peek to imply more, and `.no-scrollbar` (globals.css) removes the
+// scrollbar too, leaving the rail looking like a complete three-item set.
+//
+// 640px is not a taste call, it is where the content first fits: 320/375/430px
+// all need 557px against 272/327/382px available; 640px is the first width with
+// enough room (592 available). Shortening the labels was measured as an
+// alternative — "Overview / Explorer / Atlas / Dashboard" needs 304px, so it
+// fits from ~360px but still fails at 320px and under iOS Dynamic Type, and it
+// throws away names that carry the case study's information scent.
+//
+// The picker's trigger states the count outright ("SECTION 1 OF 4") rather than
+// relying on a fade or a peeking edge, so the existence of the fourth section is
+// declared instead of left to be discovered by swiping — which was the actual
+// reported problem. It is an anchored inline panel, deliberately NOT a
+// full-screen sheet: the global header's hamburger already owns that pattern
+// (`fixed inset-0 z-[120]` in ProjectPracticeNavDropdown), and a second
+// full-screen menu on the same page would make the two nav layers
+// indistinguishable.
+//
+// The split is done with CSS (`sm:hidden` / `hidden sm:flex`), never a JS width
+// check: these routes are statically exported, and a JS variant switch would
+// paint the wrong control before hydration. Both variants live inside ONE `<nav>`
+// landmark so the accessibility tree never sees a duplicated nav or a duplicated
+// link set — whichever variant is `display:none` drops out of the tree entirely.
+//
 // Active state is derived from `usePathname()` rather than passed in, so a
 // deep link or a hard refresh on any nested route resolves the correct state
 // with no page-level wiring. Note `trailingSlash: true` in next.config.js —
 // pathnames arrive as `/projects/rock-creek-os/systems/`, hence normalization.
 // ─────────────────────────────────────────────────────────────────────────────
 
-// `components/ProjectHeader.tsx`'s rendered height. Fixed value, not a
-// measurement: the header's content (h-9 logo + py-4) is identical at every
-// breakpoint — verified via getBoundingClientRect at 375px and 1280px widths,
-// and it's the same number the dashboard route already uses in `pt-[68px]` to
-// clear the same header. Sticky `top` has to match it exactly, or the rail
-// either leaves a gap under the header or tucks a few px beneath it.
-const HEADER_HEIGHT = 68;
+// Offset architecture — see the token block in `app/globals.css`.
+//
+// The rail pins to `--project-header-height` (republished at runtime by
+// ProjectHeader from a ResizeObserver on its own box) plus
+// `--project-header-shift`, applied as a transform.
+//
+// The shift is the part that makes this correct on mobile. ProjectHeader's
+// height really is the same 68px at every breakpoint — but on mobile it is not
+// always *there*: below `lg` it hides itself on scroll-down and slides back on
+// scroll-up (`-translate-y-full lg:translate-y-0`). A rail pinned to a constant
+// `top: 68` therefore floats a 68px band of scrolling content above it for as
+// long as the user keeps scrolling down, then has the header slide back
+// underneath it — which is the "inconsistent gap / not synchronized with the
+// mobile navbar" behavior this replaced. Desktop never hid the header, which is
+// exactly why desktop always looked right. Carrying the same shift the header
+// carries, over the same 500ms and the same easing, keeps the two locked
+// together: flush under the header when it's up, flush to the viewport top when
+// it's away.
+//
+// This constant is only the pre-hydration fallback for the IntersectionObserver
+// margin below, which needs a resolved number rather than a `var()`.
+const HEADER_HEIGHT_FALLBACK = 68;
 
 const EXPERIENCES = [
   // "Overview" rather than "Case Study": the breadcrumb in the hero already
@@ -122,8 +171,8 @@ export function ExperienceNav({
    * render underneath the fixed header on first paint. Defaults to the
    * `mt-[100px]` convention every hero on this project already uses. The
    * dashboard route passes a much smaller value: its outer shell already
-   * applies `pt-[68px]` to clear the header for its entire layout, so adding
-   * the full 100px again here would double the gap.
+   * clears the header for its entire layout via `--project-header-height`, so
+   * adding the full 100px again here would double the gap.
    */
   topOffsetClassName = 'mt-[100px]',
 }: {
@@ -142,6 +191,136 @@ export function ExperienceNav({
   const railRef = useRef<HTMLDivElement>(null);
   const [isStuck, setIsStuck] = useState(false);
   const [railHeight, setRailHeight] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_FALLBACK);
+
+  // Below-`sm` picker (see the file header). Everything below is inert at `sm`
+  // and up, where the trigger and panel are `display:none` and unreachable.
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const panelId = useId();
+
+  // The panel is PORTALED to <body> and positioned from a measured trigger rect
+  // rather than rendered inline as an absolutely-positioned child. It has to be:
+  // globals.css enforces `main { overflow-x: hidden !important }` and
+  // `[class*="container"] { overflow-x: hidden !important }` on mobile (the
+  // sitewide horizontal-scroll guards), and this rail's own wrapper carries
+  // `container`. Per the overflow spec a non-`visible` value on one axis
+  // computes the other to `auto`, so each of those becomes a clipping box on Y
+  // too — and an inline panel, whose containing block sits inside them, gets
+  // clipped to roughly the trigger's own height. Measured live before this
+  // changed: four 44px rows laid out, but only ~53px of them could paint.
+  // Escaping to a portal is the same fix ProjectPracticeNavDropdown already
+  // uses for its own menu.
+  const [isMounted, setIsMounted] = useState(false);
+  const [triggerRect, setTriggerRect] = useState<{ top: number; left: number; width: number } | null>(
+    null,
+  );
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Falls back to the first section rather than rendering an empty trigger: a
+  // pathname that matches nothing (a future nested route) should still leave the
+  // control readable and operable.
+  const activeIndex = Math.max(
+    0,
+    EXPERIENCES.findIndex((exp) => current === normalize(exp.href)),
+  );
+
+  const closePicker = useCallback((returnFocus = false) => {
+    setIsPickerOpen(false);
+    if (returnFocus) triggerRef.current?.focus();
+  }, []);
+
+  // Measured at open time only. Safe because the panel closes on both scroll and
+  // resize, which are the only two things that could invalidate the rect while
+  // it is up.
+  const openPicker = useCallback(() => {
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    setTriggerRect({ top: rect.bottom, left: rect.left, width: rect.width });
+    setIsPickerOpen(true);
+  }, []);
+
+  // Moves focus between rows without the `role="menu"` semantics — see the
+  // render below for why these stay plain links.
+  const focusItem = useCallback((index: number) => {
+    const items = itemRefs.current.filter(Boolean);
+    if (items.length === 0) return;
+    const wrapped = (index + items.length) % items.length;
+    items[wrapped]?.focus();
+  }, []);
+
+  // Dismissal, mirroring the contract the site's other menus already use:
+  // outside pointerdown and Escape (ProjectPracticeNavDropdown), plus close-on-
+  // scroll (ProjectHeader does the same to its mobile menu). Scroll matters more
+  // here than elsewhere — this panel is anchored to a control that re-pins as
+  // the page moves, so leaving it open across a scroll would detach it visually.
+  useEffect(() => {
+    if (!isPickerOpen) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      // Both boxes, because the panel is portaled out of `pickerRef`'s subtree.
+      if (pickerRef.current?.contains(target)) return;
+      if (panelRef.current?.contains(target)) return;
+      setIsPickerOpen(false);
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closePicker(true);
+    };
+    const handleScroll = () => setIsPickerOpen(false);
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // The panel is positioned from a rect captured at open time, so a resize
+    // would leave it stranded. Closing is the honest response.
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isPickerOpen, closePicker]);
+
+  // Every row is a route navigation, so the panel has to let go once the route
+  // actually changes — otherwise it survives the transition and hangs over the
+  // page the user just landed on.
+  useEffect(() => {
+    setIsPickerOpen(false);
+  }, [pathname]);
+
+  // Reads the shared token for the one place that can't consume a `var()`:
+  // IntersectionObserver's `rootMargin`, which takes a resolved length string.
+  // ProjectHeader may publish the real value a tick after this mounts, hence
+  // the rAF re-read; `resize` covers the (currently theoretical) case of the
+  // header's height becoming breakpoint-dependent later.
+  useEffect(() => {
+    const read = () => {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue(
+        '--project-header-height',
+      );
+      const value = Number.parseFloat(raw);
+      if (Number.isFinite(value) && value > 0) setHeaderHeight(value);
+    };
+    read();
+    const raf = requestAnimationFrame(read);
+    window.addEventListener('resize', read);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', read);
+    };
+  }, []);
+
 
   // Keeps the placeholder's reserved height in sync with the rail's actual
   // rendered height (border/padding can vary a px or two by tone or content),
@@ -194,18 +373,21 @@ export function ExperienceNav({
   // header's height, so the sentinel is reported "not intersecting" at the
   // precise scroll position where the rail's natural top would reach the
   // header's bottom edge — sentinel and rail share the same clearance and the
-  // same HEADER_HEIGHT by construction, so the handoff from static to `fixed`
-  // lands exactly where the rail already was, with no visible jump.
+  // same measured header height by construction, so the handoff from static to
+  // `fixed` lands exactly where the rail already was, with no visible jump.
+  // Deliberately keyed to the header's resting height rather than its current
+  // on-screen position: this decides WHEN to pin, and that threshold should not
+  // move around as the header hides and reappears.
   useEffect(() => {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
     const observer = new IntersectionObserver(
       ([entry]) => setIsStuck(!entry.isIntersecting),
-      { rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px`, threshold: 0 },
+      { rootMargin: `-${headerHeight}px 0px 0px 0px`, threshold: 0 },
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, []);
+  }, [headerHeight]);
 
   return (
     <>
@@ -216,12 +398,58 @@ export function ExperienceNav({
       {isStuck && <div aria-hidden="true" style={{ height: railHeight }} />}
       <div
         ref={railRef}
-        className={`z-40 ${outerClassName} ${isStuck ? 'fixed inset-x-0' : ''}`}
-        style={isStuck ? { top: HEADER_HEIGHT } : undefined}
+        className={`z-40 ${outerClassName} ${
+          isStuck ? 'fixed inset-x-0 transition-transform duration-700 ease-out motion-reduce:transition-none' : ''
+        }`}
+        style={
+          isStuck
+            ? {
+                // Both halves come from the shared tokens, so this stays
+                // correct at any breakpoint without a second offset to
+                // maintain.
+                //
+                // Timing is deliberately NOT matched to ProjectHeader's
+                // `duration-500`: the rail trails it by 200ms on a decelerating
+                // curve, so the movement reads as a settle rather than a snap.
+                // Both directions stay clean under that lag because the header
+                // is opaque and paints above the rail (z-50 vs z-40) — on the
+                // way back down the rail finishes from *behind* the header and
+                // slides out from under it; on the way up it simply keeps
+                // easing into space the header has already vacated. What must
+                // not drift is the resting geometry, and that's a token, not a
+                // duration, so the two always agree about where the rail ends
+                // up even if they disagree about how fast to get there.
+                //
+                // The transition is intentionally live on the very first stuck
+                // frame, so the browser animates the transform's first
+                // application rather than snapping it. That first application is
+                // a real 68px move, not an artifact: scrolling down past the
+                // pin threshold, the header is already hidden (it leaves at
+                // 10px of scroll, the rail pins at ~33px), so the rail's flow
+                // position is a header-height below where a pinned rail under
+                // an absent header belongs. Animating from `none` starts the
+                // glide exactly where the rail physically was a frame earlier,
+                // which is what makes the handoff continuous. Unsticking needs
+                // no equivalent, because it can only happen while scrolling up
+                // — and scrolling up is what brings the header back, so the
+                // shift is already 0 by the time the rail returns to flow.
+                top: 'var(--project-header-height)',
+                transform: 'translateY(var(--project-header-shift))',
+              }
+            : undefined
+        }
       >
         <div className={innerClassName}>
+          {/* The rail's chrome fades in over the same 700ms as the travel
+              above, so pinning reads as one continuous settle instead of a
+              slow slide with a quick flash of background under it. The
+              `backdrop-blur-md` inside still snaps rather than interpolating,
+              which is deliberate: making it gradual would mean carrying a
+              `backdrop-blur-none` in the resting state too, and a live
+              backdrop-filter layer over a page this long is a real cost on
+              mobile Safari for an effect the background fade already hides. */}
           <div
-            className={`transition-[background-color,border-color] duration-300 motion-reduce:transition-none ${
+            className={`transition-[background-color,border-color] duration-700 ease-out motion-reduce:transition-none ${
               isStuck
                 ? `border-b backdrop-blur-md ${
                     isDark ? 'border-white/10 bg-neutral-950/90' : 'border-neutral-100 bg-white/90'
@@ -230,9 +458,168 @@ export function ExperienceNav({
             }`}
           >
             <nav aria-label="Case Study: The Ranch at Rock Creek sections">
+              {/* ─── Below `sm`: disclosure picker ─────────────────────────
+                  Plain disclosure semantics (`aria-expanded` + `aria-controls`
+                  over a list of links), NOT `role="menu"`/`menuitem`. These
+                  rows are ordinary navigation links, and menu roles would make
+                  a screen reader announce them as application menu items and
+                  suppress the link semantics users actually want here. Arrow
+                  keys are still wired up below as a convenience, which the
+                  disclosure pattern permits. */}
+              <div
+                ref={pickerRef}
+                className={`relative z-30 sm:hidden ${
+                  isStuck ? '' : `border-b ${isDark ? 'border-white/10' : 'border-neutral-200'}`
+                }`}
+              >
+                <button
+                  ref={triggerRef}
+                  type="button"
+                  onClick={() => (isPickerOpen ? setIsPickerOpen(false) : openPicker())}
+                  onKeyDown={(event) => {
+                    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                      event.preventDefault();
+                      openPicker();
+                      // Defer past the panel's mount so the refs exist.
+                      requestAnimationFrame(() =>
+                        focusItem(event.key === 'ArrowDown' ? 0 : EXPERIENCES.length - 1),
+                      );
+                    }
+                  }}
+                  aria-expanded={isPickerOpen}
+                  aria-controls={panelId}
+                  className={`flex min-h-[44px] w-full items-center justify-between gap-4 py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rockcreek-600 focus-visible:ring-offset-2 ${
+                    isDark ? 'focus-visible:ring-offset-neutral-950' : ''
+                  }`}
+                >
+                  <span className="flex min-w-0 flex-col">
+                    {/* The count is the whole point of this control: it states
+                        that a fourth section exists instead of leaving it to be
+                        found by swiping. Derived from the array, never a
+                        hardcoded 4. */}
+                    <span
+                      className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-500'
+                      }`}
+                    >
+                      {`Section ${activeIndex + 1} of ${EXPERIENCES.length}`}
+                    </span>
+                    <span
+                      className={`truncate text-sm font-bold ${
+                        isDark ? 'text-white' : 'text-neutral-950'
+                      }`}
+                    >
+                      {EXPERIENCES[activeIndex].label}
+                    </span>
+                  </span>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 motion-reduce:transition-none ${
+                      isPickerOpen ? 'rotate-180' : ''
+                    } ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}
+                  />
+                </button>
+
+                {isMounted &&
+                  createPortal(
+                    <AnimatePresence>
+                      {isPickerOpen && triggerRect && (
+                        <motion.div
+                          id={panelId}
+                          ref={panelRef}
+                          initial={{ opacity: 0, y: -6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -6 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          // Fixed and portaled — see the note by `triggerRect`.
+                          // Overlays the page rather than pushing it: pushing
+                          // would shift content under the user's thumb mid-tap
+                          // and fight the pinned placeholder's measured height.
+                          // z-45 sits above the rail (z-40) and below the global
+                          // header (z-50), so the panel can never cover the
+                          // primary nav.
+                          style={{
+                            position: 'fixed',
+                            top: triggerRect.top,
+                            left: triggerRect.left,
+                            width: triggerRect.width,
+                            zIndex: 45,
+                          }}
+                          className={`overflow-hidden rounded-b-lg border shadow-lg sm:hidden ${
+                            isDark ? 'border-white/10 bg-neutral-950' : 'border-neutral-200 bg-white'
+                          }`}
+                        >
+                          <ul className="m-0 list-none p-0">
+                            {EXPERIENCES.map((exp, index) => {
+                              const isActive = index === activeIndex;
+                              return (
+                                <li key={exp.href}>
+                              <Link
+                                ref={(node) => {
+                                  itemRefs.current[index] = node;
+                                }}
+                                href={exp.href}
+                                aria-current={isActive ? 'page' : undefined}
+                                onClick={() => setIsPickerOpen(false)}
+                                onKeyDown={(event) => {
+                                  if (event.key === 'ArrowDown') {
+                                    event.preventDefault();
+                                    focusItem(index + 1);
+                                  } else if (event.key === 'ArrowUp') {
+                                    event.preventDefault();
+                                    focusItem(index - 1);
+                                  } else if (event.key === 'Home') {
+                                    event.preventDefault();
+                                    focusItem(0);
+                                  } else if (event.key === 'End') {
+                                    event.preventDefault();
+                                    focusItem(EXPERIENCES.length - 1);
+                                  } else if (event.key === 'Tab') {
+                                    // Tab leaves the panel entirely rather than
+                                    // cycling inside it — this is a small
+                                    // anchored disclosure, not a modal, so
+                                    // trapping focus here would be wrong.
+                                    setIsPickerOpen(false);
+                                  }
+                                }}
+                                // Same three channels the rail uses, so "current"
+                                // survives grayscale and color-vision deficiency:
+                                // the dot, the weight, and the contrast step.
+                                className={`flex min-h-[44px] items-center justify-between gap-3 px-4 py-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-rockcreek-600 motion-reduce:transition-none ${
+                                  isActive
+                                    ? isDark
+                                      ? 'font-bold text-white'
+                                      : 'font-bold text-neutral-950'
+                                    : isDark
+                                      ? 'font-medium text-neutral-400 hover:bg-white/5 hover:text-neutral-100'
+                                      : 'font-medium text-neutral-500 hover:bg-neutral-50 hover:text-neutral-900'
+                                }`}
+                              >
+                                <span className="min-w-0">{exp.label}</span>
+                                {isActive && (
+                                  <span
+                                    aria-hidden="true"
+                                    className={`h-1.5 w-1.5 flex-shrink-0 rounded-full ${
+                                      isDark ? 'bg-rockcreek-400' : 'bg-rockcreek-600'
+                                    }`}
+                                  />
+                                )}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                          </ul>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>,
+                    document.body,
+                  )}
+              </div>
+
+              {/* ─── `sm` and up: the original tab rail, unchanged ───────── */}
               <ul
                 ref={scrollerRef}
-                className={`no-scrollbar m-0 flex list-none gap-6 overflow-x-auto p-0 md:gap-8 ${
+                className={`no-scrollbar m-0 hidden list-none gap-6 overflow-x-auto p-0 sm:flex md:gap-8 ${
                   isStuck ? '' : `border-b ${isDark ? 'border-white/10' : 'border-neutral-200'}`
                 }`}
               >

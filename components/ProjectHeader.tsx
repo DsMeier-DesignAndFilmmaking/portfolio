@@ -49,10 +49,58 @@ export default function ProjectHeader({
   const [isNavbarWhite, setIsNavbarWhite] = useState(false);
   const lastScrollYRef = useRef(0);
   const isMobileMenuOpenRef = useRef(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // This header hides itself on scroll-down — but only below `lg`; the
+  // `lg:translate-y-0` half of the class below keeps it permanently on screen
+  // on desktop. Anything pinned beneath it therefore can't treat "header
+  // bottom edge" as a constant on mobile, which is what the two effects below
+  // exist to communicate. See the token block in globals.css.
+  const wantsHidden = !atTop && scrollDirection === 'down';
 
   useEffect(() => {
     isMobileMenuOpenRef.current = isMobileMenuOpen;
   }, [isMobileMenuOpen]);
+
+  // Publishes the header's real rendered height as `--project-header-height`
+  // so pinned siblings derive their offset from the actual box instead of
+  // duplicating a magic number that only happens to be right today.
+  // `contentBoxSize`, not `borderBoxSize`: the tinted state adds a 1px
+  // `border-b`, and consumers using this for layout padding would otherwise
+  // shift by a pixel the moment the tint engages (see globals.css).
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const observer = new ResizeObserver(([entry]) => {
+      const height = entry.contentBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+      if (height > 0) root.style.setProperty('--project-header-height', `${height}px`);
+    });
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty('--project-header-height');
+    };
+  }, []);
+
+  // Reports only the *intent* to hide; globals.css decides whether that
+  // applies at the current width, so this can never disagree with the
+  // `lg:` breakpoint in the className below.
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-project-header',
+      wantsHidden ? 'hidden' : 'visible',
+    );
+  }, [wantsHidden]);
+
+  // Separate from the effect above so the attribute is torn down on unmount
+  // only — routes without a ProjectHeader must not inherit a stale state.
+  useEffect(
+    () => () => {
+      document.documentElement.removeAttribute('data-project-header');
+    },
+    [],
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,19 +121,14 @@ export default function ProjectHeader({
   return (
     <MotionConfig reducedMotion="user">
       <header
+        ref={headerRef}
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 motion-reduce:transition-none ${
           isNavbarWhite
             ? isDark
               ? 'border-b border-white/10 bg-neutral-950/95 backdrop-blur-md'
               : 'border-b border-neutral-100 bg-white/95 backdrop-blur-md'
             : 'bg-transparent'
-        } ${
-          atTop
-            ? 'translate-y-0'
-            : scrollDirection === 'down'
-              ? '-translate-y-full lg:translate-y-0'
-              : 'translate-y-0'
-        }`}
+        } ${wantsHidden ? '-translate-y-full lg:translate-y-0' : 'translate-y-0'}`}
       >
         <div className="container relative z-20 mx-auto px-6">
           <div className="flex items-center justify-between">

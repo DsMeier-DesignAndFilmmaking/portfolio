@@ -134,20 +134,30 @@ function Terminal({ x, y, r = 7 }: { x: number; y: number; r?: number }) {
 
 /* ---------------------------------------------------------------------------
  * The six sheets.
+ *
+ * WORKING BAND. The two dissolves leave a usable region of roughly
+ * x 340-780, y 110-470 (in viewBox units). Geometry placed outside it is
+ * attenuated to the point of disappearing — that is what made the Rock Creek
+ * sheet read as empty. Every sheet below is composed inside the band so all
+ * six carry the same perceived presence despite different compositions.
+ *
+ * The left ramp is deliberately steep and must not be widened: the plate box
+ * overlaps the copy column horizontally, and that ramp is what keeps ink off
+ * the hero text.
  * ------------------------------------------------------------------------- */
 
 function SurveyMargin() {
   return (
     <>
       {/* Two measured runs terminating at a common scale — the margin of a field sheet. */}
-      <TickScale x={704} y1={96} y2={512} />
+      <TickScale x={720} y1={120} y2={456} />
       <g style={LINE} strokeWidth={1}>
-        <path d="M 352 224 H 704" />
-        <path d="M 352 416 H 704" />
+        <path d="M 368 200 H 720" />
+        <path d="M 368 408 H 720" />
       </g>
-      <Bracket x={352} y={224} h={192} />
-      <Registration x={544} y={128} />
-      <text x={608} y={544} {...LABEL_PROPS}>
+      <Bracket x={368} y={200} h={208} />
+      <Registration x={560} y={152} />
+      <text x={368} y={184} {...LABEL_PROPS}>
         SHEET 06
       </text>
     </>
@@ -157,26 +167,26 @@ function SurveyMargin() {
 function Interval() {
   return (
     <>
+      {/* Parallel grading intervals, cut by a section line. */}
       <g style={LINE} strokeWidth={1}>
-        <path d="M 288 512 C 384 448 448 416 544 384 S 704 320 800 288" />
-        <path d="M 320 544 C 416 480 480 448 576 416 S 736 352 832 320" />
-        <path d="M 256 480 C 352 416 416 384 512 352 S 672 288 768 256" />
-        <path d="M 224 448 C 320 384 384 352 480 320 S 640 256 736 224" />
-        <path d="M 192 416 C 288 352 352 320 448 288 S 608 224 704 192" />
+        <path d="M 336 456 C 432 416 496 392 560 360 S 688 304 780 272" />
+        <path d="M 336 416 C 432 376 496 352 560 320 S 688 264 780 232" />
+        <path d="M 336 376 C 432 336 496 312 560 280 S 688 224 780 192" />
+        <path d="M 336 336 C 432 296 496 272 560 240 S 688 184 780 152" />
+        <path d="M 336 296 C 432 256 496 232 560 200 S 688 144 780 112" />
       </g>
       <g style={FAINT} strokeWidth={0.75} strokeDasharray="6 6">
-        <path d="M 288 416 H 736" />
+        <path d="M 352 400 H 744" />
       </g>
       <g style={FAINT} strokeWidth={0.75}>
-        <path d="M 288 400 v 32 M 736 400 v 32" />
+        <path d="M 352 384 v 32 M 744 384 v 32" />
       </g>
-      <text x={288} y={392} {...LABEL_PROPS}>
+      <text x={352} y={376} {...LABEL_PROPS}>
         A
       </text>
-      <text x={728} y={392} {...LABEL_PROPS}>
+      <text x={736} y={376} {...LABEL_PROPS}>
         A
       </text>
-      <TickScale x={768} y1={96} y2={288} />
     </>
   );
 }
@@ -184,18 +194,19 @@ function Interval() {
 function SiteCirculation() {
   return (
     <>
+      {/* Contour interval crossed by a traverse; the terminal sits on a crossing. */}
       <g style={LINE} strokeWidth={1}>
-        <path d="M 192 544 C 320 480 416 448 512 400 S 704 320 800 256" />
-        <path d="M 224 576 C 352 512 448 480 544 432 S 736 352 832 288" />
-        <path d="M 160 512 C 288 448 384 416 480 368 S 672 288 768 224" />
-        <path d="M 128 480 C 256 416 352 384 448 336 S 640 256 736 192" />
+        <path d="M 344 360 C 440 312 504 280 568 232 S 696 152 780 104" />
+        <path d="M 344 400 C 440 352 504 320 568 272 S 696 192 780 144" />
+        <path d="M 344 440 C 440 392 504 360 568 312 S 696 232 780 184" />
+        <path d="M 344 480 C 440 432 504 400 568 352 S 696 272 780 224" />
       </g>
       <g style={LINE} strokeWidth={1} strokeDasharray="10 8">
-        <path d="M 736 64 C 640 160 576 224 512 320 S 384 480 320 576" />
+        <path d="M 764 152 C 672 224 608 280 544 344 S 456 432 416 472" />
       </g>
-      <Terminal x={512} y={320} />
-      <Registration x={672} y={128} r={10} />
-      <text x={352} y={528} {...LABEL_PROPS}>
+      <Terminal x={568} y={312} />
+      <Registration x={440} y={208} r={10} />
+      <text x={424} y={152} {...LABEL_PROPS}>
         TRAVERSE
       </text>
     </>
@@ -207,18 +218,18 @@ function SpatialOrganization() {
     <>
       {/* Parcel corners sharing edges — organization implied by alignment, never closed. */}
       <g style={LINE} strokeWidth={1}>
-        <path d="M 320 160 H 576 V 384" />
-        <path d="M 576 160 H 736 V 288" />
-        <path d="M 320 384 H 576" />
+        <path d="M 344 184 H 576 V 392" />
+        <path d="M 576 184 H 736 V 296" />
+        <path d="M 344 392 H 576" />
       </g>
       {/* A single run bifurcating past the parcel edge. */}
       <g style={LINE} strokeWidth={1}>
-        <path d="M 384 544 V 480 a 32 32 0 0 1 32 -32 H 672" />
-        <path d="M 512 448 a 32 32 0 0 0 32 -32 V 384" />
+        <path d="M 408 480 V 456 a 32 32 0 0 1 32 -32 H 672" />
+        <path d="M 512 424 a 32 32 0 0 0 32 -32 V 376" />
       </g>
-      <Bracket x={288} y={160} h={224} dir="right" />
-      <TickScale x={768} y1={352} y2={512} />
-      <text x={320} y={128} {...LABEL_PROPS}>
+      <Bracket x={344} y={184} h={208} dir="right" />
+      <TickScale x={764} y1={184} y2={312} />
+      <text x={344} y={160} {...LABEL_PROPS}>
         ORGANIZATION
       </text>
     </>
@@ -227,11 +238,11 @@ function SpatialOrganization() {
 
 function RouteTrace() {
   const vertices: Array<[number, number]> = [
-    [256, 480],
-    [384, 384],
-    [512, 416],
-    [640, 288],
-    [768, 224],
+    [352, 440],
+    [448, 360],
+    [544, 400],
+    [656, 288],
+    [764, 224],
   ];
   return (
     <>
@@ -243,12 +254,13 @@ function RouteTrace() {
           <path key={`${x}-${y}`} d={`M ${x} ${y - 12} v 24`} />
         ))}
       </g>
+      {/* Boundary fragment running against the traverse. */}
       <g style={LINE} strokeWidth={1}>
-        <path d="M 192 96 C 320 160 416 128 512 192 S 704 288 800 256" opacity={0.7} />
+        <path d="M 344 144 C 456 200 552 168 648 216 S 736 256 780 240" />
       </g>
-      <Registration x={384} y={192} r={10} />
-      <TickScale x={736} y1={384} y2={544} />
-      <text x={224} y={528} {...LABEL_PROPS}>
+      <Registration x={400} y={272} r={10} />
+      <TickScale x={764} y1={312} y2={456} />
+      <text x={600} y={456} {...LABEL_PROPS}>
         TRACE
       </text>
     </>
@@ -259,15 +271,15 @@ function FlowTerminal() {
   return (
     <>
       <g style={LINE} strokeWidth={1}>
-        <path d="M 256 160 H 480 a 16 16 0 0 1 16 16 V 352" />
-        <path d="M 320 512 V 288 a 16 16 0 0 1 16 -16 H 608" />
-        <path d="M 672 96 V 240 a 16 16 0 0 1 -16 16 H 528" />
+        <path d="M 344 184 H 480 a 16 16 0 0 1 16 16 V 352" />
+        <path d="M 376 456 V 304 a 16 16 0 0 1 16 -16 H 608" />
+        <path d="M 672 136 V 248 a 16 16 0 0 1 -16 16 H 536" />
       </g>
       <Terminal x={496} y={352} />
-      <Terminal x={672} y={96} r={9} />
-      <Bracket x={224} y={224} h={96} dir="right" />
-      <TickScale x={768} y1={320} y2={512} />
-      <text x={256} y={544} {...LABEL_PROPS}>
+      <Terminal x={672} y={136} r={9} />
+      <Bracket x={344} y={208} h={128} dir="right" />
+      <TickScale x={764} y1={312} y2={456} />
+      <text x={400} y={168} {...LABEL_PROPS}>
         ROUTING
       </text>
     </>
@@ -314,14 +326,16 @@ export default function HeroDraftingPlate({
             <stop offset="0%" stopColor="#fff" stopOpacity="0" />
             <stop offset="30%" stopColor="#fff" stopOpacity="0.55" />
             <stop offset="62%" stopColor="#fff" stopOpacity="1" />
-            <stop offset="93%" stopColor="#fff" stopOpacity="1" />
-            <stop offset="100%" stopColor="#fff" stopOpacity="0.35" />
+            <stop offset="96%" stopColor="#fff" stopOpacity="1" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0.5" />
           </linearGradient>
-          {/* Resolve into the section edges, as the homepage scrim resolves into white. */}
+          {/* Resolve into the section edges, as the homepage scrim resolves into white.
+              Holds full strength longer than the horizontal ramp: this axis has no
+              text to protect, and an early falloff was erasing the lower geometry. */}
           <linearGradient id={vId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.25" />
-            <stop offset="24%" stopColor="#fff" stopOpacity="1" />
-            <stop offset="72%" stopColor="#fff" stopOpacity="1" />
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.3" />
+            <stop offset="20%" stopColor="#fff" stopOpacity="1" />
+            <stop offset="82%" stopColor="#fff" stopOpacity="1" />
             <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </linearGradient>
           {/* Nested masks rather than CSS mask-composite — no cross-browser caveat. */}
