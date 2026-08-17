@@ -23,6 +23,8 @@ import { PageNavIndicator } from '../../../components/PageNavIndicator';
 import TravelOSExperience from '@/src/components/TravelOSExperience';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+import HeroDraftingPlate from '@/components/HeroDraftingPlate';
+import { HERO_PLATES } from '@/data/heroPlates';
 
 const FN_SECTIONS = [
   { id: 'fn-hero' ,      label: 'Overview'  },
@@ -219,12 +221,13 @@ export default function FieldNotesProjectPage() {
 {/* HERO SECTION */}
 <motion.section
   id="fn-hero"
-  className={`${contentBounds} mt-[100px] pb-16 md:pb-24 flex flex-col space-y-6`}
+  className={`${contentBounds} relative mt-[100px] pb-16 md:pb-24 flex flex-col space-y-6`}
   initial="hidden"
   animate="show"
   variants={sectionVariants}
 >
-  <div className="max-w-2xl flex flex-col space-y-6">
+  <HeroDraftingPlate plate={HERO_PLATES['field-notes']!} />
+  <div className="relative z-10 max-w-2xl flex flex-col space-y-6">
     <div className="flex items-center space-x-3">
       <div className="w-12 h-[3px] bg-[#FFDD00]" />
       <ProjectBreadcrumb projectId="field-notes" />

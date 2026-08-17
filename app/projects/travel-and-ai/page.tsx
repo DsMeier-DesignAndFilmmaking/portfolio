@@ -21,6 +21,8 @@ import { HADERoadmap } from './components/HADERoadmap';
 import { HADE_DEMO_URL } from './constants';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+import HeroDraftingPlate from '@/components/HeroDraftingPlate';
+import { HERO_PLATES } from '@/data/heroPlates';
 
 const TAI_SECTIONS = [
   { id: 'intro',            label: 'Intro'        },
@@ -394,6 +396,14 @@ useEffect(() => {
     className={`relative w-full ${heroSpacing}`}
     aria-label="Project Hero"
   >
+  {/* Drafting plate, bounded to the content container so it aligns with the
+      other sheets in the set (this hero is full-width, the others are not). */}
+  <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div className={`${contentBounds} relative h-full`}>
+      <HeroDraftingPlate plate={HERO_PLATES['travel-and-ai']!} />
+    </div>
+  </div>
+
   {/* Ownership Label */}
   <motion.div
     initial={{ opacity: 0 }}

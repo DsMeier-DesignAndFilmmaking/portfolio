@@ -379,7 +379,7 @@ Grounded in a Master’s in Landscape Architecture (
     className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800"
   >
     explore my Master’s thesis
-  </a>) and 15+ years leading Digital Product & UX Design, my practice brings technical craftsmanship to complex physical settings. This perspective has been refined across 40+ countries.
+  </a>) and 15+ years leading Digital Product & UX Design, my work brings technical systems thinking to complex physical environments. This perspective has been refined across 40+ countries.
 </p>
           
 <p 
@@ -391,7 +391,7 @@ Grounded in a Master’s in Landscape Architecture (
     paddingLeft: '1rem' 
   }}
 >
-  <strong>Current Focus:</strong> Designing, building and deploying operational models, digital applications, and spatial frameworks for complex environments.
+  <strong>Current Focus:</strong> Translating complex land dynamics, operational workflows, and human experiences into clear, scalable frameworks.
 </p>
 
           {/* Dedicated Signature Frame - Tightened top spacing */}
@@ -483,7 +483,7 @@ Grounded in a Master’s in Landscape Architecture (
                         fontFamily: "'Roboto', Helvetica, sans-serif",
                         fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                       }}>
-                      {preventWidow(`Landscape architecture and urban design trained me to read environments before designing them — to understand how people orient themselves in space, how circulation patterns form, how environmental conditions shape behavior before a single decision is made. That way of seeing carried directly into a decade plus of digital design work: information architecture, service design, enterprise products, and complex operational experiences. The two disciplines are not a before-and-after. They are the same practice applied at different scales.`)}
+                      {preventWidow(`Landscape architecture and Urban Design trained me to read environments before shaping them, working to understanding spatial circulation, human behavior, and physical constraints. That same way of seeing drove 15+ years of digital product craft, service design, and complex operational systems. They aren’t two separate careers. They’re the exact same discipline applied at different scales.`)}
                     </p>
                   </div>
                 </div>
@@ -584,7 +584,7 @@ Grounded in a Master’s in Landscape Architecture (
                       fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)'
                     }}
                   >
-                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill: reading how environments communicate — or fail to. From wayfinding under pressure to the seams where hospitality meets physical land operations, these insights serve as primary research for building seamless real-world&nbsp;systems.
+                    Field observation across <span className="text-amber-600 font-semibold">40+ countries </span> has sharpened a specific skill in reading how environments function and where they fail. From high stress wayfinding to the seams where hospitality meets land operations, these spatial insights drive how I build seamless real world&nbsp;systems.
                   </p>
                     <p className="text-sm text-gray-900 italic text-pretty" style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}>
                       *All visuals captured through my lens, no AI-generated photos or video.
@@ -680,12 +680,12 @@ Grounded in a Master’s in Landscape Architecture (
             }}>
               Field Notes From <br></br> the World
             </h2>
-              <p className="text-xl max-w-4xl mb-6 md:mb-8 font-medium leading-relaxed text-pretty text-left" style={{
+              <p className="text-xl max-w-4xl mb-6 md:mb-8 leading-relaxed text-pretty text-left" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
                 fontSize: 'clamp(1.1rem, 1.18rem - 0.5vw, 1.18rem)',
                 color: '#374151'
               }}>
-                Forty-one countries of deliberate field observation—not tourism, but learning how to read unfamiliar environments and cultures. Observing how people navigate when signage fails, where hospitality breaks down behind the scenes, and how informal systems emerge when design falls short.
+                Observations across 41 countries, captured through graduate research abroad and independent film projects. Studying how culture, environmental factors, and practical operations come together to turn land into authentic, functional living ecosystems.
               </p>
               <p className="text-sm max-w-4xl mb-6 md:mb-8 italic leading-relaxed text-pretty text-left" style={{
                 fontFamily: "'Roboto', Helvetica, sans-serif",
@@ -784,11 +784,7 @@ Grounded in a Master’s in Landscape Architecture (
               </p>
             </div>
             
-            <div className="mt-14 md:mt-20 text-center">
-              <div className="inline-flex items-center gap-3 border-t border-gray-200 px-2 pt-4">
-                <span className="text-gray-600 text-sm font-medium italic">A structured field journal — observations, routes, and environmental notes — is in development.</span>
-              </div>
-            </div>
+           
           </div>
         </section>
 

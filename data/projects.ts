@@ -550,7 +550,7 @@ export const TRACK_META: TrackMeta[] = [
     order: 1,
     label: 'Systems Design Practice',
     subtext:
-      'Field observations become adaptive, component-driven frameworks that are rigorously tested through advanced modeling and real-world construction.',
+      'Translating complex environmental data into flexible, component-driven systems designed for real-world land dynamics and operations.',
     tags: ['Research', 'Frameworks', 'Concepts', 'Experimental Builds'],
     hideTags: true,
     href: '/practice',

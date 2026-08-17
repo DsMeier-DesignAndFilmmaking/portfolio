@@ -3,6 +3,8 @@ import { ArrowRight } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectHeader from '@/components/ProjectHeader';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+import HeroDraftingPlate from '@/components/HeroDraftingPlate';
+import { HERO_PLATES } from '@/data/heroPlates';
 import { ExperienceNav } from './components/ExperienceNav';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -39,8 +41,9 @@ export default function RockCreekOsPage() {
       <ProjectHeader focusRingClassName="focus-visible:ring-rockcreek-600" />
       <ExperienceNav />
 
-      <section id="rcos-hero" className={`${CONTENT_BOUNDS} mt-8 md:mt-10`}>
-        <div className="max-w-3xl">
+      <section id="rcos-hero" className={`${CONTENT_BOUNDS} relative mt-8 md:mt-10`}>
+        <HeroDraftingPlate plate={HERO_PLATES['rock-creek-os']!} />
+        <div className="relative z-10 max-w-3xl">
           <div className="mb-6">
             <ProjectBreadcrumb projectId="rock-creek-os" nameProject terminalIsCurrent />
           </div>

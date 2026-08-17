@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+import HeroDraftingPlate from '@/components/HeroDraftingPlate';
+import { HERO_PLATES } from '@/data/heroPlates';
 import ProjectPracticeNavDropdown, {
   PROJECT_NAV_MOBILE_MENU_ID,
 } from '@/components/ProjectPracticeNavDropdown';
@@ -300,12 +302,13 @@ export default function AdaptiveRanchExperienceCompanionPage() {
 
       <motion.section
         id="hero"
-        className={`${contentBounds} mt-[100px] pb-10 md:pb-12`}
+        className={`${contentBounds} relative mt-[100px] pb-10 md:pb-12`}
         initial="hidden"
         animate="show"
         variants={sectionVariants}
       >
-        <div className="max-w-3xl">
+        <HeroDraftingPlate plate={HERO_PLATES['adaptive-ranch-experience-companion']!} />
+        <div className="relative z-10 max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-emerald-600" aria-hidden="true" />
             <ProjectBreadcrumb projectId="adaptive-ranch-experience-companion" />

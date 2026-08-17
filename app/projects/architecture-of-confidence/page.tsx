@@ -28,6 +28,8 @@ import {
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectPracticeNavDropdown, { PROJECT_NAV_MOBILE_MENU_ID } from '@/components/ProjectPracticeNavDropdown';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
+import HeroDraftingPlate from '@/components/HeroDraftingPlate';
+import { HERO_PLATES } from '@/data/heroPlates';
 
 const AOC_SECTIONS = [
   { id: 'aoc-hero', label: 'Overview' },
@@ -1092,12 +1094,13 @@ export default function ArchitectureOfConfidencePage() {
 
       <motion.section
         id="aoc-hero"
-        className={`${contentBounds} mt-[100px] pb-10 md:pb-12`}
+        className={`${contentBounds} relative mt-[100px] pb-10 md:pb-12`}
         initial="hidden"
         animate="show"
         variants={sectionVariants}
       >
-        <div className="max-w-3xl">
+        <HeroDraftingPlate plate={HERO_PLATES['architecture-of-confidence']!} />
+        <div className="relative z-10 max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-[3px] w-12 bg-cyan-500" />
             <ProjectBreadcrumb projectId="architecture-of-confidence" />

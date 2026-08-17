@@ -94,11 +94,11 @@ export default function PracticePage() {
         id="practice-headline"
         className="mt-4 text-balance font-tiempos text-4xl font-bold leading-[1.05] text-neutral-950 md:text-6xl"
       >
-        Designing environmental, digital, and human systems for complex, adaptive landscapes.
+        Aligning environmental, digital, and human operations across complex, adaptive landscapes.
       </h1>
 
       <p className="mt-6 text-pretty font-tiempos text-xl text-neutral-600 md:text-2xl leading-relaxed">
-      What started as a career in landscape architecture evolved over 15+ years of digital design systems work. I now bridge technology and the physical land to build resilient spatial operations, ecological stewardship, and seamless guest journeys.
+      What started as a career in landscape architecture evolved over 15+ years of digital and product design work. I now bridge technology and physical spaces to build resilient spatial operations, ecological stewardship, and seamless guest journeys.
       </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">

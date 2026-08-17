@@ -163,7 +163,19 @@ section *::-webkit-scrollbar,
   .project-copy :where(p, figcaption) {
     text-wrap: pretty;
   }
-  
+
+  /* Hero drafting plates (components/HeroDraftingPlate.tsx).
+     Scoped to .project-copy (applied by app/projects/layout.tsx) so these tokens
+     cannot reach the homepage. Single place to calibrate plate weight. */
+  .project-copy {
+    --hero-plate-ink: 28 25 23; /* stone-900 */
+    /* Calibrated at 1440px against the homepage's 10% photographed graphite.
+       Vector hairlines carry less mass than a photograph, so these sit slightly
+       above the homepage value to read at the same perceived weight. */
+    --hero-plate-line: 0.13;
+    --hero-plate-grid: 0.075;
+  }
+
   /* Optimize scroll performance */
   .scroll-optimized {
     transform: translate3d(0, 0, 0);

@@ -93,7 +93,7 @@ export default function DesignWork() {
     }}
   >
     <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent animate-gradient-shift bg-[length:300%_auto] font-bold [font-size:clamp(1.75rem,5vw,2.25rem)] md:[font-size:clamp(2.5rem,4.5vw,3.75rem)] text-balance">
-      A practice built to understand systems before improving them.
+    Systems built for physical reality, powered by digital precision.
     </span>
   </h1>
 
@@ -101,7 +101,7 @@ export default function DesignWork() {
     className="text-xl text-gray-700 leading-relaxed text-pretty text-left"
     style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
   >
-    Two distinct tracks: a self-directed practice designing and engineering decision-making logic for complex environments, paired with over a decade of verified digital product delivery across enterprise industries.
+    A dual-track practice bridging self-directed spatial technology with 15+ years of digital product craft, built to analyze complex environments before transforming them.
   </p>
 </header>
 
@@ -116,18 +116,7 @@ export default function DesignWork() {
           </div>
         </div>
 
-        {/* Forward handoff → Services. Centered under the two cards regardless
-            of their left-aligned surroundings. */}
-        <div className="mt-10 text-center md:mt-12">
-          <Link
-            href="/services"
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-4"
-            style={{ fontFamily: "'Roboto', Helvetica, sans-serif" }}
-          >
-            See how we work together
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
+        
       </div>
     </section>
   );
