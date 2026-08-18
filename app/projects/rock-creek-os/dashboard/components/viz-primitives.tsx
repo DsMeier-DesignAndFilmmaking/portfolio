@@ -1,6 +1,11 @@
 'use client';
 
-import type { MetricStatus, TrendDirection } from '../content/datasets';
+import type { ConditionStatus, TrendDirection } from '../content/scenarios';
+
+// Status vocabulary moved from the removed `datasets.ts` to `scenarios.ts`;
+// `MetricStatus` was renamed `ConditionStatus` there, since what this console
+// now tracks is an environmental condition, not a performance metric.
+type MetricStatus = ConditionStatus;
 
 export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
