@@ -1,30 +1,68 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check, X } from 'lucide-react';
 import { PageNavIndicator } from '@/components/PageNavIndicator';
 import ProjectHeader from '@/components/ProjectHeader';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
 import { ExperienceNav } from '../components/ExperienceNav';
+import { toneStyles } from '../components/diagram-primitives';
+import { PrimaryChallenge } from './components/PrimaryChallenge';
+import { SupportingSystems } from './components/SupportingSystems';
+import { SystemOverlayDiagram } from './components/SystemOverlayDiagram';
+import { SignalToExperience } from './components/SignalToExperience';
 import {
-  Explorer01RusticReliability,
-  Explorer02GlazingParadox,
-  Explorer03FisheryFriction,
-  Explorer04PrivacyService,
-} from './components';
-import { explorerHero, explorerSections } from './content/explorer-data';
+  evidenceBoundary,
+  explorerHero,
+  explorerSections,
+  futureDesign,
+  overlayCopy,
+  premiseConditions,
+} from './content/explorer-data';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Systems Explorer — the narrative spine of the Adaptive Stewardship OS case
+// study. Authoritative content source: `rock-creek-os-foundation.md`.
+//
+// The arc is deliberate and the hierarchy is the point:
+//
+//   01 Premise            a fixed promise over a moving landscape
+//   02 Primary problem    Predictive Hydrological Activity Orchestration
+//   03 Supporting (env)   Fire-Resilient Defensible Space Design
+//   04 Supporting (ops)   Invisible Logistics Mobility System
+//   05 System overlay     the three shown as ONE chain — the page's key visual
+//   06 Signal→Experience  Sense / Interpret / Adapt / Experience + the thesis
+//   07 Future design      where the design work begins
+//      Evidence boundary  what this establishes, and what it does not
+//
+// This replaced a four-explorer structure (Rustic-Reliability Gap, Glazing
+// Paradox, Fishery Friction, Privacy vs. Service) that presented four coequal
+// problems in the older Infrastructure Sovereignty frame — each as its own
+// Problem → Interactive → Intervention → Outcome unit. That shape is precisely
+// what this page must not be: a visitor could not tell which problem mattered
+// most, wildfire and logistics did not appear at all, and no section showed the
+// systems relating to each other. Those four components were removed rather
+// than left orphaned (they import content exports this rewrite replaced, so
+// keeping them would break the typecheck), but they are recoverable in full
+// from git history — see `components/index.ts` for the exact command. That
+// matters because foundation doc §0 has not yet resolved Supersede vs. Fork
+// vs. Merge, and the Infrastructure Sovereignty frame may still be revived.
+//
+// Visual weight carries the argument before the copy does: the primary problem
+// is the only section with a filled accent kicker, 6xl heading, design-question
+// pull quote, and an interactive chain. The supporting systems share a lighter,
+// muted-background treatment and each carry an explicit "why this is not a
+// separate project" block.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: 'Systems Explorer — Case Study: The Ranch at Rock Creek | Dan Meier',
   description:
-    'Interactive investigation of four environmental, infrastructure, operational, and experience-design tensions that shaped Case Study: The Ranch at Rock Creek — an independent research project.',
+    'How a luxury destination adapts operations and guest experience as environmental conditions change — one adaptive system across hydrology, wildfire, and logistics. Independent systems-design research.',
 };
 
 const CONTENT_BOUNDS = 'container mx-auto px-6 md:px-8';
 
-const sectionNavigation = [
-  { id: 'explorer-hero', label: 'Overview' },
-  ...explorerSections,
-];
+const sectionNavigation = [{ id: 'explorer-hero', label: 'Overview' }, ...explorerSections];
 
 export default function SystemsExplorerPage() {
   return (
@@ -40,7 +78,7 @@ export default function SystemsExplorerPage() {
       <ProjectHeader focusRingClassName="focus-visible:ring-rockcreek-600" />
       <ExperienceNav />
 
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section id="explorer-hero" className={`${CONTENT_BOUNDS} mt-8 md:mt-10`}>
         <div className="max-w-3xl">
           <div className="mb-6">
@@ -49,7 +87,7 @@ export default function SystemsExplorerPage() {
 
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-neutral-600">
-              Interactive Investigation
+              {explorerHero.eyebrow}
             </span>
           </div>
 
@@ -59,47 +97,204 @@ export default function SystemsExplorerPage() {
           <p className="mt-5 font-tiempos text-xl italic text-gray-500 md:text-2xl">
             {explorerHero.deck}
           </p>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-            {explorerHero.principle}
-          </p>
-
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-neutral-500">
-            {explorerHero.disclosure}
-          </p>
         </div>
       </section>
 
-      {/* Challenge index */}
-      <section className={`${CONTENT_BOUNDS} pb-16 md:pb-20`} aria-label="Explorer challenges">
-        <div className="max-w-3xl rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-          <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">
-            Four system challenges
-          </p>
-          <ol className="mt-5 grid gap-2 sm:grid-cols-2">
-            {explorerSections.map((section, index) => (
-              <li key={section.id}>
-                <a
-                  href={`#${section.id}`}
-                  className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-800 transition-colors hover:border-rockcreek-300 hover:bg-rockcreek-50 hover:text-rockcreek-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rockcreek-600"
-                >
-                  <span className="font-mono text-xs font-black text-rockcreek-600">
-                    {String(index + 1).padStart(2, '0')}
+      {/* ── 01 · The premise ─────────────────────────────────────────── */}
+      <section id="premise" aria-labelledby="premise-title" className={`${CONTENT_BOUNDS} scroll-mt-24 py-14 md:py-20`}>
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
+              01 · The Premise
+            </p>
+            <h2 id="premise-title" className="sr-only">
+              The premise
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-neutral-700 md:text-xl">
+              {explorerHero.premise}
+            </p>
+            <blockquote className="mt-8 border-l-2 border-rockcreek-600 pl-5 font-tiempos text-xl italic leading-snug text-neutral-900 md:text-2xl">
+              {explorerHero.question}
+            </blockquote>
+          </div>
+
+          {/* The variables that move underneath a fixed promise. */}
+          <div className="lg:col-span-5">
+            <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+              <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
+                What changes underneath the promise
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {premiseConditions.map((condition) => {
+                  const tone = toneStyles[condition.tone];
+                  return (
+                    <li
+                      key={condition.id}
+                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${tone.chip}`}
+                    >
+                      <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} aria-hidden="true" />
+                      {condition.label}
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="mt-6 border-t border-neutral-200 pt-5 text-sm leading-relaxed text-neutral-600">
+                Three of these compound into the systems examined below. The rest are the operating
+                context they move within.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 02 · Primary problem (heaviest treatment on the page) ────── */}
+      <PrimaryChallenge />
+
+      {/* ── 03 & 04 · Supporting systems (deliberately lighter) ──────── */}
+      <SupportingSystems />
+
+      {/* ── 05 · System overlay — the page's key visual moment ───────── */}
+      <section
+        id={overlayCopy.id}
+        aria-labelledby={`${overlayCopy.id}-title`}
+        className="scroll-mt-24 border-t border-neutral-200 bg-white py-16 md:py-28"
+      >
+        <div className={CONTENT_BOUNDS}>
+          <header className="mb-10 max-w-3xl md:mb-14">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-rockcreek-700">
+                {overlayCopy.kicker}
+              </span>
+              <span className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
+                {overlayCopy.number}
+              </span>
+            </div>
+            <h2
+              id={`${overlayCopy.id}-title`}
+              className="mt-5 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-5xl md:leading-tight"
+            >
+              {overlayCopy.title}
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-neutral-600 md:text-lg">
+              {overlayCopy.intro}
+            </p>
+            <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Diagram legend">
+              {overlayCopy.legend.map((item) => (
+                <li key={item.label} className="flex items-center gap-2">
+                  <span className={`h-2.5 w-2.5 rounded-full ${item.swatch}`} aria-hidden="true" />
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-500">
+                    {item.label}
                   </span>
-                  {section.label}
-                </a>
+                </li>
+              ))}
+            </ul>
+          </header>
+
+          <SystemOverlayDiagram />
+
+          <div className="mt-10 max-w-3xl rounded-2xl border-l-4 border-neutral-900 bg-neutral-50 p-6 md:p-8">
+            <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
+              Why it has to be one system
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-neutral-800 md:text-lg">
+              {overlayCopy.synthesis}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 06 · Sense → Interpret → Adapt → Experience ──────────────── */}
+      <SignalToExperience />
+
+      {/* ── 07 · Future design opportunity ──────────────────────────── */}
+      <section
+        id={futureDesign.id}
+        aria-labelledby={`${futureDesign.id}-title`}
+        className="scroll-mt-24 bg-white py-16 md:py-24"
+      >
+        <div className={CONTENT_BOUNDS}>
+          <header className="mb-10 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-rockcreek-700">
+                {futureDesign.kicker}
+              </span>
+              <span className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
+                {futureDesign.number}
+              </span>
+            </div>
+            <h2
+              id={`${futureDesign.id}-title`}
+              className="mt-5 font-tiempos text-3xl font-bold leading-tight text-neutral-950 md:text-4xl"
+            >
+              {futureDesign.title}
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-neutral-600 md:text-lg">
+              {futureDesign.intro}
+            </p>
+          </header>
+
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {futureDesign.artifacts.map((artifact) => (
+              <li
+                key={artifact.id}
+                className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50/60 p-5"
+              >
+                <span className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-violet-700">
+                  Proposed
+                </span>
+                <span className="mt-2 block text-sm font-bold leading-snug text-neutral-900">
+                  {artifact.label}
+                </span>
+                <span className="mt-2 block text-xs leading-relaxed text-neutral-600">
+                  {artifact.note}
+                </span>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      {/* Four explorers */}
-      <Explorer01RusticReliability />
-      <Explorer02GlazingParadox />
-      <Explorer03FisheryFriction />
-      <Explorer04PrivacyService />
+      {/* ── Evidence boundary — required trust module ────────────────── */}
+      <section aria-labelledby="explorer-evidence-title" className={`${CONTENT_BOUNDS} pb-16 md:pb-24`}>
+        <div className="max-w-3xl rounded-[2rem] border border-neutral-200 bg-neutral-50/60 p-6 md:p-8">
+          <h2
+            id="explorer-evidence-title"
+            className="font-tiempos text-xl font-bold leading-tight text-neutral-950 md:text-2xl"
+          >
+            {evidenceBoundary.title}
+          </h2>
 
-      {/* Onward */}
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+              <p className="flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.24em] text-emerald-700">
+                <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                Established
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-700">
+                {evidenceBoundary.established.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+              <p className="flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-500">
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
+                Not claimed
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-600">
+                {evidenceBoundary.notClaimed.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm leading-relaxed text-neutral-500">{evidenceBoundary.disclosure}</p>
+        </div>
+      </section>
+
+      {/* ── Onward ───────────────────────────────────────────────────── */}
       <section className="bg-neutral-950 py-16 md:py-24">
         <div className={CONTENT_BOUNDS}>
           <div className="mx-auto max-w-2xl text-center">
@@ -107,11 +302,11 @@ export default function SystemsExplorerPage() {
               Continue
             </p>
             <h2 className="mt-4 font-tiempos text-2xl font-bold leading-tight text-white md:text-3xl">
-              The problems are mapped. The frameworks reveal the relationships.
+              The system is named. The frameworks model how it holds together.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-neutral-400">
-              Move from interactive investigation to the Systems Atlas — five frameworks that model
-              how experience, operations, infrastructure, ecology, and landscape interact.
+              Move from this narrative to the Systems Atlas — frameworks mapping how experience,
+              operations, infrastructure, ecology, and landscape constrain and reinforce each other.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link

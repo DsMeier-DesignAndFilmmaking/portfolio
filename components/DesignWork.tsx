@@ -101,7 +101,7 @@ export default function DesignWork() {
     className="text-xl text-gray-700 leading-relaxed text-pretty text-left"
     style={{ fontFamily: "'Roboto', Helvetica, sans-serif", fontSize: '1.1rem' }}
   >
-    A dual-track practice bridging self-directed spatial technology with 15+ years of digital product craft, built to analyze complex environments before transforming them.
+    I connect 15+ years of digital product experience with physical landscape and space design. I map out complex environments to build seamless human experiences.
   </p>
 </header>
 
@@ -115,8 +115,6 @@ export default function DesignWork() {
             ))}
           </div>
         </div>
-
-        
       </div>
     </section>
   );

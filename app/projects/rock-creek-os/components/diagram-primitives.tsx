@@ -1,12 +1,26 @@
 import type { ReactNode } from 'react';
-import type { InfluenceStrength, RelationType, SystemTone } from '../content/frameworks';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Shared diagram primitives for the Infrastructure Sovereignty OS frameworks.
+// Shared diagram primitives for every framework/diagram across the Rock Creek
+// OS case study — used by both `/systems` and `/explorer`.
 //
 // Tailwind class strings are declared literally in static maps — never
 // interpolated — so the JIT compiler can see every class it needs to emit.
+//
+// These three types used to live in `content/frameworks.ts`, back when this
+// file was single-purpose to the (now removed) Infrastructure Sovereignty
+// frameworks. Defined here directly instead, so this file has no dependency
+// on any one route's content and can keep being shared as the case study's
+// narrative frame changes underneath it.
 // ─────────────────────────────────────────────────────────────────────────────
+
+/** The practice's fixed semantic layer palette (studio playbook §5). */
+export type SystemTone = 'experience' | 'operations' | 'infrastructure' | 'ecological' | 'landscape';
+
+export type RelationType = 'depends' | 'constrains' | 'pressures' | 'sustains';
+
+/** How much a change in one node actually moves another. 1 = weak, 3 = strong. */
+export type InfluenceStrength = 1 | 2 | 3;
 
 export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
