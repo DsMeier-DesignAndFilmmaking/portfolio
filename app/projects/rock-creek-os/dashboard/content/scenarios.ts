@@ -270,8 +270,20 @@ export const loopStages = [
 export const consoleMeta = {
   eyebrow: 'Adaptive Stewardship OS',
   title: 'Stewardship Console',
-  /** Never softened. This is the fact/speculation boundary, kept always-visible. */
-  disclosure: 'Conceptual prototype · modeled values, not Ranch measurements',
+  /**
+   * Never softened. This is the fact/speculation boundary, kept always-visible.
+   *
+   * Amended Stage 1 (environmental ingestion): the console now also renders a
+   * real observation (`CurrentConditionsStrip` in `StewardshipConsole.tsx`,
+   * sourced from Open-Meteo via `lib/environmental/`). This line still governs
+   * the scenario content below — every reading in `river`/`fire`, every
+   * threshold, every response is authored and modeled — but it can no longer
+   * claim the whole page is unmeasured. The word split is deliberate:
+   * "scenario values" scopes the disclaimer to what it has always covered;
+   * "current conditions" names the one new exception, sourced and timestamped
+   * in its own strip so the two are never visually or semantically merged.
+   */
+  disclosure: 'Scenario values are modeled · current conditions are live from a public feed',
   humanNote:
     'The system detects, interprets, and recommends. A person decides. Nothing here operates the property on its own.',
 };

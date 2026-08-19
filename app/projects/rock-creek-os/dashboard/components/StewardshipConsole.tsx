@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, Check, Flame, Waves } from 'lucide-react';
 import ProjectHeader from '@/components/ProjectHeader';
 import ProjectBreadcrumb from '@/components/ProjectBreadcrumb';
@@ -15,6 +15,9 @@ import {
   type TrendDirection,
 } from '../content/scenarios';
 import { StatusDot, cn, statusColors } from './viz-primitives';
+import type { EnvironmentalObservation, ObservationFreshness } from '@/lib/environmental/types';
+import type { EvaluatedSignal, SignalState } from '@/lib/environmental/signals/types';
+import type { ProblemLoopWithTransitions, RockCreekSystemState } from '@/lib/environmental/signals/systemState';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // The Adaptive Stewardship OS console.
@@ -219,12 +222,552 @@ function ConditionCard({
 // that could drift.
 const CONTENT_BOUNDS = 'container mx-auto px-6 md:px-8';
 
-export function StewardshipConsole() {
+// ─────────────────────────────────────────────────────────────────────────────
+// CURRENT CONDITIONS — Stage 1 environmental observation strip.
+//
+// This is a REAL reading from a public weather feed (Open-Meteo, via
+// scripts/ingest-environmental-observation.mts), rendered separately from
+// Zone 01's MODELED scenario values below. That separation is the entire
+// point: consoleMeta.disclosure (scenarios.ts) was amended to distinguish
+// "modeled" from "measured" specifically so this strip could exist without
+// weakening the fact/speculation boundary the console depends on. Never
+// merge this into a scenario reading, and never let a scenario reading
+// borrow this strip's "live" framing.
+//
+// Presentation-only helpers (compass label, time formatting) live here
+// rather than in the domain model — lib/environmental/types.ts stays a pure
+// data shape with no formatting opinion, per the class C boundary in
+// docs/strategy/rock-creek-environmental-data-architecture.md §3.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const COMPASS_POINTS = [
+  'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
+  'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW',
+] as const;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STAGE 4 — freshness honesty over a long-open tab.
+//
+// The server bakes one static string at build time ("Observed 12:14 PM").
+// That string is accurate the moment the page is generated and then quietly
+// wrong for as long as a visitor's tab stays open — which for a "live
+// dashboard" claim is exactly backwards. `RelativeClock` recomputes a
+// relative-age string on the CLIENT every 60s from the same ISO timestamp the
+// server used, using the visitor's own Date.now(). No network request, no new
+// data — just an honest clock.
+//
+// Hydration safety: the server-rendered text is shown as-is on first paint
+// (so server and client markup match, avoiding a hydration mismatch), then
+// swapped to the client-computed value inside useEffect — a single harmless
+// post-mount update, the same pattern used for any "time ago" widget.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function relativeAge(isoString: string, nowMs: number): string {
+  const ageMs = nowMs - new Date(isoString).getTime();
+  if (!Number.isFinite(ageMs)) return isoString;
+  if (ageMs < 60_000) return 'just now';
+  const minutes = Math.round(ageMs / 60_000);
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.round(hours / 24);
+  return `${days}d ago`;
+}
+
+function RelativeClock({ isoTime, fallback }: { isoTime: string; fallback: string }) {
+  const [display, setDisplay] = useState(fallback);
+
+  useEffect(() => {
+    const tick = () => setDisplay(relativeAge(isoTime, Date.now()));
+    tick();
+    const id = setInterval(tick, 60_000);
+    return () => clearInterval(id);
+  }, [isoTime]);
+
+  return <>{display}</>;
+}
+
+/**
+ * Stage 4 §3 — the only client-side "refresh" a static export can honestly
+ * offer: if a visitor leaves the tab hidden long enough that a new deploy
+ * plausibly shipped (the ingestion cron runs every 3h — see
+ * `.github/workflows/environmental-ingest.yml`), reload on return so they see
+ * whatever the CDN is currently serving. This makes ZERO network requests
+ * beyond the reload itself — no polling, no API call, nothing that could
+ * violate Open-Meteo's rate limit. Below the threshold, nothing happens.
+ */
+const REFRESH_AFTER_HIDDEN_MS = 20 * 60_000;
+
+function useReloadOnLongReturn() {
+  const hiddenAtRef = useRef<number | null>(null);
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        hiddenAtRef.current = Date.now();
+        return;
+      }
+      const hiddenAt = hiddenAtRef.current;
+      hiddenAtRef.current = null;
+      if (hiddenAt !== null && Date.now() - hiddenAt >= REFRESH_AFTER_HIDDEN_MS) {
+        window.location.reload();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
+}
+
+function toCompass(degrees: number): string {
+  const index = Math.round(degrees / 22.5) % 16;
+  return COMPASS_POINTS[index] ?? 'N';
+}
+
+// The observation's own timezone (`America/Denver`, from ROCK_CREEK_LOCATION)
+// is used explicitly — a visitor's browser may be in any timezone, and
+// "Observed 12:14 PM" is only meaningful relative to the Ranch's own clock.
+function formatObservedTime(isoString: string): string {
+  try {
+    return new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZoneName: 'short',
+      timeZone: 'America/Denver',
+    }).format(new Date(isoString));
+  } catch {
+    return isoString;
+  }
+}
+
+const FRESHNESS_TO_STATUS: Record<Exclude<ObservationFreshness, 'unavailable'>, ConditionStatus> = {
+  fresh: 'optimal',
+  stale: 'elevated',
+  'very-stale': 'critical',
+};
+
+/**
+ * Stage 4 §2 — the UI's four-word freshness vocabulary. Renamed from the
+ * earlier ad-hoc labels to the brief's exact terms; the underlying
+ * `ObservationFreshness` type and its thresholds (Stage 1 architecture doc §6:
+ * fresh <3h, stale 3–12h, very-stale >12h) are unchanged and remain covered by
+ * Stage 1's tests — only the display string changed.
+ *
+ * "Live" is used ONLY for fresh (<3h) data. A stale reading is labelled
+ * "Recent", never "Live" — the brief is explicit that the word must not
+ * outlive its accuracy.
+ */
+const FRESHNESS_LABEL: Record<ObservationFreshness, string> = {
+  fresh: 'Live',
+  stale: 'Recent',
+  'very-stale': 'Stale',
+  unavailable: 'Unavailable',
+};
+
+function CurrentConditionsStrip({
+  observation,
+  freshness,
+}: {
+  observation: EnvironmentalObservation | null;
+  freshness: ObservationFreshness;
+}) {
+  if (!observation || freshness === 'unavailable') {
+    return (
+      <div className="mt-4 flex items-center gap-2 rounded-xl border border-dashed border-neutral-800 bg-neutral-900/40 px-4 py-3">
+        <StatusDot status="critical" />
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-500">
+          Current conditions unavailable — last scheduled fetch did not complete
+        </p>
+      </div>
+    );
+  }
+
+  const status = FRESHNESS_TO_STATUS[freshness];
+
+  return (
+    <div className="mt-4 rounded-xl border border-neutral-800/80 bg-neutral-900/60 px-4 py-3">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p className="font-mono text-[9px] font-black uppercase tracking-[0.24em] text-neutral-500">
+          Current conditions · {observation.locationLabel}
+        </p>
+        <span
+          className={cn(
+            'inline-flex items-center gap-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.14em]',
+            statusColors[status].text,
+          )}
+        >
+          <StatusDot status={status} pulse={freshness === 'fresh'} />
+          {FRESHNESS_LABEL[freshness]}
+        </span>
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5">
+        <span className="font-tiempos text-2xl font-bold text-white">
+          {Math.round(observation.air.temperatureF)}°
+        </span>
+        <span className="text-sm text-neutral-400">
+          {Math.round(observation.wind.speedMph)} mph {toCompass(observation.wind.directionDeg)}
+        </span>
+        <span className="text-sm text-neutral-400">
+          {observation.precipitation.lastHourIn.toFixed(2)}&Prime; precip
+        </span>
+        <span className="text-sm text-neutral-400">{Math.round(observation.air.humidityPct)}% RH</span>
+        {observation.airQuality && (
+          <span className="text-sm text-neutral-400">AQI {observation.airQuality.usAqi}</span>
+        )}
+      </div>
+      <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+        Observed {formatObservedTime(observation.observedAt)} ·{' '}
+        <RelativeClock isoTime={observation.observedAt} fallback={FRESHNESS_LABEL[freshness]} /> · source:
+        open-meteo.com
+      </p>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SYSTEM SIGNALS — Stage 2.
+//
+// The visual relationship this section exists to make legible is:
+//     CURRENT CONDITIONS  →  SYSTEM SIGNALS  →  RELEVANT PROBLEM
+//
+// It is NOT a weather panel. Every row is a rule output, carrying the inputs
+// that produced it, the rule id, and the problem it attaches to — so a reader
+// can see WHY a signal exists rather than being asked to trust a badge.
+//
+// Two encodings matter more than the styling:
+//
+//   1. `indeterminate` is rendered in neutral grey with a hollow marker, NOT as
+//      a severity colour. Missing data must never look like an all-clear, and
+//      must never look like an alarm either.
+//   2. When a problem's rules all evaluate cleanly and none fire, the section
+//      says "no currently recorded trigger condition" and states that the
+//      problem persists. Signal absence is a statement about this moment, not
+//      about the problem (Stage 2 brief §7).
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SIGNAL_STATE_TO_STATUS: Record<Exclude<SignalState, 'indeterminate'>, ConditionStatus> = {
+  normal: 'optimal',
+  watch: 'nominal',
+  elevated: 'elevated',
+  critical: 'critical',
+};
+
+const SIGNAL_STATE_LABEL: Record<SignalState, string> = {
+  normal: 'Normal',
+  watch: 'Watch',
+  elevated: 'Elevated',
+  critical: 'Critical',
+  indeterminate: 'No data',
+};
+
+function SignalRow({ signal }: { signal: EvaluatedSignal }) {
+  const isIndeterminate = signal.state === 'indeterminate';
+  const status = isIndeterminate ? null : SIGNAL_STATE_TO_STATUS[signal.state];
+
+  return (
+    <li className="border-t border-neutral-800/60 py-2.5 first:border-t-0">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        {isIndeterminate ? (
+          <span
+            className="h-1.5 w-1.5 shrink-0 translate-y-[-1px] rounded-full border border-neutral-600"
+            aria-hidden="true"
+          />
+        ) : (
+          <StatusDot status={status!} />
+        )}
+        <span className="text-sm font-semibold text-neutral-200">{signal.name}</span>
+        <span
+          className={cn(
+            'font-mono text-[9px] font-bold uppercase tracking-[0.14em]',
+            isIndeterminate ? 'text-neutral-500' : statusColors[status!].text,
+          )}
+        >
+          {SIGNAL_STATE_LABEL[signal.state]}
+        </span>
+        {signal.dataQuality === 'stale' && (
+          <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-amber-400/80">
+            stale data
+          </span>
+        )}
+      </div>
+      <p className="mt-1 pl-[18px] text-xs leading-relaxed text-neutral-500">
+        {signal.inputs.map((i) => `${i.label}: ${i.value}`).join(' · ')}
+      </p>
+      <p className="mt-0.5 pl-[18px] font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+        {signal.ruleId} v{signal.ruleVersion}
+        {signal.thresholdProvenance === 'prototype' && ' · prototype threshold'}
+        {signal.thresholdProvenance === 'documented-public-standard' && ' · public standard'}
+        {signal.evidenceBasis !== 'direct-measurement' && ' · proxy'}
+      </p>
+    </li>
+  );
+}
+
+/**
+ * Precedent — Stage 3 §9.
+ *
+ * Deliberately understated. This is a set intersection on rule ids: a past
+ * decision appears because it cited a rule that is firing now. `matchedOnRuleIds`
+ * is printed so the reader can see the match reason rather than being asked to
+ * assume the system understands anything. No model, no scoring, no inference —
+ * calling it precedent is accurate; calling it intelligence would not be.
+ *
+ * Only the most recent match is expanded. The rest are counted, not listed —
+ * §10 asks for a compact loop, not a case file per problem.
+ */
+function PrecedentBlock({ loop }: { loop: ProblemLoopWithTransitions }) {
+  if (!loop.reviewWarranted) return null;
+
+  const [latest, ...rest] = loop.precedent;
+
+  return (
+    <div className="mt-2 border-l-2 border-amber-500/40 pl-3">
+      <p className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-amber-400/90">
+        Review warranted · {loop.activeRuleIds.join(', ')} active
+      </p>
+
+      {!latest ? (
+        <p className="mt-1 text-xs leading-relaxed text-neutral-500">
+          No prior decision on record cites these rules.
+        </p>
+      ) : (
+        <div className="mt-1.5">
+          <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+            Precedent · {formatDecisionDate(latest.decision.decidedAtIso)} ·{' '}
+            {latest.decision.decidedByRole} · matched on {latest.matchedOnRuleIds.join(', ')}
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-neutral-300">
+            &ldquo;{latest.decision.decision}&rdquo;
+          </p>
+          {latest.actions.slice(0, 2).map((action) => (
+            <p key={action.id} className="mt-0.5 text-xs leading-relaxed text-neutral-500">
+              → {action.detail}{' '}
+              <span className="text-neutral-600">
+                ({action.responsibleTeam} · {action.status})
+              </span>
+            </p>
+          ))}
+          {latest.outcomes.slice(0, 1).map((outcome) => (
+            <p key={outcome.id} className="mt-1 text-xs leading-relaxed text-neutral-500">
+              <span className="text-neutral-600">Outcome —</span> {outcome.observedEffect}{' '}
+              <span className="text-neutral-600">Learning: {outcome.learning}</span>
+            </p>
+          ))}
+          <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+            Illustrative case-study record · no ranch decision is represented here
+            {rest.length > 0 && ` · ${rest.length} further match${rest.length > 1 ? 'es' : ''}`}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function formatDecisionDate(iso: string) {
+  try {
+    return new Intl.DateTimeFormat('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'America/Denver',
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
+
+/**
+ * ROCK CREEK SYSTEM STATE — Stage 4 §9.
+ *
+ * The top of the information hierarchy the brief asks for:
+ *
+ *   ROCK CREEK SYSTEM STATE → PROBLEM STATE → ENVIRONMENTAL SIGNAL → WEATHER CONTEXT
+ *
+ * This is the first thing rendered in the header, ABOVE the weather strip —
+ * weather is context for the signals below it, not the page's subject. One
+ * line: the worst state currently active anywhere in the system, when the
+ * page was last regenerated (ticking, via `RelativeClock`), and — only when
+ * true — an explicit note that part of the picture is missing data. That
+ * last part matters as much as the state itself: §5 requires "no data" to
+ * never read as "normal," and burying it in per-problem rows would let a
+ * viewer miss it at the level that matters most.
+ */
+function SystemStatusHeader({ state }: { state: RockCreekSystemState }) {
+  const isIndeterminate = state.overallState === 'indeterminate';
+  const status = isIndeterminate ? null : SIGNAL_STATE_TO_STATUS[state.overallState];
+
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+      {isIndeterminate ? (
+        <span className="h-2 w-2 shrink-0 rounded-full border border-neutral-600" aria-hidden="true" />
+      ) : (
+        <StatusDot status={status!} pulse={status === 'critical' || status === 'elevated'} />
+      )}
+      <span className="font-mono text-[11px] font-black uppercase tracking-[0.18em] text-white">
+        Rock Creek system · {SIGNAL_STATE_LABEL[state.overallState]}
+      </span>
+      <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-500">
+        updated <RelativeClock isoTime={state.generatedAt} fallback="—" />
+      </span>
+      {state.hasDataGaps && (
+        <span className="font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-neutral-500">
+          · data gaps present
+        </span>
+      )}
+    </div>
+  );
+}
+
+const TIMELINE_ICON: Record<RockCreekSystemState['recentEvents'][number]['kind'], string> = {
+  'signal-entered': '▲',
+  'signal-cleared': '▽',
+  'decision-recorded': '◆',
+  'outcome-recorded': '●',
+};
+
+/**
+ * Stage 4 §7 — a minimal recent-activity trail, not a generic feed.
+ *
+ * Every entry is one of exactly four kinds, all derived either from the
+ * (deterministic, re-derivable) signal engine or from the immutable decision
+ * record set — never invented, never a raw log dump. Purpose: show the OS is
+ * a continuous loop rather than a snapshot. Capped at 5 by
+ * `assembleSystemState`; nothing here re-slices it.
+ */
+function RecentActivity({ events }: { events: RockCreekSystemState['recentEvents'] }) {
+  if (events.length === 0) return null;
+  return (
+    <div className="mt-3 border-t border-neutral-800/60 pt-2">
+      <p className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-neutral-500">
+        Recent activity
+      </p>
+      <ul className="mt-1.5 space-y-1">
+        {events.map((e, i) => (
+          <li key={`${e.kind}-${e.atIso}-${i}`} className="flex items-baseline gap-2 text-xs text-neutral-400">
+            <span className="font-mono text-neutral-600" aria-hidden="true">
+              {TIMELINE_ICON[e.kind]}
+            </span>
+            <span className="text-neutral-300">{e.label}</span>
+            <span className="text-neutral-600">— {e.detail}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransitions[] }) {
+  if (loops.length === 0) return null;
+
+  return (
+    <section className="mt-4 rounded-xl border border-neutral-800/80 bg-neutral-900/60 px-4 py-3">
+      <p className="font-mono text-[9px] font-black uppercase tracking-[0.24em] text-neutral-500">
+        System signals · derived from current conditions
+      </p>
+
+      <div className="mt-3 space-y-4">
+        {loops.map((loop) => {
+          const problem = loop.problem;
+          const isIndeterminate = problem.highestState === 'indeterminate';
+          const problemStatus = isIndeterminate ? null : SIGNAL_STATE_TO_STATUS[problem.highestState];
+          return (
+          <div key={problem.problemId}>
+            {/* Stage 4 §8 — the problem's own state, visible at a glance
+                without reading every signal row beneath it. Reuses the exact
+                dot/label vocabulary the signal rows already use, so a viewer
+                learns one visual language once. */}
+            <div className="flex items-center gap-2">
+              {isIndeterminate ? (
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full border border-neutral-600"
+                  aria-hidden="true"
+                />
+              ) : (
+                <StatusDot status={problemStatus!} />
+              )}
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-rockcreek-400">
+                {problem.notionTitle}
+              </p>
+              {loop.transitions.length > 0 && (
+                // Stage 4 §6 — subtle, operational change indicator. No
+                // animation: a small "changed" mark plus the exact from→to,
+                // so a returning viewer can see what moved without a flourish.
+                <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-amber-400/80">
+                  · changed: {loop.transitions.map((t) => `${t.from}→${t.to}`).join(', ')}
+                </span>
+              )}
+            </div>
+            <ul className="mt-1.5">
+              {problem.signals.map((signal) => (
+                <SignalRow key={signal.ruleId} signal={signal} />
+              ))}
+            </ul>
+            {problem.noTriggerRecorded && (
+              <p className="mt-1.5 text-xs leading-relaxed text-neutral-500">
+                {problem.hasIndeterminate ? (
+                  <>
+                    No trigger condition recorded by the rules that could be evaluated — one or more rules
+                    lack sufficient data.{' '}
+                  </>
+                ) : (
+                  <>No currently recorded trigger condition. </>
+                )}
+                <span className="text-neutral-600">This does not indicate the problem is resolved.</span>
+              </p>
+            )}
+            <PrecedentBlock loop={loop} />
+          </div>
+          );
+        })}
+      </div>
+
+      <p className="mt-3 border-t border-neutral-800/60 pt-2 font-mono text-[9px] uppercase leading-relaxed tracking-[0.12em] text-neutral-600">
+        Signals interpret conditions. They do not decide. Every response remains a human call.
+      </p>
+    </section>
+  );
+}
+
+/**
+ * STAGE 4 — one contract in, everything rendered from it.
+ *
+ * `systemState` is assembled ONCE, server-side, in `../page.tsx`
+ * (`assembleSystemState`). This component and everything beneath it —
+ * `SystemStatusHeader`, `CurrentConditionsStrip`, `SystemSignalsSection`,
+ * `RecentActivity` — read fields off that one object. None of them fetches,
+ * recomputes, or reconstructs system state independently; that was true
+ * before this stage for the pieces that already existed, and consolidating
+ * the four separate props into one object makes it structurally true rather
+ * than true by convention (Stage 4 §4).
+ *
+ * `systemState` defaults to a fully-empty, `indeterminate`/`unavailable`
+ * object rather than being required, so the console still renders (with an
+ * honest "no data" state throughout) if a caller omits it — same
+ * fail-safe-not-fail-silent posture Stage 1 established for the observation
+ * loader.
+ */
+const EMPTY_SYSTEM_STATE: RockCreekSystemState = {
+  generatedAt: new Date(0).toISOString(),
+  observation: null,
+  freshness: 'unavailable',
+  overallState: 'indeterminate',
+  hasDataGaps: false,
+  loops: [],
+  recentEvents: [],
+  notionSource: null,
+};
+
+export function StewardshipConsole({
+  systemState = EMPTY_SYSTEM_STATE,
+}: {
+  systemState?: RockCreekSystemState;
+} = {}) {
   const [scenarioId, setScenarioId] = useState<ScenarioId>('normal');
   const [activated, setActivated] = useState(false);
+  useReloadOnLongReturn();
 
   const scenario = scenarios[scenarioId];
   const needsDecision = scenario.response.recommendation !== null;
+  const { notionSource, observation: environmentalObservation, freshness: environmentalFreshness, loops: problemLoops } =
+    systemState;
 
   // Changing the environmental state resets the pending decision — the point
   // of the interaction is that a person decides per event, not once ever.
@@ -311,6 +854,20 @@ export function StewardshipConsole() {
           <p className="mt-3 inline-flex items-center rounded-full border border-neutral-700 bg-neutral-900/60 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-neutral-400">
             {consoleMeta.disclosure}
           </p>
+          {/* CONNECTION PROOF — build-time provenance, not part of the case
+              study's argument. Sits BELOW the disclosure so it can never
+              displace or dilute it. Remove when the dashboard actually sources
+              scenario data from Notion. */}
+          {notionSource && (
+            <p className="mt-2 flex w-fit items-center gap-2 rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-teal-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-400" aria-hidden="true" />
+              Notion source · {notionSource.name} · {notionSource.maturityStage}
+            </p>
+          )}
+          <SystemStatusHeader state={systemState} />
+          <CurrentConditionsStrip observation={environmentalObservation} freshness={environmentalFreshness} />
+          <SystemSignalsSection loops={problemLoops} />
+          <RecentActivity events={systemState.recentEvents} />
         </header>
 
         {/* ── The only environmental control ──────────────────────────── */}

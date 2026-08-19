@@ -1,0 +1,60 @@
+# Environmental observation ingestion — Rock Creek OS, Stage 1.
+#
+# `output: 'export'` means the deployed site has no runtime server, so there
+# is no request-time fetch and no ISR. This workflow is the update
+# mechanism: it fetches Open-Meteo on a schedule, normalizes the result via
+# lib/environmental/open-meteo-adapter.ts, and commits it. The push then
+# triggers the site's normal deploy, which imports the committed JSON at
+# build time — the same "build-time fetch, baked into static HTML" pattern
+# already used for Notion (see lib/notion-os.ts).
+#
+# Interval: every 3 hours (docs/strategy/rock-creek-environmental-data-architecture.md §6).
+# No API key: Open-Meteo requires none, so this workflow needs no secrets.
+#
+# Failure contract: the ingestion script exits non-zero and writes nothing
+# on any failure (network, malformed response, missing required field). The
+# `if: success()` guard below means a failed fetch produces NO commit —
+# never a fallback or fabricated value committed in its place.
+
+name: Environmental Observation Ingestion
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: environmental-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch and normalize observation
+        id: ingest
+        run: node --experimental-strip-types scripts/ingest-environmental-observation.mts
+
+      - name: Commit observation
+        if: success()
+        run: |
+          git config user.name "environmental-ingest[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/environmental/current.json data/environmental/history.ndjson
+          if git diff --cached --quiet; then
+            echo "No change in observation — skipping commit."
+          else
+            git commit -m "chore(environmental): update Rock Creek observation"
+            git push
+          fi
