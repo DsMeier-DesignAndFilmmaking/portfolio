@@ -458,40 +458,70 @@ const SIGNAL_STATE_LABEL: Record<SignalState, string> = {
   indeterminate: 'No data',
 };
 
+/**
+ * PRESENTATION-ONLY REDESIGN — signal name, state, evidence, and metadata are
+ * unchanged `EvaluatedSignal` fields, rendered with corrected hierarchy:
+ *
+ *   SIGNAL NAME (secondary)  →  STATE (now dominant, was 9px, now the
+ *   largest text in the row) →  EVIDENCE (why — contrast-corrected to clear
+ *   WCAG AA 4.5:1) → RULE METADATA (stays quiet, intentionally tertiary)
+ *
+ * State keeps its existing dual-coding — colored dot AND text label, never
+ * color alone — that discipline was already correct. What changed is which
+ * element in the row carries the most visual weight: previously the smallest
+ * text in the row was the one answering "what does the system detect,"
+ * which is backwards for a scannable operational interface.
+ */
 function SignalRow({ signal }: { signal: EvaluatedSignal }) {
   const isIndeterminate = signal.state === 'indeterminate';
   const status = isIndeterminate ? null : SIGNAL_STATE_TO_STATUS[signal.state];
 
   return (
-    <li className="border-t border-neutral-800/60 py-2.5 first:border-t-0">
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        {isIndeterminate ? (
-          <span
-            className="h-1.5 w-1.5 shrink-0 translate-y-[-1px] rounded-full border border-neutral-600"
-            aria-hidden="true"
-          />
-        ) : (
-          <StatusDot status={status!} />
-        )}
-        <span className="text-sm font-semibold text-neutral-200">{signal.name}</span>
-        <span
-          className={cn(
-            'font-mono text-[9px] font-bold uppercase tracking-[0.14em]',
-            isIndeterminate ? 'text-neutral-500' : statusColors[status!].text,
+    <li className="border-t border-neutral-800/60 py-3.5 first:border-t-0 sm:py-4">
+      <div className="flex flex-col gap-y-1 sm:flex-row sm:items-start sm:justify-between sm:gap-x-4">
+        <div className="flex items-center gap-2">
+          {isIndeterminate ? (
+            <span
+              className="h-2 w-2 shrink-0 rounded-full border border-neutral-600"
+              aria-hidden="true"
+            />
+          ) : (
+            <StatusDot status={status!} />
           )}
-        >
-          {SIGNAL_STATE_LABEL[signal.state]}
-        </span>
-        {signal.dataQuality === 'stale' && (
-          <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-amber-400/80">
-            stale data
+          <h4 className="text-sm font-semibold text-neutral-200 sm:text-[15px]">{signal.name}</h4>
+        </div>
+
+        {/* STATE — the dominant element in the row by design. Same dual
+            coding as before (dot + text); the text itself now carries real
+            typographic weight instead of being the smallest thing here. */}
+        <div className="flex shrink-0 items-center gap-2 pl-4 sm:pl-0">
+          <span
+            className={cn(
+              'font-mono text-sm font-bold uppercase tracking-[0.06em]',
+              isIndeterminate ? 'text-neutral-500' : statusColors[status!].text,
+            )}
+          >
+            {SIGNAL_STATE_LABEL[signal.state]}
           </span>
-        )}
+          {signal.dataQuality === 'stale' && (
+            <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-amber-400/70">
+              stale data
+            </span>
+          )}
+        </div>
       </div>
-      <p className="mt-1 pl-[18px] text-xs leading-relaxed text-neutral-500">
+
+      {/* EVIDENCE — the "why." Contrast corrected: neutral-500 on this
+          background measured 3.79:1, below WCAG AA's 4.5:1 floor for normal
+          text; neutral-400 clears it (~7.9:1). Content unchanged. */}
+      <p className="mt-1.5 pl-4 text-xs leading-relaxed text-neutral-400 sm:text-[13px]">
         {signal.inputs.map((i) => `${i.label}: ${i.value}`).join(' · ')}
       </p>
-      <p className="mt-0.5 pl-[18px] font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+
+      {/* RULE METADATA — deliberately the quietest line. neutral-600
+          measured 2.29:1 (a real AA failure even for tertiary text);
+          neutral-500 clears the floor while staying visually subordinate. */}
+      <p className="mt-1 pl-4 font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500">
         {signal.ruleId} v{signal.ruleVersion}
         {signal.thresholdProvenance === 'prototype' && ' · prototype threshold'}
         {signal.thresholdProvenance === 'documented-public-standard' && ' · public standard'}
@@ -519,18 +549,21 @@ function PrecedentBlock({ loop }: { loop: ProblemLoopWithTransitions }) {
   const [latest, ...rest] = loop.precedent;
 
   return (
-    <div className="mt-2 border-l-2 border-amber-500/40 pl-3">
+    // Contrast-corrected: neutral-500/600 measured 3.79:1 / 2.29:1 against
+    // this background — both below WCAG AA's 4.5:1 floor for normal text.
+    // neutral-400/500 clear it. Content, structure, and logic unchanged.
+    <div className="mt-2.5 border-l-2 border-amber-500/40 pl-4">
       <p className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-amber-400/90">
         Review warranted · {loop.activeRuleIds.join(', ')} active
       </p>
 
       {!latest ? (
-        <p className="mt-1 text-xs leading-relaxed text-neutral-500">
+        <p className="mt-1 text-xs leading-relaxed text-neutral-400">
           No prior decision on record cites these rules.
         </p>
       ) : (
         <div className="mt-1.5">
-          <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500">
             Precedent · {formatDecisionDate(latest.decision.decidedAtIso)} ·{' '}
             {latest.decision.decidedByRole} · matched on {latest.matchedOnRuleIds.join(', ')}
           </p>
@@ -538,20 +571,20 @@ function PrecedentBlock({ loop }: { loop: ProblemLoopWithTransitions }) {
             &ldquo;{latest.decision.decision}&rdquo;
           </p>
           {latest.actions.slice(0, 2).map((action) => (
-            <p key={action.id} className="mt-0.5 text-xs leading-relaxed text-neutral-500">
+            <p key={action.id} className="mt-0.5 text-xs leading-relaxed text-neutral-400">
               → {action.detail}{' '}
-              <span className="text-neutral-600">
+              <span className="text-neutral-500">
                 ({action.responsibleTeam} · {action.status})
               </span>
             </p>
           ))}
           {latest.outcomes.slice(0, 1).map((outcome) => (
-            <p key={outcome.id} className="mt-1 text-xs leading-relaxed text-neutral-500">
-              <span className="text-neutral-600">Outcome —</span> {outcome.observedEffect}{' '}
-              <span className="text-neutral-600">Learning: {outcome.learning}</span>
+            <p key={outcome.id} className="mt-1 text-xs leading-relaxed text-neutral-400">
+              <span className="text-neutral-500">Outcome —</span> {outcome.observedEffect}{' '}
+              <span className="text-neutral-500">Learning: {outcome.learning}</span>
             </p>
           ))}
-          <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500">
             Illustrative case-study record · no ranch decision is represented here
             {rest.length > 0 && ` · ${rest.length} further match${rest.length > 1 ? 'es' : ''}`}
           </p>
@@ -658,12 +691,22 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
   if (loops.length === 0) return null;
 
   return (
-    <section className="mt-4 rounded-xl border border-neutral-800/80 bg-neutral-900/60 px-4 py-3">
-      <p className="font-mono text-[9px] font-black uppercase tracking-[0.24em] text-neutral-500">
+    // Card treatment aligned to the established `ConditionCard`/`PanelFrame`
+    // pattern (bg-neutral-950/60 + backdrop-blur-sm) rather than the
+    // slightly-off bg-neutral-900/60 this block used in isolation — presentation
+    // parity with its siblings, not a new visual language. Padding increased
+    // for breathing room (Phase 8: more readable, not more empty — the
+    // container already had unused width, this uses it).
+    <section className="mt-4 rounded-xl border border-neutral-800/80 bg-neutral-950/60 px-5 py-4 backdrop-blur-sm md:px-6 md:py-5">
+      {/* Real <h2>: only `h1` carries a forced global override in this
+          codebase (globals.css) — h2/h3/h4 are safe to use as real headings
+          here, giving screen-reader users correct structure instead of
+          relying on visual styling alone (Phase 11). */}
+      <h2 className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-500">
         System signals · derived from current conditions
-      </p>
+      </h2>
 
-      <div className="mt-3 space-y-4">
+      <div className="mt-4 space-y-5">
         {loops.map((loop) => {
           const problem = loop.problem;
           const isIndeterminate = problem.highestState === 'indeterminate';
@@ -674,7 +717,7 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
                 without reading every signal row beneath it. Reuses the exact
                 dot/label vocabulary the signal rows already use, so a viewer
                 learns one visual language once. */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               {isIndeterminate ? (
                 <span
                   className="h-1.5 w-1.5 shrink-0 rounded-full border border-neutral-600"
@@ -683,9 +726,9 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
               ) : (
                 <StatusDot status={problemStatus!} />
               )}
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-rockcreek-400">
+              <h3 className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-rockcreek-400">
                 {problem.notionTitle}
-              </p>
+              </h3>
               {loop.transitions.length > 0 && (
                 // Stage 4 §6 — subtle, operational change indicator. No
                 // animation: a small "changed" mark plus the exact from→to,
@@ -695,13 +738,15 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
                 </span>
               )}
             </div>
-            <ul className="mt-1.5">
+            <ul className="mt-2">
               {problem.signals.map((signal) => (
                 <SignalRow key={signal.ruleId} signal={signal} />
               ))}
             </ul>
             {problem.noTriggerRecorded && (
-              <p className="mt-1.5 text-xs leading-relaxed text-neutral-500">
+              // Contrast-corrected: neutral-500/600 measured 3.79:1 / 2.29:1
+              // here — both below WCAG AA's 4.5:1 floor. Wording unchanged.
+              <p className="mt-2 text-xs leading-relaxed text-neutral-400">
                 {problem.hasIndeterminate ? (
                   <>
                     No trigger condition recorded by the rules that could be evaluated — one or more rules
@@ -710,7 +755,7 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
                 ) : (
                   <>No currently recorded trigger condition. </>
                 )}
-                <span className="text-neutral-600">This does not indicate the problem is resolved.</span>
+                <span className="text-neutral-500">This does not indicate the problem is resolved.</span>
               </p>
             )}
             <PrecedentBlock loop={loop} />
@@ -719,7 +764,7 @@ function SystemSignalsSection({ loops }: { loops: readonly ProblemLoopWithTransi
         })}
       </div>
 
-      <p className="mt-3 border-t border-neutral-800/60 pt-2 font-mono text-[9px] uppercase leading-relaxed tracking-[0.12em] text-neutral-600">
+      <p className="mt-4 border-t border-neutral-800/60 pt-3 font-mono text-[9px] uppercase leading-relaxed tracking-[0.12em] text-neutral-500">
         Signals interpret conditions. They do not decide. Every response remains a human call.
       </p>
     </section>
