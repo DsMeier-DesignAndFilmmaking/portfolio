@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-05 Place</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.framewrap{margin-bottom:32px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;padding:16px}
+.section-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#000;margin:14px 0 4px;padding-top:10px;border-top:1px solid #ccc}
+.section-h:first-child{border-top:none;padding-top:0;margin-top:0}
+button.choice{font:inherit;padding:10px 16px;border:1px solid #000;background:#fff;font-size:13px;margin-top:12px}
+details{margin-top:10px;font-size:12px}
+summary{cursor:pointer;color:#000;padding:6px 0;border-top:1px dashed #999}
+.disclosed-body{padding:8px 0;color:#333}
+.tried{font-size:13px;padding:6px 0}
+.condrow{font-size:13px;padding:6px 0}
+.hl{background:#eee;padding:0 2px}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 05 &mdash; S1 Place, with absence-adjacency exhibit</h1>
+<div class="meta">
+Risk-first order position: <b>5 of 6</b> &mdash; assessed by Phase 11 as fitting comfortably; tested after the four higher-risk surfaces, not before.<br>
+Bound viewport: <b>390&times;700</b> (phone, one-handed, gloved) &mdash; 02-information-architecture.md:694.<br>
+Base content verbatim from 08-interaction-architecture.md &sect;3. Extended with a second "already tried" item and a confirmed-absent condition to test Scenario C (absence collapse) at the narrowest bound width.
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame A &mdash; place surface, populated</span><span class="dims">390&times;700, default zoom</span>
+<div class="frame" style="width:390px;min-height:300px">
+<div class="section-h">Zone 04 <span style="font-weight:400;text-transform:none;color:#666">&mdash; turf zone</span></div>
+<div class="section-h">What is normal here</div>
+North edge stresses ~3 days before the rest.
+<div class="section-h">Already tried here</div>
+<div class="tried">Searched 14 Oct, north side ~4m off path, ~20 min. Not found.</div>
+<div class="tried">Checked the drainage line east of the green &mdash; confirmed not present.</div>
+<div class="section-h">Conditions</div>
+<div class="condrow">drainage readiness &middot; never checked</div>
+<div class="condrow">irrigation valve (north) &middot; looked, no answer</div>
+<div class="condrow">drainage line (east) &middot; confirmed not present</div>
+<button class="choice">record what I found</button>
+<details><summary>recent observations</summary><div class="disclosed-body">Chronological list of observations at this place.</div></details>
+<details><summary>what this place contains</summary><div class="disclosed-body">Contained features and segments.</div></details>
+<details><summary>history</summary><div class="disclosed-body">Full timeline.</div></details>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame B &mdash; absence-adjacency exhibit, isolated</span><span class="dims">for A9, at 390px</span>
+<div class="frame" style="width:390px;min-height:90px">
+<div style="padding:14px;font-size:14px">
+<div class="tried">Searched 14 Oct, north side ~4m off path, ~20 min. Not found.</div>
+<div class="tried">Checked the drainage line east of the green &mdash; confirmed not present.</div>
+</div>
+</div>
+</div>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information</dt><dd>identity, one knowledge sentence, prior attempts (two, deliberately adjacent), conditions for this place only</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>record what I found (&rarr; Wireframe 06), expand a disclosed region, navigate to a contained place</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no edit place, no create place, no resolve on any condition</dd>
+<dt>Behavior &mdash; empty state</dt><dd>if "already tried here" has no entries, the section renders NOTHING &mdash; no empty placeholder box (08-interaction-architecture.md &sect;10, I9). Not shown in this populated exhibit; noted for completeness</dd>
+<dt>Spatial &mdash; tier</dt><dd>identity, normal-here, already-tried, conditions are PRESENT; observations/contents/history are DISCLOSED</dd>
+<dt>Epistemic &mdash; absence guard</dt><dd>"Not found" (UNRESOLVED, contests the location) and "confirmed not present" (high confidence, supersedes) render as two full, untruncated sentences at 390px, back to back &mdash; A9 tests whether they remain distinguishable at this width</dd>
+<dt>Epistemic &mdash; naming guard</dt><dd>"Zone 04" is the &sect;5.3 test-parameter label, not an assertion about a real Whitetail zone identity</dd>
+</dl>
+</div>
+</body></html>

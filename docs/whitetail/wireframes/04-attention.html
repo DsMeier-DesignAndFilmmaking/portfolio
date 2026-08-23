@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-04 Attention</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.framewrap{margin-bottom:32px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;padding:16px}
+.section-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#000;margin-bottom:8px}
+.attitem{display:block;width:100%;text-align:left;font:inherit;padding:12px 0;border:none;border-bottom:1px solid #ccc;font-size:14px;background:#fff;cursor:pointer}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 04 &mdash; S4 Attention</h1>
+<div class="meta">
+Risk-first order position: <b>4 of 6</b> &mdash; lowest spatial pressure, highest emergent-semantics risk (task meaning can arrive without any task state existing).<br>
+Bound viewport: <b>390&times;700</b> (phone) &mdash; entry point for a split role, bound to the smallest.<br>
+Content: verbatim from 08-interaction-architecture.md &sect;6.1. Scroll is permitted on this surface (list length is a fact about the property); a count is not.
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame A &mdash; Needs You, ordered by time-to-close</span><span class="dims">390&times;700, default zoom</span>
+<div class="frame" style="width:390px;min-height:260px">
+<div class="section-h">Needs you</div>
+<button class="attitem">Blowout window closes in ~36 hours<br>3 zones rest on readiness nobody has checked</button>
+<button class="attitem">Two observers disagree &mdash; drainage, north zone</button>
+<button class="attitem">Snow mold window opens in ~4 days</button>
+</div>
+</div>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information</dt><dd>each item names the reason it needs a person; ordering is time-to-close, the one legitimate sort key (08-interaction-architecture.md &sect;2.1)</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>open an item &mdash; the complete action set. Each row is a real &lt;button&gt;, natively focusable and keyboard-operable (v1.1 fix: rows were bare non-interactive &lt;div&gt;s in the initial draft &mdash; caught by independent review, 13-wireframe-review-findings.md)</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no count badge, no dismiss, no assign, no snooze, no mark-read, no completion state, no per-item sort/filter</dd>
+<dt>Behavior &mdash; navigation</dt><dd>pure entry point; routes to S3 Decision or S1 Place; nothing routes TO this surface</dd>
+<dt>Spatial &mdash; tier</dt><dd>no DISCLOSED or SUPPORTING tier on this surface by design (11-wireframe-constraints.md &sect;3, S4 row)</dd>
+<dt>Spatial &mdash; no-scroll</dt><dd>does NOT apply here &mdash; a long list is a fact about the property, not a layout failure</dd>
+<dt>Epistemic &mdash; backlog guard</dt><dd>no leading ordinal; no trailing chevron/glyph of any kind (v1.1: removed &mdash; independent review found the chevron-plus-uniform-row-rhythm pattern reproduced an inbox/queue Gestalt, A3). The row itself is the affordance; opening needs no icon to imply it</dd>
+<dt>Epistemic &mdash; OPEN QUESTION for the reviewer</dt><dd>the phrase "3 zones rest on readiness nobody has checked" contains a literal digit as part of its content, not as a UI count badge. Rendered here at the same weight as surrounding text, unbolded. Whether this reads as an emergent count (Scenario E) is left to the reviewer &mdash; not resolved here.</dd>
+</dl>
+</div>
+</body></html>

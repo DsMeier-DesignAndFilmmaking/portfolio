@@ -1,0 +1,107 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-06 Capture</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.framewrap{margin-bottom:32px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;padding:16px}
+.placebar{font-size:13px;color:#666;margin-bottom:4px}
+.targetline{font-size:12px;color:#333;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #ccc}
+.section-h{font-size:15px;font-weight:700;margin-bottom:10px}
+.ansbtn{display:block;width:100%;text-align:left;font:inherit;font-size:15px;padding:16px 14px;margin-bottom:8px;border:1px solid #000;background:#fff;min-height:52px}
+.ansbtn.active{background:#000;color:#fff}
+.ansbtn.dim{opacity:.35}
+.ansbtn:disabled{cursor:default}
+#followup{display:none;margin-top:6px;margin-bottom:8px;padding-left:14px;border-left:3px solid #000}
+.followbtn{display:block;width:100%;text-align:left;font:inherit;font-size:14px;padding:12px;margin-bottom:6px;border:1px solid #000;background:#fff;min-height:44px}
+.followbtn.active{background:#000;color:#fff}
+.followbtn.dim{opacity:.35}
+.attach{display:flex;gap:8px;margin-top:14px}
+.attach button{font:inherit;font-size:12px;padding:8px 12px;border:1px solid #666;background:#fff}
+#recorded{display:none;margin-top:14px;font-size:12px;color:#333;padding:8px 0;border-top:1px solid #000}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 06 &mdash; S2 Capture, verification variant &mdash; LIVE (click to test the actual state transition)</h1>
+<div class="meta">
+Risk-first order position: <b>6 of 6</b> &mdash; assessed by Phase 11 as fitting comfortably; the fifteen-second one-handed budget is the open field-validation question (U7), not a spatial-fit question.<br>
+Bound viewport: <b>390&times;700</b> (phone, one-handed, gloved).<br>
+This wireframe is functional, not merely illustrative &mdash; minimal vanilla JS demonstrates the real OPEN &rarr; ANSWERED &rarr; COMMITTED transition (08-interaction-architecture.md &sect;4, state diagram). No framework, no styling beyond structure.
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame A &mdash; live capture surface</span><span class="dims">390&times;700, default zoom &mdash; click an answer</span>
+<div class="frame" style="width:390px;min-height:420px">
+<div class="placebar">Zone 04</div>
+<div class="targetline">You were asked to settle: drainage readiness</div>
+<div class="section-h">What did you find?</div>
+<div id="mainq">
+<button class="ansbtn" onclick="selectMain(this,'found')">Found it</button>
+<button class="ansbtn" onclick="selectMain(this,'inconclusive')">Found the place &mdash; couldn't tell</button>
+<button class="ansbtn" onclick="selectMain(this,'different')">Found something different</button>
+<button class="ansbtn" onclick="selectMain(this,'nothere')">Not there</button>
+</div>
+<div id="followup">
+<button class="followbtn" onclick="selectFollowup(this,'absent')">I confirmed it isn't there</button>
+<button class="followbtn" onclick="selectFollowup(this,'unresolved')">I couldn't find it</button>
+</div>
+<div class="attach"><button>photo</button><button>note</button></div>
+<div id="recorded"></div>
+</div>
+</div>
+
+<script>
+var answered = false;
+function selectMain(btn, label){
+  if(answered) return;
+  var followup = document.getElementById('followup');
+  if(label === 'nothere'){
+    followup.style.display = 'block';
+    document.querySelectorAll('.ansbtn').forEach(function(b){ if(b!==btn) b.disabled = true; b.classList.add('dim'); });
+    btn.classList.remove('dim');
+    btn.classList.add('active');
+    return;
+  }
+  commit(btn, label, '.ansbtn');
+}
+function selectFollowup(btn, label){
+  commit(btn, label, '.followbtn');
+}
+function commit(btn, label, selector){
+  answered = true;
+  document.querySelectorAll('.ansbtn, .followbtn').forEach(function(b){
+    b.disabled = true;
+    if(b !== btn){ b.classList.add('dim'); }
+  });
+  btn.classList.remove('dim');
+  btn.classList.add('active');
+  var rec = document.getElementById('recorded');
+  rec.style.display = 'block';
+  rec.textContent = 'Recorded by a groundskeeper, just now. A new observation is needed to change this.';
+}
+</script>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information</dt><dd>bound place, target condition (verification variant), the four answers, optional photo/note</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>tap an answer (commits immediately), attach photo/note before or with the answer</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no separate Submit/Done/Complete control, no category picker, no severity, no priority, no assignment, no edit after commit</dd>
+<dt>Behavior &mdash; state transition</dt><dd>OPEN (all four enabled) &rarr; on "Not there": follow-up revealed, main answers disabled/dimmed, nothing yet committed &rarr; ANSWERED/COMMITTED on any final tap: chosen answer inverts to filled, all others dim, "Recorded" line appears. Tap the buttons above to observe this directly.</dd>
+<dt>Behavior &mdash; identity</dt><dd>"Recorded by a groundskeeper" &mdash; role and time only, never a name (Phase 07 C8)</dd>
+<dt>Spatial &mdash; tier</dt><dd>all four answers PRESENT and equal-weight simultaneously; no scroll separates any of them</dd>
+<dt>Spatial &mdash; target size</dt><dd>each answer row is full-width, ~52&ndash;60px tall &mdash; sized for a gloved, one-handed tap, not a mouse pointer</dd>
+<dt>Epistemic &mdash; peer guard</dt><dd>identical button style for all four main answers; "Not there" is the fourth item in one uninterrupted list, no divider, no distinct position</dd>
+<dt>Epistemic &mdash; completion guard</dt><dd>the "Recorded" confirmation appears as a RESULT of answering, not as a precondition for a further action &mdash; there is nothing left to do afterward except attach optional media</dd>
+</dl>
+</div>
+</body></html>

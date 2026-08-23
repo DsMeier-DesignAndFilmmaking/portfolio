@@ -1,0 +1,84 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-03 LAST TIME</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.framewrap{margin-bottom:32px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;padding:16px}
+.section-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#000;margin:14px 0 4px;padding-top:10px;border-top:1px solid #ccc}
+.section-h:first-child{border-top:none;padding-top:0;margin-top:0}
+.indivisible{background:#f2f2f2;border:1px solid #000;padding:10px 12px;font-size:13px}
+.controls{margin-top:14px;padding-top:14px;border-top:1px solid #000}
+button.choice{font:inherit;padding:10px 16px;border:1px solid #000;background:#fff;margin-right:8px;font-size:13px}
+.reasonfield{margin-top:10px;font-size:12px;color:#666}
+.reasonfield input{border:none;border-bottom:1px solid #666;width:100%;font:inherit;padding:2px 0}
+details{margin-top:10px;font-size:12px}
+summary{cursor:pointer;color:#000;padding:6px 0;border-top:1px dashed #999}
+.disclosed-body{padding:8px 0;color:#333}
+.isolated{font-size:22px;padding:20px;max-width:500px}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 03 &mdash; LAST TIME / TW-5 returned grounds, in the D2 frost-delay envelope</h1>
+<div class="meta">
+Risk-first order position: <b>3 of 6</b> &mdash; carries TW-5, the resolution of the project's strongest corruption chain, under the specific pressure that a good outcome is more salient than its grounds.<br>
+Bound viewport: <b>390&times;700</b> (phone) &mdash; D2 is a pre-dawn field call, per 11-wireframe-constraints.md &sect;4.1.<br>
+Content: verbatim from 08-interaction-architecture.md &sect;5.1, including the v1.1 amendment (04-architectural-proof.md / 08-interaction-architecture.md, authorized 2026-08-21).<br>
+Scenario under test: <b>Scenario A</b> (12-wireframe-validation-plan.md &sect;9) &mdash; a decision on assumed grounds produced a good outcome.
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame A &mdash; full D2 decision envelope, in context</span><span class="dims">390&times;700, default zoom</span>
+<div class="frame" style="width:390px;min-height:300px">
+<div class="section-h">The Decision</div>
+Frost delay &mdash; open or hold
+<div class="section-h">Closing</div>
+Play scheduled in 38 minutes.
+<div class="section-h">What we know</div>
+frost present &middot; measured 06:04, uncontested
+<div class="section-h">What this place has done before</div>
+Thaws ~40 min behind the others under clear cold. From 9 observations, 2 cycles.
+<div class="section-h">Last time</div>
+<div class="indivisible">&ldquo;2 Nov &mdash; delayed 45 min. Estimate held.&rdquo; Decided on: thaw lag never checked here at the time.</div>
+<div class="controls">
+<button class="choice">open</button><button class="choice">delay</button><button class="choice">partial</button>
+<div class="reasonfield">because: <input></div>
+</div>
+<details><summary>observations behind this</summary><div class="disclosed-body">9 observations across 2 cycles, individually listed.</div></details>
+<details><summary>comparable past mornings</summary><div class="disclosed-body">List of prior clear-cold mornings and how each was called.</div></details>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame B &mdash; the LAST TIME block, isolated and enlarged for close inspection</span><span class="dims">for A6 / A12</span>
+<div class="frame" style="width:540px;min-height:120px">
+<div class="isolated">
+<div class="indivisible" style="font-size:inherit">&ldquo;2 Nov &mdash; delayed 45 min. Estimate held.&rdquo; Decided on: thaw lag never checked here at the time.</div>
+</div>
+</div>
+</div>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information &mdash; outcome</dt><dd>"delayed 45 min. Estimate held." &mdash; what happened</dd>
+<dt>Information &mdash; returned ground</dt><dd>"thaw lag never checked here at the time" &mdash; the weakest ground the decision rested on, per 10-resolution-pass.md &sect;4.5 mapping (assumption &rarr; "never checked here at the time")</dd>
+<dt>Information &mdash; markup structure</dt><dd>outcome and ground are ONE &lt;div&gt;, one text run, one background, no internal &lt;p&gt;/&lt;span&gt; split &mdash; a future styling pass cannot select one half without selecting both</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>open / delay / partial + state reason, request verification if time allows (not shown &mdash; D2's window is minutes, per 08-interaction-architecture.md &sect;4)</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no "mark as validated", no rating of the prior decision, no edit of the historical record</dd>
+<dt>Spatial &mdash; tier</dt><dd>the indivisible block is PRESENT; observation-level detail and comparable mornings are DISCLOSED</dd>
+<dt>Epistemic &mdash; outcome-bias guard</dt><dd>no visual weight differs between the outcome clause and the ground clause &mdash; same font-size, same weight, same color, same sentence</dd>
+<dt>Epistemic &mdash; taxonomy guard</dt><dd>"never checked here at the time" is prose composed from the ASSUMED band's meaning, not the word "Assumed" itself (05-decision-experience-model.md &sect;7.1 vs &sect;2.1.1 T-A)</dd>
+<dt>Epistemic &mdash; standing constraint (v1.1)</dt><dd>independent review found no DOM-level separation exists between outcome and ground at any tested width (single text node), but flagged that a future CSS <code>::first-line</code> rule could still isolate the outcome below the 320px WCAG floor, outside all specified test conditions. No structural fix removes this &mdash; <code>::first-line</code> targets rendered position, not markup. Recorded as a standing constraint on future styling of <code>.indivisible</code>: do not apply <code>::first-line</code> or <code>:first-letter</code> to this block. 13-wireframe-review-findings.md</dd>
+</dl>
+</div>
+</body></html>

@@ -185,6 +185,27 @@ export const PROJECTS: ProjectRecord[] = [
     tags: ['Infrastructure', 'Resilience', 'Stewardship'],
   },
   {
+    id: 'whitetail-club',
+    title: 'Whitetail Club & Shore Lodge',
+    href: '/projects/whitetail-club',
+    track: 'independent-research-practice',
+    type: 'Concept',
+    canonicalHref: '/projects/whitetail-club',
+    visibility: 'public',
+    osCategory: ['concepts', 'field-studies'],
+    practiceTrack: ['stewardship', 'operations', 'digital-products'],
+    projectType: 'case-study',
+    maturity: 'strong',
+    // 'conceptual' on purpose: the system was never deployed and no field
+    // validation occurred. Do not raise this to 'field-informed'.
+    evidenceLevel: 'conceptual',
+    status: 'published',
+    summary:
+      'A stewardship intelligence system for a mountain property, designed so the landscape keeps a record of what is known, how well it is known, and why each decision was made.',
+    tags: ['Stewardship', 'Epistemic design', 'Field systems'],
+    navTitle: 'Case Study: Whitetail Club & Shore Lodge',
+  },
+  {
     id: 'adaptive-ranch-experience-companion',
     title: 'Adaptive Outdoor Hospitality Companion',
     href: '/projects/adaptive-ranch-experience-companion',

@@ -1,0 +1,106 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-02 Contest</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.framewrap{margin-bottom:32px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;padding:16px}
+.section-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#000;margin-bottom:10px}
+.contest-item{padding:9px 11px;border:1px solid #000;background:#fff;margin-bottom:6px}
+.contest-item .who{font-size:11px;color:#666}
+.contest-item .what{font-size:14px;margin-top:3px}
+.explain{padding:9px 11px;border:1px solid #000;background:#fff;font-size:14px;font-weight:600;margin-top:2px}
+.onlyaction{margin-top:14px;padding-top:12px;border-top:1px solid #000}
+button.choice{font:inherit;padding:10px 16px;border:1px solid #000;background:#fff;font-size:13px}
+.twocol{display:flex;gap:10px}
+.twocol>div{flex:1;min-width:0}
+.group{border:2px solid #000;padding:10px}
+.group .contest-item{border:none;border-bottom:1px solid #ccc;margin-bottom:0;padding:8px 0}
+.group .contest-item:last-of-type{border-bottom:none}
+.group .explain{border:none;background:none;padding:8px 0 0;font-weight:600}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 02 &mdash; Contested Condition, four arrangement variants</h1>
+<div class="meta">
+Risk-first order position: <b>2 of 6</b> &mdash; Phase 11 &sect;5.2 concluded <b>no neutral vertical order exists</b>. Tested here at the harder constraint (phone) rather than the more forgiving desk-class.<br>
+Bound viewport tested: <b>390&times;700</b> (phone) &mdash; contest can surface inside any decision, including phone-bound ones (D1, D2, D4, D5, D7).<br>
+Content: drainage state, a single place, two accounts &mdash; verbatim from 08-interaction-architecture.md &sect;5.4.<br>
+Per 12-wireframe-validation-plan.md &sect;6.3: these four variants are tested to document which authority signal each produces, <b>not</b> to search for a neutral one &mdash; none is claimed to exist.
+<br><b>v1.1, post-review:</b> independent review (13-wireframe-review-findings.md) found Variants 1 &amp; 2 (chronological / reverse) carry a real recency-implies-truth risk (A2); Variant 3 (equal-position) is weaker on that risk but had dropped role attribution under column-width pressure, now restored; Variant 4 (grouped) tested strongest overall. <b>This page remains a comparison exhibit, not a shipped choice</b> &mdash; which variant becomes the shipped surface is not decided here.
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Variant 1 &mdash; Chronological (earlier first)</span><span class="dims">390&times;700</span>
+<div class="frame" style="width:390px;min-height:260px">
+<div class="section-h">Drainage state &mdash; two disagree</div>
+<div class="contest-item"><div class="who">a groundskeeper, Tue 14:20</div><div class="what">&ldquo;clear&rdquo;</div></div>
+<div class="contest-item"><div class="who">a groundskeeper, Tue 16:05</div><div class="what">&ldquo;standing water&rdquo;</div></div>
+<div class="explain">Too close together to be change.</div>
+<div class="onlyaction"><button class="choice">ask someone to look again</button></div>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Variant 2 &mdash; Reverse-chronological (later first)</span><span class="dims">390&times;700</span>
+<div class="frame" style="width:390px;min-height:260px">
+<div class="section-h">Drainage state &mdash; two disagree</div>
+<div class="contest-item"><div class="who">a groundskeeper, Tue 16:05</div><div class="what">&ldquo;standing water&rdquo;</div></div>
+<div class="contest-item"><div class="who">a groundskeeper, Tue 14:20</div><div class="what">&ldquo;clear&rdquo;</div></div>
+<div class="explain">Too close together to be change.</div>
+<div class="onlyaction"><button class="choice">ask someone to look again</button></div>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Variant 3 &mdash; Equal-position (side by side)</span><span class="dims">390&times;700 &mdash; NOTE: at phone width each column is ~185px</span>
+<div class="frame" style="width:390px;min-height:260px">
+<div class="section-h">Drainage state &mdash; two disagree</div>
+<div class="twocol">
+<div class="contest-item"><div class="who">a groundskeeper<br>Tue 14:20</div><div class="what">&ldquo;clear&rdquo;</div></div>
+<div class="contest-item"><div class="who">a groundskeeper<br>Tue 16:05</div><div class="what">&ldquo;standing water&rdquo;</div></div>
+</div>
+<div class="explain">Too close together to be change.</div>
+<div class="onlyaction"><button class="choice">ask someone to look again</button></div>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Variant 4 &mdash; Grouped (one bracket, explanation integrated)</span><span class="dims">390&times;700</span>
+<div class="frame" style="width:390px;min-height:260px">
+<div class="section-h">Drainage state &mdash; two disagree</div>
+<div class="group">
+<div class="contest-item"><div class="who">a groundskeeper, Tue 14:20</div><div class="what">&ldquo;clear&rdquo;</div></div>
+<div class="contest-item"><div class="who">a groundskeeper, Tue 16:05</div><div class="what">&ldquo;standing water&rdquo;</div></div>
+<div class="explain">Too close together to be change.</div>
+</div>
+<div class="onlyaction"><button class="choice">ask someone to look again</button></div>
+</div>
+</div>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information &mdash; observations</dt><dd>Two OBSERVATION records, role + timestamp only, immutable, both OBSERVED provenance</dd>
+<dt>Information &mdash; reason</dt><dd>"Too close together to be change" &mdash; states WHY it is contested (decay-window rule, 04-architectural-proof.md &sect;4.C), not a category label</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>ask someone to look again (issues a new VERIFY task)</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no accept, no reject, no resolve, no "mark correct", no merge/average control &mdash; verified absent in all four variants</dd>
+<dt>Behavior &mdash; only path forward</dt><dd>a new observation. Nothing on this surface changes CONTESTED except a future OBSERVATION.verifies edge</dd>
+<dt>Behavior &mdash; navigation</dt><dd>this block is embedded inside whichever S3 Decision surface the contested condition informs</dd>
+<dt>Spatial &mdash; tier</dt><dd>both observations and the explanation are PRESENT together; none is DISCLOSED behind the other</dd>
+<dt>Spatial &mdash; explain weight</dt><dd>the explanation line uses the same border/background family as the observations, not a smaller caption style</dd>
+<dt>Epistemic &mdash; peer guard</dt><dd>identical typography, identical border treatment, identical padding on both observation blocks in every variant</dd>
+<dt>Epistemic &mdash; ordering note</dt><dd>per 11-wireframe-constraints.md &sect;5.2, no vertical order is claimed neutral here. Variant 4 (grouped) most closely matches 08-interaction-architecture.md &sect;5.4's original single-block form</dd>
+<dt>Open observation</dt><dd>Variant 3 compresses to ~185px columns at this viewport &mdash; whether that remains legible is left to the reviewer, not asserted here</dd>
+</dl>
+</div>
+</body></html>

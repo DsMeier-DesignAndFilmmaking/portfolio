@@ -1,0 +1,166 @@
+<!doctype html><html><head><meta charset="utf-8"><title>WF-01 D3 Decision Envelope</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:#000;padding:24px;line-height:1.45}
+h1{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:4px}
+.meta{font-size:12px;color:#666;margin-bottom:24px;border-bottom:1px solid #000;padding-bottom:16px;max-width:900px}
+.meta b{color:#000}
+.dhbanner{display:inline-block;background:#000;color:#fff;font-size:10px;padding:2px 7px;letter-spacing:.03em;margin-top:6px}
+.framewrap{margin-bottom:36px}
+.framelabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#000;background:#eee;padding:4px 8px;display:inline-block;border:1px solid #000;border-bottom:none}
+.dims{font-size:10px;color:#666;font-family:monospace;margin-left:8px}
+.frame{border:2px solid #000;overflow-y:auto;background:#fff;position:relative}
+.present{padding:16px}
+.section-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#000;margin:14px 0 4px;padding-top:10px;border-top:1px solid #ccc}
+.section-h:first-child{border-top:none;padding-top:0;margin-top:0}
+.controls{margin-top:14px;padding-top:14px;border-top:1px solid #000}
+button.choice{font:inherit;padding:10px 16px;border:1px solid #000;background:#fff;margin-right:8px;font-size:13px}
+.reasonfield{margin-top:10px;font-size:12px;color:#666}
+.reasonfield input{border:none;border-bottom:1px solid #666;width:100%;font:inherit;padding:2px 0}
+details{margin-top:10px;font-size:12px}
+summary{cursor:pointer;color:#000;padding:6px 0;border-top:1px dashed #999}
+details[open] summary{border-bottom:1px dashed #999}
+.disclosed-body{padding:8px 0;color:#333}
+.scrollnotice{position:sticky;bottom:0;background:#000;color:#fff;font-size:10px;padding:4px 8px;text-align:center}
+.annopanel{margin-top:8px;border:1px dashed #999;background:#f7f7f7;padding:12px;font-family:monospace;font-size:11px;color:#333;max-width:900px}
+.annopanel h3{font-family:-apple-system,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000;margin-bottom:8px}
+.annopanel dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-bottom:2px}
+.annopanel dt{font-weight:700;color:#000}
+.annopanel dd{color:#333}
+.tag{display:inline-block;border:1px solid #000;font-size:9px;padding:1px 5px;text-transform:uppercase;letter-spacing:.04em;margin-right:4px}
+.tag.present{background:#000;color:#fff}
+.tag.disclosed{background:#fff;color:#000}
+.tag.supporting{background:#eee;color:#666;border-color:#999}
+.zonerow{padding:7px 0;border-bottom:1px solid #eee;font-size:13px}
+.zonerow .zlabel{font-weight:600;display:block}
+.zonerow .zreason{display:block;color:#333;margin-top:1px}
+nav a{color:#000}
+</style></head>
+<body>
+<p><a href="index.html">&larr; index</a></p>
+<h1>Wireframe 01 &mdash; S3 Decision Envelope, D3 Winterization Sequencing</h1>
+<div class="meta">
+Risk-first order position: <b>1 of 6</b> &mdash; the only surface Phase 11 predicted would fail unnarrowed (11-wireframe-constraints.md &sect;4.2).<br>
+Bound viewport: <b>desk-class, 1280&times;720</b> (post-chrome estimate) at default zoom &mdash; 11-wireframe-constraints.md &sect;4.1.<br>
+Reflow viewport tested separately at <b>320px</b> per WCAG 1.4.10 &mdash; 11-wireframe-constraints.md &sect;7.3.<br>
+<span class="dhbanner">[DH] TEST PARAMETER: 28 zones &mdash; NOT an assertion about Whitetail's actual zone count. Floor derived from 28 attested holes (18-hole course + Tom's Ten). 12-wireframe-validation-plan.md &sect;5.3.</span>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame A &mdash; UNNARROWED (all 28 zones itemized)</span><span class="dims">1280&times;720, default zoom</span>
+<div class="frame" style="width:1280px;height:720px">
+<div class="present">
+<div class="section-h">The Decision</div>
+Winterization sequencing &mdash; commit or hold
+<div class="section-h">Closing</div>
+Irrigation blowout: point of no return in ~18 hours &middot; Snow mold application window closes in ~40 hours
+<div class="section-h">All Zones (unnarrowed &mdash; every zone itemized regardless of confidence)</div>
+<div class="zonerow"><span class="zlabel">Zone 01</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 02</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 03</span><span class="zreason">last looked at 9 days ago; readiness changes in about a week</span></div>
+<div class="zonerow"><span class="zlabel">Zone 04</span><span class="zreason">never checked</span></div>
+<div class="zonerow"><span class="zlabel">Zone 05</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 06</span><span class="zreason">checked 2 days ago</span></div>
+<div class="zonerow"><span class="zlabel">Zone 07</span><span class="zreason">last looked at 6 days ago; readiness changes in about a week</span></div>
+<div class="zonerow"><span class="zlabel">Zone 08</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 09</span><span class="zreason">looked, no answer</span></div>
+<div class="zonerow"><span class="zlabel">Zone 10</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 11</span><span class="zreason">checked 3 days ago</span></div>
+<div class="zonerow"><span class="zlabel">Zone 12</span><span class="zreason">last looked at 8 days ago; readiness changes in about a week</span></div>
+<div class="zonerow"><span class="zlabel">Zone 13</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 14</span><span class="zreason">never checked</span></div>
+<div class="zonerow"><span class="zlabel">Zone 15</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 16</span><span class="zreason">checked 2 days ago</span></div>
+<div class="zonerow"><span class="zlabel">Zone 17</span><span class="zreason">two disagree</span></div>
+<div class="zonerow"><span class="zlabel">Zone 18</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 19</span><span class="zreason">last looked at 10 days ago; readiness changes in about a week</span></div>
+<div class="zonerow"><span class="zlabel">Zone 20</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 21</span><span class="zreason">looked, no answer</span></div>
+<div class="zonerow"><span class="zlabel">Zone 22</span><span class="zreason">checked 2 days ago</span></div>
+<div class="zonerow"><span class="zlabel">Zone 23</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 24</span><span class="zreason">last looked at 7 days ago; readiness changes in about a week</span></div>
+<div class="zonerow"><span class="zlabel">Zone 25</span><span class="zreason">checked this morning</span></div>
+<div class="zonerow"><span class="zlabel">Zone 26</span><span class="zreason">never checked</span></div>
+<div class="zonerow"><span class="zlabel">Zone 27</span><span class="zreason">checked yesterday</span></div>
+<div class="zonerow"><span class="zlabel">Zone 28</span><span class="zreason">checked 3 days ago</span></div>
+<div class="controls">
+<button class="choice">commit sequence</button><button class="choice">hold</button>
+<div class="reasonfield">because: <input></div>
+</div>
+</div>
+</div>
+</div>
+<p style="font-size:11px;color:#666;max-width:900px">Left deliberately as-is: if this frame requires internal scrolling to reach the controls, that is recorded evidence of envelope pressure, not a defect to be hidden before review (per user instruction: "if the 28-zone stress test looks uncomfortable, that's useful information").</p>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame B &mdash; NARROWED (weakly-grounded zones only, per 11-wireframe-constraints.md &sect;4.4)</span><span class="dims">1280&times;720, default zoom</span>
+<div class="frame" style="width:1280px;height:720px">
+<div class="present">
+<div class="section-h">The Decision</div>
+Winterization sequencing &mdash; commit or hold
+<div class="section-h">Closing</div>
+Irrigation blowout: point of no return in ~18 hours &middot; Snow mold application window closes in ~40 hours
+<div class="section-h">Zones needing a look before you commit</div>
+<div class="zonerow"><span class="zlabel">Zone 04</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 09</span><span class="zreason">Searched it in October. Didn't find it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 14</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 17</span><span class="zreason">Two of us disagreed on Tuesday. Too close together to be change.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 21</span><span class="zreason">Searched it last week. Didn't find it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 26</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<details><summary>the remaining zones</summary><div class="disclosed-body">The remaining zones are current and checked.</div></details>
+<details><summary>last cycle</summary><div class="disclosed-body">2 Nov cycle &mdash; sequence completed in 3 days. Zone 04 held; Zone 17 needed a second look.</div></details>
+<div class="controls">
+<button class="choice">commit sequence</button><button class="choice">hold</button>
+<div class="reasonfield">because: <input></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="framewrap">
+<span class="framelabel">Frame C &mdash; REFLOW (320px, elevated zoom equivalent)</span><span class="dims">tests that decision-critical material LEADS &mdash; scrolling is permitted here</span>
+<div class="frame" style="width:320px;height:400px">
+<div class="present">
+<div class="section-h">Closing</div>
+Irrigation blowout: point of no return in ~18 hours
+<div class="section-h">&nbsp;</div>
+Snow mold application window closes in ~40 hours
+<div class="section-h">Zones needing a look before you commit</div>
+<div class="zonerow"><span class="zlabel">Zone 04</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 09</span><span class="zreason">Searched it in October. Didn't find it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 14</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 17</span><span class="zreason">Two of us disagreed on Tuesday. Too close together to be change.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 21</span><span class="zreason">Searched it last week. Didn't find it.</span></div>
+<div class="zonerow"><span class="zlabel">Zone 26</span><span class="zreason">This is from the old drawing. Nobody's confirmed it.</span></div>
+<div class="section-h">The Decision</div>
+Winterization sequencing &mdash; commit or hold
+<details><summary>the remaining zones</summary><div class="disclosed-body">The remaining zones are current and checked.</div></details>
+<div class="controls">
+<button class="choice">commit sequence</button><button class="choice">hold</button>
+<div class="reasonfield">because: <input></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="annopanel">
+<h3>Annotations &mdash; not part of the measured surface</h3>
+<dl>
+<dt>Information &mdash; decision</dt><dd>Winterization sequencing (D3), owner: supervising + leadership role</dd>
+<dt>Information &mdash; evidence</dt><dd>Per-zone readiness conditions, each carrying a generated reason phrase (not a lookup)</dd>
+<dt>Information &mdash; returned ground</dt><dd>n/a on this surface &mdash; see Wireframe 03</dd>
+<dt>Behavior &mdash; allowed actions</dt><dd>commit sequence, hold, state reason, expand a disclosed region</dd>
+<dt>Behavior &mdash; ABSENT actions</dt><dd>no auto-sequence, no "new decision", no per-zone sort/filter, no confidence score entry, no resolve control on Zone 17's contested state</dd>
+<dt>Behavior &mdash; disclosure</dt><dd>&lt;details&gt; reveals in place, no navigation; "remaining zones" is intentionally count-free text</dd>
+<dt>Behavior &mdash; navigation</dt><dd>entered from Attention (Wireframe 04) or from Place; issues verification tasks routing to Place/Capture</dd>
+<dt>Spatial &mdash; viewport</dt><dd>desk-class 1280&times;720, bound because D3 is the one decision the split supervising role handles from a desk (02-information-architecture.md:694)</dd>
+<dt>Spatial &mdash; tier: PRESENT</dt><dd><span class="tag present">PRESENT</span> closing windows, weakly-grounded zone list, choice controls, reason field</dd>
+<dt>Spatial &mdash; tier: DISCLOSED</dt><dd><span class="tag disclosed">DISCLOSED</span> remaining-zones statement, last cycle detail</dd>
+<dt>Spatial &mdash; inline reason rule</dt><dd>each zone row is one flowing sentence, no table, no fixed-width label column &mdash; the em-dash position varies with zone-label length by construction</dd>
+<dt>Epistemic &mdash; ranking guard</dt><dd>no column of reasons exists; rows wrap as prose, not as aligned cells (tests A1, A11)</dd>
+<dt>Epistemic &mdash; scope guard</dt><dd>zone count is a labeled &sect;5.3 test parameter; no sentence anywhere asserts it as a property fact</dd>
+</dl>
+</div>
+</body></html>
