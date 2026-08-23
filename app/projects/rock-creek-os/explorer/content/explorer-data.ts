@@ -48,7 +48,7 @@ export const explorerHero = {
   title: 'One landscape, many conditions, one adaptive system',
   deck: 'Complex environmental problems are rarely isolated problems. They are system relationships.',
   premise:
-    'A luxury ranch sells an exceptional experience rooted in an authentic natural landscape. But the landscape is not a backdrop — it is a working system with its own limits, and those limits move. Water temperature, streamflow, fire conditions, access, and seasonal availability all change, sometimes within a single afternoon. The promise made at booking does not.',
+    'Luxury guests expect a flawless stay, but natural landscapes shift in an instant. Balancing volatile environmental conditions with unwavering guest expectations is the core challenge.',
   question:
     'How can the Ranch adapt to a changing landscape without making that complexity visible to the guest?',
   disclosure:
