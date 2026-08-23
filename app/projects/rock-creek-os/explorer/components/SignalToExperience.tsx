@@ -52,24 +52,30 @@ export function SignalToExperience() {
             const tone = toneStyles[stage.tone];
             return (
               <li key={stage.id} className="relative flex flex-col">
-                <div className="flex h-full flex-col rounded-2xl border border-neutral-800 bg-neutral-900 p-5 md:p-6">
-                  <span className="flex items-center gap-2">
-                    <span className={cn('h-2 w-2 shrink-0 rounded-full', tone.dot)} aria-hidden="true" />
-                    <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
-                      {stage.number}
+                <div className="flex h-full flex-col justify-between rounded-2xl border border-neutral-800 bg-neutral-900 p-5 md:p-6">
+                  <div>
+                    <span className="flex items-center gap-2">
+                      <span className={cn('h-2 w-2 shrink-0 rounded-full', tone.dot)} aria-hidden="true" />
+                      <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
+                        {stage.number}
+                      </span>
                     </span>
-                  </span>
-                  <h3 className="mt-3 font-tiempos text-2xl font-bold leading-tight text-white">
-                    {stage.label}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-neutral-400">{stage.summary}</p>
-                  <ul className="mt-4 space-y-1.5 border-t border-neutral-800 pt-4">
-                    {stage.items.map((item) => (
-                      <li key={item} className="text-sm leading-relaxed text-neutral-300">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                    <h3 className="mt-3 font-tiempos text-2xl font-bold leading-tight text-white">
+                      {stage.label}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-neutral-400">{stage.summary}</p>
+                  </div>
+
+                  {/* Render items safely if present in data model */}
+                  {stage.items && stage.items.length > 0 && (
+                    <ul className="mt-4 space-y-1.5 border-t border-neutral-800 pt-4">
+                      {stage.items.map((item) => (
+                        <li key={item} className="text-xs leading-relaxed text-neutral-500">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 {/* Flow direction: down between stacked cards, right at lg. */}
@@ -96,9 +102,11 @@ export function SignalToExperience() {
           <p className="mt-4 font-tiempos text-2xl font-bold leading-tight text-white md:text-4xl md:leading-tight">
             {signalToExperience.principle}
           </p>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-400 md:text-base">
-            {signalToExperience.principleNote}
-          </p>
+          {signalToExperience.principleNote && (
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-400 md:text-base">
+              {signalToExperience.principleNote}
+            </p>
+          )}
         </div>
       </div>
     </section>

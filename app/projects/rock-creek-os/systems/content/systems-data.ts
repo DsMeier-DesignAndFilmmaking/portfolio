@@ -45,7 +45,7 @@ export const systemsHero = {
   title: 'The Systems Atlas',
   deck: 'How the Adaptive Stewardship OS would actually work.',
   bridge:
-    'The Systems Explorer laid out the problem: hydrology as the primary challenge, wildfire and logistics as the two systems that support it, and why none of the three stands alone. This page is about mechanism. It takes that same chain and opens each link — the architecture the proposed system would need, the lifecycle a single environmental signal would move through, and where a human still has to make the call.',
+    'The Systems Explorer defined the challenge. This page opens the mechanics, the architecture, the lifecycle of a signal, and where human decisions remain essential.',
 };
 
 // ── Atlas 01 · The five-layer architecture ──────────────────────────────
@@ -56,8 +56,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     number: '01',
     name: 'Environment',
     role: 'The dynamic physical landscape — the input layer',
-    summary:
-      'Not a backdrop. A working landscape whose state changes on its own schedule, independent of the guest calendar. Everything downstream exists because this layer does not hold still.',
+    
     items: [
       'Stream temperature',
       'Streamflow',
@@ -76,8 +75,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     number: '02',
     name: 'Stewardship Intelligence',
     role: 'Interprets environmental signals — the proposed coordination layer',
-    summary:
-      'This is the Adaptive Stewardship OS itself. It would take a raw reading and ask what it means: what is changing, why it matters, which activities or areas are affected, what thresholds it crosses, and what stewardship considerations follow.',
+    
     items: [
       'What is changing?',
       'Why does it matter?',
@@ -96,8 +94,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     number: '03',
     name: 'Operational Decisions',
     role: 'Environmental intelligence becomes actionable — a human decision',
-    summary:
-      'Interpretation becomes a menu of options, not an instruction. A person — not the system — chooses which one fits the day, the guests on property, and everything the interpretation layer cannot see.',
+    
     items: [
       'Modify activities',
       'Restrict access',
@@ -119,8 +116,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     number: '04',
     name: 'Staff & Logistics',
     role: 'Decisions propagate into physical operations',
-    summary:
-      'This is where the Invisible Logistics Mobility System lives — the layer that turns a decision into people, equipment, and guests actually being in a different place. Sophistication here is measured by how little of it a guest notices.',
+    
     items: [
       'Staff assignments',
       'Equipment movement',
@@ -139,8 +135,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     number: '05',
     name: 'Guest Experience',
     role: 'The output — not a dashboard, a resilient stay',
-    summary:
-      'Every layer above exists to protect this one. The guest may notice a different activity, route, or timing. What they should not notice is the coordination underneath it — the four layers of interpretation, decision, and movement that made the substitution feel intentional.',
+    
     items: [
       'Different activities',
       'Different routes',
@@ -160,7 +155,7 @@ export const architectureCopy = {
   kicker: 'The System Architecture',
   title: 'Five layers, one direction of coordination',
   intro:
-    'Signal flows down, from a changing landscape toward the guest who should never notice it changed. Feedback runs back up — a decision made at layer three depends on what layer two could interpret, which depends on what layer one could sense. Expand a layer for its detail.',
+    'Each layer depends entirely on what the layer below it can sense and interpret. Select a layer to explore its details.',
   footerNote: 'Signal flows down · Feedback and constraint run back up',
 };
 
@@ -268,9 +263,9 @@ export const primaryLifecycleCopy = {
   id: 'primary-lifecycle',
   number: '02',
   kicker: 'Primary System · Deep Dive',
-  title: 'Predictive Hydrological Activity Orchestration',
+  title: 'Predictive Stream & Activity Sensing',
   intro:
-    'The chain the Explorer named — changing river conditions, activity constraint, operational uncertainty, alternative experiences, guest adaptation — opened into a five-stage lifecycle. This is the most detailed treatment of any system on this page, deliberately: hydrology is the primary problem, and its mechanism is where the architecture has to prove itself first.',
+    'This is the most detailed treatment of any system on this page, deliberately: hydrology is the primary problem, and its mechanism is where the architecture has to prove itself first.',
 };
 
 // ── Atlas 03 · Wildfire extensibility ────────────────────────────────────
@@ -315,9 +310,9 @@ export const extensibilityCopy = {
   kicker: 'Supporting System · Environmental',
   title: 'Wildfire proves the architecture, it doesn\'t repeat it',
   intro:
-    'The point of showing wildfire here is not a second problem. It is the same five-stage architecture, fed a different signal, to show the Stewardship Intelligence layer is built to reason across environmental conditions rather than as a single-purpose water monitor.',
+    'Wildfire runs through the same five stages, proving the intelligence layer handles multiple environmental domains.',
   synthesis:
-    'Every stage on the left has a structural counterpart on the right, and neither column required a different architecture to describe it — only different signals, thresholds, and response options going into the same five slots.',
+    'Both columns share a single architecture, driven by different signals running through the same five slots.',
   evidence:
     'A century of fire suppression has left the surrounding forest over-stocked and fire-prone; roughly 6,600 acres are managed toward a biodiversity mosaic. Sources: Montana Forest Consultants; Granite County CWPP.',
   tier: 'documented' as EvidenceTier,
@@ -352,19 +347,16 @@ export const logisticsChain: Array<{ id: string; label: string; body: string }> 
     body: 'Gear is staged at the new location ahead of guest arrival — the step that determines whether the pivot feels planned or improvised.',
   },
 ];
-
 export const logisticsCopy = {
   id: 'logistics-response',
   number: '04',
   kicker: 'Supporting System · Operational',
-  title: 'Logistics is the response layer, not a second project',
+  title: 'Logistics as the response layer',
   intro:
-    'Every decision made at layer three of the architecture above is inert until something physically moves. This is that propagation, one link at a time — and it is also where the Invisible Logistics Mobility System actually lives inside the five-layer model, rather than beside it.',
+    'Decisions become real only through physical movement, integrating logistics directly into the five-layer model.',
   principleLabel: 'Design principle · Quiet infrastructure',
   principle:
-    'The best logistics response can be highly coordinated operationally while remaining almost invisible to the guest experiencing it.',
-  principleNote:
-    'Quiet is not the absence of complexity — it is complexity that arrives pre-positioned. Equipment staged before the guest asks, routes sequenced before the shuttle is needed, coverage rebalanced before a guide is missed. The sophistication is real; only its visibility is designed away.',
+    'Quiet infrastructure is not the absence of complexity; it is complexity that arrives pre-positioned before the guest ever notices.',
 };
 
 // ── Atlas 05 · Feedback & learning ────────────────────────────────────────

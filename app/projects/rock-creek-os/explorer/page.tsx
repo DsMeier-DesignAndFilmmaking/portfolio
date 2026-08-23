@@ -22,36 +22,6 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 // Systems Explorer — the narrative spine of the Adaptive Stewardship OS case
 // study. Authoritative content source: `rock-creek-os-foundation.md`.
-//
-// The arc is deliberate and the hierarchy is the point:
-//
-//   01 Premise            a fixed promise over a moving landscape
-//   02 Primary problem    Predictive Hydrological Activity Orchestration
-//   03 Supporting (env)   Fire-Resilient Defensible Space Design
-//   04 Supporting (ops)   Invisible Logistics Mobility System
-//   05 System overlay     the three shown as ONE chain — the page's key visual
-//   06 Signal→Experience  Sense / Interpret / Adapt / Experience + the thesis
-//   07 Future design      where the design work begins
-//      Evidence boundary  what this establishes, and what it does not
-//
-// This replaced a four-explorer structure (Rustic-Reliability Gap, Glazing
-// Paradox, Fishery Friction, Privacy vs. Service) that presented four coequal
-// problems in the older Infrastructure Sovereignty frame — each as its own
-// Problem → Interactive → Intervention → Outcome unit. That shape is precisely
-// what this page must not be: a visitor could not tell which problem mattered
-// most, wildfire and logistics did not appear at all, and no section showed the
-// systems relating to each other. Those four components were removed rather
-// than left orphaned (they import content exports this rewrite replaced, so
-// keeping them would break the typecheck), but they are recoverable in full
-// from git history — see `components/index.ts` for the exact command. That
-// matters because foundation doc §0 has not yet resolved Supersede vs. Fork
-// vs. Merge, and the Infrastructure Sovereignty frame may still be revived.
-//
-// Visual weight carries the argument before the copy does: the primary problem
-// is the only section with a filled accent kicker, 6xl heading, design-question
-// pull quote, and an interactive chain. The supporting systems share a lighter,
-// muted-background treatment and each carry an explicit "why this is not a
-// separate project" block.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
@@ -101,51 +71,79 @@ export default function SystemsExplorerPage() {
       </section>
 
       {/* ── 01 · The premise ─────────────────────────────────────────── */}
-      <section id="premise" aria-labelledby="premise-title" className={`${CONTENT_BOUNDS} scroll-mt-24 py-14 md:py-20`}>
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-7">
-            <p className="font-mono text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
-              01 · The Premise
-            </p>
-            <h2 id="premise-title" className="sr-only">
-              The premise
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-neutral-700 md:text-xl">
-              {explorerHero.premise}
-            </p>
-            <blockquote className="mt-8 border-l-2 border-rockcreek-600 pl-5 font-tiempos text-xl italic leading-snug text-neutral-900 md:text-2xl">
-              {explorerHero.question}
-            </blockquote>
+<section 
+  id="premise" 
+  aria-labelledby="premise-title" 
+  className={`${CONTENT_BOUNDS} scroll-mt-32 py-16 md:py-24`}
+>
+  <div className="max-w-3xl">
+    
+    {/* ── 1. Main Narrative Stack ── */}
+    <div className="flex flex-col">
+      <h2
+        id="premise-title"
+        className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400"
+      >
+        01 · The Premise
+      </h2>
+
+      <p className="mt-6 text-lg font-medium leading-relaxed text-neutral-900 md:mt-8 md:text-xl md:leading-relaxed">
+        {explorerHero.premise}
+      </p>
+
+      <blockquote className="mt-6 border-l-[3px] border-rockcreek-600 pl-6 pt-1 font-tiempos text-2xl italic leading-snug text-neutral-800 md:mt-8 md:text-3xl">
+        {explorerHero.question}
+      </blockquote>
+    </div>
+
+    {/* ── 2. Variables / Context Component (Tightened Spacing) ── */}
+    <div className="mt-6 md:mt-8">
+      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm ring-1 ring-neutral-950/5">
+        
+        {/* Card Body */}
+        <div className="bg-neutral-50/50 p-6 md:p-8">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <h3 className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+              What changes underneath the promise
+            </h3>
+            <span className="text-xs text-neutral-400">
+              {premiseConditions.length} core variables
+            </span>
           </div>
 
-          {/* The variables that move underneath a fixed promise. */}
-          <div className="lg:col-span-5">
-            <div className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-              <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
-                What changes underneath the promise
-              </p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {premiseConditions.map((condition) => {
-                  const tone = toneStyles[condition.tone];
-                  return (
-                    <li
-                      key={condition.id}
-                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${tone.chip}`}
-                    >
-                      <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} aria-hidden="true" />
-                      {condition.label}
-                    </li>
-                  );
-                })}
-              </ul>
-              <p className="mt-6 border-t border-neutral-200 pt-5 text-sm leading-relaxed text-neutral-600">
-                Three of these compound into the systems examined below. The rest are the operating
-                context they move within.
-              </p>
-            </div>
-          </div>
+          <ul 
+            aria-label="Operating conditions" 
+            className="mt-4 flex flex-wrap gap-2 md:mt-5"
+          >
+            {premiseConditions.map((condition) => {
+              const tone = toneStyles[condition.tone];
+              return (
+                <li
+                  key={condition.id}
+                  className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold shadow-xs transition-colors ${tone.chip}`}
+                >
+                  <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} aria-hidden="true" />
+                  {condition.label}
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      </section>
+
+        {/* Card Footer Context */}
+        <div className="border-t border-neutral-200/75 bg-neutral-50/30 px-6 py-4 md:px-8">
+          <p className="text-xs leading-relaxed text-neutral-600 md:text-sm">
+            <span className="font-semibold text-neutral-900">The Context:</span> Three of these 
+            compound into the systems examined below. The rest are the operating context they move 
+            within.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* ── 02 · Primary problem (heaviest treatment on the page) ────── */}
       <PrimaryChallenge />

@@ -46,11 +46,9 @@ export type ChainStep = {
 export const explorerHero = {
   eyebrow: 'Systems Explorer',
   title: 'One landscape, many conditions, one adaptive system',
-  deck: 'Complex environmental problems are rarely isolated problems. They are system relationships.',
+  deck: 'How can the Ranch adapt to a changing landscape without making that complexity visible to the guest?',
   premise:
-    'Luxury guests expect a flawless stay, but natural landscapes shift in an instant. Balancing volatile environmental conditions with unwavering guest expectations is the core challenge.',
-  question:
-    'How can the Ranch adapt to a changing landscape without making that complexity visible to the guest?',
+    'Luxury guests expect a flawless stay, but natural landscapes are always changing. Balancing environmental conditions with unwavering guest expectations is the core challenge.',
   disclosure:
     'Independent research and systems-design exploration; no client relationship; interventions are conceptual.',
 };
@@ -64,16 +62,14 @@ export const premiseConditions = [
   { id: 'seasonal', label: 'Seasonal availability', tone: 'ecological' as const },
   { id: 'resources', label: 'Resource constraints', tone: 'operations' as const },
 ];
-
 // ── 02 · Primary problem ────────────────────────────────────────────────────
-
 export const primaryChallenge = {
   id: 'primary-challenge',
   number: '02',
   kicker: 'Primary Problem',
-  title: 'Predictive Hydrological Activity Orchestration',
+  title: 'Predictive Stream & Activity Sensing',
   intro:
-    'Rock Creek is not one amenity among many. It is the reason a significant share of guests book, the asset the property is named for, and a Blue Ribbon trout stream whose health is a public, regulated matter. When the creek closes, the property does not lose an activity — it loses the organising centre of its guest offer, on a few days notice.',
+    "Rock Creek is the soul of the property, not an optional amenity. When thermal closures hit with a few days' notice, the ranch loses its main attraction, not just an afternoon activity.",
   designQuestion:
     'What would it take to know a closure is coming before it arrives, and to have somewhere worth sending guests instead?',
   /** The causal chain the brief specifies: conditions → constraint → uncertainty → alternatives → adaptation. */
@@ -105,7 +101,7 @@ export const primaryChallenge = {
     {
       id: 'alternative-experiences',
       label: 'Need for alternatives',
-      body: 'Something has to absorb an afternoon that was sold as fishing — at a standard that still meets the property\'s service expectations, for guests who chose this place for the water.',
+      body: "Something has to absorb an afternoon that was sold as fishing... at a standard that still meets the property's service expectations, for guests who chose this place for the water.",
       detail:
         'Forbes Travel Guide operates against 800 objective standards. A substitute activity is measured against the same bar as the one it replaced.',
       tier: 'inferred' as const,
@@ -120,7 +116,7 @@ export const primaryChallenge = {
     },
   ] satisfies ChainStep[],
   outcome:
-    'The design opportunity is not a better fishing report. It is decoupling the guest\'s afternoon from a variable the property does not control — early enough that the alternative is ready before the guest knows it was needed.',
+    "The design opportunity is not a better fishing report. It is decoupling the guest's afternoon from a variable the property does not control — early enough that the alternative is ready before the guest knows it was needed.",
 };
 
 // ── 03 & 04 · Supporting systems ────────────────────────────────────────────
@@ -138,23 +134,21 @@ export type SupportingSystem = {
   evidence: string;
   tier: EvidenceTier;
 };
-
 export const supportingSystems: SupportingSystem[] = [
   {
     id: 'supporting-fire',
     number: '03',
     kicker: 'Supporting System · Environmental',
-    title: 'Fire-Resilient Defensible Space Design',
-    role: 'A second environmental condition the system must sense and interpret',
-    body: 'A century of fire suppression has left the surrounding forest over-stocked and fire-prone. Thinning toward a biodiversity mosaic across roughly 6,600 acres is the established response — but its value is not only structural protection. High-severity fire sterilises soil, and the erosion that follows loads the stream with sediment.',
+    title: 'Fire-Resilient Space Design',
+    body: 'Severe fires sterilize soil and choke the creek with sediment, making fire conditions the second critical signal the system must sense and interpret.',
     whyNotSeparate:
-      'Wildfire is not a second case study. It is the condition that determines whether the primary problem still has a stream worth orchestrating around — and, in the near term, smoke and access closures constrain exactly the high-country alternatives a Hoot Owl pivot depends on.',
+      'Fire impacts long-term stream viability, while smoke and closures immediately choke off high-country backup plans.',
     affects: [
-      { label: 'Landscape', note: 'Forest structure, fuel load, biodiversity mosaic' },
-      { label: 'Watershed', note: 'Post-fire erosion and sediment loading into the creek' },
-      { label: 'Access', note: 'Trail and road closures during active fire or smoke events' },
-      { label: 'Safety', note: 'Air quality thresholds for outdoor activity' },
-      { label: 'Guest perception', note: 'Smoke is visible, and reads as risk regardless of actual exposure' },
+      { label: 'Landscape', note: 'Forest structure and fuel load' },
+      { label: 'Watershed', note: 'Post-fire erosion and sediment runoff' },
+      { label: 'Access', note: 'Trail closures during active fire or smoke' },
+      { label: 'Safety', note: 'Air quality limits for guest activities' },
+      { label: 'Guest perception', note: 'Visible smoke triggers perceived risk' },
     ],
     evidence: 'Sources: Overseeing the Forest for the Trees — Montana Forest Consultants; Granite County CWPP.',
     tier: 'documented',
@@ -163,19 +157,18 @@ export const supportingSystems: SupportingSystem[] = [
     id: 'supporting-logistics',
     number: '04',
     kicker: 'Supporting System · Operational',
-    title: 'Invisible Logistics Mobility System',
-    role: 'The mechanism that turns a decision into something a guest experiences',
-    body: 'The property spans roughly 10 square miles and is built to stay free of unnecessary vehicle use. That constraint is part of the product — the quiet is the amenity. It also means every adaptive response has a movement problem attached to it.',
+    title: 'Silent Mobility System',
+    body: 'Quiet is a core amenity across 10 square miles, meaning every activity shift brings a physical movement problem. Invisible logistics is the bridge between an operational decision and what the guest actually experiences.',
     whyNotSeparate:
-      'This is not a transportation redesign. Logistics is where an environmental signal finally becomes a guest-visible outcome: without it, a correct decision made hours in advance still arrives as a scramble. It is the connective tissue between environmental intelligence and experience orchestration.',
+      'Logistics turns environmental insight into real-world execution. Without it, even an advance decision degrades into an on-the-ground scramble.',
     affects: [
-      { label: 'Activities change', note: 'A closed creek redistributes an afternoon across the property' },
-      { label: 'Guests move differently', note: 'New destinations, new distances, new timing' },
-      { label: 'Staff response changes', note: 'Guides reassigned, coverage re-balanced' },
-      { label: 'Resources relocate', note: 'Equipment staged at the node the activity moved to' },
-      { label: 'Mobility patterns shift', note: 'Shuttle and bike circulation re-sequenced, quietly' },
+      { label: 'Activities change', note: 'Redirecting guests across 10 square miles' },
+      { label: 'Guests move differently', note: 'Updated routes, distances, and timing' },
+      { label: 'Staff response changes', note: 'Guides and coverage re-balanced' },
+      { label: 'Resources relocate', note: 'Equipment staged at new activity hubs' },
+      { label: 'Mobility patterns shift', note: 'Shuttle and bike flows re-sequenced quietly' },
     ],
-    evidence: 'Property scale and low-vehicle operating intent are described in public property materials; the coordination model is proposed.',
+    evidence: 'Property scale and low-vehicle intent are public; coordination model is proposed.',
     tier: 'proposed',
   },
 ];
@@ -263,7 +256,7 @@ export const overlayCopy = {
   kicker: 'The System Overlay',
   title: 'The three challenges are one system',
   intro:
-    'Read separately, hydrology, wildfire, and logistics look like three problems for three different specialists. Read as a system, they are a single chain: two environmental conditions feeding one intelligence layer, which produces decisions, which are executed by a movement system, which resolves as a guest experience.',
+    'Separately, hydrology, wildfire, and logistics look like disconnected problems. Together, they form a single chain: environmental signals feed an intelligence layer, driving decisions executed by logistics, resolving as guest experience.',
   legend: [
     { swatch: 'bg-sky-500', label: 'Environmental input' },
     { swatch: 'bg-violet-500', label: 'Intelligence layer' },
@@ -279,60 +272,43 @@ export const overlayCopy = {
 export const signalToExperience = {
   id: 'signal-to-experience',
   number: '06',
-  kicker: 'From Signal to Experience',
-  title: 'Sense, interpret, adapt, experience',
+  kicker: 'The Flow',
+  title: 'From Signal to Experience',
   intro:
-    'The overlay describes what connects. This describes how it would work — the four stages any adaptive system of this kind has to move through, and the design principle that governs all of them.',
-  principle: 'Make the system adaptive without making the experience feel disrupted.',
-  principleNote:
-    'A pipeline that senses accurately and adapts correctly but produces a visibly scrambled, apologetic afternoon has failed. The measure is not sophistication. It is whether the guest notices.',
+    'Where the overlay maps links, this defines the loop: four stages moving continuous environmental data into an uninterrupted guest stay.',
+  principle: 'Make the system adaptive without making the pivot visible.',
+
   stages: [
     {
       id: 'sense',
       number: '01',
       label: 'Sense',
-      summary: 'Environmental and operational signals',
-      items: [
-        'Stream temperature',
-        'Streamflow',
-        'Weather',
-        'Fire conditions',
-        'Landscape conditions',
-        'Activity availability',
-        'Resource constraints',
-      ],
+      summary: 'Capture real-time environmental and operational inputs',
+    
       tone: 'ecological' as const,
     },
     {
       id: 'interpret',
       number: '02',
       label: 'Interpret',
-      summary: 'What those conditions mean, per domain',
-      items: ['Stewardship', 'Safety', 'Activities', 'Staffing', 'Logistics', 'Guest experience'],
+      summary: 'Translate raw threshold data into operational impact',
+     
       tone: 'infrastructure' as const,
     },
     {
       id: 'adapt',
       number: '03',
       label: 'Adapt',
-      summary: 'Operational responses available',
-      items: [
-        'Modify activities',
-        'Redirect guests',
-        'Activate alternative experiences',
-        'Adjust staff assignments',
-        'Move equipment and resources',
-        'Protect sensitive areas',
-        'Alter mobility patterns',
-      ],
+      summary: 'Orchestrate resources before constraints bind',
+     
       tone: 'operations' as const,
     },
     {
       id: 'experience',
       number: '04',
       label: 'Experience',
-      summary: 'The outcome that has to hold',
-      items: ['A high-quality stay, maintained through environmental variability'],
+      summary: 'Deliver an uninterrupted luxury stay',
+      
       tone: 'experience' as const,
     },
   ],
@@ -343,10 +319,10 @@ export const signalToExperience = {
 export const futureDesign = {
   id: 'future-design',
   number: '07',
-  kicker: 'Future Design Opportunity',
+  kicker: 'Future Opportunity',
   title: 'Where the design work begins',
   intro:
-    'Everything above is research and system modelling. It defines a problem space precisely enough to design into — and the artefacts below are the directions that space opens up. None of them exist. None are proposed as features The Ranch operates today.',
+    'This research and system modeling defines a space to design into. The artifacts below are conceptual directions, not existing features operated by the property today.',
   artifacts: [
     { id: 'env-dashboard', label: 'Environmental intelligence dashboard', note: 'Signal aggregation across water, fire, and weather' },
     { id: 'decision-support', label: 'Staff decision-support system', note: 'Interpretation surfaced to the people making the call' },

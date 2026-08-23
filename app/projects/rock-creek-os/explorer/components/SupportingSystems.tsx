@@ -53,26 +53,42 @@ function SupportingSystemSection({ system }: { system: SupportingSystem }) {
             </div>
           </header>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 flex flex-col justify-between gap-6">
             {/* The load-bearing block: why this is not its own case study. */}
-            <div className="rounded-2xl border-l-4 border-neutral-900 bg-white p-5 md:p-6">
+            <div className="rounded-2xl border-l-4 border-neutral-900 bg-white p-5 shadow-sm md:p-6">
               <p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
                 Why this is not a separate project
               </p>
               <p className="mt-3 text-base leading-relaxed text-neutral-800">{system.whyNotSeparate}</p>
             </div>
 
-            <p className="mt-8 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
-              What it touches
-            </p>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {system.affects.map((item) => (
-                <li key={item.label} className="rounded-xl border border-neutral-200 bg-white px-4 py-3">
-                  <span className="block text-sm font-bold text-neutral-900">{item.label}</span>
-                  <span className="mt-1 block text-xs leading-relaxed text-neutral-600">{item.note}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Standout "What it touches" section container */}
+            <div className="rounded-2xl border border-neutral-200/80 bg-neutral-100/70 p-5 md:p-6">
+              <div className="flex items-center justify-between pb-3 border-b border-neutral-200">
+                <p className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-neutral-900">
+                  What it touches
+                </p>
+                <span className="font-mono text-[10px] font-bold text-neutral-400">
+                  {system.affects.length} Impact Domains
+                </span>
+              </div>
+
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {system.affects.map((item) => (
+                  <li
+                    key={item.label}
+                    className="group rounded-xl border border-neutral-200 bg-white p-3.5 shadow-sm transition-all duration-150 hover:border-neutral-400 hover:shadow"
+                  >
+                    <span className="inline-block rounded-md bg-neutral-100 px-2 py-0.5 font-mono text-[11px] font-bold tracking-tight text-neutral-900 group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                      {item.label}
+                    </span>
+                    <span className="mt-2 block text-xs leading-relaxed text-neutral-600 font-medium">
+                      {item.note}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
