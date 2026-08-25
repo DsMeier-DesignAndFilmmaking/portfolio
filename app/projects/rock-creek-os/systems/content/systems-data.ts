@@ -30,7 +30,8 @@ export type ArchitectureLayer = {
   number: string;
   name: string;
   role: string;
-  summary: string;
+  /** Optional: no `architectureLayers` entry currently supplies this. */
+  summary?: string;
   items: string[];
   itemsLabel: string;
   dependsOn: string | null;
@@ -347,7 +348,17 @@ export const logisticsChain: Array<{ id: string; label: string; body: string }> 
     body: 'Gear is staged at the new location ahead of guest arrival — the step that determines whether the pivot feels planned or improvised.',
   },
 ];
-export const logisticsCopy = {
+export const logisticsCopy: {
+  id: string;
+  number: string;
+  kicker: string;
+  title: string;
+  intro: string;
+  principleLabel: string;
+  principle: string;
+  /** Optional: not currently supplied. Consumed by LogisticsResponseLayer.tsx. */
+  principleNote?: string;
+} = {
   id: 'logistics-response',
   number: '04',
   kicker: 'Supporting System · Operational',

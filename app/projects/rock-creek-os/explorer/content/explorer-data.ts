@@ -43,7 +43,15 @@ export type ChainStep = {
 
 // ── Hero / premise ──────────────────────────────────────────────────────────
 
-export const explorerHero = {
+export const explorerHero: {
+  eyebrow: string;
+  title: string;
+  deck: string;
+  premise: string;
+  disclosure: string;
+  /** Optional: not currently supplied. Consumed by explorer/page.tsx. */
+  question?: string;
+} = {
   eyebrow: 'Systems Explorer',
   title: 'One landscape, many conditions, one adaptive system',
   deck: 'How can the Ranch adapt to a changing landscape without making that complexity visible to the guest?',
@@ -126,7 +134,8 @@ export type SupportingSystem = {
   number: string;
   kicker: string;
   title: string;
-  role: string;
+  /** Optional: no `supportingSystems` entry currently supplies this. */
+  role?: string;
   body: string;
   /** The line that stops this reading as a standalone case study. Required. */
   whyNotSeparate: string;
@@ -269,7 +278,25 @@ export const overlayCopy = {
 
 // ── 06 · Sense → Interpret → Adapt → Experience ─────────────────────────────
 
-export const signalToExperience = {
+export const signalToExperience: {
+  id: string;
+  number: string;
+  kicker: string;
+  title: string;
+  intro: string;
+  principle: string;
+  /** Optional: not currently supplied. Guarded in SignalToExperience.tsx. */
+  principleNote?: string;
+  stages: Array<{
+    id: string;
+    number: string;
+    label: string;
+    summary: string;
+    tone: 'ecological' | 'infrastructure' | 'operations' | 'experience';
+    /** Optional: not currently supplied. Guarded in SignalToExperience.tsx. */
+    items?: string[];
+  }>;
+} = {
   id: 'signal-to-experience',
   number: '06',
   kicker: 'The Flow',
