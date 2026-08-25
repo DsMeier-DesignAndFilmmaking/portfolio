@@ -16,21 +16,37 @@ export const CONTENT_BOUNDS = 'container mx-auto px-6 md:px-8';
 
 export type SectionNavItem = { id: string; label: string };
 
-export const sectionNavigation: SectionNavItem[] = [
-  // Order must match document order — the rail is a scrollspy, so a mismatch
-  // makes the active indicator travel backwards during a forward scroll.
+// Per-tab in-page scrollspy arrays, one per route under the tab architecture
+// (app/projects/whitetail-club/{, architecture, stress-testing,
+// resulting-surfaces}/page.tsx). Split from the single 13-item flat array
+// this page used before the tab restructure — same ids, same labels, same
+// order, just partitioned by tab. `wt-thesis` is intentionally omitted from
+// every array: the thesis section still renders on the Overview tab in its
+// same position, but at 22 words it doesn't carry its own scrollspy anchor.
+// Order within each array must match that tab's document order — the rail
+// is a scrollspy, so a mismatch makes the active indicator travel backwards
+// during a forward scroll.
+export const overviewSections: SectionNavItem[] = [
   { id: 'wt-hero', label: 'Overview' },
-  { id: 'wt-thesis', label: 'Thesis' },
   { id: 'wt-context', label: 'Context' },
   { id: 'wt-insufficient', label: 'Why not' },
+  { id: 'wt-boundary', label: 'Boundary' },
+];
+
+export const architectureSections: SectionNavItem[] = [
   { id: 'wt-system', label: 'System' },
   { id: 'wt-epistemic', label: 'Epistemic' },
   { id: 'wt-interaction', label: 'Answers' },
+];
+
+export const stressTestingSections: SectionNavItem[] = [
   { id: 'wt-wireframes', label: 'Wireframes' },
   { id: 'wt-review', label: 'Review' },
   { id: 'wt-asymmetry', label: 'Asymmetry' },
+];
+
+export const resultingSurfacesSections: SectionNavItem[] = [
   { id: 'wt-surfaces', label: 'Surfaces' },
-  { id: 'wt-boundary', label: 'Boundary' },
   { id: 'wt-practice', label: 'Practice' },
 ];
 
