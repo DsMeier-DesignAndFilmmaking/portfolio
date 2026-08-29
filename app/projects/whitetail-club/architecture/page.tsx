@@ -7,15 +7,19 @@ import { WhitetailExperienceNav } from '../components/WhitetailExperienceNav';
 import { Figure } from '../components/Figure';
 import { LoopDiagram } from '../components/LoopDiagram';
 import { LayerMap } from '../components/LayerMap';
+import { SystemsStack, BoundaryStrip } from '../components/SystemsStack';
 import { CONTENT_BOUNDS, architectureSections, confidenceBands } from '../content';
 
 /**
  * Whitetail Club & Shore Lodge — Stewardship Intelligence System.
  * Tab 2 of 4 — Architecture.
  *
- * Holds the three consecutively-numbered `// … Architecture` sections
- * (System, Epistemic, Interaction) as a single content cluster, unchanged
- * in copy or component from the prior single-route page. See
+ * Holds the three consecutively-numbered `// … Architecture` sections as a single
+ * content cluster. The five named systems (Experience, Stewardship, Operations,
+ * Infrastructure, Intelligence) are the spine; sections 04 and 05 sit beneath two of
+ * them as evidence, which is why the section ids stay `wt-system` / `wt-epistemic` /
+ * `wt-interaction` — the framing changed, the anchors and the facts did not. Operating
+ * detail is tiered per rule 5 of the content.ts governance header. See
  * app/projects/whitetail-club/page.tsx for the tab-architecture rationale.
  */
 export default function WhitetailArchitecturePage() {
@@ -32,17 +36,31 @@ export default function WhitetailArchitecturePage() {
       <ProjectHeader focusRingClassName="focus-visible:ring-amber-600" />
       <WhitetailExperienceNav />
 
-      {/* ── 03 // SYSTEM ARCHITECTURE ────────────────────────── */}
+      {/* ── 03 // STEWARDSHIP ARCHITECTURE ───────────────────── */}
       <section id="wt-system" className={`bg-white pb-16 pt-8 md:pb-28 md:pt-12`}>
         <div className={CONTENT_BOUNDS}>
-          <SectionKicker eyebrow="03 // System Architecture" title="One loop, and three annotations that carry it.">
+          <SectionKicker
+            eyebrow="03 // Stewardship Architecture"
+            title="Five systems share one landscape, one crew, and one season."
+          >
             <p>
-              A place becomes a condition, a condition informs a decision, a decision issues work, the work
-              produces an observation — and the observation returns as the context on the next decision at that
-              place.
+              A property like this is not one operation. Turf agronomy, crew sequencing, irrigation and drainage,
+              the field encounter itself, and the memory that has to outlast the season are five different kinds
+              of judgment — and they all resolve on the same ground, inside the same four-to-five-month window.
+            </p>
+            <p className="mt-4">
+              What connects them is not a dashboard. It is a single record of place: a condition is observed,
+              a decision is made and its reasoning kept, work is issued, and what the crew found comes back as
+              the context on the next decision at that same place. Strip the reasoning out and this is a
+              work-order system.
             </p>
           </SectionKicker>
-          <LoopDiagram />
+
+          <SystemsStack />
+
+          <div className="mt-8 md:mt-10">
+            <LoopDiagram />
+          </div>
 
           <Figure
             label="Figure 01 — Capture surface"
@@ -52,28 +70,36 @@ export default function WhitetailArchitecturePage() {
             height={455}
             caption={
               <>
-                The loop above is only an argument until something records into it. This is the surface that closes
-                it — the Observation step, drawn. All four answers carry identical weight, and none is a default.
+                The loop above is only an argument until a crew member records into it, gloves on, between jobs.
+                This is the surface that closes it — the Observation step, drawn. All four answers carry identical
+                weight, and none is a default.
                 There is no separate submit control — answering <em>is</em> completing. This is also the surface on
                 which the project’s hardest finding later surfaced, because it was built as working code rather
                 than a picture.
               </>
             }
           />
+
+          <BoundaryStrip />
         </div>
       </section>
 
-      {/* ── 04 // EPISTEMIC ARCHITECTURE ─────────────────────── */}
+      {/* ── 04 // INTELLIGENCE SYSTEMS ───────────────────────── */}
       <section id="wt-epistemic" className="bg-neutral-50 py-16 md:py-28">
         <div className={CONTENT_BOUNDS}>
           <SectionKicker
-            eyebrow="04 // Epistemic Architecture"
+            eyebrow="04 // Intelligence Systems"
             title="Confidence appears as a reason, never as a score."
           >
             <p>
-              A number invites comparison and hides its derivation. A sentence does neither. Render a band name as
-              a chip and it becomes a score by social convention — people start saying “it’s an amber one,” and the
-              ranking returns through language even with no number present.
+              A superintendent holding a forty-eight-hour fungicide window before dawn does not need a number
+              attached to the moisture reading. They need to know who last stood there, when, and whether anything
+              since then disagrees. That is a sentence, not a score.
+            </p>
+            <p className="mt-4">
+              A number hides its derivation and invites comparison across places that were never measured the same
+              way. Render a band name as a chip and it becomes a score by social convention — people start saying
+              “it’s an amber one,” and the ranking returns through language with no number present.
             </p>
           </SectionKicker>
 
@@ -110,22 +136,28 @@ export default function WhitetailArchitecturePage() {
 
           <p className="mt-6 max-w-2xl text-sm leading-relaxed text-neutral-600">
             The internal vocabulary behind these sentences never reaches the interface. Lists sort by time-to-close —
-            a real magnitude — never by confidence, because sorting five explanations converts them into a scale.
+            a real magnitude, and the one an irrigation blowout or a closing spray window actually runs on — never by
+            confidence, because sorting five explanations converts them into a scale.
           </p>
         </div>
       </section>
 
-      {/* ── 05 // INTERACTION ARCHITECTURE ───────────────────── */}
+      {/* ── 05 // EXPERIENCE SYSTEMS ─────────────────────────── */}
       <section id="wt-interaction" className="bg-white py-16 md:py-28">
         <div className={CONTENT_BOUNDS}>
           <SectionKicker
-            eyebrow="05 // Interaction Architecture"
+            eyebrow="05 // Experience Systems"
             title="Four surfaces, and the answers that had to stay peers."
           >
             <p>
-              Place, Capture, Decision, Attention. The field question is “what did you find?” — never “did you
-              complete this?” A completion question makes absence a sub-case of failure; a finding question makes
-              it one of four answers.
+              Place, Capture, Decision, Attention. Four surfaces, no fifth, because a crew member standing at a
+              valve box in flat light is running one errand, not navigating a product.
+            </p>
+            <p className="mt-4">
+              The field question is “what did you find?” — never “did you complete this?” A valve that isn’t where
+              the old drawing puts it, an inlet nobody can locate under spring debris: a completion question files
+              all of it under failure. A finding question makes it one of four answers — and absence is the answer
+              this landscape most needs recorded.
             </p>
           </SectionKicker>
 

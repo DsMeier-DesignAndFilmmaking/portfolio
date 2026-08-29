@@ -5,21 +5,29 @@ import ProjectHeader from '@/components/ProjectHeader';
 import { SectionKicker } from '../components/SectionKicker';
 import { WhitetailExperienceNav } from '../components/WhitetailExperienceNav';
 import { Figure } from '../components/Figure';
+import { PressureCases, ScenarioLoad, ResilienceBoundary } from '../components/StressLoad';
 import { CONTENT_BOUNDS, stressTestingSections, GUARDRAIL, reviewFindings } from '../content';
 
 /**
  * Whitetail Club & Shore Lodge — Stewardship Intelligence System.
  * Tab 3 of 4 — Stress Testing.
  *
- * The methodological arc: build the wireframes as a measurement instrument
- * (06), hand them to an independent adversarial review (07), and report the
- * one finding that stopped the work (08). Kept together on one tab because
- * 08 depends on 06 and 07 for intelligibility — the approved audit's SF-6
- * finding. Copy, findings, and figures unchanged from the prior single-route
- * page, including the two-tier finding hierarchy inside 07 (primary A11/A3
- * cards, compact remainder) and the guardrail block's back-reference to
- * "both corrected findings above," which must stay bound to those same two
- * cards on this tab.
+ * The methodological arc: map the operating pressure and load the surfaces with
+ * it (06), hand them to an independent adversarial review (07), and report the
+ * one finding that stopped the work (08). Kept together on one tab because 08
+ * depends on 06 and 07 for intelligibility — the approved audit's SF-6 finding.
+ *
+ * The asymmetry this page has to stay honest about: the pressure is operational,
+ * every measurement is structural. No test in this project was run against a real
+ * operating condition, which is why PressureCases is labelled as reasoning and
+ * ScenarioLoad marks its quoted intervals as test content. See rule 6 in the
+ * content.ts governance header before adding anything here.
+ *
+ * Framing copy was revised for the operational reframe; the findings, figures,
+ * and every measured number are unchanged — including the two-tier finding
+ * hierarchy inside 07 (primary A11/A3 cards, compact remainder) and the guardrail
+ * block's back-reference to "both corrected findings above," which must stay bound
+ * to those same two cards on this tab.
  */
 export default function WhitetailStressTestingPage() {
   return (
@@ -35,18 +43,27 @@ export default function WhitetailStressTestingPage() {
       <ProjectHeader focusRingClassName="focus-visible:ring-amber-600" />
       <WhitetailExperienceNav />
 
-      {/* ── 06 // WIREFRAME STRESS TESTING ───────────────────── */}
+      {/* ── 06 // OPERATIONAL STRESS TESTING ─────────────────── */}
       <section id="wt-wireframes" className="bg-neutral-50 pb-16 pt-8 md:pb-28 md:pt-12">
         <div className={CONTENT_BOUNDS}>
           <SectionKicker
-            eyebrow="06 // Wireframe Stress Testing"
-            title="Draw the hardest case first, at real density, with real content."
+            eyebrow="06 // Operational Stress Testing"
+            title="Load the hardest hour first, and measure what breaks."
           >
             <p>
+              The hardest hour is not a busy one. It is a winterization commit with a blowout closing inside the
+              day and a spray window closing behind it, made on zones that have not all been walked — where the
+              cost of being wrong is a cracked mainline or a season of turf, and the decision cannot be revisited.
+            </p>
+            <p className="mt-4">
               The wireframes were built as a measurement instrument, not a presentation: real HTML at real pixel
-              widths, with real reason phrases rather than placeholder text. The riskiest surface was drawn first.
+              widths, loaded with real operating decisions rather than placeholder text. The riskiest surface was
+              drawn first. What follows is honest about its own limits — the pressure is operational, and every
+              measurement is structural.
             </p>
           </SectionKicker>
+
+          <PressureCases />
 
           <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 md:p-6">
             <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-amber-700">
@@ -59,6 +76,8 @@ export default function WhitetailStressTestingPage() {
               anywhere in the research.
             </p>
           </div>
+
+          <ScenarioLoad />
 
           <Figure
             label="Figure 02 — Sequencing surface, unnarrowed, 28 zones [DH]"
@@ -103,6 +122,11 @@ export default function WhitetailStressTestingPage() {
               The wireframes were reviewed by a process that did not build them and was deliberately not given the
               reasoning behind them — only the artifacts and the tests. A reviewer handed the defense will grade
               the defense.
+            </p>
+            <p className="mt-4">
+              What the review looked for is not ugliness. It is a layout that quietly reinstates a ranking, a
+              backlog, or a winner — because a surface that ranks zones by confidence during a closing window will
+              send a crew to the wrong one, and it will look tidy doing it.
             </p>
           </SectionKicker>
 
@@ -222,7 +246,14 @@ export default function WhitetailStressTestingPage() {
           >
             <p>
               Because the capture surface was functional, it could be clicked. Clicking it produced a measurement
-              that five static wireframes had no way to reveal.
+              that five static wireframes had no way to reveal — and the thing it threatens is the one the whole
+              concept rests on.
+            </p>
+            <p className="mt-4">
+              A crew turns over every season. What survives is whatever got written down, and the hardest thing to
+              get written down is an absence: the valve that wasn’t there, the search that came back empty. Make
+              that the expensive answer and the operation quietly stops accumulating the one record it cannot
+              reconstruct later.
             </p>
           </SectionKicker>
 
@@ -281,6 +312,8 @@ export default function WhitetailStressTestingPage() {
               faster and considerably less defensible.
             </p>
           </div>
+
+          <ResilienceBoundary />
         </div>
       </section>
     </main>

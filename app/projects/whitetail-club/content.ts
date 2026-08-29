@@ -11,6 +11,23 @@
 //   3. The 28-zone D3 figure is a [DH] test parameter, never a property fact.
 //      The [DH] marker is mandatory at every occurrence.
 //   4. Nothing here may imply commission, deployment, adoption, or field validation.
+//   5. Operating-domain grounding is tiered. Turf agronomy, irrigation conditions,
+//      drainage, crew coordination, the winterization sequence, and snow storage are
+//      attested [SRC] and may be described. Equipment enters only as crew capacity.
+//      Snow clearing as scheduled labor, pathway/trail networks, exterior lighting, and
+//      member property maintenance are NOT attested anywhere in docs/whitetail/ — the
+//      trail network was removed as untraceable and TRAIL was dropped as an entity type.
+//      Those four appear on this page only as a stated scope boundary, never as claims.
+//      Do not print the diversion/acreage caps (a legal limit is not a measurement) or
+//      fleet lease terms (commercially sensitive — structural insight, not numbers).
+//   6. No test in this project was ever run against an operating condition. Every
+//      measured result is structural — pixels, DOM structure, tap counts. Operating
+//      conditions appear in exactly two forms: as the content the measured wireframes
+//      rendered (quoted verbatim from docs/whitetail/wireframes/*.html), and as the
+//      Phase 06 pressure-case analysis, which is labelled [OPERATIONAL HYPOTHESIS] and
+//      carries no measurement. Never promote either into a claimed operational result.
+//      There are no outcome metrics anywhere in this project — no water saved, no time
+//      saved, no incidents avoided. Do not invent one.
 
 export const CONTENT_BOUNDS = 'container mx-auto px-6 md:px-8';
 
@@ -34,13 +51,13 @@ export const overviewSections: SectionNavItem[] = [
 ];
 
 export const architectureSections: SectionNavItem[] = [
-  { id: 'wt-system', label: 'System' },
-  { id: 'wt-epistemic', label: 'Epistemic' },
-  { id: 'wt-interaction', label: 'Answers' },
+  { id: 'wt-system', label: 'Systems' },
+  { id: 'wt-epistemic', label: 'Intelligence' },
+  { id: 'wt-interaction', label: 'Experience' },
 ];
 
 export const stressTestingSections: SectionNavItem[] = [
-  { id: 'wt-wireframes', label: 'Wireframes' },
+  { id: 'wt-wireframes', label: 'Pressure' },
   { id: 'wt-review', label: 'Review' },
   { id: 'wt-asymmetry', label: 'Asymmetry' },
 ];
@@ -122,6 +139,91 @@ export const insufficientRows = [
   },
 ];
 
+/** 03 // Stewardship architecture — the five systems the landscape actually runs on.
+ *  Grounding is tiered per rule 5 in the header. Every operating detail below is
+ *  attested [SRC] in docs/whitetail/; nothing here asserts technology, telemetry,
+ *  or automated control, and no individual is modeled. */
+export const stewardshipSystems = [
+  {
+    name: 'Experience Systems',
+    domain: 'The field encounter',
+    body:
+      'What a person meets while standing on the place, in the minutes they have before the next job. ' +
+      'Designed for a gloved hand, flat morning light, and a crew that is bilingual by requirement — so ' +
+      'the surface answers “what is here and what has already been tried,” and asks one question back.',
+    holds: 'Place · Capture',
+  },
+  {
+    name: 'Stewardship Systems',
+    domain: 'Turf, forest buffer, shoreline',
+    body:
+      'The agronomic judgment that has to be right the first time. A fall snow-mold application has roughly ' +
+      'forty-eight hours; erosion compounds while mowing does not. These calls are made on handheld ' +
+      'readings and a walk, which is why every condition carries how it came to be known.',
+    holds: 'Condition · Observation',
+  },
+  {
+    name: 'Operations Systems',
+    domain: 'Crew hours, turnover, equipment availability',
+    body:
+      'Golf, parks, and janitorial work under one grounds hierarchy across a compressed four-to-five-month ' +
+      'window. More necessary work than available crew-hours is the normal state of a shoulder season, and ' +
+      'a leased fleet under contractual usage ceilings with a mechanic absorbed by reactive repair sets the ' +
+      'real ceiling on what a day can hold.',
+    holds: 'Decision · Task — capacity only; no individual is modeled',
+  },
+  {
+    name: 'Infrastructure Systems',
+    domain: 'Irrigation, drainage, snow storage, winterization',
+    body:
+      'The continuous physical systems underneath the landscape. Irrigation blowout has a point past which ' +
+      'mainlines crack. Spring runoff moves through historic ditches whose paths are poorly documented and ' +
+      'past buried utilities with incomplete as-builts, and it is cleared of ice and debris by hand. Snow ' +
+      'storage and emergency access are designated before the ground closes.',
+    holds: 'Place, by regime — no sensors, no telemetry, no network model',
+  },
+  {
+    name: 'Intelligence Systems',
+    domain: 'What the operation knows, and how well',
+    body:
+      'The layer that survives the season. Seasonal turnover resets the undocumented knowledge of this ' +
+      'landscape to zero on a schedule, and the reasoning behind a decision is the artifact that does not ' +
+      'exist in this operation today. Every other system above deposits into this one or reads from it.',
+    holds: 'Knowledge record · Decision reasoning',
+  },
+] as const;
+
+/** 03 // The stated scope boundary. Four operating domains a reader of a resort
+ *  grounds operation will expect, and which this architecture deliberately does not
+ *  cover. Each line is a refusal with a reason — none may be softened into a claim. */
+export const architectureBoundary = [
+  {
+    domain: 'Snow clearing as scheduled labor',
+    reason:
+      'Snow storage is modeled as a place and winterization as a window, because both are attested. Plow ' +
+      'routes, clearing crews, and priority orders are not, so they are not designed.',
+  },
+  {
+    domain: 'Pathway and trail networks',
+    reason:
+      'Paths and roads exist here only as located segments. A recreational trail network appeared in an ' +
+      'earlier draft of this work and was removed as untraceable to any source — designing around one ' +
+      'would have made the case study dishonest.',
+  },
+  {
+    domain: 'Exterior lighting',
+    reason:
+      'Absent from the research at every tier. Adding it would be invention, and invention is the specific ' +
+      'failure this project was built to resist.',
+  },
+  {
+    domain: 'Member property maintenance',
+    reason:
+      'Residential landscape sits inside the same operation, but homeowner-facing service carries a ' +
+      'different duty of care and a different product. Out of scope by decision, not by oversight.',
+  },
+] as const;
+
 /** 04 // System architecture — the defining loop */
 export const loopNodes = [
   { id: 'place', label: 'Place', note: 'located' },
@@ -168,6 +270,114 @@ export const answerValueMap = [
   { answer: 'Found something different', value: 'contradicted' },
   { answer: 'Not there', value: 'absent  ·  absent-at-described-location', branches: true },
 ];
+
+/** 06 // Operating pressure the design has to survive.
+ *  Transcribed from docs/whitetail/06-operational-validation.md §F.1. That document is
+ *  labelled [OPERATIONAL HYPOTHESIS] throughout and contains NO measurements — it is
+ *  reasoning about how people behave under pressure, not evidence about how they did.
+ *  The `damage` ratings are the source document's own words. Do not soften them, and do
+ *  not present any of this as a tested or observed result. */
+export const pressureCases = [
+  {
+    pressure: 'A closing window',
+    temptation: 'Skip verification and proceed on an assumption',
+    damage: 'None — this is a supported path',
+    fatal: false,
+  },
+  {
+    pressure: 'Guest-visible impact',
+    temptation: 'Mark a condition confirmed to avoid explaining thin grounds',
+    damage: 'Fatal',
+    fatal: true,
+  },
+  {
+    pressure: 'Staffing shortage',
+    temptation: 'Skip observations; batch them from recall at the end of the day',
+    damage: 'Degrading',
+    fatal: false,
+  },
+  {
+    pressure: 'Weather event',
+    temptation: 'Copy forward last cycle’s readiness rather than re-checking',
+    damage: 'Fatal',
+    fatal: true,
+  },
+  {
+    pressure: 'Leadership scrutiny',
+    temptation: 'Falsify the evidence basis so a decision looks better-grounded than it was',
+    damage: 'Fatal',
+    fatal: true,
+  },
+] as const;
+
+/** 06 // What each surface was loaded with before it was measured.
+ *  `condition` strings are quoted VERBATIM from docs/whitetail/wireframes/*.html — they
+ *  are the content the tested artifact rendered, not property facts. The hour and minute
+ *  figures inside them are illustrative test content; no such interval is established
+ *  anywhere in the research. `measured` names the structural property that was actually
+ *  measured on that surface — the only kind of measurement this project produced. */
+export const scenarioLoad = [
+  {
+    surface: 'Decision — winterization sequencing',
+    condition: 'Irrigation blowout: point of no return in ~18 hours · Snow mold application window closes in ~40 hours',
+    measured: 'Vertical overflow at 28 zones [DH], and the horizontal start point of every reason phrase.',
+  },
+  {
+    surface: 'Contested condition — drainage',
+    condition: 'Drainage state — two disagree · one account reads clear, the other standing water',
+    measured: 'Whether vertical order made the later observation read as the true one, across four arrangements.',
+  },
+  {
+    surface: 'Returned grounds — frost delay',
+    condition: 'Frost delay — open or hold · frost present · measured 06:04, uncontested · Play scheduled in 38 minutes.',
+    measured: 'Whether the outcome could be visually separated from the grounds it rested on.',
+  },
+  {
+    surface: 'Attention — what needs a person',
+    condition: 'Blowout window closes in ~36 hours · Snow mold window opens in ~4 days',
+    measured: 'Whether a stateless list had re-grown a count, a completion state, or an inbox rhythm.',
+  },
+  {
+    surface: 'Place — absence adjacency',
+    condition: 'drainage readiness · never checked — irrigation valve (north) · looked, no answer — drainage line (east) · confirmed not present',
+    measured: 'Whether three different kinds of not-knowing survived side by side without truncation, down to 320px.',
+  },
+  {
+    surface: 'Capture — the write path',
+    condition: 'The one functional surface. Four answers, clicked through for real rather than drawn.',
+    measured: 'The number of taps each answer costs to commit.',
+  },
+] as const;
+
+/** 08 // What was never stress-tested. Each line is a stated limit, not a claim.
+ *  None may be softened, and none may be converted into an outcome. */
+export const resilienceBoundary = [
+  {
+    gap: 'Equipment downtime',
+    reason:
+      'A leased fleet and a reactive repair load are real constraints on what a day can hold, but equipment ' +
+      'lifecycle is a different domain with its own logic. It enters this model only as crew capacity, and no ' +
+      'surface was ever loaded with a breakdown.',
+  },
+  {
+    gap: 'A real crew, in a real season',
+    reason:
+      'Every measurement here was taken against rendered HTML, not against people. No crew has used any of ' +
+      'this, in any weather, on any day.',
+  },
+  {
+    gap: 'Whether absence gets recorded at all',
+    reason:
+      'The whole concept rests on people recording what they did not find. Whether they would is untested, is ' +
+      'named in the research as the largest open risk, and is exactly what the asymmetry below threatens.',
+  },
+  {
+    gap: 'Guest-facing service',
+    reason:
+      'Guest-visible pressure is modeled as a force acting on the crew, because that is what the research ' +
+      'supports. Nothing here serves a guest, and no guest-facing surface was designed or tested.',
+  },
+] as const;
 
 /** 08 // Independent adversarial review — the five corrected findings */
 export const reviewFindings = [
