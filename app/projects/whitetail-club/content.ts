@@ -84,8 +84,8 @@ export const HERO = {
 } as const;
 
 export const THESIS =
-  'Better stewardship doesn’t come from telling people what to believe. ' +
-  'It comes from preventing the system from forgetting why something was believed.';
+  'True stewardship isn’t about changing beliefs; ' +
+  'it’s about preventing the system from forgetting why those beliefs matter.';
 
 export const GUARDRAIL =
   'Visual design is an implementation of the epistemic contract, not a new opportunity to interpret it.';

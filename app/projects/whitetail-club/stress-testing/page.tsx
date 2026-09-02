@@ -51,16 +51,9 @@ export default function WhitetailStressTestingPage() {
             title="Load the hardest hour first, and measure what breaks."
           >
             <p>
-              The hardest hour is not a busy one. It is a winterization commit with a blowout closing inside the
-              day and a spray window closing behind it, made on zones that have not all been walked — where the
-              cost of being wrong is a cracked mainline or a season of turf, and the decision cannot be revisited.
+            The hardest hour is an un-walked winterization commit under shrinking spray windows, where the cost of a wrong decision is a cracked mainline or a ruined season. To meet this pressure, the accompanying interface was built as a measurement instrument using real HTML and operating data, prioritizing the riskiest surfaces first to ensure every structural decision respects its operational limits.
             </p>
-            <p className="mt-4">
-              The wireframes were built as a measurement instrument, not a presentation: real HTML at real pixel
-              widths, loaded with real operating decisions rather than placeholder text. The riskiest surface was
-              drawn first. What follows is honest about its own limits — the pressure is operational, and every
-              measurement is structural.
-            </p>
+            
           </SectionKicker>
 
           <PressureCases />
@@ -119,15 +112,9 @@ export default function WhitetailStressTestingPage() {
             title="Hand the work to someone whose job is to break it."
           >
             <p>
-              The wireframes were reviewed by a process that did not build them and was deliberately not given the
-              reasoning behind them — only the artifacts and the tests. A reviewer handed the defense will grade
-              the defense.
+            The wireframes underwent blind evaluation using only raw artifacts to catch layouts that quietly reinstate harmful priorities or backlogs, ensuring the interface never tidily misdirects crews during high-stakes operating windows.
             </p>
-            <p className="mt-4">
-              What the review looked for is not ugliness. It is a layout that quietly reinstates a ranking, a
-              backlog, or a winner — because a surface that ranks zones by confidence during a closing window will
-              send a crew to the wrong one, and it will look tidy doing it.
-            </p>
+          
           </SectionKicker>
 
           {/*

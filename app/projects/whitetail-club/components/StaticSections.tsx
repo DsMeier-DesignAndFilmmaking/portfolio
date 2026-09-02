@@ -10,7 +10,7 @@ export function EvidenceBoundarySection() {
     <section id="wt-boundary" className="border-t border-neutral-100 bg-neutral-50 py-16 md:py-28">
       <div className={CONTENT_BOUNDS}>
         <SectionKicker
-          eyebrow="10 // Evidence Boundary"
+          eyebrow="03 // Evidence Boundary"
           title="What this project established, and what it does not claim."
         >
           <p>

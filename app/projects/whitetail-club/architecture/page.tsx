@@ -44,15 +44,17 @@ export default function WhitetailArchitecturePage() {
             title="Five systems share one landscape, one crew, and one season."
           >
             <p>
-              A property like this is not one operation. Turf agronomy, crew sequencing, irrigation and drainage,
-              the field encounter itself, and the memory that has to outlast the season are five different kinds
-              of judgment — and they all resolve on the same ground, inside the same four-to-five-month window.
-            </p>
+    A property this complex demands five distinct judgments operating within a single four-month window:
+</p>
+<ul style={{ fontSize: '0.9rem' }}>
+    <li><strong>Agronomy:</strong> Turf health and management</li>
+    <li><strong>Crew sequencing:</strong> Operational timing and logistics</li>
+    <li><strong>Irrigation:</strong> Water and drainage systems</li>
+    <li><strong>Play:</strong> The live field encounter</li>
+    <li><strong>Legacy:</strong> The memory that outlasts the season</li>
+</ul>
             <p className="mt-4">
-              What connects them is not a dashboard. It is a single record of place: a condition is observed,
-              a decision is made and its reasoning kept, work is issued, and what the crew found comes back as
-              the context on the next decision at that same place. Strip the reasoning out and this is a
-              work-order system.
+            Instead of fragmented work orders, every observation, decision, and crew report links back to a single record of place, ensuring continuous context for the next decision.
             </p>
           </SectionKicker>
 

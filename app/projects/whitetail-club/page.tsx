@@ -70,7 +70,7 @@ export default function WhitetailClubPage() {
       <section id="wt-thesis" className={`${CONTENT_BOUNDS} pb-16 md:pb-24`} aria-label="Design thesis">
         <blockquote className="max-w-3xl rounded-[2rem] border border-neutral-200 bg-neutral-50 p-6 md:p-10">
           <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-neutral-400">Thesis</p>
-          <p className="mt-5 font-tiempos text-2xl font-bold leading-snug text-neutral-950 md:text-3xl">
+          <p className="mt-5 font-tiempos text-2xl font-bold leading-snug text-amber-900 md:text-3xl">
             “{THESIS}”
           </p>
         </blockquote>
@@ -89,9 +89,9 @@ export default function WhitetailClubPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {contextPoints.map((point, i) => (
               <article key={point.label} className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8">
-                <p className="font-mono text-xl font-bold text-amber-500">{String(i + 1).padStart(2, '0')}</p>
+                <p className="font-mono text-xl font-bold text-[#92837a]">{String(i + 1).padStart(2, '0')}</p>
                 <h3 className="mt-5 font-tiempos text-xl font-bold leading-tight text-neutral-950">{point.label}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-600">{point.body}</p>
+                <p className="mt-5 font-tiempos text-2xl font-regular leading-snug text-[#b89753] md:text-xl">{point.body}</p>
               </article>
             ))}
           </div>

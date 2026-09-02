@@ -40,8 +40,7 @@ export default function WhitetailResultingSurfacesPage() {
             title="What the system looks like when it refuses to overstate."
           >
             <p>
-              Wireframe stage only — structure, order, and real language, with no visual system applied. Visual
-              design has not been authorized, and these are not finished screens.
+              Wireframe stage only, which includes structure, order, and real language, with no visual system applied.
             </p>
           </SectionKicker>
 
