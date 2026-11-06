@@ -1,52 +1,52 @@
 {
-  "observedAt": "2026-11-05T18:15:00-07:00",
-  "fetchedAt": "2026-11-06T01:18:51.866Z",
+  "observedAt": "2026-11-06T03:00:00-07:00",
+  "fetchedAt": "2026-11-06T10:14:58.051Z",
   "source": "open-meteo",
   "locationLabel": "Rock Creek, Montana",
   "air": {
-    "temperatureF": 34.2,
-    "apparentTemperatureF": 28.8,
-    "humidityPct": 75,
-    "pressureHpa": 840.6
+    "temperatureF": 33.6,
+    "apparentTemperatureF": 25.1,
+    "humidityPct": 63,
+    "pressureHpa": 839.3
   },
   "wind": {
-    "speedMph": 2,
-    "directionDeg": 74,
-    "gustMph": 6.9
+    "speedMph": 8.1,
+    "directionDeg": 142,
+    "gustMph": 10.1
   },
   "precipitation": {
     "lastHourIn": 0,
     "probabilityPct": 0
   },
   "sky": {
-    "cloudCoverPct": 20,
-    "visibilityMi": 14.788634848484849
+    "cloudCoverPct": 0,
+    "visibilityMi": 18.019765151515152
   },
   "solar": {
-    "sunriseIso": "2026-11-05T07:20:00-07:00",
-    "sunsetIso": "2026-11-05T17:12:00-07:00"
+    "sunriseIso": "2026-11-06T07:21:00-07:00",
+    "sunsetIso": "2026-11-06T17:11:00-07:00"
   },
   "airQuality": {
-    "usAqi": 43,
-    "pm25": 0.9
+    "usAqi": 30,
+    "pm25": 1.2
   },
   "forecast": [
     {
-      "dateIso": "2026-11-05",
-      "highF": 41.8,
-      "lowF": 29.7,
-      "precipProbabilityPct": 2
-    },
-    {
       "dateIso": "2026-11-06",
-      "highF": 47.3,
-      "lowF": 32.9,
-      "precipProbabilityPct": 2
+      "highF": 48.8,
+      "lowF": 33,
+      "precipProbabilityPct": 3
     },
     {
       "dateIso": "2026-11-07",
-      "highF": 57.3,
-      "lowF": 38.9,
+      "highF": 58.5,
+      "lowF": 40.3,
+      "precipProbabilityPct": 3
+    },
+    {
+      "dateIso": "2026-11-08",
+      "highF": 56.7,
+      "lowF": 33.7,
       "precipProbabilityPct": 3
     }
   ]
